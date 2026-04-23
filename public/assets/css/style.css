@@ -12922,4 +12922,99 @@ span {
   }
 }
 
+/* === Unified slider navigation ========================================= */
+/* Single source of truth for every carousel prev/next across the site.
+   Every legacy class gets the Select Mandates circle-arrow treatment. */
+.ht-slider-nav,
+.ht-project-nav button,
+.ht-project-prev,
+.ht-project-next,
+.ht-testi-prev,
+.ht-testi-next,
+.ht-testi-prev-2,
+.ht-testi-next-2,
+.testi-slides-prev,
+.testi-slides-next,
+.swiper-testi-btn .testi-slides-prev,
+.swiper-testi-btn .testi-slides-next,
+.ht-testi-btn .ht-testi-prev,
+.ht-testi-btn .ht-testi-next,
+.ht-project-btn .ht-project-prev,
+.ht-project-btn .ht-project-next {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--ht-border-color-2);
+  background: transparent;
+  color: var(--ht-heading-color);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+              transform 0.25s ease, opacity 0.25s ease;
+}
+.ht-slider-nav:hover,
+.ht-project-nav button:hover,
+.ht-project-prev:hover,
+.ht-project-next:hover,
+.ht-testi-prev:hover,
+.ht-testi-next:hover,
+.ht-testi-prev-2:hover,
+.ht-testi-next-2:hover,
+.testi-slides-prev:hover,
+.testi-slides-next:hover,
+.swiper-testi-btn .testi-slides-prev:hover,
+.swiper-testi-btn .testi-slides-next:hover,
+.ht-testi-btn .ht-testi-prev:hover,
+.ht-testi-btn .ht-testi-next:hover,
+.ht-project-btn .ht-project-prev:hover,
+.ht-project-btn .ht-project-next:hover {
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+  border-color: var(--ht-theme-color);
+  transform: translateY(-1px);
+}
+.ht-slider-nav.swiper-button-disabled,
+.ht-project-nav button.swiper-button-disabled,
+.ht-project-prev.swiper-button-disabled,
+.ht-project-next.swiper-button-disabled,
+.ht-testi-prev.swiper-button-disabled,
+.ht-testi-next.swiper-button-disabled,
+.testi-slides-prev.swiper-button-disabled,
+.testi-slides-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.ht-slider-nav.swiper-button-disabled:hover,
+.ht-project-nav button.swiper-button-disabled:hover,
+.ht-project-prev.swiper-button-disabled:hover,
+.ht-project-next.swiper-button-disabled:hover,
+.ht-testi-prev.swiper-button-disabled:hover,
+.ht-testi-next.swiper-button-disabled:hover,
+.testi-slides-prev.swiper-button-disabled:hover,
+.testi-slides-next.swiper-button-disabled:hover {
+  background: transparent;
+  color: var(--ht-heading-color);
+  border-color: var(--ht-border-color-2);
+  transform: none;
+}
+/* Icons inside slider buttons inherit currentColor and strip any legacy bg */
+.ht-testi-prev i,
+.ht-testi-next i,
+.ht-project-prev i,
+.ht-project-next i,
+.testi-slides-prev i,
+.testi-slides-next i {
+  color: inherit;
+  background: transparent;
+  font-size: 13px;
+  line-height: 1;
+}
+
 /*# sourceMappingURL=style.css.map */
