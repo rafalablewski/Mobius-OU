@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 import { BRIEFS } from '../data/briefs.js';
 
 export default function Blog() {
@@ -47,6 +48,14 @@ export default function Blog() {
           </div>
         </div>
       </section>
+      <CTABand
+        eyebrow="Private clients"
+        title="Want the memo behind the brief?"
+        body="Active clients receive the quarterly program re-ranking by email. One-off memos are available under NDA."
+        primary={{ label: 'Request a Memo', to: '/contact' }}
+        secondary={{ label: 'Brief Archive', to: '/blog-list' }}
+        bg="ink"
+      />
     </>
   );
 }

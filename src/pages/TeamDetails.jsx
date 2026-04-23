@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 
 export default function TeamDetails() {
   return (
@@ -102,6 +103,14 @@ export default function TeamDetails() {
                   </div>
               </div>
           </section>
+      <CTABand
+        eyebrow="Book the advisor"
+        title="Ask for this partner directly."
+        body="Our advisors respond only to enquiries routed through the firm. Schedule a call and we will confirm the right pair for your file."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'Our Advisors', to: '/team' }}
+        bg="ink"
+      />
     </>
   );
 }

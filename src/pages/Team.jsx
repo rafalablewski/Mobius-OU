@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 
 const ADVISORS = [
   { img: '1.jpg',  name: 'Rafał Ablewski',  role: 'Managing Partner, CFA' },
@@ -53,6 +54,14 @@ export default function Team() {
           </div>
         </div>
       </section>
+      <CTABand
+        eyebrow="Engage the bench"
+        title="Start with the advisor who fits the situation."
+        body="We match each file to the advisor closest to its facts. First call is with the partner, not an intake team."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'About the Firm', to: '/about' }}
+        bg="ink"
+      />
     </>
   );
 }

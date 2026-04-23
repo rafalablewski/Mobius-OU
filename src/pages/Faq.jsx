@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 
 const FAQS = [
   {
@@ -183,6 +184,14 @@ export default function Faq() {
                   </div>
               </div>
           </section>
+      <CTABand
+        eyebrow="Still unanswered?"
+        title="Every file is different. Ask the one that matters to yours."
+        body="If your question is not on the list, it is usually because the answer depends on facts we would rather hear from you directly."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'Programs & Fees', to: '/pricing' }}
+        bg="ivory"
+      />
     </>
   );
 }

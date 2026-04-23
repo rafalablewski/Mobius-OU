@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 import { BRIEFS } from '../data/briefs.js';
 
 const PRACTICE_TAGS = ['CBI', 'RBI', 'Tax Residency', 'Relocation', 'Asset Protection', 'Investment', 'Compliance', 'Malta', 'Portugal', 'UAE'];
@@ -114,6 +115,14 @@ export default function BlogList() {
                   </div>
               </div>
           </section>
+      <CTABand
+        eyebrow="Next step"
+        title="Turn a brief into a plan."
+        body="We publish what is safe to publish. The sharper view is reserved for active clients — tell us the situation and we will respond under NDA."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'Programs & Fees', to: '/pricing' }}
+        bg="ink"
+      />
     </>
   );
 }

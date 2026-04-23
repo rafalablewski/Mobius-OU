@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 
 export default function Services() {
   return (
@@ -85,6 +86,14 @@ export default function Services() {
                   </div>
               </div>
           </section>
+      <CTABand
+        eyebrow="Next step"
+        title="Ready to map your path across jurisdictions?"
+        body="One conversation is usually enough to tell you whether a program fits. We respond under NDA within two business days."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'Programs & Fees', to: '/pricing' }}
+        bg="ink"
+      />
     </>
   );
 }
