@@ -67,7 +67,7 @@ export const PROGRAMS = [
     country: 'Switzerland',
     tagline: 'Canton-level negotiated taxation for substantial foreign-source income.',
     headline: 'CHF 150–400k annual tax · 22 cantons',
-    arms: '/assets/img/arms/switzerland.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Coat_of_Arms_of_Switzerland_%28Pantone%29.svg/250px-Coat_of_Arms_of_Switzerland_%28Pantone%29.svg.png',
     heroImg: '/assets/img/blog/17.jpg',
     summary:
       'Lump-sum (forfait) taxation remains one of Europe\'s quietest premium routes. A negotiated annual tax base — not actual income — is agreed with the canton; for clients with sufficient foreign income, the effective rate is a fraction of European norms.',
@@ -95,7 +95,7 @@ export const PROGRAMS = [
     country: 'Italy',
     tagline: '€100,000 on all foreign-source income — one of Europe\'s strongest propositions.',
     headline: '€100k flat tax · up to 15 years',
-    arms: '/assets/img/arms/italy.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Emblem_of_Italy.svg/250px-Emblem_of_Italy.svg.png',
     heroImg: '/assets/img/blog/30.jpg',
     summary:
       'Italy\'s flat tax for new residents caps the annual Italian tax bill on all foreign-source income at €100,000 for the main applicant and €25,000 per family member, for up to fifteen years. Under-used relative to its actual strength.',
