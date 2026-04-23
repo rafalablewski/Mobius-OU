@@ -9,7 +9,7 @@ export default function Header({ onOffcanvasOpen }) {
             <div className="col-lg-6">
               <div className="left">
                 <p>
-                  <i className="fa-solid fa-location-dot"></i> 2774 Oak Drive, Plattsburgh, New York
+                  <i className="fa-solid fa-location-dot"></i> Rondo ONZ 1, 00-124 Warsaw, Poland
                 </p>
               </div>
             </div>
@@ -17,11 +17,11 @@ export default function Header({ onOffcanvasOpen }) {
               <ul className="right">
                 <li>
                   <i className="fa-solid fa-phone"></i>
-                  <a href="tel:5185643200">518-564-3200</a>
+                  <a href="tel:+48221000000">+48 22 100 00 00</a>
                 </li>
                 <li>
                   <i className="fa-solid fa-envelope"></i>
-                  <a href="mailto:hello@mobius.com">hello@mobius.com</a>
+                  <a href="mailto:advisory@passportbros.org">advisory@passportbros.org</a>
                 </li>
               </ul>
             </div>
@@ -34,47 +34,46 @@ export default function Header({ onOffcanvasOpen }) {
           <div className="ht-menu-wrapper">
             <div className="ht-menu-left">
               <div className="ht-menu-logo">
-                <Link to="/">
-                  <img src="/assets/img/logo/logo.svg" alt="Mobius" />
+                <Link to="/" aria-label="Ablewski & Partners — home">
+                  <img src="/assets/img/logo/logo.svg" alt="Ablewski & Partners" />
                 </Link>
               </div>
               <div className="ht-menu-main d-none d-lg-block">
-                <nav className="ht-mobile-menu-active">
+                <nav className="ht-mobile-menu-active" aria-label="Primary">
                   <ul>
                     <li className="has-dropdown">
                       <a href="#">home</a>
                       <ul className="sub-menu">
-                        <li><NavLink to="/">Main Home</NavLink></li>
-                        <li><NavLink to="/home-corporate">Corporate Business</NavLink></li>
-                        <li><NavLink to="/home-insurance">Insurance</NavLink></li>
+                        <li><NavLink to="/">Private Clients</NavLink></li>
+                        <li><NavLink to="/home-corporate">Corporate &amp; Family Office</NavLink></li>
+                        <li><NavLink to="/home-insurance">Succession &amp; Legacy</NavLink></li>
                       </ul>
                     </li>
                     <li className="has-dropdown">
-                      <a href="#">pages</a>
+                      <a href="#">firm</a>
                       <ul className="sub-menu">
-                        <li><NavLink to="/about">About Us</NavLink></li>
-                        <li><NavLink to="/services">Our Services</NavLink></li>
-                        <li><NavLink to="/service-details">Service Details</NavLink></li>
-                        <li><NavLink to="/team">Team</NavLink></li>
-                        <li><NavLink to="/team-details">Team Details</NavLink></li>
-                        <li><NavLink to="/pricing">Pricing</NavLink></li>
-                        <li><NavLink to="/faq">FAQ</NavLink></li>
-                        <li><NavLink to="/404">404</NavLink></li>
+                        <li><NavLink to="/about">About the Firm</NavLink></li>
+                        <li><NavLink to="/services">Advisory Practice</NavLink></li>
+                        <li><NavLink to="/service-details">Service Overview</NavLink></li>
+                        <li><NavLink to="/team">Our Advisors</NavLink></li>
+                        <li><NavLink to="/team-details">Advisor Profile</NavLink></li>
+                        <li><NavLink to="/pricing">Programs &amp; Fees</NavLink></li>
+                        <li><NavLink to="/faq">Client FAQ</NavLink></li>
                       </ul>
                     </li>
                     <li className="has-dropdown">
-                      <a href="#">portfolio</a>
+                      <a href="#">case studies</a>
                       <ul className="sub-menu">
-                        <li><NavLink to="/project">Our Projects</NavLink></li>
-                        <li><NavLink to="/project-details">project details</NavLink></li>
+                        <li><NavLink to="/project">Select Mandates</NavLink></li>
+                        <li><NavLink to="/project-details">Mandate Detail</NavLink></li>
                       </ul>
                     </li>
                     <li className="has-dropdown">
-                      <a href="#">blog</a>
+                      <a href="#">insights</a>
                       <ul className="sub-menu">
-                        <li><NavLink to="/blog">Blog</NavLink></li>
-                        <li><NavLink to="/blog-list">Blog List</NavLink></li>
-                        <li><NavLink to="/blog-details">Blog Details</NavLink></li>
+                        <li><NavLink to="/blog">Intelligence Briefs</NavLink></li>
+                        <li><NavLink to="/blog-list">Brief Archive</NavLink></li>
+                        <li><NavLink to="/blog-details">Brief Detail</NavLink></li>
                       </ul>
                     </li>
                     <li><NavLink to="/contact">contact</NavLink></li>
@@ -84,12 +83,13 @@ export default function Header({ onOffcanvasOpen }) {
             </div>
             <div className="ht-menu-right">
               <Link to="/contact" className="ht-btn d-none d-lg-block">
-                lets get in touch
+                Schedule Consultation
               </Link>
               <button
                 type="button"
                 className="ht-menu-btn d-lg-none offcanvas-toggle"
                 onClick={onOffcanvasOpen}
+                aria-label="Open navigation menu"
               >
                 <i className="fa-solid fa-bars-staggered"></i>
               </button>
