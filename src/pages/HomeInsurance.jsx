@@ -393,67 +393,6 @@ export default function HomeInsurance() {
               </div>
           </section>
 
-          <section className="ht-blog-area-3 section-padding fix">
-              <div className="container">
-                  <div className="ht-blog-wrapper">
-                      <div className="row gy-5">
-                          <div className="col-lg-5">
-                              <div className="ht-blog-contents">
-                                  <div className="section-title">
-                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Intelligence briefs</span>
-                                      <h2 className="title wow fadeInUp" data-wow-delay=".5s">Latest analysis on <br /> structures &amp; succession
-                                      </h2>
-                                      <p className="mt-7 wow fadeInUp" data-wow-delay=".8s">Quarterly notes on residency programs,
-                                          tax policy and the quieter structural decisions that keep private wealth
-                                          intact across generations.</p>
-                                  </div>
-                                  <Link to="/blog" className="ht-btn style-2">view all briefs</Link>
-                              </div>
-                          </div>
-                          <div className="col-lg-7">
-                              <div className="ht-blog-item-wrapper">
-                                  <div className="single-item wow fadeInUp" data-wow-delay=".3s">
-                                      <div className="thumb">
-                                          <Link to="/blog-details"><img src="/assets/img/blog/10.jpg" alt="Foundations vs trusts brief" /></Link>
-                                      </div>
-                                      <div className="content">
-                                          <span className="meta">Oct 17, 2025 | Asset Protection</span>
-                                          <Link to="/blog-details">
-                                              <h3>Private Foundations vs <br /> Trusts for CEE Wealth</h3>
-                                          </Link>
-                                          <Link to="/blog-details" className="link">read brief</Link>
-                                      </div>
-                                  </div>
-                                  <div className="single-item wow fadeInUp" data-wow-delay=".6s">
-                                      <div className="thumb">
-                                          <Link to="/blog-details"><img src="/assets/img/blog/11.jpg" alt="Swiss lump-sum taxation brief" /></Link>
-                                      </div>
-                                      <div className="content">
-                                          <span className="meta">Aug 21, 2025 | Residency</span>
-                                          <Link to="/blog-details">
-                                              <h3>Switzerland's Lump-Sum <br /> Taxation, Revisited</h3>
-                                          </Link>
-                                          <Link to="/blog-details" className="link">read brief</Link>
-                                      </div>
-                                  </div>
-                                  <div className="single-item wow fadeInUp" data-wow-delay=".9s">
-                                      <div className="thumb">
-                                          <Link to="/blog-details"><img src="/assets/img/blog/12.jpg" alt="Source of funds brief" /></Link>
-                                      </div>
-                                      <div className="content">
-                                          <span className="meta">Jul 14, 2025 | Compliance</span>
-                                          <Link to="/blog-details">
-                                              <h3>Source of Funds: What <br /> Enhanced Due Diligence Wants</h3>
-                                          </Link>
-                                          <Link to="/blog-details" className="link">read brief</Link>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
     </>
   );
 }
