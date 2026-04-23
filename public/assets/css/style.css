@@ -14037,16 +14037,15 @@ span {
   vertical-align: 2px;
   line-height: 1.5;
 }
-/* RBI (residency, lighter commitment) -- soft champagne wash */
+/* RBI (residency) -- deep forest green with ivory text */
 .mega-col__badge--rbi {
-  color: var(--ht-theme-color-2);
-  background: rgba(201, 168, 106, 0.14);
+  color: #F4EFE6;
+  background: #1F4D3A;
 }
-/* CBI (citizenship, permanent) -- solid ink name-plate with champagne text */
+/* CBI (citizenship) -- deep oxblood red with ivory text */
 .mega-col__badge--cbi {
-  color: var(--ht-theme-color-2);
-  background: var(--ht-theme-color);
-  letter-spacing: 0.2em;
+  color: #F4EFE6;
+  background: #7A1E26;
 }
 .mega-menu__preview-eyebrow .mega-col__badge {
   margin-left: 8px;
