@@ -53,9 +53,9 @@ export default function Home() {
                     emphasis="the global mobility agenda."
                   />
                   <div className="ht-services-wrapper">
-                      <div className="row">
+                      <div className="row g-4 g-lg-5">
                           <div className="col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
-                              <div className="ht-services-items mt-30">
+                              <div className="ht-services-items">
                                   <div className="icon">
                                       <img src="/assets/img/icon/1.svg" alt="" aria-hidden="true" />
                                   </div>
@@ -66,7 +66,7 @@ export default function Home() {
                               </div>
                           </div>
                           <div className="col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
-                              <div className="ht-services-items mt-30">
+                              <div className="ht-services-items">
                                   <div className="icon">
                                       <img src="/assets/img/icon/2.svg" alt="" aria-hidden="true" />
                                   </div>
@@ -77,7 +77,7 @@ export default function Home() {
                               </div>
                           </div>
                           <div className="col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
-                              <div className="ht-services-items mt-30">
+                              <div className="ht-services-items">
                                   <div className="icon">
                                       <img src="/assets/img/icon/3.svg" alt="" aria-hidden="true" />
                                   </div>
@@ -88,7 +88,7 @@ export default function Home() {
                               </div>
                           </div>
                           <div className="col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".8s">
-                              <div className="ht-services-items mt-30">
+                              <div className="ht-services-items">
                                   <div className="icon">
                                       <img src="/assets/img/icon/4.svg" alt="" aria-hidden="true" />
                                   </div>

@@ -8616,7 +8616,10 @@ span {
 }
 .ht-hero-content .desc {
   margin: 7px 0 32px;
-  font-size: 20px;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
   color: var(--ht-white);
 }
 .ht-hero-content.style-2 h1 {
@@ -8925,6 +8928,7 @@ span {
   padding: 40px 30px;
   border-radius: 20px;
   background: var(--ht-theme-color-5);
+  height: 100%;
 }
 @media (max-width: 767px) {
   .ht-services-items {
@@ -9039,6 +9043,9 @@ span {
 }
 .ht-services-items .desc {
   margin-top: 10px;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-size: 16px;
+  line-height: 1.65;
 }
 .ht-services-items .link {
   display: inline-block;
@@ -10545,8 +10552,9 @@ span {
 }
 .ht-testimonials-item .desc {
   margin-top: 2px;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 150%;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -11654,6 +11662,8 @@ span {
 .ht-footer-wrapper .ht-footer-info .desc {
   color: var(--ht-white);
   margin: 20px 0;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-size: 16px;
 }
 .ht-footer-wrapper .ht-footer-info .footer-social {
   display: flex;
@@ -13173,8 +13183,9 @@ span {
 }
 .ht-approach__body p {
   margin: 10px 0 14px;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   max-width: 34ch;
 }
@@ -14393,8 +14404,9 @@ span {
   font-weight: 400;
 }
 .ht-principles__lede {
-  font-size: 14px;
-  line-height: 1.6;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--ht-theme-color-6);
   margin: 0;
   max-width: 42ch;
@@ -14495,8 +14507,9 @@ span {
   font-weight: 400;
 }
 .ht-section-heading__lede {
-  font-size: 14px;
-  line-height: 1.6;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--ht-theme-color-6);
   margin: 0;
   max-width: 52ch;
@@ -14574,7 +14587,8 @@ span {
 .ht-approach-v2__lede {
   grid-column: 2 / 3;
   margin: 0;
-  font-size: 15px;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.72);
   max-width: 48ch;
