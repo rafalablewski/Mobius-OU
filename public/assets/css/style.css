@@ -8496,60 +8496,6 @@ span {
 .ht-offcanvas-header button i:hover {
   transform: rotate(180deg);
 }
-.ht-offcanvas-menu ul li {
-  position: relative;
-}
-.ht-offcanvas-menu ul li > a {
-  display: block;
-  padding: 10px 0;
-  font-size: 16px;
-  border-bottom: 1px solid var(--ht-border-color-2);
-  color: var(--ht-theme-color);
-  transition: color 0.3s;
-  text-transform: uppercase;
-  font-family: "Cormorant Garamond", sans-serif;
-  font-weight: 500;
-}
-.ht-offcanvas-menu ul li.active > a {
-  color: var(--ht-theme-color);
-}
-.ht-offcanvas-menu ul li .sub-menu {
-  display: none;
-  padding-left: 20px;
-}
-.ht-offcanvas-menu ul li .sub-menu li > a {
-  color: var(--ht-theme-color);
-}
-.ht-offcanvas-menu ul li .sub-menu li > a:hover {
-  color: var(--ht-theme-color-2);
-}
-.ht-offcanvas-menu ul li .ht-menu-close {
-  position: absolute;
-  top: 9px;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--ht-border-color-2);
-  background-color: var(--ht-theme-color);
-  color: var(--ht-white);
-  transition: 0.3s;
-}
-.ht-offcanvas-menu ul li .ht-menu-close i {
-  transition: 0.3s;
-}
-.ht-offcanvas-menu ul li.active > .ht-menu-close {
-  border-color: var(--ht-theme-color);
-  background-color: var(--ht-theme-color);
-  color: #fff;
-}
-.ht-offcanvas-menu ul li.active > .ht-menu-close i {
-  transform: rotate(90deg);
-}
 .ht-offcanvas-overlay {
   position: fixed;
   z-index: 50;
@@ -12339,53 +12285,6 @@ span {
 @keyframes megaRevealItem {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-/* === Offcanvas accordion =============================================== */
-.offcanvas-accordion .has-panel {
-  border-bottom: 1px solid var(--ht-border-color);
-}
-.offcanvas-accordion__trigger {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 0;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
-  color: var(--ht-heading-color);
-  text-align: left;
-  cursor: pointer;
-}
-.offcanvas-accordion__chev {
-  transition: transform 0.3s ease;
-  font-size: 12px;
-  color: var(--ht-theme-color-6);
-}
-.offcanvas-accordion .has-panel.open .offcanvas-accordion__chev {
-  transform: rotate(180deg);
-  color: var(--ht-theme-color-2);
-}
-.offcanvas-accordion__panel {
-  max-height: 0;
-  overflow: hidden;
-  padding-left: 14px;
-  border-left: 1px solid var(--ht-border-color);
-  transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-.offcanvas-accordion .has-panel.open .offcanvas-accordion__panel {
-  max-height: 600px;
-  margin-bottom: 10px;
-}
-.offcanvas-accordion__panel li a {
-  display: block;
-  padding: 8px 0;
-  font-family: "Manrope", sans-serif;
-  font-size: 15px;
-  color: var(--ht-theme-color-6);
-}
-.offcanvas-accordion__panel li a:hover {
-  color: var(--ht-theme-color-2);
 }
 
 /* === Motion polish ===================================================== */
