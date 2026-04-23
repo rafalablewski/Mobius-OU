@@ -13851,15 +13851,26 @@ span {
     font-size: 24px;
   }
   .ht-cta-band__actions {
-    justify-content: stretch;
+    justify-content: flex-start;
+    gap: 12px;
   }
   .ht-cta-band__actions .ht-btn {
-    width: 100%;
+    width: auto;
   }
-  /* Project footer stacks */
+  /* Project footer stacks: drop container border, keep only the link's
+     own underline so we do not render two stacked hairlines. */
   .ht-project-footer {
-    margin-top: 40px;
-    padding-top: 20px;
+    margin-top: 32px;
+    padding-top: 0;
+    border-top: 0;
+    gap: 16px;
+  }
+  .ht-project-all {
+    justify-content: space-between;
+    align-self: stretch;
+  }
+  .ht-project-nav {
+    align-self: flex-start;
   }
   /* Breadcrumb height */
   .ht-breadcrumb-area {
