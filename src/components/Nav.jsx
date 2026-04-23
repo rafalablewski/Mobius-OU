@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IconMenu, IconClose, IconArrow } from './Icons.jsx';
 import Logo from './Logo.jsx';
+import config from '../config.js';
 
 const LINKS = [
   { href: '#services',     label: 'Services' },
@@ -109,7 +110,8 @@ export default function Nav({ open, onOpen, onClose }) {
         </ul>
         <div className="ap-mobile__foot">
           <p style={{ color: 'rgba(244,237,224,0.7)', fontSize: '0.85rem' }}>
-            Ablewski &amp; Partners · Warsaw · <a href="mailto:office@passportbros.org" style={{ color: 'var(--ap-gold)' }}>office@passportbros.org</a>
+            Ablewski &amp; Partners · Warsaw ·{' '}
+            <a href={`mailto:${config.email}`} style={{ color: 'var(--ap-gold)' }}>{config.email}</a>
           </p>
         </div>
       </div>

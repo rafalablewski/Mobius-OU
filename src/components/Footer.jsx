@@ -1,4 +1,5 @@
 import Logo from './Logo.jsx';
+import config from '../config.js';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -29,15 +30,13 @@ export default function Footer() {
           <nav aria-label="Contact">
             <h4>Contact</h4>
             <ul>
-              <li><a href="mailto:office@passportbros.org">office@passportbros.org</a></li>
-              <li>Warsaw · By appointment</li>
-              <li>Mon – Fri · 09:00 – 18:00 CET</li>
+              <li><a href={`mailto:${config.email}`}>{config.email}</a></li>
+              <li>{config.office.replace(' · By appointment only', ' · By appointment')}</li>
+              <li>{config.hours}</li>
               <li>
-                <a
-                  href="https://calendly.com/ablewski-partners/consult"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Book a private call</a>
+                <a href={config.calendlyUrl} target="_blank" rel="noopener noreferrer">
+                  Book a private call
+                </a>
               </li>
             </ul>
           </nav>

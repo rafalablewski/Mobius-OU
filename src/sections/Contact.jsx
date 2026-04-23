@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IconArrow } from '../components/Icons.jsx';
+import config from '../config.js';
 
 const GOALS = [
   'Citizenship by Investment',
@@ -55,8 +56,35 @@ export default function Contact() {
         values.brief,
       ].join('\n'),
     );
-    window.location.href = `mailto:office@passportbros.org?subject=${subject}&body=${body}`;
-    setTimeout(() => setStatus('sent'), 300);
+    const mailtoFallback = () => {
+      window.location.href = `mailto:${config.email}?subject=${subject}&body=${body}`;
+      setTimeout(() => setStatus('sent'), 300);
+    };
+
+    if (!config.contactEndpoint) {
+      mailtoFallback();
+      return;
+    }
+
+    fetch(config.contactEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values),
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error(`Submission failed (${r.status})`);
+        return r.json().catch(() => ({}));
+      })
+      .then(() => {
+        setStatus('sent');
+        setValues(initial);
+      })
+      .catch((err) => {
+        // Graceful fallback: surface a soft error and open mailto so the
+        // brief is never lost.
+        console.warn('[ap] contact endpoint failed', err);
+        mailtoFallback();
+      });
   };
 
   return (
@@ -160,8 +188,9 @@ export default function Contact() {
 
             {status === 'sent' && (
               <div className="ap-form__status">
-                Your email client should now be open with the brief prepared. If not,
-                please write to <a href="mailto:office@passportbros.org" style={{ color: 'var(--ap-gold)' }}>office@passportbros.org</a>.
+                Brief received — a named partner will respond within two working days.
+                For anything urgent, write to{' '}
+                <a href={`mailto:${config.email}`} style={{ color: 'var(--ap-gold)' }}>{config.email}</a>.
               </div>
             )}
           </form>
@@ -175,7 +204,7 @@ export default function Contact() {
 
             <a
               className="ap-btn ap-btn--ghost-ivory"
-              href="https://calendly.com/ablewski-partners/consult"
+              href={config.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
               style={{ marginTop: '0.5rem' }}
@@ -188,15 +217,15 @@ export default function Contact() {
             <ul className="ap-contact__list">
               <li>
                 <span className="lbl">Correspondence</span>
-                <a className="val" href="mailto:office@passportbros.org">office@passportbros.org</a>
+                <a className="val" href={`mailto:${config.email}`}>{config.email}</a>
               </li>
               <li>
                 <span className="lbl">Office</span>
-                <span className="val">Warsaw · By appointment only</span>
+                <span className="val">{config.office}</span>
               </li>
               <li>
                 <span className="lbl">Hours</span>
-                <span className="val">Mon – Fri · 09:00 – 18:00 CET</span>
+                <span className="val">{config.hours}</span>
               </li>
             </ul>
           </aside>
