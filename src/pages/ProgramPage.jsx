@@ -35,9 +35,6 @@ export default function ProgramPage() {
                 <i className="fa-solid fa-arrow-right" aria-hidden="true" style={{ marginLeft: 10 }}></i>
               </Link>
             </div>
-            <div className="ht-program__hero">
-              <img src={program.heroImg} alt={program.name} loading="lazy" />
-            </div>
           </div>
 
           <div className="ht-program__facts">

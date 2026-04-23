@@ -13323,18 +13323,17 @@ span {
 }
 .ht-program__head {
   display: block;
-  padding: 56px 0 0;
+  padding: 56px 0 64px;
   border-bottom: 1px solid var(--ht-border-color);
 }
 .ht-program__intro {
   text-align: center;
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 16px 56px;
+  padding: 0 16px;
 }
 @media (max-width: 991px) {
-  .ht-program__head { padding: 40px 0 0; }
-  .ht-program__intro { padding-bottom: 40px; }
+  .ht-program__head { padding: 40px 0 48px; }
 }
 .ht-program__crest {
   display: flex;
@@ -13400,29 +13399,6 @@ span {
 .ht-program__cta {
   padding: 16px 28px;
 }
-.ht-program__hero {
-  position: relative;
-  aspect-ratio: 21 / 9;
-  border-radius: 0;
-  overflow: hidden;
-  background: var(--ht-theme-color-4);
-  margin: 0 calc(50% - 50vw);
-  width: 100vw;
-  max-width: 100vw;
-}
-@media (max-width: 991px) {
-  .ht-program__hero { aspect-ratio: 16 / 9; }
-}
-@media (max-width: 575px) {
-  .ht-program__hero { aspect-ratio: 4 / 3; }
-}
-.ht-program__hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-.ht-program__hero:hover img { transform: scale(1.03); }
 
 /* Hero + sidecar: one headline figure dominates, three supporting facts
    sit in a stacked key/value column beside it. Single hairline frame,
