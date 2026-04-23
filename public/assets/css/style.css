@@ -13385,65 +13385,116 @@ span {
 .ht-program__facts {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 0;
   margin: 56px 0 64px;
-  padding: 0;
-  border: 0;
+  padding: 20px 0;
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+  border-radius: 4px;
+  position: relative;
   counter-reset: programfact;
+  overflow: hidden;
+}
+/* "At a glance" eyebrow sitting on the top edge like a document tab */
+.ht-program__facts::before {
+  content: "At a glance";
+  position: absolute;
+  top: -12px;
+  left: 40px;
+  padding: 2px 14px;
+  background: var(--ht-body);
+  color: var(--ht-theme-color-2);
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 2;
+  line-height: 1;
+}
+/* Champagne stamp in the top-right corner, like a prospectus seal */
+.ht-program__facts::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(201, 168, 106, 0.55);
+  border-radius: 999px;
+  background: radial-gradient(circle at center, rgba(201, 168, 106, 0.25) 0%, rgba(201, 168, 106, 0) 70%);
+  pointer-events: none;
 }
 @media (max-width: 991px) {
-  .ht-program__facts { grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 40px 0 48px; }
+  .ht-program__facts { grid-template-columns: repeat(2, 1fr); margin: 40px 0 48px; }
+  .ht-program__facts::after { display: none; }
 }
 @media (max-width: 575px) {
-  .ht-program__facts { grid-template-columns: 1fr; }
+  .ht-program__facts { grid-template-columns: 1fr; padding: 14px 0; }
 }
 .ht-program__fact {
   counter-increment: programfact;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 28px 26px 26px;
-  background: var(--ht-white);
-  border: 1px solid var(--ht-border-color);
-  border-radius: 4px;
-  min-height: 148px;
-  transition: border-color 0.3s ease, background 0.3s ease, transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  gap: 10px;
+  padding: 44px 32px 36px;
+  background: transparent;
+  border: 0;
+  min-height: 200px;
 }
+/* Vertical champagne hairline between columns (box-shadow to stay inside
+   the rounded container's clip). */
+.ht-program__fact:not(:last-child) {
+  box-shadow: inset -1px 0 0 rgba(201, 168, 106, 0.18);
+}
+@media (max-width: 991px) {
+  .ht-program__fact { padding: 36px 26px 28px; min-height: 160px; }
+  .ht-program__fact:nth-child(2n):not(:last-child) { box-shadow: none; }
+  .ht-program__fact:nth-child(-n+2) { box-shadow: inset 0 -1px 0 rgba(201, 168, 106, 0.18), inset -1px 0 0 rgba(201, 168, 106, 0.18); }
+  .ht-program__fact:nth-child(2):not(:last-child) { box-shadow: inset 0 -1px 0 rgba(201, 168, 106, 0.18); }
+}
+@media (max-width: 575px) {
+  .ht-program__fact { padding: 28px 28px 24px; min-height: 0; box-shadow: inset 0 -1px 0 rgba(201, 168, 106, 0.18) !important; }
+  .ht-program__fact:last-child { box-shadow: none !important; }
+}
+/* Roman numeral pinned top-right of each column */
 .ht-program__fact::before {
-  content: counter(programfact, decimal-leading-zero);
+  content: counter(programfact, lower-roman);
   position: absolute;
-  top: 16px;
-  right: 20px;
+  top: 20px;
+  right: 26px;
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 16px;
-  color: var(--ht-theme-color-2);
-  opacity: 0.7;
-  letter-spacing: 0.02em;
-}
-.ht-program__fact:hover {
-  border-color: var(--ht-theme-color-2);
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px -24px rgba(11, 15, 20, 0.18);
+  font-size: 15px;
+  color: rgba(201, 168, 106, 0.55);
+  letter-spacing: 0.06em;
+  line-height: 1;
 }
 .ht-program__fact-label {
   font-family: "Manrope", sans-serif;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--ht-theme-color-2);
+  order: 0;
 }
 .ht-program__fact-value {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(22px, 2.2vw, 30px);
   font-weight: 500;
-  line-height: 1.15;
+  font-size: clamp(20px, 2.1vw, 28px);
+  line-height: 1.18;
   letter-spacing: -0.015em;
-  color: var(--ht-heading-color);
+  color: var(--ht-white);
+  order: 2;
   margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(201, 168, 106, 0.2);
+  min-height: 64px;
+  display: block;
 }
 
 .ht-program__body {
