@@ -343,56 +343,6 @@ export default function Home() {
               </div>
           </section>
 
-          <section className="ht-testimonials-area">
-              <div className="container">
-                  <div className="ht-testimonials-wrapper">
-                      <div className="row gy-5">
-                          <div className="col-lg-5">
-                              <div className="section-title">
-                                  <span className="subtitle wow fadeInUp" data-wow-delay=".2s">In their own words</span>
-                                  <h2 className="title wow fadeInUp" data-wow-delay=".4s">What private<br /> clients say<br /> about us.
-                                  </h2>
-                              </div>
-                              <div className="ht-testi-btn wow fadeInUp" data-wow-delay=".6s">
-                                  <button className="ht-testi-prev" aria-label="Previous testimonial"><i className="fa-solid fa-chevron-left"></i></button>
-                                  <button className="ht-testi-next" aria-label="Next testimonial"><i className="fa-solid fa-chevron-right"></i></button>
-                              </div>
-                          </div>
-                          <div className="col-lg-7">
-                              <div className="ht-testimonials-slider">
-                                  <div className="swiper ht-testi-slider">
-                                      <div className="swiper-wrapper">
-                                          <div className="swiper-slide">
-                                              <div className="ht-testimonials-item">
-                                                  <div className="star" aria-label="5 out of 5">
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                  </div>
-                                                  <p className="desc">"They refused two programs that would have been easier to sell us and instead walked us through the one that actually fit our exit. That conversation alone was worth the retainer."
-                                                  </p>
-                                                  <div className="ht-testimonials-author">
-                                                      <div className="avatar">
-                                                          <img src="/assets/img/testimonials/1.png" alt="" aria-hidden="true" />
-                                                      </div>
-                                                      <div className="author-info">
-                                                          <h5 className="name">Founder, SaaS exit</h5>
-                                                          <p className="role">Central Europe · name withheld</p>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
     </>
   );
 }
