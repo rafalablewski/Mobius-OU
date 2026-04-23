@@ -10,7 +10,7 @@ export const PROGRAMS = [
     country: 'Portugal',
     tagline: 'EU residency with the lightest presence requirement in Europe.',
     headline: '€500k fund · 7 days / year',
-    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Coat_of_arms_of_Portugal.svg/240px-Coat_of_arms_of_Portugal.svg.png',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Coat_of_arms_of_Portugal.svg/250px-Coat_of_arms_of_Portugal.svg.png',
     heroImg: '/assets/img/blog/29.jpg',
     summary:
       'Portugal\'s Golden Visa remains the most robust EU residency route after the 2023 reform. The fund sub-route keeps minimum physical presence at seven days per year and preserves the five-year path to citizenship for the whole immediate family.',

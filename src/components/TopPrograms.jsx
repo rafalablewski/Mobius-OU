@@ -24,7 +24,7 @@ export default function TopPrograms({ eyebrow, title, body, programs, tone = 'rb
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span className="ht-top-programs__arms">
-                  <img src={p.arms} alt="" loading="lazy" />
+                  <img src={p.arms} alt="" loading="lazy" referrerPolicy="no-referrer" />
                 </span>
                 <span className="ht-top-programs__body-cell">
                   <span className="ht-top-programs__country">{p.country}</span>
