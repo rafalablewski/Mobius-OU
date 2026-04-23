@@ -43,7 +43,7 @@ export default function Offcanvas({ open, onClose }) {
 
   return (
     <>
-      <div className={`ht-offcanvas${open ? ' active' : ''}`}>
+      <div className={`ht-offcanvas${open ? ' ht-offcanvas-open' : ''}`}>
         <div className="ht-offcanvas-wrapper">
           <div className="ht-offcanvas-header mb-50">
             <Link to="/" className="ht-offcanvas-logo ht-wordmark" onClick={onClose}>
@@ -110,7 +110,7 @@ export default function Offcanvas({ open, onClose }) {
       </div>
 
       <div
-        className={`ht-offcanvas-overlay${open ? ' active' : ''}`}
+        className={`ht-offcanvas-overlay${open ? ' ht-offcanvas-overlay-open' : ''}`}
         onClick={onClose}
       ></div>
     </>
