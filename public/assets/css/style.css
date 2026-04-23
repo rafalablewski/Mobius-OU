@@ -14003,6 +14003,25 @@ span {
 .ht-menu-main > nav > ul > li:hover .ht-menu-mark {
   transform: translateY(-1px) rotate(8deg);
 }
+.ht-menu-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-left: 8px;
+  border-radius: 999px;
+  vertical-align: 2px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.ht-menu-dot--ink {
+  background: var(--ht-heading-color);
+}
+.ht-menu-dot--champagne {
+  background: var(--ht-theme-color-2);
+}
+.ht-menu-main > nav > ul > li:hover .ht-menu-dot {
+  transform: translateY(-1px) scale(1.15);
+  box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.15);
+}
 
 /* === Mega-col badges =================================================== */
 .mega-col__badge {

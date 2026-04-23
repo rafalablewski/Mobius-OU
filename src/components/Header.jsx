@@ -153,7 +153,7 @@ export default function Header({ onOffcanvasOpen }) {
                 <nav className="ht-mobile-menu-active" aria-label="Primary">
                   <ul>
                     <li className="has-dropdown">
-                      <a href="#">home</a>
+                      <a href="#">home<span className="ht-menu-dot ht-menu-dot--ink" aria-hidden="true"></span></a>
                       <ul className="sub-menu">
                         <li><NavLink to="/">Private Clients</NavLink></li>
                         <li><NavLink to="/home-corporate">Corporate &amp; Family Office</NavLink></li>
@@ -161,7 +161,7 @@ export default function Header({ onOffcanvasOpen }) {
                       </ul>
                     </li>
                     <li className="has-mega-menu">
-                      <a href="#">firm</a>
+                      <a href="#">firm<span className="ht-menu-dot ht-menu-dot--champagne" aria-hidden="true"></span></a>
                       <MegaPanel
                         id="firm"
                         columns={FIRM_COLUMNS}
