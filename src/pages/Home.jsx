@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import TopPrograms from '../components/TopPrograms.jsx';
+import Principles from '../components/Principles.jsx';
 import { PROGRAMS } from '../data/programs.js';
 
 const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
@@ -124,6 +125,8 @@ export default function Home() {
                   </div>
               </div>
           </section>
+
+          <Principles />
 
           <section className="ht-stats-area fix">
               <div className="container">
