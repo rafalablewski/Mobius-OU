@@ -36,10 +36,10 @@ export default function Footer() {
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay=".6s">
               <h5 className="head">Programs</h5>
               <ul className="link-list">
-                <li><Link to="/pricing">Portugal Golden Visa</Link></li>
-                <li><Link to="/pricing">Caribbean CBI</Link></li>
-                <li><Link to="/pricing">Malta MEIN</Link></li>
-                <li><Link to="/pricing">UAE Golden Residence</Link></li>
+                <li><Link to="/programs/portugal-golden-visa">Portugal Golden Visa</Link></li>
+                <li><Link to="/programs/caribbean-cbi">Caribbean CBI</Link></li>
+                <li><Link to="/programs/malta-mein">Malta MEIN</Link></li>
+                <li><Link to="/programs/uae-golden-residence">UAE Golden Residence</Link></li>
               </ul>
             </div>
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay=".9s">

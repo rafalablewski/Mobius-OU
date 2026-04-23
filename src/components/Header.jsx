@@ -32,17 +32,17 @@ const PROGRAMS_COLUMNS = [
   {
     heading: 'Europe',
     items: [
-      { to: '/pricing', label: 'Portugal Golden Visa',  img: '/assets/img/blog/29.jpg', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
-      { to: '/pricing', label: 'Malta MEIN',            img: '/assets/img/blog/13.jpg', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
-      { to: '/pricing', label: 'Switzerland Lump-Sum',  img: '/assets/img/blog/17.jpg', blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
-      { to: '/pricing', label: 'Italy Flat-Tax',        img: '/assets/img/blog/30.jpg', blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
+      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa',  img: '/assets/img/blog/29.jpg', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
+      { to: '/programs/malta-mein',           label: 'Malta MEIN',            img: '/assets/img/blog/13.jpg', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
+      { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum',  img: '/assets/img/blog/17.jpg', blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
+      { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax',        img: '/assets/img/blog/30.jpg', blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
     ],
   },
   {
     heading: 'Americas & Gulf',
     items: [
-      { to: '/pricing', label: 'Caribbean CBI',         img: '/assets/img/blog/2.jpg',  blurb: 'Passport portfolio planning after the US–EU pressure cycle.' },
-      { to: '/pricing', label: 'UAE Golden Residence',  img: '/assets/img/blog/3.jpg',  blurb: 'Ten-year residency in Dubai — who still belongs there after corporate tax.' },
+      { to: '/programs/caribbean-cbi',        label: 'Caribbean CBI',         img: '/assets/img/blog/2.jpg',  blurb: 'Passport portfolio planning after the US–EU pressure cycle.' },
+      { to: '/programs/uae-golden-residence', label: 'UAE Golden Residence',  img: '/assets/img/blog/3.jpg',  blurb: 'Ten-year residency in Dubai — who still belongs there after corporate tax.' },
     ],
   },
   {

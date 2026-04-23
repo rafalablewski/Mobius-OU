@@ -17,11 +17,12 @@ const PANELS = {
   programs: {
     label: 'Programs',
     items: [
-      { to: '/pricing', label: 'Portugal Golden Visa' },
-      { to: '/pricing', label: 'Malta MEIN' },
-      { to: '/pricing', label: 'Switzerland Lump-Sum' },
-      { to: '/pricing', label: 'Caribbean CBI' },
-      { to: '/pricing', label: 'UAE Golden Residence' },
+      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa' },
+      { to: '/programs/malta-mein',           label: 'Malta MEIN' },
+      { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum' },
+      { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax' },
+      { to: '/programs/caribbean-cbi',        label: 'Caribbean CBI' },
+      { to: '/programs/uae-golden-residence', label: 'UAE Golden Residence' },
       { to: '/services', label: 'Tax Residency Planning' },
       { to: '/services', label: 'Asset Protection' },
     ],

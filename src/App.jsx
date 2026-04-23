@@ -16,6 +16,7 @@ import Blog from './pages/Blog.jsx';
 import BlogList from './pages/BlogList.jsx';
 import BlogDetails from './pages/BlogDetails.jsx';
 import Contact from './pages/Contact.jsx';
+import ProgramPage from './pages/ProgramPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/blog-details" element={<BlogDetails />} />
         <Route path="/blog-details/:slug" element={<BlogDetails />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/programs/:slug" element={<ProgramPage />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Route>
