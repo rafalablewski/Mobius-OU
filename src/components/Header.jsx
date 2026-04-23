@@ -109,6 +109,18 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
         <Link to={ctaTo} className="mega-menu__all">
           {ctaLabel} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </Link>
+        {id === 'firm' && (
+          <div className="mega-menu__signoff">
+            <span className="mega-menu__signoff-portrait">
+              <img src="/assets/img/team/1.jpg" alt="" loading="lazy" />
+            </span>
+            <span className="mega-menu__signoff-body">
+              <span className="mega-menu__signoff-name">Rafał Ablewski</span>
+              <span className="mega-menu__signoff-role">Managing Partner · CFA</span>
+              <span className="mega-menu__signoff-tag">Every first call is with the partner.</span>
+            </span>
+          </div>
+        )}
       </aside>
     </div>
   );
