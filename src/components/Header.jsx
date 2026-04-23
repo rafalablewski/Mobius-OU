@@ -93,8 +93,9 @@ export default function Header({ onOffcanvasOpen }) {
               </div>
             </div>
             <div className="ht-menu-right">
-              <Link to="/contact" className="ht-btn d-none d-lg-block">
-                Schedule Consultation
+              <Link to="/contact" className="ht-nav-cta d-none d-lg-inline-flex">
+                <span>Schedule Consultation</span>
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </Link>
               <button
                 type="button"

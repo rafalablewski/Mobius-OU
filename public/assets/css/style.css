@@ -12716,4 +12716,36 @@ span {
   bottom: 18px;
 }
 
+/* === In-header CTA (minimal ink pill) ================================== */
+.ht-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+  border-radius: 999px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.ht-nav-cta i {
+  font-size: 11px;
+  transition: transform 0.3s ease;
+}
+.ht-nav-cta:hover {
+  background: var(--ht-theme-color-2);
+  color: var(--ht-black);
+  transform: translateY(-1px);
+}
+.ht-nav-cta:hover i {
+  transform: translateX(4px);
+}
+
 /*# sourceMappingURL=style.css.map */
