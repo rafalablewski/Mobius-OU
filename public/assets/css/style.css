@@ -14565,9 +14565,9 @@ span {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: end;
-  margin-bottom: 64px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 48px;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 @media (max-width: 991px) {
   .ht-approach-v2__head {
