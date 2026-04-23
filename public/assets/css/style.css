@@ -13626,4 +13626,168 @@ span {
 }
 .ht-program__related-card:hover .ht-program__related-link { gap: 12px; }
 
+/* === Mobile header + nav polish ======================================== */
+@media (max-width: 991px) {
+  .ht-header-area--full .ht-main-header {
+    min-height: 56px;
+  }
+  .ht-header-area--full .ht-menu-wrapper {
+    min-height: 56px;
+    padding: 8px 0;
+  }
+  .ht-header-area--full .ht-wordmark {
+    font-size: 18px;
+  }
+  .ht-header-area--full .ht-nav-cta {
+    display: none !important;
+  }
+  .ht-header-area .ht-main-header .ht-menu-right {
+    gap: 0;
+  }
+  .ht-header-area .ht-main-header .ht-menu-right .ht-menu-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--ht-theme-color);
+    color: var(--ht-white);
+    transition: background 0.25s ease;
+  }
+  .ht-header-area .ht-main-header .ht-menu-right .ht-menu-btn:hover {
+    background: var(--ht-theme-color-2);
+  }
+  .ht-header-area .ht-main-header .ht-menu-right .ht-menu-btn i {
+    color: inherit;
+    font-size: 15px;
+  }
+  /* Kill desktop mega-menu + dropdown absolute positioning on mobile;
+     burger + offcanvas is the mobile UX. */
+  .ht-header-area .ht-main-header .ht-menu-main {
+    display: none !important;
+  }
+}
+
+/* Offcanvas drawer polish + accordion typography */
+.ht-offcanvas {
+  background: var(--ht-body);
+  padding: 32px 28px 40px;
+}
+@media only screen and (max-width: 400px) {
+  .ht-offcanvas {
+    padding: 24px 20px 32px;
+  }
+}
+.ht-offcanvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  margin-bottom: 32px !important;
+  border-bottom: 1px solid var(--ht-border-color);
+}
+.ht-offcanvas-header .ht-wordmark {
+  font-size: 22px;
+}
+.ht-offcanvas-toggle-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--ht-border-color-2);
+  background: transparent;
+  color: var(--ht-heading-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.ht-offcanvas-toggle-close:hover {
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+}
+
+.offcanvas-accordion {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.offcanvas-accordion > li {
+  border-bottom: 1px solid var(--ht-border-color);
+}
+.offcanvas-accordion > li > a,
+.offcanvas-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ht-heading-color);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.offcanvas-accordion__chev {
+  font-size: 12px;
+  color: var(--ht-theme-color-6);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.offcanvas-accordion .has-panel.open .offcanvas-accordion__chev {
+  transform: rotate(180deg);
+  color: var(--ht-theme-color-2);
+}
+.offcanvas-accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  padding-left: 16px;
+  border-left: 1px solid var(--ht-border-color);
+  transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  list-style: none;
+  margin: 0 0 0 2px;
+}
+.offcanvas-accordion .has-panel.open .offcanvas-accordion__panel {
+  max-height: 700px;
+  margin-bottom: 14px;
+}
+.offcanvas-accordion__panel li a {
+  display: block;
+  padding: 8px 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: var(--ht-theme-color-6);
+}
+.offcanvas-accordion__panel li a:hover {
+  color: var(--ht-theme-color-2);
+}
+.ht-offcanvas-info {
+  padding-top: 24px;
+  border-top: 1px solid var(--ht-border-color);
+}
+.ht-offcanvas-info .ht-offcanvas__title {
+  font-family: "Manrope", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+  margin-bottom: 14px;
+}
+.ht-offcanvas-info span {
+  display: block;
+  padding: 4px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  color: var(--ht-heading-color);
+}
+.ht-offcanvas-info span a {
+  color: inherit;
+}
+
 /*# sourceMappingURL=style.css.map */
