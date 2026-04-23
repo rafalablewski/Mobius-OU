@@ -5,8 +5,12 @@ export const PROGRAMS = [
   {
     slug: 'portugal-golden-visa',
     region: 'Europe',
+    category: 'RBI',
     name: 'Portugal Golden Visa',
+    country: 'Portugal',
     tagline: 'EU residency with the lightest presence requirement in Europe.',
+    headline: '€500k fund · 7 days / year',
+    arms: '/assets/img/arms/portugal.svg',
     heroImg: '/assets/img/blog/29.jpg',
     summary:
       'Portugal\'s Golden Visa remains the most robust EU residency route after the 2023 reform. The fund sub-route keeps minimum physical presence at seven days per year and preserves the five-year path to citizenship for the whole immediate family.',
@@ -30,8 +34,12 @@ export const PROGRAMS = [
   {
     slug: 'malta-mein',
     region: 'Europe',
+    category: 'CBI',
     name: 'Malta MEIN',
+    country: 'Malta',
     tagline: 'The only direct route to an EU passport — slower, heavier, still worth it.',
+    headline: '€690k + real estate · EU passport',
+    arms: '/assets/img/arms/malta.svg',
     heroImg: '/assets/img/blog/13.jpg',
     summary:
       'Malta\'s Citizenship by Direct Investment (MEIN) is the last standing EU citizenship-by-investment route. Processing has lengthened and files are scrutinised more than ever; for the right profile the end-state passport remains the strongest mobility prize on the market.',
@@ -54,8 +62,12 @@ export const PROGRAMS = [
   {
     slug: 'switzerland-lump-sum',
     region: 'Europe',
+    category: 'RBI',
     name: 'Switzerland Lump-Sum',
+    country: 'Switzerland',
     tagline: 'Canton-level negotiated taxation for substantial foreign-source income.',
+    headline: 'CHF 150–400k annual tax · 22 cantons',
+    arms: '/assets/img/arms/switzerland.svg',
     heroImg: '/assets/img/blog/17.jpg',
     summary:
       'Lump-sum (forfait) taxation remains one of Europe\'s quietest premium routes. A negotiated annual tax base — not actual income — is agreed with the canton; for clients with sufficient foreign income, the effective rate is a fraction of European norms.',
@@ -78,8 +90,12 @@ export const PROGRAMS = [
   {
     slug: 'italy-flat-tax',
     region: 'Europe',
+    category: 'RBI',
     name: 'Italy Flat-Tax',
+    country: 'Italy',
     tagline: '€100,000 on all foreign-source income — one of Europe\'s strongest propositions.',
+    headline: '€100k flat tax · up to 15 years',
+    arms: '/assets/img/arms/italy.svg',
     heroImg: '/assets/img/blog/30.jpg',
     summary:
       'Italy\'s flat tax for new residents caps the annual Italian tax bill on all foreign-source income at €100,000 for the main applicant and €25,000 per family member, for up to fifteen years. Under-used relative to its actual strength.',
@@ -102,8 +118,12 @@ export const PROGRAMS = [
   {
     slug: 'caribbean-cbi',
     region: 'Americas & Gulf',
+    category: 'CBI',
     name: 'Caribbean CBI',
+    country: 'Caribbean',
     tagline: 'Passport portfolio planning after the US–EU pressure cycle.',
+    headline: 'USD 200k contribution · 4–9 months',
+    arms: '/assets/img/arms/caribbean.svg',
     heroImg: '/assets/img/blog/2.jpg',
     summary:
       'The five active Caribbean programs have been repriced and harmonised. Mandatory interviews, tightened due diligence and a USD 200,000 contribution floor are now the standard; we run programs where the legal and political stability of the end-state passport justifies the spend.',
@@ -126,8 +146,12 @@ export const PROGRAMS = [
   {
     slug: 'uae-golden-residence',
     region: 'Americas & Gulf',
+    category: 'RBI',
     name: 'UAE Golden Residence',
+    country: 'United Arab Emirates',
     tagline: 'Ten-year Dubai residency — who still belongs there after corporate tax.',
+    headline: 'AED 2M · 10-year residency',
+    arms: '/assets/img/arms/uae.svg',
     heroImg: '/assets/img/blog/3.jpg',
     summary:
       'The UAE Golden Visa is a ten-year renewable residency for investors, founders and specialists. After the 9% corporate tax introduction, the value proposition narrowed — it still works for passive wealth and founders with foreign-source income, less so for purely operating businesses routed through the UAE.',
