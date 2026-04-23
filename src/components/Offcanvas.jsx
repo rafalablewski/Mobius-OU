@@ -1,6 +1,45 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const PANELS = {
+  firm: {
+    label: 'Firm',
+    items: [
+      { to: '/about', label: 'About the Firm' },
+      { to: '/services', label: 'Advisory Practice' },
+      { to: '/service-details', label: 'Service Overview' },
+      { to: '/team', label: 'Our Advisors' },
+      { to: '/team-details', label: 'Advisor Profile' },
+      { to: '/pricing', label: 'Programs & Fees' },
+      { to: '/faq', label: 'Client FAQ' },
+    ],
+  },
+  programs: {
+    label: 'Programs',
+    items: [
+      { to: '/pricing', label: 'Portugal Golden Visa' },
+      { to: '/pricing', label: 'Malta MEIN' },
+      { to: '/pricing', label: 'Switzerland Lump-Sum' },
+      { to: '/pricing', label: 'Caribbean CBI' },
+      { to: '/pricing', label: 'UAE Golden Residence' },
+      { to: '/services', label: 'Tax Residency Planning' },
+      { to: '/services', label: 'Asset Protection' },
+    ],
+  },
+  insights: {
+    label: 'Insights',
+    items: [
+      { to: '/blog', label: 'Intelligence Briefs' },
+      { to: '/blog-list', label: 'Brief Archive' },
+      { to: '/project', label: 'Select Mandates' },
+    ],
+  },
+};
+
 export default function Offcanvas({ open, onClose }) {
+  const [expanded, setExpanded] = useState(null);
+  const toggle = (id) => setExpanded((cur) => (cur === id ? null : id));
+
   return (
     <>
       <div className={`ht-offcanvas${open ? ' active' : ''}`}>
@@ -21,15 +60,31 @@ export default function Offcanvas({ open, onClose }) {
 
           <div className="ht-offcanvas-menu d-xl-none mb-50">
             <nav aria-label="Mobile">
-              <ul>
+              <ul className="offcanvas-accordion">
                 <li><Link to="/" onClick={onClose}>Home</Link></li>
-                <li><Link to="/about" onClick={onClose}>About the Firm</Link></li>
-                <li><Link to="/services" onClick={onClose}>Advisory Practice</Link></li>
-                <li><Link to="/pricing" onClick={onClose}>Programs &amp; Fees</Link></li>
-                <li><Link to="/project" onClick={onClose}>Case Studies</Link></li>
-                <li><Link to="/team" onClick={onClose}>Advisors</Link></li>
-                <li><Link to="/blog" onClick={onClose}>Insights</Link></li>
-                <li><Link to="/faq" onClick={onClose}>Client FAQ</Link></li>
+                {Object.entries(PANELS).map(([id, panel]) => (
+                  <li
+                    key={id}
+                    className={`has-panel${expanded === id ? ' open' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      className="offcanvas-accordion__trigger"
+                      aria-expanded={expanded === id}
+                      onClick={() => toggle(id)}
+                    >
+                      {panel.label}
+                      <i className="fa-solid fa-chevron-down offcanvas-accordion__chev"></i>
+                    </button>
+                    <ul className="offcanvas-accordion__panel">
+                      {panel.items.map((item) => (
+                        <li key={`${id}-${item.label}`}>
+                          <Link to={item.to} onClick={onClose}>{item.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
                 <li><Link to="/contact" onClick={onClose}>Schedule Consultation</Link></li>
               </ul>
             </nav>
