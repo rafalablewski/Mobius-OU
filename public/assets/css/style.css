@@ -7881,104 +7881,75 @@ span {
   color: var(--ht-white);
 }
 
+/* Flat, premium buttons -- ink pill by default, no border, no slide pseudo. */
 .ht-btn {
-  background: var(--ht-theme-color-3);
-  color: var(--ht-heading-color);
-  display: inline-block;
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 13px;
   font-family: "Inter", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 18px 28px;
-  border: 1px solid var(--ht-border-color-2);
-  border-radius: 6px;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 16px 30px;
+  border: 0;
+  border-radius: 999px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   z-index: 2;
   line-height: 1;
   overflow: hidden;
   text-transform: uppercase;
-}
-.ht-btn.style-2 {
-  padding: 18px 28px;
-  background: var(--ht-theme-color);
-  color: var(--ht-white);
-  border-color: var(--ht-theme-color);
-}
-.ht-btn.style-2::before {
-  background: var(--ht-theme-color-2);
-}
-.ht-btn.style-2:hover {
-  color: var(--ht-black);
-  border-color: var(--ht-theme-color-2);
-}
-.ht-btn.style-3 {
-  padding: 18px 28px;
-  background: var(--ht-theme-color);
-  color: var(--ht-white);
-  border-color: var(--ht-theme-color);
-}
-.ht-btn.style-3::before {
-  background: var(--ht-theme-color-2);
-}
-.ht-btn.style-3:hover {
-  color: var(--ht-black);
-  border-color: var(--ht-theme-color-2);
-}
-.ht-btn.style-4::before {
-  background: var(--ht-theme-color-2);
-}
-.ht-btn::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  background-color: var(--ht-theme-color-2);
-  z-index: -1;
-  transition: all 0.4s ease-out;
-  border-radius: inherit;
+  cursor: pointer;
 }
 .ht-btn:hover {
+  background: var(--ht-theme-color-2);
   color: var(--ht-black);
-  border-color: var(--ht-theme-color-2);
+  transform: translateY(-1px);
 }
-.ht-btn:hover::before {
-  width: 100%;
+/* Neutralise the legacy slide-in pseudo so hovers read as clean colour transitions. */
+.ht-btn::before,
+.ht-btn::after {
+  content: none;
+}
+/* Variants */
+.ht-btn.style-2,
+.ht-btn.style-3,
+.ht-btn.style-4 {
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+}
+.ht-btn.style-2:hover,
+.ht-btn.style-3:hover,
+.ht-btn.style-4:hover {
+  background: var(--ht-theme-color-2);
+  color: var(--ht-black);
+}
+.ht-btn.border-btn {
+  background: transparent;
+  color: var(--ht-heading-color);
+  box-shadow: inset 0 0 0 1px var(--ht-border-color-2);
+}
+.ht-btn.border-btn:hover {
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+  box-shadow: inset 0 0 0 1px var(--ht-theme-color);
+}
+.ht-btn.radius-btn {
+  border-radius: 999px;
 }
 @media (max-width: 767px) {
   .ht-btn {
-    padding: 16px 24px;
+    padding: 14px 24px;
   }
 }
 @media (max-width: 575px) {
   .ht-btn {
-    padding: 14px 22px;
-    font-size: 13px;
+    padding: 12px 22px;
+    font-size: 12px;
   }
-}
-.ht-btn.border-btn {
-  border: 1px solid var(--ht-border-color-2);
-  background: transparent;
-  color: var(--ht-heading-color);
-}
-.ht-btn.border-btn::before, .ht-btn.border-btn::after {
-  background: var(--ht-theme-color-2);
-}
-.ht-btn.border-btn:hover {
-  color: var(--ht-black);
-}
-.ht-btn.border-btn img {
-  transition: all 0.4s ease-in-out;
-}
-.ht-btn.radius-btn {
-  border-radius: 60px;
-}
-.ht-btn.radius-btn:hover i, .ht-btn.radius-btn:hover img {
-  filter: grayscale(100%) brightness(300%);
 }
 
 .section-title {
@@ -12046,13 +12017,23 @@ span {
     justify-content: flex-end;
   }
 }
+.ht-cta-band--ink .ht-btn {
+  background: var(--ht-white);
+  color: var(--ht-theme-color);
+}
+.ht-cta-band--ink .ht-btn:hover {
+  background: var(--ht-theme-color-2);
+  color: var(--ht-black);
+}
 .ht-cta-band--ink .ht-btn.border-btn {
+  background: transparent;
   color: var(--ht-white);
-  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 .ht-cta-band--ink .ht-btn.border-btn:hover {
-  color: var(--ht-black);
-  border-color: var(--ht-theme-color-2);
+  background: transparent;
+  color: var(--ht-theme-color-2);
+  box-shadow: inset 0 0 0 1px var(--ht-theme-color-2);
 }
 
 /* === Mandate summary strip ============================================= */
