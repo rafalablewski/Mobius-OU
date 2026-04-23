@@ -149,10 +149,6 @@ export default function Home() {
                           <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Select Mandates</span>
                           <h2 className="title wow fadeInUp" data-wow-delay=".4s">Representative <br /> case studies</h2>
                       </div>
-                      <div className="ht-project-btn mb-25 wow fadeInUp" data-wow-delay=".6s">
-                          <button className="ht-project-prev" aria-label="Previous case study"><i className="fa-solid fa-chevron-left"></i></button>
-                          <button className="ht-project-next" aria-label="Next case study"><i className="fa-solid fa-chevron-right"></i></button>
-                      </div>
                   </div>
                   <div className="project-slide-wrapper">
                       <div className="swiper ht-project-slider">
@@ -225,6 +221,15 @@ export default function Home() {
                               </div>
                           </div>
                       </div>
+                  </div>
+                  <div className="ht-project-footer wow fadeInUp" data-wow-delay=".3s">
+                      <div className="ht-project-nav" role="group" aria-label="Case study carousel controls">
+                          <button className="ht-project-prev" type="button" aria-label="Previous case study"><i className="fa-solid fa-arrow-left"></i></button>
+                          <button className="ht-project-next" type="button" aria-label="Next case study"><i className="fa-solid fa-arrow-right"></i></button>
+                      </div>
+                      <Link to="/project" className="ht-project-all">
+                          View all case studies <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </Link>
                   </div>
               </div>
 
