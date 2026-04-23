@@ -149,7 +149,7 @@ export default function Header({ onOffcanvasOpen }) {
                       />
                     </li>
                     <li className="has-mega-menu">
-                      <a href="#">programs</a>
+                      <a href="#">programs<span className="ht-menu-mark" aria-hidden="true">✦</span></a>
                       <MegaPanel
                         id="programs"
                         columns={PROGRAMS_COLUMNS}

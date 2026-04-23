@@ -13988,4 +13988,20 @@ span {
   }
 }
 
+/* === Nav ornaments ===================================================== */
+.ht-menu-mark {
+  display: inline-block;
+  margin-left: 6px;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.9em;
+  color: var(--ht-theme-color-2);
+  line-height: 1;
+  vertical-align: baseline;
+  transition: transform 0.25s ease;
+}
+.ht-menu-main > nav > ul > li:hover .ht-menu-mark {
+  transform: translateY(-1px) rotate(8deg);
+}
+
 /*# sourceMappingURL=style.css.map */
