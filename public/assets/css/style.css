@@ -12348,4 +12348,21 @@ span {
   transform: scale(1.04);
 }
 
+/* === Form status messages ============================================== */
+.form-status {
+  margin-top: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.form-status--lg {
+  margin-top: 20px;
+}
+.form-status--error {
+  color: var(--ht-theme-color-2);
+}
+.form-status--sent {
+  color: var(--ht-heading-color);
+}
+
 /*# sourceMappingURL=style.css.map */

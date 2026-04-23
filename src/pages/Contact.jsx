@@ -124,12 +124,12 @@ export default function Contact() {
                                       <div className="col-12 text-center">
                                           <button type="submit" className="ht-btn style-2">Request Consultation</button>
                                           {status === 'invalid' && (
-                                            <p style={{ marginTop: '20px', color: '#c0392b' }}>
+                                            <p className="form-status form-status--error form-status--lg">
                                               Please complete every field so we can respond properly.
                                             </p>
                                           )}
                                           {status === 'sent' && (
-                                            <p style={{ marginTop: '20px', color: '#2a7f62' }}>
+                                            <p className="form-status form-status--sent form-status--lg">
                                               Thank you — your email client is opening. If nothing happens, write to
                                               advisory@passportbros.org directly.
                                             </p>

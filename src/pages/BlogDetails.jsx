@@ -240,12 +240,12 @@ export default function BlogDetails() {
                                               <div className="col-12">
                                                   <button type="submit" className="ht-btn style-2">Request memo</button>
                                                   {status === 'invalid' && (
-                                                    <p style={{ marginTop: '16px', color: '#c0392b' }}>
+                                                    <p className="form-status form-status--error">
                                                       Please complete every field so we can respond properly.
                                                     </p>
                                                   )}
                                                   {status === 'sent' && (
-                                                    <p style={{ marginTop: '16px', color: '#2a7f62' }}>
+                                                    <p className="form-status form-status--sent">
                                                       Thank you — your email client is opening. If nothing happens, write to
                                                       advisory@passportbros.org directly.
                                                     </p>
