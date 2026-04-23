@@ -12129,6 +12129,8 @@ span {
 .ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu > a::after {
   content: none;
 }
+/* Tesla-style mega-panel: product-card grid on the left, right rail of
+   quick links. No serif headings inside the panel; bold sans throughout. */
 .ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu > .mega-menu {
   position: absolute;
   top: 100%;
@@ -12137,22 +12139,20 @@ span {
   width: 100%;
   max-width: none;
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: minmax(0, 1fr) 240px;
   gap: 0;
-  padding: 0;
+  padding: 56px 7vw 64px;
   background: var(--ht-white);
   border: none;
   border-top: 1px solid var(--ht-border-color);
   border-bottom: 1px solid var(--ht-border-color);
   border-radius: 0;
-  box-shadow: 0 40px 80px -40px rgba(11, 15, 20, 0.28);
+  box-shadow: 0 40px 60px -40px rgba(11, 15, 20, 0.22);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(12px);
-  transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
-              visibility 0s linear 0.35s;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.3s ease, visibility 0s linear 0.3s;
   z-index: 99;
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu {
@@ -12160,185 +12160,107 @@ span {
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
-  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
-              visibility 0s;
+  transition: opacity 0.25s ease, transform 0.3s ease, visibility 0s;
+}
+@media (max-width: 1199px) {
+  .ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu > .mega-menu {
+    padding: 44px 32px 52px;
+    grid-template-columns: minmax(0, 1fr) 200px;
+  }
 }
 
-.mega-menu__lists {
+.mega-menu__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  padding: 48px 56px 52px 7vw;
-  align-content: start;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  padding-right: 56px;
 }
 @media (max-width: 1199px) {
-  .mega-menu__lists {
-    padding: 40px 32px 44px 32px;
-    gap: 32px;
+  .mega-menu__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    padding-right: 32px;
   }
 }
 
-.mega-col {
+.mega-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
 }
-.mega-col h6 {
-  font-family: "Manrope", sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ht-theme-color-6);
-  margin: 0 0 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--ht-border-color);
-}
-.mega-col a {
+.mega-card__thumb {
   display: block;
-  padding: 7px 0;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--ht-heading-color);
-  text-transform: none;
-  letter-spacing: -0.01em;
-  transition: color 0.25s ease;
-}
-.mega-col a:hover,
-.mega-col a.is-active {
-  color: var(--ht-theme-color-2);
-}
-
-/* Preview panel on the right */
-.mega-menu__preview {
-  position: relative;
-  background: var(--ht-theme-color-5);
-  padding: 48px 7vw 52px 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  overflow: hidden;
-}
-@media (max-width: 1199px) {
-  .mega-menu__preview {
-    padding: 40px 32px 44px;
-  }
-}
-.mega-menu__preview-frame {
-  position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 10px;
+  aspect-ratio: 4 / 3;
+  background: var(--ht-theme-color-5);
   overflow: hidden;
-  background: var(--ht-theme-color-4);
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.mega-menu__preview-frame img {
-  position: absolute;
-  inset: 0;
+.mega-card__thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.mega-card:hover .mega-card__thumb img {
   transform: scale(1.04);
-  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.mega-menu__preview-frame img.is-active {
-  opacity: 1;
-  transform: scale(1);
-}
-.mega-menu__preview-caption {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.mega-menu__preview-eyebrow {
-  font-family: "Manrope", sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ht-theme-color-2);
-}
-.mega-menu__preview-caption h4 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  color: var(--ht-heading-color);
-  margin: 2px 0 0;
-}
-.mega-menu__preview-caption p {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--ht-theme-color-6);
+.mega-card__title {
   margin: 0;
-  max-width: 46ch;
-}
-.mega-menu__preview-cta {
-  margin-top: 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  align-self: flex-start;
   font-family: "Manrope", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--ht-heading-color);
-  padding-bottom: 3px;
-  border-bottom: 1px solid var(--ht-heading-color);
-  transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+  line-height: 1.25;
 }
-.mega-menu__preview-cta:hover {
+.mega-card__title a {
+  color: inherit;
+}
+.mega-card__title a:hover {
   color: var(--ht-theme-color-2);
-  border-color: var(--ht-theme-color-2);
-  gap: 12px;
 }
-.mega-menu__preview-cta i {
-  font-size: 10px;
-}
-.mega-menu__all {
-  position: absolute;
-  top: 48px;
-  right: 7vw;
+.mega-card__actions {
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  gap: 22px;
+}
+.mega-card__actions a {
   font-family: "Manrope", sans-serif;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ht-theme-color-6);
-  transition: color 0.25s ease, gap 0.25s ease;
+  color: var(--ht-heading-color);
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  transition: color 0.2s ease;
 }
-.mega-menu__all:hover {
+.mega-card__actions a:hover {
   color: var(--ht-theme-color-2);
-  gap: 12px;
-}
-@media (max-width: 1199px) {
-  .mega-menu__all {
-    right: 32px;
-  }
 }
 
-/* Staggered reveal on mega-menu items */
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-col a,
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-menu__preview > * {
-  animation: megaRevealItem 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+.mega-menu__rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-left: 40px;
+  border-left: 1px solid var(--ht-border-color);
 }
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-col:nth-child(1) a { animation-delay: 0.05s; }
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-col:nth-child(2) a { animation-delay: 0.12s; }
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-col:nth-child(3) a { animation-delay: 0.18s; }
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-menu__preview > *:nth-child(1) { animation-delay: 0.1s; }
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-menu__preview > *:nth-child(2) { animation-delay: 0.22s; }
-.ht-header-area .ht-main-header .ht-menu-main ul li.has-mega-menu:hover > .mega-menu .mega-menu__preview > *:nth-child(3) { animation-delay: 0.3s; }
-@keyframes megaRevealItem {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+@media (max-width: 1199px) {
+  .mega-menu__rail {
+    padding-left: 24px;
+  }
+}
+.mega-menu__rail a {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ht-heading-color);
+  letter-spacing: -0.005em;
+  transition: color 0.2s ease;
+}
+.mega-menu__rail a:hover {
+  color: var(--ht-theme-color-2);
 }
 
 /* === Offcanvas accordion =============================================== */
