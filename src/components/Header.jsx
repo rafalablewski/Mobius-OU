@@ -32,8 +32,8 @@ const PROGRAMS_COLUMNS = [
   {
     heading: 'Europe',
     items: [
-      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa',  img: '/assets/img/blog/29.jpg', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
-      { to: '/programs/malta-mein',           label: 'Malta MEIN',            img: '/assets/img/blog/13.jpg', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
+      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa',  badge: 'Top RBI', img: '/assets/img/blog/29.jpg', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
+      { to: '/programs/malta-mein',           label: 'Malta MEIN',            badge: 'Top CBI', img: '/assets/img/blog/13.jpg', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
       { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum',  img: '/assets/img/blog/17.jpg', blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
       { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax',        img: '/assets/img/blog/30.jpg', blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
     ],
@@ -77,6 +77,7 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
                 onFocus={() => setHovered(item)}
               >
                 {item.label}
+                {item.badge && <span className="mega-col__badge">{item.badge}</span>}
               </NavLink>
             ))}
           </div>
@@ -95,7 +96,10 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
           ))}
         </div>
         <div className="mega-menu__preview-caption">
-          <span className="mega-menu__preview-eyebrow">Featured</span>
+          <span className="mega-menu__preview-eyebrow">
+            Featured
+            {preview.badge && <span className="mega-col__badge">{preview.badge}</span>}
+          </span>
           <h4>{preview.label}</h4>
           <p>{preview.blurb}</p>
           <Link to={preview.to} className="mega-menu__preview-cta">
