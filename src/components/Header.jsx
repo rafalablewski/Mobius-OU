@@ -1,6 +1,119 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+const FIRM_COLUMNS = [
+  {
+    heading: 'Practice',
+    items: [
+      { to: '/about',           label: 'About the Firm',    img: '/assets/img/about/1.jpg',  blurb: 'Independent, partner-led — no junior handoffs, no in-house product to sell.' },
+      { to: '/services',        label: 'Advisory Practice', img: '/assets/img/about/2.jpg',  blurb: 'Six practice areas, one partner accountable end-to-end.' },
+      { to: '/service-details', label: 'Service Overview',  img: '/assets/img/about/3.jpg',  blurb: 'How a mandate unfolds — from first call to second passport.' },
+    ],
+  },
+  {
+    heading: 'People',
+    items: [
+      { to: '/team',         label: 'Our Advisors',   img: '/assets/img/team/1.jpg', blurb: 'A small bench of senior specialists — written opinions, on the record.' },
+      { to: '/team-details', label: 'Advisor Profile', img: '/assets/img/team/2.jpg', blurb: 'Meet Rafał — fourteen years across NYSE capital markets and EU private client advisory.' },
+    ],
+  },
+  {
+    heading: 'Resources',
+    items: [
+      { to: '/pricing', label: 'Programs & Fees', img: '/assets/img/project/1.jpg', blurb: 'Comparison table of the programs we actively run.' },
+      { to: '/faq',     label: 'Client FAQ',      img: '/assets/img/about/3.jpg',   blurb: 'Seven questions prospective clients ask before the first call.' },
+    ],
+  },
+];
+
+const FIRM_DEFAULT_PREVIEW = FIRM_COLUMNS[0].items[0];
+
+const PROGRAMS_COLUMNS = [
+  {
+    heading: 'Europe',
+    items: [
+      { to: '/pricing', label: 'Portugal Golden Visa',  img: '/assets/img/blog/29.jpg', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
+      { to: '/pricing', label: 'Malta MEIN',            img: '/assets/img/blog/13.jpg', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
+      { to: '/pricing', label: 'Switzerland Lump-Sum',  img: '/assets/img/blog/17.jpg', blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
+      { to: '/pricing', label: 'Italy Flat-Tax',        img: '/assets/img/blog/30.jpg', blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
+    ],
+  },
+  {
+    heading: 'Americas & Gulf',
+    items: [
+      { to: '/pricing', label: 'Caribbean CBI',         img: '/assets/img/blog/2.jpg',  blurb: 'Passport portfolio planning after the US–EU pressure cycle.' },
+      { to: '/pricing', label: 'UAE Golden Residence',  img: '/assets/img/blog/3.jpg',  blurb: 'Ten-year residency in Dubai — who still belongs there after corporate tax.' },
+    ],
+  },
+  {
+    heading: 'Practice areas',
+    items: [
+      { to: '/services', label: 'Tax Residency Planning', img: '/assets/img/blog/14.jpg', blurb: 'Lawful relocation sequencing — day-counts, exit tax, written advice.' },
+      { to: '/services', label: 'Asset Protection',       img: '/assets/img/blog/15.jpg', blurb: 'Foundations and trusts — selected for legitimacy and longevity.' },
+      { to: '/services', label: 'Family Relocation',      img: '/assets/img/blog/14.jpg', blurb: 'Schooling, banking, staff — so the family lands with utilities, not surprises.' },
+    ],
+  },
+];
+
+const PROGRAMS_DEFAULT_PREVIEW = PROGRAMS_COLUMNS[0].items[0];
+
+function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setHovered }) {
+  const preview = hovered ?? defaultPreview;
+  return (
+    <div
+      className={`mega-menu mega-menu--${id}`}
+      onMouseLeave={() => setHovered(null)}
+    >
+      <div className="mega-menu__lists">
+        {columns.map((col) => (
+          <div className="mega-col" key={col.heading}>
+            <h6>{col.heading}</h6>
+            {col.items.map((item) => (
+              <NavLink
+                key={item.label}
+                to={item.to}
+                className={preview === item ? 'is-active' : undefined}
+                onMouseEnter={() => setHovered(item)}
+                onFocus={() => setHovered(item)}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        ))}
+      </div>
+      <aside className="mega-menu__preview" aria-hidden="true">
+        <div className="mega-menu__preview-frame">
+          {[...columns.flatMap((c) => c.items)].map((item) => (
+            <img
+              key={item.label}
+              src={item.img}
+              alt=""
+              loading="lazy"
+              className={preview === item ? 'is-active' : undefined}
+            />
+          ))}
+        </div>
+        <div className="mega-menu__preview-caption">
+          <span className="mega-menu__preview-eyebrow">Featured</span>
+          <h4>{preview.label}</h4>
+          <p>{preview.blurb}</p>
+          <Link to={preview.to} className="mega-menu__preview-cta">
+            Explore <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </Link>
+        </div>
+        <Link to={ctaTo} className="mega-menu__all">
+          {ctaLabel} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </Link>
+      </aside>
+    </div>
+  );
+}
+
 export default function Header({ onOffcanvasOpen }) {
+  const [firmHover, setFirmHover] = useState(null);
+  const [programsHover, setProgramsHover] = useState(null);
+
   return (
     <header className="ht-header-area header-1 ht-header-area--full">
       <div className="ht-main-header header-1" id="header-sticky">
@@ -25,50 +138,27 @@ export default function Header({ onOffcanvasOpen }) {
                     </li>
                     <li className="has-mega-menu">
                       <a href="#">firm</a>
-                      <div className="mega-menu mega-menu--3">
-                        <div className="mega-col">
-                          <h6>Practice</h6>
-                          <NavLink to="/about">About the Firm</NavLink>
-                          <NavLink to="/services">Advisory Practice</NavLink>
-                          <NavLink to="/service-details">Service Overview</NavLink>
-                          <p className="mega-col__note">Independent, partner-led advisory for private clients on mobility and residency.</p>
-                        </div>
-                        <div className="mega-col">
-                          <h6>People</h6>
-                          <NavLink to="/team">Our Advisors</NavLink>
-                          <NavLink to="/team-details">Advisor Profile</NavLink>
-                        </div>
-                        <div className="mega-col">
-                          <h6>Resources</h6>
-                          <NavLink to="/pricing">Programs &amp; Fees</NavLink>
-                          <NavLink to="/faq">Client FAQ</NavLink>
-                          <NavLink to="/contact" className="mega-col__cta">Schedule Consultation <i className="fa-solid fa-arrow-right"></i></NavLink>
-                        </div>
-                      </div>
+                      <MegaPanel
+                        id="firm"
+                        columns={FIRM_COLUMNS}
+                        defaultPreview={FIRM_DEFAULT_PREVIEW}
+                        ctaLabel="About the firm"
+                        ctaTo="/about"
+                        hovered={firmHover}
+                        setHovered={setFirmHover}
+                      />
                     </li>
                     <li className="has-mega-menu">
                       <a href="#">programs</a>
-                      <div className="mega-menu mega-menu--3">
-                        <div className="mega-col">
-                          <h6>Europe</h6>
-                          <NavLink to="/pricing">Portugal Golden Visa</NavLink>
-                          <NavLink to="/pricing">Malta MEIN</NavLink>
-                          <NavLink to="/pricing">Switzerland Lump-Sum</NavLink>
-                          <NavLink to="/pricing">Italy Flat-Tax</NavLink>
-                        </div>
-                        <div className="mega-col">
-                          <h6>Americas &amp; Gulf</h6>
-                          <NavLink to="/pricing">Caribbean CBI</NavLink>
-                          <NavLink to="/pricing">UAE Golden Residence</NavLink>
-                        </div>
-                        <div className="mega-col">
-                          <h6>Practice areas</h6>
-                          <NavLink to="/services">Tax Residency Planning</NavLink>
-                          <NavLink to="/services">Asset Protection</NavLink>
-                          <NavLink to="/services">Family Relocation</NavLink>
-                          <NavLink to="/pricing" className="mega-col__cta">All Programs &amp; Fees <i className="fa-solid fa-arrow-right"></i></NavLink>
-                        </div>
-                      </div>
+                      <MegaPanel
+                        id="programs"
+                        columns={PROGRAMS_COLUMNS}
+                        defaultPreview={PROGRAMS_DEFAULT_PREVIEW}
+                        ctaLabel="All programs & fees"
+                        ctaTo="/pricing"
+                        hovered={programsHover}
+                        setHovered={setProgramsHover}
+                      />
                     </li>
                     <li className="has-dropdown">
                       <a href="#">case studies</a>
