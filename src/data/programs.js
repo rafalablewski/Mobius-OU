@@ -151,7 +151,7 @@ export const PROGRAMS = [
     country: 'United Arab Emirates',
     tagline: 'Ten-year Dubai residency — who still belongs there after corporate tax.',
     headline: 'AED 2M · 10-year residency',
-    arms: '/assets/img/arms/uae.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_United_Arab_Emirates.svg/250px-Emblem_of_the_United_Arab_Emirates.svg.png',
     heroImg: '/assets/img/blog/3.jpg',
     summary:
       'The UAE Golden Visa is a ten-year renewable residency for investors, founders and specialists. After the 9% corporate tax introduction, the value proposition narrowed — it still works for passive wealth and founders with foreign-source income, less so for purely operating businesses routed through the UAE.',
