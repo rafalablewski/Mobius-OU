@@ -3,7 +3,7 @@ import Breadcrumb from '../components/Breadcrumb.jsx';
 export default function TeamDetails() {
   return (
     <>
-      <Breadcrumb title="Team Details" />
+      <Breadcrumb title="Advisor Profile" current="Rafał Ablewski" />
       <section className="team-details-area fix section-padding">
               <div className="container">
                   <div className="team-details-wrapper">
@@ -11,30 +11,29 @@ export default function TeamDetails() {
                           <div className="row align-items-center justify-content-between">
                               <div className="col-lg-5">
                                   <div className="thumb">
-                                      <img src="/assets/img/team/13.jpg" alt="img" />
+                                      <img src="/assets/img/team/13.jpg" alt="Rafał Ablewski, Managing Partner" />
                                   </div>
                               </div>
                               <div className="col-lg-6">
                                   <div className="content">
-                                      <h2>Linda F. Collins</h2>
-                                      <h6>SR Marketer</h6>
+                                      <h2>Rafał Ablewski</h2>
+                                      <h6>Managing Partner, CFA</h6>
                                       <p>
-                                          A content management system helps you create, manage, and publish content on the
-                                          web. It
-                                          also keep content organized and accessible so it can be used and repurposed
-                                          effectively.
+                                          Rafał founded Ablewski &amp; Partners after fourteen years across NYSE-listed capital
+                                          markets and European wealth advisory. His practice covers citizenship selection,
+                                          residency sequencing and the structural decisions that sit underneath both —
+                                          treasury, custody and inheritance.
                                       </p>
 
-                                      <a className="tl" href="tel:1234565678"><i className="fa-solid fa-phone"></i> 123-456-5678</a>
-                                      <a className="tl" href="mailto:lindaf.collins@example.com"><i className="fa-solid fa-envelope"></i>
-                                          lindaf.collins@example.com
+                                      <a className="tl" href="tel:+48221000000"><i className="fa-solid fa-phone"></i> +48 22 100 00 00</a>
+                                      <a className="tl" href="mailto:advisory@passportbros.org"><i className="fa-solid fa-envelope"></i>
+                                          advisory@passportbros.org
                                       </a>
 
                                       <ul className="team-social">
-                                          <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                                          <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                                          <li><a href="#"><i className="fa-brands fa-linkedin-in"></i></a></li>
-                                          <li><a href="#"><i className="fa-brands fa-youtube"></i></a></li>
+                                          <li><a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a></li>
+                                          <li><a href="#" aria-label="X"><i className="fab fa-twitter"></i></a></li>
+                                          <li><a href="#" aria-label="Substack"><i className="fa-solid fa-newspaper"></i></a></li>
                                       </ul>
                                   </div>
                               </div>
@@ -45,56 +44,55 @@ export default function TeamDetails() {
                       <div className="row">
                           <div className="col-lg-6">
                               <div className="team-about">
-                                  <h3>About Me</h3>
-                                  <p>Vitae lacus mi interdum orci libero mollis vivamus mattis. vehicula a erat. Phasellus ac
-                                      sem sed erat pos se quam dignissim. Mauris feugiat, nisi nec dapibuasas a gas dictum,
-                                      ligula nulla gravida ante, non aliquet odio elit ac orci. Curabi tinc Nunc eu rhoncus
-                                      justo, nec mattis risus auris conse quat viverra sapien id lobortis. Vivamus auctor
-                                      turpis vel dignissim licitudin. Etiam vitae posuere est. Donec gravida facilisis purus,
-                                      eget bibendum neque varius ac. Nulla ullamcorper, sem viverra.
+                                  <h3>Background</h3>
+                                  <p>
+                                      Rafał began his career in equity capital markets in New York, spending six years on the
+                                      sell side before returning to Europe to work with single-family offices on cross-border
+                                      structuring. He holds the Chartered Financial Analyst designation, reads Polish, English
+                                      and German, and speaks functional Portuguese after a decade advising on Iberian programs.
                                   </p>
                                   <p>
-                                      Using advanced software, we create a custom solar system tailored to your location and
-                                      energy needs. We handle all necessary permits, paperwork, and approvals, ensuring a
-                                      seamless planning process that prepares your.
+                                      His writing on global mobility has appeared in specialist trade publications; he does
+                                      not comment publicly on active mandates, and the firm's client list is not published
+                                      anywhere. A first consultation is always with Rafał, never with a junior or a sales desk.
                                   </p>
                               </div>
                           </div>
                           <div className="col-lg-6">
                               <div className="team-skills">
-                                  <h3>Professional skills</h3>
+                                  <h3>Areas of focus</h3>
                                   <p>
-                                      We begin with an in-depth consultation to understand your energy needs and goals. Our
-                                      team then conducts a site assessment.
+                                      Where most of the advisory hours land in a typical mandate — before any licensed counsel
+                                      or investment agent is introduced.
                                   </p>
                                   <div className="skills">
                                       <div className="skill">
                                           <div className="skill-header">
-                                              <span>PROJECT MANAGEMENT</span>
-                                              <span className="percent">70%</span>
+                                              <span>CITIZENSHIP &amp; RESIDENCY PROGRAMS</span>
+                                              <span className="percent">92%</span>
                                           </div>
                                           <div className="progress-bar">
-                                              <div className="progress" style={{ "width": "70%" }}></div>
+                                              <div className="progress" style={{ "width": "92%" }}></div>
                                           </div>
                                       </div>
 
                                       <div className="skill">
                                           <div className="skill-header">
-                                              <span>PROJECT MANAGEMENT</span>
-                                              <span className="percent two">80%</span>
+                                              <span>TAX RESIDENCY &amp; RELOCATION SEQUENCING</span>
+                                              <span className="percent two">84%</span>
                                           </div>
                                           <div className="progress-bar">
-                                              <div className="progress two" style={{ "width": "80%" }}></div>
+                                              <div className="progress two" style={{ "width": "84%" }}></div>
                                           </div>
                                       </div>
 
                                       <div className="skill">
                                           <div className="skill-header">
-                                              <span>PROJECT MANAGEMENT</span>
-                                              <span className="percent three">90%</span>
+                                              <span>ASSET PROTECTION &amp; FAMILY STRUCTURES</span>
+                                              <span className="percent three">78%</span>
                                           </div>
                                           <div className="progress-bar">
-                                              <div className="progress three" style={{ "width": "90%" }}></div>
+                                              <div className="progress three" style={{ "width": "78%" }}></div>
                                           </div>
                                       </div>
                                   </div>

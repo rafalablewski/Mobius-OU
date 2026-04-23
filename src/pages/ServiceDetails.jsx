@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 
 export default function ServiceDetails() {
   return (
     <>
-      <Breadcrumb title="Service Details" />
+      <Breadcrumb title="Citizenship by Investment" current="Service Overview" />
       <section className="ht-service-details-area section-padding">
               <div className="container">
                   <div className="service-details-wrapper">
@@ -11,89 +12,91 @@ export default function ServiceDetails() {
                           <div className="col-lg-4">
                               <div className="ht-sidebar-area v2">
                                   <div className="single-widget">
-                                      <h4 className="widget-title">Services</h4>
+                                      <h4 className="widget-title">Advisory Practice</h4>
                                       <ul className="service-list">
-                                          <li><a href="#">Finance Planning <i className="fa-solid fa-arrow-right"></i></a></li>
-                                          <li><a href="#">Business Strategy <i className="fa-solid fa-arrow-right"></i></a></li>
-                                          <li><a href="#">Digital marketing <i className="fa-solid fa-arrow-right"></i></a></li>
-                                          <li><a href="#">Investment Idea <i className="fa-solid fa-arrow-right"></i></a></li>
-                                          <li><a href="#">App Development <i className="fa-solid fa-arrow-right"></i></a></li>
-                                          <li><a href="#">SEO Marketing <i className="fa-solid fa-arrow-right"></i></a></li>
+                                          <li><Link to="/service-details">Citizenship by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
+                                          <li><Link to="/service-details">Residency by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
+                                          <li><Link to="/service-details">Tax Residency Planning <i className="fa-solid fa-arrow-right"></i></Link></li>
+                                          <li><Link to="/service-details">Asset Protection <i className="fa-solid fa-arrow-right"></i></Link></li>
+                                          <li><Link to="/service-details">Family Relocation <i className="fa-solid fa-arrow-right"></i></Link></li>
+                                          <li><Link to="/service-details">Investment Strategy <i className="fa-solid fa-arrow-right"></i></Link></li>
                                       </ul>
                                   </div>
                                   <div className="single-contact">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/16.svg" alt="icon" />
+                                          <img src="/assets/img/icon/16.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>Don't hesitate to contact us</h3>
-                                          <p>At our IT solution company, we are committed to exceptional</p>
-                                          <a href="/contact" className="ct-btn">Get in Touch</a>
+                                          <h3>Speak with a partner, not a sales desk</h3>
+                                          <p>First conversations are confidential, unrecorded and always with a named advisor.</p>
+                                          <Link to="/contact" className="ct-btn">Schedule Consultation</Link>
                                       </div>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-8">
                               <div className="service-details-thumb">
-                                  <img src="/assets/img/service/3.jpg" alt="thumb-service" />
+                                  <img src="/assets/img/service/3.jpg" alt="Advisor presenting a citizenship program memo" />
                               </div>
                               <div className="service-details-content">
-                                  <h2 className="mb-12">service-details-thumb</h2>
+                                  <h2 className="mb-12">Citizenship by Investment — a second passport, earned through due diligence</h2>
                                   <p className="mb-15">
-                                      Lorem ipsum is simply free text used by copytyping refreshing. Neque porro est qui
-                                      dolorem ipsum quia var quaed inventore veritatis et quasi architecto beatae vitae dicta
-                                      explicabo. Aelltes port lacus quis enim var sed efficitur turpis gilla sed sit amet
-                                      finibus eros. Lore Ipsum is simply dummy text of the been printing and typesetting
-                                      industry. Lorem Ipsum has been the ndustry standard dummy text ever since the 1500s,
-                                      when an unknown printer.
+                                      Citizenship by Investment (CBI) is the lawful acquisition of a second nationality in
+                                      exchange for a qualifying contribution to a sovereign state — a non-refundable fund
+                                      donation, approved real estate, government bonds or an enterprise investment. The
+                                      strongest programs are not the fastest or the cheapest; they are the ones that continue
+                                      to pass enhanced due diligence, retain visa-free travel, and remain politically stable
+                                      for the next two decades.
                                   </p>
                                   <p>
-                                      When an unknown printer took a galley of type and scrambled it to make a type book. It
-                                      leap survive not only five centurie, but also the leap into electronic typesetting,
-                                      unchange Lorem ipsum dolor sit amet consec tetur adipis icing elit.
+                                      Our role is to tell you which of those programs you are actually a fit for — and which
+                                      you are not. Some clients should not pursue CBI at all, and we will say so in writing.
+                                      Where CBI is right, we manage the mandate end to end: structuring the investment,
+                                      preparing the file, coordinating with licensed local agents, and tracking the
+                                      application through to oath.
                                   </p>
-                                  <h3>Service Center</h3>
+                                  <h3>Programs we currently advise on</h3>
                                   <p>
-                                      With over a decade of experience, we’ve established ourselves as one of pioneerin
-                                      agencies in the region. Our small, flexible, agile and design-led structures and
-                                      processes allow highly responsive and innovative. We’re of passionate leaders,
-                                      strategists, managers, developers, animators and designers who work together under one
-                                      umbrella. We are a digitally-led, service creative agency. We combine strategy,
-                                      marketing, design.
+                                      We maintain an active view on every major CBI route, including Antigua &amp; Barbuda,
+                                      Dominica, Grenada, St Kitts &amp; Nevis, St Lucia, Malta (MEIN), Vanuatu and Turkey. We
+                                      track processing times, minimum contributions and policy risk weekly, and publish an
+                                      internal re-ranking each quarter for active clients.
                                   </p>
                                   <div className="row">
                                       <div className="col-md-6">
                                           <div className="service-thumbs">
-                                              <img src="/assets/img/service/4.jpg" alt="" />
+                                              <img src="/assets/img/service/4.jpg" alt="Caribbean CBI planning documents" />
                                           </div>
                                       </div>
                                       <div className="col-md-6">
                                           <div className="service-thumbs">
-                                              <img src="/assets/img/service/5.jpg" alt="" />
+                                              <img src="/assets/img/service/5.jpg" alt="EU citizenship planning documents" />
                                           </div>
                                       </div>
                                   </div>
                                   <p className="mt-35">
-                                      When an unknown printer took a galley of type and scrambled it to make a type book. It
-                                      has leap survive not only five centurie, but also the leap into electronic typesetting
-                                      essentiall dolor unchange Lorem ipsum dolor sit amet consec tetur adipis icing elit.
+                                      CBI is not a transaction. It is a long-lived family asset that is only as strong as the
+                                      paperwork behind it. Every file we submit is built to survive scrutiny five, ten and
+                                      twenty years after approval — including under the political cycles we cannot control.
                                   </p>
-                                  <h3>Services All Details</h3>
+                                  <h3>What a full CBI mandate covers</h3>
                                   <p>
-                                      Cast obscure badger jeep quail congenialy when changed as cat jeepers affectionate thus
-                                      facilisi goodness this far like ipsum dolor sit amet, consectetur adipisicing elits sed
-                                      eiusmod tempo et incididunt et laboret dolore magna aliqua enim ad minim. Eveniet in
-                                      vulputate esse molestie consequat, illum dolore eu feugiat nulla facilisis at seds eros
-                                      sed.
+                                      A typical engagement runs four to nine months depending on program and household size.
+                                      You receive a single point of contact, a written mandate with fee schedule, and a named
+                                      partner on every call. We never accept commission from developers, funds or agents —
+                                      our only compensation is the advisory fee you agree to.
                                   </p>
                                   <ul className="service-details-list">
-                                      <li><i className="fa-solid fa-check"></i>Creating and editing content</li>
-                                      <li><i className="fa-solid fa-check"></i>Workflows, reporting, and content organization</li>
-                                      <li><i className="fa-solid fa-check"></i>User & role-based administration and security</li>
-                                      <li><i className="fa-solid fa-check"></i>Flexibility, scalability, and performance and
-                                          analysis</li>
-                                      <li><i className="fa-solid fa-check"></i>Multilingual content capabilities</li>
+                                      <li><i className="fa-solid fa-check"></i>Program-fit memo with honest disqualifications</li>
+                                      <li><i className="fa-solid fa-check"></i>Enhanced due diligence preparation and source-of-funds file</li>
+                                      <li><i className="fa-solid fa-check"></i>Coordination with licensed local counsel in each jurisdiction</li>
+                                      <li><i className="fa-solid fa-check"></i>Investment structuring — donation, real estate, bonds or enterprise</li>
+                                      <li><i className="fa-solid fa-check"></i>Family banking, residency and post-approval compliance</li>
                                   </ul>
+                                  <p className="mt-35">
+                                      <em>Educational and strategic advisory only — not legal, tax or investment advice.
+                                      Regulated legal and tax work is delivered by licensed partners in each jurisdiction.</em>
+                                  </p>
                               </div>
                           </div>
                       </div>

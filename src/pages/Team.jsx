@@ -1,153 +1,58 @@
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+
+const ADVISORS = [
+  { img: '1.jpg',  name: 'Rafał Ablewski',  role: 'Managing Partner, CFA' },
+  { img: '2.jpg',  name: 'M. Kowalska',     role: 'Head of Residency Programs' },
+  { img: '3.jpg',  name: 'A. Nowak',        role: 'Head of Citizenship Programs' },
+  { img: '4.jpg',  name: 'J. Wiśniewski',   role: 'Senior Tax Counsel' },
+  { img: '9.jpg',  name: 'P. Zieliński',    role: 'Head of Family Relocation' },
+  { img: '10.jpg', name: 'T. Schneider',    role: 'Senior Advisor — DACH' },
+  { img: '11.jpg', name: 'L. Rahimi',       role: 'Senior Advisor — MENA' },
+  { img: '12.jpg', name: 'E. Costa',        role: 'Head of Iberia Desk' },
+];
 
 export default function Team() {
   return (
     <>
-      <Breadcrumb title="Our Team" current="Team" />
+      <Breadcrumb title="Our Advisors" current="Advisors" />
       <section className="ht-team-area section-padding fix">
-              <div className="container">
-                  <div className="ht-team-wrapper">
-                      <div className="row">
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/1.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Linda F. Collins</h4>
-                                      </a>
-                                      <p className="role">SR Marketer</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/2.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href=""><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href=""><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Sandra D. Rainey</h4>
-                                      </a>
-                                      <p className="role">Executive officer</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/3.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Brooklyn simmons</h4>
-                                      </a>
-                                      <p className="role">CEO & Founder</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".8s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/4.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Patrick Stewart</h4>
-                                      </a>
-                                      <p className="role">Finance advisor</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/9.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Daniyel Karlos</h4>
-                                      </a>
-                                      <p className="role">SR Marketer</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1.2s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/10.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href=""><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href=""><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Ryan Williams</h4>
-                                      </a>
-                                      <p className="role">Executive officer</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1.4s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/11.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Steven A. Urenda</h4>
-                                      </a>
-                                      <p className="role">CEO & Founder</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1.6s">
-                              <div className="ht-team-items">
-                                  <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/12.jpg" alt="img" /></a>
-                                      <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
-                                      </div>
-                                  </div>
-                                  <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Karla Hesterberg</h4>
-                                      </a>
-                                      <p className="role">Finance advisor</p>
-                                  </div>
-                              </div>
-                          </div>
+        <div className="container">
+          <div className="ht-team-wrapper">
+            <div className="row">
+              {ADVISORS.map((a, i) => (
+                <div
+                  key={a.name}
+                  className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
+                  data-wow-delay={`${0.2 + i * 0.2}s`}
+                >
+                  <div className="ht-team-items">
+                    <div className="ht-team-thumb">
+                      <Link to="/team-details">
+                        <img src={`/assets/img/team/${a.img}`} alt={a.name} />
+                      </Link>
+                      <div className="social">
+                        <a href="#" aria-label={`${a.name} on LinkedIn`}>
+                          <i className="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" aria-label={`${a.name} on X`}>
+                          <i className="fa-brands fa-x-twitter"></i>
+                        </a>
                       </div>
+                    </div>
+                    <div className="ht-team-content">
+                      <Link to="/team-details">
+                        <h4 className="name">{a.name}</h4>
+                      </Link>
+                      <p className="role">{a.role}</p>
+                    </div>
                   </div>
-              </div>
-          </section>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,9 +1,9 @@
 {
-  "name": "mobius",
+  "name": "ablewski-partners",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
-  "description": "Mobius - Business Consulting React Template",
+  "description": "Ablewski & Partners — Global mobility, citizenship and residency advisory.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

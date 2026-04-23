@@ -8,12 +8,12 @@ export default function HomeCorporate() {
                       <div className="col-lg-6">
                           <div className="ht-search-bar">
                               <h3 className="ht-search-title text-center mb-20">
-                                  What are you looking for?
+                                  Search briefs &amp; programs
                               </h3>
                               <div className="ht-form-box ht-search-form-box">
-                                  <form action="#">
-                                      <input type="text" placeholder="Your Keywords..." />
-                                      <button type="submit"><i className="fa fa-search"></i></button>
+                                  <form onSubmit={(e) => e.preventDefault()}>
+                                      <input type="text" placeholder="e.g. Portugal Golden Visa, UAE, Malta MEIN..." aria-label="Search briefs and programs" />
+                                      <button type="submit" aria-label="Search"><i className="fa fa-search"></i></button>
                                   </form>
                               </div>
                           </div>
@@ -30,13 +30,12 @@ export default function HomeCorporate() {
                           <div className="col-lg-5">
                               <div className="ht-hero-content style-2">
                                   <h1 className="wow fadeIn" data-wow-delay=".2s">
-                                      Innovative solutions for growth
+                                      Mobility strategy for corporates &amp; family offices
                                   </h1>
-                                  <p className="desc wow fadeInUp" data-wow-delay=".4s">Agilos helps you to convert your data into
-                                      rategic asset emand get top-notch
-                                      your business insights.</p>
-                                  <a href="/contact" className="ht-btn style-2 wow fadeInUp" data-wow-delay=".6s">Let's Get in
-                                      Touch</a>
+                                  <p className="desc wow fadeInUp" data-wow-delay=".4s">Cross-border residency, executive relocation
+                                      and structuring for founders, funds and single-family offices — delivered under one
+                                      mandate and one NDA.</p>
+                                  <a href="/contact" className="ht-btn style-2 wow fadeInUp" data-wow-delay=".6s">Schedule Consultation</a>
                               </div>
                           </div>
                           <div className="col-lg-7">
@@ -64,22 +63,21 @@ export default function HomeCorporate() {
               <div className="container">
                   <div className="ht-stats-wrapper-2 wow fadeInUp" data-wow-delay=".2s">
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">26</span>+</h2>
-                          <h4>Years of Experience</h4>
-                          <p>Founded on the principles of integrity, professionalism, & excellence we build lasting
-                              relationships with.</p>
+                          <h2 className="number"><span className="count">14</span>+</h2>
+                          <h4>Years in capital markets</h4>
+                          <p>CFA-trained, NYSE-seasoned advisory combined with on-the-ground mobility program
+                              experience.</p>
                       </div>
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">347</span>+</h2>
-                          <h4>Successful Projects</h4>
-                          <p>Founded on the principles of integrity, professionalism, & excellence we build lasting
-                              relationships with.</p>
+                          <h2 className="number"><span className="count">100</span>+</h2>
+                          <h4>Mandates delivered</h4>
+                          <p>Citizenship, residency and tax residency mandates for private clients and family
+                              offices.</p>
                       </div>
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">139</span>+</h2>
-                          <h4>Satisfied Customers</h4>
-                          <p>Founded on the principles of integrity, professionalism, & excellence we build lasting
-                              relationships with.</p>
+                          <h2 className="number"><span className="count">32</span>+</h2>
+                          <h4>Jurisdictions covered</h4>
+                          <p>From the Caribbean and Mediterranean to the Gulf, Asia and the Alps.</p>
                       </div>
                   </div>
               </div>
@@ -90,8 +88,8 @@ export default function HomeCorporate() {
                   <div className="row">
                       <div className="col-12">
                           <div className="section-title">
-                              <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Services</span>
-                              <h2 className="title wow fadeInUp" data-wow-delay=".4s">We offer a wide of <br /> design services</h2>
+                              <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Corporate &amp; Family Office</span>
+                              <h2 className="title wow fadeInUp" data-wow-delay=".4s">Mobility mandates built <br /> for serious balance sheets</h2>
                           </div>
                       </div>
                   </div>
@@ -99,35 +97,35 @@ export default function HomeCorporate() {
                       <div className="row">
                           <div className="col-lg-4">
                               <div className="ht-services-thumbs wow fadeInUp" data-wow-delay=".6s">
-                                  <img src="/assets/img/service/1.jpg" alt="img" />
+                                  <img src="/assets/img/service/1.jpg" alt="Strategic mobility planning" />
                                   <div className="content">
-                                      <h3>Elevate Your Marketing Strategy</h3>
-                                      <a href="/services" className="ht-btn style-4">view all services</a>
+                                      <h3>Strategic mobility for the next decade</h3>
+                                      <a href="/services" className="ht-btn style-4">view advisory practice</a>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-8">
                               <div className="ht-services-item">
                                   <div className="single-item wow fadeInUp" data-wow-delay=".2s">
-                                      <h3>Business Planning Solutions</h3>
-                                      <p>The first thing to remember about success is that it is a process nothing more,
-                                          nothing less. There is really no magic to it and it's.</p>
+                                      <h3>Executive Relocation Programs</h3>
+                                      <p>Founders and senior operators relocated under a single mandate — residency,
+                                          housing, schooling, banking, domestic staff. Landing with utilities, not surprises.</p>
                                       <a href="/service-details"><i className="fa-solid fa-arrow-right"></i></a>
-                                      <img src="/assets/img/service/2.jpg" alt="sm-img" />
+                                      <img src="/assets/img/service/2.jpg" alt="" aria-hidden="true" />
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay=".4s">
-                                      <h3>Performance analysis</h3>
-                                      <p>The first thing to remember about success is that it is a process nothing more,
-                                          nothing less. There is really no magic to it and it's.</p>
+                                      <h3>Tax Residency Sequencing</h3>
+                                      <p>Coordinated moves across jurisdictions so residency, exit tax and corporate
+                                          structure line up — not fight each other — across fiscal years.</p>
                                       <a href="/service-details"><i className="fa-solid fa-arrow-right"></i></a>
-                                      <img src="/assets/img/service/2.jpg" alt="sm-img" />
+                                      <img src="/assets/img/service/2.jpg" alt="" aria-hidden="true" />
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay=".6s">
-                                      <h3>Tax file audit Strategies</h3>
-                                      <p>The first thing to remember about success is that it is a process nothing more,
-                                          nothing less. There is really no magic to it and it's.</p>
+                                      <h3>Family Office Structuring</h3>
+                                      <p>Holding companies, private foundations and trusts sized to the balance sheet
+                                          and selected for regulatory longevity — not the latest brochure.</p>
                                       <a href="/service-details"><i className="fa-solid fa-arrow-right"></i></a>
-                                      <img src="/assets/img/service/2.jpg" alt="sm-img" />
+                                      <img src="/assets/img/service/2.jpg" alt="" aria-hidden="true" />
                                   </div>
                               </div>
                           </div>
@@ -140,20 +138,20 @@ export default function HomeCorporate() {
                       <div className="swiper-wrapper">
                           <div className="swiper-slide">
                               <div className="brand-item">
-                                  <h2>FREE CONSULTATION</h2>
-                                  <img src="/assets/img/icon/9.svg" alt="icon" />
+                                  <h2>PRIVATE CONSULTATION</h2>
+                                  <img src="/assets/img/icon/9.svg" alt="" aria-hidden="true" />
                               </div>
                           </div>
                           <div className="swiper-slide">
                               <div className="brand-item">
-                                  <h2>BUSINESS CONSULTANT</h2>
-                                  <img src="/assets/img/icon/9.svg" alt="icon" />
+                                  <h2>CITIZENSHIP BY INVESTMENT</h2>
+                                  <img src="/assets/img/icon/9.svg" alt="" aria-hidden="true" />
                               </div>
                           </div>
                           <div className="swiper-slide">
                               <div className="brand-item">
-                                  <h2>BUSINESS GROWING</h2>
-                                  <img src="/assets/img/icon/9.svg" alt="icon" />
+                                  <h2>RESIDENCY BY INVESTMENT</h2>
+                                  <img src="/assets/img/icon/9.svg" alt="" aria-hidden="true" />
                               </div>
                           </div>
                       </div>
@@ -177,24 +175,23 @@ export default function HomeCorporate() {
                           <div className="col-lg-6 col-sm-12">
                               <div className="ht-about-content style-2">
                                   <div className="section-title">
-                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About company</span>
-                                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Experienced and passionate about
-                                          success</h2>
-                                      <p>With over 25 years of experience, we have crafted thousands have Strategic discovery
-                                          process that understand.</p>
+                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
+                                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Senior bench, narrow client list, written record</h2>
+                                      <p>Ablewski &amp; Partners advises a small roster of founders, family offices and
+                                          private investors. We write before we recommend, we decline what we should not
+                                          sell, and we do not accept commissions.</p>
                                   </div>
                                   <div className="client-reviews">
                                       <div className="review-item wow fadeInUp" data-wow-delay=".6s">
-                                          <h2><span className="count">1140</span>+</h2>
-                                          <p>Happy Clients</p>
+                                          <h2><span className="count">100</span>+</h2>
+                                          <p>Mandates delivered</p>
                                       </div>
                                       <div className="review-item wow fadeInUp" data-wow-delay=".8s">
-                                          <h2><span className="count">480</span>+</h2>
-                                          <p>Finished Projects</p>
+                                          <h2><span className="count">32</span>+</h2>
+                                          <p>Jurisdictions covered</p>
                                       </div>
                                   </div>
-                                  <a href="/about" className="ht-btn style-3 wow fadeInUp" data-wow-delay="1s">Let's Get in
-                                      Touch</a>
+                                  <a href="/about" className="ht-btn style-3 wow fadeInUp" data-wow-delay="1s">Meet the Firm</a>
                               </div>
                           </div>
                       </div>
@@ -206,67 +203,67 @@ export default function HomeCorporate() {
               <div className="container">
                   <div className="section-title-area align-items-lg-end">
                       <div className="section-title mb-0">
-                          <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Selected Works</span>
-                          <h2 className="title wow fadeInUp" data-wow-delay=".4s">Our complete <br /> project list</h2>
+                          <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Select Mandates</span>
+                          <h2 className="title wow fadeInUp" data-wow-delay=".4s">Representative <br /> case studies</h2>
                       </div>
-                      <a href="/services" className="ht-btn style-2 wow fadeInUp" data-wow-delay=".6s">View All services</a>
+                      <a href="/services" className="ht-btn style-2 wow fadeInUp" data-wow-delay=".6s">View Advisory Practice</a>
                   </div>
                   <div className="ht-project-wrapper">
                       <div className="row g-5">
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".2s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/5.jpg" alt="thumb" /></a>
+                                      <a href="/project-details"><img src="/assets/img/project/5.jpg" alt="Portugal Golden Visa mandate" /></a>
                                   </div>
                                   <div className="content">
                                       <a href="/project-details">
-                                          <h4>Business consultancy</h4>
+                                          <h4>Portugal Golden Visa</h4>
                                       </a>
-                                      <span>UI/UX Design</span>
+                                      <span>Residency by Investment</span>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".4s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/6.jpg" alt="thumb" /></a>
+                                      <a href="/project-details"><img src="/assets/img/project/6.jpg" alt="Caribbean CBI mandate" /></a>
                                   </div>
                                   <div className="content">
                                       <a href="/project-details">
-                                          <h4>Crafting Digital Experiences</h4>
+                                          <h4>Caribbean CBI</h4>
                                       </a>
-                                      <span>Web Design</span>
+                                      <span>Citizenship by Investment</span>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".6s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/7.jpg" alt="thumb" /></a>
+                                      <a href="/project-details"><img src="/assets/img/project/7.jpg" alt="UAE Golden Residence mandate" /></a>
                                   </div>
                                   <div className="content">
                                       <a href="/project-details">
-                                          <h4>Innovation in Every Swipe</h4>
+                                          <h4>UAE Golden Residence</h4>
                                       </a>
-                                      <span>Development</span>
+                                      <span>Tax Residency</span>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".8s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/8.jpg" alt="thumb" /></a>
+                                      <a href="/project-details"><img src="/assets/img/project/8.jpg" alt="Swiss lump-sum mandate" /></a>
                                   </div>
                                   <div className="content">
                                       <a href="/project-details">
-                                          <h4>Turning Clicks Into Conversions</h4>
+                                          <h4>Swiss Lump-Sum</h4>
                                       </a>
-                                      <span>Digital Marketing</span>
+                                      <span>Asset Protection</span>
                                   </div>
                               </div>
                           </div>
                           <a href="/project" className="project-btn mx-auto wow fadeInUp" data-wow-delay="1s">View All <br />
-                              Works</a>
+                              Mandates</a>
                       </div>
                   </div>
               </div>
@@ -279,17 +276,15 @@ export default function HomeCorporate() {
                           <div className="col-xl-7 col-lg-6">
                               <div className="ht-choose-left">
                                   <div className="content">
-                                      <h2 className="wow fadeInUp" data-wow-delay=".2s">Benefits of better credit score and
-                                          restoration</h2>
-                                      <p className="wow fadeInUp" data-wow-delay=".4s">We specialize in helping individuals and
-                                          families regain control of their financial
-                                          future by repairing and improving their credit scores team of experts is dedicated
-                                          to analyzing your credit report.</p>
-                                      <a href="/contact" className="ht-btn style-4 wow fadeInUp" data-wow-delay=".6s">get
-                                          started now</a>
+                                      <h2 className="wow fadeInUp" data-wow-delay=".2s">Four pillars of the practice</h2>
+                                      <p className="wow fadeInUp" data-wow-delay=".4s">We work the way private clients expect a
+                                          serious advisory to work: quietly, independently, and with a written record of
+                                          every recommendation. Commissions from program agents are refused as a matter of
+                                          policy — the retainer you pay is our only compensation.</p>
+                                      <a href="/contact" className="ht-btn style-4 wow fadeInUp" data-wow-delay=".6s">Schedule Consultation</a>
                                   </div>
                                   <div className="thumb wow fadeInUp" data-wow-delay=".8s">
-                                      <img src="/assets/img/choose/1.jpg" alt="thumb" />
+                                      <img src="/assets/img/choose/1.jpg" alt="Private client advisory session" />
                                   </div>
                               </div>
                           </div>
@@ -297,38 +292,38 @@ export default function HomeCorporate() {
                               <div className="ht-choose-right">
                                   <div className="single-item wow fadeInUp" data-wow-delay=".3s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/cashback.svg" alt="icon" />
+                                          <img src="/assets/img/icon/cashback.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>Money-Back Guarantee</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Expertise</h3>
+                                          <p>CFA-trained, NYSE-seasoned advisory combined with on-the-ground program experience.</p>
                                       </div>
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay=".6s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/resignation.svg" alt="icon" />
+                                          <img src="/assets/img/icon/resignation.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>Cancellation Policy</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Discretion</h3>
+                                          <p>Private intake, written memos under NDA and a strict no-marketing policy on client names.</p>
                                       </div>
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay=".9s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/secure-shield.svg" alt="icon" />
+                                          <img src="/assets/img/icon/secure-shield.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>High-end security</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Results</h3>
+                                          <p>Over 100 families relocated under mandate — CBI approvals, golden visas and tax moves.</p>
                                       </div>
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay="1.2s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/money-bag.svg" alt="icon" />
+                                          <img src="/assets/img/icon/money-bag.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>Personalized Strategy</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Network</h3>
+                                          <p>Licensed counsel, bankers and program agents across 32 jurisdictions — vetted, not curated.</p>
                                       </div>
                                   </div>
                               </div>
@@ -345,12 +340,12 @@ export default function HomeCorporate() {
                           <div className="col-lg-4">
                               <div className="ht-team-content-2">
                                   <div className="section-title">
-                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Team Members</span>
-                                      <h2 className="title fadeInUp" data-wow-delay=".2s">Meet our team member</h2>
-                                      <p>With over 10 years of experience in business management, John leads our team with
-                                          strategic vision and a passion for innovation.</p>
+                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Advisors</span>
+                                      <h2 className="title fadeInUp" data-wow-delay=".2s">Meet the partners</h2>
+                                      <p>Every mandate is led by a named partner from first conversation to post-approval
+                                          compliance. No junior handoffs — and no sales desk.</p>
                                   </div>
-                                  <a href="/team" className="ht-btn fadeInUp" data-wow-delay=".4s">All Team Members</a>
+                                  <a href="/team" className="ht-btn fadeInUp" data-wow-delay=".4s">Full Advisor Bench</a>
                               </div>
                           </div>
                           <div className="col-lg-8">
@@ -370,9 +365,9 @@ export default function HomeCorporate() {
                                               </div>
                                               <div className="info">
                                                   <a href="/team-details">
-                                                      <h4>Linda F. Collins</h4>
+                                                      <h4>Rafał Ablewski</h4>
                                                   </a>
-                                                  <p>SR Marketer</p>
+                                                  <p>Managing Partner, CFA</p>
                                               </div>
                                           </div>
                                       </div>
@@ -389,9 +384,9 @@ export default function HomeCorporate() {
                                               </div>
                                               <div className="info">
                                                   <a href="/team-details">
-                                                      <h4>Sandra D. Rainey</h4>
+                                                      <h4>M. Kowalska</h4>
                                                   </a>
-                                                  <p>Executive officer</p>
+                                                  <p>Head of Residency Programs</p>
                                               </div>
                                           </div>
                                       </div>
@@ -408,9 +403,9 @@ export default function HomeCorporate() {
                                               </div>
                                               <div className="info">
                                                   <a href="/team-details">
-                                                      <h4>Brooklyn simmons</h4>
+                                                      <h4>A. Nowak</h4>
                                                   </a>
-                                                  <p>CEO & Founder</p>
+                                                  <p>Head of Citizenship Programs</p>
                                               </div>
                                           </div>
                                       </div>
@@ -427,9 +422,9 @@ export default function HomeCorporate() {
                                               </div>
                                               <div className="info">
                                                   <a href="/team-details">
-                                                      <h4>Donna L. Aguilar</h4>
+                                                      <h4>J. Wiśniewski</h4>
                                                   </a>
-                                                  <p>Finance advisor</p>
+                                                  <p>Senior Tax Counsel</p>
                                               </div>
                                           </div>
                                       </div>
@@ -445,8 +440,8 @@ export default function HomeCorporate() {
               <div className="container">
                   <div className="section-title-area align-items-lg-end mb-30">
                       <div className="section-title mb-0">
-                          <span className="subtitle wow fadeInUp" data-wow-delay=".2s">TESTIMONIALS</span>
-                          <h2 className="title wow fadeInUp" data-wow-delay=".4s">Client feedback</h2>
+                          <span className="subtitle wow fadeInUp" data-wow-delay=".2s">In their own words</span>
+                          <h2 className="title wow fadeInUp" data-wow-delay=".4s">Private client voices</h2>
                       </div>
                       <div className="ht-testi-btn mt-0 wow fadeInUp" data-wow-delay=".6s">
                           <button className="ht-testi-prev ht-testi-prev-2"><i className="fa-solid fa-chevron-left"></i></button>
@@ -465,18 +460,15 @@ export default function HomeCorporate() {
                                           <i className="fa-solid fa-star"></i>
                                           <i className="fa-solid fa-star"></i>
                                       </div>
-                                      <p className="desc desc-2">"Working with Campaign was a game-changer for our business. Their
-                                          expertise and strategies helped us reach new heights we never thought possible
-                                          heights
-                                          we never"
+                                      <p className="desc desc-2">"The memo gave us a two-year plan we could actually live with — not a brochure. The firm stayed with us through every application stage."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
                                           <div className="avatar">
-                                              <img src="/assets/img/testimonials/2.png" alt="img" />
+                                              <img src="/assets/img/testimonials/2.png" alt="" aria-hidden="true" />
                                           </div>
                                           <div className="author-info">
-                                              <h5 className="name">Ronald richards</h5>
-                                              <p className="role">Finance Advisor</p>
+                                              <h5 className="name">Industrial Family Office</h5>
+                                              <p className="role">Germany · name withheld</p>
                                           </div>
                                       </div>
                                   </div>
@@ -490,17 +482,15 @@ export default function HomeCorporate() {
                                           <i className="fa-solid fa-star"></i>
                                           <i className="fa-solid fa-star"></i>
                                       </div>
-                                      <p className="desc desc-2">"Working with Campaign was a game-changer for our business. Their
-                                          expertise and strategies helped us reach new heights we never thought possible
-                                          heights we never"
+                                      <p className="desc desc-2">"We briefed three advisors. Ablewski was the only one who put the honest disqualifications in writing before asking for a cent."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
                                           <div className="avatar">
-                                              <img src="/assets/img/testimonials/3.png" alt="img" />
+                                              <img src="/assets/img/testimonials/3.png" alt="" aria-hidden="true" />
                                           </div>
                                           <div className="author-info">
-                                              <h5 className="name">Charlize Theron</h5>
-                                              <p className="role">Ceo & Owner</p>
+                                              <h5 className="name">Tech founder</h5>
+                                              <p className="role">UAE · name withheld</p>
                                           </div>
                                       </div>
                                   </div>
@@ -514,18 +504,15 @@ export default function HomeCorporate() {
                                           <i className="fa-solid fa-star"></i>
                                           <i className="fa-solid fa-star"></i>
                                       </div>
-                                      <p className="desc desc-2">"Working with Campaign was a game-changer for our business. Their
-                                          expertise and strategies helped us reach new heights we never thought possible
-                                          heights
-                                          we never"
+                                      <p className="desc desc-2">"Discretion was non-negotiable for us. Over three years, nothing about our file has ever surfaced anywhere."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
                                           <div className="avatar">
-                                              <img src="/assets/img/testimonials/4.png" alt="img" />
+                                              <img src="/assets/img/testimonials/4.png" alt="" aria-hidden="true" />
                                           </div>
                                           <div className="author-info">
-                                              <h5 className="name">Marvin mcKinney</h5>
-                                              <p className="role">Product Manager</p>
+                                              <h5 className="name">Private Investor</h5>
+                                              <p className="role">CEE · name withheld</p>
                                           </div>
                                       </div>
                                   </div>
@@ -539,8 +526,8 @@ export default function HomeCorporate() {
           <section className="ht-blog-area section-padding fix">
               <div className="container">
                   <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">recent posts</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Explore our latest <br /> blog insights</h2>
+                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Intelligence briefs</span>
+                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Latest analysis on <br /> programs and policy</h2>
                   </div>
                   <div className="ht-blog-wrapper">
                       <div className="row">
@@ -551,14 +538,14 @@ export default function HomeCorporate() {
                                   </div>
                                   <div className="ht-blog-content">
                                       <ul className="ht-blog-meta ht-blog-meta-2">
-                                          <li className="ct">Business solution</li>
-                                          <li className="dt">June 16, 2024</li>
+                                          <li className="ct">Residency</li>
+                                          <li className="dt">Mar 18, 2026</li>
                                       </ul>
                                       <a href="/blog-details">
-                                          <h3 className="title">Profitable business makes to you
-                                              happy and growth</h3>
+                                          <h3 className="title">Where EU Golden Visas
+                                              Go Next: Portugal, Greece, Italy</h3>
                                       </a>
-                                      <a href="/blog-details" className="ht-link ht-link-2">Read More</a>
+                                      <a href="/blog-details" className="ht-link ht-link-2">Read Brief</a>
                                   </div>
                               </div>
                           </div>
@@ -569,14 +556,14 @@ export default function HomeCorporate() {
                                   </div>
                                   <div className="ht-blog-content">
                                       <ul className="ht-blog-meta ht-blog-meta-2">
-                                          <li className="ct">Marketing solution</li>
-                                          <li className="dt">27 May, 2024</li>
+                                          <li className="ct">Citizenship</li>
+                                          <li className="dt">Feb 04, 2026</li>
                                       </ul>
                                       <a href="/blog-details">
-                                          <h3 className="title">Securing Funding for Your
-                                              Startup: Expert Tips</h3>
+                                          <h3 className="title">Caribbean CBI After the
+                                              US–EU Pressure Cycle</h3>
                                       </a>
-                                      <a href="/blog-details" className="ht-link ht-link-2">Read More</a>
+                                      <a href="/blog-details" className="ht-link ht-link-2">Read Brief</a>
                                   </div>
                               </div>
                           </div>
@@ -587,14 +574,14 @@ export default function HomeCorporate() {
                                   </div>
                                   <div className="ht-blog-content">
                                       <ul className="ht-blog-meta ht-blog-meta-2">
-                                          <li className="ct">Business solution</li>
-                                          <li className="dt">June 16, 2024</li>
+                                          <li className="ct">Tax Residency</li>
+                                          <li className="dt">Jan 22, 2026</li>
                                       </ul>
                                       <a href="/blog-details">
-                                          <h3 className="title">Strong Corporate Financial
-                                              Model: Best Practices</h3>
+                                          <h3 className="title">UAE Corporate Tax and the
+                                              New Residency Calculus</h3>
                                       </a>
-                                      <a href="/blog-details" className="ht-link ht-link-2">Read More</a>
+                                      <a href="/blog-details" className="ht-link ht-link-2">Read Brief</a>
                                   </div>
                               </div>
                           </div>

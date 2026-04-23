@@ -1,9 +1,29 @@
+import { useState } from 'react';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: '', email: '', goal: '', message: '' });
+  const [status, setStatus] = useState('idle');
+
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.goal.trim() || !form.message.trim()) {
+      setStatus('invalid');
+      return;
+    }
+    const subject = encodeURIComponent(`Consultation enquiry — ${form.goal}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nObjective: ${form.goal}\n\n${form.message}\n\n— Sent from passportbros.org`
+    );
+    window.location.href = `mailto:advisory@passportbros.org?subject=${subject}&body=${body}`;
+    setStatus('sent');
+  };
+
   return (
     <>
-      <Breadcrumb title="Contact Us" current="Contact" />
+      <Breadcrumb title="Schedule Consultation" current="Contact" />
       <section className="ht-contact-info-area section-padding">
               <div className="container">
                   <div className="contact-info-wrapper">
@@ -11,23 +31,23 @@ export default function Contact() {
                           <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
                               <div className="contact-info-item">
                                   <div className="icon">
-                                      <img src="/assets/img/icon/phone.svg" alt="icon" />
+                                      <img src="/assets/img/icon/phone.svg" alt="" aria-hidden="true" />
                                   </div>
                                   <div className="content">
-                                      <span>Phone number</span>
-                                      <h4>+44 204 577 0077</h4>
+                                      <span>Private Office</span>
+                                      <h4>+48 22 100 00 00</h4>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
                               <div className="contact-info-item">
                                   <div className="icon">
-                                      <img src="/assets/img/icon/comment.svg" alt="icon" />
+                                      <img src="/assets/img/icon/comment.svg" alt="" aria-hidden="true" />
                                   </div>
                                   <div className="content">
-                                      <span>Email address</span>
-                                      <a href="mailto:hello@mobius.com">
-                                          <h4>hello@mobius.com</h4>
+                                      <span>Confidential email</span>
+                                      <a href="mailto:advisory@passportbros.org">
+                                          <h4>advisory@passportbros.org</h4>
                                       </a>
                                   </div>
                               </div>
@@ -35,11 +55,11 @@ export default function Contact() {
                           <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".9s">
                               <div className="contact-info-item">
                                   <div className="icon">
-                                      <img src="/assets/img/icon/location.svg" alt="icon" />
+                                      <img src="/assets/img/icon/location.svg" alt="" aria-hidden="true" />
                                   </div>
                                   <div className="content">
-                                      <span>Office Address</span>
-                                      <h4>Washington Ave, NY</h4>
+                                      <span>Head office</span>
+                                      <h4>Rondo ONZ 1, Warsaw</h4>
                                   </div>
                               </div>
                           </div>
@@ -51,29 +71,73 @@ export default function Contact() {
           <section className="ht-contact-form-area section-padding">
               <div className="container">
                   <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Contact Us</span>
-                      <h2 className="title wow fadeInUp text-black" data-wow-delay=".5s">Have questions? <br />
-                          contact us!</h2>
+                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Schedule Consultation</span>
+                      <h2 className="title wow fadeInUp text-black" data-wow-delay=".5s">Tell us what you're trying <br />
+                          to accomplish.</h2>
                   </div>
                   <div className="ht-contact-wrapper">
-                      <form action="#" method="post">
+                      <form onSubmit={onSubmit} noValidate>
                           <div className="row justify-content-center">
                               <div className="col-lg-10">
                                   <div className="row">
                                       <div className="col-md-6">
-                                          <input type="text" placeholder="Your name" required />
+                                          <input
+                                            type="text"
+                                            name="name"
+                                            value={form.name}
+                                            onChange={onChange}
+                                            placeholder="Full name"
+                                            autoComplete="name"
+                                            required
+                                          />
                                       </div>
                                       <div className="col-md-6">
-                                          <input type="email" placeholder="Email address" required />
+                                          <input
+                                            type="email"
+                                            name="email"
+                                            value={form.email}
+                                            onChange={onChange}
+                                            placeholder="Email address"
+                                            autoComplete="email"
+                                            required
+                                          />
                                       </div>
                                       <div className="col-12">
-                                          <input type="text" placeholder="Select subject" required />
+                                          <input
+                                            type="text"
+                                            name="goal"
+                                            value={form.goal}
+                                            onChange={onChange}
+                                            placeholder="Primary objective — e.g. Portugal Golden Visa, Caribbean CBI, UAE relocation"
+                                            required
+                                          />
                                       </div>
                                       <div className="col-12">
-                                          <textarea placeholder="Type your message" required></textarea>
+                                          <textarea
+                                            name="message"
+                                            value={form.message}
+                                            onChange={onChange}
+                                            placeholder="Family composition, timeframe, constraints we should know about."
+                                            required
+                                          ></textarea>
                                       </div>
                                       <div className="col-12 text-center">
-                                          <button type="submit" className="ht-btn style-2">SEND MESSAGE HERE</button>
+                                          <button type="submit" className="ht-btn style-2">Request Consultation</button>
+                                          {status === 'invalid' && (
+                                            <p style={{ marginTop: '20px', color: '#c0392b' }}>
+                                              Please complete every field so we can respond properly.
+                                            </p>
+                                          )}
+                                          {status === 'sent' && (
+                                            <p style={{ marginTop: '20px', color: '#2a7f62' }}>
+                                              Thank you — your email client is opening. If nothing happens, write to
+                                              advisory@passportbros.org directly.
+                                            </p>
+                                          )}
+                                          <p style={{ marginTop: '24px', fontSize: '13px', opacity: 0.7 }}>
+                                            All enquiries are handled under NDA. Ablewski &amp; Partners provides
+                                            educational and strategic advisory only — not legal, tax or investment advice.
+                                          </p>
                                       </div>
                                   </div>
                               </div>
@@ -84,8 +148,13 @@ export default function Contact() {
           </section>
 
           <div className="ht-map-area">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29187.55100927148!2d90.4212538!3d23.8738739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c43b23589ec9%3A0x3f71bf01a9cd40de!2sBNS%20Center!5e0!3m2!1sen!2sbd!4v1760704093362!5m2!1sen!2sbd" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
+              <iframe
+                title="Ablewski & Partners — Warsaw head office"
+                src="https://www.google.com/maps?q=Rondo%20ONZ%201%2C%20Warsaw&output=embed"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
           </div>
     </>
   );

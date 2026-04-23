@@ -7,19 +7,19 @@ export default function Footer() {
         <div className="ht-footer-top-wrapper">
           <div className="ht-footer-top-left wow fadeInUp" data-wow-delay=".2s">
             <Link to="/">
-              <img src="/assets/img/logo/logo-white.svg" alt="Mobius" />
+              <img src="/assets/img/logo/logo-white.svg" alt="Ablewski & Partners" />
             </Link>
             <p className="desc">
-              At the core of our ethos lies a dedication to our clients. Your <br /> success is our
-              shared triumph, and we're.
+              Independent strategic advisory on global mobility, citizenship and residency
+              <br /> programs, tax residency planning and legacy structures for private clients.
             </p>
           </div>
           <div className="ht-footer-top-right wow fadeInUp" data-wow-delay=".4s">
             <ul className="footer-social">
-              <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
-              <li><a href="#"><i className="fa-brands fa-instagram"></i></a></li>
-              <li><a href="#"><i className="fa-brands fa-linkedin-in"></i></a></li>
-              <li><a href="#"><i className="fa-brands fa-facebook-f"></i></a></li>
+              <li><a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a></li>
+              <li><a href="#" aria-label="X"><i className="fa-brands fa-x-twitter"></i></a></li>
+              <li><a href="#" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></a></li>
+              <li><a href="#" aria-label="Facebook"><i className="fa-brands fa-facebook-f"></i></a></li>
             </ul>
           </div>
         </div>
@@ -27,45 +27,50 @@ export default function Footer() {
         <div className="ht-footer-widget-wrapper">
           <div className="ht-footer-widget">
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay=".3s">
-              <h5 className="head">Features</h5>
+              <h5 className="head">Advisory</h5>
               <ul className="link-list">
-                <li><a href="#">Advanced Analytics</a></li>
-                <li><a href="#">Data Exploration</a></li>
-                <li><a href="#">Auto Track</a></li>
-                <li><a href="#">Data Insights</a></li>
+                <li><Link to="/services">Citizenship by Investment</Link></li>
+                <li><Link to="/services">Residency by Investment</Link></li>
+                <li><Link to="/services">Tax Residency Planning</Link></li>
+                <li><Link to="/services">Asset Protection</Link></li>
               </ul>
             </div>
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay=".6s">
-              <h5 className="head">Menu</h5>
+              <h5 className="head">Programs</h5>
               <ul className="link-list">
-                <li><a href="#">Article & Blog</a></li>
-                <li><a href="#">Documentation</a></li>
-                <li><a href="#">Learn Mobius</a></li>
-                <li><a href="#">Tutorials</a></li>
+                <li><Link to="/pricing">Portugal Golden Visa</Link></li>
+                <li><Link to="/pricing">Caribbean CBI</Link></li>
+                <li><Link to="/pricing">Malta MEIN</Link></li>
+                <li><Link to="/pricing">UAE Golden Residence</Link></li>
               </ul>
             </div>
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay=".9s">
-              <h5 className="head">Company</h5>
+              <h5 className="head">Firm</h5>
               <ul className="link-list">
-                <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/team">Our Team</Link></li>
-                <li><a href="#">Press</a></li>
+                <li><Link to="/about">About the Firm</Link></li>
+                <li><Link to="/team">Our Advisors</Link></li>
+                <li><Link to="/project">Case Studies</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay="1.2s">
-              <h5 className="head">Resources</h5>
+              <h5 className="head">Intelligence</h5>
               <ul className="link-list">
-                <li><a href="#">Blog and Article</a></li>
-                <li><a href="#">Community</a></li>
-                <li><a href="#">Documentation</a></li>
-                <li><a href="#">Tutorials</a></li>
+                <li><Link to="/blog">Briefs &amp; Analysis</Link></li>
+                <li><Link to="/faq">Client FAQ</Link></li>
+                <li><Link to="/blog-list">Program Updates</Link></li>
+                <li><Link to="/contact">Request a Memo</Link></li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
-          <p>©{new Date().getFullYear()} <span>Mobius</span>. All rights reserved.</p>
+          <p>
+            ©{new Date().getFullYear()} <span>Ablewski &amp; Partners</span>. All rights reserved. &nbsp;|&nbsp;
+            Educational and strategic advisory only — not legal, tax or investment advice. Regulated legal
+            and tax work is delivered by licensed partners in each jurisdiction.
+          </p>
         </div>
       </div>
     </footer>
