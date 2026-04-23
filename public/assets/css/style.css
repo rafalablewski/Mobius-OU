@@ -8378,16 +8378,34 @@ span {
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li > a {
   color: var(--ht-theme-color);
-  font-family: "Fraunces", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.32px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 30px 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  position: relative;
   transition: color 0.35s ease-in-out;
+}
+.ht-header-area .ht-main-header .ht-menu-main > nav > ul > li > a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  height: 1px;
+  background: var(--ht-theme-color-2);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ht-header-area .ht-main-header .ht-menu-main > nav > ul > li:hover > a::before,
+.ht-header-area .ht-main-header .ht-menu-main > nav > ul > li > a.active::before {
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li {
   /* Chevron icon for dropdown */
