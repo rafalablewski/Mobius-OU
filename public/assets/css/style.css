@@ -7886,12 +7886,13 @@ span {
   color: var(--ht-heading-color);
   display: inline-block;
   vertical-align: middle;
-  font-size: 16px;
-  font-family: "Fraunces", sans-serif;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
-  padding: 20px 30px;
-  border-radius: 12px;
-  text-transform: capitalize;
+  letter-spacing: 0.06em;
+  padding: 18px 28px;
+  border: 1px solid var(--ht-border-color-2);
+  border-radius: 6px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   position: relative;
@@ -7901,23 +7902,30 @@ span {
   text-transform: uppercase;
 }
 .ht-btn.style-2 {
-  padding: 24px 30px;
-  background: var(--ht-theme-color-2);
+  padding: 18px 28px;
+  background: var(--ht-theme-color);
   color: var(--ht-white);
+  border-color: var(--ht-theme-color);
 }
 .ht-btn.style-2::before {
-  background: var(--ht-theme-color-3);
+  background: var(--ht-theme-color-2);
 }
 .ht-btn.style-2:hover {
   color: var(--ht-black);
+  border-color: var(--ht-theme-color-2);
 }
 .ht-btn.style-3 {
-  padding: 24px 30px;
+  padding: 18px 28px;
   background: var(--ht-theme-color);
   color: var(--ht-white);
+  border-color: var(--ht-theme-color);
 }
 .ht-btn.style-3::before {
   background: var(--ht-theme-color-2);
+}
+.ht-btn.style-3:hover {
+  color: var(--ht-black);
+  border-color: var(--ht-theme-color-2);
 }
 .ht-btn.style-4::before {
   background: var(--ht-theme-color-2);
@@ -7935,35 +7943,36 @@ span {
   border-radius: inherit;
 }
 .ht-btn:hover {
-  color: var(--ht-white);
+  color: var(--ht-black);
+  border-color: var(--ht-theme-color-2);
 }
 .ht-btn:hover::before {
   width: 100%;
 }
 @media (max-width: 767px) {
   .ht-btn {
-    padding: 20px 32px;
+    padding: 16px 24px;
   }
 }
 @media (max-width: 575px) {
   .ht-btn {
-    padding: 18px 30px;
-    font-size: 14px;
+    padding: 14px 22px;
+    font-size: 13px;
   }
 }
 .ht-btn.border-btn {
-  border: 1px solid var(--ht-border-color);
+  border: 1px solid var(--ht-border-color-2);
   background: transparent;
-  color: var(--ht-white);
+  color: var(--ht-heading-color);
 }
 .ht-btn.border-btn::before, .ht-btn.border-btn::after {
-  background: var(--ht-theme-color);
+  background: var(--ht-theme-color-2);
+}
+.ht-btn.border-btn:hover {
+  color: var(--ht-black);
 }
 .ht-btn.border-btn img {
   transition: all 0.4s ease-in-out;
-}
-.ht-btn.border-btn:hover img {
-  filter: grayscale(100%) brightness(300%);
 }
 .ht-btn.radius-btn {
   border-radius: 60px;
