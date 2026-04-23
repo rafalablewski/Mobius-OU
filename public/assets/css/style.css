@@ -14441,7 +14441,6 @@ span {
   }
 }
 .ht-principles__numeral {
-  position: relative;
   display: inline-block;
   padding-top: 4px;
 }
@@ -14454,23 +14453,6 @@ span {
   color: var(--ht-theme-color-2);
   line-height: 1;
   letter-spacing: 0.02em;
-}
-.ht-principles__numeral::after {
-  content: "";
-  position: absolute;
-  left: -4px;
-  top: 48px;
-  bottom: -16px;
-  width: 1px;
-  background: var(--ht-theme-color-2);
-  opacity: 0;
-  transform: scaleY(0);
-  transform-origin: top center;
-  transition: opacity 0.3s ease, transform 0.4s ease;
-}
-.ht-principles__item:hover .ht-principles__numeral::after {
-  opacity: 0.4;
-  transform: scaleY(1);
 }
 .ht-principles__copy {
   min-width: 0;
