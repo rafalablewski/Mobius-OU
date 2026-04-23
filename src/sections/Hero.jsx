@@ -12,18 +12,17 @@ export default function Hero() {
     <section className="ap-hero" id="top">
       <div className="ap-hero__media" aria-hidden="true">
         {/*
-          Replace /assets/img/hero/skyline.jpg with a bespoke 2400×1600 photo
-          (skyline at dusk, private aviation, coastline) before launch.
-          The CSS gradient fallback on ap-hero__media::after keeps the hero
-          rich even without a photo.
+          Bespoke atlas.svg — a stylised globe with mobility arcs on a navy
+          ground. Swap the src below for /assets/img/hero/skyline.jpg (or a
+          WebP) to layer a photograph instead; the gradient overlay in CSS
+          keeps copy legible against either.
         */}
         <img
           className="ap-hero__bg"
-          src="/assets/img/hero/skyline.jpg"
+          src="/assets/img/hero/atlas.svg"
           alt=""
           loading="eager"
           decoding="async"
-          onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
       </div>
 
