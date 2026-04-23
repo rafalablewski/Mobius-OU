@@ -20,6 +20,9 @@ export default function ProgramPage() {
         <div className="container">
           <div className="ht-program__head">
             <div className="ht-program__intro">
+              <span className="ht-program__arms" aria-hidden="true">
+                <img src={program.arms} alt="" loading="lazy" referrerPolicy="no-referrer" />
+              </span>
               <span className="ht-program__eyebrow">{program.region}</span>
               <h1 className="ht-program__title">{program.name}</h1>
               <p className="ht-program__tagline">{program.tagline}</p>

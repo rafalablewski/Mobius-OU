@@ -13336,6 +13336,24 @@ span {
     padding: 32px 0 48px;
   }
 }
+.ht-program__arms {
+  display: block;
+  width: 72px;
+  height: 90px;
+  margin-bottom: 20px;
+}
+.ht-program__arms img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media (max-width: 575px) {
+  .ht-program__arms {
+    width: 56px;
+    height: 70px;
+    margin-bottom: 16px;
+  }
+}
 .ht-program__eyebrow {
   display: inline-block;
   font-family: "Manrope", sans-serif;
