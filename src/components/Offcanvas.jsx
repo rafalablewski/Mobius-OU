@@ -45,8 +45,10 @@ export default function Offcanvas({ open, onClose }) {
       <div className={`ht-offcanvas${open ? ' active' : ''}`}>
         <div className="ht-offcanvas-wrapper">
           <div className="ht-offcanvas-header mb-50">
-            <Link to="/" className="ht-offcanvas-logo" onClick={onClose}>
-              <img src="/assets/img/logo/logo.svg" alt="Ablewski & Partners" />
+            <Link to="/" className="ht-offcanvas-logo ht-wordmark" onClick={onClose}>
+              <span className="ht-wordmark__lead">Ablewski</span>
+              <span className="ht-wordmark__amp">&amp;</span>
+              <span className="ht-wordmark__tail">Partners</span>
             </Link>
             <button
               type="button"

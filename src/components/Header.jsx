@@ -8,8 +8,10 @@ export default function Header({ onOffcanvasOpen }) {
           <div className="ht-menu-wrapper">
             <div className="ht-menu-left">
               <div className="ht-menu-logo">
-                <Link to="/" aria-label="Ablewski & Partners — home">
-                  <img src="/assets/img/logo/logo.svg" alt="Ablewski & Partners" />
+                <Link to="/" aria-label="Ablewski & Partners — home" className="ht-wordmark">
+                  <span className="ht-wordmark__lead">Ablewski</span>
+                  <span className="ht-wordmark__amp">&amp;</span>
+                  <span className="ht-wordmark__tail">Partners</span>
                 </Link>
               </div>
               <div className="ht-menu-main d-none d-lg-block">

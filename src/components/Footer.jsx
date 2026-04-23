@@ -6,8 +6,10 @@ export default function Footer() {
       <div className="container">
         <div className="ht-footer-top-wrapper">
           <div className="ht-footer-top-left wow fadeInUp" data-wow-delay=".2s">
-            <Link to="/">
-              <img src="/assets/img/logo/logo-white.svg" alt="Ablewski & Partners" />
+            <Link to="/" className="ht-wordmark ht-wordmark--ivory">
+              <span className="ht-wordmark__lead">Ablewski</span>
+              <span className="ht-wordmark__amp">&amp;</span>
+              <span className="ht-wordmark__tail">Partners</span>
             </Link>
             <p className="desc">
               Independent strategic advisory on global mobility, citizenship and residency

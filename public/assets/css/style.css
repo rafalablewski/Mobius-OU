@@ -12607,4 +12607,37 @@ span {
   box-shadow: 0 30px 60px -34px rgba(11, 15, 20, 0.25);
 }
 
+/* === Wordmark (replaces Mobius logo) =================================== */
+.ht-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ht-heading-color);
+  text-transform: none;
+  white-space: nowrap;
+}
+.ht-wordmark__lead,
+.ht-wordmark__tail {
+  font-weight: 500;
+}
+.ht-wordmark__amp {
+  font-family: "Fraunces", serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ht-theme-color-2);
+  letter-spacing: 0;
+}
+.ht-wordmark--ivory,
+.ht-wordmark--ivory .ht-wordmark__lead,
+.ht-wordmark--ivory .ht-wordmark__tail {
+  color: var(--ht-body);
+}
+
 /*# sourceMappingURL=style.css.map */
