@@ -13725,6 +13725,11 @@ span {
 .offcanvas-accordion__trigger:hover {
   color: var(--ht-theme-color-2);
 }
+.offcanvas-accordion__label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
 .offcanvas-accordion__chev {
   font-size: 12px;
   color: var(--ht-theme-color-6);
