@@ -12479,4 +12479,132 @@ span {
   font-size: 18px;
 }
 
+/* === Premium service cards (Advisory Practice) ========================= */
+/* Overrides the default .ht-services-items look: flatter, editorial, with
+   champagne reveal on hover, counter-based ordinals, ink serif headline. */
+.ht-services-area .ht-services-wrapper {
+  counter-reset: adv-practice;
+}
+.ht-services-area .ht-services-items {
+  position: relative;
+  padding: 48px 40px 44px;
+  border-radius: 0;
+  background: var(--ht-white);
+  border: 1px solid var(--ht-border-color);
+  overflow: hidden;
+  transition: border-color 0.45s ease, transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+@media (max-width: 767px) {
+  .ht-services-area .ht-services-items {
+    padding: 32px 24px;
+  }
+}
+/* Champagne seam reveals on hover */
+.ht-services-area .ht-services-items::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ht-theme-color-2);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ht-services-area .ht-services-items:hover::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+/* Faded serif ordinal */
+.ht-services-area .ht-services-items::after {
+  counter-increment: adv-practice;
+  content: counter(adv-practice, decimal-leading-zero);
+  position: absolute;
+  top: 28px;
+  right: 36px;
+  font-family: "Fraunces", serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--ht-theme-color-6);
+  opacity: 0.55;
+}
+/* Icon chip: ink square with champagne icon glyph */
+.ht-services-area .ht-services-items .icon {
+  background: var(--ht-theme-color);
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+.ht-services-area .ht-services-items .icon img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(71%) sepia(28%) saturate(412%) hue-rotate(5deg) brightness(93%) contrast(87%);
+  transition: filter 0.4s ease;
+}
+.ht-services-area .ht-services-items:hover .icon {
+  background: var(--ht-theme-color-2);
+  transform: translateY(-2px);
+}
+.ht-services-area .ht-services-items:hover .icon img {
+  filter: brightness(0) saturate(100%) invert(0%);
+}
+/* Title: Fraunces, no uppercase, champagne reveal */
+.ht-services-area .ht-services-items .title {
+  margin-top: 36px;
+  font-family: "Fraunces", serif;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  line-height: 1.2;
+  color: var(--ht-heading-color);
+  transition: color 0.3s ease;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.ht-services-area .ht-services-items .title img {
+  position: static;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.ht-services-area .ht-services-items:hover .title {
+  color: var(--ht-theme-color-2);
+}
+.ht-services-area .ht-services-items:hover .title img {
+  opacity: 1;
+  transform: translateX(0);
+  filter: brightness(0) saturate(100%) invert(71%) sepia(28%) saturate(412%) hue-rotate(5deg) brightness(93%) contrast(87%);
+}
+/* Neutralize the legacy ::hover .one/.two/.three/.four positioning rules */
+.ht-services-area .ht-services-items .title:hover .one,
+.ht-services-area .ht-services-items .title:hover .two,
+.ht-services-area .ht-services-items .title:hover .three,
+.ht-services-area .ht-services-items .title:hover .four {
+  left: auto;
+}
+/* Description copy */
+.ht-services-area .ht-services-items .desc {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ht-theme-color-6);
+}
+/* Hover lift (scoped so the global card-lift shadow reads cleaner here) */
+.ht-services-area .ht-services-items:hover {
+  border-color: var(--ht-theme-color-2);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -34px rgba(11, 15, 20, 0.25);
+}
+
 /*# sourceMappingURL=style.css.map */
