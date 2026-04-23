@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 64" role="img" aria-label="Ablewski &amp; Partners">
+  <title>Ablewski &amp; Partners</title>
+  <style>
+    .ap-word { font-family: "Cormorant Garamond", "Times New Roman", serif; font-weight: 500; font-size: 34px; letter-spacing: 1.2px; }
+    .ap-amp  { font-family: "Cormorant Garamond", "Times New Roman", serif; font-style: italic; font-weight: 400; font-size: 34px; fill: #c9a96e; }
+    .ap-tag  { font-family: "Inter", system-ui, sans-serif; font-weight: 500; font-size: 7.5px; letter-spacing: 3.2px; }
+  </style>
+  <g fill="currentColor">
+    <text class="ap-word" x="0" y="34">ABLEWSKI</text>
+    <text class="ap-amp"  x="172" y="34">&amp;</text>
+    <text class="ap-word" x="198" y="34">PARTNERS</text>
+    <text class="ap-tag"  x="0" y="54" opacity="0.55">STRATEGIC ADVISORY · GLOBAL MOBILITY · WARSAW</text>
+  </g>
+</svg>
