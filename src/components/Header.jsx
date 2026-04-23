@@ -49,17 +49,52 @@ export default function Header({ onOffcanvasOpen }) {
                         <li><NavLink to="/home-insurance">Succession &amp; Legacy</NavLink></li>
                       </ul>
                     </li>
-                    <li className="has-dropdown">
+                    <li className="has-mega-menu">
                       <a href="#">firm</a>
-                      <ul className="sub-menu">
-                        <li><NavLink to="/about">About the Firm</NavLink></li>
-                        <li><NavLink to="/services">Advisory Practice</NavLink></li>
-                        <li><NavLink to="/service-details">Service Overview</NavLink></li>
-                        <li><NavLink to="/team">Our Advisors</NavLink></li>
-                        <li><NavLink to="/team-details">Advisor Profile</NavLink></li>
-                        <li><NavLink to="/pricing">Programs &amp; Fees</NavLink></li>
-                        <li><NavLink to="/faq">Client FAQ</NavLink></li>
-                      </ul>
+                      <div className="mega-menu mega-menu--3">
+                        <div className="mega-col">
+                          <h6>Practice</h6>
+                          <NavLink to="/about">About the Firm</NavLink>
+                          <NavLink to="/services">Advisory Practice</NavLink>
+                          <NavLink to="/service-details">Service Overview</NavLink>
+                          <p className="mega-col__note">Independent, partner-led advisory for private clients on mobility and residency.</p>
+                        </div>
+                        <div className="mega-col">
+                          <h6>People</h6>
+                          <NavLink to="/team">Our Advisors</NavLink>
+                          <NavLink to="/team-details">Advisor Profile</NavLink>
+                        </div>
+                        <div className="mega-col">
+                          <h6>Resources</h6>
+                          <NavLink to="/pricing">Programs &amp; Fees</NavLink>
+                          <NavLink to="/faq">Client FAQ</NavLink>
+                          <NavLink to="/contact" className="mega-col__cta">Schedule Consultation <i className="fa-solid fa-arrow-right"></i></NavLink>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="has-mega-menu">
+                      <a href="#">programs</a>
+                      <div className="mega-menu mega-menu--3">
+                        <div className="mega-col">
+                          <h6>Europe</h6>
+                          <NavLink to="/pricing">Portugal Golden Visa</NavLink>
+                          <NavLink to="/pricing">Malta MEIN</NavLink>
+                          <NavLink to="/pricing">Switzerland Lump-Sum</NavLink>
+                          <NavLink to="/pricing">Italy Flat-Tax</NavLink>
+                        </div>
+                        <div className="mega-col">
+                          <h6>Americas &amp; Gulf</h6>
+                          <NavLink to="/pricing">Caribbean CBI</NavLink>
+                          <NavLink to="/pricing">UAE Golden Residence</NavLink>
+                        </div>
+                        <div className="mega-col">
+                          <h6>Practice areas</h6>
+                          <NavLink to="/services">Tax Residency Planning</NavLink>
+                          <NavLink to="/services">Asset Protection</NavLink>
+                          <NavLink to="/services">Family Relocation</NavLink>
+                          <NavLink to="/pricing" className="mega-col__cta">All Programs &amp; Fees <i className="fa-solid fa-arrow-right"></i></NavLink>
+                        </div>
+                      </div>
                     </li>
                     <li className="has-dropdown">
                       <a href="#">case studies</a>
