@@ -403,69 +403,6 @@ export default function Home() {
               </div>
           </section>
 
-          <section className="ht-blog-area section-padding fix">
-              <div className="container">
-                  <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Intelligence briefs</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Latest analysis on <br /> programs and policy</h2>
-                  </div>
-                  <div className="ht-blog-wrapper">
-                      <div className="row">
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <Link to="/blog-details"><img src="/assets/img/blog/1.jpg" alt="EU Golden Visa policy" /></Link>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta">
-                                          <li>Mar 18, 2026</li>
-                                          <li>Residency</li>
-                                      </ul>
-                                      <Link to="/blog-details">
-                                          <h3 className="title">Where EU Golden Visas Go Next: Portugal, Greece, Italy</h3>
-                                      </Link>
-                                      <Link to="/blog-details" className="ht-link">Read Brief</Link>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <Link to="/blog-details"><img src="/assets/img/blog/2.jpg" alt="Caribbean CBI due diligence" /></Link>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta">
-                                          <li>Feb 04, 2026</li>
-                                          <li>Citizenship</li>
-                                      </ul>
-                                      <Link to="/blog-details">
-                                          <h3 className="title">Caribbean CBI After the US–EU Pressure Cycle</h3>
-                                      </Link>
-                                      <Link to="/blog-details" className="ht-link">Read Brief</Link>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <Link to="/blog-details"><img src="/assets/img/blog/3.jpg" alt="UAE corporate tax" /></Link>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta">
-                                          <li>Jan 22, 2026</li>
-                                          <li>Tax Residency</li>
-                                      </ul>
-                                      <Link to="/blog-details">
-                                          <h3 className="title">UAE Corporate Tax and the New Residency Calculus</h3>
-                                      </Link>
-                                      <Link to="/blog-details" className="ht-link">Read Brief</Link>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
     </>
   );
 }
