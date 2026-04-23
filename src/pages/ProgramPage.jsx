@@ -34,12 +34,19 @@ export default function ProgramPage() {
           </div>
 
           <div className="ht-program__facts">
-            {program.facts.map((f) => (
-              <div className="ht-program__fact" key={f.label}>
-                <span className="ht-program__fact-label">{f.label}</span>
-                <span className="ht-program__fact-value">{f.value}</span>
-              </div>
-            ))}
+            <div className="ht-program__fact-hero">
+              <span className="ht-program__fact-hero-label">{program.facts[0].label}</span>
+              <span className="ht-program__fact-hero-value">{program.facts[0].value}</span>
+              <span className="ht-program__fact-hero-tag">Headline figure</span>
+            </div>
+            <ul className="ht-program__fact-sidecar">
+              {program.facts.slice(1).map((f) => (
+                <li key={f.label} className="ht-program__fact-sidecar-item">
+                  <span className="ht-program__fact-sidecar-label">{f.label}</span>
+                  <span className="ht-program__fact-sidecar-value">{f.value}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="ht-program__body">
