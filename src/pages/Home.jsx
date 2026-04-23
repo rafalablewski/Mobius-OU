@@ -1,4 +1,9 @@
 import { Link } from 'react-router-dom';
+import TopPrograms from '../components/TopPrograms.jsx';
+import { PROGRAMS } from '../data/programs.js';
+
+const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
+const CBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'CBI');
 
 export default function Home() {
   return (
@@ -141,6 +146,22 @@ export default function Home() {
                   </div>
               </div>
           </section>
+
+          <TopPrograms
+            tone="rbi"
+            eyebrow="Top RBI"
+            title="Residency routes we actively run"
+            body="Four programs we return to most often — ranked on political stability, physical-presence cost, and the five-year end state."
+            programs={RBI_PROGRAMS}
+          />
+
+          <TopPrograms
+            tone="cbi"
+            eyebrow="Top CBI"
+            title="Citizenship programs on the shortlist"
+            body="The two citizenship routes we still take mandates on — one EU passport, one Caribbean portfolio. Every file pre-screened on source of funds."
+            programs={CBI_PROGRAMS}
+          />
 
           <section className="ht-project-area section-padding fix">
               <div className="container">
