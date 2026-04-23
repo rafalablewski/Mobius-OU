@@ -22,6 +22,12 @@ export default function Nav({ open, onOpen, onClose }) {
   }, []);
 
   useEffect(() => {
+    const close = () => onClose?.();
+    window.addEventListener('ap:dismiss', close);
+    return () => window.removeEventListener('ap:dismiss', close);
+  }, [onClose]);
+
+  useEffect(() => {
     const ids = LINKS.map((l) => l.href.slice(1));
     const targets = ids.map((id) => document.getElementById(id)).filter(Boolean);
     if (!targets.length) return;
