@@ -235,41 +235,40 @@ export default function Home() {
 
           </section>
 
-          <section className="ht-process-area fix section-padding">
-              <div className="ht-process-shape">
-                  <img src="/assets/img/shape/3.svg" alt="" aria-hidden="true" />
-              </div>
+          <section className="ht-approach">
               <div className="container">
-                  <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Approach</span>
-                      <h2 className="title text-white wow fadeInUp" data-wow-delay=".4s">A measured path from <br /> first conversation to second passport
+                  <header className="ht-approach__head wow fadeInUp" data-wow-delay=".2s">
+                      <span className="ht-approach__eyebrow">Our Approach</span>
+                      <h2 className="ht-approach__title">
+                          A measured path from first conversation <em>to second passport.</em>
                       </h2>
-                  </div>
-                  <div className="ht-process-wrapper">
-                      <div className="row justify-content-between">
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
-                              <div className="ht-process-item mt-25">
-                                  <span className="step">step 01</span>
-                                  <h3 className="title">Discovery</h3>
-                                  <p>A confidential intake — your family, assets, tax footprint and the outcomes that actually matter.</p>
-                              </div>
+                  </header>
+                  <ol className="ht-approach__flow">
+                      <li className="ht-approach__step wow fadeInUp" data-wow-delay=".2s">
+                          <span className="ht-approach__num">01</span>
+                          <div className="ht-approach__body">
+                              <h3 className="ht-approach__step-title">Discovery</h3>
+                              <p>A confidential intake — your family, assets, tax footprint and the outcomes that actually matter.</p>
+                              <span className="ht-approach__meta">Week 1 · NDA first</span>
                           </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
-                              <div className="ht-process-item mt-25">
-                                  <span className="step">step 02</span>
-                                  <h3 className="title">Strategy Memo</h3>
-                                  <p>A jurisdiction-ranked memo with programs, timelines, tax impact and honest disqualifications.</p>
-                              </div>
+                      </li>
+                      <li className="ht-approach__step wow fadeInUp" data-wow-delay=".35s">
+                          <span className="ht-approach__num">02</span>
+                          <div className="ht-approach__body">
+                              <h3 className="ht-approach__step-title">Strategy Memo</h3>
+                              <p>A jurisdiction-ranked memo with programs, timelines, tax impact and honest disqualifications.</p>
+                              <span className="ht-approach__meta">Week 2–4 · Written, not pitched</span>
                           </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
-                              <div className="ht-process-item mt-25">
-                                  <span className="step">step 03</span>
-                                  <h3 className="title">Execution</h3>
-                                  <p>Coordinated delivery with licensed local counsel, banks and investment agents under our mandate.</p>
-                              </div>
+                      </li>
+                      <li className="ht-approach__step wow fadeInUp" data-wow-delay=".5s">
+                          <span className="ht-approach__num">03</span>
+                          <div className="ht-approach__body">
+                              <h3 className="ht-approach__step-title">Execution</h3>
+                              <p>Coordinated delivery with licensed local counsel, banks and investment agents under our mandate.</p>
+                              <span className="ht-approach__meta">Month 2 onward · Single point of accountability</span>
                           </div>
-                      </div>
-                  </div>
+                      </li>
+                  </ol>
               </div>
           </section>
 
