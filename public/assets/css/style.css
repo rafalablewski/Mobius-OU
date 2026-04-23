@@ -12366,4 +12366,117 @@ span {
   color: var(--ht-heading-color);
 }
 
+/* === Full-width nav bar ================================================ */
+.ht-header-area--full .ht-main-header {
+  border-bottom: 1px solid var(--ht-border-color);
+  background: var(--ht-body);
+}
+.ht-nav-bar {
+  width: 100%;
+  padding: 0 48px;
+  margin: 0;
+  max-width: none;
+}
+@media (max-width: 991px) {
+  .ht-nav-bar {
+    padding: 0 24px;
+  }
+}
+.ht-header-area--full .ht-menu-wrapper {
+  align-items: center;
+  max-width: none;
+}
+/* When sticky, keep the full-width wrapper + lighter padding */
+.ht-header-area--full .ht-main-header.sticky .ht-nav-bar {
+  padding: 0 48px;
+}
+@media (max-width: 991px) {
+  .ht-header-area--full .ht-main-header.sticky .ht-nav-bar {
+    padding: 0 24px;
+  }
+}
+
+/* === Dropdown redesign ================================================= */
+/* Replace the old rounded cards with a full-width hairline panel */
+.ht-header-area .ht-main-header .ht-menu-main ul li > .sub-menu {
+  overflow: visible;
+  min-width: 260px;
+  background: var(--ht-white);
+  padding: 14px 0;
+  border: 1px solid var(--ht-border-color);
+  border-top: 2px solid var(--ht-theme-color-2);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 24px 60px rgba(11, 15, 20, 0.12);
+}
+.ht-header-area .ht-main-header .ht-menu-main ul li > .sub-menu li a {
+  font-family: "Fraunces", serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--ht-heading-color);
+  padding: 10px 22px;
+  border-left: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease, background 0.2s ease;
+}
+.ht-header-area .ht-main-header .ht-menu-main ul li > .sub-menu li a:hover {
+  color: var(--ht-theme-color-2);
+  border-left-color: var(--ht-theme-color-2);
+  padding-left: 26px;
+  background: var(--ht-theme-color-5);
+}
+/* Chevron -> plus rotate like mega-menu */
+.ht-header-area .ht-main-header .ht-menu-main ul li.has-dropdown > a::after {
+  content: "\002B";
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  margin-left: 6px;
+}
+.ht-header-area .ht-main-header .ht-menu-main ul li.has-dropdown:hover > a::after {
+  transform: rotate(45deg);
+}
+
+/* Mega-menu: re-anchor to the header so it spans full width */
+.ht-header-area--full .ht-main-header {
+  position: relative;
+}
+.ht-header-area--full .ht-menu-main li.has-mega-menu {
+  position: static;
+}
+.ht-header-area--full .ht-menu-main li.has-mega-menu > .mega-menu {
+  left: 0;
+  right: 0;
+  top: 100%;
+  transform: translateY(18px);
+  width: 100%;
+  max-width: none;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: 2px solid var(--ht-theme-color-2);
+  box-shadow: 0 28px 60px rgba(11, 15, 20, 0.14);
+  padding: 40px 48px 44px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  background: var(--ht-white);
+}
+.ht-header-area--full .ht-menu-main li.has-mega-menu:hover > .mega-menu {
+  transform: translateY(0);
+}
+@media (max-width: 991px) {
+  .ht-header-area--full .ht-menu-main li.has-mega-menu > .mega-menu {
+    padding: 32px 24px 36px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+}
+.ht-header-area--full .mega-col h6 {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+}
+.ht-header-area--full .mega-col a {
+  font-size: 18px;
+}
+
 /*# sourceMappingURL=style.css.map */
