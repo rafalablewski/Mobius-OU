@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import TopPrograms from '../components/TopPrograms.jsx';
 import Principles from '../components/Principles.jsx';
 import Approach from '../components/Approach.jsx';
+import SectionHeading from '../components/SectionHeading.jsx';
 import { PROGRAMS } from '../data/programs.js';
 
 const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
@@ -45,10 +46,12 @@ export default function Home() {
 
           <section className="ht-services-area pt-130 fix">
               <div className="container">
-                  <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Advisory Practice</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Curated intelligence <br /> across the global mobility agenda</h2>
-                  </div>
+                  <SectionHeading
+                    align="center"
+                    eyebrow="Advisory Practice"
+                    title="Curated intelligence across"
+                    emphasis="the global mobility agenda."
+                  />
                   <div className="ht-services-wrapper">
                       <div className="row">
                           <div className="col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
@@ -111,14 +114,12 @@ export default function Home() {
                           </div>
                           <div className="offset-lg-1 col-lg-5 col-sm-12 wow fadeInRight" data-wow-delay=".2s">
                               <div className="ht-about-content">
-                                  <div className="section-title">
-                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
-                                      <h2 className="title">Founded for clients who value discretion over volume</h2>
-                                      <p>Mobius is an independent advisory built around a small
-                                          roster of private clients — entrepreneurs, founders and families whose
-                                          next decade depends on where, and on what terms, they are allowed to live,
-                                          bank and leave.</p>
-                                  </div>
+                                  <SectionHeading
+                                    eyebrow="About the Firm"
+                                    title="Founded for clients who value"
+                                    emphasis="discretion over volume."
+                                    lede="Mobius is an independent advisory built around a small roster of private clients — entrepreneurs, founders and families whose next decade depends on where, and on what terms, they are allowed to live, bank and leave."
+                                  />
                                   <Link to="/about" className="ht-btn style-3">Meet the Firm</Link>
                               </div>
                           </div>
@@ -170,10 +171,11 @@ export default function Home() {
           <section className="ht-project-area section-padding fix">
               <div className="container">
                   <div className="section-title-area align-items-lg-end mb-25">
-                      <div className="section-title">
-                          <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Select Mandates</span>
-                          <h2 className="title wow fadeInUp" data-wow-delay=".4s">Representative <br /> case studies</h2>
-                      </div>
+                      <SectionHeading
+                        eyebrow="Select Mandates"
+                        title="Representative"
+                        emphasis="case studies."
+                      />
                   </div>
                   <div className="project-slide-wrapper">
                       <div className="swiper ht-project-slider">
@@ -264,10 +266,12 @@ export default function Home() {
 
           <section className="ht-team-area section-padding fix">
               <div className="container">
-                  <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Advisors</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">A small bench of senior <br /> specialists — no junior handoffs</h2>
-                  </div>
+                  <SectionHeading
+                    align="center"
+                    eyebrow="Our Advisors"
+                    title="A small bench of senior specialists —"
+                    emphasis="no junior handoffs."
+                  />
                   <div className="ht-team-wrapper">
                       <div className="row">
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">

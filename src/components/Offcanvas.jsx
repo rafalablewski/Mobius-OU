@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const PANELS = {
   firm: {
     label: 'Firm',
+    ornament: <span className="ht-menu-dot ht-menu-dot--champagne" aria-hidden="true" />,
     items: [
       { to: '/about', label: 'About the Firm' },
       { to: '/services', label: 'Advisory Practice' },
@@ -16,6 +17,7 @@ const PANELS = {
   },
   programs: {
     label: 'Programs',
+    ornament: <span className="ht-menu-mark" aria-hidden="true">✦</span>,
     items: [
       { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa' },
       { to: '/programs/malta-mein',           label: 'Malta MEIN' },
@@ -62,7 +64,14 @@ export default function Offcanvas({ open, onClose }) {
           <div className="ht-offcanvas-menu d-xl-none mb-40">
             <nav aria-label="Mobile">
               <ul className="offcanvas-accordion">
-                <li><Link to="/" onClick={onClose}>Home</Link></li>
+                <li>
+                  <Link to="/" onClick={onClose}>
+                    <span className="offcanvas-accordion__label">
+                      Home
+                      <span className="ht-menu-dot ht-menu-dot--ink" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
                 {Object.entries(PANELS).map(([id, panel]) => (
                   <li
                     key={id}
@@ -74,7 +83,10 @@ export default function Offcanvas({ open, onClose }) {
                       aria-expanded={expanded === id}
                       onClick={() => toggle(id)}
                     >
-                      {panel.label}
+                      <span className="offcanvas-accordion__label">
+                        {panel.label}
+                        {panel.ornament}
+                      </span>
                       <i className="fa-solid fa-chevron-down offcanvas-accordion__chev"></i>
                     </button>
                     <ul className="offcanvas-accordion__panel">
