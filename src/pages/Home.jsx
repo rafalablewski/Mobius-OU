@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import TopPrograms from '../components/TopPrograms.jsx';
 import Principles from '../components/Principles.jsx';
+import Approach from '../components/Approach.jsx';
 import { PROGRAMS } from '../data/programs.js';
 
 const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
@@ -259,42 +260,7 @@ export default function Home() {
 
           </section>
 
-          <section className="ht-approach">
-              <div className="container">
-                  <header className="ht-approach__head wow fadeInUp" data-wow-delay=".2s">
-                      <span className="ht-approach__eyebrow">Our Approach</span>
-                      <h2 className="ht-approach__title">
-                          A measured path from first conversation <em>to second passport.</em>
-                      </h2>
-                  </header>
-                  <ol className="ht-approach__flow">
-                      <li className="ht-approach__step wow fadeInUp" data-wow-delay=".2s">
-                          <span className="ht-approach__num">01</span>
-                          <div className="ht-approach__body">
-                              <h3 className="ht-approach__step-title">Discovery</h3>
-                              <p>A confidential intake — your family, assets, tax footprint and the outcomes that actually matter.</p>
-                              <span className="ht-approach__meta">Week 1 · NDA first</span>
-                          </div>
-                      </li>
-                      <li className="ht-approach__step wow fadeInUp" data-wow-delay=".35s">
-                          <span className="ht-approach__num">02</span>
-                          <div className="ht-approach__body">
-                              <h3 className="ht-approach__step-title">Strategy Memo</h3>
-                              <p>A jurisdiction-ranked memo with programs, timelines, tax impact and honest disqualifications.</p>
-                              <span className="ht-approach__meta">Week 2–4 · Written, not pitched</span>
-                          </div>
-                      </li>
-                      <li className="ht-approach__step wow fadeInUp" data-wow-delay=".5s">
-                          <span className="ht-approach__num">03</span>
-                          <div className="ht-approach__body">
-                              <h3 className="ht-approach__step-title">Execution</h3>
-                              <p>Coordinated delivery with licensed local counsel, banks and investment agents under our mandate.</p>
-                              <span className="ht-approach__meta">Month 2 onward · Single point of accountability</span>
-                          </div>
-                      </li>
-                  </ol>
-              </div>
-          </section>
+          <Approach />
 
           <section className="ht-team-area section-padding fix">
               <div className="container">

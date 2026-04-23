@@ -14476,4 +14476,197 @@ span {
   max-width: 56ch;
 }
 
+/* === Our Approach v2 — accordion ======================================= */
+.ht-approach-v2 {
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+  padding: 120px 0 128px;
+  position: relative;
+  overflow: hidden;
+}
+.ht-approach-v2::before {
+  content: "";
+  position: absolute;
+  top: -160px;
+  right: -120px;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  background: radial-gradient(circle at center, rgba(201, 168, 106, 0.18), rgba(201, 168, 106, 0) 62%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+@media (max-width: 767px) {
+  .ht-approach-v2 {
+    padding: 72px 0 80px;
+  }
+}
+.ht-approach-v2__head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 64px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+@media (max-width: 991px) {
+  .ht-approach-v2__head {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+}
+.ht-approach-v2__eyebrow {
+  display: inline-block;
+  grid-column: 1 / 2;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-2);
+}
+.ht-approach-v2__title {
+  grid-column: 1 / 2;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(32px, 3.8vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: var(--ht-white);
+  margin: 14px 0 0;
+}
+.ht-approach-v2__title em {
+  font-style: italic;
+  color: var(--ht-theme-color-2);
+}
+.ht-approach-v2__lede {
+  grid-column: 2 / 3;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 48ch;
+  justify-self: end;
+}
+@media (max-width: 991px) {
+  .ht-approach-v2__eyebrow,
+  .ht-approach-v2__title,
+  .ht-approach-v2__lede {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+.ht-approach-v2__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ht-approach-v2__step {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ht-approach-v2__step:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ht-approach-v2__trigger {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 64px 1fr 40px;
+  gap: 24px;
+  align-items: center;
+  padding: 26px 8px;
+  background: transparent;
+  border: 0;
+  color: var(--ht-white);
+  text-align: left;
+  cursor: pointer;
+  transition: padding 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ht-approach-v2__trigger:hover {
+  padding-left: 16px;
+}
+@media (max-width: 575px) {
+  .ht-approach-v2__trigger {
+    grid-template-columns: 48px 1fr 32px;
+    gap: 14px;
+    padding: 20px 4px;
+  }
+}
+.ht-approach-v2__num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--ht-theme-color-2);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.ht-approach-v2__step.is-open .ht-approach-v2__num {
+  font-weight: 500;
+}
+.ht-approach-v2__step-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ht-white);
+  line-height: 1.15;
+  transition: color 0.25s ease;
+}
+.ht-approach-v2__step.is-open .ht-approach-v2__step-title {
+  color: var(--ht-theme-color-2);
+}
+.ht-approach-v2__chev {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ht-white);
+  font-size: 12px;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ht-approach-v2__step.is-open .ht-approach-v2__chev {
+  background: var(--ht-theme-color-2);
+  color: var(--ht-black);
+  border-color: var(--ht-theme-color-2);
+  transform: rotate(45deg);
+}
+@media (max-width: 575px) {
+  .ht-approach-v2__chev {
+    width: 32px;
+    height: 32px;
+    font-size: 10px;
+  }
+}
+
+.ht-approach-v2__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ht-approach-v2__step.is-open .ht-approach-v2__panel {
+  max-height: 320px;
+}
+.ht-approach-v2__panel-inner {
+  padding: 4px 0 26px 88px;
+}
+@media (max-width: 575px) {
+  .ht-approach-v2__panel-inner {
+    padding: 4px 0 22px 62px;
+  }
+}
+.ht-approach-v2__panel p {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 64ch;
+}
+
 /*# sourceMappingURL=style.css.map */
