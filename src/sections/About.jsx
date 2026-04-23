@@ -15,19 +15,15 @@ export default function About() {
         <div className="ap-about">
           <figure className="ap-about__portrait ap-reveal">
             {/*
-              Replace with a bespoke principal portrait (e.g. /assets/img/about/principal.jpg).
-              Keep aspect 4:5 and tonal range close to the palette.
+              Default: bespoke house.svg — colonnade + A&P monogram.
+              To swap for a principal portrait, replace the src with
+              /assets/img/about/principal.jpg (4:5 aspect, 1200×1500+).
             */}
             <img
-              src="/assets/img/about/principal.jpg"
-              alt="Rafał Ablewski, Founder &amp; Principal"
+              src="/assets/img/about/house.svg"
+              alt="Ablewski &amp; Partners — the house"
               loading="lazy"
               decoding="async"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement.style.background =
-                  'linear-gradient(160deg, var(--ap-ink) 0%, var(--ap-ink-2) 60%, var(--ap-ink-3) 100%)';
-              }}
             />
           </figure>
 

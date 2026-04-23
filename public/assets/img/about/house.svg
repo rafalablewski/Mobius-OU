@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="The House" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="ap-ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#10263f"/>
+      <stop offset="55%" stop-color="#0a1a2f"/>
+      <stop offset="100%" stop-color="#060f1d"/>
+    </linearGradient>
+    <radialGradient id="ap-spot" cx="50%" cy="35%" r="55%">
+      <stop offset="0%"   stop-color="#c9a96e" stop-opacity="0.16"/>
+      <stop offset="60%"  stop-color="#0a1a2f" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .line   { fill: none; stroke: #c9a96e; stroke-opacity: 0.55; stroke-width: 1.25; stroke-linecap: round; }
+      .line--soft { fill: none; stroke: #f4ede0; stroke-opacity: 0.14; stroke-width: 1; }
+      .fill   { fill: #c9a96e; fill-opacity: 0.08; }
+      .mark   { fill: #c9a96e; }
+      .ivory  { fill: #f4ede0; }
+      .dot    { fill: #f4ede0; fill-opacity: 0.18; }
+    </style>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#ap-ground)"/>
+  <rect width="800" height="1000" fill="url(#ap-spot)"/>
+
+  <!-- Fine vertical light rays -->
+  <g class="line--soft">
+    <path d="M80  40 V960"/><path d="M200 40 V960"/><path d="M320 40 V960"/>
+    <path d="M480 40 V960"/><path d="M600 40 V960"/><path d="M720 40 V960"/>
+  </g>
+
+  <!-- Arched colonnade -->
+  <g transform="translate(400,560)">
+    <!-- Pediment line -->
+    <path class="line" d="M -300 -280 L 0 -360 L 300 -280"/>
+    <path class="line" d="M -300 -270 L 300 -270"/>
+    <!-- Entablature -->
+    <path class="line" d="M -280 -250 L 280 -250"/>
+    <path class="line" d="M -280 -238 L 280 -238"/>
+
+    <!-- Central arch -->
+    <path class="fill" d="M -110 -230 Q -110 -350 0 -350 Q 110 -350 110 -230 L 110 80 L -110 80 Z"/>
+    <path class="line" d="M -110 -230 Q -110 -350 0 -350 Q 110 -350 110 -230"/>
+    <path class="line" d="M -110 -230 L -110 80"/>
+    <path class="line" d="M  110 -230 L  110 80"/>
+
+    <!-- Side arches -->
+    <path class="line" d="M -240 -220 Q -240 -300 -180 -300 Q -140 -300 -140 -220 L -140 80"/>
+    <path class="line" d="M -240 -220 L -240 80"/>
+    <path class="line" d="M  240 -220 Q 240 -300 180 -300 Q 140 -300 140 -220 L 140 80"/>
+    <path class="line" d="M  240 -220 L  240 80"/>
+
+    <!-- Columns -->
+    <g class="line">
+      <path d="M -250 80 L -250 220 M -230 80 L -230 220"/>
+      <path d="M -130 80 L -130 220 M -150 80 L -150 220"/>
+      <path d="M -120 80 L -120 220 M -100 80 L -100 220"/>
+      <path d="M  -20 80 L  -20 220 M  20 80 L  20 220"/>
+      <path d="M  100 80 L  100 220 M  120 80 L  120 220"/>
+      <path d="M  150 80 L  150 220 M  130 80 L  130 220"/>
+      <path d="M  230 80 L  230 220 M  250 80 L  250 220"/>
+    </g>
+
+    <!-- Column bases / plinth -->
+    <path class="line" d="M -300 220 L 300 220"/>
+    <path class="line" d="M -300 232 L 300 232"/>
+    <path class="line" d="M -320 244 L 320 244"/>
+    <path class="line" d="M -340 260 L 340 260"/>
+
+    <!-- Steps -->
+    <path class="line" d="M -360 280 L 360 280"/>
+    <path class="line" d="M -380 300 L 380 300"/>
+    <path class="line" d="M -400 320 L 400 320"/>
+  </g>
+
+  <!-- Monogram in the arch keystone -->
+  <g transform="translate(400,240)">
+    <text text-anchor="middle"
+          font-family='"Cormorant Garamond", "Times New Roman", serif'
+          font-weight="500" font-size="56" letter-spacing="2" class="ivory">
+      A<tspan font-style="italic" font-weight="400" fill="#c9a96e" dx="1">&amp;</tspan>P
+    </text>
+    <line x1="-40" y1="30" x2="40" y2="30" stroke="#c9a96e" stroke-opacity="0.6"/>
+    <text text-anchor="middle"
+          font-family='"Inter", system-ui, sans-serif'
+          font-weight="500" font-size="10" letter-spacing="5" class="ivory"
+          opacity="0.55" y="54">
+      WARSAW · MMXXIII
+    </text>
+  </g>
+
+  <!-- Compass rose lower-right -->
+  <g transform="translate(660,880)">
+    <circle class="line" r="46"/>
+    <circle class="line" r="30" opacity="0.6"/>
+    <path class="line" d="M 0 -46 L 0 46 M -46 0 L 46 0"/>
+    <path class="mark" d="M 0 -40 L 6 0 L 0 40 L -6 0 Z" opacity="0.8"/>
+    <text text-anchor="middle" font-family='"Inter", system-ui, sans-serif'
+          font-weight="500" font-size="9" letter-spacing="2" class="ivory" opacity="0.55" y="-54">N</text>
+  </g>
+
+  <!-- Scattered stars -->
+  <g class="dot">
+    <circle cx="120" cy="120" r="2"/>
+    <circle cx="680" cy="90" r="2.5"/>
+    <circle cx="80"  cy="380" r="1.5"/>
+    <circle cx="760" cy="440" r="2"/>
+    <circle cx="160" cy="820" r="2"/>
+    <circle cx="140" cy="560" r="1.5"/>
+    <circle cx="700" cy="720" r="1.5"/>
+  </g>
+</svg>
