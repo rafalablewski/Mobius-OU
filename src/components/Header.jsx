@@ -2,35 +2,9 @@ import { Link, NavLink } from 'react-router-dom';
 
 export default function Header({ onOffcanvasOpen }) {
   return (
-    <header className="ht-header-area header-1">
-      <div className="ht-top-header">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="left">
-                <p>
-                  <i className="fa-solid fa-location-dot"></i> Rondo ONZ 1, 00-124 Warsaw, Poland
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <ul className="right">
-                <li>
-                  <i className="fa-solid fa-phone"></i>
-                  <a href="tel:+48221000000">+48 22 100 00 00</a>
-                </li>
-                <li>
-                  <i className="fa-solid fa-envelope"></i>
-                  <a href="mailto:advisory@passportbros.org">advisory@passportbros.org</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <header className="ht-header-area header-1 ht-header-area--full">
       <div className="ht-main-header header-1" id="header-sticky">
-        <div className="container">
+        <div className="ht-nav-bar">
           <div className="ht-menu-wrapper">
             <div className="ht-menu-left">
               <div className="ht-menu-logo">
