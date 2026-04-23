@@ -129,7 +129,7 @@ export default function Header({ onOffcanvasOpen }) {
                 <nav className="ht-mobile-menu-active" aria-label="Primary">
                   <ul>
                     <li className="has-dropdown">
-                      <a href="#">home</a>
+                      <a href="#">Home</a>
                       <ul className="sub-menu">
                         <li><NavLink to="/">Private Clients</NavLink></li>
                         <li><NavLink to="/home-corporate">Corporate &amp; Family Office</NavLink></li>
@@ -137,7 +137,7 @@ export default function Header({ onOffcanvasOpen }) {
                       </ul>
                     </li>
                     <li className="has-mega-menu">
-                      <a href="#">firm</a>
+                      <a href="#">Firm</a>
                       <MegaPanel
                         id="firm"
                         columns={FIRM_COLUMNS}
@@ -149,7 +149,7 @@ export default function Header({ onOffcanvasOpen }) {
                       />
                     </li>
                     <li className="has-mega-menu">
-                      <a href="#">programs</a>
+                      <a href="#">Programs</a>
                       <MegaPanel
                         id="programs"
                         columns={PROGRAMS_COLUMNS}
@@ -161,21 +161,21 @@ export default function Header({ onOffcanvasOpen }) {
                       />
                     </li>
                     <li className="has-dropdown">
-                      <a href="#">case studies</a>
+                      <a href="#">Case Studies</a>
                       <ul className="sub-menu">
                         <li><NavLink to="/project">Select Mandates</NavLink></li>
                         <li><NavLink to="/project-details">Mandate Detail</NavLink></li>
                       </ul>
                     </li>
                     <li className="has-dropdown">
-                      <a href="#">insights</a>
+                      <a href="#">Insights</a>
                       <ul className="sub-menu">
                         <li><NavLink to="/blog">Intelligence Briefs</NavLink></li>
                         <li><NavLink to="/blog-list">Brief Archive</NavLink></li>
                         <li><NavLink to="/blog-details">Brief Detail</NavLink></li>
                       </ul>
                     </li>
-                    <li><NavLink to="/contact">contact</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
                   </ul>
                 </nav>
               </div>
