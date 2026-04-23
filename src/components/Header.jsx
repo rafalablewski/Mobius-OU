@@ -77,7 +77,11 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
                 onFocus={() => setHovered(item)}
               >
                 {item.label}
-                {item.badge && <span className="mega-col__badge">{item.badge}</span>}
+                {item.badge && (
+                  <span className={`mega-col__badge mega-col__badge--${(item.badge.split(' ').pop() || 'default').toLowerCase()}`}>
+                    {item.badge}
+                  </span>
+                )}
               </NavLink>
             ))}
           </div>
@@ -98,7 +102,11 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
         <div className="mega-menu__preview-caption">
           <span className="mega-menu__preview-eyebrow">
             Featured
-            {preview.badge && <span className="mega-col__badge">{preview.badge}</span>}
+            {preview.badge && (
+              <span className={`mega-col__badge mega-col__badge--${(preview.badge.split(' ').pop() || 'default').toLowerCase()}`}>
+                {preview.badge}
+              </span>
+            )}
           </span>
           <h4>{preview.label}</h4>
           <p>{preview.blurb}</p>

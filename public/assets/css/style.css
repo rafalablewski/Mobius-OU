@@ -14004,7 +14004,7 @@ span {
   transform: translateY(-1px) rotate(8deg);
 }
 
-/* === Mega-col badges (Top RBI / Top CBI) =============================== */
+/* === Mega-col badges =================================================== */
 .mega-col__badge {
   display: inline-block;
   margin-left: 10px;
@@ -14014,11 +14014,20 @@ span {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ht-theme-color-2);
-  background: rgba(201, 168, 106, 0.12);
   border-radius: 999px;
   vertical-align: 2px;
   line-height: 1.5;
+}
+/* RBI (residency, lighter commitment) -- soft champagne wash */
+.mega-col__badge--rbi {
+  color: var(--ht-theme-color-2);
+  background: rgba(201, 168, 106, 0.14);
+}
+/* CBI (citizenship, permanent) -- solid ink name-plate with champagne text */
+.mega-col__badge--cbi {
+  color: var(--ht-theme-color-2);
+  background: var(--ht-theme-color);
+  letter-spacing: 0.2em;
 }
 .mega-menu__preview-eyebrow .mega-col__badge {
   margin-left: 8px;
