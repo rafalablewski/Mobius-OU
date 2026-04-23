@@ -1,7 +1,12 @@
-# Mobius
+# Ablewski &amp; Partners
 
-Mobius — Business Consulting React template. Converted from a static HTML
-template to a Vite + React + React Router app, deployable on Vercel.
+Production single-page site for **Ablewski &amp; Partners** — an independent
+strategic advisory on Citizenship by Investment (CBI), Residency by Investment
+(RBI), tax residency planning, asset protection and family relocation for
+discerning private clients.
+
+Built as a Vite + React SPA. All content is bespoke; the original business-
+consulting template has been stripped out.
 
 ## Development
 
@@ -24,47 +29,51 @@ Output goes to `dist/`.
 ## Project structure
 
 ```
-index.html              Vite entry — loads vendor CSS, mounts React
+index.html                      Vite entry — meta, JSON-LD, mounts React
 src/
-  main.jsx              React bootstrap + BrowserRouter
-  App.jsx               Route table
-  components/
-    Layout.jsx          Shared shell (Header + Offcanvas + Footer + plugin init)
-    Header.jsx          Top bar + sticky nav
-    Footer.jsx          Footer widgets + copyright
-    Offcanvas.jsx       Mobile drawer
-    Breadcrumb.jsx      Reusable breadcrumb banner for interior pages
-  hooks/
-    useScrollTop.js     Scroll to top on route change
-    usePluginInit.js    Loads jQuery/Swiper/WOW plugins and (re)inits them
-  pages/                One component per original HTML page
+  main.jsx                      React bootstrap
+  App.jsx                       Single-page composition
+  components/                   Header, Footer, section components
+  sections/                     Hero, Services, WhyUs, Programs, …
+  hooks/                        useReveal, useStickyNav, useSmoothScroll
 public/
-  assets/               CSS, JS, images, webfonts from the original template
+  assets/
+    css/ablewski.css            Bespoke design system (no vendor reliance)
+    js/main.js                  Progressive enhancements
+    img/                        Imagery (replace placeholders before launch)
+    icons/                      Custom line-art SVG iconography
+    logo.svg                    Wordmark
   favicon.svg
-scripts/
-  convert-html.mjs      One-shot HTML → JSX converter used during the port
-vercel.json             SPA rewrite + build config for Vercel
+vercel.json                     Vercel build + SPA rewrite
 ```
 
-## Routing
+## SEO
 
-| Path | Page |
-| --- | --- |
-| `/` | Home |
-| `/home-corporate` | Corporate Business (index-2) |
-| `/home-insurance` | Insurance (index-3) |
-| `/about` | About Us |
-| `/services`, `/service-details` | Services |
-| `/team`, `/team-details` | Team |
-| `/pricing` | Pricing |
-| `/faq` | FAQ |
-| `/project`, `/project-details` | Projects |
-| `/blog`, `/blog-list`, `/blog-details` | Blog |
-| `/contact` | Contact |
-| `/404`, anything else | 404 |
+- `<title>` / `<meta description>` target "CBI RBI advisory Poland".
+- `JSON-LD` schema of type `ProfessionalService` in `index.html`.
+- Open Graph + Twitter card tags; add `assets/img/og-cover.jpg` (1200×630)
+  before launch.
+- `sitemap.xml` and `robots.txt` can be added to `public/` on deploy.
+
+## Compliance
+
+The site is editorial / informational. Every page carries a disclaimer stating
+that the content is educational only and does not constitute legal, tax or
+investment advice. Update the privacy policy and disclaimer text in
+`src/components/Footer.jsx` and `src/sections/*` to match your jurisdiction
+before publishing.
+
+## Performance
+
+- No jQuery, no heavy vendor CSS — a single bespoke stylesheet.
+- Images are `loading="lazy"` and `decoding="async"` by default; replace the
+  `assets/img/*` placeholders with optimized WebP/AVIF for best Lighthouse
+  scores.
+- Self-hosted fonts via Google Fonts CDN with `preconnect`.
 
 ## Deploying on Vercel
 
-The project is a standard Vite app; `vercel.json` tells Vercel to use the
-`vite` framework preset, build to `dist/`, and rewrite non-asset requests to
-`index.html` so deep links work with React Router.
+Vercel auto-detects the Vite preset. `vercel.json` sets the build command,
+output directory and SPA fallback rewrite. No environment variables are
+required for the public site; wire up a serverless endpoint if you replace the
+contact form's mailto fallback with an API submission.
