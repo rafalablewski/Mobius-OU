@@ -12818,7 +12818,7 @@ span {
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  text-transform: none;
+  text-transform: lowercase;
   color: var(--ht-heading-color);
   opacity: 0.72;
   transition: opacity 0.2s ease, color 0.2s ease;
