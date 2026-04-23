@@ -26,8 +26,8 @@ export default function Contact() {
                                   </div>
                                   <div className="content">
                                       <span>Email address</span>
-                                      <a href="mailto:prozen@gmail.com">
-                                          <h4>prozen@gmail.com</h4>
+                                      <a href="mailto:hello@mobius.com">
+                                          <h4>hello@mobius.com</h4>
                                       </a>
                                   </div>
                               </div>
