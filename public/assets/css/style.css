@@ -13790,4 +13790,170 @@ span {
   color: inherit;
 }
 
+/* === Mobile: content sections tightening =============================== */
+@media (max-width: 767px) {
+  .section-padding {
+    padding: 56px 0 !important;
+  }
+  .container,
+  .container-fluid,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  /* CTA band compresses */
+  .ht-cta-band {
+    padding: 56px 0;
+  }
+  .ht-cta-band__title {
+    font-size: 24px;
+  }
+  .ht-cta-band__actions {
+    justify-content: stretch;
+  }
+  .ht-cta-band__actions .ht-btn {
+    width: 100%;
+  }
+  /* Project footer stacks */
+  .ht-project-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+  }
+  /* Breadcrumb height */
+  .ht-breadcrumb-area {
+    padding: 120px 0 56px !important;
+  }
+  /* Stats section kept readable */
+  .ht-stats-area {
+    padding: 24px 0 0;
+  }
+  .ht-stats-area .ht-stats-items {
+    padding: 28px 20px;
+  }
+  /* Service card padding trim */
+  .ht-services-area .ht-services-items {
+    padding: 28px 22px;
+  }
+  .ht-services-area .ht-services-items::after {
+    top: 20px;
+    right: 22px;
+    font-size: 14px;
+  }
+  /* Mandate summary spacing */
+  .ht-mandate-summary {
+    padding: 24px 0 0;
+  }
+  /* Our Approach — tighter padding */
+  .ht-approach {
+    padding: 72px 0 80px;
+  }
+  .ht-approach__head {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+  }
+  .ht-approach__title {
+    font-size: 28px;
+  }
+  .ht-approach__step-title {
+    font-size: 20px;
+  }
+  /* Program page — hero stack, facts single column feels claustrophobic;
+     keep two but shrink. */
+  .ht-program {
+    padding: 32px 0 0;
+  }
+  .ht-program__head {
+    padding: 20px 0 36px;
+    gap: 24px;
+  }
+  .ht-program__title {
+    font-size: 36px;
+  }
+  .ht-program__tagline {
+    font-size: 15px;
+  }
+  .ht-program__facts {
+    padding: 24px 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ht-program__fact {
+    padding: 14px 16px 14px 0;
+    gap: 6px;
+  }
+  .ht-program__fact:nth-child(2n) {
+    border-right: none;
+  }
+  .ht-program__fact:nth-child(-n+2) {
+    border-bottom: 1px solid var(--ht-border-color);
+    padding-bottom: 20px;
+  }
+  .ht-program__fact:nth-child(n+3) {
+    padding-top: 20px;
+  }
+  .ht-program__fact-value {
+    font-size: 16px;
+  }
+  .ht-program__body {
+    padding: 40px 0;
+    gap: 28px;
+  }
+  .ht-program__timeline {
+    padding: 24px 22px 20px;
+  }
+  .ht-program__related {
+    padding: 40px 0 32px;
+  }
+  /* Blog details drops sidebar below, tightens padding */
+  .ht-blog-details-area {
+    padding: 56px 0 !important;
+  }
+  .ht-blog-details-wrapper {
+    padding-right: 0 !important;
+  }
+  /* Mandate details sits flush */
+  .project-details-wrapper .thumbnails img {
+    height: auto;
+  }
+  /* Contact info icons + value stacked */
+  .contact-info-item {
+    gap: 14px;
+  }
+  /* Footer widgets wrap cleanly */
+  .ht-footer-widget {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 32px !important;
+  }
+  .ht-footer-top-wrapper {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 20px;
+  }
+  .ht-footer-contact {
+    font-size: 12px;
+  }
+}
+@media (max-width: 575px) {
+  .ht-program__title {
+    font-size: 30px;
+  }
+  .ht-program__facts {
+    grid-template-columns: 1fr;
+  }
+  .ht-program__fact {
+    padding: 16px 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--ht-border-color) !important;
+  }
+  .ht-program__fact:last-child {
+    border-bottom: none !important;
+  }
+  .ht-footer-widget {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
