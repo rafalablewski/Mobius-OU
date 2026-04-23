@@ -12,13 +12,13 @@ export default function Blog() {
             <div className="row">
               {BRIEFS.map((b, i) => (
                 <div
-                  key={b.title}
+                  key={b.id}
                   className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp"
                   data-wow-delay={`${0.2 + i * 0.2}s`}
                 >
                   <div className="ht-blog-item v2 mt-20">
                     <div className="ht-blog-thumb">
-                      <Link to="/blog-details">
+                      <Link to={`/blog-details/${b.slug}`}>
                         <img src={`/assets/img/blog/${b.img}`} alt={b.title} loading="lazy" />
                       </Link>
                     </div>
@@ -27,10 +27,10 @@ export default function Blog() {
                         <li>{b.date}</li>
                         <li>{b.category}</li>
                       </ul>
-                      <Link to="/blog-details">
+                      <Link to={`/blog-details/${b.slug}`}>
                         <h3 className="title">{b.title}</h3>
                       </Link>
-                      <Link to="/blog-details" className="ht-link">Read Brief</Link>
+                      <Link to={`/blog-details/${b.slug}`} className="ht-link">Read Brief</Link>
                     </div>
                   </div>
                 </div>

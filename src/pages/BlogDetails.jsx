@@ -1,12 +1,53 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import { BRIEFS } from '../data/briefs.js';
 
 const TAGS = ['#GoldenVisa', '#Portugal', '#EUResidency', '#CBI', '#TaxResidency'];
 
 export default function BlogDetails() {
-  const brief = BRIEFS[0];
-  const recent = BRIEFS.slice(1, 5);
+  const { slug } = useParams();
+  const index = Math.max(0, BRIEFS.findIndex((b) => b.slug === slug));
+  const brief = BRIEFS[index];
+  const prev = index > 0 ? BRIEFS[index - 1] : null;
+  const next = index < BRIEFS.length - 1 ? BRIEFS[index + 1] : null;
+  const recent = BRIEFS.filter((_, i) => i !== index).slice(0, 4);
+
+  const [form, setForm] = useState({ name: '', email: '', objective: '', message: '' });
+  const [status, setStatus] = useState('idle');
+  const [copied, setCopied] = useState(false);
+
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.objective.trim() || !form.message.trim()) {
+      setStatus('invalid');
+      return;
+    }
+    const subject = encodeURIComponent(`Memo request — ${brief.title}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nObjective: ${form.objective}\n\n${form.message}\n\n— Requested from brief: ${brief.title}`
+    );
+    window.location.href = `mailto:advisory@passportbros.org?subject=${subject}&body=${body}`;
+    setStatus('sent');
+  };
+
+  const onCopyLink = async (e) => {
+    e.preventDefault();
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  };
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+  const twitterShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(brief.title)}`;
+  const emailShare = `mailto:?subject=${encodeURIComponent(brief.title)}&body=${encodeURIComponent(shareUrl)}`;
 
   return (
     <>
@@ -18,7 +59,7 @@ export default function BlogDetails() {
                           <div className="ht-blog-details-wrapper">
                               <div className="blog-single-post">
                                   <div className="thumb">
-                                      <Link to="/blog-details"><img src={`/assets/img/blog/${brief.img}`} alt={brief.title} /></Link>
+                                      <img src={`/assets/img/blog/${brief.img}`} alt={brief.title} />
                                   </div>
                                   <div className="content">
                                       <div className="blog-meta">
@@ -36,7 +77,8 @@ export default function BlogDetails() {
                                           </div>
                                       </div>
                                       <h2 className="title">{brief.title}</h2>
-                                      <p>EU Golden Visas have entered their second decade. Portugal pulled the real-estate
+                                      <p>{brief.excerpt}</p>
+                                      <p className="mt-20">EU Golden Visas have entered their second decade. Portugal pulled the real-estate
                                           route; Greece priced Athens out of reach; Spain signalled a phase-out; Italy quietly
                                           kept its own route open. For clients deciding now, the right question is no longer
                                           "which program is cheapest" but "which program is still politically stable five years
@@ -98,17 +140,38 @@ export default function BlogDetails() {
                                   <div className="social">
                                       <h6>share: </h6>
                                       <ul className="social-list">
-                                          <li><a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a></li>
-                                          <li><a href="#" aria-label="X"><i className="fa-brands fa-twitter"></i></a></li>
-                                          <li><a href="#" aria-label="Copy link"><i className="fa-solid fa-link"></i></a></li>
-                                          <li><a href="#" aria-label="Email"><i className="fa-solid fa-envelope"></i></a></li>
+                                          <li><a href={linkedInShare} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a></li>
+                                          <li><a href={twitterShare} target="_blank" rel="noopener noreferrer" aria-label="Share on X"><i className="fa-brands fa-twitter"></i></a></li>
+                                          <li>
+                                              <a
+                                                href={shareUrl}
+                                                onClick={onCopyLink}
+                                                aria-label={copied ? 'Link copied' : 'Copy link'}
+                                                title={copied ? 'Link copied' : 'Copy link'}
+                                              >
+                                                <i className={copied ? 'fa-solid fa-check' : 'fa-solid fa-link'}></i>
+                                              </a>
+                                          </li>
+                                          <li><a href={emailShare} aria-label="Share by email"><i className="fa-solid fa-envelope"></i></a></li>
                                       </ul>
                                   </div>
                               </div>
 
                               <div className="details-arrrow-btn">
-                                  <span><i className="fa-solid fa-arrow-left"></i> Previous brief</span>
-                                  <span>Next brief <i className="fa-solid fa-arrow-right"></i></span>
+                                  {prev ? (
+                                    <Link to={`/blog-details/${prev.slug}`}>
+                                      <i className="fa-solid fa-arrow-left"></i> Previous brief
+                                    </Link>
+                                  ) : (
+                                    <span className="disabled" aria-disabled="true"><i className="fa-solid fa-arrow-left"></i> Previous brief</span>
+                                  )}
+                                  {next ? (
+                                    <Link to={`/blog-details/${next.slug}`}>
+                                      Next brief <i className="fa-solid fa-arrow-right"></i>
+                                    </Link>
+                                  ) : (
+                                    <span className="disabled" aria-disabled="true">Next brief <i className="fa-solid fa-arrow-right"></i></span>
+                                  )}
                               </div>
 
                               <div className="blog-details-author">
@@ -131,22 +194,62 @@ export default function BlogDetails() {
                                       request a one-off memo, share a short note below and we will respond under NDA.</p>
 
                                   <div className="ht-contact-wrapper">
-                                      <form onSubmit={(e) => e.preventDefault()}>
+                                      <form onSubmit={onSubmit} noValidate>
                                           <div className="row">
                                               <div className="col-md-6">
-                                                  <input type="text" placeholder="Full name" autoComplete="name" required />
+                                                  <input
+                                                    type="text"
+                                                    name="name"
+                                                    value={form.name}
+                                                    onChange={onChange}
+                                                    placeholder="Full name"
+                                                    autoComplete="name"
+                                                    required
+                                                  />
                                               </div>
                                               <div className="col-md-6">
-                                                  <input type="email" placeholder="Email address" autoComplete="email" required />
+                                                  <input
+                                                    type="email"
+                                                    name="email"
+                                                    value={form.email}
+                                                    onChange={onChange}
+                                                    placeholder="Email address"
+                                                    autoComplete="email"
+                                                    required
+                                                  />
                                               </div>
                                               <div className="col-12">
-                                                  <input type="text" placeholder="Primary objective — e.g. Portugal, UAE" required />
+                                                  <input
+                                                    type="text"
+                                                    name="objective"
+                                                    value={form.objective}
+                                                    onChange={onChange}
+                                                    placeholder="Primary objective — e.g. Portugal, UAE"
+                                                    required
+                                                  />
                                               </div>
                                               <div className="col-12">
-                                                  <textarea placeholder="Family composition, timeframe, constraints." required></textarea>
+                                                  <textarea
+                                                    name="message"
+                                                    value={form.message}
+                                                    onChange={onChange}
+                                                    placeholder="Family composition, timeframe, constraints."
+                                                    required
+                                                  ></textarea>
                                               </div>
                                               <div className="col-12">
                                                   <button type="submit" className="ht-btn style-2">Request memo</button>
+                                                  {status === 'invalid' && (
+                                                    <p style={{ marginTop: '16px', color: '#c0392b' }}>
+                                                      Please complete every field so we can respond properly.
+                                                    </p>
+                                                  )}
+                                                  {status === 'sent' && (
+                                                    <p style={{ marginTop: '16px', color: '#2a7f62' }}>
+                                                      Thank you — your email client is opening. If nothing happens, write to
+                                                      advisory@passportbros.org directly.
+                                                    </p>
+                                                  )}
                                               </div>
                                           </div>
                                       </form>
@@ -170,12 +273,12 @@ export default function BlogDetails() {
                                   <h4 className="widget-title">Recent briefs</h4>
                                   <div className="recent-post-wrapper">
                                       {recent.map((b) => (
-                                        <div key={b.title} className="recent-post">
+                                        <div key={b.id} className="recent-post">
                                           <div className="thumb">
                                               <img src={`/assets/img/blog/${b.img}`} alt={b.title} loading="lazy" />
                                           </div>
                                           <div className="content">
-                                              <Link to="/blog-details">
+                                              <Link to={`/blog-details/${b.slug}`}>
                                                   <h5 className="title">{b.title}</h5>
                                               </Link>
                                               <span className="date">{b.date}</span>

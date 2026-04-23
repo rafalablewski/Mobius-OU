@@ -18,10 +18,10 @@ export default function BlogList() {
                           <div className="blog-list-wrapper">
                               <div className="row">
                                   {listed.map((b) => (
-                                    <div key={b.title} className="col-12">
+                                    <div key={b.id} className="col-12">
                                       <div className="blog-list-item">
                                           <div className="thumb">
-                                              <Link to="/blog-details"><img src={`/assets/img/blog/${b.img}`} alt={b.title} loading="lazy" /></Link>
+                                              <Link to={`/blog-details/${b.slug}`}><img src={`/assets/img/blog/${b.img}`} alt={b.title} loading="lazy" /></Link>
                                           </div>
                                           <div className="content">
                                               <div className="blog-meta">
@@ -38,11 +38,11 @@ export default function BlogList() {
                                                       <span>{b.date}</span>
                                                   </div>
                                               </div>
-                                              <Link to="/blog-details">
+                                              <Link to={`/blog-details/${b.slug}`}>
                                                   <h2 className="title">{b.title}</h2>
                                               </Link>
                                               <p>{b.excerpt}</p>
-                                              <Link to="/blog-details" className="ht-btn style-2">read brief</Link>
+                                              <Link to={`/blog-details/${b.slug}`} className="ht-btn style-2">read brief</Link>
                                           </div>
                                       </div>
                                     </div>
@@ -74,12 +74,12 @@ export default function BlogList() {
                                   <h4 className="widget-title">Recent briefs</h4>
                                   <div className="recent-post-wrapper">
                                       {recent.map((b) => (
-                                        <div key={b.title} className="recent-post">
+                                        <div key={b.id} className="recent-post">
                                           <div className="thumb">
                                               <img src={`/assets/img/blog/${b.img}`} alt={b.title} loading="lazy" />
                                           </div>
                                           <div className="content">
-                                              <Link to="/blog-details">
+                                              <Link to={`/blog-details/${b.slug}`}>
                                                   <h5 className="title">{b.title}</h5>
                                               </Link>
                                               <span className="date">{b.date}</span>

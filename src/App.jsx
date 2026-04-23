@@ -37,6 +37,7 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-list" element={<BlogList />} />
         <Route path="/blog-details" element={<BlogDetails />} />
+        <Route path="/blog-details/:slug" element={<BlogDetails />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
