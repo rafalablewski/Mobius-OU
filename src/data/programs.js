@@ -10,7 +10,7 @@ export const PROGRAMS = [
     country: 'Portugal',
     tagline: 'EU residency with the lightest presence requirement in Europe.',
     headline: '€500k fund · 7 days / year',
-    arms: '/assets/img/arms/portugal.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Coat_of_arms_of_Portugal.svg/250px-Coat_of_arms_of_Portugal.svg.png',
     heroImg: '/assets/img/blog/29.jpg',
     summary:
       'Portugal\'s Golden Visa remains the most robust EU residency route after the 2023 reform. The fund sub-route keeps minimum physical presence at seven days per year and preserves the five-year path to citizenship for the whole immediate family.',
@@ -39,7 +39,7 @@ export const PROGRAMS = [
     country: 'Malta',
     tagline: 'The only direct route to an EU passport — slower, heavier, still worth it.',
     headline: '€690k + real estate · EU passport',
-    arms: '/assets/img/arms/malta.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Coat_of_arms_of_Malta.svg/250px-Coat_of_arms_of_Malta.svg.png',
     heroImg: '/assets/img/blog/13.jpg',
     summary:
       'Malta\'s Citizenship by Direct Investment (MEIN) is the last standing EU citizenship-by-investment route. Processing has lengthened and files are scrutinised more than ever; for the right profile the end-state passport remains the strongest mobility prize on the market.',
@@ -67,7 +67,7 @@ export const PROGRAMS = [
     country: 'Switzerland',
     tagline: 'Canton-level negotiated taxation for substantial foreign-source income.',
     headline: 'CHF 150–400k annual tax · 22 cantons',
-    arms: '/assets/img/arms/switzerland.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Coat_of_Arms_of_Switzerland_%28Pantone%29.svg/250px-Coat_of_Arms_of_Switzerland_%28Pantone%29.svg.png',
     heroImg: '/assets/img/blog/17.jpg',
     summary:
       'Lump-sum (forfait) taxation remains one of Europe\'s quietest premium routes. A negotiated annual tax base — not actual income — is agreed with the canton; for clients with sufficient foreign income, the effective rate is a fraction of European norms.',
@@ -95,7 +95,7 @@ export const PROGRAMS = [
     country: 'Italy',
     tagline: '€100,000 on all foreign-source income — one of Europe\'s strongest propositions.',
     headline: '€100k flat tax · up to 15 years',
-    arms: '/assets/img/arms/italy.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Emblem_of_Italy.svg/250px-Emblem_of_Italy.svg.png',
     heroImg: '/assets/img/blog/30.jpg',
     summary:
       'Italy\'s flat tax for new residents caps the annual Italian tax bill on all foreign-source income at €100,000 for the main applicant and €25,000 per family member, for up to fifteen years. Under-used relative to its actual strength.',
@@ -151,7 +151,7 @@ export const PROGRAMS = [
     country: 'United Arab Emirates',
     tagline: 'Ten-year Dubai residency — who still belongs there after corporate tax.',
     headline: 'AED 2M · 10-year residency',
-    arms: '/assets/img/arms/uae.svg',
+    arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_United_Arab_Emirates.svg/250px-Emblem_of_the_United_Arab_Emirates.svg.png',
     heroImg: '/assets/img/blog/3.jpg',
     summary:
       'The UAE Golden Visa is a ten-year renewable residency for investors, founders and specialists. After the 9% corporate tax introduction, the value proposition narrowed — it still works for passive wealth and founders with foreign-source income, less so for purely operating businesses routed through the UAE.',
