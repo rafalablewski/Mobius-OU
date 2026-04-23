@@ -59,7 +59,7 @@ export default function Offcanvas({ open, onClose }) {
             </button>
           </div>
 
-          <div className="ht-offcanvas-menu d-xl-none mb-50">
+          <div className="ht-offcanvas-menu d-xl-none mb-40">
             <nav aria-label="Mobile">
               <ul className="offcanvas-accordion">
                 <li><Link to="/" onClick={onClose}>Home</Link></li>
@@ -86,8 +86,11 @@ export default function Offcanvas({ open, onClose }) {
                     </ul>
                   </li>
                 ))}
-                <li><Link to="/contact" onClick={onClose}>Schedule Consultation</Link></li>
               </ul>
+              <Link to="/contact" onClick={onClose} className="ht-offcanvas-cta">
+                Schedule Consultation
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </Link>
             </nav>
           </div>
 
