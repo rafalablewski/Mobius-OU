@@ -26,11 +26,11 @@ export default function Home() {
               </div>
               <div className="ht-hero-counter">
                   <div className="count-card float-bob-x">
-                      <h2><span className="count">32</span>+</h2>
+                      <h2><span className="count">32</span><span className="plus">+</span></h2>
                       <p>Programs covered across five continents</p>
                   </div>
                   <div className="count-card-2 float-bob-y">
-                      <h2><span className="count">100</span>+</h2>
+                      <h2><span className="count">100</span><span className="plus">+</span></h2>
                       <p>Families relocated under advisory mandate</p>
                   </div>
               </div>
@@ -124,12 +124,12 @@ export default function Home() {
               <div className="container">
                   <div className="ht-stats-wrapper wow fadeInUp" data-wow-delay=".2s">
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">14</span>+</h2>
+                          <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
                           <h4>Years in capital markets</h4>
                           <p>CFA-trained, NYSE-seasoned advisory</p>
                       </div>
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">100</span>+</h2>
+                          <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
                           <h4>Mandates delivered</h4>
                           <p>Across CBI, RBI and tax residency</p>
                       </div>

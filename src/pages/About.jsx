@@ -74,12 +74,12 @@ export default function About() {
               <div className="container">
                   <div className="ht-stats-wrapper wow fadeInUp" data-wow-delay=".3s">
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">14</span>+</h2>
+                          <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
                           <h4>Years in capital markets</h4>
                           <p>CFA-trained, NYSE-seasoned</p>
                       </div>
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">100</span>+</h2>
+                          <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
                           <h4>Mandates delivered</h4>
                           <p>CBI, RBI and tax residency</p>
                       </div>

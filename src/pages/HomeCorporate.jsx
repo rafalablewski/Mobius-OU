@@ -63,19 +63,19 @@ export default function HomeCorporate() {
               <div className="container">
                   <div className="ht-stats-wrapper-2 wow fadeInUp" data-wow-delay=".2s">
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">14</span>+</h2>
+                          <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
                           <h4>Years in capital markets</h4>
                           <p>CFA-trained, NYSE-seasoned advisory combined with on-the-ground mobility program
                               experience.</p>
                       </div>
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">100</span>+</h2>
+                          <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
                           <h4>Mandates delivered</h4>
                           <p>Citizenship, residency and tax residency mandates for private clients and family
                               offices.</p>
                       </div>
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">32</span>+</h2>
+                          <h2 className="number"><span className="count">32</span><span className="plus">+</span></h2>
                           <h4>Jurisdictions covered</h4>
                           <p>From the Caribbean and Mediterranean to the Gulf, Asia and the Alps.</p>
                       </div>
@@ -183,11 +183,11 @@ export default function HomeCorporate() {
                                   </div>
                                   <div className="client-reviews">
                                       <div className="review-item wow fadeInUp" data-wow-delay=".6s">
-                                          <h2><span className="count">100</span>+</h2>
+                                          <h2><span className="count">100</span><span className="plus">+</span></h2>
                                           <p>Mandates delivered</p>
                                       </div>
                                       <div className="review-item wow fadeInUp" data-wow-delay=".8s">
-                                          <h2><span className="count">32</span>+</h2>
+                                          <h2><span className="count">32</span><span className="plus">+</span></h2>
                                           <p>Jurisdictions covered</p>
                                       </div>
                                   </div>

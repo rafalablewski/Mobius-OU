@@ -12750,4 +12750,99 @@ span {
   letter-spacing: 0.12em;
 }
 
+/* === Stats section redesign (editorial, flush, no card) ================ */
+.ht-stats-area {
+  padding: 40px 0 0;
+}
+/* Override: no ivory card, no radius -- just a flush grid with hairlines. */
+.ht-stats-area .ht-stats-wrapper {
+  background: transparent;
+  border-radius: 0;
+  border-top: 1px solid var(--ht-border-color);
+  border-bottom: 1px solid var(--ht-border-color);
+  grid-template-columns: repeat(3, 1fr);
+}
+.ht-stats-area .ht-stats-items {
+  padding: 56px 32px;
+  text-align: left;
+}
+@media (max-width: 991px) {
+  .ht-stats-area .ht-stats-items {
+    padding: 44px 24px;
+  }
+}
+@media (max-width: 575px) {
+  .ht-stats-area .ht-stats-items {
+    padding: 36px 20px;
+    text-align: center;
+  }
+}
+/* Remove the double-"+" ghost (JSX already prints a literal +). */
+.ht-stats-area .ht-stats-items .number::after {
+  content: none;
+}
+/* Divider becomes a full-height hairline flush to the grid, no fixed 160px. */
+.ht-stats-area .ht-stats-items:not(:last-child)::after {
+  height: auto;
+  top: 20%;
+  bottom: 20%;
+  transform: none;
+  background: var(--ht-border-color);
+}
+@media (max-width: 575px) {
+  .ht-stats-area .ht-stats-items:not(:last-child)::after {
+    height: 1px;
+    width: auto;
+    left: 24px;
+    right: 24px;
+    top: auto;
+    bottom: 0;
+    transform: none;
+  }
+}
+/* Numbers: Fraunces display, tighter leading, champagne "+" baked into text. */
+.ht-stats-area .ht-stats-items .number {
+  font-family: "Fraunces", serif;
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  color: var(--ht-heading-color);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+/* Label: Inter caps, tiny tracking */
+.ht-stats-area .ht-stats-items .number .plus {
+  font-family: "Fraunces", serif;
+  color: var(--ht-theme-color-2);
+  font-weight: 400;
+  font-size: 0.55em;
+  margin-left: 4px;
+  align-self: flex-start;
+  line-height: 1.2;
+}
+.ht-stats-area .ht-stats-items h4 {
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ht-heading-color);
+}
+.ht-stats-area .ht-stats-items p {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ht-theme-color-6);
+  max-width: 28ch;
+}
+@media (max-width: 575px) {
+  .ht-stats-area .ht-stats-items p {
+    max-width: none;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
