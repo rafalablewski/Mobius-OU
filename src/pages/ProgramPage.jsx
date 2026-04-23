@@ -19,10 +19,10 @@ export default function ProgramPage() {
       <section className="ht-program">
         <div className="container">
           <div className="ht-program__head">
+            <span className="ht-program__watermark" aria-hidden="true">
+              <img src={program.arms} alt="" loading="lazy" referrerPolicy="no-referrer" />
+            </span>
             <div className="ht-program__intro">
-              <span className="ht-program__arms" aria-hidden="true">
-                <img src={program.arms} alt="" loading="lazy" referrerPolicy="no-referrer" />
-              </span>
               <span className="ht-program__eyebrow">{program.region}</span>
               <h1 className="ht-program__title">{program.name}</h1>
               <p className="ht-program__tagline">{program.tagline}</p>
@@ -33,6 +33,9 @@ export default function ProgramPage() {
             </div>
             <div className="ht-program__hero">
               <img src={program.heroImg} alt={program.name} loading="lazy" />
+              <span className="ht-program__seal" aria-hidden="true">
+                <img src={program.arms} alt="" loading="lazy" referrerPolicy="no-referrer" />
+              </span>
             </div>
           </div>
 
