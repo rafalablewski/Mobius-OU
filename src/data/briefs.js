@@ -1,8 +1,10 @@
-// Intelligence briefs published by Ablewski & Partners.
+// Intelligence briefs published by Mobius.
 // Shared by Blog (grid), BlogList (long-form cards) and BlogDetails (article view).
 
 export const BRIEFS = [
   {
+    id: 'eu-golden-visas-next',
+    slug: 'eu-golden-visas-next',
     img: '1.jpg',
     date: 'Mar 18, 2026',
     category: 'Residency',
@@ -11,6 +13,8 @@ export const BRIEFS = [
       'After Portugal closed the real-estate route and Greece repriced Athens, the serious money is re-ranking Southern Europe on stability, not headline minimums.',
   },
   {
+    id: 'caribbean-cbi-pressure-cycle',
+    slug: 'caribbean-cbi-pressure-cycle',
     img: '2.jpg',
     date: 'Feb 04, 2026',
     category: 'Citizenship',
@@ -19,6 +23,8 @@ export const BRIEFS = [
       'Price harmonisation, mandatory interviews and tightened due diligence have re-shaped the Caribbean programs. What actually changed — and what it means for a multi-generation passport.',
   },
   {
+    id: 'uae-corporate-tax-residency',
+    slug: 'uae-corporate-tax-residency',
     img: '3.jpg',
     date: 'Jan 22, 2026',
     category: 'Tax Residency',
@@ -27,6 +33,8 @@ export const BRIEFS = [
       'Corporate tax at 9% reshaped the UAE value proposition for operators — but not for passive wealth. A short note on who still belongs in Dubai.',
   },
   {
+    id: 'malta-mein-2026',
+    slug: 'malta-mein-2026',
     img: '13.jpg',
     date: 'Dec 11, 2025',
     category: 'Citizenship',
@@ -35,6 +43,8 @@ export const BRIEFS = [
       'Processing times have extended; files are scrutinised more than ever. For the right profile, the EU passport at the other end is still the strongest prize on the market.',
   },
   {
+    id: 'schooling-first-relocation',
+    slug: 'schooling-first-relocation',
     img: '14.jpg',
     date: 'Nov 02, 2025',
     category: 'Relocation',
@@ -43,6 +53,8 @@ export const BRIEFS = [
       'The calendar that really matters in a relocation is the school year. A planning framework for families choosing between Lisbon, Dubai, Zurich and Singapore.',
   },
   {
+    id: 'foundations-vs-trusts-cee',
+    slug: 'foundations-vs-trusts-cee',
     img: '15.jpg',
     date: 'Oct 17, 2025',
     category: 'Asset Protection',
@@ -51,6 +63,8 @@ export const BRIEFS = [
       'Why Liechtenstein and Panamanian foundations still outperform common-law trusts for civil-law CEE owners — and where they do not.',
   },
   {
+    id: 'qualifying-investments-prospectus',
+    slug: 'qualifying-investments-prospectus',
     img: '16.jpg',
     date: 'Sep 09, 2025',
     category: 'Investment',
@@ -59,6 +73,8 @@ export const BRIEFS = [
       'Most Golden Visa funds underperform their own benchmark. How to separate the qualifying label from the investment merit.',
   },
   {
+    id: 'switzerland-lump-sum',
+    slug: 'switzerland-lump-sum',
     img: '17.jpg',
     date: 'Aug 21, 2025',
     category: 'Residency',
@@ -67,6 +83,8 @@ export const BRIEFS = [
       'Canton-level reforms, housing access rules and the unspoken threshold above which a lump-sum move pays for itself.',
   },
   {
+    id: 'source-of-funds-edd',
+    slug: 'source-of-funds-edd',
     img: '18.jpg',
     date: 'Jul 14, 2025',
     category: 'Compliance',

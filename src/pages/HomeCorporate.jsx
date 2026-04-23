@@ -63,19 +63,19 @@ export default function HomeCorporate() {
               <div className="container">
                   <div className="ht-stats-wrapper-2 wow fadeInUp" data-wow-delay=".2s">
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">14</span>+</h2>
+                          <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
                           <h4>Years in capital markets</h4>
                           <p>CFA-trained, NYSE-seasoned advisory combined with on-the-ground mobility program
                               experience.</p>
                       </div>
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">100</span>+</h2>
+                          <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
                           <h4>Mandates delivered</h4>
                           <p>Citizenship, residency and tax residency mandates for private clients and family
                               offices.</p>
                       </div>
                       <div className="ht-stats-items-2">
-                          <h2 className="number"><span className="count">32</span>+</h2>
+                          <h2 className="number"><span className="count">32</span><span className="plus">+</span></h2>
                           <h4>Jurisdictions covered</h4>
                           <p>From the Caribbean and Mediterranean to the Gulf, Asia and the Alps.</p>
                       </div>
@@ -177,17 +177,17 @@ export default function HomeCorporate() {
                                   <div className="section-title">
                                       <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
                                       <h2 className="title wow fadeInUp" data-wow-delay=".4s">Senior bench, narrow client list, written record</h2>
-                                      <p>Ablewski &amp; Partners advises a small roster of founders, family offices and
+                                      <p>Mobius advises a small roster of founders, family offices and
                                           private investors. We write before we recommend, we decline what we should not
                                           sell, and we do not accept commissions.</p>
                                   </div>
                                   <div className="client-reviews">
                                       <div className="review-item wow fadeInUp" data-wow-delay=".6s">
-                                          <h2><span className="count">100</span>+</h2>
+                                          <h2><span className="count">100</span><span className="plus">+</span></h2>
                                           <p>Mandates delivered</p>
                                       </div>
                                       <div className="review-item wow fadeInUp" data-wow-delay=".8s">
-                                          <h2><span className="count">32</span>+</h2>
+                                          <h2><span className="count">32</span><span className="plus">+</span></h2>
                                           <p>Jurisdictions covered</p>
                                       </div>
                                   </div>
@@ -482,7 +482,7 @@ export default function HomeCorporate() {
                                           <i className="fa-solid fa-star"></i>
                                           <i className="fa-solid fa-star"></i>
                                       </div>
-                                      <p className="desc desc-2">"We briefed three advisors. Ablewski was the only one who put the honest disqualifications in writing before asking for a cent."
+                                      <p className="desc desc-2">"We briefed three advisors. Mobius was the only one who put the honest disqualifications in writing before asking for a cent."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
                                           <div className="avatar">
@@ -523,72 +523,6 @@ export default function HomeCorporate() {
               </div>
           </section>
 
-          <section className="ht-blog-area section-padding fix">
-              <div className="container">
-                  <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Intelligence briefs</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Latest analysis on <br /> programs and policy</h2>
-                  </div>
-                  <div className="ht-blog-wrapper">
-                      <div className="row">
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <a href="/blog-details"><img src="/assets/img/blog/4.jpg" alt="img" /></a>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta ht-blog-meta-2">
-                                          <li className="ct">Residency</li>
-                                          <li className="dt">Mar 18, 2026</li>
-                                      </ul>
-                                      <a href="/blog-details">
-                                          <h3 className="title">Where EU Golden Visas
-                                              Go Next: Portugal, Greece, Italy</h3>
-                                      </a>
-                                      <a href="/blog-details" className="ht-link ht-link-2">Read Brief</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <a href="/blog-details"><img src="/assets/img/blog/5.jpg" alt="img" /></a>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta ht-blog-meta-2">
-                                          <li className="ct">Citizenship</li>
-                                          <li className="dt">Feb 04, 2026</li>
-                                      </ul>
-                                      <a href="/blog-details">
-                                          <h3 className="title">Caribbean CBI After the
-                                              US–EU Pressure Cycle</h3>
-                                      </a>
-                                      <a href="/blog-details" className="ht-link ht-link-2">Read Brief</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".9s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <a href="/blog-details"><img src="/assets/img/blog/6.jpg" alt="img" /></a>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta ht-blog-meta-2">
-                                          <li className="ct">Tax Residency</li>
-                                          <li className="dt">Jan 22, 2026</li>
-                                      </ul>
-                                      <a href="/blog-details">
-                                          <h3 className="title">UAE Corporate Tax and the
-                                              New Residency Calculus</h3>
-                                      </a>
-                                      <a href="/blog-details" className="ht-link ht-link-2">Read Brief</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
     </>
   );
 }

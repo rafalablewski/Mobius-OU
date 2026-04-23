@@ -1,13 +1,53 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const PANELS = {
+  firm: {
+    label: 'Firm',
+    items: [
+      { to: '/about', label: 'About the Firm' },
+      { to: '/services', label: 'Advisory Practice' },
+      { to: '/service-details', label: 'Service Overview' },
+      { to: '/team', label: 'Our Advisors' },
+      { to: '/team-details', label: 'Advisor Profile' },
+      { to: '/pricing', label: 'Programs & Fees' },
+      { to: '/faq', label: 'Client FAQ' },
+    ],
+  },
+  programs: {
+    label: 'Programs',
+    items: [
+      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa' },
+      { to: '/programs/malta-mein',           label: 'Malta MEIN' },
+      { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum' },
+      { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax' },
+      { to: '/programs/caribbean-cbi',        label: 'Caribbean CBI' },
+      { to: '/programs/uae-golden-residence', label: 'UAE Golden Residence' },
+      { to: '/services', label: 'Tax Residency Planning' },
+      { to: '/services', label: 'Asset Protection' },
+    ],
+  },
+  insights: {
+    label: 'Insights',
+    items: [
+      { to: '/blog', label: 'Intelligence Briefs' },
+      { to: '/blog-list', label: 'Brief Archive' },
+      { to: '/project', label: 'Select Mandates' },
+    ],
+  },
+};
+
 export default function Offcanvas({ open, onClose }) {
+  const [expanded, setExpanded] = useState(null);
+  const toggle = (id) => setExpanded((cur) => (cur === id ? null : id));
+
   return (
     <>
-      <div className={`ht-offcanvas${open ? ' active' : ''}`}>
+      <div className={`ht-offcanvas${open ? ' ht-offcanvas-open' : ''}`}>
         <div className="ht-offcanvas-wrapper">
           <div className="ht-offcanvas-header mb-50">
-            <Link to="/" className="ht-offcanvas-logo" onClick={onClose}>
-              <img src="/assets/img/logo/logo.svg" alt="Ablewski & Partners" />
+            <Link to="/" className="ht-offcanvas-logo ht-wordmark" onClick={onClose}>
+              <span className="ht-wordmark__lead">Mobius</span>
             </Link>
             <button
               type="button"
@@ -19,26 +59,45 @@ export default function Offcanvas({ open, onClose }) {
             </button>
           </div>
 
-          <div className="ht-offcanvas-menu d-xl-none mb-50">
+          <div className="ht-offcanvas-menu d-xl-none mb-40">
             <nav aria-label="Mobile">
-              <ul>
+              <ul className="offcanvas-accordion">
                 <li><Link to="/" onClick={onClose}>Home</Link></li>
-                <li><Link to="/about" onClick={onClose}>About the Firm</Link></li>
-                <li><Link to="/services" onClick={onClose}>Advisory Practice</Link></li>
-                <li><Link to="/pricing" onClick={onClose}>Programs &amp; Fees</Link></li>
-                <li><Link to="/project" onClick={onClose}>Case Studies</Link></li>
-                <li><Link to="/team" onClick={onClose}>Advisors</Link></li>
-                <li><Link to="/blog" onClick={onClose}>Insights</Link></li>
-                <li><Link to="/faq" onClick={onClose}>Client FAQ</Link></li>
-                <li><Link to="/contact" onClick={onClose}>Schedule Consultation</Link></li>
+                {Object.entries(PANELS).map(([id, panel]) => (
+                  <li
+                    key={id}
+                    className={`has-panel${expanded === id ? ' open' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      className="offcanvas-accordion__trigger"
+                      aria-expanded={expanded === id}
+                      onClick={() => toggle(id)}
+                    >
+                      {panel.label}
+                      <i className="fa-solid fa-chevron-down offcanvas-accordion__chev"></i>
+                    </button>
+                    <ul className="offcanvas-accordion__panel">
+                      {panel.items.map((item) => (
+                        <li key={`${id}-${item.label}`}>
+                          <Link to={item.to} onClick={onClose}>{item.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
               </ul>
+              <Link to="/contact" onClick={onClose} className="ht-offcanvas-cta">
+                Schedule Consultation
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </Link>
             </nav>
           </div>
 
           <div className="ht-offcanvas-content d-none d-xl-block mb-50">
             <h2 className="ht-offcanvas-content__title">Discretion. Strategy. Legacy.</h2>
             <p>
-              Ablewski &amp; Partners is an independent advisory for private clients considering
+              Mobius is an independent advisory for private clients considering
               a second residence, a second citizenship, or a quieter way of owning the world.
             </p>
           </div>
@@ -50,17 +109,11 @@ export default function Offcanvas({ open, onClose }) {
             <span><a href="#">Rondo ONZ 1, 00-124 Warsaw</a></span>
           </div>
 
-          <div className="ht-offcanvas-social mb-50">
-            <h3 className="ht-offcanvas__title">Follow Us</h3>
-            <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="X"><i className="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-          </div>
         </div>
       </div>
 
       <div
-        className={`ht-offcanvas-overlay${open ? ' active' : ''}`}
+        className={`ht-offcanvas-overlay${open ? ' ht-offcanvas-overlay-open' : ''}`}
         onClick={onClose}
       ></div>
     </>

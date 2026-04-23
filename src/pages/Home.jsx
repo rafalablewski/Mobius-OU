@@ -1,4 +1,11 @@
 import { Link } from 'react-router-dom';
+import TopPrograms from '../components/TopPrograms.jsx';
+import Principles from '../components/Principles.jsx';
+import Approach from '../components/Approach.jsx';
+import { PROGRAMS } from '../data/programs.js';
+
+const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
+const CBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'CBI');
 
 export default function Home() {
   return (
@@ -26,11 +33,11 @@ export default function Home() {
               </div>
               <div className="ht-hero-counter">
                   <div className="count-card float-bob-x">
-                      <h2><span className="count">32</span>+</h2>
+                      <h2><span className="count">32</span><span className="plus">+</span></h2>
                       <p>Programs covered across five continents</p>
                   </div>
                   <div className="count-card-2 float-bob-y">
-                      <h2><span className="count">100</span>+</h2>
+                      <h2><span className="count">100</span><span className="plus">+</span></h2>
                       <p>Families relocated under advisory mandate</p>
                   </div>
               </div>
@@ -99,7 +106,7 @@ export default function Home() {
                       <div className="row align-items-lg-center g-5">
                           <div className="col-lg-6 col-sm-12 wow fadeInLeft" data-wow-delay=".2s">
                               <div className="ht-about-img">
-                                  <img src="/assets/img/about/1.jpg" alt="Ablewski & Partners private office" />
+                                  <img src="/assets/img/about/1.jpg" alt="Mobius private office" />
                               </div>
                           </div>
                           <div className="offset-lg-1 col-lg-5 col-sm-12 wow fadeInRight" data-wow-delay=".2s">
@@ -107,7 +114,7 @@ export default function Home() {
                                   <div className="section-title">
                                       <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
                                       <h2 className="title">Founded for clients who value discretion over volume</h2>
-                                      <p>Ablewski &amp; Partners is an independent advisory built around a small
+                                      <p>Mobius is an independent advisory built around a small
                                           roster of private clients — entrepreneurs, founders and families whose
                                           next decade depends on where, and on what terms, they are allowed to live,
                                           bank and leave.</p>
@@ -120,16 +127,18 @@ export default function Home() {
               </div>
           </section>
 
+          <Principles />
+
           <section className="ht-stats-area fix">
               <div className="container">
                   <div className="ht-stats-wrapper wow fadeInUp" data-wow-delay=".2s">
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">14</span>+</h2>
+                          <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
                           <h4>Years in capital markets</h4>
                           <p>CFA-trained, NYSE-seasoned advisory</p>
                       </div>
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">100</span>+</h2>
+                          <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
                           <h4>Mandates delivered</h4>
                           <p>Across CBI, RBI and tax residency</p>
                       </div>
@@ -142,16 +151,28 @@ export default function Home() {
               </div>
           </section>
 
+          <TopPrograms
+            tone="rbi"
+            eyebrow="Top RBI"
+            title="Residency routes we actively run"
+            body="Four programs we return to most often — ranked on political stability, physical-presence cost, and the five-year end state."
+            programs={RBI_PROGRAMS}
+          />
+
+          <TopPrograms
+            tone="cbi"
+            eyebrow="Top CBI"
+            title="Citizenship programs on the shortlist"
+            body="The two citizenship routes we still take mandates on — one EU passport, one Caribbean portfolio. Every file pre-screened on source of funds."
+            programs={CBI_PROGRAMS}
+          />
+
           <section className="ht-project-area section-padding fix">
               <div className="container">
                   <div className="section-title-area align-items-lg-end mb-25">
                       <div className="section-title">
                           <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Select Mandates</span>
                           <h2 className="title wow fadeInUp" data-wow-delay=".4s">Representative <br /> case studies</h2>
-                      </div>
-                      <div className="ht-project-btn mb-25 wow fadeInUp" data-wow-delay=".6s">
-                          <button className="ht-project-prev" aria-label="Previous case study"><i className="fa-solid fa-chevron-left"></i></button>
-                          <button className="ht-project-next" aria-label="Next case study"><i className="fa-solid fa-chevron-right"></i></button>
                       </div>
                   </div>
                   <div className="project-slide-wrapper">
@@ -226,47 +247,20 @@ export default function Home() {
                           </div>
                       </div>
                   </div>
-              </div>
-
-          </section>
-
-          <section className="ht-process-area fix section-padding">
-              <div className="ht-process-shape">
-                  <img src="/assets/img/shape/3.svg" alt="" aria-hidden="true" />
-              </div>
-              <div className="container">
-                  <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Approach</span>
-                      <h2 className="title text-white wow fadeInUp" data-wow-delay=".4s">A measured path from <br /> first conversation to second passport
-                      </h2>
-                  </div>
-                  <div className="ht-process-wrapper">
-                      <div className="row justify-content-between">
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
-                              <div className="ht-process-item mt-25">
-                                  <span className="step">step 01</span>
-                                  <h3 className="title">Discovery</h3>
-                                  <p>A confidential intake — your family, assets, tax footprint and the outcomes that actually matter.</p>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
-                              <div className="ht-process-item mt-25">
-                                  <span className="step">step 02</span>
-                                  <h3 className="title">Strategy Memo</h3>
-                                  <p>A jurisdiction-ranked memo with programs, timelines, tax impact and honest disqualifications.</p>
-                              </div>
-                          </div>
-                          <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
-                              <div className="ht-process-item mt-25">
-                                  <span className="step">step 03</span>
-                                  <h3 className="title">Execution</h3>
-                                  <p>Coordinated delivery with licensed local counsel, banks and investment agents under our mandate.</p>
-                              </div>
-                          </div>
+                  <div className="ht-project-footer wow fadeInUp" data-wow-delay=".3s">
+                      <div className="ht-project-nav" role="group" aria-label="Case study carousel controls">
+                          <button className="ht-project-prev" type="button" aria-label="Previous case study"><i className="fa-solid fa-arrow-left"></i></button>
+                          <button className="ht-project-next" type="button" aria-label="Next case study"><i className="fa-solid fa-arrow-right"></i></button>
                       </div>
+                      <Link to="/project" className="ht-project-all">
+                          View all case studies <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      </Link>
                   </div>
               </div>
+
           </section>
+
+          <Approach />
 
           <section className="ht-team-area section-padding fix">
               <div className="container">
@@ -349,119 +343,6 @@ export default function Home() {
               </div>
           </section>
 
-          <section className="ht-testimonials-area">
-              <div className="container">
-                  <div className="ht-testimonials-wrapper">
-                      <div className="row gy-5">
-                          <div className="col-lg-5">
-                              <div className="section-title">
-                                  <span className="subtitle wow fadeInUp" data-wow-delay=".2s">In their own words</span>
-                                  <h2 className="title wow fadeInUp" data-wow-delay=".4s">What private<br /> clients say<br /> about us.
-                                  </h2>
-                              </div>
-                              <div className="ht-testi-btn wow fadeInUp" data-wow-delay=".6s">
-                                  <button className="ht-testi-prev" aria-label="Previous testimonial"><i className="fa-solid fa-chevron-left"></i></button>
-                                  <button className="ht-testi-next" aria-label="Next testimonial"><i className="fa-solid fa-chevron-right"></i></button>
-                              </div>
-                          </div>
-                          <div className="col-lg-7">
-                              <div className="ht-testimonials-slider">
-                                  <div className="swiper ht-testi-slider">
-                                      <div className="swiper-wrapper">
-                                          <div className="swiper-slide">
-                                              <div className="ht-testimonials-item">
-                                                  <div className="star" aria-label="5 out of 5">
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                      <i className="fa-solid fa-star"></i>
-                                                  </div>
-                                                  <p className="desc">"They refused two programs that would have been easier to sell us and instead walked us through the one that actually fit our exit. That conversation alone was worth the retainer."
-                                                  </p>
-                                                  <div className="ht-testimonials-author">
-                                                      <div className="avatar">
-                                                          <img src="/assets/img/testimonials/1.png" alt="" aria-hidden="true" />
-                                                      </div>
-                                                      <div className="author-info">
-                                                          <h5 className="name">Founder, SaaS exit</h5>
-                                                          <p className="role">Central Europe · name withheld</p>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
-
-          <section className="ht-blog-area section-padding fix">
-              <div className="container">
-                  <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Intelligence briefs</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Latest analysis on <br /> programs and policy</h2>
-                  </div>
-                  <div className="ht-blog-wrapper">
-                      <div className="row">
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <Link to="/blog-details"><img src="/assets/img/blog/1.jpg" alt="EU Golden Visa policy" /></Link>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta">
-                                          <li>Mar 18, 2026</li>
-                                          <li>Residency</li>
-                                      </ul>
-                                      <Link to="/blog-details">
-                                          <h3 className="title">Where EU Golden Visas Go Next: Portugal, Greece, Italy</h3>
-                                      </Link>
-                                      <Link to="/blog-details" className="ht-link">Read Brief</Link>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <Link to="/blog-details"><img src="/assets/img/blog/2.jpg" alt="Caribbean CBI due diligence" /></Link>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta">
-                                          <li>Feb 04, 2026</li>
-                                          <li>Citizenship</li>
-                                      </ul>
-                                      <Link to="/blog-details">
-                                          <h3 className="title">Caribbean CBI After the US–EU Pressure Cycle</h3>
-                                      </Link>
-                                      <Link to="/blog-details" className="ht-link">Read Brief</Link>
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
-                              <div className="ht-blog-item mt-20">
-                                  <div className="ht-blog-thumb">
-                                      <Link to="/blog-details"><img src="/assets/img/blog/3.jpg" alt="UAE corporate tax" /></Link>
-                                  </div>
-                                  <div className="ht-blog-content">
-                                      <ul className="ht-blog-meta">
-                                          <li>Jan 22, 2026</li>
-                                          <li>Tax Residency</li>
-                                      </ul>
-                                      <Link to="/blog-details">
-                                          <h3 className="title">UAE Corporate Tax and the New Residency Calculus</h3>
-                                      </Link>
-                                      <Link to="/blog-details" className="ht-link">Read Brief</Link>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </section>
     </>
   );
 }

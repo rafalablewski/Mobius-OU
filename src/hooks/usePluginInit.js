@@ -83,9 +83,11 @@ function initSwipers($) {
     instances.push(
       new Swiper('.ht-testi-slider', {
         spaceBetween: 30,
-        speed: 2000,
+        speed: 900,
         loop: true,
-        autoplay: { delay: 3500, disableOnInteraction: false },
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        autoplay: { delay: 5000, disableOnInteraction: false },
         navigation: { nextEl: '.ht-testi-next', prevEl: '.ht-testi-prev' },
         breakpoints: { 575: { slidesPerView: 1 }, 0: { slidesPerView: 1 } },
       }),
@@ -149,8 +151,10 @@ function initSwipers($) {
       new Swiper('.hero-img-slide', {
         slidesPerView: 1,
         spaceBetween: 30,
-        speed: 1000,
+        speed: 1200,
         loop: true,
+        parallax: true,
+        autoplay: { delay: 6000, disableOnInteraction: false },
         navigation: { nextEl: '.ht-hero-next' },
       }),
     );

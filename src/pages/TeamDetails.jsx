@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 
 export default function TeamDetails() {
   return (
@@ -19,7 +20,7 @@ export default function TeamDetails() {
                                       <h2>Rafał Ablewski</h2>
                                       <h6>Managing Partner, CFA</h6>
                                       <p>
-                                          Rafał founded Ablewski &amp; Partners after fourteen years across NYSE-listed capital
+                                          Rafał founded Mobius after fourteen years across NYSE-listed capital
                                           markets and European wealth advisory. His practice covers citizenship selection,
                                           residency sequencing and the structural decisions that sit underneath both —
                                           treasury, custody and inheritance.
@@ -102,6 +103,14 @@ export default function TeamDetails() {
                   </div>
               </div>
           </section>
+      <CTABand
+        eyebrow="Book the advisor"
+        title="Ask for this partner directly."
+        body="Our advisors respond only to enquiries routed through the firm. Schedule a call and we will confirm the right pair for your file."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'Our Advisors', to: '/team' }}
+        bg="ink"
+      />
     </>
   );
 }

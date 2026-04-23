@@ -1,0 +1,25 @@
+<svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Caribbean CBI region">
+  <!-- Shield silhouette -->
+  <path d="M4 6 H76 V52 C76 72 40 92 40 92 C40 92 4 72 4 52 Z"
+        fill="#F4EFE6" stroke="#0B0F14" stroke-width="1.5"/>
+  <!-- Horizon line -->
+  <line x1="8" y1="56" x2="72" y2="56" stroke="#0B0F14" stroke-width="0.8"/>
+  <!-- Sun rays -->
+  <g stroke="#C9A86A" stroke-width="1.5" stroke-linecap="round">
+    <line x1="40" y1="16" x2="40" y2="22"/>
+    <line x1="28" y1="18" x2="31" y2="24"/>
+    <line x1="52" y1="18" x2="49" y2="24"/>
+    <line x1="20" y1="26" x2="25" y2="30"/>
+    <line x1="60" y1="26" x2="55" y2="30"/>
+    <line x1="16" y1="38" x2="22" y2="38"/>
+    <line x1="58" y1="38" x2="64" y2="38"/>
+  </g>
+  <!-- Sun disc -->
+  <circle cx="40" cy="38" r="10" fill="#C9A86A"/>
+  <!-- Waves below horizon -->
+  <g fill="none" stroke="#0B0F14" stroke-width="1" stroke-linecap="round">
+    <path d="M10 64 Q20 60 30 64 T50 64 T70 64"/>
+    <path d="M10 72 Q20 68 30 72 T50 72 T70 72"/>
+    <path d="M16 80 Q24 76 32 80 T48 80 T64 80"/>
+  </g>
+</svg>

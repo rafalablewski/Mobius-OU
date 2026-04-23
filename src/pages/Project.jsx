@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import CTABand from '../components/CTABand.jsx';
 
 const MANDATES = [
   { img: '9.jpg',  title: 'Portugal Golden Visa — Founder Relocation',     tag: 'Residency by Investment' },
@@ -60,6 +61,14 @@ export default function Project() {
           </div>
         </div>
       </div>
+      <CTABand
+        eyebrow="Discuss a mandate"
+        title="Share the shape of your situation."
+        body="Every mandate we publish began as a confidential enquiry. If your circumstance fits one of our practice areas, we will say so directly."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'Programs & Fees', to: '/pricing' }}
+        bg="ink"
+      />
     </>
   );
 }

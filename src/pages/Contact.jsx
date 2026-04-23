@@ -124,18 +124,18 @@ export default function Contact() {
                                       <div className="col-12 text-center">
                                           <button type="submit" className="ht-btn style-2">Request Consultation</button>
                                           {status === 'invalid' && (
-                                            <p style={{ marginTop: '20px', color: '#c0392b' }}>
+                                            <p className="form-status form-status--error form-status--lg">
                                               Please complete every field so we can respond properly.
                                             </p>
                                           )}
                                           {status === 'sent' && (
-                                            <p style={{ marginTop: '20px', color: '#2a7f62' }}>
+                                            <p className="form-status form-status--sent form-status--lg">
                                               Thank you — your email client is opening. If nothing happens, write to
                                               advisory@passportbros.org directly.
                                             </p>
                                           )}
                                           <p style={{ marginTop: '24px', fontSize: '13px', opacity: 0.7 }}>
-                                            All enquiries are handled under NDA. Ablewski &amp; Partners provides
+                                            All enquiries are handled under NDA. Mobius provides
                                             educational and strategic advisory only — not legal, tax or investment advice.
                                           </p>
                                       </div>
@@ -149,7 +149,7 @@ export default function Contact() {
 
           <div className="ht-map-area">
               <iframe
-                title="Ablewski & Partners — Warsaw head office"
+                title="Mobius — Warsaw head office"
                 src="https://www.google.com/maps?q=Rondo%20ONZ%201%2C%20Warsaw&output=embed"
                 allowFullScreen=""
                 loading="lazy"

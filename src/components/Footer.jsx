@@ -6,8 +6,8 @@ export default function Footer() {
       <div className="container">
         <div className="ht-footer-top-wrapper">
           <div className="ht-footer-top-left wow fadeInUp" data-wow-delay=".2s">
-            <Link to="/">
-              <img src="/assets/img/logo/logo-white.svg" alt="Ablewski & Partners" />
+            <Link to="/" className="ht-wordmark ht-wordmark--ivory">
+              <span className="ht-wordmark__lead">Mobius</span>
             </Link>
             <p className="desc">
               Independent strategic advisory on global mobility, citizenship and residency
@@ -15,12 +15,10 @@ export default function Footer() {
             </p>
           </div>
           <div className="ht-footer-top-right wow fadeInUp" data-wow-delay=".4s">
-            <ul className="footer-social">
-              <li><a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a></li>
-              <li><a href="#" aria-label="X"><i className="fa-brands fa-x-twitter"></i></a></li>
-              <li><a href="#" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></a></li>
-              <li><a href="#" aria-label="Facebook"><i className="fa-brands fa-facebook-f"></i></a></li>
-            </ul>
+            <a className="ht-footer-contact" href="mailto:advisory@passportbros.org">
+              advisory@passportbros.org
+              <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
 
@@ -38,10 +36,10 @@ export default function Footer() {
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay=".6s">
               <h5 className="head">Programs</h5>
               <ul className="link-list">
-                <li><Link to="/pricing">Portugal Golden Visa</Link></li>
-                <li><Link to="/pricing">Caribbean CBI</Link></li>
-                <li><Link to="/pricing">Malta MEIN</Link></li>
-                <li><Link to="/pricing">UAE Golden Residence</Link></li>
+                <li><Link to="/programs/portugal-golden-visa">Portugal Golden Visa</Link></li>
+                <li><Link to="/programs/caribbean-cbi">Caribbean CBI</Link></li>
+                <li><Link to="/programs/malta-mein">Malta MEIN</Link></li>
+                <li><Link to="/programs/uae-golden-residence">UAE Golden Residence</Link></li>
               </ul>
             </div>
             <div className="ht-footer-widget-items wow fadeInUp" data-wow-delay=".9s">
@@ -67,7 +65,7 @@ export default function Footer() {
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
           <p>
-            ©{new Date().getFullYear()} <span>Ablewski &amp; Partners</span>. All rights reserved. &nbsp;|&nbsp;
+            ©{new Date().getFullYear()} <span>Mobius</span>. All rights reserved. &nbsp;|&nbsp;
             Educational and strategic advisory only — not legal, tax or investment advice. Regulated legal
             and tax work is delivered by licensed partners in each jurisdiction.
           </p>
