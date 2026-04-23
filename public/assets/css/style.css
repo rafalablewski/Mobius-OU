@@ -12665,4 +12665,55 @@ span {
   border-radius: 0;
 }
 
+/* === Nav layout: no-wrap, tight spacing, balanced flex =================*/
+.ht-header-area--full .ht-menu-left {
+  gap: 48px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.ht-header-area--full .ht-menu-right {
+  flex: 0 0 auto;
+  gap: 20px;
+}
+.ht-header-area--full .ht-menu-main {
+  min-width: 0;
+}
+.ht-header-area--full .ht-menu-main > nav > ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 28px;
+}
+.ht-header-area--full .ht-menu-main > nav > ul > li {
+  display: inline-flex;
+  margin-right: 0;
+  white-space: nowrap;
+}
+.ht-header-area--full .ht-menu-main > nav > ul > li > a {
+  padding: 26px 0;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+@media (max-width: 1399px) {
+  .ht-header-area--full .ht-menu-main > nav > ul {
+    gap: 22px;
+  }
+  .ht-header-area--full .ht-menu-left {
+    gap: 32px;
+  }
+}
+@media (max-width: 1199px) {
+  .ht-header-area--full .ht-menu-main > nav > ul {
+    gap: 18px;
+  }
+  .ht-header-area--full .ht-menu-main > nav > ul > li > a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+}
+/* Underline alignment after padding change */
+.ht-header-area--full .ht-menu-main > nav > ul > li > a::before {
+  bottom: 18px;
+}
+
 /*# sourceMappingURL=style.css.map */
