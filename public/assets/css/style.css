@@ -7461,19 +7461,19 @@
   }
 }
 :root {
-  --ht-body: #fff;
-  --ht-black: #000;
-  --ht-white: #fff;
-  --ht-heading-color:#063231;
-  --ht-text-color:#063231;
-  --ht-theme-color:#063231;
-  --ht-theme-color-2:#F75709;
-  --ht-theme-color-3:#C3DF94;
-  --ht-theme-color-4:#294F4E;
-  --ht-theme-color-5:#F5F7F7;
-  --ht-theme-color-6:#425657;
-  --ht-border-color:#D7DEDE;
-  --ht-border-color-2:#294F4E;
+  --ht-body: #F4EFE6;
+  --ht-black: #0B0F14;
+  --ht-white: #FFFFFF;
+  --ht-heading-color:#0B0F14;
+  --ht-text-color:#1C232B;
+  --ht-theme-color:#0B0F14;
+  --ht-theme-color-2:#C9A86A;
+  --ht-theme-color-3:#F4EFE6;
+  --ht-theme-color-4:#1C232B;
+  --ht-theme-color-5:#FAF6EE;
+  --ht-theme-color-6:#6B6257;
+  --ht-border-color:#E2DBCE;
+  --ht-border-color-2:#0B0F14;
 }
 
 /* --------------------------------------------
