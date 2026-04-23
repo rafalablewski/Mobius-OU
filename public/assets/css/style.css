@@ -12640,4 +12640,29 @@ span {
   color: var(--ht-body);
 }
 
+/* === Flatten header chrome ============================================= */
+/* Kill the legacy "floating cream pill" look -- no bg, no radius, no margin. */
+.ht-header-area--full .ht-main-header.header-1 .ht-menu-wrapper {
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  min-height: 72px;
+}
+.ht-header-area--full .ht-main-header {
+  background: var(--ht-body);
+  border-bottom: 1px solid var(--ht-border-color);
+  box-shadow: none;
+}
+/* No cream pill when sticky either */
+.ht-header-area--full .ht-main-header.sticky {
+  background: var(--ht-body);
+}
+.ht-header-area--full .ht-main-header.sticky .ht-menu-wrapper {
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
 /*# sourceMappingURL=style.css.map */
