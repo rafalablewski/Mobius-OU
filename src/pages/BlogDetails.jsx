@@ -65,7 +65,7 @@ export default function BlogDetails() {
                                       <div className="blog-meta">
                                           <div className="single-meta">
                                               <img src="/assets/img/icon/user.svg" alt="" aria-hidden="true" />
-                                              <span>Ablewski &amp; Partners</span>
+                                              <span>Mobius</span>
                                           </div>
                                           <div className="single-meta">
                                               <img src="/assets/img/icon/comment-2.svg" alt="" aria-hidden="true" />
@@ -180,7 +180,7 @@ export default function BlogDetails() {
                                   </div>
                                   <div className="content">
                                       <h3>Rafał Ablewski, CFA</h3>
-                                      <p>Managing Partner of Ablewski &amp; Partners, a private-client advisory focused on
+                                      <p>Managing Partner of Mobius, a private-client advisory focused on
                                           Citizenship and Residency by Investment, tax residency sequencing and family
                                           relocation. Fourteen years across NYSE-listed capital markets and European
                                           wealth advisory before founding the firm.

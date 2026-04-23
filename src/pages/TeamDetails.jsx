@@ -20,7 +20,7 @@ export default function TeamDetails() {
                                       <h2>Rafał Ablewski</h2>
                                       <h6>Managing Partner, CFA</h6>
                                       <p>
-                                          Rafał founded Ablewski &amp; Partners after fourteen years across NYSE-listed capital
+                                          Rafał founded Mobius after fourteen years across NYSE-listed capital
                                           markets and European wealth advisory. His practice covers citizenship selection,
                                           residency sequencing and the structural decisions that sit underneath both —
                                           treasury, custody and inheritance.

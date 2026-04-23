@@ -7,9 +7,7 @@ export default function Footer() {
         <div className="ht-footer-top-wrapper">
           <div className="ht-footer-top-left wow fadeInUp" data-wow-delay=".2s">
             <Link to="/" className="ht-wordmark ht-wordmark--ivory">
-              <span className="ht-wordmark__lead">Ablewski</span>
-              <span className="ht-wordmark__amp">&amp;</span>
-              <span className="ht-wordmark__tail">Partners</span>
+              <span className="ht-wordmark__lead">Mobius</span>
             </Link>
             <p className="desc">
               Independent strategic advisory on global mobility, citizenship and residency
@@ -69,7 +67,7 @@ export default function Footer() {
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
           <p>
-            ©{new Date().getFullYear()} <span>Ablewski &amp; Partners</span>. All rights reserved. &nbsp;|&nbsp;
+            ©{new Date().getFullYear()} <span>Mobius</span>. All rights reserved. &nbsp;|&nbsp;
             Educational and strategic advisory only — not legal, tax or investment advice. Regulated legal
             and tax work is delivered by licensed partners in each jurisdiction.
           </p>

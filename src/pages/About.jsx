@@ -11,7 +11,7 @@ export default function About() {
                       <div className="row align-items-lg-center g-5">
                           <div className="col-lg-6 col-sm-12">
                               <div className="ht-about-img wow fadeInUp" data-wow-delay=".3s">
-                                  <img src="/assets/img/about/1.jpg" alt="Ablewski & Partners advisory office" />
+                                  <img src="/assets/img/about/1.jpg" alt="Mobius advisory office" />
                               </div>
                           </div>
                           <div className="offset-lg-1 col-lg-5 col-sm-12">
@@ -19,7 +19,7 @@ export default function About() {
                                   <div className="section-title">
                                       <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
                                       <h2 className="title wow fadeInUp" data-wow-delay=".5s">Founded for discerning clients — built to stay small on purpose</h2>
-                                      <p className="wow fadeIn" data-wow-delay=".8s">Ablewski &amp; Partners is an independent
+                                      <p className="wow fadeIn" data-wow-delay=".8s">Mobius is an independent
                                           strategic consultancy advising a small roster of private clients on citizenship,
                                           residency and tax residency decisions. We work from Warsaw, coordinate with licensed
                                           counsel in every jurisdiction we recommend, and take on fewer mandates than we turn

@@ -135,7 +135,7 @@ export default function Contact() {
                                             </p>
                                           )}
                                           <p style={{ marginTop: '24px', fontSize: '13px', opacity: 0.7 }}>
-                                            All enquiries are handled under NDA. Ablewski &amp; Partners provides
+                                            All enquiries are handled under NDA. Mobius provides
                                             educational and strategic advisory only — not legal, tax or investment advice.
                                           </p>
                                       </div>
@@ -149,7 +149,7 @@ export default function Contact() {
 
           <div className="ht-map-area">
               <iframe
-                title="Ablewski & Partners — Warsaw head office"
+                title="Mobius — Warsaw head office"
                 src="https://www.google.com/maps?q=Rondo%20ONZ%201%2C%20Warsaw&output=embed"
                 allowFullScreen=""
                 loading="lazy"

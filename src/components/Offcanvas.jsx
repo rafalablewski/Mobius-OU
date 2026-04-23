@@ -46,9 +46,7 @@ export default function Offcanvas({ open, onClose }) {
         <div className="ht-offcanvas-wrapper">
           <div className="ht-offcanvas-header mb-50">
             <Link to="/" className="ht-offcanvas-logo ht-wordmark" onClick={onClose}>
-              <span className="ht-wordmark__lead">Ablewski</span>
-              <span className="ht-wordmark__amp">&amp;</span>
-              <span className="ht-wordmark__tail">Partners</span>
+              <span className="ht-wordmark__lead">Mobius</span>
             </Link>
             <button
               type="button"
@@ -95,7 +93,7 @@ export default function Offcanvas({ open, onClose }) {
           <div className="ht-offcanvas-content d-none d-xl-block mb-50">
             <h2 className="ht-offcanvas-content__title">Discretion. Strategy. Legacy.</h2>
             <p>
-              Ablewski &amp; Partners is an independent advisory for private clients considering
+              Mobius is an independent advisory for private clients considering
               a second residence, a second citizenship, or a quieter way of owning the world.
             </p>
           </div>

@@ -177,7 +177,7 @@ export default function HomeCorporate() {
                                   <div className="section-title">
                                       <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
                                       <h2 className="title wow fadeInUp" data-wow-delay=".4s">Senior bench, narrow client list, written record</h2>
-                                      <p>Ablewski &amp; Partners advises a small roster of founders, family offices and
+                                      <p>Mobius advises a small roster of founders, family offices and
                                           private investors. We write before we recommend, we decline what we should not
                                           sell, and we do not accept commissions.</p>
                                   </div>
@@ -482,7 +482,7 @@ export default function HomeCorporate() {
                                           <i className="fa-solid fa-star"></i>
                                           <i className="fa-solid fa-star"></i>
                                       </div>
-                                      <p className="desc desc-2">"We briefed three advisors. Ablewski was the only one who put the honest disqualifications in writing before asking for a cent."
+                                      <p className="desc desc-2">"We briefed three advisors. Mobius was the only one who put the honest disqualifications in writing before asking for a cent."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
                                           <div className="avatar">

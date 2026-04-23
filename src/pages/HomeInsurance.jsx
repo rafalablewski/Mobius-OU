@@ -127,7 +127,7 @@ export default function HomeInsurance() {
                       <div className="row align-items-lg-center gy-5 gy-lg-0">
                           <div className="col-lg-6 col-sm-12">
                               <div className="ht-about-img wow fadeInUp" data-wow-delay=".3s">
-                                  <img src="/assets/img/about/3.jpg" alt="Ablewski & Partners private office" />
+                                  <img src="/assets/img/about/3.jpg" alt="Mobius private office" />
                               </div>
                           </div>
                           <div className="col-lg-6 col-sm-12">
@@ -135,7 +135,7 @@ export default function HomeInsurance() {
                                   <div className="section-title">
                                       <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
                                       <h2 className="title wow fadeInUp" data-wow-delay=".5s">Built for the quiet parts of becoming wealthy</h2>
-                                      <p className="wow fadeInUp" data-wow-delay=".8s">Ablewski &amp; Partners is an independent
+                                      <p className="wow fadeInUp" data-wow-delay=".8s">Mobius is an independent
                                           strategic consultancy. We advise a small roster of private clients on the
                                           unromantic decisions — residency, citizenship, structures, succession — that
                                           determine whether the next generation actually keeps what you build.</p>

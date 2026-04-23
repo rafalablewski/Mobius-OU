@@ -144,7 +144,7 @@ export default function Faq() {
                                           <i className="fa-solid fa-star"></i>
                                           <i className="fa-solid fa-star"></i>
                                       </div>
-                                      <p className="desc desc-2">"We briefed three advisors. Ablewski was the only one who put the honest disqualifications in writing before asking for a cent."
+                                      <p className="desc desc-2">"We briefed three advisors. Mobius was the only one who put the honest disqualifications in writing before asking for a cent."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
                                           <div className="avatar">

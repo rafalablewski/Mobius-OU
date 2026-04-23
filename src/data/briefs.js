@@ -1,4 +1,4 @@
-// Intelligence briefs published by Ablewski & Partners.
+// Intelligence briefs published by Mobius.
 // Shared by Blog (grid), BlogList (long-form cards) and BlogDetails (article view).
 
 export const BRIEFS = [

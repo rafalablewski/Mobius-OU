@@ -28,7 +28,7 @@ export default function BlogList() {
                                               <div className="blog-meta">
                                                   <div className="single-meta">
                                                       <img src="/assets/img/icon/user.svg" alt="" aria-hidden="true" />
-                                                      <span>Ablewski &amp; Partners</span>
+                                                      <span>Mobius</span>
                                                   </div>
                                                   <div className="single-meta">
                                                       <img src="/assets/img/icon/comment-2.svg" alt="" aria-hidden="true" />

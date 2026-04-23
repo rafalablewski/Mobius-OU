@@ -99,7 +99,7 @@ export default function Home() {
                       <div className="row align-items-lg-center g-5">
                           <div className="col-lg-6 col-sm-12 wow fadeInLeft" data-wow-delay=".2s">
                               <div className="ht-about-img">
-                                  <img src="/assets/img/about/1.jpg" alt="Ablewski & Partners private office" />
+                                  <img src="/assets/img/about/1.jpg" alt="Mobius private office" />
                               </div>
                           </div>
                           <div className="offset-lg-1 col-lg-5 col-sm-12 wow fadeInRight" data-wow-delay=".2s">
@@ -107,7 +107,7 @@ export default function Home() {
                                   <div className="section-title">
                                       <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
                                       <h2 className="title">Founded for clients who value discretion over volume</h2>
-                                      <p>Ablewski &amp; Partners is an independent advisory built around a small
+                                      <p>Mobius is an independent advisory built around a small
                                           roster of private clients — entrepreneurs, founders and families whose
                                           next decade depends on where, and on what terms, they are allowed to live,
                                           bank and leave.</p>
