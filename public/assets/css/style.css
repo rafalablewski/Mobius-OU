@@ -12293,4 +12293,59 @@ span {
   color: var(--ht-theme-color-2);
 }
 
+/* === Motion polish ===================================================== */
+@keyframes ht-kenburns {
+  0%   { transform: scale(1.02) translate(0, 0); }
+  50%  { transform: scale(1.08) translate(-1%, -1%); }
+  100% { transform: scale(1.02) translate(1%, 0); }
+}
+.hero-img-slide .swiper-slide-active img {
+  animation: ht-kenburns 12s ease-in-out infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes ht-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ht-cta-band .ht-cta-band__inner,
+.ht-mandate-summary .ht-mandate-summary__grid {
+  animation: ht-fade-up 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+/* Card lift for service/project/blog tiles without changing their classes */
+.ht-services-items,
+.ht-blog-item,
+.ht-project-single,
+.team-single-wrapper {
+  transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+}
+.ht-services-items:hover,
+.ht-blog-item:hover,
+.ht-project-single:hover,
+.team-single-wrapper:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(11, 15, 20, 0.22);
+}
+
+/* Image reveal zoom inside thumb wrappers */
+.ht-blog-thumb,
+.ht-project-thumb,
+.thumbnails {
+  overflow: hidden;
+}
+.ht-blog-thumb img,
+.ht-project-thumb img,
+.thumbnails img {
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.ht-blog-thumb:hover img,
+.ht-project-thumb:hover img,
+.thumbnails:hover img {
+  transform: scale(1.04);
+}
+
 /*# sourceMappingURL=style.css.map */
