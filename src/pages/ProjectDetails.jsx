@@ -1,9 +1,22 @@
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import MandateSummary from '../components/MandateSummary.jsx';
+import CTABand from '../components/CTABand.jsx';
+
+const MANDATE_FIELDS = [
+  { icon: '/assets/img/icon/12.svg', label: 'Client',       value: 'Founder, tech exit (anonymised)' },
+  { icon: '/assets/img/icon/13.svg', label: 'Category',     value: 'Residency by Investment' },
+  { icon: '/assets/img/icon/14.svg', label: 'Duration',     value: '14 months (incl. tax move)' },
+  { icon: '/assets/img/icon/15.svg', label: 'Jurisdiction', value: 'Portugal (Lisbon)' },
+];
 
 export default function ProjectDetails() {
   return (
     <>
       <Breadcrumb title="Mandate — Portugal Golden Visa" current="Case Study" />
+      <MandateSummary
+        fields={MANDATE_FIELDS}
+        note="Case study is anonymised. Facts, jurisdiction and outcome are representative; identifying details are withheld by policy."
+      />
       <section className="ht-project-details-area section-padding">
               <div className="container">
                   <div className="project-details-wrapper">
@@ -11,7 +24,7 @@ export default function ProjectDetails() {
                           <img src="/assets/img/project/15.jpg" alt="Lisbon skyline — Portugal Golden Visa mandate" />
                       </div>
                       <div className="row">
-                          <div className="col-xl-9">
+                          <div className="col-12">
                               <div className="project-details-content">
                                   <h2 className="mb-12">Portugal Golden Visa — Founder Relocation</h2>
                                   <p className="mb-18">
@@ -69,57 +82,18 @@ export default function ProjectDetails() {
                                   </p>
                               </div>
                           </div>
-                          <div className="col-xl-3">
-                              <div className="project-details-sidebar">
-                                  <h5 className="widget-title">Mandate summary</h5>
-                                  <div className="widget-item-wrapper">
-                                      <div className="single-widget">
-                                          <div className="icon">
-                                              <img src="/assets/img/icon/12.svg" alt="" aria-hidden="true" />
-                                          </div>
-                                          <div className="info">
-                                              <span>Client</span>
-                                              <h6>Founder, tech exit (anonymised)</h6>
-                                          </div>
-                                      </div>
-                                      <div className="single-widget">
-                                          <div className="icon">
-                                              <img src="/assets/img/icon/13.svg" alt="" aria-hidden="true" />
-                                          </div>
-                                          <div className="info">
-                                              <span>Category</span>
-                                              <h6>Residency by Investment</h6>
-                                          </div>
-                                      </div>
-                                      <div className="single-widget">
-                                          <div className="icon">
-                                              <img src="/assets/img/icon/14.svg" alt="" aria-hidden="true" />
-                                          </div>
-                                          <div className="info">
-                                              <span>Duration</span>
-                                              <h6>14 months (incl. tax move)</h6>
-                                          </div>
-                                      </div>
-                                      <div className="single-widget">
-                                          <div className="icon">
-                                              <img src="/assets/img/icon/15.svg" alt="" aria-hidden="true" />
-                                          </div>
-                                          <div className="info">
-                                              <span>Jurisdiction</span>
-                                              <h6>Portugal (Lisbon)</h6>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <p style={{ marginTop: '24px', fontSize: '12px', opacity: 0.7 }}>
-                                    Case study is anonymised. Facts, jurisdiction and outcome are
-                                    representative; identifying details are withheld by policy.
-                                  </p>
-                              </div>
-                          </div>
                       </div>
                   </div>
               </div>
           </section>
+      <CTABand
+        eyebrow="Similar situation?"
+        title="Let us read your file before you commit to a program."
+        body="Most first conversations end with a clear yes, no, or redirect. That is the value of speaking to the partner on day one."
+        primary={{ label: 'Schedule Consultation', to: '/contact' }}
+        secondary={{ label: 'Select Mandates', to: '/project' }}
+        bg="ink"
+      />
     </>
   );
 }

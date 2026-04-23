@@ -12036,4 +12036,93 @@ span {
   border-color: var(--ht-theme-color-2);
 }
 
+/* === Mandate summary strip ============================================= */
+.ht-mandate-summary {
+  padding: 36px 0 0;
+}
+.ht-mandate-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--ht-border-color);
+  border-radius: 10px;
+  background: var(--ht-white);
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .ht-mandate-summary__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 575px) {
+  .ht-mandate-summary__grid {
+    grid-template-columns: 1fr;
+  }
+}
+.ht-mandate-summary__cell {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  border-right: 1px solid var(--ht-border-color);
+}
+.ht-mandate-summary__cell:last-child {
+  border-right: none;
+}
+@media (max-width: 991px) {
+  .ht-mandate-summary__cell:nth-child(2n) {
+    border-right: none;
+  }
+  .ht-mandate-summary__cell:nth-child(-n+2) {
+    border-bottom: 1px solid var(--ht-border-color);
+  }
+}
+@media (max-width: 575px) {
+  .ht-mandate-summary__cell {
+    border-right: none;
+    border-bottom: 1px solid var(--ht-border-color);
+  }
+  .ht-mandate-summary__cell:last-child {
+    border-bottom: none;
+  }
+}
+.ht-mandate-summary__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ht-theme-color-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.ht-mandate-summary__icon img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+.ht-mandate-summary__label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+}
+.ht-mandate-summary__value {
+  font-family: "Fraunces", serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ht-heading-color);
+  line-height: 1.25;
+}
+.ht-mandate-summary__note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--ht-theme-color-6);
+  opacity: 0.85;
+}
+
 /*# sourceMappingURL=style.css.map */
