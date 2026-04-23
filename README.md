@@ -74,6 +74,27 @@ before publishing.
 ## Deploying on Vercel
 
 Vercel auto-detects the Vite preset. `vercel.json` sets the build command,
-output directory and SPA fallback rewrite. No environment variables are
-required for the public site; wire up a serverless endpoint if you replace the
-contact form's mailto fallback with an API submission.
+output directory and SPA fallback rewrite, and exempts `/api/*` from the
+fallback so serverless functions resolve.
+
+### Environment variables
+
+Build-time (exposed to the client bundle via Vite):
+
+| Name                    | Purpose                                   | Default                                            |
+| ----------------------- | ----------------------------------------- | -------------------------------------------------- |
+| `VITE_SITE_URL`         | Absolute site URL                          | `https://passportbros.org`                         |
+| `VITE_SITE_EMAIL`       | Public contact inbox                       | `office@passportbros.org`                          |
+| `VITE_CALENDLY_URL`     | Booking link used by the CTA panel         | `https://calendly.com/ablewski-partners/consult`   |
+| `VITE_CONTACT_ENDPOINT` | Submission endpoint. `""` to force mailto | `/api/contact`                                     |
+
+Server-only (consumed by `api/contact.js` on Vercel):
+
+| Name             | Purpose                                                    |
+| ---------------- | ---------------------------------------------------------- |
+| `RESEND_API_KEY` | Resend API key. If unset, briefs are validated, logged and acknowledged but not emailed. |
+| `CONTACT_TO`     | Destination inbox. Default `office@passportbros.org`.      |
+| `CONTACT_FROM`   | Verified sender on your Resend domain, e.g. `Ablewski & Partners <notices@passportbros.org>`. |
+
+Set these in the Vercel dashboard (Project → Settings → Environment Variables);
+rebuild to apply.
