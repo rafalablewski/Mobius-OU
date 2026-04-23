@@ -13307,4 +13307,31 @@ span {
   border-top: 1px solid rgba(201, 168, 106, 0.3);
 }
 
+/* === Footer inline contact link (replaces placeholder socials) ========= */
+.ht-footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ht-body);
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(244, 239, 230, 0.4);
+  transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+}
+.ht-footer-contact i {
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+.ht-footer-contact:hover {
+  color: var(--ht-theme-color-2);
+  border-color: var(--ht-theme-color-2);
+  gap: 14px;
+}
+.ht-footer-contact:hover i {
+  transform: translateX(2px);
+}
+
 /*# sourceMappingURL=style.css.map */

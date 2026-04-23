@@ -105,12 +105,6 @@ export default function Offcanvas({ open, onClose }) {
             <span><a href="#">Rondo ONZ 1, 00-124 Warsaw</a></span>
           </div>
 
-          <div className="ht-offcanvas-social mb-50">
-            <h3 className="ht-offcanvas__title">Follow Us</h3>
-            <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="X"><i className="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-          </div>
         </div>
       </div>
 

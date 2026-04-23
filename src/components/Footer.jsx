@@ -15,12 +15,10 @@ export default function Footer() {
             </p>
           </div>
           <div className="ht-footer-top-right wow fadeInUp" data-wow-delay=".4s">
-            <ul className="footer-social">
-              <li><a href="https://www.linkedin.com/company/ablewski-partners" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a></li>
-              <li><a href="https://x.com/ablewskipartners" target="_blank" rel="noopener noreferrer" aria-label="X"><i className="fa-brands fa-x-twitter"></i></a></li>
-              <li><a href="https://www.instagram.com/ablewskipartners" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></a></li>
-              <li><a href="https://www.facebook.com/ablewskipartners" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fa-brands fa-facebook-f"></i></a></li>
-            </ul>
+            <a className="ht-footer-contact" href="mailto:advisory@passportbros.org">
+              advisory@passportbros.org
+              <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
 
