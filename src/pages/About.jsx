@@ -1,30 +1,31 @@
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 
 export default function About() {
   return (
     <>
-      <Breadcrumb title="About Us" />
+      <Breadcrumb title="About the Firm" />
       <section className="ht-about-area section-padding fix">
               <div className="container">
                   <div className="ht-about-wrapper">
                       <div className="row align-items-lg-center g-5">
                           <div className="col-lg-6 col-sm-12">
                               <div className="ht-about-img wow fadeInUp" data-wow-delay=".3s">
-                                  <img src="/assets/img/about/1.jpg" alt="img" />
+                                  <img src="/assets/img/about/1.jpg" alt="Ablewski & Partners advisory office" />
                               </div>
                           </div>
                           <div className="offset-lg-1 col-lg-5 col-sm-12">
                               <div className="ht-about-content">
                                   <div className="section-title">
-                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About company</span>
-                                      <h2 className="title wow fadeInUp" data-wow-delay=".5s">We committed to helping you achieve
-                                          your goals</h2>
-                                      <p className="wow fadeIn" data-wow-delay=".8s">At the core of our ethos lies a dedication to
-                                          our clients. Your success is our shared
-                                          triumph, and we're unwavering in our commitment to delivering exceptional,</p>
+                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
+                                      <h2 className="title wow fadeInUp" data-wow-delay=".5s">Founded for discerning clients — built to stay small on purpose</h2>
+                                      <p className="wow fadeIn" data-wow-delay=".8s">Ablewski &amp; Partners is an independent
+                                          strategic consultancy advising a small roster of private clients on citizenship,
+                                          residency and tax residency decisions. We work from Warsaw, coordinate with licensed
+                                          counsel in every jurisdiction we recommend, and take on fewer mandates than we turn
+                                          down. Your outcome is the only metric we are paid on.</p>
                                   </div>
-                                  <a href="/about" className="ht-btn style-3 wow fadeInUp" data-wow-delay="1.1s">Let’s Get in
-                                      Touch</a>
+                                  <Link to="/contact" className="ht-btn style-3 wow fadeInUp" data-wow-delay="1.1s">Schedule Consultation</Link>
                               </div>
                           </div>
                       </div>
@@ -34,34 +35,34 @@ export default function About() {
 
           <section className="ht-process-area inner-two fix section-padding">
               <div className="ht-process-shape">
-                  <img src="/assets/img/shape/3.svg" alt="shape" />
+                  <img src="/assets/img/shape/3.svg" alt="" aria-hidden="true" />
               </div>
               <div className="container">
                   <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Working process</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".5s">We make things easy <br /> for you to start</h2>
+                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">How we work</span>
+                      <h2 className="title wow fadeInUp" data-wow-delay=".5s">A measured path from <br /> first conversation to execution</h2>
                   </div>
                   <div className="ht-process-wrapper">
                       <div className="row justify-content-between">
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
                               <div className="ht-process-item two mt-25">
                                   <span className="step">step 01</span>
-                                  <h3 className="title">Onboarding</h3>
-                                  <p>Initial consultations to identify the client's goals and challenges.</p>
+                                  <h3 className="title">Discovery</h3>
+                                  <p>Confidential intake — family, assets, tax footprint, risk tolerance and the outcomes that actually matter.</p>
                               </div>
                           </div>
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
                               <div className="ht-process-item two mt-25">
-                                  <span className="step">step 01</span>
-                                  <h3 className="title">Planning</h3>
-                                  <p>Initial consultations to identify the client's goals and challenges.</p>
+                                  <span className="step">step 02</span>
+                                  <h3 className="title">Strategy Memo</h3>
+                                  <p>A jurisdiction-ranked memo with programs, timelines, tax impact and honest disqualifications — the ones you aren't a fit for.</p>
                               </div>
                           </div>
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".9s">
                               <div className="ht-process-item two mt-25">
-                                  <span className="step">step 01</span>
-                                  <h3 className="title">Implementation</h3>
-                                  <p>Initial consultations to identify the client's goals and challenges.</p>
+                                  <span className="step">step 03</span>
+                                  <h3 className="title">Execution</h3>
+                                  <p>Coordinated delivery with licensed local counsel, banks and investment agents under a single point of accountability.</p>
                               </div>
                           </div>
                       </div>
@@ -73,19 +74,19 @@ export default function About() {
               <div className="container">
                   <div className="ht-stats-wrapper wow fadeInUp" data-wow-delay=".3s">
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">10</span>K</h2>
-                          <h4>Years in business</h4>
-                          <p>Creating the successful path</p>
+                          <h2 className="number"><span className="count">14</span>+</h2>
+                          <h4>Years in capital markets</h4>
+                          <p>CFA-trained, NYSE-seasoned</p>
                       </div>
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">450</span></h2>
-                          <h4>Projects delivered</h4>
-                          <p>with client satisfaction in 6 years</p>
+                          <h2 className="number"><span className="count">100</span>+</h2>
+                          <h4>Mandates delivered</h4>
+                          <p>CBI, RBI and tax residency</p>
                       </div>
                       <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">37</span></h2>
-                          <h4>Team members</h4>
-                          <p>Working for your success</p>
+                          <h2 className="number"><span className="count">32</span></h2>
+                          <h4>Jurisdictions covered</h4>
+                          <p>Caribbean to the Gulf</p>
                       </div>
                   </div>
               </div>
@@ -98,17 +99,15 @@ export default function About() {
                           <div className="col-xl-7 col-lg-6">
                               <div className="ht-choose-left">
                                   <div className="content">
-                                      <h2 className="wow fadeInUp" data-wow-delay=".2s">Benefits of better credit score and
-                                          restoration</h2>
-                                      <p className="wow fadeInUp" data-wow-delay=".4s">We specialize in helping individuals and
-                                          families regain control of their financial
-                                          future by repairing and improving their credit scores team of experts is dedicated
-                                          to analyzing your credit report.</p>
-                                      <a href="/contact" className="ht-btn style-4 wow fadeInUp" data-wow-delay=".6s">get
-                                          started now</a>
+                                      <h2 className="wow fadeInUp" data-wow-delay=".2s">Four pillars of the practice</h2>
+                                      <p className="wow fadeInUp" data-wow-delay=".4s">We work the way private clients expect a
+                                          serious advisory to work: quietly, independently and with a written record of every
+                                          recommendation we make. We do not accept referral fees from program agents — our
+                                          income is the retainer you pay, and nothing else.</p>
+                                      <Link to="/contact" className="ht-btn style-4 wow fadeInUp" data-wow-delay=".6s">Schedule Consultation</Link>
                                   </div>
                                   <div className="thumb wow fadeInUp" data-wow-delay=".8s">
-                                      <img src="/assets/img/choose/1.jpg" alt="thumb" />
+                                      <img src="/assets/img/choose/1.jpg" alt="Private client discussion at the firm" />
                                   </div>
                               </div>
                           </div>
@@ -116,38 +115,38 @@ export default function About() {
                               <div className="ht-choose-right">
                                   <div className="single-item wow fadeInUp" data-wow-delay=".3s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/cashback.svg" alt="icon" />
+                                          <img src="/assets/img/icon/cashback.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>Money-Back Guarantee</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Expertise</h3>
+                                          <p>CFA-trained, NYSE-seasoned advisory combined with on-the-ground program experience.</p>
                                       </div>
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay=".6s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/resignation.svg" alt="icon" />
+                                          <img src="/assets/img/icon/resignation.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>Cancellation Policy</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Discretion</h3>
+                                          <p>Private intake, written memos under NDA and a strict no-marketing policy on client names.</p>
                                       </div>
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay=".9s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/secure-shield.svg" alt="icon" />
+                                          <img src="/assets/img/icon/secure-shield.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>High-end security</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Results</h3>
+                                          <p>Over 100 families relocated under mandate — CBI approvals, golden visas and tax moves.</p>
                                       </div>
                                   </div>
                                   <div className="single-item wow fadeInUp" data-wow-delay="1.2s">
                                       <div className="icon">
-                                          <img src="/assets/img/icon/money-bag.svg" alt="icon" />
+                                          <img src="/assets/img/icon/money-bag.svg" alt="" aria-hidden="true" />
                                       </div>
                                       <div className="content">
-                                          <h3>Personalized Strategy</h3>
-                                          <p>Our approach ensures that every project undertake is strategically crafted.</p>
+                                          <h3>Network</h3>
+                                          <p>Licensed counsel, bankers and program agents across 32 jurisdictions — vetted, not curated.</p>
                                       </div>
                                   </div>
                               </div>
@@ -160,76 +159,76 @@ export default function About() {
           <section className="ht-team-area section-padding fix">
               <div className="container">
                   <div className="section-title text-center">
-                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Team members</span>
-                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Get consulting from our <br /> best consultants</h2>
+                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Our Advisors</span>
+                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">A small bench of senior <br /> specialists — no junior handoffs</h2>
                   </div>
                   <div className="ht-team-wrapper">
                       <div className="row">
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".2s">
                               <div className="ht-team-items">
                                   <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/1.jpg" alt="img" /></a>
+                                      <Link to="/team-details"><img src="/assets/img/team/1.jpg" alt="Rafał Ablewski" /></Link>
                                       <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
+                                          <a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a>
+                                          <a href="#" aria-label="X"><i className="fa-brands fa-x-twitter"></i></a>
                                       </div>
                                   </div>
                                   <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Linda F. Collins</h4>
-                                      </a>
-                                      <p className="role">SR Marketer</p>
+                                      <Link to="/team-details">
+                                          <h4 className="name">Rafał Ablewski</h4>
+                                      </Link>
+                                      <p className="role">Managing Partner, CFA</p>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".4s">
                               <div className="ht-team-items">
                                   <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/2.jpg" alt="img" /></a>
+                                      <Link to="/team-details"><img src="/assets/img/team/2.jpg" alt="Head of Residency Programs" /></Link>
                                       <div className="social">
-                                          <a href=""><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href=""><i className="fa-brands fa-instagram"></i></a>
+                                          <a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a>
+                                          <a href="#" aria-label="X"><i className="fa-brands fa-x-twitter"></i></a>
                                       </div>
                                   </div>
                                   <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Sandra D. Rainey</h4>
-                                      </a>
-                                      <p className="role">Executive officer</p>
+                                      <Link to="/team-details">
+                                          <h4 className="name">M. Kowalska</h4>
+                                      </Link>
+                                      <p className="role">Head of Residency Programs</p>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".6s">
                               <div className="ht-team-items">
                                   <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/3.jpg" alt="img" /></a>
+                                      <Link to="/team-details"><img src="/assets/img/team/3.jpg" alt="Head of Citizenship Programs" /></Link>
                                       <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
+                                          <a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a>
+                                          <a href="#" aria-label="X"><i className="fa-brands fa-x-twitter"></i></a>
                                       </div>
                                   </div>
                                   <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Brooklyn simmons</h4>
-                                      </a>
-                                      <p className="role">CEO & Founder</p>
+                                      <Link to="/team-details">
+                                          <h4 className="name">A. Nowak</h4>
+                                      </Link>
+                                      <p className="role">Head of Citizenship Programs</p>
                                   </div>
                               </div>
                           </div>
                           <div className="col-lg-3 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".8s">
                               <div className="ht-team-items">
                                   <div className="ht-team-thumb">
-                                      <a href="/team-details"><img src="/assets/img/team/4.jpg" alt="img" /></a>
+                                      <Link to="/team-details"><img src="/assets/img/team/4.jpg" alt="Senior Tax Counsel" /></Link>
                                       <div className="social">
-                                          <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-                                          <a href="#"><i className="fa-brands fa-instagram"></i></a>
+                                          <a href="#" aria-label="LinkedIn"><i className="fa-brands fa-linkedin-in"></i></a>
+                                          <a href="#" aria-label="X"><i className="fa-brands fa-x-twitter"></i></a>
                                       </div>
                                   </div>
                                   <div className="ht-team-content">
-                                      <a href="/team-details">
-                                          <h4 className="name">Patrick Stewart</h4>
-                                      </a>
-                                      <p className="role">Finance advisor</p>
+                                      <Link to="/team-details">
+                                          <h4 className="name">J. Wiśniewski</h4>
+                                      </Link>
+                                      <p className="role">Senior Tax Counsel</p>
                                   </div>
                               </div>
                           </div>
@@ -244,13 +243,13 @@ export default function About() {
                       <div className="row gy-5">
                           <div className="col-lg-5">
                               <div className="section-title">
-                                  <span className="subtitle wow fadeInUp" data-wow-delay=".2s">TESTIMONIALS</span>
-                                  <h2 className="title">What are<br /> they saying<br /> about us?
+                                  <span className="subtitle wow fadeInUp" data-wow-delay=".2s">In their own words</span>
+                                  <h2 className="title">What private<br /> clients say<br /> about us.
                                   </h2>
                               </div>
                               <div className="ht-testi-btn">
-                                  <button className="ht-testi-prev"><i className="fa-solid fa-chevron-left"></i></button>
-                                  <button className="ht-testi-next"><i className="fa-solid fa-chevron-right"></i></button>
+                                  <button className="ht-testi-prev" aria-label="Previous testimonial"><i className="fa-solid fa-chevron-left"></i></button>
+                                  <button className="ht-testi-next" aria-label="Next testimonial"><i className="fa-solid fa-chevron-right"></i></button>
                               </div>
                           </div>
                           <div className="col-lg-7">
@@ -259,27 +258,22 @@ export default function About() {
                                       <div className="swiper-wrapper">
                                           <div className="swiper-slide">
                                               <div className="ht-testimonials-item">
-                                                  <div className="star">
+                                                  <div className="star" aria-label="5 out of 5">
                                                       <i className="fa-solid fa-star"></i>
                                                       <i className="fa-solid fa-star"></i>
                                                       <i className="fa-solid fa-star"></i>
                                                       <i className="fa-solid fa-star"></i>
                                                       <i className="fa-solid fa-star"></i>
                                                   </div>
-                                                  <p className="desc">"Guidance transformed the way we business. Their innovative
-                                                      solutions and
-                                                      forward-thinking approach revitalized our organization. The results for
-                                                      themselves, and we
-                                                      couldn't be happier with the outcome. Trusting Guidance was a wise
-                                                      investment in our future."
+                                                  <p className="desc">"They turned down two programs that would have been easier to sell and walked us through the one that actually fit the exit. The memo alone paid for the retainer."
                                                   </p>
                                                   <div className="ht-testimonials-author">
                                                       <div className="avatar">
-                                                          <img src="/assets/img/testimonials/1.png" alt="img" />
+                                                          <img src="/assets/img/testimonials/1.png" alt="" aria-hidden="true" />
                                                       </div>
                                                       <div className="author-info">
-                                                          <h5 className="name">John Smith</h5>
-                                                          <p className="role">Head of Developer</p>
+                                                          <h5 className="name">Founder, SaaS exit</h5>
+                                                          <p className="role">Central Europe · name withheld</p>
                                                       </div>
                                                   </div>
                                               </div>
