@@ -12813,27 +12813,23 @@ span {
   min-height: 58px;
 }
 .ht-header-area--full .ht-menu-main > nav > ul > li > a {
-  padding: 8px 16px;
+  padding: 20px 0;
   font-family: "Manrope", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  text-transform: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--ht-heading-color);
-  opacity: 1;
-  border-radius: 999px;
-  transition: background 0.2s ease, color 0.2s ease;
+  opacity: 0.72;
+  transition: opacity 0.2s ease, color 0.2s ease;
 }
 .ht-header-area--full .ht-menu-main > nav > ul > li:hover > a,
 .ht-header-area--full .ht-menu-main > nav > ul > li > a.active {
-  background: rgba(11, 15, 20, 0.06);
+  opacity: 1;
 }
-/* No hover underline -- the subtle pill is the affordance. */
+/* Tesla-style: no hover underline. The opacity shift is the affordance. */
 .ht-header-area--full .ht-menu-main > nav > ul > li > a::before {
   content: none;
-}
-.ht-header-area--full .ht-menu-main > nav > ul {
-  gap: 4px;
 }
 /* Wordmark scales down to match nav density */
 .ht-header-area--full .ht-wordmark {
