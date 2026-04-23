@@ -12203,30 +12203,11 @@ span {
   color: var(--ht-heading-color);
   text-transform: none;
   letter-spacing: -0.01em;
-  position: relative;
-  transition: color 0.25s ease, padding-left 0.25s ease;
-}
-.mega-col a::before {
-  content: "";
-  position: absolute;
-  left: -12px;
-  top: 50%;
-  width: 6px;
-  height: 1px;
-  background: var(--ht-theme-color-2);
-  transform: translateY(-50%) scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.25s ease;
+  transition: color 0.25s ease;
 }
 .mega-col a:hover,
 .mega-col a.is-active {
   color: var(--ht-theme-color-2);
-  padding-left: 12px;
-}
-.mega-col a:hover::before,
-.mega-col a.is-active::before {
-  transform: translateY(-50%) scaleX(1);
-  left: 0;
 }
 
 /* Preview panel on the right */
@@ -12529,14 +12510,15 @@ span {
   text-transform: none;
   color: var(--ht-heading-color);
   padding: 10px 22px;
-  border-left: 2px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease, background 0.2s ease;
+  border-left: 0;
+  background: transparent;
+  transition: color 0.2s ease;
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li > .sub-menu li a:hover {
   color: var(--ht-theme-color-2);
-  border-left-color: var(--ht-theme-color-2);
-  padding-left: 26px;
-  background: var(--ht-theme-color-5);
+  background: transparent;
+  padding-left: 22px;
+  border-left: 0;
 }
 /* Dropdown and mega-menu triggers have no glyph -- reveal is the affordance. */
 .ht-header-area .ht-main-header .ht-menu-main ul li.has-dropdown > a::after {
@@ -12832,21 +12814,22 @@ span {
 }
 .ht-header-area--full .ht-menu-main > nav > ul > li > a {
   padding: 20px 0;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--ht-heading-color);
-  opacity: 0.78;
-  transition: opacity 0.25s ease, color 0.25s ease;
+  opacity: 0.72;
+  transition: opacity 0.2s ease, color 0.2s ease;
 }
 .ht-header-area--full .ht-menu-main > nav > ul > li:hover > a,
 .ht-header-area--full .ht-menu-main > nav > ul > li > a.active {
   opacity: 1;
 }
+/* Tesla-style: no hover underline. The opacity shift is the affordance. */
 .ht-header-area--full .ht-menu-main > nav > ul > li > a::before {
-  bottom: 14px;
-  background: var(--ht-heading-color);
-  height: 1px;
+  content: none;
 }
 /* Wordmark scales down to match nav density */
 .ht-header-area--full .ht-wordmark {
