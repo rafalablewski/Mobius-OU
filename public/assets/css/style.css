@@ -7478,11 +7478,12 @@
  ---------------------------------------------- */
 body {
   font-family: "Inter", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.7;
+  letter-spacing: -0.005em;
   color: var(--ht-text-color);
-  background-color: var(--ht-white);
+  background-color: var(--ht-body);
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -7515,19 +7516,20 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Fraunces", sans-serif;
-  font-weight: 600;
+  font-family: "Fraunces", serif;
+  font-weight: 500;
   margin: 0px;
   padding: 0;
   color: var(--ht-heading-color);
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
   transition: all 0.4s ease-in-out;
 }
 
 h1 {
-  font-size: 100px;
-  line-height: 106%;
-  letter-spacing: -2px;
+  font-size: 88px;
+  line-height: 104%;
+  letter-spacing: -0.03em;
 }
 @media (max-width: 1600px) {
   h1 {
