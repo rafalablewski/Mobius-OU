@@ -73,6 +73,7 @@ export default function Breadcrumb({
             )}
           </h1>
           <span className="ht-breadcrumb__rule" aria-hidden="true" />
+          {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
         </div>
       </section>
     );

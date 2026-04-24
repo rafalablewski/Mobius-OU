@@ -39,6 +39,7 @@ export default function ProgramPage() {
           { label: program.name },
         ]}
         meta={[program.region, program.category, 'Updated 2026.Q1']}
+        tagline={program.tagline}
       />
       <section className="ht-program">
         <div className="container">
