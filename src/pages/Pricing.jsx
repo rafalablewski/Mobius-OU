@@ -4,7 +4,12 @@ import Breadcrumb from '../components/Breadcrumb.jsx';
 export default function Pricing() {
   return (
     <>
-      <Breadcrumb title="Programs &amp; Fees" current="Programs" />
+      <Breadcrumb
+        title="Programs &amp;"
+        emphasis="fees."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'Programs' }]}
+        tagline="Fixed retainers · No referral kickbacks"
+      />
       <section className="ht-price-area section-padding pb-0">
               <div className="container">
                   <div className="ht-price-wrapper">

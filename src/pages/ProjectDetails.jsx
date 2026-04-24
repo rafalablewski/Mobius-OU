@@ -12,7 +12,16 @@ const MANDATE_FIELDS = [
 export default function ProjectDetails() {
   return (
     <>
-      <Breadcrumb title="Mandate — Portugal Golden Visa" current="Case Study" />
+      <Breadcrumb
+        title="Portugal"
+        emphasis="Golden Visa."
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Mandates', to: '/project' },
+          { label: 'Case Study' },
+        ]}
+        tagline="Representative work · Anonymised"
+      />
       <MandateSummary
         fields={MANDATE_FIELDS}
         note="Case study is anonymised. Facts, jurisdiction and outcome are representative; identifying details are withheld by policy."

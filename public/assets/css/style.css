@@ -7471,13 +7471,16 @@
   --ht-theme-color-6:#6B6257;
   --ht-border-color:#E2DBCE;
   --ht-border-color-2:#0B0F14;
+  --ht-font-ui: "Manrope", sans-serif;
+  --ht-font-display: "Cormorant Garamond", serif;
+  --ht-font-serif-body: "Newsreader", Georgia, "Cormorant Garamond", serif;
 }
 
 /* --------------------------------------------
     Template Default Fonts & Fonts Styles
  ---------------------------------------------- */
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.65;
@@ -7516,7 +7519,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   margin: 0px;
   padding: 0;
@@ -7890,7 +7893,7 @@ span {
   justify-content: center;
   vertical-align: middle;
   font-size: 13px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 500;
   letter-spacing: 0.08em;
   padding: 16px 30px;
@@ -7964,7 +7967,7 @@ span {
 }
 .section-title .subtitle {
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   color: var(--ht-theme-color-2);
   line-height: 1;
@@ -8349,7 +8352,7 @@ span {
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li > a {
   color: var(--ht-theme-color);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -8513,50 +8516,305 @@ span {
   visibility: visible;
 }
 
+/* ==========================================================================
+   Subpage header — two editorial variants with ambient glow, glassmorphism
+   and staggered entrance transitions. Replaces the 2013-style hero slab.
+   ========================================================================== */
 .ht-breadcrumb-area {
   background: var(--ht-theme-color);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
-.ht-breadcrumb-area .ht-breadcrumb-heading {
-  padding: 250px 0 150px;
-  text-align: center;
+/* Ambient champagne glow — slowly drifts */
+.ht-breadcrumb-area::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% -20% auto;
+  width: 62%;
+  background:
+    radial-gradient(ellipse at 70% 50%,
+      rgba(201, 168, 106, 0.22) 0%,
+      rgba(201, 168, 106, 0.08) 28%,
+      rgba(11, 15, 20, 0) 62%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ht-breadcrumb-drift 18s ease-in-out infinite alternate;
 }
-@media (max-width: 992px) {
-  .ht-breadcrumb-area .ht-breadcrumb-heading {
-    padding: 180px 0 100px;
-  }
+/* Tissue-thin noise to kill banding */
+.ht-breadcrumb-area::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.32 0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.28'/></svg>");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
 }
-@media (max-width: 500px) {
-  .ht-breadcrumb-area .ht-breadcrumb-heading {
-    padding: 180px 0 80px;
-  }
+.ht-breadcrumb-area .container {
+  position: relative;
+  z-index: 1;
 }
-.ht-breadcrumb-area .ht-breadcrumb-title {
-  color: var(--ht-white);
-  font-size: 80px;
+@keyframes ht-breadcrumb-drift {
+  from { transform: translate3d(0, 0, 0); opacity: 0.9; }
+  to   { transform: translate3d(-6%, 3%, 0); opacity: 1; }
 }
-@media (max-width: 500px) {
-  .ht-breadcrumb-area .ht-breadcrumb-title {
-    font-size: 50px;
-  }
-}
-.ht-breadcrumb-area .ht-breadcrumb-list {
-  margin-top: 10px;
+
+.ht-breadcrumb__crumbs,
+.ht-breadcrumb__meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.64);
 }
-.ht-breadcrumb-area .ht-breadcrumb-list li a,
-.ht-breadcrumb-area .ht-breadcrumb-list li i {
-  color: var(--ht-white);
+.ht-breadcrumb__crumbs li a,
+.ht-breadcrumb__meta li a {
+  color: rgba(255, 255, 255, 0.64);
+  transition: color 0.25s ease-out;
 }
-.ht-breadcrumb-area .ht-breadcrumb-list li a:hover,
-.ht-breadcrumb-area .ht-breadcrumb-list li i:hover {
+.ht-breadcrumb__crumbs li a:hover,
+.ht-breadcrumb__meta li a:hover {
   color: var(--ht-theme-color-2);
 }
-.ht-breadcrumb-area .ht-breadcrumb-list li.active {
-  color: var(--ht-theme-color-3);
-  text-transform: capitalize;
+.ht-breadcrumb__crumbs li.is-current {
+  color: var(--ht-white);
+}
+.ht-breadcrumb__sep {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.ht-breadcrumb__title {
+  color: var(--ht-white);
+  font-family: var(--ht-font-display);
+  font-weight: 500;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 22ch;
+}
+.ht-breadcrumb__title em {
+  font-style: italic;
+  color: var(--ht-theme-color-2);
+  font-weight: 400;
+}
+.ht-breadcrumb__dateline {
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+  margin: 24px 0 0;
+  max-width: 72ch;
+}
+
+/* --- Entrance transitions (shared) --------------------------------------- */
+.ht-breadcrumb-area .ht-breadcrumb__crumbs,
+.ht-breadcrumb-area .ht-breadcrumb__meta,
+.ht-breadcrumb-area .ht-breadcrumb__title,
+.ht-breadcrumb-area .ht-breadcrumb__rule,
+.ht-breadcrumb-area .ht-breadcrumb__dateline,
+.ht-breadcrumb-area .ht-breadcrumb__aperture {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ht-breadcrumb-area .ht-breadcrumb__crumbs {
+  animation: ht-breadcrumb-slide 620ms;
+}
+.ht-breadcrumb-area .ht-breadcrumb__meta {
+  animation: ht-breadcrumb-slide 620ms 80ms;
+}
+.ht-breadcrumb-area .ht-breadcrumb__title {
+  animation: ht-breadcrumb-rise 780ms 160ms;
+}
+.ht-breadcrumb-area .ht-breadcrumb__rule {
+  animation: ht-breadcrumb-grow 620ms 360ms;
+}
+.ht-breadcrumb-area .ht-breadcrumb__dateline {
+  animation: ht-breadcrumb-rise 620ms 440ms;
+}
+.ht-breadcrumb-area .ht-breadcrumb__aperture {
+  animation: ht-breadcrumb-bloom 900ms 220ms;
+}
+@keyframes ht-breadcrumb-rise {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes ht-breadcrumb-slide {
+  from { opacity: 0; transform: translate3d(-10px, 0, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes ht-breadcrumb-grow {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+@keyframes ht-breadcrumb-bloom {
+  from { opacity: 0; transform: scale(0.72); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* --- Editorial variant: programs ------------------------------------------ */
+.ht-breadcrumb-area.is-editorial {
+  padding: 132px 0 104px;
+}
+@media (max-width: 768px) {
+  .ht-breadcrumb-area.is-editorial {
+    padding: 104px 0 72px;
+  }
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.32);
+  margin-bottom: clamp(72px, 11vw, 140px);
+}
+@media (max-width: 768px) {
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__rule {
+  display: block;
+  margin-top: 28px;
+  width: 64px;
+  height: 1px;
+  background: var(--ht-theme-color-2);
+  transform-origin: left center;
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__dateline {
+  margin-top: 18px;
+  font-family: var(--ht-font-serif-body);
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 56ch;
+}
+
+/* --- Aperture variant: every non-program subpage -------------------------- */
+.ht-breadcrumb-area.is-aperture {
+  padding: 132px 0 104px;
+  min-height: clamp(360px, 44vw, 520px);
+  display: flex;
+  align-items: stretch;
+}
+@media (max-width: 768px) {
+  .ht-breadcrumb-area.is-aperture {
+    padding: 104px 0 72px;
+    min-height: 0;
+  }
+}
+.ht-breadcrumb-area.is-aperture .container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.ht-breadcrumb-area.is-aperture .ht-breadcrumb__crumbs {
+  margin-bottom: auto;
+}
+.ht-breadcrumb-area.is-aperture .ht-breadcrumb__title {
+  margin-top: clamp(80px, 14vw, 180px);
+  line-height: 0.96;
+}
+.ht-breadcrumb-area.is-aperture .ht-breadcrumb__title em {
+  display: block;
+  margin-left: clamp(24px, 4vw, 72px);
+  margin-top: 2px;
+}
+.ht-breadcrumb-area.is-aperture .ht-breadcrumb__dateline {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(201, 168, 106, 0.32);
+  max-width: 48ch;
+}
+
+/* Glassmorphism capsule — floats top-right, frosted with blur */
+.ht-breadcrumb-area.is-aperture .ht-breadcrumb__aperture {
+  position: absolute;
+  top: clamp(80px, 12vw, 128px);
+  right: clamp(24px, 6vw, 88px);
+  width: clamp(104px, 11vw, 144px);
+  height: clamp(104px, 11vw, 144px);
+  padding: clamp(14px, 1.6vw, 22px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 168, 106, 0.08),
+    0 24px 60px -24px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  pointer-events: none;
+  z-index: 2;
+}
+@media (max-width: 640px) {
+  .ht-breadcrumb-area.is-aperture .ht-breadcrumb__aperture {
+    top: clamp(72px, 14vw, 104px);
+    right: clamp(16px, 5vw, 32px);
+    width: clamp(72px, 18vw, 96px);
+    height: clamp(72px, 18vw, 96px);
+    padding: 10px;
+  }
+}
+.ht-breadcrumb-area.is-aperture .ht-breadcrumb__ring {
+  position: absolute;
+  inset: clamp(14px, 1.6vw, 22px);
+  border: 1px solid rgba(201, 168, 106, 0.5);
+  border-top-color: rgba(201, 168, 106, 0.98);
+  border-radius: 50%;
+  animation: ht-breadcrumb-ring 22s linear infinite;
+  will-change: transform;
+}
+@media (max-width: 640px) {
+  .ht-breadcrumb-area.is-aperture .ht-breadcrumb__ring {
+    inset: 10px;
+  }
+}
+.ht-breadcrumb-area.is-aperture .ht-breadcrumb__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: var(--ht-theme-color-2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(201, 168, 106, 0.65);
+}
+@keyframes ht-breadcrumb-ring {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ht-breadcrumb-area::before,
+  .ht-breadcrumb-area.is-aperture .ht-breadcrumb__ring,
+  .ht-breadcrumb-area .ht-breadcrumb__crumbs,
+  .ht-breadcrumb-area .ht-breadcrumb__meta,
+  .ht-breadcrumb-area .ht-breadcrumb__title,
+  .ht-breadcrumb-area .ht-breadcrumb__rule,
+  .ht-breadcrumb-area .ht-breadcrumb__dateline,
+  .ht-breadcrumb-area .ht-breadcrumb__aperture {
+    animation: none;
+  }
 }
 
 .ht-hero-area {
@@ -8616,7 +8874,7 @@ span {
 }
 .ht-hero-content .desc {
   margin: 7px 0 32px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 22px;
   line-height: 1.5;
   letter-spacing: 0.005em;
@@ -9043,7 +9301,7 @@ span {
 }
 .ht-services-items .desc {
   margin-top: 10px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 16px;
   line-height: 1.65;
 }
@@ -9053,7 +9311,7 @@ span {
   font-size: 18px;
   color: var(--ht-theme-color-2);
   text-transform: uppercase;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   transition: all 0.4s ease-in-out;
 }
@@ -9256,7 +9514,7 @@ span {
   color: var(--ht-theme-color);
   text-transform: uppercase;
   font-size: 18px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   background: var(--ht-white);
   border-radius: 6px;
@@ -9601,7 +9859,7 @@ span {
 .accordion .accordion-item .accordion-header .accordion-button {
   position: relative;
   font-size: 20px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   background: var(--ht-theme-color);
   color: var(--ht-white);
@@ -9829,7 +10087,7 @@ span {
 }
 .ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-title {
   display: block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   text-transform: capitalize;
   background: var(--ht-theme-color-2);
   color: var(--ht-white);
@@ -9948,7 +10206,7 @@ span {
   background-color: var(--ht-theme-color-3);
   border-radius: 12px;
   padding: 12px 22px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 600;
   line-height: 20px;
@@ -10138,7 +10396,7 @@ span {
 .ht-price-item .single-item .left h2 span {
   font-size: 18px;
   text-transform: lowercase;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 400;
   transition: all 0.4s ease-in-out;
 }
@@ -10147,7 +10405,7 @@ span {
   margin-top: 14px;
   color: var(--ht-theme-color-2);
   text-transform: uppercase;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   transition: all 0.4s ease-in-out;
 }
@@ -10442,7 +10700,7 @@ span {
   align-items: center;
   color: #1c2539;
   font-size: 20px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   position: relative;
   z-index: 1;
@@ -10552,7 +10810,7 @@ span {
 }
 .ht-testimonials-item .desc {
   margin-top: 2px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 24px;
   font-weight: 500;
   line-height: 150%;
@@ -10591,7 +10849,7 @@ span {
 .testimonial-slides-wrapper .testimonial-slides-item p {
   margin-top: 8px;
   font-size: 40px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-serif-body);
   line-height: 1.2;
 }
 @media (max-width: 1199px) {
@@ -10780,7 +11038,7 @@ span {
   margin-top: 32px;
   display: inline-block;
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   line-height: 125%;
   color: var(--ht-theme-color-2);
@@ -10931,7 +11189,7 @@ span {
   display: inline-block;
   color: var(--ht-theme-color-2);
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   letter-spacing: -0.32px;
   text-transform: uppercase;
@@ -11134,7 +11392,7 @@ span {
   align-items: center;
 }
 .ht-blog-details-wrapper .details-arrrow-btn span {
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
@@ -11346,26 +11604,151 @@ span {
 .ht-sidebar-area .single-widget .recent-post:hover .thumb img {
   transform: scale(1.1);
 }
-.ht-sidebar-area .single-widget .service-list li:not(:last-child) {
-  margin-bottom: 15px;
+/* ==========================================================================
+   Practice Index — editorial numbered list for sidebar widgets.
+   Replaces the outlined-pill .service-list with a magazine-TOC treatment:
+   no card chrome, hanging brass numerals, hairline dividers, and a
+   considered hover micro-interaction.
+   ========================================================================== */
+.ht-practice-index {
+  position: relative;
+  padding-left: 20px;
+  margin: 0;
 }
-.ht-sidebar-area .single-widget .service-list li a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  border: 1px solid var(--ht-border-color);
-  border-radius: 6px;
-  color: var(--ht-theme-color);
-  transition: all 0.4s ease-in-out;
+.ht-practice-index::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 1px;
+  background: rgba(201, 168, 106, 0.55);
 }
-.ht-sidebar-area .single-widget .service-list li a i {
-  font-size: 16px;
+.ht-practice-index__eyebrow {
+  margin: 0 0 22px;
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-2);
 }
-.ht-sidebar-area .single-widget .service-list li a:hover {
+.ht-practice-index__eyebrow::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
   background: var(--ht-theme-color-2);
-  color: var(--ht-white);
-  border-color: transparent;
+  margin-top: 12px;
+}
+.ht-practice-index__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: practice;
+}
+.ht-practice-index__item {
+  counter-increment: practice;
+  border-top: 1px solid rgba(11, 15, 20, 0.09);
+}
+.ht-practice-index__item:last-child {
+  border-bottom: 1px solid rgba(11, 15, 20, 0.09);
+}
+.ht-practice-index__link {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 0;
+  color: var(--ht-heading-color);
+  position: relative;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.3s ease-out;
+}
+.ht-practice-index__link::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ht-theme-color-2);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ht-practice-index__link:hover {
+  color: var(--ht-theme-color-2);
+  transform: translateX(6px);
+}
+.ht-practice-index__link:hover::before {
+  transform: scaleY(1);
+}
+.ht-practice-index__link:focus-visible {
+  outline: 2px solid var(--ht-theme-color-2);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.ht-practice-index__num {
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  color: rgba(11, 15, 20, 0.42);
+  transition: color 0.3s ease-out;
+}
+.ht-practice-index__num::before {
+  content: counter(practice, decimal-leading-zero);
+}
+.ht-practice-index__link:hover .ht-practice-index__num {
+  color: var(--ht-theme-color-2);
+}
+.ht-practice-index__label {
+  font-family: var(--ht-font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.35vw, 22px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.ht-practice-index__chev {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(11, 15, 20, 0.26);
+  font-size: 13px;
+  transition:
+    color 0.3s ease-out,
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ht-practice-index__link:hover .ht-practice-index__chev {
+  color: var(--ht-theme-color-2);
+  transform: translateX(6px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ht-practice-index__link,
+  .ht-practice-index__link::before,
+  .ht-practice-index__num,
+  .ht-practice-index__chev {
+    transition: none;
+  }
+  .ht-practice-index__link:hover {
+    transform: none;
+  }
+  .ht-practice-index__link:hover .ht-practice-index__chev {
+    transform: none;
+  }
+}
+
+/* Flat-widget modifier — drops the ivory card chrome so editorial
+   treatments (e.g. .ht-practice-index) read clean inside the sidebar. */
+.ht-sidebar-area .single-widget--flat {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 .ht-sidebar-area .single-widget .tags-list {
   display: inline-block;
@@ -11433,7 +11816,7 @@ span {
 .ht-contact-info-area .contact-info-item span {
   display: block;
   margin: 60px 0 10px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 500;
 }
 .ht-contact-info-area .contact-info-item:hover .icon {
@@ -11577,7 +11960,7 @@ span {
 .ht-footer-widget-items .head {
   margin-bottom: 30px;
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 700;
   display: inline-block;
 }
@@ -11586,7 +11969,7 @@ span {
 }
 .ht-footer-widget-items .link-list li > a {
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   line-height: 26px;
   transition: all 0.4s ease-in-out;
 }
@@ -11662,7 +12045,7 @@ span {
 .ht-footer-wrapper .ht-footer-info .desc {
   color: var(--ht-white);
   margin: 20px 0;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 16px;
 }
 .ht-footer-wrapper .ht-footer-info .footer-social {
@@ -11700,7 +12083,7 @@ span {
 .ht-footer-wrapper .ht-footer-widgets .head {
   margin-bottom: 30px;
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 700;
   display: inline-block;
 }
@@ -11709,7 +12092,7 @@ span {
 }
 .ht-footer-wrapper .ht-footer-widgets .link-list li > a {
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   line-height: 26px;
   transition: all 0.4s ease-in-out;
 }
@@ -11731,7 +12114,7 @@ span {
 }
 .ht-footer-wrapper .ht-footer-widgets .widget-subscriber h5 {
   color: var(--ht-white);
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
 }
 .ht-footer-wrapper .ht-footer-widgets .widget-subscriber input {
   margin-top: 20px;
@@ -11887,7 +12270,7 @@ span {
 .ht-footer-copyrights .ht-footer-menu .menu-list li a {
   text-transform: uppercase;
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
 }
 
@@ -11931,7 +12314,7 @@ span {
 }
 .ht-cta-band__eyebrow {
   display: inline-block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -11943,7 +12326,7 @@ span {
   color: var(--ht-theme-color);
 }
 .ht-cta-band__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(24px, 2.6vw, 36px);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -12053,7 +12436,7 @@ span {
   filter: brightness(0) invert(1);
 }
 .ht-mandate-summary__label {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -12061,7 +12444,7 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-mandate-summary__value {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 17px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -12140,7 +12523,7 @@ span {
   flex-direction: column;
 }
 .mega-col h6 {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -12153,7 +12536,7 @@ span {
 .mega-col a {
   display: block;
   padding: 7px 0;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 16px;
   font-weight: 400;
   color: var(--ht-heading-color);
@@ -12210,7 +12593,7 @@ span {
   gap: 6px;
 }
 .mega-menu__preview-eyebrow {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -12218,7 +12601,7 @@ span {
   color: var(--ht-theme-color-2);
 }
 .mega-menu__preview-caption h4 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -12238,7 +12621,7 @@ span {
   align-items: center;
   gap: 8px;
   align-self: flex-start;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -12263,7 +12646,7 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -12355,7 +12738,7 @@ span {
 /* === Form status messages ============================================== */
 .form-status {
   margin-top: 16px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 14px;
   line-height: 1.55;
 }
@@ -12412,7 +12795,7 @@ span {
   box-shadow: 0 24px 60px rgba(11, 15, 20, 0.12);
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li > .sub-menu li a {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.005em;
@@ -12485,7 +12868,7 @@ span {
   position: absolute;
   top: 28px;
   right: 36px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -12516,7 +12899,7 @@ span {
 /* Title: Fraunces, no uppercase, champagne reveal */
 .ht-services-area .ht-services-items .title {
   margin-top: 30px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 20px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -12573,7 +12956,7 @@ span {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 20px;
@@ -12588,7 +12971,7 @@ span {
   font-weight: 500;
 }
 .ht-wordmark__amp {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 400;
   font-style: italic;
   font-size: 22px;
@@ -12686,7 +13069,7 @@ span {
   background: var(--ht-theme-color);
   color: var(--ht-white);
   border-radius: 999px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -12723,7 +13106,7 @@ span {
 }
 .ht-header-area--full .ht-menu-main > nav > ul > li > a {
   padding: 20px 0;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -12805,7 +13188,7 @@ span {
 }
 /* Numbers: Fraunces display, tighter leading, champagne "+" baked into text. */
 .ht-stats-area .ht-stats-items .number {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(40px, 5vw, 68px);
   font-weight: 500;
   line-height: 1;
@@ -12818,7 +13201,7 @@ span {
 }
 /* Label: Inter caps, tiny tracking */
 .ht-stats-area .ht-stats-items .number .plus {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   color: var(--ht-theme-color-2);
   font-weight: 400;
   font-size: 0.55em;
@@ -12828,7 +13211,7 @@ span {
 }
 .ht-stats-area .ht-stats-items h4 {
   margin-top: 20px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.18em;
@@ -12837,6 +13220,7 @@ span {
 }
 .ht-stats-area .ht-stats-items p {
   margin-top: 8px;
+  font-family: var(--ht-font-serif-body);
   font-size: 14px;
   line-height: 1.55;
   color: var(--ht-theme-color-6);
@@ -12897,7 +13281,7 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -13062,7 +13446,7 @@ span {
   }
 }
 .ht-approach__eyebrow {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.24em;
@@ -13070,7 +13454,7 @@ span {
   color: var(--ht-theme-color-2);
 }
 .ht-approach__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(28px, 3.4vw, 46px);
   font-weight: 400;
   line-height: 1.12;
@@ -13149,7 +13533,7 @@ span {
   border-radius: 999px;
   background: var(--ht-theme-color);
   border: 1px solid var(--ht-theme-color-2);
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 400;
   font-size: 26px;
   color: var(--ht-theme-color-2);
@@ -13174,7 +13558,7 @@ span {
   transform: translateY(-3px);
 }
 .ht-approach__step-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   font-size: 24px;
   letter-spacing: -0.01em;
@@ -13183,7 +13567,7 @@ span {
 }
 .ht-approach__body p {
   margin: 10px 0 14px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   color: rgba(255, 255, 255, 0.72);
   font-size: 15px;
   line-height: 1.7;
@@ -13191,7 +13575,7 @@ span {
 }
 .ht-approach__meta {
   display: inline-block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -13205,7 +13589,7 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -13282,7 +13666,7 @@ span {
 }
 .ht-program__eyebrow {
   display: inline-block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -13291,7 +13675,7 @@ span {
   margin-bottom: 14px;
 }
 .ht-program__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(36px, 4.8vw, 64px);
   font-weight: 500;
   line-height: 1.05;
@@ -13355,7 +13739,7 @@ span {
   }
 }
 .ht-program__fact-hero-label {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.24em;
@@ -13363,7 +13747,7 @@ span {
   color: var(--ht-theme-color-2);
 }
 .ht-program__fact-hero-value {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   font-size: clamp(36px, 5.4vw, 72px);
   line-height: 1.02;
@@ -13374,7 +13758,7 @@ span {
   margin-top: auto;
 }
 .ht-program__fact-hero-tag {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 14px;
   color: var(--ht-theme-color-6);
@@ -13385,13 +13769,14 @@ span {
   margin-right: 2px;
 }
 
-/* Sidecar */
+/* Sidecar — vertically centred so 1 item or 7 items sit at the optical middle */
 .ht-program__fact-sidecar {
   list-style: none;
   margin: 0;
   padding: 56px 0 56px 64px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0;
 }
 @media (max-width: 991px) {
@@ -13425,7 +13810,7 @@ span {
   }
 }
 .ht-program__fact-sidecar-label {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -13433,7 +13818,7 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-program__fact-sidecar-value {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   font-size: 18px;
   line-height: 1.4;
@@ -13456,13 +13841,13 @@ span {
   }
 }
 .ht-program__summary h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 28px;
   font-weight: 500;
   margin: 0 0 12px;
 }
 .ht-program__summary h3 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   margin: 32px 0 12px;
@@ -13502,7 +13887,7 @@ span {
   border-radius: 4px;
 }
 .ht-program__timeline h3 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   margin: 0 0 20px;
@@ -13528,21 +13913,21 @@ span {
   position: absolute;
   left: 0;
   top: 20px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 20px;
   color: var(--ht-theme-color-2);
 }
 .ht-program__timeline-step {
   display: block;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   color: var(--ht-heading-color);
 }
 .ht-program__timeline-weeks {
   display: block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -13596,7 +13981,7 @@ span {
   gap: 4px;
 }
 .ht-program__related-region {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -13604,13 +13989,13 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-program__related-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   color: var(--ht-heading-color);
 }
 .ht-program__related-link {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -13722,7 +14107,7 @@ span {
   justify-content: space-between;
   width: 100%;
   padding: 10px 0;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -13766,7 +14151,7 @@ span {
 .offcanvas-accordion__panel li a {
   display: block;
   padding: 6px 0;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 14px;
   color: var(--ht-theme-color-6);
 }
@@ -13786,7 +14171,7 @@ span {
   background: var(--ht-theme-color);
   color: var(--ht-white);
   border-radius: 999px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -13812,7 +14197,7 @@ span {
   border-top: 1px solid var(--ht-border-color);
 }
 .ht-offcanvas-info .ht-offcanvas__title {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -13823,7 +14208,7 @@ span {
 .ht-offcanvas-info span {
   display: block;
   padding: 4px 0;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 17px;
   color: var(--ht-heading-color);
 }
@@ -13989,7 +14374,7 @@ span {
 .ht-menu-mark {
   display: inline-block;
   margin-left: 6px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 0.9em;
   color: var(--ht-theme-color-2);
@@ -14025,7 +14410,7 @@ span {
   display: inline-block;
   margin-left: 10px;
   padding: 2px 8px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -14080,7 +14465,7 @@ span {
   min-width: 0;
 }
 .mega-menu__signoff-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 18px;
   font-weight: 500;
@@ -14089,7 +14474,7 @@ span {
   line-height: 1;
 }
 .mega-menu__signoff-role {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -14143,7 +14528,7 @@ span {
   margin-bottom: 14px;
   padding: 3px 10px;
   border-radius: 999px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -14158,7 +14543,7 @@ span {
   background: #7A1E26;
 }
 .ht-top-programs__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(32px, 3.4vw, 48px);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -14240,7 +14625,7 @@ span {
 }
 
 .ht-top-programs__index {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-weight: 400;
   font-size: 28px;
@@ -14284,7 +14669,7 @@ span {
   min-width: 0;
 }
 .ht-top-programs__country {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -14292,7 +14677,7 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-top-programs__name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -14300,7 +14685,7 @@ span {
   line-height: 1.15;
 }
 .ht-top-programs__tagline {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   line-height: 1.5;
   color: var(--ht-theme-color-6);
@@ -14308,7 +14693,7 @@ span {
 }
 
 .ht-top-programs__fact {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -14379,7 +14764,7 @@ span {
 }
 .ht-principles__eyebrow {
   display: inline-block;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -14391,7 +14776,7 @@ span {
   margin-bottom: 22px;
 }
 .ht-principles__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(30px, 3.4vw, 46px);
   font-weight: 500;
   line-height: 1.08;
@@ -14404,7 +14789,7 @@ span {
   font-weight: 400;
 }
 .ht-principles__lede {
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 15px;
   line-height: 1.65;
   color: var(--ht-theme-color-6);
@@ -14443,7 +14828,7 @@ span {
 }
 .ht-principles__numeral::before {
   content: counter(principle, upper-roman);
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-weight: 500;
   font-size: 28px;
@@ -14455,7 +14840,7 @@ span {
   min-width: 0;
 }
 .ht-principles__item-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 22px;
   font-weight: 500;
@@ -14465,7 +14850,7 @@ span {
   line-height: 1.2;
 }
 .ht-principles__item-body {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 14px;
   line-height: 1.7;
   color: var(--ht-theme-color-6);
@@ -14485,7 +14870,7 @@ span {
 }
 .ht-section-heading__eyebrow {
   display: inline-block;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -14494,7 +14879,7 @@ span {
   margin-bottom: 22px;
 }
 .ht-section-heading__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(30px, 3.4vw, 46px);
   font-weight: 500;
   line-height: 1.08;
@@ -14507,7 +14892,7 @@ span {
   font-weight: 400;
 }
 .ht-section-heading__lede {
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 15px;
   line-height: 1.65;
   color: var(--ht-theme-color-6);
@@ -14563,7 +14948,7 @@ span {
 .ht-approach-v2__eyebrow {
   display: inline-block;
   grid-column: 1 / 2;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -14572,7 +14957,7 @@ span {
 }
 .ht-approach-v2__title {
   grid-column: 1 / 2;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(32px, 3.8vw, 52px);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -14587,7 +14972,7 @@ span {
 .ht-approach-v2__lede {
   grid-column: 2 / 3;
   margin: 0;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 16px;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.72);
@@ -14639,7 +15024,7 @@ span {
   }
 }
 .ht-approach-v2__num {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-weight: 400;
   font-size: 22px;
@@ -14651,7 +15036,7 @@ span {
   font-weight: 500;
 }
 .ht-approach-v2__step-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(20px, 2.2vw, 30px);
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -14706,7 +15091,7 @@ span {
 }
 .ht-approach-v2__panel p {
   margin: 0;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 15px;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.78);

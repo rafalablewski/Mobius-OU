@@ -43,7 +43,12 @@ const FAQS = [
 export default function Faq() {
   return (
     <>
-      <Breadcrumb title="Client FAQ" current="FAQ" />
+      <Breadcrumb
+        title="Client"
+        emphasis="FAQ."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'FAQ' }]}
+        tagline="Plain answers for private clients"
+      />
       <section className="ht-faq-area section-padding fix">
               <div className="container">
                   <div className="ht-faq-wrapper">

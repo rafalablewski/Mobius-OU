@@ -4,7 +4,16 @@ import CTABand from '../components/CTABand.jsx';
 export default function TeamDetails() {
   return (
     <>
-      <Breadcrumb title="Advisor Profile" current="Rafał Ablewski" />
+      <Breadcrumb
+        title="Rafał"
+        emphasis="Ablewski."
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Advisors', to: '/team' },
+          { label: 'Rafał Ablewski' },
+        ]}
+        tagline="Managing Partner · CFA · NYSE-trained"
+      />
       <section className="team-details-area fix section-padding">
               <div className="container">
                   <div className="team-details-wrapper">

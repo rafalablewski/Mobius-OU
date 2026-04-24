@@ -16,7 +16,12 @@ const ADVISORS = [
 export default function Team() {
   return (
     <>
-      <Breadcrumb title="Our Advisors" current="Advisors" />
+      <Breadcrumb
+        title="Our"
+        emphasis="advisors."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'Advisors' }]}
+        tagline="A small roster · One point of accountability"
+      />
       <section className="ht-team-area section-padding fix">
         <div className="container">
           <div className="ht-team-wrapper">

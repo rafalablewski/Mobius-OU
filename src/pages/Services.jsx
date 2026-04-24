@@ -5,7 +5,12 @@ import CTABand from '../components/CTABand.jsx';
 export default function Services() {
   return (
     <>
-      <Breadcrumb title="Advisory Practice" current="Advisory Practice" />
+      <Breadcrumb
+        title="Advisory"
+        emphasis="practice."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'Practice' }]}
+        tagline="CBI · RBI · Tax residency · Asset protection"
+      />
       <section className="ht-services-area section-padding fix">
               <div className="container">
                   <div className="ht-services-wrapper">

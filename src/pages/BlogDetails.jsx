@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import PracticeIndex from '../components/PracticeIndex.jsx';
 import { BRIEFS } from '../data/briefs.js';
 
 const TAGS = ['#GoldenVisa', '#Portugal', '#EUResidency', '#CBI', '#TaxResidency'];
@@ -51,7 +52,15 @@ export default function BlogDetails() {
 
   return (
     <>
-      <Breadcrumb title="Brief" current={brief.title} />
+      <Breadcrumb
+        title={brief.title}
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Briefs', to: '/blog' },
+          { label: brief.title },
+        ]}
+        tagline={brief.date ? `Brief · ${brief.date}` : 'Intelligence brief'}
+      />
       <section className="ht-blog-details-area section-padding">
               <div className="container">
                   <div className="row gy-5">
@@ -288,16 +297,18 @@ export default function BlogDetails() {
                                   </div>
                               </div>
 
-                              <div className="single-widget">
-                                  <h4 className="widget-title">Practice areas</h4>
-                                  <ul className="service-list">
-                                      <li><Link to="/services">Citizenship by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Residency by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Tax Residency Planning <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Asset Protection <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Family Relocation <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Investment Strategy <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                  </ul>
+                              <div className="single-widget single-widget--flat">
+                                  <PracticeIndex
+                                    eyebrow="Practice areas"
+                                    items={[
+                                      { label: 'Citizenship by Investment', to: '/services' },
+                                      { label: 'Residency by Investment',   to: '/services' },
+                                      { label: 'Tax Residency Planning',    to: '/services' },
+                                      { label: 'Asset Protection',          to: '/services' },
+                                      { label: 'Family Relocation',         to: '/services' },
+                                      { label: 'Investment Strategy',       to: '/services' },
+                                    ]}
+                                  />
                               </div>
 
                               <div className="single-widget">
