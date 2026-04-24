@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import CTABand from '../components/CTABand.jsx';
+import PracticeIndex from '../components/PracticeIndex.jsx';
 import { BRIEFS } from '../data/briefs.js';
 
 const PRACTICE_TAGS = ['CBI', 'RBI', 'Tax Residency', 'Relocation', 'Asset Protection', 'Investment', 'Compliance', 'Malta', 'Portugal', 'UAE'];
@@ -99,16 +100,18 @@ export default function BlogList() {
                                   </div>
                               </div>
 
-                              <div className="single-widget">
-                                  <h4 className="widget-title">Practice areas</h4>
-                                  <ul className="service-list">
-                                      <li><Link to="/services">Citizenship by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Residency by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Tax Residency Planning <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Asset Protection <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Family Relocation <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      <li><Link to="/services">Investment Strategy <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                  </ul>
+                              <div className="single-widget single-widget--flat">
+                                  <PracticeIndex
+                                    eyebrow="Practice areas"
+                                    items={[
+                                      { label: 'Citizenship by Investment', to: '/services' },
+                                      { label: 'Residency by Investment',   to: '/services' },
+                                      { label: 'Tax Residency Planning',    to: '/services' },
+                                      { label: 'Asset Protection',          to: '/services' },
+                                      { label: 'Family Relocation',         to: '/services' },
+                                      { label: 'Investment Strategy',       to: '/services' },
+                                    ]}
+                                  />
                               </div>
 
                               <div className="single-widget">

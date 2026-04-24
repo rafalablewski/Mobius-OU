@@ -11604,26 +11604,151 @@ span {
 .ht-sidebar-area .single-widget .recent-post:hover .thumb img {
   transform: scale(1.1);
 }
-.ht-sidebar-area .single-widget .service-list li:not(:last-child) {
-  margin-bottom: 15px;
+/* ==========================================================================
+   Practice Index — editorial numbered list for sidebar widgets.
+   Replaces the outlined-pill .service-list with a magazine-TOC treatment:
+   no card chrome, hanging brass numerals, hairline dividers, and a
+   considered hover micro-interaction.
+   ========================================================================== */
+.ht-practice-index {
+  position: relative;
+  padding-left: 20px;
+  margin: 0;
 }
-.ht-sidebar-area .single-widget .service-list li a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  border: 1px solid var(--ht-border-color);
-  border-radius: 6px;
-  color: var(--ht-theme-color);
-  transition: all 0.4s ease-in-out;
+.ht-practice-index::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 1px;
+  background: rgba(201, 168, 106, 0.55);
 }
-.ht-sidebar-area .single-widget .service-list li a i {
-  font-size: 16px;
+.ht-practice-index__eyebrow {
+  margin: 0 0 22px;
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-2);
 }
-.ht-sidebar-area .single-widget .service-list li a:hover {
+.ht-practice-index__eyebrow::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
   background: var(--ht-theme-color-2);
-  color: var(--ht-white);
-  border-color: transparent;
+  margin-top: 12px;
+}
+.ht-practice-index__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: practice;
+}
+.ht-practice-index__item {
+  counter-increment: practice;
+  border-top: 1px solid rgba(11, 15, 20, 0.09);
+}
+.ht-practice-index__item:last-child {
+  border-bottom: 1px solid rgba(11, 15, 20, 0.09);
+}
+.ht-practice-index__link {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 0;
+  color: var(--ht-heading-color);
+  position: relative;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.3s ease-out;
+}
+.ht-practice-index__link::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ht-theme-color-2);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ht-practice-index__link:hover {
+  color: var(--ht-theme-color-2);
+  transform: translateX(6px);
+}
+.ht-practice-index__link:hover::before {
+  transform: scaleY(1);
+}
+.ht-practice-index__link:focus-visible {
+  outline: 2px solid var(--ht-theme-color-2);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.ht-practice-index__num {
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  color: rgba(11, 15, 20, 0.42);
+  transition: color 0.3s ease-out;
+}
+.ht-practice-index__num::before {
+  content: counter(practice, decimal-leading-zero);
+}
+.ht-practice-index__link:hover .ht-practice-index__num {
+  color: var(--ht-theme-color-2);
+}
+.ht-practice-index__label {
+  font-family: var(--ht-font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.35vw, 22px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.ht-practice-index__chev {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(11, 15, 20, 0.26);
+  font-size: 13px;
+  transition:
+    color 0.3s ease-out,
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ht-practice-index__link:hover .ht-practice-index__chev {
+  color: var(--ht-theme-color-2);
+  transform: translateX(6px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ht-practice-index__link,
+  .ht-practice-index__link::before,
+  .ht-practice-index__num,
+  .ht-practice-index__chev {
+    transition: none;
+  }
+  .ht-practice-index__link:hover {
+    transform: none;
+  }
+  .ht-practice-index__link:hover .ht-practice-index__chev {
+    transform: none;
+  }
+}
+
+/* Flat-widget modifier — drops the ivory card chrome so editorial
+   treatments (e.g. .ht-practice-index) read clean inside the sidebar. */
+.ht-sidebar-area .single-widget--flat {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 .ht-sidebar-area .single-widget .tags-list {
   display: inline-block;

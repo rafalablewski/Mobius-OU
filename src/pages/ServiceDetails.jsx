@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import PracticeIndex from '../components/PracticeIndex.jsx';
 
 export default function ServiceDetails() {
   return (
@@ -20,16 +21,8 @@ export default function ServiceDetails() {
                       <div className="row">
                           <div className="col-lg-4">
                               <div className="ht-sidebar-area v2">
-                                  <div className="single-widget">
-                                      <h4 className="widget-title">Advisory Practice</h4>
-                                      <ul className="service-list">
-                                          <li><Link to="/service-details">Citizenship by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                          <li><Link to="/service-details">Residency by Investment <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                          <li><Link to="/service-details">Tax Residency Planning <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                          <li><Link to="/service-details">Asset Protection <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                          <li><Link to="/service-details">Family Relocation <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                          <li><Link to="/service-details">Investment Strategy <i className="fa-solid fa-arrow-right"></i></Link></li>
-                                      </ul>
+                                  <div className="single-widget single-widget--flat">
+                                      <PracticeIndex eyebrow="Advisory Practice" />
                                   </div>
                                   <div className="single-contact">
                                       <div className="icon">
