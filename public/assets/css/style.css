@@ -13644,13 +13644,14 @@ span {
   margin-right: 2px;
 }
 
-/* Sidecar */
+/* Sidecar — vertically centred so 1 item or 7 items sit at the optical middle */
 .ht-program__fact-sidecar {
   list-style: none;
   margin: 0;
   padding: 56px 0 56px 64px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0;
 }
 @media (max-width: 991px) {
