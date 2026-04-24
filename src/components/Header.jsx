@@ -32,25 +32,25 @@ const PROGRAMS_COLUMNS = [
   {
     heading: 'Europe',
     items: [
-      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa',  badge: 'Top RBI', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
-      { to: '/programs/malta-mein',           label: 'Malta MEIN',            badge: 'Top CBI', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
-      { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum',  blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
-      { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax',        blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
+      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa',  badge: 'Top RBI', img: '/assets/img/blog/29.jpg', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
+      { to: '/programs/malta-mein',           label: 'Malta MEIN',            badge: 'Top CBI', img: '/assets/img/blog/13.jpg', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
+      { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum',  img: '/assets/img/blog/17.jpg', blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
+      { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax',        img: '/assets/img/blog/30.jpg', blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
     ],
   },
   {
     heading: 'Americas & Gulf',
     items: [
-      { to: '/programs/caribbean-cbi',        label: 'Caribbean CBI',         blurb: 'Passport portfolio planning after the US–EU pressure cycle.' },
-      { to: '/programs/uae-golden-residence', label: 'UAE Golden Residence',  blurb: 'Ten-year residency in Dubai — who still belongs there after corporate tax.' },
+      { to: '/programs/caribbean-cbi',        label: 'Caribbean CBI',         img: '/assets/img/blog/2.jpg',  blurb: 'Passport portfolio planning after the US–EU pressure cycle.' },
+      { to: '/programs/uae-golden-residence', label: 'UAE Golden Residence',  img: '/assets/img/blog/3.jpg',  blurb: 'Ten-year residency in Dubai — who still belongs there after corporate tax.' },
     ],
   },
   {
     heading: 'Practice areas',
     items: [
-      { to: '/services', label: 'Tax Residency Planning', blurb: 'Lawful relocation sequencing — day-counts, exit tax, written advice.' },
-      { to: '/services', label: 'Asset Protection',       blurb: 'Foundations and trusts — selected for legitimacy and longevity.' },
-      { to: '/services', label: 'Family Relocation',      blurb: 'Schooling, banking, staff — so the family lands with utilities, not surprises.' },
+      { to: '/services', label: 'Tax Residency Planning', img: '/assets/img/blog/14.jpg', blurb: 'Lawful relocation sequencing — day-counts, exit tax, written advice.' },
+      { to: '/services', label: 'Asset Protection',       img: '/assets/img/blog/15.jpg', blurb: 'Foundations and trusts — selected for legitimacy and longevity.' },
+      { to: '/services', label: 'Family Relocation',      img: '/assets/img/blog/14.jpg', blurb: 'Schooling, banking, staff — so the family lands with utilities, not surprises.' },
     ],
   },
 ];
@@ -87,7 +87,20 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
           </div>
         ))}
       </div>
-      <aside className="mega-menu__preview" aria-hidden="true">
+      <aside className={`mega-menu__preview mega-menu__preview--${id}`} aria-hidden="true">
+        {id === 'programs' && (
+          <div className="mega-menu__preview-frame">
+            {[...columns.flatMap((c) => c.items)].map((item) => (
+              <img
+                key={item.label}
+                src={item.img}
+                alt=""
+                loading="lazy"
+                className={preview === item ? 'is-active' : undefined}
+              />
+            ))}
+          </div>
+        )}
         <div className="mega-menu__preview-caption">
           <span className="mega-menu__preview-eyebrow">
             Featured
