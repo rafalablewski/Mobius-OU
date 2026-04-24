@@ -12239,7 +12239,10 @@ span {
   border-bottom: 1px solid var(--ht-border-color);
 }
 .mega-col a {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   padding: 7px 0;
   font-family: var(--ht-font-display);
   font-size: 16px;
@@ -14033,19 +14036,25 @@ span {
 /* === Mega-col badges =================================================== */
 .mega-col__badge {
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 0;
   padding: 2px 8px;
   font-family: var(--ht-font-ui);
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ht-theme-color-2);
-  background: rgba(201, 168, 106, 0.12);
-  border: 1px solid rgba(201, 168, 106, 0.32);
-  border-radius: 4px;
-  vertical-align: 2px;
+  border-radius: 999px;
   line-height: 1.5;
+}
+/* RBI (residency) -- deep forest green with ivory text */
+.mega-col__badge--rbi {
+  color: #F4EFE6;
+  background: #1F4D3A;
+}
+/* CBI (citizenship) -- deep oxblood red with ivory text */
+.mega-col__badge--cbi {
+  color: #F4EFE6;
+  background: #7A1E26;
 }
 .mega-menu__preview-eyebrow .mega-col__badge {
   margin-left: 8px;
