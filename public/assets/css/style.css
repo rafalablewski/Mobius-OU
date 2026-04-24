@@ -14035,31 +14035,50 @@ span {
 }
 
 /* === Mega-col badges =================================================== */
+/* Two-line stacked chip — small tracked rank eyebrow above a bolder
+   category tag. Reads like a premium data tag rather than a flat pill. */
 .mega-col__badge {
-  display: inline-block;
-  padding: 2px 8px;
-  font-family: var(--ht-font-ui);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  line-height: 1.5;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 4px 9px 5px;
+  border-radius: 6px;
+  line-height: 1;
   white-space: nowrap;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 6px 14px -10px rgba(11, 15, 20, 0.35);
+}
+.mega-col__badge-rank {
+  font-family: var(--ht-font-ui);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.mega-col__badge-tag {
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 /* RBI (residency) -- deep forest green with ivory text */
 .mega-col__badge--rbi {
   color: #F4EFE6;
-  background: #1F4D3A;
+  background: linear-gradient(180deg, #245A44 0%, #1A3F2F 100%);
 }
 /* CBI (citizenship) -- deep oxblood red with ivory text */
 .mega-col__badge--cbi {
   color: #F4EFE6;
-  background: #7A1E26;
+  background: linear-gradient(180deg, #8A2730 0%, #681820 100%);
 }
 .mega-menu__preview-eyebrow .mega-col__badge {
-  margin-left: 8px;
-  vertical-align: 1px;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 /* === Firm mega-menu signature block ==================================== */

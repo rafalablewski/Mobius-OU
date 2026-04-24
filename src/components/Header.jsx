@@ -77,11 +77,17 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
                 onFocus={() => setHovered(item)}
               >
                 {item.label}
-                {item.badge && (
-                  <span className={`mega-col__badge mega-col__badge--${(item.badge.split(' ').pop() || 'default').toLowerCase()}`}>
-                    {item.badge}
-                  </span>
-                )}
+                {item.badge && (() => {
+                  const parts = item.badge.split(' ');
+                  const rank = parts.slice(0, -1).join(' ');
+                  const tag = parts[parts.length - 1];
+                  return (
+                    <span className={`mega-col__badge mega-col__badge--${tag.toLowerCase()}`}>
+                      {rank && <span className="mega-col__badge-rank">{rank}</span>}
+                      <span className="mega-col__badge-tag">{tag}</span>
+                    </span>
+                  );
+                })()}
               </NavLink>
             ))}
           </div>
@@ -107,11 +113,17 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
         <div className="mega-menu__preview-caption">
           <span className="mega-menu__preview-eyebrow">
             Featured
-            {preview.badge && (
-              <span className={`mega-col__badge mega-col__badge--${(preview.badge.split(' ').pop() || 'default').toLowerCase()}`}>
-                {preview.badge}
-              </span>
-            )}
+            {preview.badge && (() => {
+              const parts = preview.badge.split(' ');
+              const rank = parts.slice(0, -1).join(' ');
+              const tag = parts[parts.length - 1];
+              return (
+                <span className={`mega-col__badge mega-col__badge--${tag.toLowerCase()}`}>
+                  {rank && <span className="mega-col__badge-rank">{rank}</span>}
+                  <span className="mega-col__badge-tag">{tag}</span>
+                </span>
+              );
+            })()}
           </span>
           <h4>{preview.label}</h4>
           <p>{preview.blurb}</p>
