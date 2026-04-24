@@ -195,8 +195,7 @@ export default function Header({ onOffcanvasOpen }) {
                       <a href="#">insights</a>
                       <ul className="sub-menu">
                         <li><NavLink to="/blog">Intelligence Briefs</NavLink></li>
-                        <li><NavLink to="/blog-list">Brief Archive</NavLink></li>
-                        <li><NavLink to="/blog-details">Brief Detail</NavLink></li>
+                        <li><NavLink to="/faq">Client FAQ</NavLink></li>
                       </ul>
                     </li>
                     <li><NavLink to="/contact">contact</NavLink></li>

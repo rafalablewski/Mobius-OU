@@ -13,7 +13,6 @@ import Faq from './pages/Faq.jsx';
 import Project from './pages/Project.jsx';
 import ProjectDetails from './pages/ProjectDetails.jsx';
 import Blog from './pages/Blog.jsx';
-import BlogList from './pages/BlogList.jsx';
 import BlogDetails from './pages/BlogDetails.jsx';
 import Contact from './pages/Contact.jsx';
 import ProgramPage from './pages/ProgramPage.jsx';
@@ -36,8 +35,7 @@ export default function App() {
         <Route path="/project" element={<Project />} />
         <Route path="/project-details" element={<ProjectDetails />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog-list" element={<BlogList />} />
-        <Route path="/blog-details" element={<BlogDetails />} />
+        <Route path="/blog-list" element={<Blog />} />
         <Route path="/blog-details/:slug" element={<BlogDetails />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/programs/:slug" element={<ProgramPage />} />

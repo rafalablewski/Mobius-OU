@@ -1,9 +1,22 @@
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import CTABand from '../components/CTABand.jsx';
 import { BRIEFS } from '../data/briefs.js';
 
+const ALL = 'All briefs';
+
 export default function Blog() {
+  const [active, setActive] = useState(ALL);
+
+  const categories = useMemo(
+    () => [ALL, ...Array.from(new Set(BRIEFS.map((b) => b.category)))],
+    [],
+  );
+
+  const filtered = active === ALL ? BRIEFS : BRIEFS.filter((b) => b.category === active);
+  const [feature, ...rest] = filtered;
+
   return (
     <>
       <Breadcrumb
@@ -12,45 +25,75 @@ export default function Blog() {
         crumbs={[{ label: 'Home', to: '/' }, { label: 'Briefs' }]}
         tagline="Curated intelligence · Private-client cadence"
       />
-      <section className="ht-blog-area section-padding fix">
+      <section className="ht-briefs section-padding">
         <div className="container">
-          <div className="ht-blog-wrapper">
-            <div className="row">
-              {BRIEFS.map((b, i) => (
-                <div
-                  key={b.id}
-                  className="col-lg-4 col-md-6 col-sm-12 wow fadeInUp"
-                  data-wow-delay={`${0.2 + i * 0.2}s`}
-                >
-                  <div className="ht-blog-item v2 mt-20">
-                    <div className="ht-blog-thumb">
-                      <Link to={`/blog-details/${b.slug}`}>
-                        <img src={`/assets/img/blog/${b.img}`} alt={b.title} loading="lazy" />
-                      </Link>
-                    </div>
-                    <div className="ht-blog-content">
-                      <ul className="ht-blog-meta">
-                        <li>{b.date}</li>
-                        <li>{b.category}</li>
-                      </ul>
-                      <Link to={`/blog-details/${b.slug}`}>
-                        <h3 className="title">{b.title}</h3>
-                      </Link>
-                      <Link to={`/blog-details/${b.slug}`} className="ht-link">Read Brief</Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="page-nav-wrap text-center">
-              <ul>
-                <li className="active"><a className="page-numbers" href="#">01</a></li>
-                <li><a className="page-numbers" href="#">02</a></li>
-                <li><a className="page-numbers" href="#">03</a></li>
-                <li><a className="page-numbers" href="#" aria-label="Next page"><i className="fa-solid fa-chevron-right"></i></a></li>
-              </ul>
-            </div>
+          <div className="ht-briefs__filter" role="tablist" aria-label="Filter briefs by category">
+            {categories.map((c) => (
+              <button
+                key={c}
+                type="button"
+                role="tab"
+                aria-selected={active === c}
+                className={`ht-briefs__chip${active === c ? ' is-active' : ''}`}
+                onClick={() => setActive(c)}
+              >
+                {c}
+              </button>
+            ))}
           </div>
+
+          {feature && (
+            <Link to={`/blog-details/${feature.slug}`} className="ht-brief-feature">
+              <img
+                src={`/assets/img/blog/${feature.img}`}
+                alt=""
+                aria-hidden="true"
+                className="ht-brief-feature__bg"
+                loading="eager"
+              />
+              <div className="ht-brief-feature__panel">
+                <span className="ht-brief-feature__eyebrow">
+                  <span className="ht-brief-feature__dot" aria-hidden="true" />
+                  Latest brief · {feature.category}
+                </span>
+                <h2 className="ht-brief-feature__title">{feature.title}</h2>
+                <p className="ht-brief-feature__lede">{feature.excerpt}</p>
+                <div className="ht-brief-feature__meta">
+                  <span>{feature.date}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{feature.readMinutes} min read</span>
+                  <span className="ht-brief-feature__cta" aria-hidden="true">
+                    Read brief →
+                  </span>
+                </div>
+              </div>
+            </Link>
+          )}
+
+          {rest.length > 0 && (
+            <ul className="ht-briefs__grid">
+              {rest.map((b, i) => {
+                const tone = i % 2 === 0 ? 'cream' : 'ink';
+                return (
+                  <li key={b.id} className={`ht-brief-tile ht-brief-tile--${tone}`}>
+                    <Link to={`/blog-details/${b.slug}`} className="ht-brief-tile__link">
+                      <span className="ht-brief-tile__cat">{b.category}</span>
+                      <h3 className="ht-brief-tile__title">{b.title}</h3>
+                      <p className="ht-brief-tile__excerpt">{b.excerpt}</p>
+                      <span className="ht-brief-tile__foot">
+                        <span>{b.date} · {b.readMinutes} min</span>
+                        <span className="ht-brief-tile__arrow" aria-hidden="true">→</span>
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
+          {filtered.length === 0 && (
+            <p className="ht-briefs__empty">No briefs in this category yet.</p>
+          )}
         </div>
       </section>
       <CTABand
@@ -58,7 +101,6 @@ export default function Blog() {
         title="Want the memo behind the brief?"
         body="Active clients receive the quarterly program re-ranking by email. One-off memos are available under NDA."
         primary={{ label: 'Request a Memo', to: '/contact' }}
-        secondary={{ label: 'Brief Archive', to: '/blog-list' }}
         bg="ink"
       />
     </>
