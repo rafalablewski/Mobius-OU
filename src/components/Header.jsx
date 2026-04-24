@@ -188,7 +188,6 @@ export default function Header({ onOffcanvasOpen }) {
                       <a href="#">case studies</a>
                       <ul className="sub-menu">
                         <li><NavLink to="/project">Select Mandates</NavLink></li>
-                        <li><NavLink to="/project-details">Mandate Detail</NavLink></li>
                       </ul>
                     </li>
                     <li className="has-dropdown">

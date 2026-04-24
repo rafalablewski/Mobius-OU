@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import CTABand from '../components/CTABand.jsx';
 
@@ -32,32 +31,17 @@ export default function Project() {
                 >
                   <div className="single-item v2">
                     <div className="thumb">
-                      <Link to="/project-details">
-                        <img src={`/assets/img/project/${m.img}`} alt={m.title} />
-                      </Link>
+                      <img src={`/assets/img/project/${m.img}`} alt={m.title} />
                       <div className="content">
-                        <Link to="/project-details">
-                          <h3>{m.title}</h3>
-                        </Link>
+                        <h3>{m.title}</h3>
                         <div className="bottom">
                           <p>{m.tag}</p>
-                          <Link to="/project-details" aria-label="Open case study">
-                            <img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" />
-                          </Link>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="page-nav-wrap text-center">
-              <ul>
-                <li className="active"><a className="page-numbers" href="#">01</a></li>
-                <li><a className="page-numbers" href="#">02</a></li>
-                <li><a className="page-numbers" href="#">03</a></li>
-                <li><a className="page-numbers" href="#" aria-label="Next page"><i className="fa-solid fa-chevron-right"></i></a></li>
-              </ul>
             </div>
             <p style={{ marginTop: '40px', fontSize: '13px', opacity: 0.65, textAlign: 'center' }}>
               Representative mandates, anonymised. Client names, photographs and identifying amounts are

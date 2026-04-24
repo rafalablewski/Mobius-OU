@@ -10107,76 +10107,6 @@ span {
   background: var(--ht-white);
   color: var(--ht-theme-color);
 }
-
-.ht-project-details-area .project-details-wrapper .thumbnails img {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-content {
-  margin-top: 60px;
-  margin-right: 50px;
-}
-@media (max-width: 1199px) {
-  .ht-project-details-area .project-details-wrapper .project-details-content {
-    margin-right: 0;
-  }
-}
-.ht-project-details-area .project-details-wrapper .project-details-content .project-thumbs {
-  margin-top: 40px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-content .project-thumbs img {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-content h3 {
-  margin-top: 48px;
-  margin-bottom: 10px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar {
-  margin-top: 60px;
-  background: var(--ht-theme-color-5);
-  border-radius: 20px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-title {
-  display: block;
-  font-family: var(--ht-font-ui);
-  text-transform: capitalize;
-  background: var(--ht-theme-color-2);
-  color: var(--ht-white);
-  padding: 15px 30px;
-  border-radius: 20px 20px 0 0;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-item-wrapper {
-  padding: 20px 30px 40px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-item-wrapper .single-widget {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-item-wrapper .single-widget:not(:last-child) {
-  border-bottom: 1px solid var(--ht-border-color);
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-item-wrapper .single-widget .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background: var(--ht-theme-color);
-  border-radius: 50%;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-item-wrapper .single-widget .info span {
-  font-size: 16px;
-}
-.ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-item-wrapper .single-widget .info h6 {
-  margin-top: -3px;
-}
-
 .ht-process-area {
   background: var(--ht-theme-color);
   position: relative;
@@ -14317,10 +14247,6 @@ span {
   }
   .ht-blog-details-wrapper {
     padding-right: 0 !important;
-  }
-  /* Mandate details sits flush */
-  .project-details-wrapper .thumbnails img {
-    height: auto;
   }
   /* Contact info icons + value stacked */
   .contact-info-item {

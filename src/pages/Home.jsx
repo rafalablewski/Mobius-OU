@@ -183,14 +183,14 @@ export default function Home() {
                               <div className="swiper-slide">
                                   <div className="single-item">
                                       <div className="thumb">
-                                          <Link to="/project-details"><img src="/assets/img/project/1.jpg" alt="Portugal Golden Visa mandate" /></Link>
+                                          <Link to="/project"><img src="/assets/img/project/1.jpg" alt="Portugal Golden Visa mandate" /></Link>
                                           <div className="content">
-                                              <Link to="/project-details">
+                                              <Link to="/project">
                                                   <h3>Portugal Golden Visa — Founder Relocation</h3>
                                               </Link>
                                               <div className="bottom">
                                                   <p>Residency by Investment</p>
-                                                  <Link to="/project-details" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
+                                                  <Link to="/project" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
                                               </div>
                                           </div>
                                       </div>
@@ -199,14 +199,14 @@ export default function Home() {
                               <div className="swiper-slide">
                                   <div className="single-item">
                                       <div className="thumb">
-                                          <Link to="/project-details"><img src="/assets/img/project/2.jpg" alt="Caribbean CBI mandate" /></Link>
+                                          <Link to="/project"><img src="/assets/img/project/2.jpg" alt="Caribbean CBI mandate" /></Link>
                                           <div className="content">
-                                              <Link to="/project-details">
+                                              <Link to="/project">
                                                   <h3>Caribbean CBI — Family Passport Portfolio</h3>
                                               </Link>
                                               <div className="bottom">
                                                   <p>Citizenship by Investment</p>
-                                                  <Link to="/project-details" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
+                                                  <Link to="/project" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
                                               </div>
                                           </div>
                                       </div>
@@ -215,15 +215,15 @@ export default function Home() {
                               <div className="swiper-slide">
                                   <div className="single-item">
                                       <div className="thumb">
-                                          <Link to="/project-details"><img src="/assets/img/project/3.jpg" alt="UAE relocation mandate" /></Link>
+                                          <Link to="/project"><img src="/assets/img/project/3.jpg" alt="UAE relocation mandate" /></Link>
                                           <div className="content">
-                                              <Link to="/project-details">
+                                              <Link to="/project">
                                                   <h3>UAE Golden Residence — Operator Exit</h3>
                                               </Link>
                                               <div className="bottom">
                                                   <p>Tax Residency</p>
 
-                                                  <Link to="/project-details" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
+                                                  <Link to="/project" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
                                               </div>
                                           </div>
                                       </div>
@@ -232,15 +232,15 @@ export default function Home() {
                               <div className="swiper-slide">
                                   <div className="single-item">
                                       <div className="thumb">
-                                          <Link to="/project-details"><img src="/assets/img/project/4.jpg" alt="Swiss lump-sum mandate" /></Link>
+                                          <Link to="/project"><img src="/assets/img/project/4.jpg" alt="Swiss lump-sum mandate" /></Link>
                                           <div className="content">
-                                              <Link to="/project-details">
+                                              <Link to="/project">
                                                   <h3>Swiss Lump-Sum — Legacy Structuring</h3>
                                               </Link>
                                               <div className="bottom">
                                                   <p>Asset Protection</p>
 
-                                                  <Link to="/project-details" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
+                                                  <Link to="/project" aria-label="Open case study"><img src="/assets/img/icon/arrow-up.svg" alt="" aria-hidden="true" /></Link>
                                               </div>
                                           </div>
                                       </div>

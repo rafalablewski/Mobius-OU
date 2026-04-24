@@ -213,10 +213,10 @@ export default function HomeCorporate() {
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".2s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/5.jpg" alt="Portugal Golden Visa mandate" /></a>
+                                      <a href="/project"><img src="/assets/img/project/5.jpg" alt="Portugal Golden Visa mandate" /></a>
                                   </div>
                                   <div className="content">
-                                      <a href="/project-details">
+                                      <a href="/project">
                                           <h4>Portugal Golden Visa</h4>
                                       </a>
                                       <span>Residency by Investment</span>
@@ -226,10 +226,10 @@ export default function HomeCorporate() {
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".4s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/6.jpg" alt="Caribbean CBI mandate" /></a>
+                                      <a href="/project"><img src="/assets/img/project/6.jpg" alt="Caribbean CBI mandate" /></a>
                                   </div>
                                   <div className="content">
-                                      <a href="/project-details">
+                                      <a href="/project">
                                           <h4>Caribbean CBI</h4>
                                       </a>
                                       <span>Citizenship by Investment</span>
@@ -239,10 +239,10 @@ export default function HomeCorporate() {
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".6s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/7.jpg" alt="UAE Golden Residence mandate" /></a>
+                                      <a href="/project"><img src="/assets/img/project/7.jpg" alt="UAE Golden Residence mandate" /></a>
                                   </div>
                                   <div className="content">
-                                      <a href="/project-details">
+                                      <a href="/project">
                                           <h4>UAE Golden Residence</h4>
                                       </a>
                                       <span>Tax Residency</span>
@@ -252,10 +252,10 @@ export default function HomeCorporate() {
                           <div className="col-lg-6 wow fadeInUp" data-wow-delay=".8s">
                               <div className="single-item">
                                   <div className="thumb">
-                                      <a href="/project-details"><img src="/assets/img/project/8.jpg" alt="Swiss lump-sum mandate" /></a>
+                                      <a href="/project"><img src="/assets/img/project/8.jpg" alt="Swiss lump-sum mandate" /></a>
                                   </div>
                                   <div className="content">
-                                      <a href="/project-details">
+                                      <a href="/project">
                                           <h4>Swiss Lump-Sum</h4>
                                       </a>
                                       <span>Asset Protection</span>
