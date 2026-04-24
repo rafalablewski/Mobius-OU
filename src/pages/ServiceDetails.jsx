@@ -4,7 +4,16 @@ import Breadcrumb from '../components/Breadcrumb.jsx';
 export default function ServiceDetails() {
   return (
     <>
-      <Breadcrumb title="Citizenship by Investment" current="Service Overview" />
+      <Breadcrumb
+        title="Citizenship by"
+        emphasis="investment."
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Practice', to: '/services' },
+          { label: 'Citizenship by Investment' },
+        ]}
+        tagline="End-to-end mandate delivery"
+      />
       <section className="ht-service-details-area section-padding">
               <div className="container">
                   <div className="service-details-wrapper">

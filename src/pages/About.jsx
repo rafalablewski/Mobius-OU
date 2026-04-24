@@ -4,7 +4,12 @@ import Breadcrumb from '../components/Breadcrumb.jsx';
 export default function About() {
   return (
     <>
-      <Breadcrumb title="About the Firm" />
+      <Breadcrumb
+        title="About"
+        emphasis="the firm."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'About' }]}
+        tagline="Independent advisory · Warsaw · Small by design"
+      />
       <section className="ht-about-area section-padding fix">
               <div className="container">
                   <div className="ht-about-wrapper">

@@ -6,7 +6,12 @@ import { BRIEFS } from '../data/briefs.js';
 export default function Blog() {
   return (
     <>
-      <Breadcrumb title="Intelligence Briefs" current="Insights" />
+      <Breadcrumb
+        title="Intelligence"
+        emphasis="briefs."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'Briefs' }]}
+        tagline="Curated intelligence · Private-client cadence"
+      />
       <section className="ht-blog-area section-padding fix">
         <div className="container">
           <div className="ht-blog-wrapper">

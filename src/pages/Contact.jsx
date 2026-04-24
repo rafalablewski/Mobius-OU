@@ -23,7 +23,12 @@ export default function Contact() {
 
   return (
     <>
-      <Breadcrumb title="Schedule Consultation" current="Contact" />
+      <Breadcrumb
+        title="Schedule"
+        emphasis="consultation."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'Contact' }]}
+        tagline="NDA intake · Response within two business days"
+      />
       <section className="ht-contact-info-area section-padding">
               <div className="container">
                   <div className="contact-info-wrapper">

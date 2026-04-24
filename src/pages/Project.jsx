@@ -14,7 +14,12 @@ const MANDATES = [
 export default function Project() {
   return (
     <>
-      <Breadcrumb title="Select Mandates" current="Case Studies" />
+      <Breadcrumb
+        title="Select"
+        emphasis="mandates."
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'Mandates' }]}
+        tagline="Representative work · Anonymised"
+      />
       <div className="ht-project-area section-padding">
         <div className="container">
           <div className="project-slide-wrapper inner-two">

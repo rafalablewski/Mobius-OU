@@ -51,7 +51,15 @@ export default function BlogDetails() {
 
   return (
     <>
-      <Breadcrumb title="Brief" current={brief.title} />
+      <Breadcrumb
+        title={brief.title}
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Briefs', to: '/blog' },
+          { label: brief.title },
+        ]}
+        tagline={brief.date ? `Brief · ${brief.date}` : 'Intelligence brief'}
+      />
       <section className="ht-blog-details-area section-padding">
               <div className="container">
                   <div className="row gy-5">

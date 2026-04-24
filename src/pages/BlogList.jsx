@@ -11,7 +11,16 @@ export default function BlogList() {
 
   return (
     <>
-      <Breadcrumb title="Brief Archive" current="Insights" />
+      <Breadcrumb
+        title="Brief"
+        emphasis="archive."
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Briefs', to: '/blog' },
+          { label: 'Archive' },
+        ]}
+        tagline="Every published brief"
+      />
       <section className="ht-blog-list-area section-padding">
               <div className="container">
                   <div className="row gy-5">

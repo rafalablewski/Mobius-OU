@@ -3,6 +3,19 @@ import Breadcrumb from '../components/Breadcrumb.jsx';
 import CTABand from '../components/CTABand.jsx';
 import { PROGRAMS, PROGRAMS_BY_SLUG } from '../data/programs.js';
 
+function splitProgramTitle({ name, country }) {
+  if (country && name.startsWith(country + ' ')) {
+    return { lead: country, tail: name.slice(country.length + 1) };
+  }
+  if (country === 'United Arab Emirates' && name.startsWith('UAE ')) {
+    return { lead: 'UAE', tail: name.slice(4) };
+  }
+  const words = name.trim().split(/\s+/);
+  return words.length >= 2
+    ? { lead: words.slice(0, -1).join(' '), tail: words[words.length - 1] }
+    : { lead: name, tail: undefined };
+}
+
 export default function ProgramPage() {
   const { slug } = useParams();
   const program = PROGRAMS_BY_SLUG[slug];
@@ -12,10 +25,21 @@ export default function ProgramPage() {
   }
 
   const related = PROGRAMS.filter((p) => p.slug !== slug).slice(0, 3);
+  const { lead, tail } = splitProgramTitle(program);
 
   return (
     <>
-      <Breadcrumb title={program.name} current={program.region} />
+      <Breadcrumb
+        variant="editorial"
+        title={lead}
+        emphasis={tail}
+        crumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Programs', to: '/pricing' },
+          { label: program.name },
+        ]}
+        meta={[program.region, program.category, 'Updated 2026.Q1']}
+      />
       <section className="ht-program">
         <div className="container">
           <div className="ht-program__head">
