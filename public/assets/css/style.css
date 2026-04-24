@@ -13881,29 +13881,26 @@ span {
 }
 .ht-program__timeline ol li {
   counter-increment: prog-step;
-  padding: 16px 18px;
+  position: relative;
+  padding: 18px 56px 18px 20px;
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(11, 15, 20, 0.06);
   border-radius: 10px;
 }
 .ht-program__timeline ol li::before {
   content: counter(prog-step, decimal-leading-zero);
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  background: var(--ht-heading-color);
-  border-radius: 5px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   font-family: var(--ht-font-ui);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ht-theme-color-2);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(11, 15, 20, 0.28);
+  font-variant-numeric: tabular-nums;
 }
 .ht-program__timeline-step {
   display: block;
-  margin-top: 4px;
   font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
@@ -13911,16 +13908,12 @@ span {
   color: var(--ht-heading-color);
 }
 .ht-program__timeline-weeks {
-  display: inline-block;
-  margin: 6px 0 0;
-  padding: 3px 9px;
-  background: rgba(201, 168, 106, 0.14);
-  border: 1px solid rgba(201, 168, 106, 0.3);
-  border-radius: 4px;
+  display: block;
+  margin: 4px 0 0;
   font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ht-theme-color-2);
 }
