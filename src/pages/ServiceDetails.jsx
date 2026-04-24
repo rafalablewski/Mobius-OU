@@ -24,16 +24,31 @@ export default function ServiceDetails() {
                                   <div className="single-widget single-widget--flat">
                                       <PracticeIndex eyebrow="Advisory Practice" />
                                   </div>
-                                  <div className="single-contact">
-                                      <div className="icon">
-                                          <img src="/assets/img/icon/16.svg" alt="" aria-hidden="true" />
-                                      </div>
-                                      <div className="content">
-                                          <h3>Speak with a partner, not a sales desk</h3>
-                                          <p>First conversations are confidential, unrecorded and always with a named advisor.</p>
-                                          <Link to="/contact" className="ct-btn">Schedule Consultation</Link>
-                                      </div>
-                                  </div>
+                                  <aside className="ht-direct-line" aria-label="Direct advisor line">
+                                      <p className="ht-direct-line__eyebrow">Direct Line</p>
+                                      <h3 className="ht-direct-line__title">Speak with a partner, not a sales desk</h3>
+                                      <p className="ht-direct-line__lede">
+                                          First conversations are confidential, unrecorded and always with a named advisor.
+                                      </p>
+                                      <ul className="ht-direct-line__meta">
+                                          <li>
+                                              <span className="ht-direct-line__meta-label">Response</span>
+                                              <span className="ht-direct-line__meta-value">Within one business day</span>
+                                          </li>
+                                          <li>
+                                              <span className="ht-direct-line__meta-label">Format</span>
+                                              <span className="ht-direct-line__meta-value">30 minutes, by appointment</span>
+                                          </li>
+                                          <li>
+                                              <span className="ht-direct-line__meta-label">Compensation</span>
+                                              <span className="ht-direct-line__meta-value">Advisory fee only — no commissions</span>
+                                          </li>
+                                      </ul>
+                                      <Link to="/contact" className="ht-direct-line__cta">
+                                          Schedule a consultation
+                                          <span className="ht-direct-line__cta-arrow" aria-hidden="true">→</span>
+                                      </Link>
+                                  </aside>
                               </div>
                           </div>
                           <div className="col-lg-8">

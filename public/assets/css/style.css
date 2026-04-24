@@ -9472,61 +9472,105 @@ span {
     margin-right: 0;
   }
 }
-.ht-service-details-area .ht-sidebar-area.v2 .single-contact {
-  margin-top: 60px;
-  background: var(--ht-theme-color);
-  border-radius: 20px;
-  text-align: center;
-  padding: 60px 0;
+/* ==========================================================================
+   Direct Line — sidebar contact block
+   Editorial replacement for the template "single-contact" card. No icon,
+   no rounded card, no salesy pill button. Hairline rules + tabular meta.
+   ========================================================================== */
+.ht-direct-line {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(11, 15, 20, 0.14);
 }
 @media (max-width: 992px) {
-  .ht-service-details-area .ht-sidebar-area.v2 .single-contact {
+  .ht-direct-line {
     margin-bottom: 50px;
   }
 }
-.ht-service-details-area .ht-sidebar-area.v2 .single-contact .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  height: 90px;
-  background: var(--ht-white);
-  border-radius: 10px;
-  margin: auto;
-}
-.ht-service-details-area .ht-sidebar-area.v2 .single-contact .content {
-  margin-top: 20px;
-}
-.ht-service-details-area .ht-sidebar-area.v2 .single-contact .content h3 {
-  color: var(--ht-white);
-  max-width: 240px;
-  margin: auto;
-}
-.ht-service-details-area .ht-sidebar-area.v2 .single-contact .content p {
-  margin-top: 10px;
-  color: var(--ht-white);
-  font-size: 16px;
-  max-width: 320px;
-  margin: 10px auto 0;
-}
-.ht-service-details-area .ht-sidebar-area.v2 .single-contact .content .ct-btn {
-  margin-top: 40px;
-  color: var(--ht-theme-color);
-  text-transform: uppercase;
-  font-size: 18px;
-  font-family: var(--ht-font-display);
+.ht-direct-line__eyebrow {
+  margin: 0 0 22px;
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
   font-weight: 600;
-  background: var(--ht-white);
-  border-radius: 6px;
-  width: 150px;
-  height: 60px;
-  line-height: 64px;
-  display: inline-block;
-  transition: all 0.4s ease-in-out;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-2);
 }
-.ht-service-details-area .ht-sidebar-area.v2 .single-contact .content .ct-btn:hover {
+.ht-direct-line__eyebrow::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
   background: var(--ht-theme-color-2);
-  color: var(--ht-white);
+  margin-top: 12px;
+}
+.ht-direct-line__title {
+  margin: 0 0 14px;
+  font-family: var(--ht-font-display);
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--ht-heading-color);
+}
+.ht-direct-line__lede {
+  margin: 0 0 28px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(11, 15, 20, 0.7);
+}
+.ht-direct-line__meta {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+}
+.ht-direct-line__meta li {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-top: 1px solid rgba(11, 15, 20, 0.09);
+}
+.ht-direct-line__meta li:last-child {
+  border-bottom: 1px solid rgba(11, 15, 20, 0.09);
+}
+.ht-direct-line__meta-label {
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(11, 15, 20, 0.5);
+}
+.ht-direct-line__meta-value {
+  font-size: 14px;
+  color: var(--ht-heading-color);
+}
+.ht-direct-line__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 0 6px;
+  font-family: var(--ht-font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ht-heading-color);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  transition:
+    color 0.3s ease,
+    gap 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ht-direct-line__cta:hover,
+.ht-direct-line__cta:focus-visible {
+  color: var(--ht-theme-color-2);
+  gap: 18px;
+}
+.ht-direct-line__cta-arrow {
+  font-family: var(--ht-font-ui);
+  font-weight: 400;
 }
 .ht-service-details-area .service-details-thumb {
   margin-bottom: 30px;
