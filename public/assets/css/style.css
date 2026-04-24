@@ -10987,35 +10987,33 @@ span {
 .ht-briefs__filter {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 40px;
+  gap: 6px;
+  margin-bottom: 36px;
 }
 .ht-briefs__chip {
-  padding: 11px 20px;
-  background: rgba(255, 255, 255, 0.55);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(11, 15, 20, 0.1);
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 0;
   border-radius: 999px;
   font-family: var(--ht-font-ui);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--ht-heading-color);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 .ht-briefs__chip:hover {
-  border-color: var(--ht-theme-color-2);
+  background: rgba(255, 255, 255, 0.65);
   color: var(--ht-theme-color-2);
-  transform: translateY(-1px);
 }
 .ht-briefs__chip.is-active {
   background: var(--ht-heading-color);
   color: var(--ht-white);
-  border-color: var(--ht-heading-color);
-  box-shadow: 0 10px 24px -14px rgba(11, 15, 20, 0.5);
 }
 
 .ht-brief-feature {
