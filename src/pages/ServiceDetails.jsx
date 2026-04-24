@@ -30,20 +30,20 @@ export default function ServiceDetails() {
                                       <p className="ht-direct-line__lede">
                                           First conversations are confidential, unrecorded and always with a named advisor.
                                       </p>
-                                      <ul className="ht-direct-line__pills">
-                                          <li className="ht-direct-line__pill">
-                                              <span className="ht-direct-line__pill-label">Response</span>
-                                              <span>1 business day</span>
-                                          </li>
-                                          <li className="ht-direct-line__pill">
-                                              <span className="ht-direct-line__pill-label">Format</span>
-                                              <span>30 min, by appointment</span>
-                                          </li>
-                                          <li className="ht-direct-line__pill">
-                                              <span className="ht-direct-line__pill-label">Fee model</span>
-                                              <span>Advisory only · no commissions</span>
-                                          </li>
-                                      </ul>
+                                      <dl className="ht-direct-line__pills">
+                                          <div className="ht-direct-line__pill">
+                                              <dt className="ht-direct-line__pill-label">Response</dt>
+                                              <dd>1 business day</dd>
+                                          </div>
+                                          <div className="ht-direct-line__pill">
+                                              <dt className="ht-direct-line__pill-label">Format</dt>
+                                              <dd>30 min, by appointment</dd>
+                                          </div>
+                                          <div className="ht-direct-line__pill">
+                                              <dt className="ht-direct-line__pill-label">Fee model</dt>
+                                              <dd>Advisory only · no commissions</dd>
+                                          </div>
+                                      </dl>
                                       <Link to="/contact" className="ht-direct-line__cta">
                                           Reach a Partner
                                           <span className="ht-direct-line__cta-arrow" aria-hidden="true">→</span>
