@@ -7471,13 +7471,16 @@
   --ht-theme-color-6:#6B6257;
   --ht-border-color:#E2DBCE;
   --ht-border-color-2:#0B0F14;
+  --ht-font-ui: "Manrope", sans-serif;
+  --ht-font-display: "Cormorant Garamond", serif;
+  --ht-font-serif-body: "Newsreader", Georgia, "Cormorant Garamond", serif;
 }
 
 /* --------------------------------------------
     Template Default Fonts & Fonts Styles
  ---------------------------------------------- */
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.65;
@@ -7516,7 +7519,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   margin: 0px;
   padding: 0;
@@ -7890,7 +7893,7 @@ span {
   justify-content: center;
   vertical-align: middle;
   font-size: 13px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 500;
   letter-spacing: 0.08em;
   padding: 16px 30px;
@@ -7964,7 +7967,7 @@ span {
 }
 .section-title .subtitle {
   font-size: 16px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   color: var(--ht-theme-color-2);
   line-height: 1;
@@ -8349,7 +8352,7 @@ span {
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li > a {
   color: var(--ht-theme-color);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -8534,7 +8537,7 @@ span {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -8559,7 +8562,7 @@ span {
 
 .ht-breadcrumb__title {
   color: var(--ht-white);
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   font-size: clamp(48px, 7vw, 96px);
   line-height: 1.02;
@@ -8669,7 +8672,7 @@ span {
 }
 .ht-breadcrumb-area.is-aperture .ht-breadcrumb__dateline {
   margin: 24px 0 0;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -8734,7 +8737,7 @@ span {
 }
 .ht-hero-content .desc {
   margin: 7px 0 32px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 22px;
   line-height: 1.5;
   letter-spacing: 0.005em;
@@ -9161,7 +9164,7 @@ span {
 }
 .ht-services-items .desc {
   margin-top: 10px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 16px;
   line-height: 1.65;
 }
@@ -9171,7 +9174,7 @@ span {
   font-size: 18px;
   color: var(--ht-theme-color-2);
   text-transform: uppercase;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   transition: all 0.4s ease-in-out;
 }
@@ -9374,7 +9377,7 @@ span {
   color: var(--ht-theme-color);
   text-transform: uppercase;
   font-size: 18px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   background: var(--ht-white);
   border-radius: 6px;
@@ -9719,7 +9722,7 @@ span {
 .accordion .accordion-item .accordion-header .accordion-button {
   position: relative;
   font-size: 20px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   background: var(--ht-theme-color);
   color: var(--ht-white);
@@ -9947,7 +9950,7 @@ span {
 }
 .ht-project-details-area .project-details-wrapper .project-details-sidebar .widget-title {
   display: block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   text-transform: capitalize;
   background: var(--ht-theme-color-2);
   color: var(--ht-white);
@@ -10066,7 +10069,7 @@ span {
   background-color: var(--ht-theme-color-3);
   border-radius: 12px;
   padding: 12px 22px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 600;
   line-height: 20px;
@@ -10256,7 +10259,7 @@ span {
 .ht-price-item .single-item .left h2 span {
   font-size: 18px;
   text-transform: lowercase;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 400;
   transition: all 0.4s ease-in-out;
 }
@@ -10265,7 +10268,7 @@ span {
   margin-top: 14px;
   color: var(--ht-theme-color-2);
   text-transform: uppercase;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   transition: all 0.4s ease-in-out;
 }
@@ -10560,7 +10563,7 @@ span {
   align-items: center;
   color: #1c2539;
   font-size: 20px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   position: relative;
   z-index: 1;
@@ -10670,7 +10673,7 @@ span {
 }
 .ht-testimonials-item .desc {
   margin-top: 2px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 24px;
   font-weight: 500;
   line-height: 150%;
@@ -10709,7 +10712,7 @@ span {
 .testimonial-slides-wrapper .testimonial-slides-item p {
   margin-top: 8px;
   font-size: 40px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   line-height: 1.2;
 }
 @media (max-width: 1199px) {
@@ -10898,7 +10901,7 @@ span {
   margin-top: 32px;
   display: inline-block;
   font-size: 16px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   line-height: 125%;
   color: var(--ht-theme-color-2);
@@ -11049,7 +11052,7 @@ span {
   display: inline-block;
   color: var(--ht-theme-color-2);
   font-size: 16px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   letter-spacing: -0.32px;
   text-transform: uppercase;
@@ -11252,7 +11255,7 @@ span {
   align-items: center;
 }
 .ht-blog-details-wrapper .details-arrrow-btn span {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
@@ -11551,7 +11554,7 @@ span {
 .ht-contact-info-area .contact-info-item span {
   display: block;
   margin: 60px 0 10px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 500;
 }
 .ht-contact-info-area .contact-info-item:hover .icon {
@@ -11695,7 +11698,7 @@ span {
 .ht-footer-widget-items .head {
   margin-bottom: 30px;
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 700;
   display: inline-block;
 }
@@ -11704,7 +11707,7 @@ span {
 }
 .ht-footer-widget-items .link-list li > a {
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   line-height: 26px;
   transition: all 0.4s ease-in-out;
 }
@@ -11780,7 +11783,7 @@ span {
 .ht-footer-wrapper .ht-footer-info .desc {
   color: var(--ht-white);
   margin: 20px 0;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 16px;
 }
 .ht-footer-wrapper .ht-footer-info .footer-social {
@@ -11818,7 +11821,7 @@ span {
 .ht-footer-wrapper .ht-footer-widgets .head {
   margin-bottom: 30px;
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 700;
   display: inline-block;
 }
@@ -11827,7 +11830,7 @@ span {
 }
 .ht-footer-wrapper .ht-footer-widgets .link-list li > a {
   color: var(--ht-white);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   line-height: 26px;
   transition: all 0.4s ease-in-out;
 }
@@ -11849,7 +11852,7 @@ span {
 }
 .ht-footer-wrapper .ht-footer-widgets .widget-subscriber h5 {
   color: var(--ht-white);
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
 }
 .ht-footer-wrapper .ht-footer-widgets .widget-subscriber input {
   margin-top: 20px;
@@ -12005,7 +12008,7 @@ span {
 .ht-footer-copyrights .ht-footer-menu .menu-list li a {
   text-transform: uppercase;
   font-size: 16px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 600;
 }
 
@@ -12049,7 +12052,7 @@ span {
 }
 .ht-cta-band__eyebrow {
   display: inline-block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -12061,7 +12064,7 @@ span {
   color: var(--ht-theme-color);
 }
 .ht-cta-band__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(24px, 2.6vw, 36px);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -12171,7 +12174,7 @@ span {
   filter: brightness(0) invert(1);
 }
 .ht-mandate-summary__label {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -12179,7 +12182,7 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-mandate-summary__value {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 17px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -12258,7 +12261,7 @@ span {
   flex-direction: column;
 }
 .mega-col h6 {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -12271,7 +12274,7 @@ span {
 .mega-col a {
   display: block;
   padding: 7px 0;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 16px;
   font-weight: 400;
   color: var(--ht-heading-color);
@@ -12328,7 +12331,7 @@ span {
   gap: 6px;
 }
 .mega-menu__preview-eyebrow {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -12336,7 +12339,7 @@ span {
   color: var(--ht-theme-color-2);
 }
 .mega-menu__preview-caption h4 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -12356,7 +12359,7 @@ span {
   align-items: center;
   gap: 8px;
   align-self: flex-start;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -12381,7 +12384,7 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -12473,7 +12476,7 @@ span {
 /* === Form status messages ============================================== */
 .form-status {
   margin-top: 16px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 14px;
   line-height: 1.55;
 }
@@ -12530,7 +12533,7 @@ span {
   box-shadow: 0 24px 60px rgba(11, 15, 20, 0.12);
 }
 .ht-header-area .ht-main-header .ht-menu-main ul li > .sub-menu li a {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.005em;
@@ -12603,7 +12606,7 @@ span {
   position: absolute;
   top: 28px;
   right: 36px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -12634,7 +12637,7 @@ span {
 /* Title: Fraunces, no uppercase, champagne reveal */
 .ht-services-area .ht-services-items .title {
   margin-top: 30px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 20px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -12691,7 +12694,7 @@ span {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 20px;
@@ -12706,7 +12709,7 @@ span {
   font-weight: 500;
 }
 .ht-wordmark__amp {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 400;
   font-style: italic;
   font-size: 22px;
@@ -12804,7 +12807,7 @@ span {
   background: var(--ht-theme-color);
   color: var(--ht-white);
   border-radius: 999px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -12841,7 +12844,7 @@ span {
 }
 .ht-header-area--full .ht-menu-main > nav > ul > li > a {
   padding: 20px 0;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -12923,7 +12926,7 @@ span {
 }
 /* Numbers: Fraunces display, tighter leading, champagne "+" baked into text. */
 .ht-stats-area .ht-stats-items .number {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(40px, 5vw, 68px);
   font-weight: 500;
   line-height: 1;
@@ -12936,7 +12939,7 @@ span {
 }
 /* Label: Inter caps, tiny tracking */
 .ht-stats-area .ht-stats-items .number .plus {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   color: var(--ht-theme-color-2);
   font-weight: 400;
   font-size: 0.55em;
@@ -12946,7 +12949,7 @@ span {
 }
 .ht-stats-area .ht-stats-items h4 {
   margin-top: 20px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.18em;
@@ -12955,7 +12958,7 @@ span {
 }
 .ht-stats-area .ht-stats-items p {
   margin-top: 8px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 14px;
   line-height: 1.55;
   color: var(--ht-theme-color-6);
@@ -13016,7 +13019,7 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -13181,7 +13184,7 @@ span {
   }
 }
 .ht-approach__eyebrow {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.24em;
@@ -13189,7 +13192,7 @@ span {
   color: var(--ht-theme-color-2);
 }
 .ht-approach__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(28px, 3.4vw, 46px);
   font-weight: 400;
   line-height: 1.12;
@@ -13268,7 +13271,7 @@ span {
   border-radius: 999px;
   background: var(--ht-theme-color);
   border: 1px solid var(--ht-theme-color-2);
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 400;
   font-size: 26px;
   color: var(--ht-theme-color-2);
@@ -13293,7 +13296,7 @@ span {
   transform: translateY(-3px);
 }
 .ht-approach__step-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   font-size: 24px;
   letter-spacing: -0.01em;
@@ -13302,7 +13305,7 @@ span {
 }
 .ht-approach__body p {
   margin: 10px 0 14px;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   color: rgba(255, 255, 255, 0.72);
   font-size: 15px;
   line-height: 1.7;
@@ -13310,7 +13313,7 @@ span {
 }
 .ht-approach__meta {
   display: inline-block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -13324,7 +13327,7 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -13401,7 +13404,7 @@ span {
 }
 .ht-program__eyebrow {
   display: inline-block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -13410,7 +13413,7 @@ span {
   margin-bottom: 14px;
 }
 .ht-program__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(36px, 4.8vw, 64px);
   font-weight: 500;
   line-height: 1.05;
@@ -13474,7 +13477,7 @@ span {
   }
 }
 .ht-program__fact-hero-label {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.24em;
@@ -13482,7 +13485,7 @@ span {
   color: var(--ht-theme-color-2);
 }
 .ht-program__fact-hero-value {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   font-size: clamp(36px, 5.4vw, 72px);
   line-height: 1.02;
@@ -13493,7 +13496,7 @@ span {
   margin-top: auto;
 }
 .ht-program__fact-hero-tag {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 14px;
   color: var(--ht-theme-color-6);
@@ -13544,7 +13547,7 @@ span {
   }
 }
 .ht-program__fact-sidecar-label {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -13552,7 +13555,7 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-program__fact-sidecar-value {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-weight: 500;
   font-size: 18px;
   line-height: 1.4;
@@ -13575,13 +13578,13 @@ span {
   }
 }
 .ht-program__summary h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 28px;
   font-weight: 500;
   margin: 0 0 12px;
 }
 .ht-program__summary h3 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   margin: 32px 0 12px;
@@ -13621,7 +13624,7 @@ span {
   border-radius: 4px;
 }
 .ht-program__timeline h3 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   margin: 0 0 20px;
@@ -13647,21 +13650,21 @@ span {
   position: absolute;
   left: 0;
   top: 20px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 20px;
   color: var(--ht-theme-color-2);
 }
 .ht-program__timeline-step {
   display: block;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   color: var(--ht-heading-color);
 }
 .ht-program__timeline-weeks {
   display: block;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -13715,7 +13718,7 @@ span {
   gap: 4px;
 }
 .ht-program__related-region {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -13723,13 +13726,13 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-program__related-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   color: var(--ht-heading-color);
 }
 .ht-program__related-link {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -13841,7 +13844,7 @@ span {
   justify-content: space-between;
   width: 100%;
   padding: 10px 0;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -13885,7 +13888,7 @@ span {
 .offcanvas-accordion__panel li a {
   display: block;
   padding: 6px 0;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 14px;
   color: var(--ht-theme-color-6);
 }
@@ -13905,7 +13908,7 @@ span {
   background: var(--ht-theme-color);
   color: var(--ht-white);
   border-radius: 999px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -13931,7 +13934,7 @@ span {
   border-top: 1px solid var(--ht-border-color);
 }
 .ht-offcanvas-info .ht-offcanvas__title {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -13942,7 +13945,7 @@ span {
 .ht-offcanvas-info span {
   display: block;
   padding: 4px 0;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 17px;
   color: var(--ht-heading-color);
 }
@@ -14108,7 +14111,7 @@ span {
 .ht-menu-mark {
   display: inline-block;
   margin-left: 6px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 0.9em;
   color: var(--ht-theme-color-2);
@@ -14144,7 +14147,7 @@ span {
   display: inline-block;
   margin-left: 10px;
   padding: 2px 8px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -14199,7 +14202,7 @@ span {
   min-width: 0;
 }
 .mega-menu__signoff-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 18px;
   font-weight: 500;
@@ -14208,7 +14211,7 @@ span {
   line-height: 1;
 }
 .mega-menu__signoff-role {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -14262,7 +14265,7 @@ span {
   margin-bottom: 14px;
   padding: 3px 10px;
   border-radius: 999px;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -14277,7 +14280,7 @@ span {
   background: #7A1E26;
 }
 .ht-top-programs__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(32px, 3.4vw, 48px);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -14359,7 +14362,7 @@ span {
 }
 
 .ht-top-programs__index {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-weight: 400;
   font-size: 28px;
@@ -14403,7 +14406,7 @@ span {
   min-width: 0;
 }
 .ht-top-programs__country {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -14411,7 +14414,7 @@ span {
   color: var(--ht-theme-color-6);
 }
 .ht-top-programs__name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -14419,7 +14422,7 @@ span {
   line-height: 1.15;
 }
 .ht-top-programs__tagline {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 13px;
   line-height: 1.5;
   color: var(--ht-theme-color-6);
@@ -14427,7 +14430,7 @@ span {
 }
 
 .ht-top-programs__fact {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--ht-font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -14498,7 +14501,7 @@ span {
 }
 .ht-principles__eyebrow {
   display: inline-block;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -14510,7 +14513,7 @@ span {
   margin-bottom: 22px;
 }
 .ht-principles__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(30px, 3.4vw, 46px);
   font-weight: 500;
   line-height: 1.08;
@@ -14523,7 +14526,7 @@ span {
   font-weight: 400;
 }
 .ht-principles__lede {
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 15px;
   line-height: 1.65;
   color: var(--ht-theme-color-6);
@@ -14562,7 +14565,7 @@ span {
 }
 .ht-principles__numeral::before {
   content: counter(principle, upper-roman);
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-weight: 500;
   font-size: 28px;
@@ -14574,7 +14577,7 @@ span {
   min-width: 0;
 }
 .ht-principles__item-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-size: 22px;
   font-weight: 500;
@@ -14584,7 +14587,7 @@ span {
   line-height: 1.2;
 }
 .ht-principles__item-body {
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 14px;
   line-height: 1.7;
   color: var(--ht-theme-color-6);
@@ -14604,7 +14607,7 @@ span {
 }
 .ht-section-heading__eyebrow {
   display: inline-block;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -14613,7 +14616,7 @@ span {
   margin-bottom: 22px;
 }
 .ht-section-heading__title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(30px, 3.4vw, 46px);
   font-weight: 500;
   line-height: 1.08;
@@ -14626,7 +14629,7 @@ span {
   font-weight: 400;
 }
 .ht-section-heading__lede {
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 15px;
   line-height: 1.65;
   color: var(--ht-theme-color-6);
@@ -14682,7 +14685,7 @@ span {
 .ht-approach-v2__eyebrow {
   display: inline-block;
   grid-column: 1 / 2;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -14691,7 +14694,7 @@ span {
 }
 .ht-approach-v2__title {
   grid-column: 1 / 2;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(32px, 3.8vw, 52px);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -14706,7 +14709,7 @@ span {
 .ht-approach-v2__lede {
   grid-column: 2 / 3;
   margin: 0;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 16px;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.72);
@@ -14758,7 +14761,7 @@ span {
   }
 }
 .ht-approach-v2__num {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-style: italic;
   font-weight: 400;
   font-size: 22px;
@@ -14770,7 +14773,7 @@ span {
   font-weight: 500;
 }
 .ht-approach-v2__step-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--ht-font-display);
   font-size: clamp(20px, 2.2vw, 30px);
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -14825,7 +14828,7 @@ span {
 }
 .ht-approach-v2__panel p {
   margin: 0;
-  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  font-family: var(--ht-font-serif-body);
   font-size: 15px;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.78);
