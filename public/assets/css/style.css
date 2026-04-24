@@ -11615,15 +11615,6 @@ span {
   padding-left: 20px;
   margin: 0;
 }
-.ht-practice-index::before {
-  content: "";
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 0;
-  width: 1px;
-  background: rgba(201, 168, 106, 0.55);
-}
 .ht-practice-index__eyebrow {
   margin: 0 0 22px;
   font-family: var(--ht-font-ui);
