@@ -5,37 +5,37 @@ const FAQS = [
   {
     id: 'faq1',
     open: true,
-    q: 'WHAT IS THE DIFFERENCE BETWEEN CBI AND RBI?',
+    q: 'What is the difference between CBI and RBI?',
     a: 'Citizenship by Investment (CBI) grants a second nationality and passport in exchange for a qualifying contribution or investment — St Kitts, Dominica, Malta. Residency by Investment (RBI) grants the right to live and, over time, naturalise — Portugal Golden Visa, UAE Golden Residence, Switzerland. CBI is faster and portable; RBI is slower, cheaper and tied to physical presence.',
   },
   {
     id: 'faq2',
-    q: 'DO I HAVE TO GIVE UP MY CURRENT CITIZENSHIP?',
+    q: 'Do I have to give up my current citizenship?',
     a: 'In almost all programs we advise on, no. Most Caribbean CBI states, Malta, Portugal, Switzerland, Singapore and the UAE accept dual or multiple citizenship or residency. Your own country of citizenship may have its own rules — we flag that at Discovery and coordinate with your local counsel.',
   },
   {
     id: 'faq3',
-    q: 'WILL A SECOND RESIDENCY CHANGE WHERE I PAY TAX?',
+    q: 'Will a second residency change where I pay tax?',
     a: 'Only if you move your tax residency, which is a separate question from immigration residency. Tax residency is set by physical presence, ties and treaty rules — not by where your permit was issued. We plan the two together, in writing, with your tax counsel.',
   },
   {
     id: 'faq4',
-    q: 'HOW LONG DOES A TYPICAL MANDATE TAKE?',
+    q: 'How long does a typical mandate take?',
     a: 'Caribbean CBI: four to nine months. Portugal Golden Visa: six to twelve months. Malta citizenship via exceptional services: twelve to thirty-six months. UAE Golden Residence: two to four months. We publish updated timelines to active clients each quarter.',
   },
   {
     id: 'faq5',
-    q: 'CAN YOU GUARANTEE APPROVAL?',
+    q: 'Can you guarantee approval?',
     a: 'No serious advisor can. What we can do is review your file against each program\'s current due diligence standard before we accept the mandate, and decline cases we think will not clear. That conversation is part of the first engagement.',
   },
   {
     id: 'faq6',
-    q: 'HOW IS THE ADVISORY PAID?',
+    q: 'How is the advisory paid?',
     a: 'A fixed-fee retainer, invoiced in milestones, independent of program outcomes. Government, legal and program-agent fees are separate and paid to those parties directly. We do not accept referral commissions — you pay us, nobody else does.',
   },
   {
     id: 'faq7',
-    q: 'IS EVERYTHING CONFIDENTIAL?',
+    q: 'Is everything confidential?',
     a: 'Yes. Every mandate runs under NDA. The firm does not publish client names, case photographs or identifiable numbers. Testimonials on this site are attributed by role and region only.',
   },
 ];
@@ -52,27 +52,22 @@ export default function Faq() {
       <section className="ht-faq-area section-padding fix">
               <div className="container">
                   <div className="ht-faq-wrapper">
-                      <div className="row gy-5">
-                          <div className="col-xl-6 col-lg-6">
-                              <div className="ht-faq-thumb wow fadeInUp" data-wow-delay=".3s">
-                                  <img src="/assets/img/faq/1.jpg" alt="Private client advisory session in Warsaw" />
-                              </div>
-                          </div>
-                          <div className="col-xl-5 offset-xl-1 col-lg-6">
-                              <div className="ht-faq-content">
-                                  <div className="section-title">
-                                      <span className="subtitle wow fadeInUp" data-wow-delay=".3s">client faq</span>
-                                      <h2 className="title wow fadeInUp" data-wow-delay=".6s">What private clients ask us first</h2>
-                                      <p className="wow fadeInUp" data-wow-delay=".9s">A condensed answer to the questions that come
+                      <div className="row justify-content-center">
+                          <div className="col-xl-8 col-lg-10">
+                              <div className="ht-faq-content ht-faq-content--centered">
+                                  <div className="section-title text-center">
+                                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">client faq</span>
+                                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">What private clients ask us first</h2>
+                                      <p className="wow fadeInUp" data-wow-delay=".6s">A condensed answer to the questions that come
                                           up in every first call — on residency versus citizenship, on tax, on fees, and on
                                           confidentiality. Detailed answers are in your Strategy Memo, under NDA.</p>
                                   </div>
-                                  <div className="accordion" id="faqAccordion">
+                                  <div className="accordion ht-faq-accordion" id="faqAccordion">
                                       {FAQS.map((f, i) => (
                                         <div
                                           key={f.id}
                                           className="accordion-item wow fadeInUp"
-                                          data-wow-delay={`${1.2 + i * 0.15}s`}
+                                          data-wow-delay={`${0.8 + i * 0.1}s`}
                                         >
                                           <h5 className="accordion-header">
                                             <button
@@ -130,9 +125,6 @@ export default function Faq() {
                                       <p className="desc desc-2">"The memo gave us a two-year plan we could actually live with — not a brochure. The firm stayed with us through every application stage."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
-                                          <div className="avatar">
-                                              <img src="/assets/img/testimonials/2.png" alt="" aria-hidden="true" />
-                                          </div>
                                           <div className="author-info">
                                               <h5 className="name">Industrial Family Office</h5>
                                               <p className="role">Germany · name withheld</p>
@@ -152,9 +144,6 @@ export default function Faq() {
                                       <p className="desc desc-2">"We briefed three advisors. Mobius was the only one who put the honest disqualifications in writing before asking for a cent."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
-                                          <div className="avatar">
-                                              <img src="/assets/img/testimonials/3.png" alt="" aria-hidden="true" />
-                                          </div>
                                           <div className="author-info">
                                               <h5 className="name">Tech founder</h5>
                                               <p className="role">UAE · name withheld</p>
@@ -174,9 +163,6 @@ export default function Faq() {
                                       <p className="desc desc-2">"Discretion was non-negotiable for us. Over three years, nothing about our file has ever surfaced anywhere."
                                       </p>
                                       <div className="ht-testimonials-author ht-testimonials-author-2">
-                                          <div className="avatar">
-                                              <img src="/assets/img/testimonials/4.png" alt="" aria-hidden="true" />
-                                          </div>
                                           <div className="author-info">
                                               <h5 className="name">Private Investor</h5>
                                               <p className="role">CEE · name withheld</p>

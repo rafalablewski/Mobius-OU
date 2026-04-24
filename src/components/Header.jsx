@@ -5,23 +5,23 @@ const FIRM_COLUMNS = [
   {
     heading: 'Practice',
     items: [
-      { to: '/about',           label: 'About the Firm',    img: '/assets/img/about/1.jpg',  blurb: 'Independent, partner-led — no junior handoffs, no in-house product to sell.' },
-      { to: '/services',        label: 'Advisory Practice', img: '/assets/img/about/2.jpg',  blurb: 'Six practice areas, one partner accountable end-to-end.' },
-      { to: '/service-details', label: 'Service Overview',  img: '/assets/img/about/3.jpg',  blurb: 'How a mandate unfolds — from first call to second passport.' },
+      { to: '/about',           label: 'About the Firm',    blurb: 'Independent, partner-led — no junior handoffs, no in-house product to sell.' },
+      { to: '/services',        label: 'Advisory Practice', blurb: 'Six practice areas, one partner accountable end-to-end.' },
+      { to: '/service-details', label: 'Service Overview',  blurb: 'How a mandate unfolds — from first call to second passport.' },
     ],
   },
   {
     heading: 'People',
     items: [
-      { to: '/team',         label: 'Our Advisors',   img: '/assets/img/team/1.jpg', blurb: 'A small bench of senior specialists — written opinions, on the record.' },
-      { to: '/team-details', label: 'Advisor Profile', img: '/assets/img/team/2.jpg', blurb: 'Meet Rafał — fourteen years across NYSE capital markets and EU private client advisory.' },
+      { to: '/team',         label: 'Our Advisors',    blurb: 'A small bench of senior specialists — written opinions, on the record.' },
+      { to: '/team-details', label: 'Advisor Profile', blurb: 'Meet Rafał — fourteen years across NYSE capital markets and EU private client advisory.' },
     ],
   },
   {
     heading: 'Resources',
     items: [
-      { to: '/pricing', label: 'Programs & Fees', img: '/assets/img/project/1.jpg', blurb: 'Comparison table of the programs we actively run.' },
-      { to: '/faq',     label: 'Client FAQ',      img: '/assets/img/about/3.jpg',   blurb: 'Seven questions prospective clients ask before the first call.' },
+      { to: '/pricing', label: 'Programs & Fees', blurb: 'Comparison table of the programs we actively run.' },
+      { to: '/faq',     label: 'Client FAQ',      blurb: 'Seven questions prospective clients ask before the first call.' },
     ],
   },
 ];
@@ -76,7 +76,7 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
                 onMouseEnter={() => setHovered(item)}
                 onFocus={() => setHovered(item)}
               >
-                {item.label}
+                <span className="mega-col__label">{item.label}</span>
                 {item.badge && (
                   <span className={`mega-col__badge mega-col__badge--${(item.badge.split(' ').pop() || 'default').toLowerCase()}`}>
                     {item.badge}
@@ -87,18 +87,23 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
           </div>
         ))}
       </div>
-      <aside className="mega-menu__preview" aria-hidden="true">
-        <div className="mega-menu__preview-frame">
-          {[...columns.flatMap((c) => c.items)].map((item) => (
-            <img
-              key={item.label}
-              src={item.img}
-              alt=""
-              loading="lazy"
-              className={preview === item ? 'is-active' : undefined}
-            />
-          ))}
-        </div>
+      <aside className={`mega-menu__preview mega-menu__preview--${id}`} aria-hidden="true">
+        <Link to={ctaTo} className="mega-menu__all">
+          {ctaLabel} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </Link>
+        {id === 'programs' && (
+          <div className="mega-menu__preview-frame">
+            {[...columns.flatMap((c) => c.items)].map((item) => (
+              <img
+                key={item.label}
+                src={item.img}
+                alt=""
+                loading="lazy"
+                className={preview === item ? 'is-active' : undefined}
+              />
+            ))}
+          </div>
+        )}
         <div className="mega-menu__preview-caption">
           <span className="mega-menu__preview-eyebrow">
             Featured
@@ -114,19 +119,11 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
             Explore <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </Link>
         </div>
-        <Link to={ctaTo} className="mega-menu__all">
-          {ctaLabel} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </Link>
         {id === 'firm' && (
           <div className="mega-menu__signoff">
-            <span className="mega-menu__signoff-portrait">
-              <img src="/assets/img/team/1.jpg" alt="" loading="lazy" />
-            </span>
-            <span className="mega-menu__signoff-body">
-              <span className="mega-menu__signoff-name">Rafał Ablewski</span>
-              <span className="mega-menu__signoff-role">Managing Partner · CFA</span>
-              <span className="mega-menu__signoff-tag">Every first call is with the partner.</span>
-            </span>
+            <span className="mega-menu__signoff-name">Rafał Ablewski</span>
+            <span className="mega-menu__signoff-role">Managing Partner · CFA</span>
+            <span className="mega-menu__signoff-tag">Every first call is with the partner.</span>
           </div>
         )}
       </aside>
@@ -185,18 +182,10 @@ export default function Header({ onOffcanvasOpen }) {
                       />
                     </li>
                     <li className="has-dropdown">
-                      <a href="#">case studies</a>
-                      <ul className="sub-menu">
-                        <li><NavLink to="/project">Select Mandates</NavLink></li>
-                        <li><NavLink to="/project-details">Mandate Detail</NavLink></li>
-                      </ul>
-                    </li>
-                    <li className="has-dropdown">
                       <a href="#">insights</a>
                       <ul className="sub-menu">
                         <li><NavLink to="/blog">Intelligence Briefs</NavLink></li>
-                        <li><NavLink to="/blog-list">Brief Archive</NavLink></li>
-                        <li><NavLink to="/blog-details">Brief Detail</NavLink></li>
+                        <li><NavLink to="/faq">Client FAQ</NavLink></li>
                       </ul>
                     </li>
                     <li><NavLink to="/contact">contact</NavLink></li>

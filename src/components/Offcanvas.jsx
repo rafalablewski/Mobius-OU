@@ -33,8 +33,6 @@ const PANELS = {
     label: 'Insights',
     items: [
       { to: '/blog', label: 'Intelligence Briefs' },
-      { to: '/blog-list', label: 'Brief Archive' },
-      { to: '/project', label: 'Select Mandates' },
     ],
   },
 };

@@ -47,7 +47,6 @@ export default function Footer() {
               <ul className="link-list">
                 <li><Link to="/about">About the Firm</Link></li>
                 <li><Link to="/team">Our Advisors</Link></li>
-                <li><Link to="/project">Case Studies</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
@@ -56,7 +55,6 @@ export default function Footer() {
               <ul className="link-list">
                 <li><Link to="/blog">Briefs &amp; Analysis</Link></li>
                 <li><Link to="/faq">Client FAQ</Link></li>
-                <li><Link to="/blog-list">Program Updates</Link></li>
                 <li><Link to="/contact">Request a Memo</Link></li>
               </ul>
             </div>
