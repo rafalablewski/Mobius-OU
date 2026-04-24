@@ -12273,33 +12273,11 @@ span {
     padding: 40px 32px 44px;
   }
 }
-.mega-menu__preview-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--ht-theme-color-4);
-}
-.mega-menu__preview-frame img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.04);
-  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-.mega-menu__preview-frame img.is-active {
-  opacity: 1;
-  transform: scale(1);
-}
 .mega-menu__preview-caption {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+  max-width: 46ch;
 }
 .mega-menu__preview-eyebrow {
   font-family: var(--ht-font-ui);
@@ -12311,18 +12289,19 @@ span {
 }
 .mega-menu__preview-caption h4 {
   font-family: var(--ht-font-display);
-  font-size: 22px;
+  font-size: 32px;
   font-weight: 500;
+  line-height: 1.15;
   letter-spacing: -0.015em;
   color: var(--ht-heading-color);
-  margin: 2px 0 0;
+  margin: 4px 0 0;
 }
 .mega-menu__preview-caption p {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--ht-theme-color-6);
   margin: 0;
-  max-width: 46ch;
+  overflow-wrap: anywhere;
 }
 .mega-menu__preview-cta {
   margin-top: 4px;
@@ -14063,42 +14042,21 @@ span {
 
 /* === Firm mega-menu signature block ==================================== */
 .mega-menu__signoff {
-  margin-top: 28px;
-  padding-top: 20px;
+  margin-top: auto;
+  padding-top: 22px;
   border-top: 1px solid var(--ht-border-color);
   display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.mega-menu__signoff-portrait {
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: var(--ht-theme-color-4);
-  display: block;
-}
-.mega-menu__signoff-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.mega-menu__signoff-body {
-  display: flex;
   flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+  gap: 4px;
 }
 .mega-menu__signoff-name {
   font-family: var(--ht-font-display);
   font-style: italic;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--ht-heading-color);
   letter-spacing: -0.01em;
-  line-height: 1;
+  line-height: 1.1;
 }
 .mega-menu__signoff-role {
   font-family: var(--ht-font-ui);
@@ -14109,8 +14067,8 @@ span {
   color: var(--ht-theme-color-6);
 }
 .mega-menu__signoff-tag {
-  margin-top: 4px;
-  font-size: 12px;
+  margin-top: 6px;
+  font-size: 13px;
   color: var(--ht-theme-color-6);
   line-height: 1.4;
 }

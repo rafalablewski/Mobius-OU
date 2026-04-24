@@ -5,23 +5,23 @@ const FIRM_COLUMNS = [
   {
     heading: 'Practice',
     items: [
-      { to: '/about',           label: 'About the Firm',    img: '/assets/img/about/1.jpg',  blurb: 'Independent, partner-led — no junior handoffs, no in-house product to sell.' },
-      { to: '/services',        label: 'Advisory Practice', img: '/assets/img/about/2.jpg',  blurb: 'Six practice areas, one partner accountable end-to-end.' },
-      { to: '/service-details', label: 'Service Overview',  img: '/assets/img/about/3.jpg',  blurb: 'How a mandate unfolds — from first call to second passport.' },
+      { to: '/about',           label: 'About the Firm',    blurb: 'Independent, partner-led — no junior handoffs, no in-house product to sell.' },
+      { to: '/services',        label: 'Advisory Practice', blurb: 'Six practice areas, one partner accountable end-to-end.' },
+      { to: '/service-details', label: 'Service Overview',  blurb: 'How a mandate unfolds — from first call to second passport.' },
     ],
   },
   {
     heading: 'People',
     items: [
-      { to: '/team',         label: 'Our Advisors',   img: '/assets/img/team/1.jpg', blurb: 'A small bench of senior specialists — written opinions, on the record.' },
-      { to: '/team-details', label: 'Advisor Profile', img: '/assets/img/team/2.jpg', blurb: 'Meet Rafał — fourteen years across NYSE capital markets and EU private client advisory.' },
+      { to: '/team',         label: 'Our Advisors',    blurb: 'A small bench of senior specialists — written opinions, on the record.' },
+      { to: '/team-details', label: 'Advisor Profile', blurb: 'Meet Rafał — fourteen years across NYSE capital markets and EU private client advisory.' },
     ],
   },
   {
     heading: 'Resources',
     items: [
-      { to: '/pricing', label: 'Programs & Fees', img: '/assets/img/project/1.jpg', blurb: 'Comparison table of the programs we actively run.' },
-      { to: '/faq',     label: 'Client FAQ',      img: '/assets/img/about/3.jpg',   blurb: 'Seven questions prospective clients ask before the first call.' },
+      { to: '/pricing', label: 'Programs & Fees', blurb: 'Comparison table of the programs we actively run.' },
+      { to: '/faq',     label: 'Client FAQ',      blurb: 'Seven questions prospective clients ask before the first call.' },
     ],
   },
 ];
@@ -32,25 +32,25 @@ const PROGRAMS_COLUMNS = [
   {
     heading: 'Europe',
     items: [
-      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa',  badge: 'Top RBI', img: '/assets/img/blog/29.jpg', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
-      { to: '/programs/malta-mein',           label: 'Malta MEIN',            badge: 'Top CBI', img: '/assets/img/blog/13.jpg', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
-      { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum',  img: '/assets/img/blog/17.jpg', blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
-      { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax',        img: '/assets/img/blog/30.jpg', blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
+      { to: '/programs/portugal-golden-visa', label: 'Portugal Golden Visa',  badge: 'Top RBI', blurb: 'Fund-route residency with a five-year path to EU citizenship.' },
+      { to: '/programs/malta-mein',           label: 'Malta MEIN',            badge: 'Top CBI', blurb: 'The last direct path to an EU passport — slower, heavier, still worth it.' },
+      { to: '/programs/switzerland-lump-sum', label: 'Switzerland Lump-Sum',  blurb: 'Canton-level negotiated taxation for substantial foreign income.' },
+      { to: '/programs/italy-flat-tax',       label: 'Italy Flat-Tax',        blurb: '€100,000 flat tax on foreign source income — one of Europe\'s strongest propositions.' },
     ],
   },
   {
     heading: 'Americas & Gulf',
     items: [
-      { to: '/programs/caribbean-cbi',        label: 'Caribbean CBI',         img: '/assets/img/blog/2.jpg',  blurb: 'Passport portfolio planning after the US–EU pressure cycle.' },
-      { to: '/programs/uae-golden-residence', label: 'UAE Golden Residence',  img: '/assets/img/blog/3.jpg',  blurb: 'Ten-year residency in Dubai — who still belongs there after corporate tax.' },
+      { to: '/programs/caribbean-cbi',        label: 'Caribbean CBI',         blurb: 'Passport portfolio planning after the US–EU pressure cycle.' },
+      { to: '/programs/uae-golden-residence', label: 'UAE Golden Residence',  blurb: 'Ten-year residency in Dubai — who still belongs there after corporate tax.' },
     ],
   },
   {
     heading: 'Practice areas',
     items: [
-      { to: '/services', label: 'Tax Residency Planning', img: '/assets/img/blog/14.jpg', blurb: 'Lawful relocation sequencing — day-counts, exit tax, written advice.' },
-      { to: '/services', label: 'Asset Protection',       img: '/assets/img/blog/15.jpg', blurb: 'Foundations and trusts — selected for legitimacy and longevity.' },
-      { to: '/services', label: 'Family Relocation',      img: '/assets/img/blog/14.jpg', blurb: 'Schooling, banking, staff — so the family lands with utilities, not surprises.' },
+      { to: '/services', label: 'Tax Residency Planning', blurb: 'Lawful relocation sequencing — day-counts, exit tax, written advice.' },
+      { to: '/services', label: 'Asset Protection',       blurb: 'Foundations and trusts — selected for legitimacy and longevity.' },
+      { to: '/services', label: 'Family Relocation',      blurb: 'Schooling, banking, staff — so the family lands with utilities, not surprises.' },
     ],
   },
 ];
@@ -88,17 +88,6 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
         ))}
       </div>
       <aside className="mega-menu__preview" aria-hidden="true">
-        <div className="mega-menu__preview-frame">
-          {[...columns.flatMap((c) => c.items)].map((item) => (
-            <img
-              key={item.label}
-              src={item.img}
-              alt=""
-              loading="lazy"
-              className={preview === item ? 'is-active' : undefined}
-            />
-          ))}
-        </div>
         <div className="mega-menu__preview-caption">
           <span className="mega-menu__preview-eyebrow">
             Featured
@@ -119,14 +108,9 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
         </Link>
         {id === 'firm' && (
           <div className="mega-menu__signoff">
-            <span className="mega-menu__signoff-portrait">
-              <img src="/assets/img/team/1.jpg" alt="" loading="lazy" />
-            </span>
-            <span className="mega-menu__signoff-body">
-              <span className="mega-menu__signoff-name">Rafał Ablewski</span>
-              <span className="mega-menu__signoff-role">Managing Partner · CFA</span>
-              <span className="mega-menu__signoff-tag">Every first call is with the partner.</span>
-            </span>
+            <span className="mega-menu__signoff-name">Rafał Ablewski</span>
+            <span className="mega-menu__signoff-role">Managing Partner · CFA</span>
+            <span className="mega-menu__signoff-tag">Every first call is with the partner.</span>
           </div>
         )}
       </aside>
