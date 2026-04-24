@@ -8,5 +8,25 @@
     { "source": "/apple-touch-icon.png", "destination": "/favicon.svg" },
     { "source": "/apple-touch-icon-precomposed.png", "destination": "/favicon.svg" },
     { "source": "/((?!assets/|favicon\\.svg).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/favicon.svg",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/favicon.ico",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/apple-touch-icon(-precomposed)?.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    }
   ]
 }
