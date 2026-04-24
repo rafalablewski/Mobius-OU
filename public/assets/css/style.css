@@ -12359,9 +12359,7 @@ span {
   font-size: 10px;
 }
 .mega-menu__all {
-  position: absolute;
-  top: 48px;
-  right: 7vw;
+  align-self: flex-end;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -12376,11 +12374,6 @@ span {
 .mega-menu__all:hover {
   color: var(--ht-theme-color-2);
   gap: 12px;
-}
-@media (max-width: 1199px) {
-  .mega-menu__all {
-    right: 32px;
-  }
 }
 
 /* Staggered reveal on mega-menu items */

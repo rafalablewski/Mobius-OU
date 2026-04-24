@@ -88,6 +88,9 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
         ))}
       </div>
       <aside className={`mega-menu__preview mega-menu__preview--${id}`} aria-hidden="true">
+        <Link to={ctaTo} className="mega-menu__all">
+          {ctaLabel} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </Link>
         {id === 'programs' && (
           <div className="mega-menu__preview-frame">
             {[...columns.flatMap((c) => c.items)].map((item) => (
@@ -116,9 +119,6 @@ function MegaPanel({ id, columns, defaultPreview, ctaLabel, ctaTo, hovered, setH
             Explore <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </Link>
         </div>
-        <Link to={ctaTo} className="mega-menu__all">
-          {ctaLabel} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </Link>
         {id === 'firm' && (
           <div className="mega-menu__signoff">
             <span className="mega-menu__signoff-name">Rafał Ablewski</span>
