@@ -10,7 +10,6 @@ import Team from './pages/Team.jsx';
 import TeamDetails from './pages/TeamDetails.jsx';
 import Pricing from './pages/Pricing.jsx';
 import Faq from './pages/Faq.jsx';
-import Project from './pages/Project.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogDetails from './pages/BlogDetails.jsx';
 import Contact from './pages/Contact.jsx';
@@ -31,7 +30,6 @@ export default function App() {
         <Route path="/team-details" element={<TeamDetails />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/faq" element={<Faq />} />
-        <Route path="/project" element={<Project />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-list" element={<Blog />} />
         <Route path="/blog-details/:slug" element={<BlogDetails />} />

@@ -185,12 +185,6 @@ export default function Header({ onOffcanvasOpen }) {
                       />
                     </li>
                     <li className="has-dropdown">
-                      <a href="#">case studies</a>
-                      <ul className="sub-menu">
-                        <li><NavLink to="/project">Select Mandates</NavLink></li>
-                      </ul>
-                    </li>
-                    <li className="has-dropdown">
                       <a href="#">insights</a>
                       <ul className="sub-menu">
                         <li><NavLink to="/blog">Intelligence Briefs</NavLink></li>

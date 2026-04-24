@@ -72,22 +72,19 @@ export default function Blog() {
 
           {rest.length > 0 && (
             <ul className="ht-briefs__grid">
-              {rest.map((b, i) => {
-                const tone = i % 2 === 0 ? 'cream' : 'ink';
-                return (
-                  <li key={b.id} className={`ht-brief-tile ht-brief-tile--${tone}`}>
-                    <Link to={`/blog-details/${b.slug}`} className="ht-brief-tile__link">
-                      <span className="ht-brief-tile__cat">{b.category}</span>
-                      <h3 className="ht-brief-tile__title">{b.title}</h3>
-                      <p className="ht-brief-tile__excerpt">{b.excerpt}</p>
-                      <span className="ht-brief-tile__foot">
-                        <span>{b.date} · {b.readMinutes} min</span>
-                        <span className="ht-brief-tile__arrow" aria-hidden="true">→</span>
-                      </span>
-                    </Link>
-                  </li>
-                );
-              })}
+              {rest.map((b) => (
+                <li key={b.id} className="ht-brief-tile">
+                  <Link to={`/blog-details/${b.slug}`} className="ht-brief-tile__link">
+                    <span className="ht-brief-tile__cat">{b.category}</span>
+                    <h3 className="ht-brief-tile__title">{b.title}</h3>
+                    <p className="ht-brief-tile__excerpt">{b.excerpt}</p>
+                    <span className="ht-brief-tile__foot">
+                      <span>{b.date} · {b.readMinutes} min</span>
+                      <span className="ht-brief-tile__arrow" aria-hidden="true">→</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           )}
 

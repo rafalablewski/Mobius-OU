@@ -127,25 +127,6 @@ function initSwipers($) {
     );
   }
 
-  if ($('.ht-project-slider').length > 0) {
-    instances.push(
-      new Swiper('.ht-project-slider', {
-        slidesPerView: 4,
-        spaceBetween: 30,
-        speed: 1000,
-        loop: true,
-        autoplay: { delay: 1500, disableOnInteraction: false },
-        navigation: { nextEl: '.ht-project-next', prevEl: '.ht-project-prev' },
-        breakpoints: {
-          992: { slidesPerView: 4 },
-          768: { slidesPerView: 3 },
-          576: { slidesPerView: 1 },
-          0: { slidesPerView: 1 },
-        },
-      }),
-    );
-  }
-
   if ($('.hero-img-slide').length > 0) {
     instances.push(
       new Swiper('.hero-img-slide', {
