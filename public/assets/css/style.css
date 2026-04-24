@@ -7964,7 +7964,7 @@ span {
 }
 .section-title .subtitle {
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   color: var(--ht-theme-color-2);
   line-height: 1;
@@ -9053,7 +9053,7 @@ span {
   font-size: 18px;
   color: var(--ht-theme-color-2);
   text-transform: uppercase;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   transition: all 0.4s ease-in-out;
 }
@@ -9256,7 +9256,7 @@ span {
   color: var(--ht-theme-color);
   text-transform: uppercase;
   font-size: 18px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   background: var(--ht-white);
   border-radius: 6px;
@@ -9601,7 +9601,7 @@ span {
 .accordion .accordion-item .accordion-header .accordion-button {
   position: relative;
   font-size: 20px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   background: var(--ht-theme-color);
   color: var(--ht-white);
@@ -9948,7 +9948,7 @@ span {
   background-color: var(--ht-theme-color-3);
   border-radius: 12px;
   padding: 12px 22px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 20px;
@@ -10147,7 +10147,7 @@ span {
   margin-top: 14px;
   color: var(--ht-theme-color-2);
   text-transform: uppercase;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   transition: all 0.4s ease-in-out;
 }
@@ -10442,7 +10442,7 @@ span {
   align-items: center;
   color: #1c2539;
   font-size: 20px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   position: relative;
   z-index: 1;
@@ -10591,7 +10591,7 @@ span {
 .testimonial-slides-wrapper .testimonial-slides-item p {
   margin-top: 8px;
   font-size: 40px;
-  font-family: "Manrope", sans-serif;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
   line-height: 1.2;
 }
 @media (max-width: 1199px) {
@@ -10780,7 +10780,7 @@ span {
   margin-top: 32px;
   display: inline-block;
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   line-height: 125%;
   color: var(--ht-theme-color-2);
@@ -10931,7 +10931,7 @@ span {
   display: inline-block;
   color: var(--ht-theme-color-2);
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   letter-spacing: -0.32px;
   text-transform: uppercase;
@@ -11134,7 +11134,7 @@ span {
   align-items: center;
 }
 .ht-blog-details-wrapper .details-arrrow-btn span {
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
@@ -11731,7 +11731,7 @@ span {
 }
 .ht-footer-wrapper .ht-footer-widgets .widget-subscriber h5 {
   color: var(--ht-white);
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
 }
 .ht-footer-wrapper .ht-footer-widgets .widget-subscriber input {
   margin-top: 20px;
@@ -11887,7 +11887,7 @@ span {
 .ht-footer-copyrights .ht-footer-menu .menu-list li a {
   text-transform: uppercase;
   font-size: 16px;
-  font-family: "Cormorant Garamond", sans-serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: 600;
 }
 
@@ -12837,6 +12837,7 @@ span {
 }
 .ht-stats-area .ht-stats-items p {
   margin-top: 8px;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
   font-size: 14px;
   line-height: 1.55;
   color: var(--ht-theme-color-6);
@@ -14465,7 +14466,7 @@ span {
   line-height: 1.2;
 }
 .ht-principles__item-body {
-  font-family: "Manrope", sans-serif;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
   font-size: 14px;
   line-height: 1.7;
   color: var(--ht-theme-color-6);
@@ -14706,7 +14707,7 @@ span {
 }
 .ht-approach-v2__panel p {
   margin: 0;
-  font-family: "Manrope", sans-serif;
+  font-family: "Newsreader", Georgia, "Cormorant Garamond", serif;
   font-size: 15px;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.78);
