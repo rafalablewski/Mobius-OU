@@ -9539,7 +9539,6 @@ span {
   align-items: baseline;
   padding: 12px 14px;
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(11, 15, 20, 0.06);
   border-radius: 8px;
   font-family: var(--ht-font-display);
   font-size: 16px;
@@ -13816,7 +13815,6 @@ span {
   position: relative;
   padding: 18px 56px 18px 20px;
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(11, 15, 20, 0.06);
   border-radius: 10px;
 }
 .ht-program__timeline ol li::before {
