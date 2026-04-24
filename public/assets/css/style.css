@@ -9561,21 +9561,21 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 0 0 6px;
+  padding: 11px 20px;
+  background: var(--ht-heading-color);
+  color: var(--ht-white);
+  border-radius: 8px;
   font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ht-heading-color);
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid currentColor;
-  transition: color 0.3s ease, gap 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: background 0.3s ease, gap 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .ht-direct-line__cta:hover,
 .ht-direct-line__cta:focus-visible {
-  color: var(--ht-theme-color-2);
+  background: var(--ht-theme-color-2);
+  color: var(--ht-white);
   gap: 14px;
 }
 .ht-direct-line__cta-arrow {

@@ -45,7 +45,7 @@ export default function ServiceDetails() {
                                           </li>
                                       </ul>
                                       <Link to="/contact" className="ht-direct-line__cta">
-                                          Schedule a consultation
+                                          Reach a Partner
                                           <span className="ht-direct-line__cta-arrow" aria-hidden="true">→</span>
                                       </Link>
                                   </aside>
