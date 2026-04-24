@@ -9473,36 +9473,18 @@ span {
   }
 }
 /* ==========================================================================
-   Direct Line — warm cream tile sidebar block.
-   Distinct surface from the PracticeIndex above it: rounded tile, soft
-   gold halo, frosted meta pills, real pill CTA.
+   Direct Line — restrained cream tile with data-sheet meta rows.
+   Flat surface, subtle hairline border, no decorative halos. Designed to
+   sit under PracticeIndex without competing for attention.
    ========================================================================== */
 .ht-direct-line {
   position: relative;
-  margin-top: 56px;
-  padding: 32px;
-  background: linear-gradient(180deg, #F4EFE6 0%, #ECE3CE 100%);
-  border-radius: 22px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    0 24px 50px -36px rgba(11, 15, 20, 0.28);
-  overflow: hidden;
-  isolation: isolate;
-}
-.ht-direct-line::before {
-  content: "";
-  position: absolute;
-  top: -90px;
-  right: -90px;
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(circle, rgba(201, 168, 106, 0.32), transparent 68%);
-  pointer-events: none;
-  z-index: 0;
-}
-.ht-direct-line > * {
-  position: relative;
-  z-index: 1;
+  margin-top: 48px;
+  padding: 28px;
+  background: #F2EDE0;
+  border: 1px solid rgba(11, 15, 20, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 14px 30px -26px rgba(11, 15, 20, 0.18);
 }
 @media (max-width: 992px) {
   .ht-direct-line {
@@ -9510,10 +9492,10 @@ span {
   }
 }
 .ht-direct-line__eyebrow {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-family: var(--ht-font-ui);
   font-size: 11px;
   font-weight: 700;
@@ -9523,81 +9505,72 @@ span {
 }
 .ht-direct-line__eyebrow::before {
   content: "";
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--ht-theme-color-2);
-  box-shadow: 0 0 0 4px rgba(201, 168, 106, 0.22);
 }
 .ht-direct-line__title {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   font-family: var(--ht-font-display);
-  font-size: 26px;
-  line-height: 1.18;
+  font-size: 24px;
+  line-height: 1.2;
   color: var(--ht-heading-color);
 }
 .ht-direct-line__lede {
   margin: 0 0 22px;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(11, 15, 20, 0.7);
 }
 .ht-direct-line__pills {
   list-style: none;
-  margin: 0 0 26px;
+  margin: 0 0 24px;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  gap: 6px;
 }
 .ht-direct-line__pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 14px;
   background: rgba(255, 255, 255, 0.55);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 999px;
+  border: 1px solid rgba(11, 15, 20, 0.06);
+  border-radius: 8px;
   font-family: var(--ht-font-ui);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ht-heading-color);
-  box-shadow: 0 6px 14px -10px rgba(11, 15, 20, 0.25);
 }
 .ht-direct-line__pill-label {
   font-weight: 700;
-  letter-spacing: 0.16em;
   font-size: 9px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ht-theme-color-2);
 }
 .ht-direct-line__cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 22px;
+  gap: 10px;
+  padding: 11px 20px;
   background: var(--ht-heading-color);
   color: var(--ht-white);
-  border-radius: 999px;
+  border-radius: 8px;
   font-family: var(--ht-font-ui);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  box-shadow: 0 14px 28px -14px rgba(11, 15, 20, 0.55);
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    gap 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: background 0.3s ease, gap 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .ht-direct-line__cta:hover,
 .ht-direct-line__cta:focus-visible {
   background: var(--ht-theme-color-2);
   color: var(--ht-white);
-  transform: translateY(-2px);
-  gap: 16px;
+  gap: 14px;
 }
 .ht-direct-line__cta-arrow {
   font-family: var(--ht-font-ui);
@@ -13874,65 +13847,82 @@ span {
   background: var(--ht-theme-color-2);
 }
 
+/* Engagement timeline — shares the Direct Line vocabulary:
+   cream tile, hairline border, nested inset step cards with a
+   dark step/week chip instead of hanging italic numerals. */
 .ht-program__timeline {
-  background: var(--ht-theme-color-5);
-  padding: 32px 32px 28px;
-  border-radius: 4px;
+  background: #F2EDE0;
+  border: 1px solid rgba(11, 15, 20, 0.06);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 14px 30px -26px rgba(11, 15, 20, 0.18);
 }
 .ht-program__timeline h3 {
+  margin: 0 0 20px;
   font-family: var(--ht-font-display);
   font-size: 22px;
   font-weight: 500;
-  margin: 0 0 20px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--ht-border-color);
+  color: var(--ht-heading-color);
 }
 .ht-program__timeline ol {
   list-style: none;
   margin: 0;
   padding: 0;
   counter-reset: prog-step;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .ht-program__timeline ol li {
   counter-increment: prog-step;
-  padding: 20px 0 20px 48px;
-  position: relative;
-  border-bottom: 1px solid var(--ht-border-color);
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(11, 15, 20, 0.06);
+  border-radius: 10px;
 }
-.ht-program__timeline ol li:last-child { border-bottom: none; }
 .ht-program__timeline ol li::before {
-  counter(prog-step, decimal-leading-zero);
   content: counter(prog-step, decimal-leading-zero);
-  position: absolute;
-  left: 0;
-  top: 20px;
-  font-family: var(--ht-font-display);
-  font-style: italic;
-  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  background: var(--ht-heading-color);
+  border-radius: 5px;
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--ht-theme-color-2);
 }
 .ht-program__timeline-step {
   display: block;
+  margin-top: 4px;
   font-family: var(--ht-font-display);
   font-size: 18px;
   font-weight: 500;
+  line-height: 1.25;
   color: var(--ht-heading-color);
 }
 .ht-program__timeline-weeks {
-  display: block;
+  display: inline-block;
+  margin: 6px 0 0;
+  padding: 3px 9px;
+  background: rgba(201, 168, 106, 0.14);
+  border: 1px solid rgba(201, 168, 106, 0.3);
+  border-radius: 4px;
   font-family: var(--ht-font-ui);
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ht-theme-color-6);
-  margin-top: 4px;
+  color: var(--ht-theme-color-2);
 }
 .ht-program__timeline ol li p {
-  margin: 8px 0 0;
-  font-size: 14px;
+  margin: 10px 0 0;
+  font-size: 13px;
   line-height: 1.6;
-  color: var(--ht-text-color);
+  color: rgba(11, 15, 20, 0.72);
 }
 
 .ht-program__related {
