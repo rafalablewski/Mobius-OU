@@ -1,6 +1,18 @@
 import { Link } from 'react-router-dom';
 
-export default function TopPrograms({ eyebrow, title, body, programs, tone = 'rbi' }) {
+export default function TopPrograms({
+  eyebrow,
+  title,
+  body,
+  programs,
+  teaser,
+  viewAllHref,
+  viewAllLabel,
+  tone = 'rbi',
+}) {
+  const teaserIndex = programs.length + 1;
+  const moreDelay = 0.1 + (programs.length + (teaser ? 1 : 0)) * 0.1;
+
   return (
     <section className={`ht-top-programs ht-top-programs--${tone}`}>
       <div className="container">
@@ -38,7 +50,52 @@ export default function TopPrograms({ eyebrow, title, body, programs, tone = 'rb
               </Link>
             </li>
           ))}
+
+          {teaser && (
+            <li
+              className="ht-top-programs__row ht-top-programs__row--teaser"
+              aria-hidden="true"
+            >
+              <span className="ht-top-programs__row-link" tabIndex={-1}>
+                <span className="ht-top-programs__index">
+                  {String(teaserIndex).padStart(2, '0')}
+                </span>
+                <span className="ht-top-programs__arms">
+                  <img src={teaser.arms} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                </span>
+                <span className="ht-top-programs__body-cell">
+                  <span className="ht-top-programs__country">{teaser.country}</span>
+                  <span className="ht-top-programs__name">{teaser.name}</span>
+                  <span className="ht-top-programs__tagline">{teaser.tagline}</span>
+                </span>
+                <span className="ht-top-programs__fact">{teaser.headline}</span>
+                <span className="ht-top-programs__arrow" aria-hidden="true">
+                  <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </span>
+            </li>
+          )}
         </ol>
+
+        {viewAllHref && (
+          <Link
+            to={viewAllHref}
+            className="ht-top-programs__more-row wow fadeInUp"
+            data-wow-delay={`${moreDelay}s`}
+          >
+            <span className="ht-top-programs__more-plus" aria-hidden="true">+</span>
+            <span aria-hidden="true"></span>
+            <span className="ht-top-programs__more-label">
+              <span className="ht-top-programs__more-underline">
+                {viewAllLabel || 'View all programmes'}
+              </span>
+            </span>
+            <span aria-hidden="true"></span>
+            <span className="ht-top-programs__arrow" aria-hidden="true">
+              <i className="fa-solid fa-arrow-right"></i>
+            </span>
+          </Link>
+        )}
       </div>
     </section>
   );
