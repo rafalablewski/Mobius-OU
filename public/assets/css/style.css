@@ -14348,9 +14348,8 @@ span {
   pointer-events: none;
 }
 .ht-top-programs__row--teaser .ht-top-programs__row-link {
-  filter: blur(1.5px);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
+          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
 }
 .ht-top-programs__row--teaser .ht-top-programs__row-link::before {
   display: none;
