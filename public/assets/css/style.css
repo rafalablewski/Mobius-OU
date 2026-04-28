@@ -14349,7 +14349,6 @@ span {
   gap: 32px;
   align-items: center;
   padding: 28px 8px 24px;
-  border-top: 1px solid var(--ht-border-color);
   text-decoration: none;
   color: var(--ht-heading-color);
   transition: padding 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
