@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Mobius — View More button drafts</title>
+<title>Mobius — Teaser row drafts (round 2)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -51,107 +51,69 @@
     font-size: 14px;
   }
 
-  .draft {
-    margin-bottom: 80px;
-  }
+  .draft { margin-bottom: 80px; }
   .draft-label {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-bottom: 18px;
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px;
   }
   .draft-label .num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    color: var(--gold);
-    font-weight: 600;
+    font-size: 28px; color: var(--gold); font-weight: 600;
   }
   .draft-label h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: 26px;
-    margin: 0;
-    letter-spacing: -0.005em;
+    font-weight: 500; font-size: 26px; margin: 0; letter-spacing: -0.005em;
   }
   .draft-label .tag {
-    margin-left: auto;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--taupe);
+    margin-left: auto; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--taupe);
   }
   .draft-note {
-    color: var(--taupe);
-    font-size: 13px;
-    margin: 0 0 20px;
-    max-width: 720px;
+    color: var(--taupe); font-size: 13px; margin: 0 0 20px; max-width: 720px;
   }
 
-  /* ---------- shared list mock ---------- */
+  /* ---------- list mock ---------- */
   .section {
     border: 1px solid var(--border);
     border-radius: 4px;
     background: var(--body);
     padding: 36px 36px 28px;
+    overflow: hidden; /* contain mask/blur edges */
   }
   .section.cbi { background: var(--ivory); }
   .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 24px;
-    margin-bottom: 28px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 24px; margin-bottom: 28px;
   }
   .eyebrow {
-    display: inline-block;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    padding: 6px 12px;
-    color: var(--offwhite);
-    background: var(--rbi-green);
-    margin-bottom: 12px;
+    display: inline-block; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.18em; padding: 6px 12px;
+    color: var(--offwhite); background: var(--rbi-green); margin-bottom: 12px;
   }
   .section.cbi .eyebrow { background: var(--cbi-burgundy); }
   .section-head h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: 30px;
-    margin: 0;
-    letter-spacing: -0.005em;
+    font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.005em;
   }
   .section-head p {
-    margin: 0;
-    color: var(--taupe);
-    font-size: 13px;
-    max-width: 360px;
+    margin: 0; color: var(--taupe); font-size: 13px; max-width: 360px;
   }
 
   ol.list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    list-style: none; margin: 0; padding: 0;
     border-top: 1px solid var(--border);
   }
-  ol.list li {
-    border-bottom: 1px solid var(--border);
-  }
+  ol.list li { border-bottom: 1px solid var(--border); }
   ol.list a.row {
     display: grid;
     grid-template-columns: 56px 36px 1fr 220px 24px;
-    align-items: center;
-    gap: 18px;
-    padding: 18px 4px;
-    text-decoration: none;
-    color: inherit;
+    align-items: center; gap: 18px; padding: 18px 4px;
+    text-decoration: none; color: inherit;
     transition: background .2s ease;
   }
   ol.list a.row:hover { background: rgba(201,168,106,0.06); }
   .idx {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    color: var(--gold);
-    font-weight: 600;
+    font-size: 22px; color: var(--gold); font-weight: 600;
   }
   .arms {
     width: 32px; height: 32px; border-radius: 50%;
@@ -159,256 +121,114 @@
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
   }
   .body-cell .country {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--taupe);
-    display: block;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--taupe); display: block;
   }
   .body-cell .name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    display: block;
-    margin-top: 2px;
+    font-size: 19px; display: block; margin-top: 2px;
   }
   .body-cell .tagline {
-    font-size: 12px;
-    color: var(--taupe);
-    display: block;
-    margin-top: 2px;
+    font-size: 12px; color: var(--taupe); display: block; margin-top: 2px;
   }
-  .fact {
-    font-size: 12px;
-    color: var(--taupe);
-    text-align: right;
-  }
+  .fact { font-size: 12px; color: var(--taupe); text-align: right; }
   .arrow {
-    text-align: right;
-    color: var(--ink);
-    font-size: 14px;
+    text-align: right; color: var(--ink); font-size: 14px;
     transition: transform .25s ease;
   }
   ol.list a.row:hover .arrow { transform: translateX(4px); color: var(--gold); }
 
-  /* ---------- Draft 1: editorial row-extension ---------- */
+  /* ---------- editorial row-extension button (kept from Draft 1) ---------- */
   .more-row {
     display: grid;
     grid-template-columns: 56px 36px 1fr 24px;
-    align-items: center;
-    gap: 18px;
-    padding: 22px 4px;
-    text-decoration: none;
-    color: var(--ink);
+    align-items: center; gap: 18px; padding: 22px 4px;
+    text-decoration: none; color: var(--ink);
     border-top: 1px dashed var(--border);
     transition: color .2s ease;
   }
   .more-row .plus {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    color: var(--gold);
+    font-size: 24px; color: var(--rbi-green);
   }
   .section.cbi .more-row .plus { color: var(--cbi-burgundy); }
-  .section:not(.cbi) .more-row .plus { color: var(--rbi-green); }
   .more-row .label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-weight: 500;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.18em; font-weight: 500;
   }
   .more-row .underline {
-    border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
+    border-bottom: 1px solid transparent; padding-bottom: 2px;
     transition: border-color .2s ease;
   }
   .more-row:hover .underline { border-bottom-color: var(--gold); }
   .more-row:hover .arrow { transform: translateX(6px); color: var(--gold); }
 
-  /* ---------- Draft 2: pill CTA centred ---------- */
-  .pill-wrap { text-align: center; padding: 32px 0 8px; }
-  .ht-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--ink);
-    color: #fff;
-    padding: 16px 30px;
-    border: 0;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background .25s ease, color .25s ease, transform .25s ease;
-  }
-  .ht-btn .count {
-    color: var(--gold);
-    font-variant-numeric: tabular-nums;
-  }
-  .ht-btn:hover {
-    background: var(--gold);
-    color: var(--ink);
-    transform: translateY(-1px);
-  }
-  .ht-btn:hover .count { color: var(--ink); }
-  .ht-btn .arr { transition: transform .25s ease; }
-  .ht-btn:hover .arr { transform: translateX(4px); }
+  /* ===== TEASER VARIANTS ===== */
 
-  .ht-btn.ghost {
-    background: transparent;
-    color: var(--ink);
-    box-shadow: inset 0 0 0 1px var(--ink);
+  /* T1 — Soft vertical fade */
+  .tease-fade {
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%);
+    border-bottom: 0 !important;
   }
-  .ht-btn.ghost:hover {
-    background: var(--ink);
-    color: #fff;
-    box-shadow: inset 0 0 0 1px var(--ink);
-  }
-  .ht-btn.ghost:hover .count { color: var(--gold); }
 
-  /* ---------- Draft 3: split/dual-action bar ---------- */
-  .split-bar {
-    margin-top: 8px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    background: #fff;
+  /* T2 — Frosted blur */
+  .tease-blur a.row {
+    filter: blur(4.5px);
+    opacity: 0.55;
+    pointer-events: none;
+    user-select: none;
   }
-  .section.cbi .split-bar { background: #fff; }
-  .split-bar .hint {
-    padding: 18px 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .split-bar .hint .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--gold);
-  }
-  .split-bar .hint .text {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--taupe);
-  }
-  .split-bar .hint .text strong {
-    color: var(--ink);
-    font-weight: 600;
-  }
-  .split-bar .action {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 28px;
-    text-decoration: none;
-    color: var(--ink);
-    border-left: 1px solid var(--gold);
-    background: #fff;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-weight: 500;
-    transition: background .25s ease, color .25s ease;
-  }
-  .split-bar .action .arr { transition: transform .25s ease; }
-  .split-bar .action:hover { background: var(--ink); color: #fff; }
-  .split-bar .action:hover .arr { transform: translateX(4px); }
-
-  /* ---------- Draft 4: tone-coloured chip ---------- */
-  .chip-wrap {
-    display: flex;
-    justify-content: flex-end;
-    padding: 28px 0 4px;
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 22px 14px 18px;
-    border-radius: 8px;
-    background: var(--rbi-green);
-    color: var(--offwhite);
-    text-decoration: none;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-weight: 500;
-    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
-    box-shadow: 0 6px 20px -10px rgba(31,77,58,0.5);
-  }
-  .section.cbi .chip {
-    background: var(--cbi-burgundy);
-    box-shadow: 0 6px 20px -10px rgba(122,30,38,0.5);
-  }
-  .chip:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px -12px rgba(31,77,58,0.6);
-  }
-  .section.cbi .chip:hover {
-    box-shadow: 0 12px 28px -12px rgba(122,30,38,0.6);
-  }
-  .chip .crest {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--gold);
-    display: inline-flex; align-items: center; justify-content: center;
-    color: var(--ink);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-weight: 600;
-  }
-  .chip .arr { transition: transform .25s ease; }
-  .chip:hover .arr { transform: translateX(4px); }
-
-  /* ---------- Draft 5: progressive disclosure ---------- */
-  .disclose-wrap {
-    text-align: center;
-    padding: 28px 0 4px;
-  }
-  .disclose-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background: transparent;
-    border: 0;
-    color: var(--ink);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    cursor: pointer;
-    position: relative;
-  }
-  .disclose-btn::after {
+  .tease-blur { position: relative; border-bottom: 0 !important; }
+  .tease-blur::after {
     content: '';
-    position: absolute;
-    left: 20px; right: 20px; bottom: 6px;
-    height: 1px;
-    background: var(--ink);
-    transform: scaleX(0.4);
-    transform-origin: center;
-    transition: transform .3s ease, background .3s ease;
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.45) 100%);
+    pointer-events: none;
   }
-  .disclose-btn:hover::after { transform: scaleX(1); background: var(--gold); }
-  .disclose-btn .chev {
-    display: inline-block;
-    transition: transform .3s ease;
-    color: var(--gold);
-    font-size: 13px;
+  .section.cbi .tease-blur::after {
+    background: linear-gradient(180deg, transparent 0%, rgba(250,246,238,0.55) 100%);
   }
-  .disclose-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
-  .hidden-rows { display: none; }
-  .hidden-rows.open { display: block; }
-  .hidden-rows li {
-    animation: fadeInUp .4s ease both;
+
+  /* T3 — Half-cut horizontal slice */
+  .tease-crop {
+    max-height: 32px;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 0 !important;
+    pointer-events: none;
   }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .tease-crop::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 0; height: 18px;
+    background: linear-gradient(180deg, transparent 0%, var(--body) 100%);
+  }
+  .section.cbi .tease-crop::after {
+    background: linear-gradient(180deg, transparent 0%, var(--ivory) 100%);
+  }
+
+  /* T4 — Redacted bars */
+  .tease-redact a.row { pointer-events: none; }
+  .redact {
+    display: inline-block; height: 11px; border-radius: 2px;
+    background: var(--ink); opacity: 0.85;
+    vertical-align: middle;
+  }
+  .redact.tall { height: 16px; }
+  .redact.gold { background: var(--gold); opacity: 0.75; }
+  .redact.faint { background: var(--taupe); opacity: 0.35; }
+  .body-cell .redact-stack { display: flex; flex-direction: column; gap: 6px; padding: 4px 0; }
+
+  /* T5 — Stacked depth peek (two ghost rows) */
+  .tease-stack { border-bottom: 0 !important; pointer-events: none; }
+  .tease-stack a.row { transition: none; }
+  .tease-stack .row-ghost-1 { opacity: 0.55; }
+  .tease-stack .row-ghost-2 { opacity: 0.22; margin-top: -8px; }
+  .tease-stack-wrap {
+    position: relative;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 95%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 95%);
   }
 
   /* ---------- side-by-side comparison row ---------- */
@@ -420,251 +240,213 @@
 <div class="page">
 
   <header class="page-head">
-    <h1>View More — five drafts</h1>
-    <p>Visual sketches for the Top RBI and Top CBI sections. Hover the buttons to feel the interactions. Both tones (RBI green / CBI burgundy) shown in each draft.</p>
+    <h1>Teaser row — five drafts</h1>
+    <p>Draft 1's editorial row-extension button is locked. Below: five ways to render the next program (4th RBI / 3rd CBI) so the eye catches it but the brain has to click to read it.</p>
   </header>
 
-  <!-- ====================== DRAFT 1 ====================== -->
+  <!-- ====================== T1 — SOFT VERTICAL FADE ====================== -->
   <section class="draft">
     <div class="draft-label">
       <span class="num">01</span>
-      <h2>Editorial row-extension</h2>
-      <span class="tag">FT / NYT-style</span>
+      <h2>Soft vertical fade</h2>
+      <span class="tag">Mask · gentle</span>
     </div>
-    <p class="draft-note">The list visually continues. Same column rhythm, dashed top divider, <em>+</em> in place of the index. Quiet, refined, doesn't shout "button."</p>
+    <p class="draft-note">Full row, but a top-to-bottom alpha mask dissolves it into the page. The most subtle of the five — feels like the list is exhaling.</p>
 
     <div class="pair">
-      <!-- RBI -->
       <div class="section">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Top RBI · 2026</span>
-            <h3>Residence by Investment</h3>
-          </div>
-          <p>Curated programmes, ranked by tax efficiency, mobility, and lifestyle.</p>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div></div>
         <ol class="list">
           <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span><span class="tagline">Schengen residence</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
           <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span><span class="tagline">Forfait fiscal</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
           <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span><span class="tagline">10-year renewable</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li class="tease-fade"><a class="row" href="#"><span class="idx">04</span><span class="arms"></span><span class="body-cell"><span class="country">Singapore</span><span class="name">Global Investor</span><span class="tagline">Fast-track PR</span></span><span class="fact">From SGD 10m</span><span class="arrow">→</span></a></li>
         </ol>
-        <a class="more-row" href="#">
-          <span class="plus">+</span>
-          <span></span>
-          <span class="label"><span class="underline">View all RBI programmes</span></span>
-          <span class="arrow">→</span>
-        </a>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all RBI programmes</span></span><span class="arrow">→</span></a>
       </div>
 
-      <!-- CBI -->
       <div class="section cbi">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Top CBI · 2026</span>
-            <h3>Citizenship by Investment</h3>
-          </div>
-          <p>Sovereign citizenship programmes. Permanent passports, multigenerational.</p>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div></div>
         <ol class="list">
           <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span><span class="tagline">EU citizenship</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
           <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span><span class="tagline">Schengen-eligible</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li class="tease-fade"><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">Türkiye</span><span class="name">Citizenship by Property</span><span class="tagline">12-month route</span></span><span class="fact">From $400k</span><span class="arrow">→</span></a></li>
         </ol>
-        <a class="more-row" href="#">
-          <span class="plus">+</span>
-          <span></span>
-          <span class="label"><span class="underline">View all CBI programmes</span></span>
-          <span class="arrow">→</span>
-        </a>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all CBI programmes</span></span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ====================== DRAFT 2 ====================== -->
+  <!-- ====================== T2 — FROSTED BLUR ====================== -->
   <section class="draft">
     <div class="draft-label">
       <span class="num">02</span>
-      <h2>Pill CTA, centred</h2>
-      <span class="tag">Site-consistent</span>
+      <h2>Frosted blur</h2>
+      <span class="tag">Behind glass</span>
     </div>
-    <p class="draft-note">Existing <code>.ht-btn</code> system. Ghost variant on the white RBI surface, solid ink on the ivory CBI surface. Dynamic count in gold.</p>
+    <p class="draft-note">Real CSS blur with reduced opacity and a soft surface gradient on top. You can read shapes — flag, name length, price — but not the words. Strongest curiosity pull.</p>
 
     <div class="pair">
       <div class="section">
-        <div class="section-head">
-          <div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div></div>
         <ol class="list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span><span class="tagline">Schengen residence</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span><span class="tagline">Forfait fiscal</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span><span class="tagline">10-year renewable</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li class="tease-blur"><a class="row" href="#"><span class="idx">04</span><span class="arms"></span><span class="body-cell"><span class="country">Singapore</span><span class="name">Global Investor</span><span class="tagline">Fast-track PR</span></span><span class="fact">From SGD 10m</span><span class="arrow">→</span></a></li>
         </ol>
-        <div class="pill-wrap">
-          <a class="ht-btn ghost" href="#">View all <span class="count">14</span> RBI programmes <span class="arr">→</span></a>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all RBI programmes</span></span><span class="arrow">→</span></a>
       </div>
 
       <div class="section cbi">
-        <div class="section-head">
-          <div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div></div>
         <ol class="list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span><span class="tagline">EU citizenship</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span><span class="tagline">Schengen-eligible</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li class="tease-blur"><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">Türkiye</span><span class="name">Citizenship by Property</span><span class="tagline">12-month route</span></span><span class="fact">From $400k</span><span class="arrow">→</span></a></li>
         </ol>
-        <div class="pill-wrap">
-          <a class="ht-btn" href="#">View all <span class="count">7</span> CBI programmes <span class="arr">→</span></a>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all CBI programmes</span></span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ====================== DRAFT 3 ====================== -->
+  <!-- ====================== T3 — HALF-CUT SLICE ====================== -->
   <section class="draft">
     <div class="draft-label">
       <span class="num">03</span>
-      <h2>Split / dual-action bar</h2>
-      <span class="tag">Premium · dashboard</span>
+      <h2>Half-cut horizontal slice</h2>
+      <span class="tag">Architectural</span>
     </div>
-    <p class="draft-note">Footer bar attached to the list. Left: count + hint. Right: action with hairline gold divider and ink-fill on hover.</p>
+    <p class="draft-note">The row is sliced — only the top ~32px peeks above the page fold. You see country labels and the start of the name; everything else is below the line.</p>
 
     <div class="pair">
       <div class="section">
-        <div class="section-head">
-          <div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div></div>
         <ol class="list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span><span class="tagline">Schengen residence</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span><span class="tagline">Forfait fiscal</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span><span class="tagline">10-year renewable</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li class="tease-crop"><a class="row" href="#"><span class="idx">04</span><span class="arms"></span><span class="body-cell"><span class="country">Singapore</span><span class="name">Global Investor</span><span class="tagline">Fast-track PR</span></span><span class="fact">From SGD 10m</span><span class="arrow">→</span></a></li>
         </ol>
-        <div class="split-bar">
-          <div class="hint"><span class="dot"></span><span class="text"><strong>11 more</strong> RBI programmes available</span></div>
-          <a class="action" href="#">Browse all <span class="arr">→</span></a>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all RBI programmes</span></span><span class="arrow">→</span></a>
       </div>
 
       <div class="section cbi">
-        <div class="section-head">
-          <div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div></div>
         <ol class="list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span><span class="tagline">EU citizenship</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span><span class="tagline">Schengen-eligible</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li class="tease-crop"><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">Türkiye</span><span class="name">Citizenship by Property</span><span class="tagline">12-month route</span></span><span class="fact">From $400k</span><span class="arrow">→</span></a></li>
         </ol>
-        <div class="split-bar">
-          <div class="hint"><span class="dot"></span><span class="text"><strong>5 more</strong> CBI programmes available</span></div>
-          <a class="action" href="#">Browse all <span class="arr">→</span></a>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all CBI programmes</span></span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ====================== DRAFT 4 ====================== -->
+  <!-- ====================== T4 — REDACTED BARS ====================== -->
   <section class="draft">
     <div class="draft-label">
       <span class="num">04</span>
-      <h2>Tone-coloured chip with crest</h2>
-      <span class="tag">Brand-bonded</span>
+      <h2>Redacted bars</h2>
+      <span class="tag">Classified · editorial</span>
     </div>
-    <p class="draft-note">Section-coloured chip anchored bottom-right. RBI green / CBI burgundy. A small gold crest echoes the row arms imagery.</p>
+    <p class="draft-note">Country label still readable so the geography is teased; programme name, tagline and price are blocked out with elegant ink/gold bars. Premium "private dossier" feel.</p>
 
     <div class="pair">
       <div class="section">
-        <div class="section-head">
-          <div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div></div>
         <ol class="list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span><span class="tagline">Schengen residence</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span><span class="tagline">Forfait fiscal</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span><span class="tagline">10-year renewable</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li class="tease-redact">
+            <a class="row" href="#">
+              <span class="idx">04</span>
+              <span class="arms"></span>
+              <span class="body-cell">
+                <span class="country">Singapore</span>
+                <span class="redact-stack">
+                  <span class="redact tall" style="width: 168px"></span>
+                  <span class="redact faint" style="width: 110px"></span>
+                </span>
+              </span>
+              <span class="fact"><span class="redact gold" style="width: 90px"></span></span>
+              <span class="arrow">→</span>
+            </a>
+          </li>
         </ol>
-        <div class="chip-wrap">
-          <a class="chip" href="#"><span class="crest">M</span>Explore the full RBI index <span class="arr">→</span></a>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all RBI programmes</span></span><span class="arrow">→</span></a>
       </div>
 
       <div class="section cbi">
-        <div class="section-head">
-          <div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div></div>
         <ol class="list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span><span class="tagline">EU citizenship</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span><span class="tagline">Schengen-eligible</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li class="tease-redact">
+            <a class="row" href="#">
+              <span class="idx">03</span>
+              <span class="arms"></span>
+              <span class="body-cell">
+                <span class="country">Türkiye</span>
+                <span class="redact-stack">
+                  <span class="redact tall" style="width: 200px"></span>
+                  <span class="redact faint" style="width: 130px"></span>
+                </span>
+              </span>
+              <span class="fact"><span class="redact gold" style="width: 90px"></span></span>
+              <span class="arrow">→</span>
+            </a>
+          </li>
         </ol>
-        <div class="chip-wrap">
-          <a class="chip" href="#"><span class="crest">M</span>Explore the full CBI index <span class="arr">→</span></a>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all CBI programmes</span></span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ====================== DRAFT 5 ====================== -->
+  <!-- ====================== T5 — STACKED DEPTH PEEK ====================== -->
   <section class="draft">
     <div class="draft-label">
       <span class="num">05</span>
-      <h2>Progressive disclosure</h2>
-      <span class="tag">In-place expand</span>
+      <h2>Stacked depth peek</h2>
+      <span class="tag">Many more behind</span>
     </div>
-    <p class="draft-note">No navigation. Click to reveal more rows in place with a fade-in. Chevron rotates; underline grows on hover. Click the button to try it.</p>
+    <p class="draft-note">Two ghost rows stacked, the second more faded, suggesting a deeper list behind. Communicates "there's a lot more" without numbers.</p>
 
     <div class="pair">
       <div class="section">
-        <div class="section-head">
-          <div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div>
-        </div>
-        <ol class="list" id="rbi-list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
-          <div class="hidden-rows" id="rbi-hidden">
-            <li><a class="row" href="#"><span class="idx">04</span><span class="arms"></span><span class="body-cell"><span class="country">Singapore</span><span class="name">Global Investor</span></span><span class="fact">From SGD 10m</span><span class="arrow">→</span></a></li>
-            <li><a class="row" href="#"><span class="idx">05</span><span class="arms"></span><span class="body-cell"><span class="country">Italy</span><span class="name">Investor Visa</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
-            <li><a class="row" href="#"><span class="idx">06</span><span class="arms"></span><span class="body-cell"><span class="country">Greece</span><span class="name">Golden Visa</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
-          </div>
+        <div class="section-head"><div><span class="eyebrow">Top RBI · 2026</span><h3>Residence by Investment</h3></div></div>
+        <ol class="list">
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Portugal</span><span class="name">D7 / Golden Visa</span><span class="tagline">Schengen residence</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Switzerland</span><span class="name">Lump-sum Tax</span><span class="tagline">Forfait fiscal</span></span><span class="fact">CHF 250k+/yr</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">UAE</span><span class="name">Golden Residency</span><span class="tagline">10-year renewable</span></span><span class="fact">From AED 2m</span><span class="arrow">→</span></a></li>
+          <li class="tease-stack">
+            <div class="tease-stack-wrap">
+              <a class="row row-ghost-1" href="#"><span class="idx">04</span><span class="arms"></span><span class="body-cell"><span class="country">Singapore</span><span class="name">Global Investor</span><span class="tagline">Fast-track PR</span></span><span class="fact">From SGD 10m</span><span class="arrow">→</span></a>
+              <a class="row row-ghost-2" href="#"><span class="idx">05</span><span class="arms"></span><span class="body-cell"><span class="country">Italy</span><span class="name">Investor Visa</span><span class="tagline">Lump-sum option</span></span><span class="fact">From €250k</span><span class="arrow">→</span></a>
+            </div>
+          </li>
         </ol>
-        <div class="disclose-wrap">
-          <button class="disclose-btn" type="button" aria-expanded="false" data-target="rbi-hidden">
-            <span class="lbl">Show 3 more</span>
-            <span class="chev">▾</span>
-          </button>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all RBI programmes</span></span><span class="arrow">→</span></a>
       </div>
 
       <div class="section cbi">
-        <div class="section-head">
-          <div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div>
-        </div>
-        <ol class="list" id="cbi-list">
-          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
-          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
-          <div class="hidden-rows" id="cbi-hidden">
-            <li><a class="row" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">Türkiye</span><span class="name">Citizenship by Property</span></span><span class="fact">From $400k</span><span class="arrow">→</span></a></li>
-            <li><a class="row" href="#"><span class="idx">04</span><span class="arms"></span><span class="body-cell"><span class="country">Egypt</span><span class="name">Investor Citizenship</span></span><span class="fact">From $250k</span><span class="arrow">→</span></a></li>
-          </div>
+        <div class="section-head"><div><span class="eyebrow">Top CBI · 2026</span><h3>Citizenship by Investment</h3></div></div>
+        <ol class="list">
+          <li><a class="row" href="#"><span class="idx">01</span><span class="arms"></span><span class="body-cell"><span class="country">Malta</span><span class="name">MEIN</span><span class="tagline">EU citizenship</span></span><span class="fact">From €690k</span><span class="arrow">→</span></a></li>
+          <li><a class="row" href="#"><span class="idx">02</span><span class="arms"></span><span class="body-cell"><span class="country">Caribbean</span><span class="name">Five-Nation Suite</span><span class="tagline">Schengen-eligible</span></span><span class="fact">From $200k</span><span class="arrow">→</span></a></li>
+          <li class="tease-stack">
+            <div class="tease-stack-wrap">
+              <a class="row row-ghost-1" href="#"><span class="idx">03</span><span class="arms"></span><span class="body-cell"><span class="country">Türkiye</span><span class="name">Citizenship by Property</span><span class="tagline">12-month route</span></span><span class="fact">From $400k</span><span class="arrow">→</span></a>
+              <a class="row row-ghost-2" href="#"><span class="idx">04</span><span class="arms"></span><span class="body-cell"><span class="country">Egypt</span><span class="name">Investor Citizenship</span><span class="tagline">Single applicant</span></span><span class="fact">From $250k</span><span class="arrow">→</span></a>
+            </div>
+          </li>
         </ol>
-        <div class="disclose-wrap">
-          <button class="disclose-btn" type="button" aria-expanded="false" data-target="cbi-hidden">
-            <span class="lbl">Show 2 more</span>
-            <span class="chev">▾</span>
-          </button>
-        </div>
+        <a class="more-row" href="#"><span class="plus">+</span><span></span><span class="label"><span class="underline">View all CBI programmes</span></span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
 </div>
-
-<script>
-  document.querySelectorAll('.disclose-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = document.getElementById(btn.dataset.target);
-      const open = target.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      const lbl = btn.querySelector('.lbl');
-      const count = target.querySelectorAll('li').length;
-      lbl.textContent = open ? 'Show fewer' : 'Show ' + count + ' more';
-    });
-  });
-</script>
 </body>
 </html>
