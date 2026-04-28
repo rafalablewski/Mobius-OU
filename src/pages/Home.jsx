@@ -8,24 +8,6 @@ import { PROGRAMS } from '../data/programs.js';
 const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
 const CBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'CBI');
 
-const RBI_TEASER = {
-  slug: 'singapore-global-investor',
-  country: 'Singapore',
-  name: 'Singapore Global Investor',
-  tagline: 'Fast-track permanent residency for established founders.',
-  headline: 'SGD 10M · 5-year PR',
-  arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Coat_of_arms_of_Singapore.svg/250px-Coat_of_arms_of_Singapore.svg.png',
-};
-
-const CBI_TEASER = {
-  slug: 'turkiye-citizenship-by-property',
-  country: 'Türkiye',
-  name: 'Citizenship by Property',
-  tagline: 'Twelve-month route via real-estate investment.',
-  headline: 'USD 400k · 12 months',
-  arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Emblem_of_T%C3%BCrkiye.svg/250px-Emblem_of_T%C3%BCrkiye.svg.png',
-};
-
 export default function Home() {
   return (
     <>
@@ -176,7 +158,6 @@ export default function Home() {
             title="Residency routes we actively run"
             body="Four programs we return to most often — ranked on political stability, physical-presence cost, and the five-year end state."
             programs={RBI_PROGRAMS}
-            teaser={RBI_TEASER}
             viewAllHref="/services"
             viewAllLabel="View all RBI programmes"
           />
@@ -187,7 +168,6 @@ export default function Home() {
             title="Citizenship programs on the shortlist"
             body="The two citizenship routes we still take mandates on — one EU passport, one Caribbean portfolio. Every file pre-screened on source of funds."
             programs={CBI_PROGRAMS}
-            teaser={CBI_TEASER}
             viewAllHref="/services"
             viewAllLabel="View all CBI programmes"
           />

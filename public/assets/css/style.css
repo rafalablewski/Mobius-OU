@@ -14341,20 +14341,7 @@ span {
   transform: translateX(4px);
 }
 
-/* Teaser row — top sharp, fades to zero down the row. */
-.ht-top-programs__row--teaser {
-  border-bottom: 0;
-  pointer-events: none;
-}
-.ht-top-programs__row--teaser .ht-top-programs__row-link {
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
-          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
-}
-.ht-top-programs__row--teaser .ht-top-programs__row-link::before {
-  display: none;
-}
-
-/* "View all" row — sits beneath the teaser, reads as a continuation of
+/* "View all" row — sits beneath the list, reads as a continuation of
    the table rather than a button. */
 .ht-top-programs__more-row {
   display: grid;
