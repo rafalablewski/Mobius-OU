@@ -14341,9 +14341,9 @@ span {
   transform: translateX(4px);
 }
 
-/* Teaser row — barely visible, slightly blurred. A whisper of a row
-   so the eye drops to the View-all link beneath. */
+/* Teaser row — top stays sharp, lower half blurs and fades. */
 .ht-top-programs__row--teaser {
+  position: relative;
   border-bottom: 0;
   pointer-events: none;
 }
@@ -14353,6 +14353,19 @@ span {
 }
 .ht-top-programs__row--teaser .ht-top-programs__row-link::before {
   display: none;
+}
+.ht-top-programs__row--teaser::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 35%;
+  bottom: 0;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(2.5px);
+          backdrop-filter: blur(2.5px);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 60%);
+          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 60%);
 }
 
 /* "View all" row — sits beneath the teaser, reads as a continuation of
