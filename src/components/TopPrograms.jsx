@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
 
-export default function TopPrograms({ eyebrow, title, body, programs, tone = 'rbi' }) {
+export default function TopPrograms({
+  eyebrow,
+  title,
+  body,
+  programs,
+  viewAllHref,
+  viewAllLabel,
+  tone = 'rbi',
+}) {
+  const moreDelay = 0.1 + programs.length * 0.1;
+
   return (
     <section className={`ht-top-programs ht-top-programs--${tone}`}>
       <div className="container">
@@ -39,6 +49,26 @@ export default function TopPrograms({ eyebrow, title, body, programs, tone = 'rb
             </li>
           ))}
         </ol>
+
+        {viewAllHref && (
+          <Link
+            to={viewAllHref}
+            className="ht-top-programs__more-row wow fadeInUp"
+            data-wow-delay={`${moreDelay}s`}
+          >
+            <span className="ht-top-programs__more-plus" aria-hidden="true">+</span>
+            <span aria-hidden="true"></span>
+            <span className="ht-top-programs__more-label">
+              <span className="ht-top-programs__more-underline">
+                {viewAllLabel || 'View all programmes'}
+              </span>
+            </span>
+            <span aria-hidden="true"></span>
+            <span className="ht-top-programs__arrow" aria-hidden="true">
+              <i className="fa-solid fa-arrow-right"></i>
+            </span>
+          </Link>
+        )}
       </div>
     </section>
   );

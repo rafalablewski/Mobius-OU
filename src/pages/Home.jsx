@@ -158,6 +158,8 @@ export default function Home() {
             title="Residency routes we actively run"
             body="Four programs we return to most often — ranked on political stability, physical-presence cost, and the five-year end state."
             programs={RBI_PROGRAMS}
+            viewAllHref="/services"
+            viewAllLabel="View all RBI programmes"
           />
 
           <TopPrograms
@@ -166,6 +168,8 @@ export default function Home() {
             title="Citizenship programs on the shortlist"
             body="The two citizenship routes we still take mandates on — one EU passport, one Caribbean portfolio. Every file pre-screened on source of funds."
             programs={CBI_PROGRAMS}
+            viewAllHref="/services"
+            viewAllLabel="View all CBI programmes"
           />
 
           <Approach />
