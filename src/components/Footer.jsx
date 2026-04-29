@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Glyph from './Glyph';
 
 export default function Footer() {
   return (
@@ -6,8 +7,8 @@ export default function Footer() {
       <div className="container">
         <div className="ht-footer-top-wrapper">
           <div className="ht-footer-top-left wow fadeInUp" data-wow-delay=".2s">
-            <Link to="/" className="ht-wordmark ht-wordmark--ivory">
-              <span className="ht-wordmark__lead">Mobius</span>
+            <Link to="/" className="ht-wordmark ht-wordmark--ivory ht-wordmark--mark" aria-label="Mobius & Partners — home">
+              <Glyph tone="ivory" size={48} title="Mobius & Partners" />
             </Link>
             <p className="desc">
               Independent strategic advisory on global mobility, citizenship and residency
@@ -63,7 +64,7 @@ export default function Footer() {
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
           <p>
-            ©{new Date().getFullYear()} <span>Mobius</span>. All rights reserved. &nbsp;|&nbsp;
+            ©{new Date().getFullYear()} <span>Mobius Global OÜ</span>, trading as <span>Mobius &amp; Partners</span>. All rights reserved. &nbsp;|&nbsp;
             Educational and strategic advisory only — not legal, tax or investment advice. Regulated legal
             and tax work is delivered by licensed partners in each jurisdiction.
           </p>

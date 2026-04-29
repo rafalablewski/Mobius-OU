@@ -12668,37 +12668,79 @@ span {
   box-shadow: 0 30px 60px -34px rgba(11, 15, 20, 0.25);
 }
 
-/* === Wordmark (replaces Mobius logo) =================================== */
+/* === Wordmark (Mobius & Partners) ====================================== */
 .ht-wordmark {
   display: inline-flex;
   align-items: baseline;
-  gap: 6px;
-  font-family: var(--ht-font-display);
+  gap: 5px;
+  font-family: "Fraunces", "Cormorant Garamond", "Newsreader", Georgia, serif;
   font-optical-sizing: auto;
+  font-variation-settings: "opsz" 96, "SOFT" 30;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
   color: var(--ht-heading-color);
   text-transform: none;
   white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.ht-wordmark__lead,
+.ht-wordmark__lead {
+  font-weight: 600;
+}
 .ht-wordmark__tail {
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 0.005em;
 }
 .ht-wordmark__amp {
-  font-family: var(--ht-font-display);
+  font-family: "Fraunces", "Cormorant Garamond", serif;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
   font-weight: 400;
   font-style: italic;
-  font-size: 22px;
+  font-size: 1.12em;
   color: var(--ht-theme-color-2);
   letter-spacing: 0;
+  margin: 0 1px;
+  transform: translateY(0.04em);
 }
 .ht-wordmark--ivory,
 .ht-wordmark--ivory .ht-wordmark__lead,
-.ht-wordmark--ivory .ht-wordmark__tail {
+.ht-wordmark--ivory .ht-wordmark__tail,
+.ht-wordmark--ivory .ht-wordmark__name {
   color: var(--ht-body);
+}
+
+/* Glyph + name lockup — overrides text-only wordmark layout */
+.ht-wordmark--lockup {
+  align-items: center;
+  gap: 12px;
+}
+.ht-wordmark--lockup svg {
+  display: block;
+  flex-shrink: 0;
+}
+.ht-wordmark__name {
+  font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--ht-heading-color);
+  white-space: nowrap;
+  /* Trim Cinzel's tall line-box down to its actual cap-height so flex centring
+     aligns the *visible caps* (not the empty ascender space) with the Glyph M. */
+  text-box: trim-both cap alphabetic;
+  /* Fallback for older browsers — collapse line-box and nudge to optical centre */
+  margin-top: -0.18em;
+  margin-bottom: -0.18em;
+}
+@supports (text-box: trim-both cap alphabetic) {
+  .ht-wordmark__name { margin-top: 0; margin-bottom: 0; }
+}
+@media (max-width: 575px) {
+  .ht-wordmark--lockup { gap: 9px; }
+  .ht-wordmark__name { font-size: 13px; }
 }
 
 /* === Flatten header chrome ============================================= */

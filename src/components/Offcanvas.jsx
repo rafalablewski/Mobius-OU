@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Glyph from './Glyph';
 
 const PANELS = {
   firm: {
@@ -46,8 +47,9 @@ export default function Offcanvas({ open, onClose }) {
       <div className={`ht-offcanvas${open ? ' ht-offcanvas-open' : ''}`}>
         <div className="ht-offcanvas-wrapper">
           <div className="ht-offcanvas-header mb-50">
-            <Link to="/" className="ht-offcanvas-logo ht-wordmark" onClick={onClose}>
-              <span className="ht-wordmark__lead">Mobius</span>
+            <Link to="/" className="ht-offcanvas-logo ht-wordmark ht-wordmark--lockup" onClick={onClose} aria-label="Mobius & Partners — home">
+              <Glyph tone="ink" size={36} title="Mobius & Partners" />
+              <span className="ht-wordmark__name">Mobius Global</span>
             </Link>
             <button
               type="button"
