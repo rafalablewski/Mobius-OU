@@ -303,90 +303,111 @@
         <p class="role-desc">A single character — the M crossed by a clean two-tone möbius. Two S-curves meeting at the centre, no hanging accents. Stands alone on a door plate, business-card corner, favicon.</p>
       </div>
 
-      <!-- ROLE B · SEAL (17) — Official Stamp -->
+      <!-- ROLE B · SEAL (17) — Premium engraved seal -->
       <div class="system-cell">
         <span class="role">B · Seal</span>
         <span class="role-num">№ 17</span>
         <div class="stage">
-          <svg viewBox="-100 -100 200 200" width="220" height="220" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — official stamp">
+          <svg viewBox="-100 -100 200 200" width="240" height="240" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — engraved seal">
             <defs>
-              <path id="sealHero-top" d="M 0 0 m -72 0 a 72 72 0 1 1 144 0"/>
-              <path id="sealHero-bot" d="M 0 0 m 72 0 a 72 72 0 1 1 -144 0"/>
-              <line id="sealHero-tick" x1="0" y1="-90" x2="0" y2="-84" stroke="#0B0F14" stroke-width="0.7" stroke-linecap="butt"/>
-              <g id="sealHero-star" fill="#0B0F14">
-                <path d="M 0 -3 L 0.7 -0.7 L 3 0 L 0.7 0.7 L 0 3 L -0.7 0.7 L -3 0 L -0.7 -0.7 Z"/>
+              <path id="sealHero-top" d="M 0 0 m -70 0 a 70 70 0 1 1 140 0"/>
+              <path id="sealHero-bot" d="M 0 0 m 70 0 a 70 70 0 1 1 -140 0"/>
+              <!-- Annular mask confining guilloché to the rim band -->
+              <mask id="sealHero-band" maskUnits="userSpaceOnUse">
+                <rect x="-100" y="-100" width="200" height="200" fill="black"/>
+                <circle r="90" fill="white"/>
+                <circle r="78" fill="black"/>
+              </mask>
+              <!-- Diamond fleuron with inset gold dot -->
+              <g id="sealHero-fleuron">
+                <path d="M 0 -5 L 3.4 0 L 0 5 L -3.4 0 Z" fill="#0B0F14"/>
+                <circle r="1.1" fill="#C9A86A"/>
               </g>
             </defs>
 
-            <!-- Heavy outer rim -->
-            <circle r="94" fill="none" stroke="#0B0F14" stroke-width="2.6"/>
-            <!-- Die-struck tick serrations on inner edge of outer rim -->
-            <g>
-              <use href="#sealHero-tick" transform="rotate(0)"/><use href="#sealHero-tick" transform="rotate(10)"/>
-              <use href="#sealHero-tick" transform="rotate(20)"/><use href="#sealHero-tick" transform="rotate(30)"/>
-              <use href="#sealHero-tick" transform="rotate(40)"/><use href="#sealHero-tick" transform="rotate(50)"/>
-              <use href="#sealHero-tick" transform="rotate(60)"/><use href="#sealHero-tick" transform="rotate(70)"/>
-              <use href="#sealHero-tick" transform="rotate(80)"/><use href="#sealHero-tick" transform="rotate(90)"/>
-              <use href="#sealHero-tick" transform="rotate(100)"/><use href="#sealHero-tick" transform="rotate(110)"/>
-              <use href="#sealHero-tick" transform="rotate(120)"/><use href="#sealHero-tick" transform="rotate(130)"/>
-              <use href="#sealHero-tick" transform="rotate(140)"/><use href="#sealHero-tick" transform="rotate(150)"/>
-              <use href="#sealHero-tick" transform="rotate(160)"/><use href="#sealHero-tick" transform="rotate(170)"/>
-              <use href="#sealHero-tick" transform="rotate(180)"/><use href="#sealHero-tick" transform="rotate(190)"/>
-              <use href="#sealHero-tick" transform="rotate(200)"/><use href="#sealHero-tick" transform="rotate(210)"/>
-              <use href="#sealHero-tick" transform="rotate(220)"/><use href="#sealHero-tick" transform="rotate(230)"/>
-              <use href="#sealHero-tick" transform="rotate(240)"/><use href="#sealHero-tick" transform="rotate(250)"/>
-              <use href="#sealHero-tick" transform="rotate(260)"/><use href="#sealHero-tick" transform="rotate(270)"/>
-              <use href="#sealHero-tick" transform="rotate(280)"/><use href="#sealHero-tick" transform="rotate(290)"/>
-              <use href="#sealHero-tick" transform="rotate(300)"/><use href="#sealHero-tick" transform="rotate(310)"/>
-              <use href="#sealHero-tick" transform="rotate(320)"/><use href="#sealHero-tick" transform="rotate(330)"/>
-              <use href="#sealHero-tick" transform="rotate(340)"/><use href="#sealHero-tick" transform="rotate(350)"/>
-            </g>
-            <!-- Inner rim, just inside the ticks -->
-            <circle r="80" fill="none" stroke="#0B0F14" stroke-width="0.6"/>
+            <!-- Twin outer rim (depth, not weight) -->
+            <circle r="98" fill="none" stroke="#0B0F14" stroke-width="0.5"/>
+            <circle r="94" fill="none" stroke="#0B0F14" stroke-width="1.6"/>
 
-            <!-- Perimeter text -->
-            <text class="svg-manrope" font-size="9.5" letter-spacing="6.5" font-weight="500" fill="#0B0F14">
+            <!-- Guilloché wave band: 18 overlapping circles, masked to the rim band -->
+            <g mask="url(#sealHero-band)" fill="none" stroke="#C9A86A" stroke-width="0.35" opacity="0.55">
+              <circle cx="84" cy="0" r="13"/>
+              <circle cx="78.9" cy="28.7" r="13"/>
+              <circle cx="64.4" cy="54" r="13"/>
+              <circle cx="42" cy="72.7" r="13"/>
+              <circle cx="14.6" cy="82.7" r="13"/>
+              <circle cx="-14.6" cy="82.7" r="13"/>
+              <circle cx="-42" cy="72.7" r="13"/>
+              <circle cx="-64.4" cy="54" r="13"/>
+              <circle cx="-78.9" cy="28.7" r="13"/>
+              <circle cx="-84" cy="0" r="13"/>
+              <circle cx="-78.9" cy="-28.7" r="13"/>
+              <circle cx="-64.4" cy="-54" r="13"/>
+              <circle cx="-42" cy="-72.7" r="13"/>
+              <circle cx="-14.6" cy="-82.7" r="13"/>
+              <circle cx="14.6" cy="-82.7" r="13"/>
+              <circle cx="42" cy="-72.7" r="13"/>
+              <circle cx="64.4" cy="-54" r="13"/>
+              <circle cx="78.9" cy="-28.7" r="13"/>
+            </g>
+
+            <!-- Inner rim, just inside the guilloché band -->
+            <circle r="78" fill="none" stroke="#0B0F14" stroke-width="0.5"/>
+
+            <!-- Perimeter text — top arc (firm name, larger, tracked) -->
+            <text class="svg-manrope" font-size="8.4" letter-spacing="6.4" font-weight="500" fill="#0B0F14">
               <textPath href="#sealHero-top" startOffset="50%" text-anchor="middle">
                 MOBIUS &#x00B7; &amp; &#x00B7; PARTNERS
               </textPath>
             </text>
-            <text class="svg-manrope" font-size="7.5" letter-spacing="5.5" fill="#0B0F14">
+            <!-- Perimeter text — bottom arc (descriptor, smaller) -->
+            <text class="svg-manrope" font-size="6.4" letter-spacing="4.2" fill="#0B0F14">
               <textPath href="#sealHero-bot" startOffset="50%" text-anchor="middle">
-                PRIVATE CLIENT ADVISORY &#x00B7; EST MMXXV
+                PRIVATE &#x00B7; CLIENT &#x00B7; ADVISORY
               </textPath>
             </text>
 
-            <!-- Cardinal stars at 9 and 3 o'clock to break the text arcs -->
-            <use href="#sealHero-star" transform="translate(-72,0)"/>
-            <use href="#sealHero-star" transform="translate(72,0)"/>
+            <!-- Diamond fleurons at 9 and 3 o'clock breaking the arc cleanly -->
+            <use href="#sealHero-fleuron" transform="translate(-71,0)"/>
+            <use href="#sealHero-fleuron" transform="translate(71,0)"/>
 
-            <!-- Mid gold decorative ring -->
-            <circle r="56" fill="none" stroke="#C9A86A" stroke-width="0.9"/>
+            <!-- Date cartouche above the medallion -->
+            <line x1="-32" y1="-44" x2="-14" y2="-44" stroke="#C9A86A" stroke-width="0.45"/>
+            <line x1="14" y1="-44" x2="32" y2="-44" stroke="#C9A86A" stroke-width="0.45"/>
+            <text x="0" y="-41" text-anchor="middle" class="svg-manrope"
+                  font-size="5.4" letter-spacing="3.2" fill="#0B0F14">
+              EST &#x00B7; MMXXV
+            </text>
 
-            <!-- Canonical möbius core, scaled 1.6× -->
-            <g transform="scale(1.6)">
+            <!-- Medallion: gold-trim ring framing the möbius core -->
+            <circle r="44" fill="none" stroke="#C9A86A" stroke-width="0.7"/>
+            <circle r="40" fill="none" stroke="#0B0F14" stroke-width="0.4"/>
+
+            <!-- Canonical möbius core, scaled 1.4× -->
+            <g transform="scale(1.4)">
               <path d="M -22 0 C -22 -14 -6 -14 0 0 C 6 14 22 14 22 0"
-                    fill="none" stroke="#0B0F14" stroke-width="2"
+                    fill="none" stroke="#0B0F14" stroke-width="2.2"
                     stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M 22 0 C 22 -14 6 -14 0 0 C -6 14 -22 14 -22 0"
-                    fill="none" stroke="#C9A86A" stroke-width="2"
+                    fill="none" stroke="#C9A86A" stroke-width="2.2"
                     stroke-linecap="round" stroke-linejoin="round"/>
             </g>
 
-            <!-- Registration line below the möbius -->
-            <text x="0" y="42" text-anchor="middle"
-                  class="svg-manrope" font-size="6.5" letter-spacing="3.2" fill="#0B0F14">
+            <!-- Registration cartouche below the medallion -->
+            <line x1="-32" y1="50" x2="-14" y2="50" stroke="#C9A86A" stroke-width="0.45"/>
+            <line x1="14" y1="50" x2="32" y2="50" stroke="#C9A86A" stroke-width="0.45"/>
+            <text x="0" y="53" text-anchor="middle" class="svg-manrope"
+                  font-size="5.4" letter-spacing="3.2" fill="#0B0F14">
               MOBIUS GLOBAL OÜ
             </text>
-            <line x1="-22" y1="46" x2="22" y2="46" stroke="#C9A86A" stroke-width="0.5"/>
-            <text x="0" y="56" text-anchor="middle"
-                  class="svg-manrope" font-size="5.5" letter-spacing="2.6" fill="#6B6257">
+            <text x="0" y="62" text-anchor="middle" class="svg-manrope"
+                  font-size="4.6" letter-spacing="2.6" fill="#6B6257">
               TLN &#x00B7; WAW
             </text>
           </svg>
         </div>
         <h3>The Seal</h3>
-        <p class="role-desc">A die-struck official stamp — heavy outer rim, 36 perimeter ticks, formal sans on the top arc, registration field beneath the möbius core. Built to live on letterhead, certificates, NDAs, and embossed covers.</p>
+        <p class="role-desc">An engraved seal, not a rubber stamp. Twin outer rim, a guilloché wave band built from eighteen overlapping circles (the technique used on banknotes and certificates), bisected perimeter type with diamond fleurons, dated cartouches above and below a gold-trimmed medallion that holds the möbius core.</p>
       </div>
 
       <!-- ROLE C · KINETIC (20) — möbius geometry 1:1 with the Glyph -->
