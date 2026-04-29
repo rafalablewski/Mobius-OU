@@ -143,8 +143,9 @@ export default function Header({ onOffcanvasOpen }) {
           <div className="ht-menu-wrapper">
             <div className="ht-menu-left">
               <div className="ht-menu-logo">
-                <Link to="/" aria-label="Mobius & Partners — home" className="ht-wordmark ht-wordmark--mark">
+                <Link to="/" aria-label="Mobius & Partners — home" className="ht-wordmark ht-wordmark--lockup">
                   <Glyph tone="ink" size={40} title="Mobius & Partners" />
+                  <span className="ht-wordmark__name">Mobius Global</span>
                 </Link>
               </div>
               <div className="ht-menu-main d-none d-lg-block">
