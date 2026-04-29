@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Glyph from './Glyph';
 
 export default function Footer() {
   return (
@@ -6,10 +7,8 @@ export default function Footer() {
       <div className="container">
         <div className="ht-footer-top-wrapper">
           <div className="ht-footer-top-left wow fadeInUp" data-wow-delay=".2s">
-            <Link to="/" className="ht-wordmark ht-wordmark--ivory" aria-label="Mobius & Partners — home">
-              <span className="ht-wordmark__lead">Mobius</span>
-              <span className="ht-wordmark__amp" aria-hidden="true">&amp;</span>
-              <span className="ht-wordmark__tail">Partners</span>
+            <Link to="/" className="ht-wordmark ht-wordmark--ivory ht-wordmark--mark" aria-label="Mobius & Partners — home">
+              <Glyph tone="ivory" size={48} title="Mobius & Partners" />
             </Link>
             <p className="desc">
               Independent strategic advisory on global mobility, citizenship and residency
