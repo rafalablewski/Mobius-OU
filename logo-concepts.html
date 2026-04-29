@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mobius &amp; Partners — Logo Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=Italiana&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" />
+<style>
+  :root {
+    --ink: #0B0F14;
+    --ivory: #F4EFE6;
+    --cream: #FAF6EE;
+    --gold: #C9A86A;
+    --gold-deep: #A07F44;
+    --stone: #6B6257;
+    --hairline: rgba(11, 15, 20, 0.16);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+  }
+  .page-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold-deep);
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+  .lede {
+    font-family: "Newsreader", serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--stone);
+    max-width: 620px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  @media (min-width: 760px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+  .card {
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+    border-radius: 2px;
+    padding: 56px 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .card .num {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-family: "Fraunces", serif;
+    font-variation-settings: "opsz" 144;
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--stone);
+    letter-spacing: 0.06em;
+  }
+  .card .stage {
+    width: 100%;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0;
+  }
+  .card .meta {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hairline);
+    width: 100%;
+    text-align: center;
+  }
+  .card .name {
+    font-family: "Fraunces", serif;
+    font-variation-settings: "opsz" 96, "SOFT" 40;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.005em;
+    margin-bottom: 6px;
+  }
+  .card .desc {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--stone);
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .card.dark { background: var(--ink); border-color: var(--ink); }
+  .card.dark .num { color: rgba(244,239,230,0.5); }
+  .card.dark .meta { border-top-color: rgba(244,239,230,0.16); }
+  .card.dark .name { color: var(--cream); }
+  .card.dark .desc { color: rgba(244,239,230,0.6); }
+
+  /* SVG text styling helpers */
+  .svg-fraunces { font-family: "Fraunces", serif; }
+  .svg-cormorant { font-family: "Cormorant Garamond", serif; }
+  .svg-cormorant-light { font-family: "Cormorant", serif; }
+  .svg-manrope { font-family: "Manrope", sans-serif; }
+  .svg-italiana { font-family: "Italiana", serif; }
+  .svg-newsreader { font-family: "Newsreader", serif; }
+
+  .footnote {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="page-header">
+    <div class="eyebrow">Logo Studies · Round One</div>
+    <h1>Mobius <em>&amp;</em> Partners</h1>
+    <p class="lede">Ten directions for the wordmark — from refined private-bank classicism to modernist takes on the möbius idea. None are final; they're conversation starters.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- ========================================================== -->
+    <!-- 01 · The Refined Classic                                    -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">01</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 160" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Refined Classic">
+          <text x="240" y="78" text-anchor="middle"
+                class="svg-fraunces"
+                font-size="56"
+                font-weight="500"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 40; letter-spacing: -0.012em;">
+            <tspan>Mobius</tspan>
+            <tspan dx="6" dy="0" font-style="italic" font-weight="400" fill="#C9A86A" font-size="64"
+                   style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;">&amp;</tspan>
+            <tspan dx="6" font-weight="400" fill="#0B0F14">Partners</tspan>
+          </text>
+          <line x1="180" y1="100" x2="300" y2="100" stroke="#C9A86A" stroke-width="0.8" />
+          <text x="240" y="124" text-anchor="middle"
+                class="svg-manrope" font-size="9.5" letter-spacing="3.6"
+                fill="#6B6257">PRIVATE CLIENT ADVISORY · WARSAW</text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Refined Classic</div>
+        <p class="desc">Fraunces wordmark with a wonky italic gold ampersand. Hairline rule and tracked sans tagline. Most directly evolves what's on the site today.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 02 · The Möbius Mark                                        -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">02</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 160" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Möbius Mark">
+          <!-- Möbius ribbon: two crossed loops with one stroked, one filled accent -->
+          <g transform="translate(80,80)">
+            <path d="M -38 0 C -38 -22 -10 -22 0 0 C 10 22 38 22 38 0 C 38 -22 10 -22 0 0 C -10 22 -38 22 -38 0 Z"
+                  fill="none" stroke="#0B0F14" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M -28 0 C -28 -14 -8 -14 0 0"
+                  fill="none" stroke="#C9A86A" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+          <text x="156" y="92"
+                class="svg-fraunces"
+                font-size="44"
+                font-weight="500"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 30; letter-spacing: -0.012em;">
+            <tspan>Mobius</tspan>
+            <tspan dx="5" font-style="italic" font-weight="400" fill="#C9A86A" font-size="50"
+                   style="font-variation-settings: 'opsz' 144, 'SOFT' 100;">&amp;</tspan>
+            <tspan dx="5" font-weight="400">Partners</tspan>
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Möbius Mark</div>
+        <p class="desc">A literal möbius ribbon as the icon — geometric, single-line, with a gold "front face" accent. Ties the firm name to a clean, ownable graphic mark.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 03 · The Stacked Crest                                      -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">03</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 200" width="100%" style="max-width:340px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Stacked Crest">
+          <!-- small möbius mark up top -->
+          <g transform="translate(240,30)">
+            <path d="M -20 0 C -20 -12 -6 -12 0 0 C 6 12 20 12 20 0 C 20 -12 6 -12 0 0 C -6 12 -20 12 -20 0 Z"
+                  fill="none" stroke="#C9A86A" stroke-width="1.6" stroke-linejoin="round"/>
+          </g>
+          <text x="240" y="100" text-anchor="middle"
+                class="svg-fraunces"
+                font-size="40"
+                font-weight="600"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 30; letter-spacing: 0.18em;">
+            MOBIUS
+          </text>
+          <line x1="170" y1="120" x2="220" y2="120" stroke="#0B0F14" stroke-width="0.8"/>
+          <text x="240" y="127" text-anchor="middle"
+                class="svg-fraunces"
+                font-size="22"
+                font-style="italic"
+                font-weight="400"
+                fill="#C9A86A"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;">
+            &amp;
+          </text>
+          <line x1="260" y1="120" x2="310" y2="120" stroke="#0B0F14" stroke-width="0.8"/>
+          <text x="240" y="156" text-anchor="middle"
+                class="svg-fraunces"
+                font-size="22"
+                font-weight="500"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 96, 'SOFT' 30; letter-spacing: 0.34em;">
+            PARTNERS
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Stacked Crest</div>
+        <p class="desc">Centered architectural lockup. Mark, name, hairline rules, ampersand and "Partners" stacked on a strict vertical axis. Reads as a heritage advisory plate.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 04 · The Engraved                                           -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">04</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 200" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Engraved">
+          <!-- decorative banknote frame -->
+          <rect x="40" y="40" width="400" height="120" fill="none" stroke="#0B0F14" stroke-width="0.8"/>
+          <rect x="46" y="46" width="388" height="108" fill="none" stroke="#0B0F14" stroke-width="0.4"/>
+          <!-- corner ornaments (filled diamonds) -->
+          <g fill="#C9A86A">
+            <polygon points="40,40 46,34 52,40 46,46"/>
+            <polygon points="428,40 434,34 440,40 434,46"/>
+            <polygon points="40,160 46,154 52,160 46,166"/>
+            <polygon points="428,160 434,154 440,160 434,166"/>
+          </g>
+          <text x="240" y="92" text-anchor="middle"
+                class="svg-cormorant-light"
+                font-size="38"
+                font-weight="300"
+                fill="#0B0F14"
+                style="letter-spacing: 0.06em;">
+            <tspan>MOBIUS</tspan>
+            <tspan dx="14" dy="-2" font-style="italic" font-weight="400" fill="#A07F44" font-size="46">&amp;</tspan>
+            <tspan dx="10" dy="2">PARTNERS</tspan>
+          </text>
+          <text x="240" y="124" text-anchor="middle"
+                class="svg-cormorant" font-style="italic" font-size="13"
+                fill="#6B6257" letter-spacing="2">
+            est. mmxxv · tallinn · warsaw
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Engraved</div>
+        <p class="desc">Banknote / certificate styling — hairline frame, diamond corner ornaments, light Cormorant capitals and an ornamental ampersand. Old-world, very private bank.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 05 · The Modern Boutique                                    -->
+    <!-- ========================================================== -->
+    <section class="card dark">
+      <span class="num">05</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 160" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Modern Boutique">
+          <text x="240" y="76" text-anchor="middle"
+                class="svg-manrope"
+                font-size="32"
+                font-weight="500"
+                fill="#FAF6EE"
+                letter-spacing="9">
+            MOBIUS
+          </text>
+          <text x="240" y="120" text-anchor="middle"
+                class="svg-fraunces"
+                font-size="34"
+                font-style="italic"
+                font-weight="400"
+                fill="#C9A86A"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;">
+            <tspan>&amp;</tspan>
+            <tspan dx="8" fill="#FAF6EE" font-weight="300">Partners</tspan>
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Modern Boutique</div>
+        <p class="desc">Tracked Manrope sans for "MOBIUS" answered by an italic Fraunces "&amp; Partners" below. A two-voice composition — institutional above, personal beneath.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 06 · The Monogram Lockup                                    -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">06</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 160" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Monogram Lockup">
+          <!-- Monogram circle -->
+          <circle cx="80" cy="80" r="42" fill="none" stroke="#0B0F14" stroke-width="1.2"/>
+          <circle cx="80" cy="80" r="38" fill="none" stroke="#C9A86A" stroke-width="0.6"/>
+          <text x="80" y="76" text-anchor="middle"
+                class="svg-fraunces"
+                font-size="30"
+                font-weight="600"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 40;">
+            <tspan>M</tspan>
+            <tspan font-style="italic" fill="#C9A86A" font-weight="400" font-size="32"
+                   style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;">&amp;</tspan>
+            <tspan>P</tspan>
+          </text>
+          <text x="80" y="96" text-anchor="middle"
+                class="svg-manrope" font-size="6" letter-spacing="2.4" fill="#6B6257">EST · MMXXV</text>
+          <!-- Wordmark stack -->
+          <text x="148" y="74"
+                class="svg-fraunces"
+                font-size="32"
+                font-weight="500"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 30; letter-spacing: 0.06em;">
+            MOBIUS &amp; PARTNERS
+          </text>
+          <line x1="148" y1="86" x2="420" y2="86" stroke="#0B0F14" stroke-width="0.5"/>
+          <text x="148" y="106"
+                class="svg-manrope" font-size="9" letter-spacing="3.4" fill="#6B6257">
+            GLOBAL MOBILITY · PRIVATE CLIENT ADVISORY
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Monogram Lockup</div>
+        <p class="desc">Circular M&amp;P seal anchors a horizontal wordmark. Works as full lockup, or the seal alone scales to favicon, signet, and stationery.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 07 · The Continental                                        -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">07</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 160" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Continental">
+          <text x="240" y="86" text-anchor="middle"
+                class="svg-cormorant"
+                font-size="64"
+                font-style="italic"
+                font-weight="500"
+                fill="#0B0F14"
+                style="letter-spacing: -0.01em;">
+            Möbius
+          </text>
+          <text x="240" y="124" text-anchor="middle"
+                class="svg-cormorant"
+                font-size="18"
+                font-weight="400"
+                fill="#6B6257"
+                style="letter-spacing: 0.42em;">
+            <tspan font-style="italic" fill="#C9A86A" font-size="22">&amp;</tspan>
+            <tspan dx="10">PARTNERS</tspan>
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Continental</div>
+        <p class="desc">A single italic flourish for "Möbius" with diaeresis — French/Italian boutique style. Tracked tail beneath for legibility. Personal, signed, distinctly European.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 08 · The Initial Drop                                       -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">08</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 160" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Initial Drop">
+          <!-- Oversized M -->
+          <text x="60" y="116"
+                class="svg-fraunces"
+                font-size="120"
+                font-weight="600"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 30;">M</text>
+          <!-- thin gold flourish from M baseline -->
+          <line x1="170" y1="112" x2="186" y2="112" stroke="#C9A86A" stroke-width="0.8"/>
+          <text x="194" y="78"
+                class="svg-fraunces"
+                font-size="30"
+                font-weight="400"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 96, 'SOFT' 40; letter-spacing: 0.02em;">
+            obius
+          </text>
+          <text x="194" y="112"
+                class="svg-fraunces"
+                font-size="30"
+                font-weight="400"
+                fill="#0B0F14"
+                style="font-variation-settings: 'opsz' 96, 'SOFT' 40; letter-spacing: 0.02em;">
+            <tspan font-style="italic" fill="#C9A86A" font-size="36"
+                   style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;">&amp;</tspan>
+            <tspan dx="6">Partners</tspan>
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Initial Drop</div>
+        <p class="desc">An illuminated, oversize "M" sets the tone; the rest of the name reads quietly beside it on two lines. Folio / chapter heading energy.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 09 · The Architectural                                      -->
+    <!-- ========================================================== -->
+    <section class="card">
+      <span class="num">09</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 200" width="100%" style="max-width:340px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Architectural">
+          <text x="240" y="62" text-anchor="middle"
+                class="svg-manrope"
+                font-size="22"
+                font-weight="500"
+                fill="#0B0F14"
+                letter-spacing="10">
+            MOBIUS
+          </text>
+          <line x1="120" y1="86" x2="220" y2="86" stroke="#0B0F14" stroke-width="0.6"/>
+          <text x="240" y="106" text-anchor="middle"
+                class="svg-fraunces"
+                font-size="40"
+                font-style="italic"
+                font-weight="400"
+                fill="#C9A86A"
+                style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;">
+            &amp;
+          </text>
+          <line x1="260" y1="86" x2="360" y2="86" stroke="#0B0F14" stroke-width="0.6"/>
+          <text x="240" y="148" text-anchor="middle"
+                class="svg-manrope"
+                font-size="22"
+                font-weight="500"
+                fill="#0B0F14"
+                letter-spacing="10">
+            PARTNERS
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Architectural</div>
+        <p class="desc">Three-line composition: tracked sans names, hairline rules to either side of a single oversized italic ampersand. Quiet, structural, modernist.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 10 · The Modernist Möbius M                                 -->
+    <!-- ========================================================== -->
+    <section class="card dark">
+      <span class="num">10</span>
+      <div class="stage">
+        <svg viewBox="0 0 480 160" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — Modernist Möbius M">
+          <!-- Stylized möbius "M" mark — twisted continuous loop forming an M shape -->
+          <g transform="translate(60,80)">
+            <!-- two crossing arcs forming an M-like möbius silhouette -->
+            <path d="M -32 22 L -32 -22 C -32 -32 -16 -32 -8 -18 L 8 18 C 16 32 32 32 32 22 L 32 -22"
+                  fill="none" stroke="#FAF6EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M -32 -22 C -32 -8 32 8 32 22"
+                  fill="none" stroke="#C9A86A" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+          </g>
+          <text x="120" y="92"
+                class="svg-manrope"
+                font-size="34"
+                font-weight="500"
+                fill="#FAF6EE"
+                letter-spacing="2">
+            <tspan>MOBIUS</tspan>
+            <tspan dx="10" font-family="Fraunces, serif" font-style="italic" font-weight="400" fill="#C9A86A" font-size="40"
+                   style="font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;">&amp;</tspan>
+            <tspan dx="10" font-weight="300">PARTNERS</tspan>
+          </text>
+        </svg>
+      </div>
+      <div class="meta">
+        <div class="name">The Modernist Möbius M</div>
+        <p class="desc">A geometric "M" built from a continuous twisted ribbon — paired with a confident sans wordmark. The most contemporary of the ten, reads well at favicon scale.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <p class="footnote">Open this file in a browser · point at any concept to iterate</p>
+
+</main>
+</body>
+</html>
