@@ -147,15 +147,345 @@
     text-transform: uppercase;
     color: var(--stone);
   }
+
+  /* === Shortlist (refined system) ====================================== */
+  .shortlist {
+    margin-bottom: 120px;
+  }
+  .system-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  @media (min-width: 900px) {
+    .system-row { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .system-cell {
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+    padding: 56px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .system-cell.dark { background: var(--ink); border-color: var(--ink); }
+  .system-cell .role {
+    position: absolute; top: 18px; left: 24px;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .system-cell.dark .role { color: rgba(244,239,230,0.5); }
+  .system-cell .role-num {
+    position: absolute; top: 18px; right: 24px;
+    font-family: "Fraunces", serif;
+    font-size: 12px; color: var(--stone);
+  }
+  .system-cell.dark .role-num { color: rgba(244,239,230,0.5); }
+  .system-cell .stage { width: 100%; min-height: 220px; display: flex; align-items: center; justify-content: center; }
+  .system-cell h3 {
+    font-family: "Fraunces", serif;
+    font-variation-settings: "opsz" 96, "SOFT" 40;
+    font-weight: 500; font-size: 22px; margin: 24px 0 8px;
+    color: var(--ink);
+  }
+  .system-cell.dark h3 { color: var(--cream); }
+  .system-cell .role-desc {
+    font-size: 13px; line-height: 1.6; color: var(--stone); max-width: 320px;
+  }
+  .system-cell.dark .role-desc { color: rgba(244,239,230,0.62); }
+
+  .uses {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+    width: 100%;
+  }
+  .use {
+    border: 1px solid var(--hairline);
+    background: var(--ivory);
+    padding: 28px 16px 18px;
+    text-align: center;
+    position: relative;
+  }
+  .use .label {
+    margin-top: 14px;
+    font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--stone);
+  }
+  .use.dark { background: var(--ink); border-color: rgba(244,239,230,0.18); }
+  .use.dark .label { color: rgba(244,239,230,0.5); }
+  /* App-icon tile look */
+  .use .tile {
+    width: 96px; height: 96px;
+    border-radius: 22px;
+    background: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 18px rgba(11,15,20,0.25);
+  }
+  /* Favicon dots */
+  .use .fav-row { display: flex; gap: 24px; align-items: center; justify-content: center; height: 64px; }
+  .use .fav-dot {
+    background: var(--ink); border-radius: 6px; display: inline-flex; align-items: center; justify-content: center;
+  }
+  .use .fav-dot.s { width: 16px; height: 16px; border-radius: 3px; }
+  .use .fav-dot.m { width: 32px; height: 32px; border-radius: 6px; }
+  .use .fav-dot.l { width: 56px; height: 56px; border-radius: 10px; }
+  /* Card mockup */
+  .card-mock {
+    width: 220px; height: 132px;
+    background: var(--cream); border: 1px solid var(--hairline);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; box-shadow: 0 8px 24px rgba(11,15,20,0.08);
+  }
+  .card-mock .meta-line {
+    position: absolute; bottom: 12px; left: 14px;
+    font-family: "Manrope", sans-serif; font-size: 6.5px; letter-spacing: 0.18em; color: var(--stone);
+  }
+  /* Letterhead mockup */
+  .letterhead {
+    width: 100%; max-width: 260px; aspect-ratio: 1 / 1.414;
+    background: var(--cream); border: 1px solid var(--hairline);
+    display: flex; flex-direction: column; align-items: center; padding: 20px 16px;
+    box-shadow: 0 8px 24px rgba(11,15,20,0.08);
+  }
+  .letterhead .body-lines { width: 100%; margin-top: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .letterhead .body-lines span { display: block; height: 3px; background: rgba(11,15,20,0.10); border-radius: 1px; }
+  .letterhead .body-lines span.short { width: 60%; }
+
+  .system-divider {
+    border: 0; border-top: 1px solid var(--hairline);
+    margin: 100px 0 64px;
+  }
 </style>
 </head>
 <body>
 <main class="page">
 
+  <!-- ============================================================ -->
+  <!-- SHORTLIST — 12 / 17 / 20 as a single brand system            -->
+  <!-- ============================================================ -->
   <header class="page-header">
-    <div class="eyebrow">Logo Studies · Round One</div>
+    <div class="eyebrow">Shortlist · One System, Three Forms</div>
+    <h1>The Möbius <em>at</em> three formalities</h1>
+    <p class="lede">12, 17 and 20 aren't competing wordmarks — they're the same idea expressed at three different volumes: a private signet, a formal seal, and a digital flagship. Same möbius DNA throughout.</p>
+  </header>
+
+  <section class="shortlist">
+
+    <!-- The three primary marks, side-by-side, role-labelled -->
+    <div class="system-row">
+
+      <!-- ROLE A · GLYPH (12) -->
+      <div class="system-cell dark">
+        <span class="role">A · Signet</span>
+        <span class="role-num">№ 12</span>
+        <div class="stage">
+          <svg viewBox="-60 -60 120 120" width="180" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — signet glyph">
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <!-- M skeleton -->
+              <path d="M -38 32 L -38 -32 L 0 8 L 38 -32 L 38 32"
+                    stroke="#FAF6EE" stroke-width="3.6"/>
+              <!-- möbius across the M valley -->
+              <path d="M -22 -8 C -22 -22 -8 -22 0 -8 C 8 6 22 6 22 -8 C 22 -22 8 -22 0 -8 C -8 6 -22 6 -22 -8 Z"
+                    stroke="#C9A86A" stroke-width="2"/>
+              <path d="M -16 -8 C -16 -16 -4 -16 0 -8"
+                    stroke="#FAF6EE" stroke-width="2"/>
+            </g>
+          </svg>
+        </div>
+        <h3>The Glyph</h3>
+        <p class="role-desc">A single character — M crossed by a möbius. Stands alone on a door plate, a business card corner, a favicon. The brand reduced to one mark.</p>
+      </div>
+
+      <!-- ROLE B · SEAL (17) -->
+      <div class="system-cell">
+        <span class="role">B · Seal</span>
+        <span class="role-num">№ 17</span>
+        <div class="stage">
+          <svg viewBox="-100 -100 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — formal seal">
+            <defs>
+              <path id="sealHero-top" d="M 0 0 m -76 0 a 76 76 0 1 1 152 0"/>
+              <path id="sealHero-bot" d="M 0 0 m 76 0 a 76 76 0 1 1 -152 0"/>
+            </defs>
+            <circle r="88" fill="none" stroke="#0B0F14" stroke-width="0.8"/>
+            <circle r="74" fill="none" stroke="#0B0F14" stroke-width="0.5"/>
+            <circle r="52" fill="none" stroke="#C9A86A" stroke-width="0.8"/>
+            <text class="svg-manrope" font-size="9" letter-spacing="7" fill="#0B0F14">
+              <textPath href="#sealHero-top" startOffset="50%" text-anchor="middle">
+                MOBIUS · &amp; · PARTNERS
+              </textPath>
+            </text>
+            <text class="svg-manrope" font-size="8" letter-spacing="5" fill="#6B6257">
+              <textPath href="#sealHero-bot" startOffset="50%" text-anchor="middle">
+                EST · MMXXV · TALLINN · WARSAW
+              </textPath>
+            </text>
+            <!-- möbius core (canonical) -->
+            <g>
+              <path d="M -26 0 C -26 -14 -8 -14 0 0 C 8 14 26 14 26 0 C 26 -14 8 -14 0 0 C -8 14 -26 14 -26 0 Z"
+                    fill="none" stroke="#0B0F14" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M -18 0 C -18 -9 -4 -9 0 0"
+                    fill="none" stroke="#C9A86A" stroke-width="1.6" stroke-linecap="round"/>
+            </g>
+            <g fill="#C9A86A">
+              <circle cx="0" cy="-88" r="2"/><circle cx="0" cy="88" r="2"/>
+              <circle cx="-88" cy="0" r="2"/><circle cx="88" cy="0" r="2"/>
+            </g>
+          </svg>
+        </div>
+        <h3>The Seal</h3>
+        <p class="role-desc">The glyph in formal robes — concentric rings, perimeter text, cardinal points, möbius core. Letterhead, certificates, embossed covers, wax-seal moments.</p>
+      </div>
+
+      <!-- ROLE C · KINETIC (20) -->
+      <div class="system-cell dark">
+        <span class="role">C · Kinetic</span>
+        <span class="role-num">№ 20</span>
+        <div class="stage">
+          <svg viewBox="-100 -100 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — kinetic mark">
+            <defs>
+              <linearGradient id="goldHero" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#C9A86A" stop-opacity="0"/>
+                <stop offset="50%" stop-color="#C9A86A" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#C9A86A" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <circle r="74" fill="none" stroke="rgba(244,239,230,0.18)" stroke-width="0.6"/>
+            <!-- ghost path -->
+            <path d="M -52 0 C -52 -28 -16 -28 0 0 C 16 28 52 28 52 0 C 52 -28 16 -28 0 0 C -16 28 -52 28 -52 0 Z"
+                  fill="none" stroke="#FAF6EE" stroke-width="1" stroke-dasharray="4 6" opacity="0.3"/>
+            <!-- traveling light -->
+            <path d="M -52 0 C -52 -28 -16 -28 0 0 C 16 28 52 28 52 0 C 52 -28 16 -28 0 0 C -16 28 -52 28 -52 0 Z"
+                  fill="none" stroke="url(#goldHero)" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="40 320">
+              <animate attributeName="stroke-dashoffset" from="0" to="-360" dur="6s" repeatCount="indefinite"/>
+            </path>
+          </svg>
+        </div>
+        <h3>The Kinetic</h3>
+        <p class="role-desc">A single point of gold light tracing the möbius continuously. Static where it's printed, alive where it's screen. Homepage hero, loading state, the brand's first asset that moves.</p>
+      </div>
+
+    </div>
+
+    <!-- Use cases -->
+    <div class="uses" style="grid-template-columns: repeat(4, 1fr);">
+
+      <!-- App icon -->
+      <div class="use dark">
+        <div class="tile">
+          <svg viewBox="-60 -60 120 120" width="64" height="64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M -32 28 L -32 -28 L 0 6 L 32 -28 L 32 28"
+                    stroke="#FAF6EE" stroke-width="3.2"/>
+              <path d="M -18 -6 C -18 -18 -6 -18 0 -6 C 6 6 18 6 18 -6 C 18 -18 6 -18 0 -6 C -6 6 -18 6 -18 -6 Z"
+                    stroke="#C9A86A" stroke-width="1.8"/>
+              <path d="M -13 -6 C -13 -13 -3 -13 0 -6"
+                    stroke="#FAF6EE" stroke-width="1.8"/>
+            </g>
+          </svg>
+        </div>
+        <div class="label">App icon · 60pt</div>
+      </div>
+
+      <!-- Favicon scales -->
+      <div class="use dark">
+        <div class="fav-row">
+          <span class="fav-dot s">
+            <svg viewBox="-60 -60 120 120" width="12" height="12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none"><path d="M -32 28 L -32 -28 L 0 6 L 32 -28 L 32 28" stroke="#FAF6EE" stroke-width="6"/></g>
+            </svg>
+          </span>
+          <span class="fav-dot m">
+            <svg viewBox="-60 -60 120 120" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M -32 28 L -32 -28 L 0 6 L 32 -28 L 32 28" stroke="#FAF6EE" stroke-width="5"/>
+                <path d="M -18 -6 C -18 -18 -6 -18 0 -6 C 6 6 18 6 18 -6 C 18 -18 6 -18 0 -6 C -6 6 -18 6 -18 -6 Z"
+                      stroke="#C9A86A" stroke-width="3"/>
+              </g>
+            </svg>
+          </span>
+          <span class="fav-dot l">
+            <svg viewBox="-60 -60 120 120" width="40" height="40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M -32 28 L -32 -28 L 0 6 L 32 -28 L 32 28" stroke="#FAF6EE" stroke-width="3.2"/>
+                <path d="M -18 -6 C -18 -18 -6 -18 0 -6 C 6 6 18 6 18 -6 C 18 -18 6 -18 0 -6 C -6 6 -18 6 -18 -6 Z"
+                      stroke="#C9A86A" stroke-width="1.8"/>
+                <path d="M -13 -6 C -13 -13 -3 -13 0 -6" stroke="#FAF6EE" stroke-width="1.8"/>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <div class="label">Favicon · 16 / 32 / 64</div>
+      </div>
+
+      <!-- Business card -->
+      <div class="use">
+        <div class="card-mock">
+          <svg viewBox="-60 -60 120 120" width="56" height="56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M -32 28 L -32 -28 L 0 6 L 32 -28 L 32 28" stroke="#0B0F14" stroke-width="3.2"/>
+              <path d="M -18 -6 C -18 -18 -6 -18 0 -6 C 6 6 18 6 18 -6 C 18 -18 6 -18 0 -6 C -6 6 -18 6 -18 -6 Z"
+                    stroke="#C9A86A" stroke-width="1.8"/>
+              <path d="M -13 -6 C -13 -13 -3 -13 0 -6" stroke="#0B0F14" stroke-width="1.8"/>
+            </g>
+          </svg>
+          <span class="meta-line">RAFAŁ ABLEWSKI · MANAGING PARTNER</span>
+        </div>
+        <div class="label">Business card</div>
+      </div>
+
+      <!-- Letterhead -->
+      <div class="use">
+        <div class="letterhead">
+          <svg viewBox="-100 -100 200 200" width="80" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <path id="lh-top" d="M 0 0 m -64 0 a 64 64 0 1 1 128 0"/>
+            </defs>
+            <circle r="74" fill="none" stroke="#0B0F14" stroke-width="0.6"/>
+            <circle r="62" fill="none" stroke="#0B0F14" stroke-width="0.4"/>
+            <circle r="44" fill="none" stroke="#C9A86A" stroke-width="0.6"/>
+            <text class="svg-manrope" font-size="7" letter-spacing="5" fill="#0B0F14">
+              <textPath href="#lh-top" startOffset="50%" text-anchor="middle">
+                MOBIUS · &amp; · PARTNERS
+              </textPath>
+            </text>
+            <g>
+              <path d="M -22 0 C -22 -12 -6 -12 0 0 C 6 12 22 12 22 0 C 22 -12 6 -12 0 0 C -6 12 -22 12 -22 0 Z"
+                    fill="none" stroke="#0B0F14" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M -14 0 C -14 -7 -2 -7 0 0"
+                    fill="none" stroke="#C9A86A" stroke-width="1.4" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="body-lines">
+            <span></span><span></span><span></span><span class="short"></span>
+            <span></span><span></span><span class="short"></span>
+          </div>
+        </div>
+        <div class="label">Letterhead</div>
+      </div>
+
+    </div>
+
+    <!-- System logic -->
+    <div style="margin-top:48px; text-align:center;">
+      <div class="eyebrow">How the System Reads</div>
+      <p class="lede" style="margin-top:14px;">
+        Strip away the rings — you're left with the glyph. Strip the rings <em>and</em> the M — you're left with the kinetic möbius. One mark, three densities. The favicon, the letterhead, and the homepage are no longer separate decisions.
+      </p>
+    </div>
+
+  </section>
+
+  <hr class="system-divider"/>
+
+  <header class="page-header">
+    <div class="eyebrow">Reference · Round One</div>
     <h1>Mobius <em>&amp;</em> Partners</h1>
-    <p class="lede">Ten directions for the wordmark — from refined private-bank classicism to modernist takes on the möbius idea. None are final; they're conversation starters.</p>
+    <p class="lede">Ten directions for the wordmark — from refined private-bank classicism to modernist takes on the möbius idea. Kept here for reference; the shortlist above is what we're building toward.</p>
   </header>
 
   <div class="grid">
