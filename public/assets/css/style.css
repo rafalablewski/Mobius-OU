@@ -12721,15 +12721,16 @@ span {
   flex-shrink: 0;
 }
 .ht-wordmark__name {
-  display: inline-flex;
-  align-items: center;
   font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", serif;
   font-weight: 500;
   font-size: 26px;
   letter-spacing: 0.05em;
-  line-height: 1;
+  line-height: 0.78;          /* line-box collapses to cap-height — caps sit centred */
   color: var(--ht-heading-color);
   white-space: nowrap;
+  /* Compensate for Cinzel's high baseline so caps optically centre on the Glyph M */
+  position: relative;
+  top: 0.04em;
 }
 @media (max-width: 575px) {
   .ht-wordmark--lockup { gap: 10px; }
