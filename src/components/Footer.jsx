@@ -63,7 +63,7 @@ export default function Footer() {
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
           <p>
-            ©{new Date().getFullYear()} <span>Mobius Global OU</span>, trading as <span>Mobius Global Ablewski &amp; Partners</span>. All rights reserved. &nbsp;|&nbsp;
+            ©{new Date().getFullYear()} <span>Mobius Global OÜ</span>, trading as <span>Mobius Global Ablewski &amp; Partners</span>. All rights reserved. &nbsp;|&nbsp;
             Educational and strategic advisory only — not legal, tax or investment advice. Regulated legal
             and tax work is delivered by licensed partners in each jurisdiction.
           </p>
