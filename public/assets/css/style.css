@@ -12721,13 +12721,12 @@ span {
   flex-shrink: 0;
 }
 .ht-wordmark__name {
-  font-family: "Manrope", system-ui, -apple-system, sans-serif;
-  font-weight: 300;
+  font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", serif;
+  font-weight: 500;
   font-size: 30px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   line-height: 1;
   color: var(--ht-heading-color);
-  text-transform: uppercase;
   white-space: nowrap;
 }
 @media (max-width: 575px) {
