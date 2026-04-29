@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Glyph from './Glyph';
 
 const FIRM_COLUMNS = [
   {
@@ -142,10 +143,8 @@ export default function Header({ onOffcanvasOpen }) {
           <div className="ht-menu-wrapper">
             <div className="ht-menu-left">
               <div className="ht-menu-logo">
-                <Link to="/" aria-label="Mobius & Partners — home" className="ht-wordmark">
-                  <span className="ht-wordmark__lead">Mobius</span>
-                  <span className="ht-wordmark__amp" aria-hidden="true">&amp;</span>
-                  <span className="ht-wordmark__tail">Partners</span>
+                <Link to="/" aria-label="Mobius & Partners — home" className="ht-wordmark ht-wordmark--mark">
+                  <Glyph tone="ink" size={40} title="Mobius & Partners" />
                 </Link>
               </div>
               <div className="ht-menu-main d-none d-lg-block">
