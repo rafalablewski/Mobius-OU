@@ -12721,17 +12721,18 @@ span {
   flex-shrink: 0;
 }
 .ht-wordmark__name {
-  font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", serif;
-  font-weight: 500;
-  font-size: 24px;
-  letter-spacing: 0.04em;
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  letter-spacing: 0.08em;
   line-height: 1;
   color: var(--ht-heading-color);
+  text-transform: uppercase;
   white-space: nowrap;
 }
 @media (max-width: 575px) {
   .ht-wordmark--lockup { gap: 10px; }
-  .ht-wordmark__name { font-size: 19px; }
+  .ht-wordmark__name { font-size: 22px; }
 }
 
 /* === Flatten header chrome ============================================= */
