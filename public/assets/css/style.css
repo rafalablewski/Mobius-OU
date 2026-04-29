@@ -12723,7 +12723,7 @@ span {
 .ht-wordmark__name {
   font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", serif;
   font-weight: 500;
-  font-size: 26px;
+  font-size: 16px;
   letter-spacing: 0.05em;
   line-height: 1;
   color: var(--ht-heading-color);
@@ -12739,8 +12739,8 @@ span {
   .ht-wordmark__name { margin-top: 0; margin-bottom: 0; }
 }
 @media (max-width: 575px) {
-  .ht-wordmark--lockup { gap: 10px; }
-  .ht-wordmark__name { font-size: 19px; }
+  .ht-wordmark--lockup { gap: 9px; }
+  .ht-wordmark__name { font-size: 13px; }
 }
 
 /* === Flatten header chrome ============================================= */
