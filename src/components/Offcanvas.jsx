@@ -46,8 +46,10 @@ export default function Offcanvas({ open, onClose }) {
       <div className={`ht-offcanvas${open ? ' ht-offcanvas-open' : ''}`}>
         <div className="ht-offcanvas-wrapper">
           <div className="ht-offcanvas-header mb-50">
-            <Link to="/" className="ht-offcanvas-logo ht-wordmark" onClick={onClose}>
+            <Link to="/" className="ht-offcanvas-logo ht-wordmark" onClick={onClose} aria-label="Mobius & Partners — home">
               <span className="ht-wordmark__lead">Mobius</span>
+              <span className="ht-wordmark__amp" aria-hidden="true">&amp;</span>
+              <span className="ht-wordmark__tail">Partners</span>
             </Link>
             <button
               type="button"
