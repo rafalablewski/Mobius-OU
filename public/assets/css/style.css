@@ -12706,8 +12706,33 @@ span {
 }
 .ht-wordmark--ivory,
 .ht-wordmark--ivory .ht-wordmark__lead,
-.ht-wordmark--ivory .ht-wordmark__tail {
+.ht-wordmark--ivory .ht-wordmark__tail,
+.ht-wordmark--ivory .ht-wordmark__name {
   color: var(--ht-body);
+}
+
+/* Glyph + name lockup — overrides text-only wordmark layout */
+.ht-wordmark--lockup {
+  align-items: center;
+  gap: 12px;
+}
+.ht-wordmark--lockup svg {
+  display: block;
+  flex-shrink: 0;
+}
+.ht-wordmark__name {
+  font-family: "Fraunces", "Cormorant Garamond", serif;
+  font-variation-settings: "opsz" 96, "SOFT" 30;
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  color: var(--ht-heading-color);
+  white-space: nowrap;
+}
+@media (max-width: 575px) {
+  .ht-wordmark--lockup { gap: 9px; }
+  .ht-wordmark__name { font-size: 16px; }
 }
 
 /* === Flatten header chrome ============================================= */
