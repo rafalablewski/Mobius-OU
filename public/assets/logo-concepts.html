@@ -311,8 +311,9 @@
         <div class="stage">
           <svg viewBox="-100 -100 200 200" width="240" height="240" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius & Partners — engraved seal">
             <defs>
-              <path id="sealHero-top" d="M 0 0 m -70 0 a 70 70 0 1 1 140 0"/>
-              <path id="sealHero-bot" d="M 0 0 m 70 0 a 70 70 0 1 1 -140 0"/>
+              <!-- 150° text arcs — leave clean 30° gaps at 9 and 3 o'clock for ornaments -->
+              <path id="sealHero-top" d="M -67.6 -18.1 A 70 70 0 0 1 67.6 -18.1"/>
+              <path id="sealHero-bot" d="M 67.6 18.1 A 70 70 0 0 1 -67.6 18.1"/>
               <!-- Annular mask confining guilloché to the rim band -->
               <mask id="sealHero-band" maskUnits="userSpaceOnUse">
                 <rect x="-100" y="-100" width="200" height="200" fill="black"/>
@@ -355,28 +356,28 @@
             <!-- Inner rim, just inside the guilloché band -->
             <circle r="78" fill="none" stroke="#0B0F14" stroke-width="0.5"/>
 
-            <!-- Perimeter text — top arc (firm name, larger, tracked) -->
-            <text class="svg-manrope" font-size="8.4" letter-spacing="6.4" font-weight="500" fill="#0B0F14">
+            <!-- Perimeter text — top arc, Cinzel Roman titling caps -->
+            <text class="svg-cinzel" font-size="8.6" letter-spacing="3.8" font-weight="500" fill="#0B0F14">
               <textPath href="#sealHero-top" startOffset="50%" text-anchor="middle">
                 MOBIUS &#x00B7; &amp; &#x00B7; PARTNERS
               </textPath>
             </text>
-            <!-- Perimeter text — bottom arc (descriptor, smaller) -->
-            <text class="svg-manrope" font-size="6.4" letter-spacing="4.2" fill="#0B0F14">
+            <!-- Perimeter text — bottom arc, lighter weight, smaller -->
+            <text class="svg-cinzel" font-size="6.4" letter-spacing="2.4" font-weight="400" fill="#0B0F14">
               <textPath href="#sealHero-bot" startOffset="50%" text-anchor="middle">
                 PRIVATE &#x00B7; CLIENT &#x00B7; ADVISORY
               </textPath>
             </text>
 
-            <!-- Diamond fleurons at 9 and 3 o'clock breaking the arc cleanly -->
-            <use href="#sealHero-fleuron" transform="translate(-71,0)"/>
-            <use href="#sealHero-fleuron" transform="translate(71,0)"/>
+            <!-- Diamond fleurons cleanly inside the 30° gaps; no text passes through -->
+            <use href="#sealHero-fleuron" transform="translate(-70,0)"/>
+            <use href="#sealHero-fleuron" transform="translate(70,0)"/>
 
             <!-- Date cartouche above the medallion -->
             <line x1="-32" y1="-44" x2="-14" y2="-44" stroke="#C9A86A" stroke-width="0.45"/>
             <line x1="14" y1="-44" x2="32" y2="-44" stroke="#C9A86A" stroke-width="0.45"/>
-            <text x="0" y="-41" text-anchor="middle" class="svg-manrope"
-                  font-size="5.4" letter-spacing="3.2" fill="#0B0F14">
+            <text x="0" y="-41" text-anchor="middle" class="svg-cinzel"
+                  font-size="5.2" letter-spacing="2.6" fill="#0B0F14">
               EST &#x00B7; MMXXV
             </text>
 
@@ -397,12 +398,12 @@
             <!-- Registration cartouche below the medallion -->
             <line x1="-32" y1="50" x2="-14" y2="50" stroke="#C9A86A" stroke-width="0.45"/>
             <line x1="14" y1="50" x2="32" y2="50" stroke="#C9A86A" stroke-width="0.45"/>
-            <text x="0" y="53" text-anchor="middle" class="svg-manrope"
-                  font-size="5.4" letter-spacing="3.2" fill="#0B0F14">
+            <text x="0" y="53" text-anchor="middle" class="svg-cinzel"
+                  font-size="5.2" letter-spacing="2.6" fill="#0B0F14">
               MOBIUS GLOBAL OÜ
             </text>
-            <text x="0" y="62" text-anchor="middle" class="svg-manrope"
-                  font-size="4.6" letter-spacing="2.6" fill="#6B6257">
+            <text x="0" y="62" text-anchor="middle" class="svg-cinzel"
+                  font-size="4.4" letter-spacing="2.2" fill="#6B6257">
               TLN &#x00B7; WAW
             </text>
           </svg>
