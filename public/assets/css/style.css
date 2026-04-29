@@ -12725,12 +12725,18 @@ span {
   font-weight: 500;
   font-size: 26px;
   letter-spacing: 0.05em;
-  line-height: 0.78;          /* line-box collapses to cap-height — caps sit centred */
+  line-height: 1;
   color: var(--ht-heading-color);
   white-space: nowrap;
-  /* Compensate for Cinzel's high baseline so caps optically centre on the Glyph M */
-  position: relative;
-  top: 0.04em;
+  /* Trim Cinzel's tall line-box down to its actual cap-height so flex centring
+     aligns the *visible caps* (not the empty ascender space) with the Glyph M. */
+  text-box: trim-both cap alphabetic;
+  /* Fallback for older browsers — collapse line-box and nudge to optical centre */
+  margin-top: -0.18em;
+  margin-bottom: -0.18em;
+}
+@supports (text-box: trim-both cap alphabetic) {
+  .ht-wordmark__name { margin-top: 0; margin-bottom: 0; }
 }
 @media (max-width: 575px) {
   .ht-wordmark--lockup { gap: 10px; }
