@@ -47,8 +47,9 @@ export default function Offcanvas({ open, onClose }) {
       <div className={`ht-offcanvas${open ? ' ht-offcanvas-open' : ''}`}>
         <div className="ht-offcanvas-wrapper">
           <div className="ht-offcanvas-header mb-50">
-            <Link to="/" className="ht-offcanvas-logo ht-wordmark ht-wordmark--mark" onClick={onClose} aria-label="Mobius & Partners — home">
-              <Glyph tone="ink" size={40} title="Mobius & Partners" />
+            <Link to="/" className="ht-offcanvas-logo ht-wordmark ht-wordmark--lockup" onClick={onClose} aria-label="Mobius & Partners — home">
+              <Glyph tone="ink" size={36} title="Mobius & Partners" />
+              <span className="ht-wordmark__name">Mobius Global</span>
             </Link>
             <button
               type="button"
