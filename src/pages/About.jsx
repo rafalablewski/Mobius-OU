@@ -23,14 +23,77 @@ export default function About() {
                               <div className="ht-about-content">
                                   <div className="section-title">
                                       <span className="subtitle wow fadeInUp" data-wow-delay=".2s">About the firm</span>
-                                      <h2 className="title wow fadeInUp" data-wow-delay=".5s">Founded for discerning clients — built to stay small on purpose</h2>
-                                      <p className="wow fadeIn" data-wow-delay=".8s">Mobius is an independent
-                                          strategic consultancy advising a small roster of private clients on citizenship,
-                                          residency and tax residency decisions. We work from Warsaw, coordinate with licensed
-                                          counsel in every jurisdiction we recommend, and take on fewer mandates than we turn
-                                          down. Your outcome is the only metric we are paid on.</p>
+                                      <h2 className="title wow fadeInUp" data-wow-delay=".5s">Independent advisory for citizenship, residency and the life that follows</h2>
+                                      <p className="wow fadeIn" data-wow-delay=".8s">Mobius &amp; Partners is an
+                                          independent strategic advisory based in Warsaw. We help a small roster of private
+                                          clients, family offices and founders make five decisions in the right order:
+                                          Citizenship by Investment, Residency by Investment, tax residency planning, asset
+                                          protection and family relocation. We coordinate with licensed counsel in every
+                                          jurisdiction we recommend, refuse referral fees from program agents, and take on
+                                          fewer mandates than we turn down. Your outcome is the only metric we are paid on.</p>
                                   </div>
                                   <Link to="/contact" className="ht-btn style-3 wow fadeInUp" data-wow-delay="1.1s">Schedule Consultation</Link>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <section className="ht-choose-area section-padding pt-0">
+              <div className="container">
+                  <div className="section-title text-center">
+                      <span className="subtitle wow fadeInUp" data-wow-delay=".2s">Practice areas</span>
+                      <h2 className="title wow fadeInUp" data-wow-delay=".4s">Five decisions, sequenced<br /> in the order they actually matter</h2>
+                  </div>
+                  <div className="ht-choose-wrapper">
+                      <div className="row gy-4">
+                          <div className="col-lg-4 col-md-6 col-sm-12">
+                              <div className="ht-choose-right">
+                                  <div className="single-item wow fadeInUp" data-wow-delay=".2s">
+                                      <div className="content">
+                                          <h3>Citizenship by Investment</h3>
+                                          <p>Caribbean, Mediterranean and Atlantic programs — qualification, due-diligence posture and the visa-free reality after issuance.</p>
+                                      </div>
+                                  </div>
+                                  <div className="single-item wow fadeInUp" data-wow-delay=".4s">
+                                      <div className="content">
+                                          <h3>Residency by Investment</h3>
+                                          <p>Golden visas, talent and investor routes — Portugal, Italy, Greece, UAE and the GCC, mapped to your timeline and tax position.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div className="col-lg-4 col-md-6 col-sm-12">
+                              <div className="ht-choose-right">
+                                  <div className="single-item wow fadeInUp" data-wow-delay=".3s">
+                                      <div className="content">
+                                          <h3>Tax residency planning</h3>
+                                          <p>Lawful relocation sequencing — exit-tax exposure, day-counts, treaty tie-breakers and substance, with written advice on file.</p>
+                                      </div>
+                                  </div>
+                                  <div className="single-item wow fadeInUp" data-wow-delay=".5s">
+                                      <div className="content">
+                                          <h3>Asset protection</h3>
+                                          <p>Holding structures, trusts and foundations sized to the family — reviewed against CRS, FATCA and the substance regime that actually governs them.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div className="col-lg-4 col-md-12 col-sm-12">
+                              <div className="ht-choose-right">
+                                  <div className="single-item wow fadeInUp" data-wow-delay=".4s">
+                                      <div className="content">
+                                          <h3>Family relocation</h3>
+                                          <p>Schools, healthcare, banking and the unromantic logistics — coordinated with one point of accountability so the move actually completes.</p>
+                                      </div>
+                                  </div>
+                                  <div className="single-item wow fadeInUp" data-wow-delay=".6s">
+                                      <div className="content">
+                                          <h3>What we will not do</h3>
+                                          <p>We do not sell programs, do not accept agent referral fees, and do not take mandates we cannot finish. The retainer is the entire commercial relationship.</p>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                       </div>
