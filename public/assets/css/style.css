@@ -8662,11 +8662,13 @@ span {
 
 /* --- Editorial variant: programs ------------------------------------------ */
 .ht-breadcrumb-area.is-editorial {
-  padding: 0 0 56px;
+  /* Top padding clears the fixed page header (~90px) — without it the
+     top bar slides under the header. */
+  padding: 96px 0 56px;
 }
 @media (max-width: 768px) {
   .ht-breadcrumb-area.is-editorial {
-    padding: 0 0 40px;
+    padding: 88px 0 40px;
   }
 }
 /* Top bar lives in its own band right under the page header. Padding is
