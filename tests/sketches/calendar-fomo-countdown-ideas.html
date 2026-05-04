@@ -674,6 +674,62 @@
   }
   .bp11--m .bp11__track { animation-duration: 28s; }
 
+  /* ---------------- IDEA 12 — progress arc / depleting ring */
+  .bp12__arc {
+    display: flex; align-items: center; gap: 16px;
+    margin: 0 0 14px;
+  }
+  .bp12__arc-svg {
+    flex: 0 0 auto;
+    width: 84px; height: 84px;
+    position: relative;
+  }
+  .bp12__arc-svg svg { display: block; transform: rotate(-90deg); }
+  .bp12__arc-track {
+    fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 3;
+  }
+  .bp12__arc-fill {
+    fill: none; stroke: var(--gold-soft); stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 251;        /* 2*pi*40 */
+    stroke-dashoffset: 80;        /* visible portion shrinks toward this number */
+    transition: stroke-dashoffset 1s linear;
+  }
+  .bp12__arc-num {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .bp12__arc-num b {
+    font-size: 16px; color: var(--gold-soft); font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .bp12__arc-num span {
+    font-family: "Manrope"; font-size: 8px; letter-spacing: 0.20em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+  }
+  .bp12__arc-text {
+    flex: 1 1 auto; min-width: 0;
+  }
+  .bp12__arc-text-fomo {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 8px; background: var(--gold);
+    color: #000; border-radius: 999px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.20em;
+    text-transform: uppercase;
+  }
+  .bp12__arc-text-line {
+    margin-top: 6px;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); line-height: 1.45;
+  }
+  .bp12__arc-text-line b { color: #fff; font-weight: 600; }
+  .bp12--m .bp12__arc-svg { width: 64px; height: 64px; }
+  .bp12--m .bp12__arc-num b { font-size: 12px; }
+  .bp12--m .bp12__arc-num span { font-size: 7px; }
+
   /* utility tags shown on the slabs in some ideas */
   .bp__slot--going { border-color: rgba(216,123,74,0.55); }
   .bp__slot--gone {
@@ -1628,6 +1684,109 @@
   <div class="live-caption"><strong>11</strong> · AVAILABLE green flash + scrolling marquee with all signals · edge mask · slower on mobile · NDA footer</div>
 </section>
 
+<!-- ============================ IDEA 12 ============================ -->
+<section class="idea" id="i12">
+  <div class="idea__num">Idea 12</div>
+  <h2>Progress arc — <em>depleting ring around the timer.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · "2 LEFT" pill beside the arc</span>
+    <span class="tag">Countdown · HH:MM in the arc · arc depletes</span>
+    <span class="tag">Mobile · smaller arc, same layout</span>
+  </div>
+  <p class="idea__why">
+    A circular SVG ring around the live HH:MM countdown depletes as the booking
+    window closes — same metaphor as a watch face or a charging-progress dial.
+    Arc colour stays gold-soft; the empty track is faint white. To the right of
+    the arc: a small filled-gold "2 LEFT" pill and a one-line note ("Bookings
+    close <b>18:00</b> CET"). Reads as instrumentation, not theatre — same
+    register as the Tesla touchscreen panel it sits inside.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the only idea where the countdown has a visual
+    representation, not just a number. Lower text-density than 03/04/09. Arc
+    depletion is a strong visual cue without crossing into red urgency.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp12">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp__avail">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <div class="bp12__arc">
+          <div class="bp12__arc-svg">
+            <svg viewBox="0 0 100 100" width="84" height="84">
+              <circle class="bp12__arc-track" cx="50" cy="50" r="40"/>
+              <circle class="bp12__arc-fill" id="bp12-fill" cx="50" cy="50" r="40"/>
+            </svg>
+            <div class="bp12__arc-num">
+              <b id="t12">02:14</b>
+              <span>left</span>
+            </div>
+          </div>
+          <div class="bp12__arc-text">
+            <span class="bp12__arc-text-fomo">2 left</span>
+            <div class="bp12__arc-text-line">
+              Bookings close <b>18:00 CET</b>.<br/>
+              Next opens Mon, 11 May.
+            </div>
+          </div>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp12 bp12--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next · Rafał A.</span>
+          <span class="bp__avail bp__avail--mini">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <div class="bp12__arc">
+          <div class="bp12__arc-svg">
+            <svg viewBox="0 0 100 100" width="64" height="64">
+              <circle class="bp12__arc-track" cx="50" cy="50" r="40"/>
+              <circle class="bp12__arc-fill" cx="50" cy="50" r="40"/>
+            </svg>
+            <div class="bp12__arc-num">
+              <b>02:14</b><span>left</span>
+            </div>
+          </div>
+          <div class="bp12__arc-text">
+            <span class="bp12__arc-text-fomo">2 left</span>
+            <div class="bp12__arc-text-line">Closes <b>18:00 CET</b></div>
+          </div>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA · No mkt · Private</p>
+          <a class="bp__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · smaller arc</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>12</strong> · AVAILABLE green flash · 84 px progress arc depletes toward 0 · "2 LEFT" pill alongside · NDA footer</div>
+</section>
+
 </div>
 </div>
 
@@ -1640,11 +1799,16 @@
 (function () {
   const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11'];
   const t02 = document.getElementById('t02');
+  const t12 = document.getElementById('t12');
+  const arcFill = document.getElementById('bp12-fill');
+  const arcCircumference = 2 * Math.PI * 40; // 251.327…
 
+  const start = Date.now();
   const target = new Date();
   target.setHours(target.getHours() + 2);
   target.setMinutes(target.getMinutes() + 14);
   target.setSeconds(target.getSeconds() + 38);
+  const totalMs = target.getTime() - start;
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
@@ -1670,6 +1834,12 @@
     if (t02) {
       if (h >= 1) t02.textContent = `${h} h ${m} m`;
       else t02.textContent = `${m} m ${s} s`;
+    }
+    if (t12) t12.textContent = `${pad(h)}:${pad(m)}`;
+    if (arcFill) {
+      const remaining = ms / totalMs;
+      const offset = arcCircumference * (1 - remaining);
+      arcFill.style.strokeDashoffset = String(offset);
     }
   }
 
