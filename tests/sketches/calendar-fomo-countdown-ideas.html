@@ -169,6 +169,48 @@
     background: var(--gold);
     box-shadow: 0 0 0 3px rgba(201,168,106,0.18);
   }
+
+  /* AVAILABLE — green flashing dot, always present alongside any FOMO. */
+  .bp__avail {
+    display: inline-flex; align-items: center; gap: 6px;
+    flex: 0 0 auto;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.20em;
+    text-transform: uppercase; color: #fff;
+  }
+  .bp__avail::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: #22C55E;
+    box-shadow: 0 0 0 0 rgba(34,197,94,0.55);
+    animation: bp-flash 1.6s ease-in-out infinite;
+  }
+  @keyframes bp-flash {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); transform: scale(1); }
+    50%      { box-shadow: 0 0 0 7px rgba(34,197,94,0); transform: scale(1.08); }
+  }
+  /* Smaller variant for ideas where AVAILABLE shares space with another pill */
+  .bp__avail--mini { font-size: 9px; letter-spacing: 0.16em; }
+  .bp__avail--mini::before { width: 6px; height: 6px; }
+
+  /* Shared footer (every idea ends with the classic NDA microcopy). */
+  .bp__foot {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .bp__micro {
+    margin: 0; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    white-space: nowrap;
+  }
+  .bp__alt {
+    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
+    color: var(--gold); text-decoration: none; white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .bp__alt:hover { color: #fff; }
+  .bp--m .bp__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .bp--m .bp__micro { font-size: 8px; letter-spacing: 0.16em; }
   .bp__bigtime {
     font-family: "Manrope"; font-weight: 200;
     font-size: 70px; line-height: 0.95; letter-spacing: -0.04em;
@@ -214,20 +256,6 @@
     font-family: "Manrope";
   }
   .bp__cta:hover { background: var(--gold); }
-  .bp__foot {
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 12px; margin-top: 12px; padding-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .bp__micro {
-    margin: 0; font-size: 9px; font-weight: 500;
-    letter-spacing: 0.20em; text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-  }
-  .bp__alt {
-    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
-    color: var(--gold); text-decoration: none; white-space: nowrap;
-  }
 
   /* mobile base — 280px viewport-style render */
   .bp--m { width: 280px; padding: 18px 18px 14px; }
@@ -623,19 +651,27 @@
 <div class="page">
 
 <header class="intro">
-  <div class="eyebrow">Sketches · BriefPanel — FOMO + countdown + mobile</div>
-  <h1>Ten ways to add <em>scarcity</em> and <em>urgency</em> to the calendar.</h1>
+  <div class="eyebrow">Sketches · BriefPanel — FOMO + countdown + mobile (v2)</div>
+  <h1>Fifteen ways to make the calendar <em>scarce, live</em>, and <em>on-brand.</em></h1>
   <p class="lede">
-    Brief refocused: every idea below combines three things — a FOMO signal
-    ("2 left this week"), a live countdown chip, and a mobile reflow. Different
-    visual registers across the ten — some loud and conversion-led, some
-    restrained and editorial. Each idea shows desktop and mobile side-by-side
-    on dark hero ground. Pick the register that matches Mobius's voice.
+    Same three guidelines (FOMO + countdown chip + mobile reflow), now with three
+    must-have constants baked into every variant: the host is <b>Rafał A.</b>, the
+    top-row carries an <b>AVAILABLE</b> indicator with a green flashing dot
+    (independent of any scarcity copy), and every panel ends with the classic
+    Mobius footer microcopy <b>NDA-FIRST · NO MARKETING · PRIVATE CALL</b>
+    above a serif "Pick another time →" alt link. Ten reworked variants plus
+    five new ones — marquee ticker, progress arc, doc-control register,
+    twin-counter, reserved-stamp slabs.
   </p>
   <div class="guidelines">
-    <div class="guideline"><b>1 · FOMO</b>Visible scarcity — "2 left", "Last open", "Almost full" — without slipping into theatre.</div>
-    <div class="guideline"><b>2 · Countdown chip</b>Live timer (HH:MM:SS or relative) showing when the next slot or the booking window closes.</div>
-    <div class="guideline"><b>3 · Mobile reflow</b>A specific layout for narrow widths — stacked rows, swipe rail, drawer, sticky CTA — not just shrunken.</div>
+    <div class="guideline"><b>1 · FOMO</b>"2 left", "Last open", "Almost full" — visible scarcity without sales theatre.</div>
+    <div class="guideline"><b>2 · Countdown chip</b>Live HH:MM:SS or relative timer for when the next slot or window closes.</div>
+    <div class="guideline"><b>3 · Mobile reflow</b>A specific narrow-width layout — stacked rows, swipe rail, drawer, sticky CTA, mini-bar.</div>
+  </div>
+  <div class="guidelines" style="margin-top:8px">
+    <div class="guideline"><b>+ AVAILABLE</b>Green flashing dot in the top-right of every panel — signals Rafał A. is reachable.</div>
+    <div class="guideline"><b>+ Footer</b>NDA-FIRST · NO MARKETING · PRIVATE CALL alongside a serif "Pick another time" alt link.</div>
+    <div class="guideline"><b>+ Host</b>Rafał A. throughout — replaces the earlier "Filip" placeholder.</div>
   </div>
   <div class="toc">
     <a href="#i1"><b>01</b>Minimal pill + slim countdown bar + 1-col stack</a>
@@ -648,6 +684,11 @@
     <a href="#i8"><b>08</b>Pulsing dot + breathing chip + tighter mobile</a>
     <a href="#i9"><b>09</b>Split status pair + per-slab chip + mini bar</a>
     <a href="#i10"><b>10</b>Hairline reveal + monospace timer + same on mobile</a>
+    <a href="#i11"><b>11</b>Marquee ticker — scrolling status strip</a>
+    <a href="#i12"><b>12</b>Progress arc — depleting ring around the timer</a>
+    <a href="#i13"><b>13</b>Doc-control register — monospace tabular row</a>
+    <a href="#i14"><b>14</b>Twin-counter — next-slot + window-close paired</a>
+    <a href="#i15"><b>15</b>Reserved-stamp slabs — visible booked slots</a>
   </div>
 </header>
 
@@ -678,7 +719,7 @@
     <div class="col">
       <div class="bp bp01">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp01__pill">2 left</span>
         </div>
         <div class="bp01__bar">
@@ -699,7 +740,7 @@
     <div class="col">
       <div class="bp bp01 bp01--m bp--m">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__eyebrow">Next call · Rafał A.</span>
           <span class="bp01__pill">2 left</span>
         </div>
         <div class="bp01__bar" style="margin-left:-18px;margin-right:-18px;padding:6px 18px">
@@ -745,12 +786,12 @@
     <div class="col">
       <div class="bp bp02">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">Two left this week</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
         <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
-        <p class="bp02__sentence">Filip's calendar closes for the week in <b id="t02">2 h 14 m</b> — tomorrow opens fresh.</p>
+        <p class="bp02__sentence">Rafał's calendar closes for the week in <b id="t02">2 h 14 m</b> — tomorrow opens fresh.</p>
         <ul class="bp__slots">
           <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
           <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
@@ -763,7 +804,7 @@
     <div class="col">
       <div class="bp bp02 bp02--m bp--m">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__eyebrow">Next call · Rafał A.</span>
           <span class="bp__status">Two left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -808,7 +849,7 @@
     <div class="col">
       <div class="bp bp03">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">2 of 12 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -840,7 +881,7 @@
     <div class="col">
       <div class="bp bp03 bp03--m bp--m">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__eyebrow">Next call · Rafał A.</span>
           <span class="bp__status">2 of 12</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -897,7 +938,7 @@
       <div class="bp bp04">
         <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin · Stage III</div>
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -919,7 +960,7 @@
       <div class="bp bp04 bp04--m" style="width:300px">
         <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin</div>
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__eyebrow">Next call · Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime" style="font-size:56px">14<span>:</span>00</div>
@@ -963,7 +1004,7 @@
     <div class="col">
       <div class="bp bp05">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">Going fast</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -995,7 +1036,7 @@
     <div class="col">
       <div class="bp bp05 bp05--m bp--m">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next · Filip</span>
+          <span class="bp__eyebrow">Next · Rafał A.</span>
           <span class="bp__status">Going fast</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -1130,7 +1171,7 @@
       <div class="bp bp07">
         <span class="bp07__ribbon">Almost full</span>
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -1151,7 +1192,7 @@
       <div class="bp bp07 bp07--m bp--m">
         <span class="bp07__ribbon">Almost full</span>
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__eyebrow">Next call · Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -1197,12 +1238,12 @@
     <div class="col">
       <div class="bp bp08">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
         <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
-        <span class="bp08__chip">Filip's week closes in <b id="t08">02:14:38</b></span>
+        <span class="bp08__chip">Rafał's week closes in <b id="t08">02:14:38</b></span>
         <ul class="bp__slots">
           <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
           <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
@@ -1215,7 +1256,7 @@
     <div class="col">
       <div class="bp bp08 bp08--m bp--m">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__eyebrow">Next call · Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -1261,7 +1302,7 @@
     <div class="col">
       <div class="bp bp09">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">Going fast</span>
         </div>
         <div class="bp09__pair">
@@ -1321,7 +1362,7 @@
     <div class="col">
       <div class="bp bp10">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
@@ -1344,7 +1385,7 @@
     <div class="col">
       <div class="bp bp10 bp10--m bp--m">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__eyebrow">Next call · Rafał A.</span>
           <span class="bp__status">2 left</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
