@@ -43,18 +43,21 @@ const FamilyIcon = () => (
 const PROGRAM_PITCH = [
   {
     icon: <GlobeIcon />,
+    kicker: 'Mobility',
     title: 'Freedom of movement',
     body:
       'Visa-free or visa-on-arrival access across the OECD, plus a second jurisdiction the family can actually live in — schooling, healthcare and tax all mapped before you commit.',
   },
   {
     icon: <ScalesIcon />,
+    kicker: 'Tax',
     title: 'Tax positioning',
     body:
       'Residency and tax-resident status modelled against the family’s real income picture — not a brochure assumption. We tell you the break-even before the application is filed.',
   },
   {
     icon: <FamilyIcon />,
+    kicker: 'Family',
     title: 'Family & legacy',
     body:
       'Spouse, children — including adult dependants where the rules allow — and where relevant parents and grandparents, sequenced into a single mandate rather than separate filings.',

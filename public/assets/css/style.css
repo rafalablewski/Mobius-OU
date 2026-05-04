@@ -8743,33 +8743,55 @@ span {
   }
 }
 
-/* The pitch card itself — slider with icon, rule, copy and dot pagination. */
+/* Editorial pitch card: dossier-style frame with chapter-numbered eyebrow,
+   italic display title, gold hairline rule, serif body, and a footer
+   strip with prev/next chevrons + segmented progress (active segment
+   fills over the autoplay duration). Distinct from the floating
+   glass-blur card pattern. */
 .ht-pitch-card {
   position: relative;
-  padding: 22px 28px 24px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 30px 90px rgba(4, 31, 31, 0.32);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 24px 28px 22px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0.015) 100%
+  );
+  border: 1px solid rgba(201, 168, 106, 0.3);
   color: var(--ht-white);
-  overflow: hidden;
+  isolation: isolate;
+}
+/* Top-left and bottom-right corner ticks — small editorial flourish
+   that signals a numbered dossier excerpt rather than a UI card. */
+.ht-pitch-card::before,
+.ht-pitch-card::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+.ht-pitch-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid var(--ht-theme-color-2);
+  border-left: 1px solid var(--ht-theme-color-2);
+}
+.ht-pitch-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid var(--ht-theme-color-2);
+  border-right: 1px solid var(--ht-theme-color-2);
 }
 .ht-pitch-card__viewport {
   position: relative;
-  min-height: 110px;
+  min-height: 188px;
 }
 .ht-pitch-card__slide {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: 44px 1px 1fr;
-  align-items: center;
-  gap: 22px;
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 600ms ease, transform 600ms ease;
+  transition: opacity 550ms ease, transform 550ms ease;
   pointer-events: none;
   margin: 0;
 }
@@ -8778,89 +8800,160 @@ span {
   transform: translateY(0);
   pointer-events: auto;
 }
+.ht-pitch-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.ht-pitch-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+.ht-pitch-card__chapter {
+  color: var(--ht-theme-color-2);
+}
+.ht-pitch-card__sep {
+  color: rgba(255, 255, 255, 0.32);
+}
 .ht-pitch-card__icon {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--ht-white);
+  color: var(--ht-theme-color-2);
 }
 .ht-pitch-card__icon svg {
   width: 100%;
   height: 100%;
   display: block;
 }
-.ht-pitch-card__rule {
-  align-self: stretch;
-  background: rgba(255, 255, 255, 0.22);
-  width: 1px;
-  min-height: 56px;
-}
-.ht-pitch-card__body {
-  min-width: 0;
-}
 .ht-pitch-card__title {
   font-family: var(--ht-font-display);
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.2;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.08;
   letter-spacing: -0.005em;
-  margin: 0 0 6px;
+  margin: 0;
   color: var(--ht-white);
+}
+.ht-pitch-card__rule {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--ht-theme-color-2);
+  margin: 14px 0;
 }
 .ht-pitch-card__copy {
   font-family: var(--ht-font-serif-body);
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.78);
   margin: 0;
 }
-.ht-pitch-card__dots {
-  position: absolute;
-  right: 28px;
-  bottom: 16px;
+.ht-pitch-card__controls {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
 }
-.ht-pitch-card__dot {
+.ht-pitch-card__nav {
   appearance: none;
-  border: 0;
+  border: 1px solid rgba(201, 168, 106, 0.42);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
   padding: 0;
-  width: 22px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.28);
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: background 300ms ease, width 300ms ease;
+  transition: background 250ms ease, border-color 250ms ease,
+    color 250ms ease, transform 200ms ease;
 }
-.ht-pitch-card__dot.is-active {
-  background: var(--ht-white);
-  width: 26px;
+.ht-pitch-card__nav svg {
+  width: 14px;
+  height: 14px;
 }
-.ht-pitch-card__dot:focus-visible {
+.ht-pitch-card__nav:hover {
+  background: rgba(201, 168, 106, 0.12);
+  border-color: var(--ht-theme-color-2);
+  color: var(--ht-theme-color-2);
+}
+.ht-pitch-card__nav:active {
+  transform: scale(0.96);
+}
+.ht-pitch-card__nav:focus-visible {
   outline: 1px solid var(--ht-theme-color-2);
   outline-offset: 3px;
 }
+.ht-pitch-card__progress {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ht-pitch-card__segment {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+.ht-pitch-card__segment.is-done {
+  background: var(--ht-theme-color-2);
+}
+.ht-pitch-card__segment-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ht-theme-color-2);
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: ht-pitch-fill linear forwards;
+  will-change: transform;
+}
+@keyframes ht-pitch-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ht-pitch-card__slide {
+    transition: none;
+  }
+  .ht-pitch-card__segment-fill {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
 @media (max-width: 575px) {
   .ht-pitch-card {
-    padding: 20px 22px 22px;
+    padding: 20px 22px 20px;
   }
-  .ht-pitch-card__slide {
-    grid-template-columns: 36px 1px 1fr;
-    gap: 16px;
+  .ht-pitch-card__viewport {
+    min-height: 200px;
   }
   .ht-pitch-card__icon {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
   .ht-pitch-card__title {
-    font-size: 18px;
+    font-size: 22px;
   }
   .ht-pitch-card__copy {
     font-size: 14px;
-  }
-  .ht-pitch-card__dots {
-    right: 22px;
   }
 }
 
