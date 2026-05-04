@@ -375,11 +375,11 @@
   .bp04__feed b { color: #fff; font-weight: 500; }
   .bp04__foot-timer {
     display: flex; justify-content: space-between; align-items: center;
-    margin: 6px -22px -18px;
-    padding: 8px 22px 12px;
+    margin: 8px -22px 0;
+    padding: 8px 22px;
     background: rgba(216,123,74,0.10);
     border-top: 1px solid rgba(216,123,74,0.25);
-    border-radius: 0 0 4px 4px;
+    border-bottom: 1px solid rgba(216,123,74,0.25);
     font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
     color: rgba(255,255,255,0.55);
   }
@@ -867,7 +867,7 @@
       <div class="bp bp03">
         <div class="bp__top">
           <span class="bp__eyebrow">Next call · with Rafał A.</span>
-          <span class="bp__status">2 of 12 left</span>
+          <span class="bp__avail">Available</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
         <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
@@ -892,14 +892,18 @@
           <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
         </ul>
         <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
       </div>
       <div class="col__lbl">Desktop · <b>320 px</b></div>
     </div>
     <div class="col">
       <div class="bp bp03 bp03--m bp--m">
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Rafał A.</span>
-          <span class="bp__status">2 of 12</span>
+          <span class="bp__eyebrow">Next · Rafał A.</span>
+          <span class="bp__avail bp__avail--mini">Available</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
         <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
@@ -921,11 +925,15 @@
           <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">—</span></div></li>
         </ul>
         <button class="bp__cta">Reserve · 14:00</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA · No mkt · Private</p>
+          <a class="bp__alt">Pick another →</a>
+        </div>
       </div>
       <div class="col__lbl">Mobile · <b>280 px · scroll-snap slabs</b></div>
     </div>
   </div>
-  <div class="live-caption"><strong>03</strong> · capacity rail (2 of 12 lit warm) · HH:MM:SS flip cards · swipe slabs sideways on mobile</div>
+  <div class="live-caption"><strong>03</strong> · AVAILABLE green flash · 2/12 capacity rail · HH:MM:SS flip cards · NDA-first footer</div>
 </section>
 
 <!-- ============================ IDEA 04 ============================ -->
@@ -953,10 +961,10 @@
   <div class="stage">
     <div class="col">
       <div class="bp bp04">
-        <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin · Stage III</div>
+        <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin · <b>2 left</b> this week</div>
         <div class="bp__top">
           <span class="bp__eyebrow">Next call · with Rafał A.</span>
-          <span class="bp__status">2 left</span>
+          <span class="bp__avail">Available</span>
         </div>
         <div class="bp__bigtime">14<span>:</span>00</div>
         <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
@@ -970,15 +978,19 @@
           <span>This week's bookings close in</span>
           <b id="t04">02:14:38</b>
         </div>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
       </div>
       <div class="col__lbl">Desktop · <b>320 px</b></div>
     </div>
     <div class="col">
       <div class="bp bp04 bp04--m" style="width:300px">
-        <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin</div>
+        <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin · <b>2 left</b></div>
         <div class="bp__top">
-          <span class="bp__eyebrow">Next call · Rafał A.</span>
-          <span class="bp__status">2 left</span>
+          <span class="bp__eyebrow">Next · Rafał A.</span>
+          <span class="bp__avail bp__avail--mini">Available</span>
         </div>
         <div class="bp__bigtime" style="font-size:56px">14<span>:</span>00</div>
         <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
@@ -989,11 +1001,15 @@
         </ul>
         <button class="bp__cta">Reserve · 14:00</button>
         <div class="bp04__foot-timer"><span>Closes in</span><b>02:14:38</b></div>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA · No mkt · Private</p>
+          <a class="bp__alt">Pick another →</a>
+        </div>
       </div>
       <div class="col__lbl">Mobile · <b>bottom sheet · grabber + radius</b></div>
     </div>
   </div>
-  <div class="live-caption"><strong>04</strong> · top: blinking "X min ago" feed · foot: warm-tint timer always visible · mobile: bottom-sheet style</div>
+  <div class="live-caption"><strong>04</strong> · AVAILABLE green flash · feed strip carries social-proof + "2 left" · warm foot timer above NDA footer</div>
 </section>
 
 <!-- ============================ IDEA 05 ============================ -->
