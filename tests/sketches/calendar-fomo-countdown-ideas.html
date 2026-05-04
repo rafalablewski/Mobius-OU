@@ -772,6 +772,54 @@
   }
   .bp13--m .bp13__dc-val { font-size: 10px; }
 
+  /* ---------------- IDEA 14 — twin-counter (next slot + window close) */
+  .bp14__twin {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: -4px 0 16px;
+  }
+  .bp14__twin-cell {
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 3px;
+  }
+  .bp14__twin-cell--warn {
+    background: rgba(216,123,74,0.10);
+    border-color: rgba(216,123,74,0.32);
+  }
+  .bp14__twin-key {
+    display: block;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    line-height: 1;
+  }
+  .bp14__twin-cell--warn .bp14__twin-key { color: var(--warn-soft); }
+  .bp14__twin-val {
+    display: block; margin-top: 6px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px; font-weight: 500;
+    color: #fff; letter-spacing: 0.02em; line-height: 1;
+  }
+  .bp14__twin-cell--warn .bp14__twin-val { color: var(--warn-soft); }
+  .bp14__twin-sub {
+    display: block; margin-top: 4px;
+    font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .bp14__fomo {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 6px;
+    font-size: 8px; font-weight: 700; letter-spacing: 0.20em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    background: var(--gold); color: #000; border-radius: 2px;
+  }
+  .bp14--m .bp14__twin { grid-template-columns: 1fr; }
+  .bp14--m .bp14__twin-cell { padding: 8px 10px; }
+  .bp14--m .bp14__twin-val { font-size: 12px; }
+
   /* utility tags shown on the slabs in some ideas */
   .bp__slot--going { border-color: rgba(216,123,74,0.55); }
   .bp__slot--gone {
@@ -1928,6 +1976,101 @@
   <div class="live-caption"><strong>13</strong> · audit-report tabular row · STATUS · OPEN · CLOSES · matches the program-page doc-control register · NDA footer</div>
 </section>
 
+<!-- ============================ IDEA 14 ============================ -->
+<section class="idea" id="i14">
+  <div class="idea__num">Idea 14</div>
+  <h2>Twin-counter — <em>"next slot in" + "window closes" paired.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · "2 LEFT" pill on the warn cell</span>
+    <span class="tag">Countdown · two timers (relative + absolute)</span>
+    <span class="tag">Mobile · cells stack vertically</span>
+  </div>
+  <p class="idea__why">
+    Two timers, side-by-side, doing different work. Left cell (neutral): the
+    <em>next slot</em> in relative time — "<b>18 h 23 m</b> · Tue 14:00" — answers
+    "how soon could I talk to Rafał?". Right cell (warm-tinted, with "2 LEFT"
+    pill): the <em>window closing</em> in absolute time — "<b>02:14:38</b> ·
+    closes 18:00 CET" — answers "and how long do I have to decide?". Both
+    timers update together. On mobile the two cells stack vertically.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the only variant that explicitly separates
+    "soonest talk" from "window closing" — useful when the two are far apart
+    (slot is tomorrow but cut-off is today). Higher cognitive load than 13;
+    lower than 09. Best when both deadlines matter.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp14">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp__avail">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <div class="bp14__twin">
+          <div class="bp14__twin-cell">
+            <span class="bp14__twin-key">Next slot in</span>
+            <span class="bp14__twin-val" id="t14a">18 h 23 m</span>
+            <span class="bp14__twin-sub">Tue · 14:00 CET</span>
+          </div>
+          <div class="bp14__twin-cell bp14__twin-cell--warn">
+            <span class="bp14__twin-key">Window closes</span>
+            <span class="bp14__twin-val" id="t14b">02:14:38</span>
+            <span class="bp14__twin-sub">Today · 18:00 CET</span>
+            <span class="bp14__fomo">2 left</span>
+          </div>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px · cells side-by-side</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp14 bp14--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next · Rafał A.</span>
+          <span class="bp__avail bp__avail--mini">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <div class="bp14__twin">
+          <div class="bp14__twin-cell">
+            <span class="bp14__twin-key">Next slot in</span>
+            <span class="bp14__twin-val">18 h 23 m</span>
+            <span class="bp14__twin-sub">Tue · 14:00 CET</span>
+          </div>
+          <div class="bp14__twin-cell bp14__twin-cell--warn">
+            <span class="bp14__twin-key">Window closes</span>
+            <span class="bp14__twin-val">02:14:38</span>
+            <span class="bp14__twin-sub">Today · 18:00 CET <span class="bp14__fomo" style="margin-left:6px">2 left</span></span>
+          </div>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA · No mkt · Private</p>
+          <a class="bp__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>cells stack vertically</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>14</strong> · two paired timers · "next slot in 18 h 23 m" + "window closes in 02:14:38 · 2 LEFT" · NDA footer</div>
+</section>
+
 </div>
 </div>
 
@@ -1938,9 +2081,10 @@
    for a sketch). Updates every second so the cards feel live.
    ============================================================ */
 (function () {
-  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11','t13'];
+  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11','t13','t14b'];
   const t02 = document.getElementById('t02');
   const t12 = document.getElementById('t12');
+  const t14a = document.getElementById('t14a');
   const arcFill = document.getElementById('bp12-fill');
   const arcCircumference = 2 * Math.PI * 40; // 251.327…
 
@@ -1977,6 +2121,19 @@
       else t02.textContent = `${m} m ${s} s`;
     }
     if (t12) t12.textContent = `${pad(h)}:${pad(m)}`;
+    if (t14a) {
+      // Anchor "next slot" to ~18 h ahead of the close window for variety.
+      const nextMs = ms + 16 * 3600 * 1000;
+      const nh = Math.floor(nextMs / 3600000);
+      const nm = Math.floor((nextMs % 3600000) / 60000);
+      if (nh >= 24) {
+        const d = Math.floor(nh / 24);
+        const hr = nh % 24;
+        t14a.textContent = `${d} d ${hr} h`;
+      } else {
+        t14a.textContent = `${nh} h ${nm} m`;
+      }
+    }
     if (arcFill) {
       const remaining = ms / totalMs;
       const offset = arcCircumference * (1 - remaining);
