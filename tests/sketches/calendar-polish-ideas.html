@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calendar polish — ten ideas to make BriefPanel feel alive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@200;300;400;500;600;700&family=Newsreader:opsz,wght@6..72,300..700&family=JetBrains+Mono:wght@300;400;500&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --gold-soft:  #E2CFA3;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --redline:    #B23A2A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 72px 32px 120px; }
+
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 44px; line-height: 1.1;
+    margin: 14px 0 18px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 64ch; }
+  .baseline {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil);
+  }
+  .baseline strong { color: var(--ink); }
+
+  .toc {
+    margin: 28px 0 6px; padding: 14px 16px;
+    background: var(--cream);
+    border: 1px solid var(--hairline); border-radius: 4px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 28px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--gold-deep); }
+  .toc a b { font-family: "Fraunces", serif; font-weight: 500; color: var(--gold-deep); margin-right: 8px; }
+
+  .ideas { display: grid; gap: 56px; }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px;
+    background: var(--cream); padding: 28px 28px;
+  }
+  .idea__num {
+    font-family: "Fraunces", serif;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 26px; line-height: 1.2; margin: 8px 0 6px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__tag {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 14px; font-weight: 600;
+  }
+  .idea__tag span { color: var(--gold-deep); }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 8px; max-width: 70ch; }
+  .idea__contrast {
+    font-size: 13px; color: var(--pencil); margin: 6px 0 22px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+    max-width: 80ch;
+  }
+  .idea__contrast strong { color: var(--ink); }
+
+  .stage {
+    background: var(--ink);
+    border-radius: 3px;
+    padding: 44px 28px;
+    display: flex; justify-content: center; align-items: center;
+    gap: 24px; flex-wrap: wrap;
+    margin: 8px 0 4px;
+  }
+  .stage--narrow { padding: 36px 20px; }
+  .stage--split { gap: 32px; }
+  .live-caption {
+    font-family: "Manrope"; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(244,239,230,0.55);
+    margin-top: 10px;
+  }
+  .live-caption strong { color: var(--gold); font-weight: 500; }
+
+  /* =====================================================
+     SHARED — base BriefPanel render (the post-Idea-03 component)
+     Used by every demo with idea-specific tweaks layered on top.
+     ===================================================== */
+  .bp {
+    width: 320px;
+    background: #000;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 22px 22px 18px;
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .bp__top {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 10px; margin-bottom: 14px;
+  }
+  .bp__eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    flex: 1 1 auto; min-width: 0;
+  }
+  .bp__status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #fff;
+    flex: 0 0 auto;
+  }
+  .bp__status::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,106,0.18);
+  }
+  .bp__bigtime {
+    font-family: "Manrope"; font-weight: 200;
+    font-size: 70px; line-height: 0.95; letter-spacing: -0.04em;
+    margin: 4px 0 8px;
+  }
+  .bp__bigtime span { color: rgba(255,255,255,0.4); }
+  .bp__bigmeta {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin: 0 0 18px;
+  }
+  .bp__bigmeta b { color: #fff; font-weight: 600; }
+  .bp__slots {
+    list-style: none; margin: 0 0 14px; padding: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .bp__slot {
+    display: block; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10); border-radius: 3px;
+    padding: 12px 10px; cursor: pointer; user-select: none;
+    transition: background .18s ease, border-color .18s ease, transform .12s ease;
+  }
+  .bp__slot:hover {
+    background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.30);
+  }
+  .bp__slot.is-active {
+    background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.85);
+  }
+  .bp__slot-day {
+    display: block; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); line-height: 1;
+  }
+  .bp__slot-time {
+    display: block; font-weight: 400; font-size: 16px;
+    letter-spacing: -0.01em; color: #fff; margin-top: 6px; line-height: 1;
+  }
+  .bp__cta {
+    display: block; width: 100%;
+    background: #fff; color: #000; border: 0; border-radius: 3px;
+    padding: 13px 14px;
+    font-weight: 600; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; text-align: center; cursor: pointer;
+    transition: background .18s, color .18s;
+    font-family: "Manrope";
+  }
+  .bp__cta:hover { background: var(--gold); }
+  .bp__foot {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .bp__micro {
+    margin: 0; font-size: 9px; font-weight: 500;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .bp__alt {
+    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
+    color: var(--gold); text-decoration: none; white-space: nowrap;
+    transition: color .18s;
+  }
+  .bp__alt:hover { color: #fff; }
+
+  /* =====================================================
+     IDEA 01 — Layout fix for the top row
+     ===================================================== */
+  .bp--bad .bp__eyebrow {
+    white-space: normal;
+  }
+  .bp--bad .bp__status { flex: 0 0 auto; }
+  /* the bad version (current behaviour) wraps because eyebrow is long */
+  .bp--bad .bp__top { align-items: flex-start; }
+
+  .bp--fixed .bp__eyebrow {
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .bp--fixed .bp__status .bp__status-label {
+    transition: max-width .2s ease, opacity .2s ease;
+  }
+  @media (max-width: 380px) {
+    .bp--fixed .bp__status .bp__status-label {
+      max-width: 0; opacity: 0; overflow: hidden;
+    }
+  }
+  .compare-pair {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+  }
+  .compare-pair__col { display: flex; flex-direction: column; align-items: center; }
+  .compare-pair__lbl {
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(244,239,230,0.45); margin-top: 10px;
+  }
+  .compare-pair__lbl b { color: var(--gold); font-weight: 500; }
+
+  /* =====================================================
+     IDEA 02 — Live "in X" countdown
+     ===================================================== */
+  .bp__counter {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin: -10px 0 18px;
+  }
+  .bp__counter b { color: var(--gold-soft); font-weight: 500; }
+  .bp__counter::before {
+    content: ""; flex: 0 0 auto;
+    width: 8px; height: 8px; border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: radial-gradient(circle, var(--gold) 30%, transparent 33%);
+    animation: bp-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes bp-pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(201,168,106,0.5); }
+    50%     { box-shadow: 0 0 0 6px rgba(201,168,106,0); }
+  }
+
+  /* =====================================================
+     IDEA 03 — Click-to-select state, deferred navigation
+     ===================================================== */
+  /* Uses .bp standard styles; JS handles state transitions. */
+
+  /* =====================================================
+     IDEA 04 — Animated digit transition (slide + fade)
+     ===================================================== */
+  .bp--anim .bp__bigtime {
+    display: inline-flex; overflow: hidden; height: 70px;
+    align-items: stretch;
+  }
+  .bp__digit {
+    display: inline-block; position: relative; min-width: 0.62em; text-align: center;
+    overflow: hidden; height: 70px;
+  }
+  .bp__digit--colon { color: rgba(255,255,255,0.4); min-width: 0.32em; }
+  .bp__digit-stack {
+    display: block; transition: transform .42s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(0);
+  }
+  .bp__digit-stack span {
+    display: block; height: 70px; line-height: 0.95;
+  }
+
+  /* =====================================================
+     IDEA 05 — Slab interactions: corner-trace + luminous wash
+     ===================================================== */
+  .bp--lum .bp__slot {
+    position: relative; overflow: hidden;
+  }
+  .bp--lum .bp__slot::before,
+  .bp--lum .bp__slot::after {
+    content: ""; position: absolute;
+    width: 8px; height: 8px;
+    border-color: var(--gold-soft);
+    border-style: solid; border-width: 0;
+    opacity: 0; transition: opacity .25s ease, width .25s ease, height .25s ease;
+    pointer-events: none;
+  }
+  .bp--lum .bp__slot::before {
+    top: 4px; left: 4px;
+    border-top-width: 1px; border-left-width: 1px;
+  }
+  .bp--lum .bp__slot::after {
+    bottom: 4px; right: 4px;
+    border-bottom-width: 1px; border-right-width: 1px;
+  }
+  .bp--lum .bp__slot:hover::before,
+  .bp--lum .bp__slot:hover::after {
+    opacity: 0.85; width: 12px; height: 12px;
+  }
+  .bp--lum .bp__slot:hover {
+    background: radial-gradient(120% 120% at 50% 0%,
+      rgba(201,168,106,0.10) 0%,
+      rgba(255,255,255,0.04) 60%);
+    transform: translateY(-1px);
+  }
+  .bp--lum .bp__slot:active { transform: translateY(0); }
+
+  /* =====================================================
+     IDEA 06 — Keyboard-first
+     ===================================================== */
+  .bp--kbd .bp__slot { position: relative; }
+  .bp--kbd .bp__slot:focus-visible {
+    outline: 2px solid var(--gold-soft);
+    outline-offset: 2px; border-color: rgba(255,255,255,0.30);
+  }
+  .bp__kbd-hint {
+    position: absolute; top: 4px; right: 6px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; color: rgba(255,255,255,0.30);
+  }
+  .bp__keyrow {
+    display: flex; align-items: center; gap: 8px;
+    margin: 8px 0 -2px; padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.10);
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .bp__keyrow .k {
+    font-family: "JetBrains Mono", monospace;
+    padding: 2px 6px; border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 3px; color: rgba(255,255,255,0.7);
+    letter-spacing: 0; font-size: 10px;
+  }
+
+  /* =====================================================
+     IDEA 07 — Dual-zone time
+     ===================================================== */
+  .bp__zonepair {
+    display: flex; align-items: baseline; gap: 14px;
+    margin: -6px 0 14px;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .bp__zonepair b { color: #fff; font-weight: 600; }
+  .bp__zonepair .you { color: var(--gold-soft); }
+  .bp__zonepair .sep {
+    width: 16px; height: 1px; background: rgba(255,255,255,0.18);
+  }
+
+  /* =====================================================
+     IDEA 08 — Capacity meter
+     ===================================================== */
+  .bp__cap {
+    display: flex; align-items: center; gap: 10px;
+    margin: -6px 0 16px;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .bp__cap b { color: var(--gold-soft); font-weight: 500; }
+  .bp__cap-rail {
+    flex: 1 1 auto;
+    height: 4px; display: flex; gap: 2px;
+  }
+  .bp__cap-rail i {
+    flex: 1; background: rgba(255,255,255,0.08);
+    border-radius: 1px;
+  }
+  .bp__cap-rail i.on { background: var(--gold); }
+
+  /* =====================================================
+     IDEA 09 — CTA states (idle / loading / success)
+     ===================================================== */
+  .bp--cta .bp__cta {
+    position: relative; overflow: hidden; height: 44px;
+  }
+  .bp--cta .bp__cta-label,
+  .bp--cta .bp__cta-loading,
+  .bp--cta .bp__cta-success {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px;
+    transition: transform .35s cubic-bezier(0.2,0.8,0.2,1), opacity .25s;
+  }
+  .bp--cta .bp__cta-loading { transform: translateY(100%); opacity: 0; }
+  .bp--cta .bp__cta-success { transform: translateY(100%); opacity: 0; }
+  .bp--cta.is-loading .bp__cta-label { transform: translateY(-100%); opacity: 0; }
+  .bp--cta.is-loading .bp__cta-loading { transform: translateY(0); opacity: 1; }
+  .bp--cta.is-success .bp__cta-label { transform: translateY(-100%); opacity: 0; }
+  .bp--cta.is-success .bp__cta-loading { transform: translateY(-100%); opacity: 0; }
+  .bp--cta.is-success .bp__cta-success { transform: translateY(0); opacity: 1; }
+  .bp--cta.is-success .bp__cta {
+    background: var(--gold);
+  }
+  .bp__cta-loading::before {
+    content: ""; width: 14px; height: 14px;
+    border: 1.5px solid #000; border-top-color: transparent;
+    border-radius: 50%; animation: bp-spin .9s linear infinite;
+  }
+  @keyframes bp-spin { to { transform: rotate(360deg); } }
+  .bp__cta-success svg {
+    animation: bp-pop .35s cubic-bezier(0.2,0.8,0.2,1) both;
+  }
+  @keyframes bp-pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  /* =====================================================
+     IDEA 10 — Mobile reflow + reduced motion
+     ===================================================== */
+  .bp--m { width: 280px; }
+  .bp--m .bp__slots {
+    grid-template-columns: 1fr;
+  }
+  .bp--m .bp__slot {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 12px 14px;
+  }
+  .bp--m .bp__slot-time { margin-top: 0; font-size: 18px; }
+  .bp--m .bp__bigtime { font-size: 60px; }
+  .bp--m .bp__foot { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .bp--rm * { animation: none !important; transition: none !important; }
+
+  @media (max-width: 720px) {
+    .stage { padding: 24px 12px; }
+    .toc { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="intro">
+  <div class="eyebrow">Sketches · BriefPanel — polish round</div>
+  <h1>Ten ways to make the Tesla calendar feel <em>alive.</em></h1>
+  <p class="lede">
+    Idea 03 (the Tesla touchscreen slab) is in production. This sheet is the
+    polish punch list — fixes for layout edge cases visible in the rendered
+    panel, plus interactions and motion that turn a static card into a
+    professional-feeling instrument. Each idea below is a working live
+    demo on the dark hero ground; click and hover to feel them.
+  </p>
+  <div class="baseline">
+    <strong>What's already shipped.</strong> Pure-black slab, status row with gold dot,
+    72px weight-200 soonest time, three slabs (first marked active), white CTA, NDA
+    microcopy + serif italic alt link. <strong>What still feels static:</strong> top
+    row wraps "Filip Z." onto two lines, hover/active states are minimal, the bigtime
+    doesn't react to slab clicks, no countdown signal, no keyboard affordances, no
+    timezone help, no CTA feedback.
+  </div>
+  <div class="toc">
+    <a href="#i1"><b>01</b>Top-row layout fix — stop the wrap</a>
+    <a href="#i2"><b>02</b>Live "in 18h" countdown chip</a>
+    <a href="#i3"><b>03</b>Click-to-select, defer navigation to CTA</a>
+    <a href="#i4"><b>04</b>Animated digit transition (slide + fade)</a>
+    <a href="#i5"><b>05</b>Slab corner-trace + luminous wash</a>
+    <a href="#i6"><b>06</b>Keyboard-first: 1/2/3 + arrow keys + focus rings</a>
+    <a href="#i7"><b>07</b>Dual-zone time — CET and visitor's local</a>
+    <a href="#i8"><b>08</b>Capacity meter — "3 of 12 open this week"</a>
+    <a href="#i9"><b>09</b>CTA states — idle / loading / success</a>
+    <a href="#i10"><b>10</b>Mobile reflow + prefers-reduced-motion</a>
+  </div>
+</header>
+
+<div class="ideas">
+
+<!-- ============================ IDEA 01 ============================ -->
+<section class="idea" id="i1">
+  <div class="idea__num">Idea 01</div>
+  <h2>Top-row layout fix — <em>stop "Filip Z." wrapping.</em></h2>
+  <div class="idea__tag">Polish · <span>layout edge case</span></div>
+  <p class="idea__why">
+    The screenshot shows "FILIP Z." bumped to a second line because the AVAILABLE pill
+    eats the right side of the top row. Fix: make the eyebrow truncate with ellipsis
+    on overflow, lock the status pill to its content size, and on very narrow widths
+    collapse the AVAILABLE label to just the gold dot. Also abbreviate the eyebrow
+    itself — "Next call · with Filip" reads cleaner than "Next private call · Filip Z."
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> visible bug → fixed in one row, no chrome added.
+    The eyebrow becomes a single line at every width and the AVAILABLE indicator
+    degrades gracefully instead of pushing text around.
+  </div>
+  <div class="stage stage--split">
+    <div class="compare-pair__col">
+      <div class="bp bp--bad">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next private call · Filip Z.</span>
+          <span class="bp__status">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="compare-pair__lbl">Today · <b>wraps</b></div>
+    </div>
+    <div class="compare-pair__col">
+      <div class="bp bp--fixed">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status"><span class="bp__status-label">Available</span></span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="compare-pair__lbl">Fix · <b>single line</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>01</strong> · ellipsis on the eyebrow · status pill collapses to dot under 380px</div>
+</section>
+
+<!-- ============================ IDEA 02 ============================ -->
+<section class="idea" id="i2">
+  <div class="idea__num">Idea 02</div>
+  <h2>Live <em>"in 18h"</em> countdown chip.</h2>
+  <div class="idea__tag">Motion · <span>relative time</span></div>
+  <p class="idea__why">
+    Humans grasp relative time (<em>in 18 hours</em>) before they parse absolute
+    time (<em>14:00 CET</em>). Add a thin breathing dot + relative phrase between
+    the bigmeta and the slabs. Powered by <code>Intl.RelativeTimeFormat</code>;
+    re-renders once a minute. The dot pulses softly so the panel reads as a live
+    instrument, not a screenshot.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> visitor instantly knows whether the soonest slot is
+    today, tomorrow, or next week — without doing date arithmetic. The "available
+    now" dot also signals real-time presence without adding chrome.
+  </div>
+  <div class="stage">
+    <div class="bp" id="bp02">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime">14<span>:</span>00</div>
+      <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+      <div class="bp__counter"><span id="bp02-rel">In 18 h 23 min</span> · <b>before lunch · Warsaw</b></div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <button class="bp__cta">Reserve · 14:00 CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>02</strong> · pulsing dot · relative-time phrase under the bigmeta</div>
+</section>
+
+<!-- ============================ IDEA 03 ============================ -->
+<section class="idea" id="i3">
+  <div class="idea__num">Idea 03</div>
+  <h2>Click-to-select — <em>defer navigation to the CTA.</em></h2>
+  <div class="idea__tag">Interaction · <span>state model</span></div>
+  <p class="idea__why">
+    Today every slab is its own link to <code>/contact?slot=…</code> — clicking any
+    slab navigates immediately. That's a hair-trigger commit. Better: clicking a
+    slab updates which one is selected (bigtime + bigmeta + CTA all change in place);
+    only the white CTA actually navigates. Visitors get to scan all three options
+    against the same big display before committing.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> trades one click savings for a moment of comparison.
+    The bigtime stops being decorative and starts being the answer to "what am I
+    about to book?" Combine with idea 04 for the right physicality.
+  </div>
+  <div class="stage">
+    <div class="bp" id="bp03" data-sel="0">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime"><span id="bp03-hh">14</span><span>:</span><span id="bp03-mm">00</span></div>
+      <div class="bp__bigmeta"><b id="bp03-day">Tuesday · 5 May</b> · CET · 30 min</div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active" data-i="0" data-hh="14" data-mm="00" data-day="Tuesday · 5 May" data-time="14:00"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot" data-i="1" data-hh="09" data-mm="30" data-day="Wednesday · 6 May" data-time="09:30"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot" data-i="2" data-hh="11" data-mm="00" data-day="Thursday · 7 May" data-time="11:00"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <button class="bp__cta" id="bp03-cta">Reserve · <span id="bp03-time">14:00</span> CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>03</strong> · click any slab — bigtime + day + CTA update · only CTA navigates</div>
+</section>
+
+<!-- ============================ IDEA 04 ============================ -->
+<section class="idea" id="i4">
+  <div class="idea__num">Idea 04</div>
+  <h2>Animated digit transition — <em>slide and fade.</em></h2>
+  <div class="idea__tag">Motion · <span>physical numerals</span></div>
+  <p class="idea__why">
+    Pairs with idea 03. When a slab swaps the bigtime, don't snap — slide the new
+    digit up from the bottom and fade the old one out. Each digit (HH and MM)
+    animates independently, so 14:00 → 09:30 reads as four small dial flips
+    rather than one cut. Total animation: 420ms, eased.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the bigtime currently doesn't change at all (it's
+    static). Once it does change with idea 03, an instant swap feels brittle —
+    motion is the proof that the panel is a real instrument.
+  </div>
+  <div class="stage">
+    <div class="bp bp--anim" id="bp04">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime" aria-hidden="true">
+        <span class="bp__digit" data-pos="h1"><span class="bp__digit-stack"><span>1</span></span></span>
+        <span class="bp__digit" data-pos="h2"><span class="bp__digit-stack"><span>4</span></span></span>
+        <span class="bp__digit bp__digit--colon"><span class="bp__digit-stack"><span>:</span></span></span>
+        <span class="bp__digit" data-pos="m1"><span class="bp__digit-stack"><span>0</span></span></span>
+        <span class="bp__digit" data-pos="m2"><span class="bp__digit-stack"><span>0</span></span></span>
+      </div>
+      <div class="bp__bigmeta"><b id="bp04-day">Tuesday · 5 May</b> · CET · 30 min</div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active" data-i="0" data-time="14:00" data-day="Tuesday · 5 May"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot" data-i="1" data-time="09:30" data-day="Wednesday · 6 May"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot" data-i="2" data-time="11:00" data-day="Thursday · 7 May"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <button class="bp__cta">Reserve · <span id="bp04-cta-t">14:00</span> CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>04</strong> · click slabs to feel the digits flip · 420ms cubic-bezier slide-up</div>
+</section>
+
+<!-- ============================ IDEA 05 ============================ -->
+<section class="idea" id="i5">
+  <div class="idea__num">Idea 05</div>
+  <h2>Slab interactions — <em>corner trace and luminous wash.</em></h2>
+  <div class="idea__tag">Motion · <span>hover state</span></div>
+  <p class="idea__why">
+    The current slabs lighten on hover and that's it. Add two flourishes that read as
+    instrumentation: faint gold corner brackets (top-left + bottom-right) that draw in
+    over 250ms, plus a soft radial wash from the top edge that suggests light
+    catching glass. Press state nudges 1px down. Subtle enough that it's seen,
+    not noticed.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> moves slab hover from "colour change" to "object
+    being touched." The corner brackets are a quiet brand cue (we already use
+    bracket-style ornament in the program-page section openers).
+  </div>
+  <div class="stage">
+    <div class="bp bp--lum">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime">14<span>:</span>00</div>
+      <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <button class="bp__cta">Reserve · 14:00 CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>05</strong> · hover the slabs — gold corner brackets fade in, soft top-edge wash, 1px press</div>
+</section>
+
+<!-- ============================ IDEA 06 ============================ -->
+<section class="idea" id="i6">
+  <div class="idea__num">Idea 06</div>
+  <h2>Keyboard-first — <em>1 / 2 / 3, arrow keys, visible focus.</em></h2>
+  <div class="idea__tag">Accessibility · <span>power users</span></div>
+  <p class="idea__why">
+    Bind <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd> to jump to slab N, <kbd>←</kbd>/<kbd>→</kbd>
+    to cycle, <kbd>Enter</kbd> to confirm. Mark each slab with a tiny monospace
+    digit in the top-right corner. Add a <code>:focus-visible</code> ring in soft
+    gold. A one-line dashed-rule hint sits under the slabs ("1 · 2 · 3 to choose
+    · Enter to reserve") that's only visible when the panel has focus.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> nothing keyboard-aware exists. This adds an
+    advisory layer for keyboard and screen-reader users without changing the
+    mouse path. The digit hints also serve as visual anchors during scanning.
+  </div>
+  <div class="stage">
+    <div class="bp bp--kbd" id="bp06" tabindex="0">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime">14<span>:</span>00</div>
+      <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active" tabindex="0" data-i="0"><span class="bp__kbd-hint">1</span><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot" tabindex="0" data-i="1"><span class="bp__kbd-hint">2</span><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot" tabindex="0" data-i="2"><span class="bp__kbd-hint">3</span><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <div class="bp__keyrow"><span class="k">1</span><span class="k">2</span><span class="k">3</span><span>choose</span><span class="k">↵</span><span>reserve</span></div>
+      <button class="bp__cta">Reserve · 14:00 CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>06</strong> · click the panel to focus it, then press <kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd> or arrow keys</div>
+</section>
+
+<!-- ============================ IDEA 07 ============================ -->
+<section class="idea" id="i7">
+  <div class="idea__num">Idea 07</div>
+  <h2>Dual-zone time — <em>CET and your local clock.</em></h2>
+  <div class="idea__tag">Polish · <span>international audience</span></div>
+  <p class="idea__why">
+    Mobius's audience books from anywhere. Show the CET time as primary, then a
+    short rule and the visitor's local equivalent computed from
+    <code>Intl.DateTimeFormat().resolvedOptions().timeZone</code>. If the visitor
+    is already in CET, hide the second zone. Keeps the bigtime clean and reduces
+    the "let me do mental maths" friction before booking.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> CET is the only label. Visitors in EST/PST/SGT have
+    to convert in their head before they can decide. The second zone removes that
+    cost without adding chrome.
+  </div>
+  <div class="stage">
+    <div class="bp" id="bp07">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime">14<span>:</span>00</div>
+      <div class="bp__zonepair">
+        <span><b>14:00</b> CET</span>
+        <span class="sep"></span>
+        <span class="you"><b id="bp07-localtime">13:00</b> <span id="bp07-localzone">your time · LON</span></span>
+      </div>
+      <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · 30 min</div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <button class="bp__cta">Reserve · 14:00 CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>07</strong> · second zone auto-detects from your browser · hides if you're in CET already</div>
+</section>
+
+<!-- ============================ IDEA 08 ============================ -->
+<section class="idea" id="i8">
+  <div class="idea__num">Idea 08</div>
+  <h2>Capacity meter — <em>"3 of 12 open this week."</em></h2>
+  <div class="idea__tag">Polish · <span>scarcity, transparently</span></div>
+  <p class="idea__why">
+    A 12-pip rail under the bigmeta with three filled gold and nine dim. Reads as
+    "Filip is mostly booked but there are three openings." Honest, restrained
+    scarcity — no countdown timers, no "only 1 left!" theatre. Just a quiet
+    acknowledgement that the calendar is real.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> capacity is invisible. This makes it legible
+    without bragging or pressuring. If the rail ever shows zero open, that's a
+    legitimate signal to use the alt link instead.
+  </div>
+  <div class="stage">
+    <div class="bp">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime">14<span>:</span>00</div>
+      <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+      <div class="bp__cap">
+        <span><b>3</b> of 12</span>
+        <span class="bp__cap-rail">
+          <i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i>
+        </span>
+        <span>this&nbsp;week</span>
+      </div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <button class="bp__cta">Reserve · 14:00 CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>08</strong> · 12-pip rail · 3 lit in gold · "3 of 12 this week"</div>
+</section>
+
+<!-- ============================ IDEA 09 ============================ -->
+<section class="idea" id="i9">
+  <div class="idea__num">Idea 09</div>
+  <h2>CTA states — <em>idle / loading / success.</em></h2>
+  <div class="idea__tag">Motion · <span>commitment feedback</span></div>
+  <p class="idea__why">
+    The white "Reserve" button currently navigates instantly. Even a 200ms hold
+    where the label slides up, a spinner takes over, then a check + "Slot held —
+    redirecting" rotates in feels expensive. (In practice the navigation can
+    overlap the success state — the visitor just sees the success blip during
+    transition.)
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> commitment without confirmation feels uncertain.
+    A 600ms loading-then-success vignette is cheap to build, signals that the
+    server received the booking, and gives the visitor a moment of "yes, that
+    happened." Click the button below to feel it.
+  </div>
+  <div class="stage">
+    <div class="bp bp--cta" id="bp09">
+      <div class="bp__top">
+        <span class="bp__eyebrow">Next call · with Filip</span>
+        <span class="bp__status">Available</span>
+      </div>
+      <div class="bp__bigtime">14<span>:</span>00</div>
+      <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+      <ul class="bp__slots">
+        <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+        <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+      </ul>
+      <button class="bp__cta" id="bp09-cta">
+        <span class="bp__cta-label">Reserve · 14:00 CET</span>
+        <span class="bp__cta-loading">Holding the slot</span>
+        <span class="bp__cta-success">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#000" stroke-width="2">
+            <path d="M3 8.5l3 3 7-7"/>
+          </svg>
+          Slot held — redirecting
+        </span>
+      </button>
+      <div class="bp__foot">
+        <p class="bp__micro">NDA-first · No marketing</p>
+        <a class="bp__alt">Pick another time →</a>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>09</strong> · click the white CTA · idle → 600ms loading → success check, then navigate</div>
+</section>
+
+<!-- ============================ IDEA 10 ============================ -->
+<section class="idea" id="i10">
+  <div class="idea__num">Idea 10</div>
+  <h2>Mobile reflow — <em>and respect <code>prefers-reduced-motion</code>.</em></h2>
+  <div class="idea__tag">Polish · <span>responsive · accessibility</span></div>
+  <p class="idea__why">
+    On a 320px viewport the three side-by-side slabs are too cramped — stack them
+    vertically with the day on the left and the time on the right (a row, not a
+    tile). Drop the bigtime by 10px so the panel fits without scrolling. Foot row
+    becomes two stacked lines. Wrap the digit-flip animation in a
+    <code>@media (prefers-reduced-motion: reduce)</code> block so vestibular-sensitive
+    visitors get an instant swap instead.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the panel currently relies on the page's mobile
+    breakpoint to drop the column to full width, but the slab grid stays 3-column
+    and gets cramped. A dedicated stacked layout reads cleanly at any width.
+  </div>
+  <div class="stage stage--split">
+    <div class="compare-pair__col">
+      <div class="bp bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="compare-pair__lbl">320px · <b>stacked rows</b></div>
+    </div>
+    <div class="compare-pair__col">
+      <div class="bp bp--rm" style="width: 320px;">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="compare-pair__lbl">Reduced motion · <b>no transitions</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>10</strong> · stacked slab rows on narrow widths · <code>prefers-reduced-motion</code> branch drops all timing</div>
+</section>
+
+</div>
+</div>
+
+<script>
+/* ============================================================
+   Idea 02 — live "in X" countdown
+   ============================================================ */
+(function () {
+  const el = document.getElementById('bp02-rel');
+  if (!el) return;
+  // anchor: tomorrow at 14:00 in viewer's local clock (close enough for a sketch)
+  const now = new Date();
+  const target = new Date(now);
+  target.setDate(target.getDate() + 1);
+  target.setHours(14, 0, 0, 0);
+
+  function tick() {
+    const ms = target.getTime() - Date.now();
+    if (ms <= 0) { el.textContent = 'Starting now'; return; }
+    const totalMin = Math.floor(ms / 60000);
+    const h = Math.floor(totalMin / 60);
+    const m = totalMin % 60;
+    if (h >= 24) {
+      const d = Math.floor(h / 24);
+      const hr = h % 24;
+      el.textContent = `In ${d} d ${hr} h`;
+    } else if (h >= 1) {
+      el.textContent = `In ${h} h ${m} min`;
+    } else {
+      el.textContent = `In ${m} min`;
+    }
+  }
+  tick();
+  setInterval(tick, 30000);
+})();
+
+/* ============================================================
+   Idea 03 — click-to-select state
+   ============================================================ */
+(function () {
+  const root = document.getElementById('bp03');
+  if (!root) return;
+  const slabs = root.querySelectorAll('.bp__slot');
+  const hh = document.getElementById('bp03-hh');
+  const mm = document.getElementById('bp03-mm');
+  const day = document.getElementById('bp03-day');
+  const cta = document.getElementById('bp03-time');
+  slabs.forEach(s => {
+    s.addEventListener('click', () => {
+      slabs.forEach(x => x.classList.remove('is-active'));
+      s.classList.add('is-active');
+      hh.textContent = s.dataset.hh;
+      mm.textContent = s.dataset.mm;
+      day.textContent = s.dataset.day;
+      cta.textContent = s.dataset.time;
+    });
+  });
+})();
+
+/* ============================================================
+   Idea 04 — animated digit transitions
+   ============================================================ */
+(function () {
+  const root = document.getElementById('bp04');
+  if (!root) return;
+  const slabs = root.querySelectorAll('.bp__slot');
+  const day = document.getElementById('bp04-day');
+  const ctaT = document.getElementById('bp04-cta-t');
+
+  function setDigit(pos, newChar) {
+    const cell = root.querySelector(`.bp__digit[data-pos="${pos}"]`);
+    if (!cell) return;
+    const stack = cell.querySelector('.bp__digit-stack');
+    const current = stack.querySelector('span:last-child');
+    if (current && current.textContent === newChar) return;
+    const incoming = document.createElement('span');
+    incoming.textContent = newChar;
+    stack.appendChild(incoming);
+    // force reflow then animate
+    requestAnimationFrame(() => {
+      stack.style.transform = 'translateY(-70px)';
+    });
+    setTimeout(() => {
+      // remove old, reset transform without animating
+      stack.style.transition = 'none';
+      stack.style.transform = 'translateY(0)';
+      while (stack.children.length > 1) stack.removeChild(stack.firstChild);
+      requestAnimationFrame(() => {
+        stack.style.transition = '';
+      });
+    }, 440);
+  }
+
+  slabs.forEach(s => {
+    s.addEventListener('click', () => {
+      slabs.forEach(x => x.classList.remove('is-active'));
+      s.classList.add('is-active');
+      const t = s.dataset.time; // "14:00"
+      setDigit('h1', t[0]);
+      setDigit('h2', t[1]);
+      setDigit('m1', t[3]);
+      setDigit('m2', t[4]);
+      day.textContent = s.dataset.day;
+      ctaT.textContent = t;
+    });
+  });
+})();
+
+/* ============================================================
+   Idea 06 — keyboard shortcuts
+   ============================================================ */
+(function () {
+  const root = document.getElementById('bp06');
+  if (!root) return;
+  const slabs = root.querySelectorAll('.bp__slot');
+  function activate(i) {
+    slabs.forEach((x, idx) => {
+      x.classList.toggle('is-active', idx === i);
+      if (idx === i) x.focus();
+    });
+  }
+  root.addEventListener('keydown', (e) => {
+    if (e.key === '1') { activate(0); e.preventDefault(); }
+    else if (e.key === '2') { activate(1); e.preventDefault(); }
+    else if (e.key === '3') { activate(2); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') {
+      const cur = [...slabs].findIndex(s => s.classList.contains('is-active'));
+      activate((cur + 1) % slabs.length); e.preventDefault();
+    } else if (e.key === 'ArrowLeft') {
+      const cur = [...slabs].findIndex(s => s.classList.contains('is-active'));
+      activate((cur - 1 + slabs.length) % slabs.length); e.preventDefault();
+    }
+  });
+  slabs.forEach((s, i) => s.addEventListener('click', () => activate(i)));
+})();
+
+/* ============================================================
+   Idea 07 — visitor's local time
+   ============================================================ */
+(function () {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'local';
+    const short = (s) => s.split('/').pop().slice(0, 3).toUpperCase();
+    // Compute what 14:00 Europe/Warsaw is in the viewer's locale today.
+    // Build a date that is 14:00 Warsaw, then format in viewer's tz.
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate() + 1).padStart(2, '0');
+    // Use a Warsaw-anchored ISO with offset; +02:00 in May (CEST).
+    const cetDate = new Date(`${y}-${m}-${d}T14:00:00+02:00`);
+    const local = new Intl.DateTimeFormat([], {
+      hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz,
+    }).format(cetDate);
+    document.getElementById('bp07-localtime').textContent = local;
+    document.getElementById('bp07-localzone').textContent = `your time · ${short(tz)}`;
+  } catch (e) { /* fallback to default copy */ }
+})();
+
+/* ============================================================
+   Idea 09 — CTA states
+   ============================================================ */
+(function () {
+  const panel = document.getElementById('bp09');
+  if (!panel) return;
+  const cta = document.getElementById('bp09-cta');
+  cta.addEventListener('click', () => {
+    if (panel.classList.contains('is-loading') || panel.classList.contains('is-success')) {
+      panel.classList.remove('is-loading', 'is-success');
+      return;
+    }
+    panel.classList.add('is-loading');
+    setTimeout(() => {
+      panel.classList.remove('is-loading');
+      panel.classList.add('is-success');
+      setTimeout(() => panel.classList.remove('is-success'), 1800);
+    }, 700);
+  });
+})();
+</script>
+</body>
+</html>
