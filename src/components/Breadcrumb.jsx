@@ -40,6 +40,7 @@ export default function Breadcrumb({
   current,
   meta,
   tagline,
+  aside,
 }) {
   const { lead, tail } = splitTitle(title, emphasis);
   const className = `ht-breadcrumb-area is-${variant}`;
@@ -63,17 +64,22 @@ export default function Breadcrumb({
               </ul>
             )}
           </div>
-          <h1 className="ht-breadcrumb__title">
-            {lead}
-            {tail && (
-              <>
-                {' '}
-                <em>{tail}</em>
-              </>
-            )}
-          </h1>
-          <span className="ht-breadcrumb__rule" aria-hidden="true" />
-          {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
+          <div className={`ht-breadcrumb__layout${aside ? ' has-aside' : ''}`}>
+            <div className="ht-breadcrumb__editorial-body">
+              <h1 className="ht-breadcrumb__title">
+                {lead}
+                {tail && (
+                  <>
+                    {' '}
+                    <em>{tail}</em>
+                  </>
+                )}
+              </h1>
+              <span className="ht-breadcrumb__rule" aria-hidden="true" />
+              {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
+            </div>
+            {aside && <div className="ht-breadcrumb__aside">{aside}</div>}
+          </div>
         </div>
       </section>
     );

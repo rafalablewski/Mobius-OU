@@ -8706,6 +8706,26 @@ span {
   max-width: 56ch;
 }
 
+/* Editorial layout: title block on the left, optional aside (calendar
+   panel) on the right. Collapses to a single column under 992px. */
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__layout {
+  display: block;
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__layout.has-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(280px, 30%, 360px);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: end;
+}
+@media (max-width: 991px) {
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__layout.has-aside {
+    display: block;
+  }
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__aside {
+    margin-top: 40px;
+  }
+}
+
 /* --- Aperture variant: every non-program subpage -------------------------- */
 .ht-breadcrumb-area.is-aperture {
   padding: 132px 0 104px;
@@ -13704,6 +13724,149 @@ span {
   transition: gap 0.25s ease;
 }
 .ht-program__related-card:hover .ht-program__related-link { gap: 12px; }
+
+/* --- Brief panel (calendar-first hero CTA) -------------------------------- */
+/* Sits on the dark editorial breadcrumb as a cream card. Three weekday
+   slots, link-out for "another time", NDA-first microcopy. */
+.ht-brief-panel {
+  background: var(--ht-theme-color-5);
+  border: 1px solid rgba(201, 168, 106, 0.5);
+  border-radius: 3px;
+  padding: 24px 22px 18px;
+  color: var(--ht-heading-color);
+  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.55);
+  animation: ht-breadcrumb-rise 720ms 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.ht-brief-panel__eyebrow {
+  display: block;
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #A07F44;
+  margin-bottom: 10px;
+}
+.ht-brief-panel__title {
+  font-family: var(--ht-font-display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ht-heading-color);
+  margin: 0 0 16px;
+}
+.ht-brief-panel__slots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.ht-brief-panel__slot {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px 14px;
+  align-items: center;
+  background: var(--ht-white);
+  border: 1px solid var(--ht-border-color);
+  padding: 10px 14px;
+  text-decoration: none;
+  color: var(--ht-heading-color);
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+.ht-brief-panel__slot:hover,
+.ht-brief-panel__slot:focus-visible {
+  border-color: var(--ht-theme-color-2);
+  background: #FFFDF7;
+  transform: translateX(2px);
+  color: var(--ht-heading-color);
+}
+.ht-brief-panel__slot-day {
+  grid-column: 1;
+  font-family: var(--ht-font-ui);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+}
+.ht-brief-panel__slot-time {
+  grid-column: 1;
+  grid-row: 2;
+  font-family: var(--ht-font-display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ht-heading-color);
+}
+.ht-brief-panel__slot-arrow {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  font-family: var(--ht-font-ui);
+  font-size: 16px;
+  color: #A07F44;
+  align-self: center;
+}
+.ht-brief-panel__alt {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--ht-font-serif-body);
+  font-style: italic;
+  font-size: 13px;
+  color: #A07F44;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.ht-brief-panel__alt:hover { color: var(--ht-heading-color); }
+.ht-brief-panel__microcopy {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--ht-border-color);
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+}
+
+/* Contact preferred-slot readout (set by ?slot= from a brief panel click) */
+.ht-contact-slot {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  padding: 16px 20px;
+  background: var(--ht-theme-color-5);
+  border-left: 2px solid var(--ht-theme-color-2);
+  border-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 14px;
+}
+.ht-contact-slot__label {
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #A07F44;
+}
+.ht-contact-slot__value {
+  font-family: var(--ht-font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ht-heading-color);
+}
+.ht-contact-slot__program {
+  font-family: var(--ht-font-serif-body);
+  font-size: 14px;
+  color: var(--ht-theme-color-6);
+}
+.ht-contact-slot__program em {
+  font-style: italic;
+  color: var(--ht-heading-color);
+}
 
 /* === Mobile header + nav polish ======================================== */
 @media (max-width: 991px) {

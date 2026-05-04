@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import BriefPanel from '../components/BriefPanel.jsx';
 import CTABand from '../components/CTABand.jsx';
 import { PROGRAMS, PROGRAMS_BY_SLUG } from '../data/programs.js';
 
@@ -40,6 +41,7 @@ export default function ProgramPage() {
         ]}
         meta={[program.region, program.category, 'Updated 2026.Q1']}
         tagline={program.tagline}
+        aside={<BriefPanel program={program} />}
       />
       <section className="ht-program">
         <div className="container">
@@ -55,10 +57,6 @@ export default function ProgramPage() {
               <span className="ht-program__eyebrow">{program.region}</span>
               <h1 className="ht-program__title">{program.name}</h1>
               <p className="ht-program__tagline">{program.tagline}</p>
-              <Link to="/contact" className="ht-btn style-2 ht-program__cta">
-                Schedule Consultation
-                <i className="fa-solid fa-arrow-right" aria-hidden="true" style={{ marginLeft: 10 }}></i>
-              </Link>
             </div>
           </div>
 
