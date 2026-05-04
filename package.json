@@ -6,7 +6,7 @@
   "description": "Mobius & Partners — Global mobility, citizenship and residency advisory.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/copy-tests-to-dist.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
