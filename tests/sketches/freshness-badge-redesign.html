@@ -542,6 +542,60 @@
   .doc-control .dc-cell:last-child { border-right: 0; }
   .doc-control .dc-key { color: rgba(244,239,230,0.42); }
   .doc-control .dc-val { color: rgba(244,239,230,0.92); font-feature-settings: "tnum" 1; }
+  /* category tag cell (RBI / CBI) — distinct, framed, the "what is this thing" */
+  .doc-control .dc-tag {
+    padding: 8px 12px;
+    border-right: 1px solid rgba(244,239,230,0.20);
+    display: flex; align-items: center;
+    background: rgba(244,239,230,0.04);
+  }
+  .doc-control .dc-tag span {
+    border: 1px solid rgba(244,239,230,0.45);
+    padding: 3px 8px;
+    color: rgba(244,239,230,0.95);
+    letter-spacing: 0.22em;
+    font-size: 10px;
+  }
+
+  /* per-program reference table inside Idea 11 */
+  .doc-ref {
+    width: 100%; margin: 18px 0 4px;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--pencil);
+  }
+  .doc-ref caption {
+    text-align: left;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold-deep);
+    padding: 0 0 8px;
+  }
+  .doc-ref th, .doc-ref td {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(11,15,20,0.10);
+  }
+  .doc-ref th {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .doc-ref tr:last-child td { border-bottom: 0; }
+  .doc-ref .dr-tag {
+    display: inline-block;
+    border: 1px solid var(--gold-deep);
+    color: var(--gold-deep);
+    padding: 1px 6px;
+    font-size: 9px; letter-spacing: 0.22em;
+  }
+  .doc-ref .dr-doc { color: var(--ink); font-feature-settings: "tnum" 1; }
+  .doc-ref .dr-name {
+    font-family: "Fraunces", serif; font-style: italic;
+    color: var(--ink); font-size: 12px;
+  }
 
   /* Idea 12 — ISO datestamp (FT dateline) */
   .iso-stamp {
@@ -658,6 +712,14 @@
     audit-report register. Each is shown as a pencil sketch and a live HTML mock on dark
     ground so we can compare the actual rendering, not just the idea.
   </p>
+  <p class="lede" style="margin-top: 14px; font-size: 13px;">
+    <strong style="color:var(--gold-deep);">★ Direction agreed:</strong> Idea 11
+    (document-control block) is the favoured route, refined so the first cell tags the
+    program category — <code>RBI</code> or <code>CBI</code> — and the doc code becomes a
+    real country-program slug rather than an opaque string. See
+    <a href="#idea-11" style="color:var(--gold-deep);">↓ Idea 11 (refined)</a> for both
+    variants and the convention applied across all six current programs.
+  </p>
 
   <div class="baseline">
     <div class="baseline-row">
@@ -683,7 +745,7 @@
     <li><a href="#idea-08">08 — Postage stamp</a></li>
     <li><a href="#idea-09">09 — Redline correction</a></li>
     <li><a href="#idea-10">10 — Almanac · roman numeral</a></li>
-    <li><a href="#idea-11">11 — Document-control block</a></li>
+    <li><a href="#idea-11">11 — Document-control block ★</a></li>
     <li><a href="#idea-12">12 — ISO datestamp</a></li>
     <li><a href="#idea-13">13 — Filing reference table</a></li>
     <li><a href="#idea-14">14 — Semver tag</a></li>
@@ -1342,58 +1404,173 @@
   <!-- IDEA 11 — DOCUMENT-CONTROL BLOCK                              -->
   <!-- ============================================================ -->
   <section class="idea" id="idea-11">
-    <span class="idea__num">Idea 11</span>
-    <h2>A <em>document-control block</em>, like the footer of a Magic Circle memo.</h2>
+    <span class="idea__num">Idea 11 · refined</span>
+    <h2>A <em>document-control block</em> — front-cell tags <code>RBI</code> or <code>CBI</code>.</h2>
     <p class="idea__why">
-      Three monospaced cells separated by hairline rules — <code>DOC&nbsp;PT-GV-14</code> ·
-      <code>REV&nbsp;2026-05-04</code> · <code>CLASS&nbsp;CLIENT</code> — set in 10pt
-      tracked caps, ivory at 85%. No color, no animation. Reads as the document-control
-      footer of a deal memo or a closing-binder cover sheet. The credibility is in the
-      restraint and in the fact that it's saying real things (document number, revision
-      date, classification) rather than a marketing-style "updated".
+      The first cell is the program category — <code>RBI</code> (residency by investment) or
+      <code>CBI</code> (citizenship by investment) — set in a small framed tag. That's what
+      readers actually want to know first; everything else is reference. Then the country-
+      program code (<code>PT-GV</code>, <code>MT-MEIN</code>, <code>CARIB</code> …), the ISO
+      review date, and the confidentiality classification. The previous mock used
+      <code>PT-GV-14</code> with a trailing version number — meaningless on its own, and
+      duplicative with the date. Dropped.
     </p>
     <p class="idea__contrast">
-      <strong>Versus today:</strong> the gold dot is a marketing tic. This is the language
-      a partner would actually use to refer to a file. Cost: needs a real document-numbering
-      convention behind it (we'd assign each program a stable doc code in
-      <code>src/data/programs.js</code>). Worth doing anyway.
+      <strong>Versus the first pass:</strong> the row now answers "what kind of program is
+      this?" before it answers "what's the file number?" — which matches how a partner would
+      actually read it across the desk. The convention also forces us to commit to a clean
+      country-program code per file in <code>src/data/programs.js</code>, side by side with
+      the existing <code>category</code> field.
     </p>
+
+    <!-- ============================================================ -->
+    <!-- VARIANT A — RBI (Portugal Golden Visa)                        -->
+    <!-- ============================================================ -->
     <div class="sketch-frame">
-      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: document-control block under breadcrumb">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: doc-control block, RBI variant — Portugal Golden Visa">
         <rect x="6" y="6" width="868" height="228" class="hair" />
         <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
         <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">MOBIUS · PROGRAMS · PORTUGAL GOLDEN VISA</text>
 
         <!-- the doc-control row -->
-        <line x1="36" y1="60" x2="500" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
-        <text x="36" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">DOC</text>
-        <text x="68" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">PT-GV-14</text>
-        <line x1="148" y1="50" x2="148" y2="84" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
-        <text x="160" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">REV</text>
-        <text x="190" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">2026-05-04</text>
-        <line x1="294" y1="50" x2="294" y2="84" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
-        <text x="306" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
-        <text x="354" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
-        <line x1="36" y1="92" x2="500" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <line x1="36" y1="60" x2="544" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <!-- cell 1: tag RBI -->
+        <rect x="44" y="66" width="38" height="18" fill="none" stroke="#F4EFE6" stroke-width="0.7" opacity="0.85" />
+        <text x="63" y="79" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#F4EFE6">RBI</text>
+        <line x1="98" y1="50" x2="98" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <!-- cell 2: DOC -->
+        <text x="110" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">DOC</text>
+        <text x="142" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">PT-GV</text>
+        <line x1="200" y1="50" x2="200" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <!-- cell 3: REV -->
+        <text x="212" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">REV</text>
+        <text x="244" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">2026-05-04</text>
+        <line x1="350" y1="50" x2="350" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <!-- cell 4: CLASS -->
+        <text x="362" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
+        <text x="408" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
+        <line x1="36" y1="92" x2="544" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
 
         <text x="36" y="148" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
         <text x="178" y="148" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
         <line x1="36" y1="166" x2="96" y2="166" stroke="#C9A86A" stroke-width="1.2" />
         <text x="36" y="194" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
 
-        <text x="540" y="208" class="anno">audit-report footer, not a marketing pill</text>
-        <path d="M 540 200 C 380 160, 240 100, 160 80" class="anno-line" />
+        <text x="560" y="216" class="anno">RBI tag first — the meaningful category</text>
+        <path d="M 560 208 C 360 160, 180 100, 80 86" class="anno-line" />
       </svg>
     </div>
-    <div class="live-row">
-      <span class="live-caption">Live</span>
-      <span class="doc-control">
-        <span class="dc-cell"><span class="dc-key">Doc</span><span class="dc-val">PT-GV-14</span></span>
-        <span class="dc-cell"><span class="dc-key">Rev</span><span class="dc-val">2026-05-04</span></span>
-        <span class="dc-cell"><span class="dc-key">Class</span><span class="dc-val">Client</span></span>
-      </span>
+    <p class="sketch-caption">11A — RBI variant. Front cell tags the category.</p>
+
+    <!-- ============================================================ -->
+    <!-- VARIANT B — CBI (Malta MEIN)                                  -->
+    <!-- ============================================================ -->
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: doc-control block, CBI variant — Malta MEIN">
+        <rect x="6" y="6" width="868" height="228" class="hair" />
+        <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">MOBIUS · PROGRAMS · MALTA MEIN</text>
+
+        <line x1="36" y1="60" x2="544" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <rect x="44" y="66" width="38" height="18" fill="none" stroke="#F4EFE6" stroke-width="0.7" opacity="0.85" />
+        <text x="63" y="79" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#F4EFE6">CBI</text>
+        <line x1="98" y1="50" x2="98" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <text x="110" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">DOC</text>
+        <text x="142" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">MT-MEIN</text>
+        <line x1="216" y1="50" x2="216" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <text x="228" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">REV</text>
+        <text x="260" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">2026-04-22</text>
+        <line x1="366" y1="50" x2="366" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <text x="378" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
+        <text x="424" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
+        <line x1="36" y1="92" x2="544" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+
+        <text x="36" y="148" font-family="Fraunces" font-size="34" fill="#F4EFE6">Malta</text>
+        <text x="124" y="148" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">MEIN</text>
+        <line x1="36" y1="166" x2="96" y2="166" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="194" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU citizenship via exceptional services to the Republic.</text>
+
+        <text x="560" y="216" class="anno">same row, CBI tag — instantly distinguishable</text>
+        <path d="M 560 208 C 360 160, 180 100, 80 86" class="anno-line" />
+      </svg>
     </div>
-    <p class="sketch-caption">11 — Says real things in the language a partner would use.</p>
+    <p class="sketch-caption">11B — CBI variant. Same row, different first cell.</p>
+
+    <!-- live HTML mocks: both variants on dark hero ground -->
+    <div class="live-row" style="flex-direction: column; align-items: stretch; gap: 14px;">
+      <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+        <span class="live-caption" style="min-width:64px;">Live · RBI</span>
+        <span class="doc-control">
+          <span class="dc-tag"><span>RBI</span></span>
+          <span class="dc-cell"><span class="dc-key">Doc</span><span class="dc-val">PT-GV</span></span>
+          <span class="dc-cell"><span class="dc-key">Rev</span><span class="dc-val">2026-05-04</span></span>
+          <span class="dc-cell"><span class="dc-key">Class</span><span class="dc-val">Client</span></span>
+        </span>
+      </div>
+      <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+        <span class="live-caption" style="min-width:64px;">Live · CBI</span>
+        <span class="doc-control">
+          <span class="dc-tag"><span>CBI</span></span>
+          <span class="dc-cell"><span class="dc-key">Doc</span><span class="dc-val">MT-MEIN</span></span>
+          <span class="dc-cell"><span class="dc-key">Rev</span><span class="dc-val">2026-04-22</span></span>
+          <span class="dc-cell"><span class="dc-key">Class</span><span class="dc-val">Client</span></span>
+        </span>
+      </div>
+    </div>
+
+    <!-- the convention applied across all six current programs -->
+    <table class="doc-ref">
+      <caption>Convention applied across the six current programs in <code>src/data/programs.js</code></caption>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Doc code</th>
+          <th>Program</th>
+          <th>Region</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="dr-tag">RBI</span></td>
+          <td class="dr-doc">PT-GV</td>
+          <td class="dr-name">Portugal Golden Visa</td>
+          <td>Europe</td>
+        </tr>
+        <tr>
+          <td><span class="dr-tag">CBI</span></td>
+          <td class="dr-doc">MT-MEIN</td>
+          <td class="dr-name">Malta MEIN</td>
+          <td>Europe</td>
+        </tr>
+        <tr>
+          <td><span class="dr-tag">RBI</span></td>
+          <td class="dr-doc">CH-LS</td>
+          <td class="dr-name">Switzerland Lump-Sum</td>
+          <td>Europe</td>
+        </tr>
+        <tr>
+          <td><span class="dr-tag">RBI</span></td>
+          <td class="dr-doc">IT-FT</td>
+          <td class="dr-name">Italy Flat-Tax</td>
+          <td>Europe</td>
+        </tr>
+        <tr>
+          <td><span class="dr-tag">CBI</span></td>
+          <td class="dr-doc">CARIB</td>
+          <td class="dr-name">Caribbean CBI</td>
+          <td>Americas &amp; Gulf</td>
+        </tr>
+        <tr>
+          <td><span class="dr-tag">RBI</span></td>
+          <td class="dr-doc">AE-GR</td>
+          <td class="dr-name">UAE Golden Residence</td>
+          <td>Americas &amp; Gulf</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="sketch-caption" style="margin-top: 14px;">
+      11 — RBI/CBI is the headline; the doc code is reference, not decoration.
+    </p>
   </section>
 
   <!-- ============================================================ -->
