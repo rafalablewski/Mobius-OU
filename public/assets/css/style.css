@@ -14111,9 +14111,10 @@ span {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  flex: 0 0 auto;
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
   color: #FFF;
 }
@@ -14122,8 +14123,98 @@ span {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--ht-theme-color-2);
-  box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.18);
+  background: #22C55E;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
+  animation: ht-brief-panel-flash 1.6s ease-in-out infinite;
+}
+@keyframes ht-brief-panel-flash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); transform: scale(1); }
+  50%      { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); transform: scale(1.1); }
+}
+
+/* Hairline reveal (Idea 10): a gold rule that animates in left-to-right on
+   mount, holding "N LEFT this week" on the left and a live HH:MM:SS countdown
+   to end-of-week on the right. */
+.ht-brief-panel__hairline {
+  position: relative;
+  height: 28px;
+  margin: -6px 0 16px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.ht-brief-panel__hairline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right,
+    rgba(201, 168, 106, 0) 0%,
+    rgba(201, 168, 106, 0.6) 18%,
+    rgba(201, 168, 106, 0.9) 50%,
+    rgba(201, 168, 106, 0.6) 82%,
+    rgba(201, 168, 106, 0) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: ht-brief-panel-line-draw 1400ms 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes ht-brief-panel-line-draw {
+  to { transform: scaleX(1); }
+}
+.ht-brief-panel__hairline-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 4px;
+}
+.ht-brief-panel__hairline-inner > * {
+  background: #000;
+  padding: 0 6px;
+}
+.ht-brief-panel__hairline-left {
+  font-family: var(--ht-font-ui);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.ht-brief-panel__hairline-left strong {
+  color: #FFF;
+  font-weight: 600;
+}
+.ht-brief-panel__hairline-right {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ht-theme-color-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Booked slot — visually present but not interactive, so the "N left" copy
+   on the hairline remains honest. */
+.ht-brief-panel__slot--booked {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ht-brief-panel__slot--booked .ht-brief-panel__slot-time {
+  text-decoration: line-through;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ht-brief-panel__status::before { animation: none; }
+  .ht-brief-panel__hairline::before {
+    animation: none;
+    transform: scaleX(1);
+  }
 }
 .ht-brief-panel__bigtime {
   font-family: var(--ht-font-ui);
