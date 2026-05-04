@@ -80,16 +80,6 @@ export default function Breadcrumb({
               </ul>
             )}
           </div>
-          {hasStage && (
-            <div
-              className={`ht-breadcrumb__stage${pitch ? ' has-pitch' : ''}${
-                aside ? ' has-aside' : ''
-              }`}
-            >
-              {pitch && <div className="ht-breadcrumb__stage-pitch">{pitch}</div>}
-              {aside && <div className="ht-breadcrumb__stage-aside">{aside}</div>}
-            </div>
-          )}
           <div className="ht-breadcrumb__editorial-body">
             <h1 className="ht-breadcrumb__title">
               {lead}
@@ -103,6 +93,16 @@ export default function Breadcrumb({
             <span className="ht-breadcrumb__rule" aria-hidden="true" />
             {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
           </div>
+          {hasStage && (
+            <div
+              className={`ht-breadcrumb__stage${pitch ? ' has-pitch' : ''}${
+                aside ? ' has-aside' : ''
+              }`}
+            >
+              {pitch && <div className="ht-breadcrumb__stage-pitch">{pitch}</div>}
+              {aside && <div className="ht-breadcrumb__stage-aside">{aside}</div>}
+            </div>
+          )}
         </div>
       </section>
     );

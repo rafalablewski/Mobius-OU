@@ -112,21 +112,6 @@ export default function ProgramPage() {
       />
       <section className="ht-program">
         <div className="container">
-          <div className="ht-program__head">
-            <div className="ht-program__intro">
-              <div className="ht-program__crest" aria-hidden="true">
-                <span className="ht-program__crest-rule" />
-                <span className="ht-program__crest-arms">
-                  <img src={program.arms} alt="" loading="lazy" referrerPolicy="no-referrer" />
-                </span>
-                <span className="ht-program__crest-rule" />
-              </div>
-              <span className="ht-program__eyebrow">{program.region}</span>
-              <h1 className="ht-program__title">{program.name}</h1>
-              <p className="ht-program__tagline">{program.tagline}</p>
-            </div>
-          </div>
-
           <div className="ht-program__facts">
             <div className="ht-program__fact-hero">
               <span className="ht-program__fact-hero-label">{program.facts[0].label}</span>
