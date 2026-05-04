@@ -633,6 +633,47 @@
   .bp10--m .bp10__lhs { font-size: 8px; }
   .bp10--m .bp10__rhs { font-size: 11px; }
 
+  /* ---------------- IDEA 11 — marquee status ticker */
+  .bp11__marquee {
+    margin: -8px -22px 14px;
+    padding: 7px 0;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden; position: relative;
+    -webkit-mask-image: linear-gradient(to right,
+      transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(to right,
+      transparent, #000 8%, #000 92%, transparent);
+  }
+  .bp11__track {
+    display: flex; gap: 0;
+    width: max-content;
+    animation: bp-marquee 22s linear infinite;
+  }
+  .bp11__half {
+    display: flex; align-items: center; gap: 24px;
+    padding-right: 24px;
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+  }
+  .bp11__half b { color: var(--gold-soft); font-weight: 600; }
+  .bp11__half .sep {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: rgba(255,255,255,0.20); flex: 0 0 auto;
+  }
+  .bp11__half .greendot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #22C55E; flex: 0 0 auto;
+    animation: bp-flash 1.6s ease-in-out infinite;
+  }
+  @keyframes bp-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .bp11--m .bp11__track { animation-duration: 28s; }
+
   /* utility tags shown on the slabs in some ideas */
   .bp__slot--going { border-color: rgba(216,123,74,0.55); }
   .bp__slot--gone {
@@ -1486,6 +1527,107 @@
   <div class="live-caption"><strong>10</strong> · AVAILABLE green flash · gold hairline animates in carrying '2 LEFT' + countdown · NDA footer</div>
 </section>
 
+<!-- ============================ IDEA 11 ============================ -->
+<section class="idea" id="i11">
+  <div class="idea__num">Idea 11</div>
+  <h2>Marquee ticker — <em>scrolling status strip carries every signal.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · in the scroll</span>
+    <span class="tag">Countdown · in the scroll</span>
+    <span class="tag">Mobile · slower scroll, same strip</span>
+  </div>
+  <p class="idea__why">
+    A single horizontal marquee under the top header carries every live signal in
+    one loop: <em>● AVAILABLE · 2 LEFT THIS WEEK · CLOSES IN 02:14:38 ·
+    LAST RESERVED 4 MIN AGO ·</em> repeating. Mask gradients on both edges so it
+    fades in and out cleanly. AVAILABLE green flashes also live in the top-row,
+    so the strip is reinforcement not the only signal. On mobile the marquee
+    slows from 22 s to 28 s (less hectic on narrow screens).
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the most "live" reading of the ten — the panel
+    visibly moves. Risk: motion can read as spam if not calibrated. Best paired
+    with restraint elsewhere (no other animations).
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp11">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp__avail">Available</span>
+        </div>
+        <div class="bp11__marquee">
+          <div class="bp11__track">
+            <div class="bp11__half">
+              <span class="greendot"></span><span>Available</span>
+              <span class="sep"></span><span><b>2 left</b> this week</span>
+              <span class="sep"></span><span>Closes in <b id="t11">02:14:38</b></span>
+              <span class="sep"></span><span>Last reserved <b>4 min ago</b></span>
+            </div>
+            <div class="bp11__half" aria-hidden="true">
+              <span class="greendot"></span><span>Available</span>
+              <span class="sep"></span><span><b>2 left</b> this week</span>
+              <span class="sep"></span><span>Closes in <b>02:14:38</b></span>
+              <span class="sep"></span><span>Last reserved <b>4 min ago</b></span>
+            </div>
+          </div>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px · 22 s loop</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp11 bp11--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next · Rafał A.</span>
+          <span class="bp__avail bp__avail--mini">Available</span>
+        </div>
+        <div class="bp11__marquee" style="margin-left:-18px;margin-right:-18px">
+          <div class="bp11__track">
+            <div class="bp11__half">
+              <span class="greendot"></span><span>Avail.</span>
+              <span class="sep"></span><span><b>2 left</b></span>
+              <span class="sep"></span><span><b>02:14:38</b> left</span>
+              <span class="sep"></span><span>4 min ago</span>
+            </div>
+            <div class="bp11__half" aria-hidden="true">
+              <span class="greendot"></span><span>Avail.</span>
+              <span class="sep"></span><span><b>2 left</b></span>
+              <span class="sep"></span><span><b>02:14:38</b> left</span>
+              <span class="sep"></span><span>4 min ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA · No mkt · Private</p>
+          <a class="bp__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · 28 s loop</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>11</strong> · AVAILABLE green flash + scrolling marquee with all signals · edge mask · slower on mobile · NDA footer</div>
+</section>
+
 </div>
 </div>
 
@@ -1496,7 +1638,7 @@
    for a sketch). Updates every second so the cards feel live.
    ============================================================ */
 (function () {
-  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10'];
+  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11'];
   const t02 = document.getElementById('t02');
 
   const target = new Date();
