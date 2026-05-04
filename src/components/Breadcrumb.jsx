@@ -41,6 +41,7 @@ export default function Breadcrumb({
   meta,
   tagline,
   aside,
+  floats,
 }) {
   const { lead, tail } = splitTitle(title, emphasis);
   const className = `ht-breadcrumb-area is-${variant}`;
@@ -48,6 +49,39 @@ export default function Breadcrumb({
   if (variant === 'editorial') {
     return (
       <section className={className}>
+        {floats && floats.length > 0 && (
+          <div className="ht-breadcrumb__floats" aria-hidden="true">
+            <span className="ht-breadcrumb__float-arrow float-bob-x">
+              <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M8 60 C 28 22, 52 22, 72 50"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M64 44 L72 50 L64 56"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            {floats.map((f, i) => (
+              <span
+                key={`${f}-${i}`}
+                className={`ht-breadcrumb__float ht-breadcrumb__float--${i + 1} ${
+                  i % 2 === 0 ? 'float-bob-y' : 'float-bob-x'
+                }`}
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="container">
           <div className="ht-breadcrumb__top">
             <Crumbs crumbs={crumbs} current={current} title={title} />

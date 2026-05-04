@@ -27,6 +27,10 @@ export default function ProgramPage() {
 
   const related = PROGRAMS.filter((p) => p.slug !== slug).slice(0, 3);
   const { lead, tail } = splitProgramTitle(program);
+  const floats = program.headline
+    .split('·')
+    .map((s) => s.trim())
+    .filter(Boolean);
 
   return (
     <>
@@ -42,6 +46,7 @@ export default function ProgramPage() {
         meta={[program.region, program.category, 'Updated 2026.Q1']}
         tagline={program.tagline}
         aside={<BriefPanel program={program} />}
+        floats={floats}
       />
       <section className="ht-program">
         <div className="container">
