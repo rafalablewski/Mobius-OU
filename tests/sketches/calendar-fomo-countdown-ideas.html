@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BriefPanel polish — FOMO, countdown chip, mobile reflow (ten variants)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@200;300;400;500;600;700;800&family=Newsreader:opsz,wght@6..72,300..700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --gold-soft:  #E2CFA3;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11,15,20,0.16);
+    --redline:    #B23A2A;
+    --warn:       #D87B4A;
+    --warn-soft:  #E7A57E;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 72px 32px 120px; }
+
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 44px; line-height: 1.1;
+    margin: 14px 0 18px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 64ch; }
+  .guidelines {
+    margin-top: 22px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  .guideline {
+    padding: 12px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+    font-size: 12px; line-height: 1.5; color: var(--pencil);
+  }
+  .guideline b { display: block; font-family: "Fraunces", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+
+  .toc {
+    margin: 28px 0 6px; padding: 14px 16px;
+    background: var(--cream);
+    border: 1px solid var(--hairline); border-radius: 4px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 28px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--gold-deep); }
+  .toc a b { font-family: "Fraunces", serif; font-weight: 500; color: var(--gold-deep); margin-right: 8px; }
+
+  .ideas { display: grid; gap: 56px; }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px;
+    background: var(--cream); padding: 28px 28px;
+  }
+  .idea__num {
+    font-family: "Fraunces", serif;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 26px; line-height: 1.2; margin: 8px 0 6px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__tag {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .tag {
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 700;
+    padding: 3px 8px; border: 1px solid rgba(160,127,68,0.4);
+    border-radius: 999px;
+  }
+  .tag--neutral { color: var(--stone); border-color: var(--hairline); font-weight: 600; }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 8px; max-width: 70ch; }
+  .idea__contrast {
+    font-size: 13px; color: var(--pencil); margin: 6px 0 22px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+    max-width: 80ch;
+  }
+  .idea__contrast strong { color: var(--ink); }
+
+  .stage {
+    background: var(--ink);
+    border-radius: 3px;
+    padding: 40px 24px;
+    display: flex; justify-content: center; align-items: flex-start;
+    gap: 36px; flex-wrap: wrap;
+    margin: 8px 0 4px;
+  }
+  .stage--narrow { padding: 32px 16px; gap: 24px; }
+  .col {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 12px;
+  }
+  .col__lbl {
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(244,239,230,0.45); font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .col__lbl b { color: var(--gold); font-weight: 600; }
+  .col__lbl .dim {
+    width: 10px; height: 1px; background: rgba(244,239,230,0.25); display: inline-block;
+  }
+  .live-caption {
+    font-family: "Manrope"; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(244,239,230,0.55);
+    margin-top: 10px;
+  }
+  .live-caption strong { color: var(--gold); font-weight: 500; }
+
+  /* =====================================================
+     SHARED — base BriefPanel render (matches shipped Idea 03)
+     ===================================================== */
+  .bp {
+    width: 320px;
+    background: #000;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 22px 22px 18px;
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .bp__top {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 10px; margin-bottom: 14px;
+  }
+  .bp__eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    flex: 1 1 auto; min-width: 0; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .bp__status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #fff;
+    flex: 0 0 auto;
+  }
+  .bp__status::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,106,0.18);
+  }
+  .bp__bigtime {
+    font-family: "Manrope"; font-weight: 200;
+    font-size: 70px; line-height: 0.95; letter-spacing: -0.04em;
+    margin: 4px 0 8px;
+  }
+  .bp__bigtime span { color: rgba(255,255,255,0.4); }
+  .bp__bigmeta {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin: 0 0 18px;
+  }
+  .bp__bigmeta b { color: #fff; font-weight: 600; }
+  .bp__slots {
+    list-style: none; margin: 0 0 14px; padding: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .bp__slot {
+    display: block; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10); border-radius: 3px;
+    padding: 12px 10px; cursor: pointer;
+    transition: background .18s ease, border-color .18s ease;
+    position: relative;
+  }
+  .bp__slot:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.30); }
+  .bp__slot.is-active {
+    background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.85);
+  }
+  .bp__slot-day {
+    display: block; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); line-height: 1;
+  }
+  .bp__slot-time {
+    display: block; font-weight: 400; font-size: 16px;
+    letter-spacing: -0.01em; color: #fff; margin-top: 6px; line-height: 1;
+  }
+  .bp__cta {
+    display: block; width: 100%;
+    background: #fff; color: #000; border: 0; border-radius: 3px;
+    padding: 13px 14px;
+    font-weight: 600; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; text-align: center; cursor: pointer;
+    transition: background .18s, color .18s;
+    font-family: "Manrope";
+  }
+  .bp__cta:hover { background: var(--gold); }
+  .bp__foot {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .bp__micro {
+    margin: 0; font-size: 9px; font-weight: 500;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .bp__alt {
+    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
+    color: var(--gold); text-decoration: none; white-space: nowrap;
+  }
+
+  /* mobile base — 280px viewport-style render */
+  .bp--m { width: 280px; padding: 18px 18px 14px; }
+  .bp--m .bp__bigtime { font-size: 60px; }
+
+  /* ============================================================
+     PER-IDEA OVERRIDES
+     ============================================================ */
+
+  /* ---------------- IDEA 01 — minimal pill + slim countdown bar */
+  .bp01 .bp__status { display: none; }
+  .bp01__pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 8px;
+    background: var(--gold);
+    color: #000;
+    border-radius: 999px;
+    font-size: 9px; letter-spacing: 0.20em; font-weight: 700;
+    text-transform: uppercase;
+    flex: 0 0 auto;
+  }
+  .bp01__pill::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: #000;
+  }
+  .bp01__bar {
+    margin: -8px -22px 14px;
+    padding: 8px 22px;
+    background: rgba(201,168,106,0.10);
+    border-top: 1px solid rgba(201,168,106,0.20);
+    border-bottom: 1px solid rgba(201,168,106,0.20);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .bp01__bar b { color: var(--gold-soft); font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.02em; font-weight: 500; font-size: 12px; }
+  .bp01--m .bp__slots { grid-template-columns: 1fr; }
+  .bp01--m .bp__slot { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 14px; }
+  .bp01--m .bp__slot-time { margin-top: 0; font-size: 17px; }
+
+  /* ---------------- IDEA 02 — editorial italic + serif countdown sentence */
+  .bp02 .bp__status {
+    font-family: "Newsreader", serif; font-style: italic;
+    text-transform: none; letter-spacing: 0;
+    font-size: 13px; color: var(--gold-soft);
+    font-weight: 400;
+  }
+  .bp02 .bp__status::before { display: none; }
+  .bp02__sentence {
+    font-family: "Newsreader", serif; font-style: italic;
+    font-size: 13px; line-height: 1.45;
+    color: rgba(255,255,255,0.7); margin: -6px 0 18px;
+  }
+  .bp02__sentence b { color: var(--gold-soft); font-style: normal; font-weight: 600;
+    font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.02em; }
+  .bp02--m .bp__bigtime { font-size: 56px; }
+  .bp02--m .bp02__sentence { font-size: 12px; }
+
+  /* ---------------- IDEA 03 — capacity rail + flip-clock countdown */
+  .bp03__rail {
+    display: flex; align-items: center; gap: 10px;
+    margin: -6px 0 14px;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .bp03__rail b { color: var(--warn-soft); font-weight: 600; }
+  .bp03__rail-bar { flex: 1; height: 4px; display: flex; gap: 2px; }
+  .bp03__rail-bar i { flex: 1; background: rgba(255,255,255,0.08); border-radius: 1px; }
+  .bp03__rail-bar i.lit { background: var(--warn); }
+  .bp03__flip {
+    display: flex; align-items: center; gap: 4px;
+    margin: -2px 0 16px;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .bp03__flip-card {
+    font-family: "JetBrains Mono", monospace; font-weight: 500;
+    font-size: 14px; letter-spacing: 0;
+    padding: 4px 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 2px;
+    color: var(--warn-soft);
+    min-width: 28px; text-align: center;
+  }
+  .bp03__flip-sep { color: rgba(255,255,255,0.25); }
+  .bp03--m .bp__slots {
+    grid-template-columns: repeat(3, minmax(96px, 1fr));
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-left: -18px; margin-right: -18px;
+    padding: 0 18px 4px;
+    gap: 8px;
+  }
+  .bp03--m .bp__slot { scroll-snap-align: start; }
+
+  /* ---------------- IDEA 04 — live feed ticker + persistent foot countdown */
+  .bp04__feed {
+    display: flex; align-items: center; gap: 8px;
+    margin: -8px -22px 12px;
+    padding: 6px 22px;
+    background: rgba(255,255,255,0.025);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 10px; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.6);
+    overflow: hidden; white-space: nowrap;
+  }
+  .bp04__feed::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--warn); flex: 0 0 auto;
+    animation: bp-blink 2s infinite;
+  }
+  @keyframes bp-blink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
+  }
+  .bp04__feed b { color: #fff; font-weight: 500; }
+  .bp04__foot-timer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 6px -22px -18px;
+    padding: 8px 22px 12px;
+    background: rgba(216,123,74,0.10);
+    border-top: 1px solid rgba(216,123,74,0.25);
+    border-radius: 0 0 4px 4px;
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .bp04__foot-timer b {
+    color: var(--warn-soft); font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.02em; font-size: 12px; font-weight: 600;
+  }
+  .bp04--m {
+    width: 320px; border-radius: 14px 14px 0 0;
+    margin-bottom: -8px;
+  }
+  .bp04--m::before {
+    content: ""; position: absolute; top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 36px; height: 4px; border-radius: 2px;
+    background: rgba(255,255,255,0.18);
+  }
+  .bp04--m .bp__top { padding-top: 16px; }
+
+  /* ---------------- IDEA 05 — per-slot scarcity tags + per-slot relative */
+  .bp05 .bp__slot { padding: 14px 10px 10px; }
+  .bp05__tag {
+    position: absolute; top: 4px; right: 4px;
+    font-size: 8px; font-weight: 700; letter-spacing: 0.16em;
+    padding: 2px 5px; border-radius: 2px;
+    line-height: 1; text-transform: uppercase;
+  }
+  .bp05__tag--last { background: var(--warn); color: #000; }
+  .bp05__tag--two { background: var(--gold); color: #000; }
+  .bp05__tag--ok { background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.7); }
+  .bp05__rel {
+    display: block; margin-top: 4px;
+    font-size: 8px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); font-weight: 500;
+  }
+  .bp05--m .bp__slots {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+  }
+  .bp05--m .bp__slot { padding: 12px 6px 8px; }
+  .bp05--m .bp__slot-day { font-size: 8px; }
+  .bp05--m .bp__slot-time { font-size: 14px; }
+  .bp05--m .bp05__rel { font-size: 7px; }
+
+  /* ---------------- IDEA 06 — deadline headline + stopwatch */
+  .bp06 {
+    border-color: rgba(216,123,74,0.30);
+  }
+  .bp06 .bp__top {
+    border-bottom-color: rgba(216,123,74,0.20);
+  }
+  .bp06 .bp__eyebrow {
+    color: var(--warn-soft); letter-spacing: 0.20em;
+  }
+  .bp06 .bp__status { color: var(--warn-soft); }
+  .bp06 .bp__status::before {
+    background: var(--warn);
+    box-shadow: 0 0 0 3px rgba(216,123,74,0.18);
+  }
+  .bp06__stopwatch {
+    display: flex; align-items: center; gap: 10px;
+    margin: -6px 0 16px;
+    padding: 8px 12px;
+    background: rgba(216,123,74,0.10);
+    border: 1px solid rgba(216,123,74,0.25);
+    border-radius: 3px;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+  .bp06__stopwatch svg { flex: 0 0 auto; }
+  .bp06__stopwatch b {
+    margin-left: auto;
+    color: var(--warn-soft);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; letter-spacing: 0.02em; font-weight: 600;
+  }
+  .bp06--m {
+    position: relative;
+  }
+  .bp06--m .bp__cta {
+    position: sticky; bottom: 0;
+  }
+  .bp06--m::after {
+    content: ""; position: absolute;
+    left: 0; right: 0; bottom: -8px; height: 8px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, transparent 100%);
+    pointer-events: none; border-radius: 0 0 4px 4px;
+  }
+
+  /* ---------------- IDEA 07 — corner ribbon + inline countdown */
+  .bp07 { overflow: hidden; }
+  .bp07__ribbon {
+    position: absolute; top: 14px; right: -28px;
+    transform: rotate(35deg); transform-origin: center;
+    background: var(--gold);
+    color: #000;
+    font-size: 8px; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 32px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+  .bp07 .bp__bigmeta {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px;
+  }
+  .bp07__inline-timer {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-left: auto;
+    color: var(--gold-soft);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.02em; text-transform: none;
+    font-weight: 600;
+  }
+  .bp07__inline-timer::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold);
+    animation: bp-blink 2s infinite;
+  }
+  .bp07--m { animation: bp-drawer-up 600ms cubic-bezier(0.2,0.8,0.2,1) both; }
+  @keyframes bp-drawer-up {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .bp07--m .bp07__ribbon { font-size: 7px; padding: 3px 28px; }
+
+  /* ---------------- IDEA 08 — pulsing dot + breathing chip */
+  .bp08 .bp__status { color: var(--gold-soft); }
+  .bp08 .bp__status::before {
+    background: var(--gold);
+    animation: bp-pulse-fast 1.4s ease-in-out infinite;
+  }
+  @keyframes bp-pulse-fast {
+    0%,100% { box-shadow: 0 0 0 0 rgba(201,168,106,0.55); }
+    50%     { box-shadow: 0 0 0 7px rgba(201,168,106,0); }
+  }
+  .bp08__chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin: -6px 0 16px;
+    padding: 7px 12px;
+    background: rgba(201,168,106,0.08);
+    border: 1px solid rgba(201,168,106,0.32);
+    border-radius: 999px;
+    font-size: 10px; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.78);
+    animation: bp-breathe 3.6s ease-in-out infinite;
+  }
+  @keyframes bp-breathe {
+    0%, 100% { background: rgba(201,168,106,0.06); }
+    50%      { background: rgba(201,168,106,0.14); }
+  }
+  .bp08__chip b {
+    color: var(--gold-soft); font-weight: 600;
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+  }
+  .bp08--m .bp__bigtime { font-size: 48px; }
+  .bp08--m .bp__bigmeta { font-size: 9px; }
+
+  /* ---------------- IDEA 09 — split status row + per-slab countdown chip */
+  .bp09__pair {
+    display: grid; grid-template-columns: 1fr 1fr;
+    margin: -8px -22px 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+  }
+  .bp09__pair-cell {
+    padding: 8px 14px;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .bp09__pair-cell + .bp09__pair-cell {
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .bp09__pair-cell b {
+    display: block; margin-top: 2px;
+    color: var(--gold-soft); font-weight: 600;
+    font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.02em;
+  }
+  .bp09__chip {
+    display: block; margin-top: 6px;
+    font-size: 8px; letter-spacing: 0.10em;
+    color: rgba(255,255,255,0.42);
+    text-transform: uppercase;
+  }
+  .bp09--m {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px;
+    width: 320px;
+  }
+  .bp09--m .bp09-mini {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .bp09--m .bp09-mini-eyebrow {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .bp09--m .bp09-mini-time {
+    font-family: "Manrope"; font-weight: 200; font-size: 26px; letter-spacing: -0.02em;
+  }
+  .bp09--m .bp09-mini-tag {
+    font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold-soft); font-weight: 700; margin-top: 4px;
+  }
+  .bp09--m .bp09-mini-cta {
+    background: #fff; color: #000; border: 0; border-radius: 3px;
+    padding: 10px 14px; font-weight: 700; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  /* ---------------- IDEA 10 — animated hairline countdown reveal */
+  .bp10__line {
+    position: relative; height: 28px;
+    margin: -6px 0 18px;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .bp10__line::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 50%;
+    height: 1px; background: linear-gradient(to right,
+      rgba(201,168,106,0) 0%,
+      rgba(201,168,106,0.6) 18%,
+      rgba(201,168,106,0.9) 50%,
+      rgba(201,168,106,0.6) 82%,
+      rgba(201,168,106,0) 100%);
+    transform: scaleX(0); transform-origin: left;
+    animation: bp-line-draw 1400ms 200ms cubic-bezier(0.2,0.8,0.2,1) forwards;
+  }
+  @keyframes bp-line-draw {
+    to { transform: scaleX(1); }
+  }
+  .bp10__line-inner {
+    position: relative; z-index: 1;
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%;
+    padding: 0 8px;
+    background: #000;
+  }
+  .bp10__line-inner > * {
+    background: #000; padding: 0 6px;
+  }
+  .bp10__lhs {
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .bp10__lhs b { color: #fff; font-weight: 600; }
+  .bp10__rhs {
+    font-family: "JetBrains Mono", monospace; font-weight: 500;
+    color: var(--gold-soft); font-size: 12px; letter-spacing: 0.02em;
+  }
+  .bp10--m .bp10__line { height: 24px; }
+  .bp10--m .bp10__lhs { font-size: 8px; }
+  .bp10--m .bp10__rhs { font-size: 11px; }
+
+  /* utility tags shown on the slabs in some ideas */
+  .bp__slot--going { border-color: rgba(216,123,74,0.55); }
+  .bp__slot--gone {
+    background: rgba(255,255,255,0.02); cursor: not-allowed; opacity: 0.55;
+  }
+  .bp__slot--gone .bp__slot-time { text-decoration: line-through; }
+
+  @media (max-width: 720px) {
+    .stage { padding: 24px 12px; }
+    .toc { grid-template-columns: 1fr; }
+    .guidelines { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="intro">
+  <div class="eyebrow">Sketches · BriefPanel — FOMO + countdown + mobile</div>
+  <h1>Ten ways to add <em>scarcity</em> and <em>urgency</em> to the calendar.</h1>
+  <p class="lede">
+    Brief refocused: every idea below combines three things — a FOMO signal
+    ("2 left this week"), a live countdown chip, and a mobile reflow. Different
+    visual registers across the ten — some loud and conversion-led, some
+    restrained and editorial. Each idea shows desktop and mobile side-by-side
+    on dark hero ground. Pick the register that matches Mobius's voice.
+  </p>
+  <div class="guidelines">
+    <div class="guideline"><b>1 · FOMO</b>Visible scarcity — "2 left", "Last open", "Almost full" — without slipping into theatre.</div>
+    <div class="guideline"><b>2 · Countdown chip</b>Live timer (HH:MM:SS or relative) showing when the next slot or the booking window closes.</div>
+    <div class="guideline"><b>3 · Mobile reflow</b>A specific layout for narrow widths — stacked rows, swipe rail, drawer, sticky CTA — not just shrunken.</div>
+  </div>
+  <div class="toc">
+    <a href="#i1"><b>01</b>Minimal pill + slim countdown bar + 1-col stack</a>
+    <a href="#i2"><b>02</b>Editorial italic + serif sentence + compact mobile</a>
+    <a href="#i3"><b>03</b>Capacity rail + flip-clock + scroll-snap rail</a>
+    <a href="#i4"><b>04</b>Live feed ticker + foot timer + bottom sheet</a>
+    <a href="#i5"><b>05</b>Per-slot tags + per-slot relative + dense 3-up</a>
+    <a href="#i6"><b>06</b>Closes-today headline + stopwatch + sticky CTA</a>
+    <a href="#i7"><b>07</b>Corner ribbon + inline timer + drawer reveal</a>
+    <a href="#i8"><b>08</b>Pulsing dot + breathing chip + tighter mobile</a>
+    <a href="#i9"><b>09</b>Split status pair + per-slab chip + mini bar</a>
+    <a href="#i10"><b>10</b>Hairline reveal + monospace timer + same on mobile</a>
+  </div>
+</header>
+
+<div class="ideas">
+
+<!-- ============================ IDEA 01 ============================ -->
+<section class="idea" id="i1">
+  <div class="idea__num">Idea 01</div>
+  <h2>Minimal — <em>"2 LEFT" pill, slim countdown bar, 1-col mobile stack.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · gold pill</span>
+    <span class="tag">Countdown · slim bar</span>
+    <span class="tag">Mobile · 1-col stack</span>
+  </div>
+  <p class="idea__why">
+    Replace the AVAILABLE pill with a small filled-gold "2 LEFT" tag. Inset a
+    full-width slim bar between the top row and the bigtime that ticks down
+    toward end-of-day cut-off. On mobile, slabs collapse from a 3-column grid
+    into a 1-column stack with day on the left and time on the right — same
+    information, more thumb-readable.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> shipped panel hides scarcity entirely. This is
+    the most direct read of your brief — explicit "2 left", explicit countdown,
+    explicit mobile layout — at the cost of a slightly more salesy register.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp01">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp01__pill">2 left</span>
+        </div>
+        <div class="bp01__bar">
+          <span>Bookings close in</span>
+          <b id="t01">02:14:38</b>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp01 bp01--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp01__pill">2 left</span>
+        </div>
+        <div class="bp01__bar" style="margin-left:-18px;margin-right:-18px;padding:6px 18px">
+          <span>Closes in</span><b>02:14</b>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5 May</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6 May</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7 May</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · 1-col rows</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>01</strong> · gold "2 LEFT" tag · slim countdown bar live-ticking · mobile = 1-col stacked rows</div>
+</section>
+
+<!-- ============================ IDEA 02 ============================ -->
+<section class="idea" id="i2">
+  <div class="idea__num">Idea 02</div>
+  <h2>Editorial — <em>"Two left" italic, serif sentence countdown.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · serif italic</span>
+    <span class="tag">Countdown · written sentence</span>
+    <span class="tag">Mobile · compact (no reflow)</span>
+  </div>
+  <p class="idea__why">
+    Mobius's voice is editorial and advisory. Loud "2 LEFT" tags read as
+    e-commerce. This variant writes the same information in serif italic prose:
+    "<em>Two left this week</em>" replaces AVAILABLE; the countdown is a serif
+    sentence — "<em>Closing in just over two hours.</em>" — with the live time
+    set in monospace inline. Same data, NDA-first register.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> stays in the dossier voice the rest of the
+    program page uses. Lower-conversion than idea 01 but higher-trust. The
+    countdown still ticks live; the prose framing is what changes.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp02">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">Two left this week</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <p class="bp02__sentence">Filip's calendar closes for the week in <b id="t02">2 h 14 m</b> — tomorrow opens fresh.</p>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp02 bp02--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__status">Two left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
+        <p class="bp02__sentence">Closes in <b>2 h 14 m</b>.</p>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · prose shortens</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>02</strong> · serif italic scarcity · prose countdown sentence · mobile keeps the voice but tightens the words</div>
+</section>
+
+<!-- ============================ IDEA 03 ============================ -->
+<section class="idea" id="i3">
+  <div class="idea__num">Idea 03</div>
+  <h2>Instrument — <em>capacity rail + flip-clock + horizontal scroll-snap.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · 12-pip capacity rail</span>
+    <span class="tag">Countdown · flip-clock HH:MM:SS</span>
+    <span class="tag">Mobile · horizontal scroll-snap</span>
+  </div>
+  <p class="idea__why">
+    The most "panel-like" treatment. Capacity reads as a 12-pip rail with two pips
+    lit warm-orange — same denominator your shipped panel implies but never shows.
+    Countdown is split into HH / MM / SS flip cards (subtly bordered) so it reads as
+    measurement, not a sales clock. On mobile the slabs overflow horizontally with
+    scroll-snap, so the visitor swipes through days rather than getting a tower.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> both the FOMO and the countdown look like
+    instrumentation rather than messaging. Best fit if you want the panel to feel
+    like a piece of professional software. Mobile swipe is more delightful than
+    1-col stack at a small size cost.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp03">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">2 of 12 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <div class="bp03__rail">
+          <span><b>2 of 12</b></span>
+          <span class="bp03__rail-bar">
+            <i class="lit"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="lit"></i><i></i>
+          </span>
+          <span>this week</span>
+        </div>
+        <div class="bp03__flip">
+          <span>Closes in</span>
+          <span class="bp03__flip-card" id="t03h">02</span>
+          <span class="bp03__flip-sep">:</span>
+          <span class="bp03__flip-card" id="t03m">14</span>
+          <span class="bp03__flip-sep">:</span>
+          <span class="bp03__flip-card" id="t03s">38</span>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp03 bp03--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__status">2 of 12</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
+        <div class="bp03__rail">
+          <span><b>2/12</b></span>
+          <span class="bp03__rail-bar">
+            <i class="lit"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="lit"></i><i></i>
+          </span>
+        </div>
+        <div class="bp03__flip">
+          <span>Closes</span>
+          <span class="bp03__flip-card">02</span><span class="bp03__flip-sep">:</span>
+          <span class="bp03__flip-card">14</span><span class="bp03__flip-sep">:</span>
+          <span class="bp03__flip-card">38</span>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · scroll-snap slabs</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>03</strong> · capacity rail (2 of 12 lit warm) · HH:MM:SS flip cards · swipe slabs sideways on mobile</div>
+</section>
+
+<!-- ============================ IDEA 04 ============================ -->
+<section class="idea" id="i4">
+  <div class="idea__num">Idea 04</div>
+  <h2>Live feed — <em>"4 min ago" ticker + foot countdown + bottom sheet.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · social-proof ticker</span>
+    <span class="tag">Countdown · always-on foot timer</span>
+    <span class="tag">Mobile · bottom sheet w/ grabber</span>
+  </div>
+  <p class="idea__why">
+    Borrows the booking-platform pattern: a thin top-strip shows the most recent
+    booking — "Last reserved 4 min ago · Berlin" — with a blinking warm dot. The
+    countdown lives in a persistent foot rail in the same warm tint, so urgency
+    is always visible without dominating. On mobile the panel becomes a true
+    bottom sheet — top-rounded with a grabber bar — that swipes up over the page
+    content.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> highest social-proof read of the ten. Carries
+    real conviction risk if you don't actually have a steady booking stream — the
+    feed has to be true. Best where you can wire it to real recent reservations.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp04">
+        <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin · Stage III</div>
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp04__foot-timer">
+          <span>This week's bookings close in</span>
+          <b id="t04">02:14:38</b>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp04 bp04--m" style="width:300px">
+        <div class="bp04__feed">Last reserved <b>4 min ago</b> · Berlin</div>
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime" style="font-size:56px">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+        <div class="bp04__foot-timer"><span>Closes in</span><b>02:14:38</b></div>
+      </div>
+      <div class="col__lbl">Mobile · <b>bottom sheet · grabber + radius</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>04</strong> · top: blinking "X min ago" feed · foot: warm-tint timer always visible · mobile: bottom-sheet style</div>
+</section>
+
+<!-- ============================ IDEA 05 ============================ -->
+<section class="idea" id="i5">
+  <div class="idea__num">Idea 05</div>
+  <h2>Per-slot — <em>tags on each slab, relative time per slot, dense 3-up.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · per-slab tag</span>
+    <span class="tag">Countdown · per-slab relative</span>
+    <span class="tag">Mobile · keep 3-up, denser</span>
+  </div>
+  <p class="idea__why">
+    Push the FOMO and the countdown into the slabs themselves. Each slab gets a
+    tiny corner tag (LAST OPEN / 2 LEFT / FREE) and its own micro relative-time
+    label under the time ("in 18h", "in 1d 19h", "in 2d 21h"). Reduces the need
+    for a separate countdown chip — the timer lives where the decision happens.
+    On mobile the 3-up grid stays 3-up, just at a denser type scale.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> spreads scarcity across the picker rather than
+    centralising it. Lets visitors compare slot-by-slot urgency at a glance. Fits
+    the panel without adding chrome above or below.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp05">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">Going fast</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active bp__slot--going">
+            <span class="bp05__tag bp05__tag--last">Last</span>
+            <span class="bp__slot-day">Tue · 5</span>
+            <span class="bp__slot-time">14:00</span>
+            <span class="bp05__rel">in 18 h</span>
+          </div></li>
+          <li><div class="bp__slot">
+            <span class="bp05__tag bp05__tag--two">2 left</span>
+            <span class="bp__slot-day">Wed · 6</span>
+            <span class="bp__slot-time">09:30</span>
+            <span class="bp05__rel">in 1 d 19 h</span>
+          </div></li>
+          <li><div class="bp__slot">
+            <span class="bp05__tag bp05__tag--ok">Open</span>
+            <span class="bp__slot-day">Thu · 7</span>
+            <span class="bp__slot-time">11:00</span>
+            <span class="bp05__rel">in 2 d 21 h</span>
+          </div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp05 bp05--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next · Filip</span>
+          <span class="bp__status">Going fast</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active bp__slot--going">
+            <span class="bp05__tag bp05__tag--last">Last</span>
+            <span class="bp__slot-day">Tue</span>
+            <span class="bp__slot-time">14:00</span>
+            <span class="bp05__rel">in 18 h</span>
+          </div></li>
+          <li><div class="bp__slot">
+            <span class="bp05__tag bp05__tag--two">2</span>
+            <span class="bp__slot-day">Wed</span>
+            <span class="bp__slot-time">09:30</span>
+            <span class="bp05__rel">1 d 19 h</span>
+          </div></li>
+          <li><div class="bp__slot">
+            <span class="bp05__tag bp05__tag--ok">·</span>
+            <span class="bp__slot-day">Thu</span>
+            <span class="bp__slot-time">11:00</span>
+            <span class="bp05__rel">2 d 21 h</span>
+          </div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>denser 3-up, smaller type</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>05</strong> · per-slab corner tags · relative time per slab · 3-up holds on mobile by going denser</div>
+</section>
+
+<!-- ============================ IDEA 06 ============================ -->
+<section class="idea" id="i6">
+  <div class="idea__num">Idea 06</div>
+  <h2>Deadline — <em>"Closes today" headline, stopwatch, sticky CTA.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · warm-tone deadline framing</span>
+    <span class="tag">Countdown · stopwatch row</span>
+    <span class="tag">Mobile · sticky CTA at viewport bottom</span>
+  </div>
+  <p class="idea__why">
+    The most urgent register without going red. Switch the eyebrow to a warm
+    terracotta-tone "CLOSES TODAY · 18:00 CET" and accent the panel border to
+    match. A stopwatch icon row holds the live ticker. On mobile the white CTA
+    detaches and pins to the viewport bottom — the panel scrolls, the
+    "Reserve · 14:00" stays in thumb reach with a subtle gradient mask above.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> introduces a non-gold accent (terracotta) for the
+    first time on the panel. Stronger conversion signal but dilutes the
+    monochrome-with-gold brand. Use only when the deadline is real (today) and
+    drop back to gold the rest of the week.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp06">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Closes today · 18:00 CET</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <div class="bp06__stopwatch">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#E7A57E" stroke-width="1.4">
+            <circle cx="8" cy="9" r="5.5"/>
+            <path d="M8 6.5v3l2 1"/>
+            <path d="M6.5 2h3M8 2v1.5"/>
+          </svg>
+          <span>Time left today</span>
+          <b id="t06">02 : 14 : 38</b>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp06 bp06--m bp--m" style="overflow:visible">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Closes today · 18:00</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET · 30 min</div>
+        <div class="bp06__stopwatch">
+          <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#E7A57E" stroke-width="1.4">
+            <circle cx="8" cy="9" r="5.5"/><path d="M8 6.5v3l2 1"/>
+          </svg>
+          <span>Time left</span><b>02:14:38</b>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>sticky CTA at thumb level</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>06</strong> · terracotta deadline accent · stopwatch row · CTA pins to viewport bottom on mobile</div>
+</section>
+
+<!-- ============================ IDEA 07 ============================ -->
+<section class="idea" id="i7">
+  <div class="idea__num">Idea 07</div>
+  <h2>Ribbon — <em>corner ribbon, inline meta-line timer, drawer reveal.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · diagonal "ALMOST FULL" ribbon</span>
+    <span class="tag">Countdown · inline in bigmeta</span>
+    <span class="tag">Mobile · slides up as drawer</span>
+  </div>
+  <p class="idea__why">
+    Most decorative variant. A diagonal gold ribbon rotated 35° in the top-right
+    corner reads "ALMOST FULL" — like a press-kit "RESERVED" stamp. The countdown
+    docks inline into the existing bigmeta line with a blinking dot, so no new row
+    is needed. On mobile the panel doesn't sit in the hero — it slides up from the
+    bottom on first scroll, like a drawer.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the ribbon adds a small ornament that matches the
+    dossier-stamp register elsewhere on the program page. Lower information
+    density than ideas 03/04 but higher visual confidence.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp07">
+        <span class="bp07__ribbon">Almost full</span>
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta">
+          <span><b>Tuesday · 5 May</b> · CET · 30 min</span>
+          <span class="bp07__inline-timer" id="t07">02:14:38</span>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp07 bp07--m bp--m">
+        <span class="bp07__ribbon">Almost full</span>
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta">
+          <span><b>Tue · 5 May</b> · CET</span>
+          <span class="bp07__inline-timer">02:14:38</span>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>slides up as drawer (animation on load)</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>07</strong> · 35° corner ribbon · inline meta-line countdown · mobile = bottom-up drawer entrance</div>
+</section>
+
+<!-- ============================ IDEA 08 ============================ -->
+<section class="idea" id="i8">
+  <div class="idea__num">Idea 08</div>
+  <h2>Pulse — <em>fast-pulsing dot, breathing chip, tighter mobile.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · pulse-rate signals scarcity</span>
+    <span class="tag">Countdown · breathing chip</span>
+    <span class="tag">Mobile · drop bigtime to 48 px</span>
+  </div>
+  <p class="idea__why">
+    Quietest of the ten. Reuse the gold dot you already have, but pulse it faster
+    when 1–2 slots are left so urgency reads as <em>change in motion</em>, not
+    new copy. Add a single rounded chip "Closes Friday · 02:14:38 left" that
+    breathes in luminance. On mobile, the bigtime drops to 48px and the bigmeta
+    to one line so the whole panel fits under the fold.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the only addition is one chip and an animation
+    rate change. Lowest-impact polish with measurable conversion lift if the
+    pulse is calibrated. Pairs well with the existing brand register.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp08">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <span class="bp08__chip">Filip's week closes in <b id="t08">02:14:38</b></span>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp08 bp08--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <span class="bp08__chip" style="font-size:9px;padding:5px 10px">Closes <b>02:14:38</b></span>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>compact bigtime · same panel</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>08</strong> · pulse-rate codes scarcity · single breathing chip · mobile = compact bigtime under the fold</div>
+</section>
+
+<!-- ============================ IDEA 09 ============================ -->
+<section class="idea" id="i9">
+  <div class="idea__num">Idea 09</div>
+  <h2>Split status — <em>"2 LEFT" / "CLOSES 18:00", per-slab chips, mini bar.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · explicit pair row</span>
+    <span class="tag">Countdown · pair cell + per-slab</span>
+    <span class="tag">Mobile · mini bar (collapsed picker)</span>
+  </div>
+  <p class="idea__why">
+    Make the FOMO and the deadline equal twins by splitting them into a paired
+    row inset between the top header and the bigtime: left cell "2 LEFT THIS
+    WEEK", right cell "CLOSES 18:00 CET". Each slab carries its own micro
+    countdown chip so urgency follows the slot. On mobile the panel collapses
+    fully — just one wide horizontal bar showing "Tue 14:00 · 2 left · Reserve"
+    — that taps to expand the full picker as a sheet.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the most information-dense of the ten. Best for
+    visitors who want to compare urgency vs. deadline side-by-side. The mobile
+    "mini bar" is genuinely different — it claims very little vertical space
+    until the visitor commits to picking.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp09">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">Going fast</span>
+        </div>
+        <div class="bp09__pair">
+          <div class="bp09__pair-cell">2 left this week<b>2 of 12</b></div>
+          <div class="bp09__pair-cell">Closes today<b id="t09">18:00 CET</b></div>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span><span class="bp09__chip">in 18 h</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span><span class="bp09__chip">in 1 d 19 h</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span><span class="bp09__chip">booked</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp09 bp09--m">
+        <div class="bp09-mini">
+          <span class="bp09-mini-eyebrow">Next call</span>
+          <span class="bp09-mini-time">Tue · 14:00 CET</span>
+          <span class="bp09-mini-tag">2 left · closes 18:00 →</span>
+        </div>
+        <button class="bp09-mini-cta">Reserve</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>collapsed mini-bar · taps to expand</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>09</strong> · paired status row · per-slab chips · mobile collapses to a single tap-to-expand bar</div>
+</section>
+
+<!-- ============================ IDEA 10 ============================ -->
+<section class="idea" id="i10">
+  <div class="idea__num">Idea 10</div>
+  <h2>Hairline reveal — <em>animated rule, monospace timer, parity on mobile.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · "2 LEFT" inline</span>
+    <span class="tag">Countdown · animated hairline reveal on mount</span>
+    <span class="tag">Mobile · same hairline at narrower scale</span>
+  </div>
+  <p class="idea__why">
+    Reuse the hairline-rule motif you already have on the program-page hero and
+    on the doc-control row. A single hairline draws in left-to-right on first
+    paint (1.4s ease), revealing an inline strip: "2 LEFT THIS WEEK
+    ────── BOOKINGS CLOSE 02:14:38". The mobile variant uses the same hairline
+    at a slightly tighter type scale — no other reflow, because the rule already
+    works at any width.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> most architecturally-consistent of the ten —
+    the hairline rule is already a Mobius signature. This idea is the cheapest
+    to build (one new component) and the easiest to roll back (remove the rule).
+    Lowest novelty, highest brand fit.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp10">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <div class="bp10__line">
+          <div class="bp10__line-inner">
+            <span class="bp10__lhs"><b>2 left</b> this week</span>
+            <span class="bp10__rhs" id="t10">02:14:38</span>
+          </div>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp10 bp10--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · Filip</span>
+          <span class="bp__status">2 left</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <div class="bp10__line">
+          <div class="bp10__line-inner">
+            <span class="bp10__lhs"><b>2 left</b></span>
+            <span class="bp10__rhs">02:14:38</span>
+          </div>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+      </div>
+      <div class="col__lbl">Mobile · <b>same hairline, tighter scale</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>10</strong> · gold hairline animates in on mount · mono timer · parity desktop ↔ mobile</div>
+</section>
+
+</div>
+</div>
+
+<script>
+/* ============================================================
+   One shared countdown that drives all "HH:MM:SS" timers.
+   Anchors to today 18:00 in viewer's local clock (close enough
+   for a sketch). Updates every second so the cards feel live.
+   ============================================================ */
+(function () {
+  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10'];
+  const t02 = document.getElementById('t02');
+
+  const target = new Date();
+  target.setHours(target.getHours() + 2);
+  target.setMinutes(target.getMinutes() + 14);
+  target.setSeconds(target.getSeconds() + 38);
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const ms = Math.max(0, target.getTime() - Date.now());
+    const total = Math.floor(ms / 1000);
+    const h = Math.floor(total / 3600);
+    const m = Math.floor((total % 3600) / 60);
+    const s = total % 60;
+
+    const hms = `${pad(h)}:${pad(m)}:${pad(s)}`;
+
+    targets.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (id === 't03h') el.textContent = pad(h);
+      else if (id === 't03m') el.textContent = pad(m);
+      else if (id === 't03s') el.textContent = pad(s);
+      else if (id === 't06') el.textContent = `${pad(h)} : ${pad(m)} : ${pad(s)}`;
+      else el.textContent = hms;
+    });
+
+    if (t02) {
+      if (h >= 1) t02.textContent = `${h} h ${m} m`;
+      else t02.textContent = `${m} m ${s} s`;
+    }
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
