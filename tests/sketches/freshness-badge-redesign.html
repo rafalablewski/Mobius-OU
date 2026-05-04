@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Freshness badge — ten redesigns of "UPDATED 2026.Q1"</title>
+<title>Freshness badge — fifteen redesigns of "UPDATED 2026.Q1"</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@400;500;600;700&display=swap" />
@@ -516,6 +516,115 @@
     color: rgba(244,239,230,0.55);
   }
 
+  /* ============================================================
+     Round 3 — institutional, restrained.
+     No animation, no color (or near-none), mostly mono + hairlines.
+     ============================================================ */
+
+  /* shared "professional" type tokens */
+  :root { --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+  /* Idea 11 — document-control block (audit footer style) */
+  .doc-control {
+    display: inline-flex; align-items: stretch;
+    border-top: 1px solid rgba(244,239,230,0.20);
+    border-bottom: 1px solid rgba(244,239,230,0.20);
+    font-family: var(--mono);
+    font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.85);
+  }
+  .doc-control .dc-cell {
+    padding: 8px 14px;
+    border-right: 1px solid rgba(244,239,230,0.14);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .doc-control .dc-cell:last-child { border-right: 0; }
+  .doc-control .dc-key { color: rgba(244,239,230,0.42); }
+  .doc-control .dc-val { color: rgba(244,239,230,0.92); font-feature-settings: "tnum" 1; }
+
+  /* Idea 12 — ISO datestamp (FT dateline) */
+  .iso-stamp {
+    display: inline-flex; align-items: baseline; gap: 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    color: rgba(244,239,230,0.85);
+    font-feature-settings: "tnum" 1;
+    border-top: 1px solid rgba(244,239,230,0.18);
+    padding: 8px 0 0; min-width: 240px;
+  }
+  .iso-stamp .iso-key {
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(244,239,230,0.42);
+  }
+  .iso-stamp .iso-val { color: rgba(244,239,230,0.92); }
+  .iso-stamp .iso-aux {
+    margin-left: auto;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(244,239,230,0.42);
+  }
+
+  /* Idea 13 — filing reference table */
+  .filing-table {
+    display: grid; grid-template-columns: auto auto auto;
+    border-top: 1px solid rgba(244,239,230,0.20);
+    border-bottom: 1px solid rgba(244,239,230,0.20);
+    font-family: "Manrope", sans-serif;
+    color: rgba(244,239,230,0.92);
+  }
+  .filing-table > .ft-cell {
+    padding: 10px 22px;
+    border-right: 1px solid rgba(244,239,230,0.14);
+  }
+  .filing-table > .ft-cell:last-child { border-right: 0; }
+  .filing-table .ft-key {
+    display: block;
+    font-size: 8px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(244,239,230,0.42); margin-bottom: 4px;
+  }
+  .filing-table .ft-val {
+    font-size: 13px; font-feature-settings: "tnum" 1;
+    color: rgba(244,239,230,0.95);
+  }
+
+  /* Idea 14 — semver-style version tag */
+  .semver {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono);
+    color: rgba(244,239,230,0.65);
+    font-size: 11px;
+  }
+  .semver .v-tag {
+    padding: 2px 8px;
+    border: 1px solid rgba(244,239,230,0.28);
+    color: rgba(244,239,230,0.92);
+    font-feature-settings: "tnum" 1;
+  }
+  .semver .v-meta {
+    letter-spacing: 0.20em; text-transform: uppercase;
+    font-size: 9px; color: rgba(244,239,230,0.45);
+  }
+  .semver .v-link {
+    margin-left: 4px;
+    color: rgba(244,239,230,0.42);
+    text-decoration: underline; text-decoration-color: rgba(244,239,230,0.18);
+  }
+
+  /* Idea 15 — standfirst compliance line */
+  .standfirst {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 13px; line-height: 1.55;
+    color: rgba(244,239,230,0.62);
+    max-width: 58ch;
+    border-left: 1px solid rgba(244,239,230,0.22);
+    padding: 4px 0 4px 14px;
+  }
+  .standfirst strong {
+    font-style: normal; font-weight: 500;
+    color: rgba(244,239,230,0.92);
+    font-feature-settings: "tnum" 1;
+  }
+
   footer.foot {
     border-top: 1px solid var(--hairline); margin-top: 72px;
     padding-top: 24px; color: var(--stone); font-size: 13px;
@@ -538,14 +647,15 @@
 
 <header class="intro">
   <span class="eyebrow">Tests · Freshness-badge R&amp;D · 2026.Q2</span>
-  <h1>Ten redesigns of the <em>"UPDATED 2026.Q1"</em> badge.</h1>
+  <h1>Fifteen redesigns of the <em>"UPDATED 2026.Q1"</em> badge.</h1>
   <p class="lede">
     The current freshness indicator (gold pulsing dot + caps label) does the job, but reads
     as a generic SaaS "live" pill — slightly at odds with the editorial, advisory register
-    of the rest of the program page. Two rounds below. <strong>Round one</strong> (01–05) is
-    the pragmatic set — most could ship next week. <strong>Round two</strong> (06–10) is
-    bolder and more decorative — wax seal, watermark chapter mark, postage stamp, redline
-    correction, almanac. Each is shown as a pencil sketch and a live HTML mock on dark
+    of the rest of the program page. Three rounds below. <strong>Round one</strong> (01–05)
+    is the pragmatic set. <strong>Round two</strong> (06–10) is bolder and more decorative
+    — wax seal, watermark, postage stamp, redline, almanac. <strong>Round three</strong>
+    (11–15) dials all the way back: institutional, restrained, mostly mono and hairlines —
+    audit-report register. Each is shown as a pencil sketch and a live HTML mock on dark
     ground so we can compare the actual rendering, not just the idea.
   </p>
 
@@ -573,6 +683,11 @@
     <li><a href="#idea-08">08 — Postage stamp</a></li>
     <li><a href="#idea-09">09 — Redline correction</a></li>
     <li><a href="#idea-10">10 — Almanac · roman numeral</a></li>
+    <li><a href="#idea-11">11 — Document-control block</a></li>
+    <li><a href="#idea-12">12 — ISO datestamp</a></li>
+    <li><a href="#idea-13">13 — Filing reference table</a></li>
+    <li><a href="#idea-14">14 — Semver tag</a></li>
+    <li><a href="#idea-15">15 — Standfirst compliance line</a></li>
   </ul>
 </header>
 
@@ -1207,6 +1322,294 @@
     <p class="sketch-caption">10 — A quarterly-journal cover plate. Most "publication" of the ten.</p>
   </section>
 
+  <!-- ============================================================ -->
+  <!-- ROUND THREE — institutional, restrained, audit-report register -->
+  <!-- ============================================================ -->
+  <section class="round-divider" id="round-three">
+    <span class="eyebrow">Round three · 11 — 15</span>
+    <h2>Five more, <em>institutional.</em></h2>
+    <p>
+      Round two was too ornamental. These five take the opposite stance: no decoration,
+      no animation, no gold dot, mostly tabular monospace and hairlines. Reference points
+      are the footer of an audit report, the dateline of the FT, the version line at the
+      bottom of an SEC filing — not anything that looks designed. The page should be the
+      thing that's interesting; the freshness signal should sit out of the way and just
+      tell you the truth.
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 11 — DOCUMENT-CONTROL BLOCK                              -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-11">
+    <span class="idea__num">Idea 11</span>
+    <h2>A <em>document-control block</em>, like the footer of a Magic Circle memo.</h2>
+    <p class="idea__why">
+      Three monospaced cells separated by hairline rules — <code>DOC&nbsp;PT-GV-14</code> ·
+      <code>REV&nbsp;2026-05-04</code> · <code>CLASS&nbsp;CLIENT</code> — set in 10pt
+      tracked caps, ivory at 85%. No color, no animation. Reads as the document-control
+      footer of a deal memo or a closing-binder cover sheet. The credibility is in the
+      restraint and in the fact that it's saying real things (document number, revision
+      date, classification) rather than a marketing-style "updated".
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> the gold dot is a marketing tic. This is the language
+      a partner would actually use to refer to a file. Cost: needs a real document-numbering
+      convention behind it (we'd assign each program a stable doc code in
+      <code>src/data/programs.js</code>). Worth doing anyway.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: document-control block under breadcrumb">
+        <rect x="6" y="6" width="868" height="228" class="hair" />
+        <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">MOBIUS · PROGRAMS · PORTUGAL GOLDEN VISA</text>
+
+        <!-- the doc-control row -->
+        <line x1="36" y1="60" x2="500" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <text x="36" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">DOC</text>
+        <text x="68" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">PT-GV-14</text>
+        <line x1="148" y1="50" x2="148" y2="84" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <text x="160" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">REV</text>
+        <text x="190" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">2026-05-04</text>
+        <line x1="294" y1="50" x2="294" y2="84" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <text x="306" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
+        <text x="354" y="78" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
+        <line x1="36" y1="92" x2="500" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+
+        <text x="36" y="148" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="148" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="166" x2="96" y2="166" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="194" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <text x="540" y="208" class="anno">audit-report footer, not a marketing pill</text>
+        <path d="M 540 200 C 380 160, 240 100, 160 80" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <span class="live-caption">Live</span>
+      <span class="doc-control">
+        <span class="dc-cell"><span class="dc-key">Doc</span><span class="dc-val">PT-GV-14</span></span>
+        <span class="dc-cell"><span class="dc-key">Rev</span><span class="dc-val">2026-05-04</span></span>
+        <span class="dc-cell"><span class="dc-key">Class</span><span class="dc-val">Client</span></span>
+      </span>
+    </div>
+    <p class="sketch-caption">11 — Says real things in the language a partner would use.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 12 — ISO DATESTAMP                                       -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-12">
+    <span class="idea__num">Idea 12</span>
+    <h2>An <em>ISO datestamp.</em> One line. Tabular numerals. Done.</h2>
+    <p class="idea__why">
+      Strip everything off. A single line under the breadcrumb meta:
+      <code>REVIEWED&nbsp;&nbsp;2026-05-04</code> in tabular Manrope. Optional second cell on
+      the right with the next scheduled review (<code>NEXT&nbsp;&nbsp;Q3-2026</code>). One
+      hairline above. No badge, no chip, no color. The most professional thing on the page
+      is sometimes a dateline.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> reads as if it came out of a publishing system, not a
+      design system. Loses zero information; loses all the visual noise. Bonus: ISO 8601
+      is unambiguous across our cross-border audience in a way "Q1" and "May 4" aren't.
+      Cost: the calmest of all fifteen — easy to overlook entirely.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: single-line ISO datestamp">
+        <rect x="6" y="6" width="868" height="208" class="hair" />
+        <rect x="6" y="6" width="868" height="208" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+
+        <line x1="36" y1="64" x2="540" y2="64" stroke="#A8A199" stroke-width="0.5" opacity="0.4" />
+        <text x="36" y="82" font-family="Manrope" font-size="9" letter-spacing="3" fill="#7C766C">REVIEWED</text>
+        <text x="120" y="82" font-family="Manrope" font-size="11" fill="#F4EFE6">2026-05-04</text>
+        <text x="380" y="82" font-family="Manrope" font-size="9" letter-spacing="3" fill="#7C766C">NEXT</text>
+        <text x="430" y="82" font-family="Manrope" font-size="11" fill="#F4EFE6">Q3-2026</text>
+
+        <text x="36" y="142" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="142" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="160" x2="96" y2="160" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="188" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <text x="560" y="186" class="anno">no badge — just a dateline</text>
+        <path d="M 560 178 C 440 140, 320 100, 220 80" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <span class="iso-stamp">
+        <span class="iso-key">Reviewed</span>
+        <span class="iso-val">2026-05-04</span>
+        <span class="iso-aux">Next&nbsp;&nbsp;Q3-2026</span>
+      </span>
+    </div>
+    <p class="sketch-caption">12 — A dateline, not a design.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 13 — FILING REFERENCE TABLE                              -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-13">
+    <span class="idea__num">Idea 13</span>
+    <h2>A small <em>filing-reference table</em> — three label/value cells.</h2>
+    <p class="idea__why">
+      Three columns separated by hairlines: <strong>REVIEWED</strong> /
+      <strong>VERSION</strong> / <strong>NEXT REVIEW</strong>, with values
+      <code>04 May 2026</code> · <code>14.1</code> · <code>Q3 2026</code>. Reads as the
+      header of a financial statement or the metadata table on the cover page of a research
+      report. Three pieces of information for the price of one badge, and the table format
+      itself signals "this is maintained on a schedule."
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> the badge is one fact ("updated this quarter"); this is
+      three facts in the same footprint, and one of them — next review date — is implicitly a
+      commitment. Cost: occupies more horizontal space than the current badge; needs to slot
+      into the breadcrumb meta row carefully so it doesn't crowd the region/category cells.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: three-cell filing-reference table">
+        <rect x="6" y="6" width="868" height="228" class="hair" />
+        <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+
+        <!-- the table -->
+        <line x1="500" y1="50" x2="844" y2="50" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <line x1="500" y1="98" x2="844" y2="98" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <line x1="612" y1="50" x2="612" y2="98" stroke="#A8A199" stroke-width="0.5" opacity="0.30" />
+        <line x1="724" y1="50" x2="724" y2="98" stroke="#A8A199" stroke-width="0.5" opacity="0.30" />
+
+        <text x="514" y="64" font-family="Manrope" font-size="7" letter-spacing="3" fill="#7C766C">REVIEWED</text>
+        <text x="514" y="86" font-family="Manrope" font-size="11" fill="#F4EFE6">04 May 2026</text>
+
+        <text x="626" y="64" font-family="Manrope" font-size="7" letter-spacing="3" fill="#7C766C">VERSION</text>
+        <text x="626" y="86" font-family="Manrope" font-size="11" fill="#F4EFE6">14.1</text>
+
+        <text x="738" y="64" font-family="Manrope" font-size="7" letter-spacing="3" fill="#7C766C">NEXT REVIEW</text>
+        <text x="738" y="86" font-family="Manrope" font-size="11" fill="#F4EFE6">Q3 2026</text>
+
+        <text x="36" y="148" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="148" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="166" x2="96" y2="166" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="194" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <text x="40" y="220" class="anno">three facts, one quiet table —</text>
+        <text x="240" y="220" class="anno">"next review" is implicit commitment</text>
+        <path d="M 540 212 C 600 180, 640 130, 670 100" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <div class="filing-table">
+        <div class="ft-cell"><span class="ft-key">Reviewed</span><span class="ft-val">04 May 2026</span></div>
+        <div class="ft-cell"><span class="ft-key">Version</span><span class="ft-val">14.1</span></div>
+        <div class="ft-cell"><span class="ft-key">Next review</span><span class="ft-val">Q3 2026</span></div>
+      </div>
+    </div>
+    <p class="sketch-caption">13 — Three facts; one is a commitment.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 14 — SEMVER TAG                                          -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-14">
+    <span class="idea__num">Idea 14</span>
+    <h2>A <em>semver tag</em> — <code>v.14.1</code> and a date. Engineering-grade.</h2>
+    <p class="idea__why">
+      Borrow the language of git tags and academic preprints: a small monospace
+      <code>v.14.1</code> in a thin outlined box, followed by <code>Q1 2026</code> in
+      tracked caps. Optional small "changelog →" link in muted ivory. Reads as published-
+      research / open-source discipline rather than marketing copy — which is the actual
+      register we want users to associate with our research.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> conveys "this is on revision N, not just 'fresh'" —
+      stronger signal of methodical maintenance. Needs least net-new infrastructure of the
+      three: a <code>version</code> string per program in <code>src/data/programs.js</code>,
+      bumped on edit. Risk: leans engineering; doesn't match the tone if every other
+      element on the page is in italic Fraunces.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: semver-style version tag">
+        <rect x="6" y="6" width="868" height="208" class="hair" />
+        <rect x="6" y="6" width="868" height="208" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">MOBIUS · PROGRAMS · PORTUGAL GOLDEN VISA</text>
+
+        <!-- the semver tag, top-right -->
+        <g transform="translate(640,46)">
+          <rect x="0" y="0" width="56" height="20" fill="none" stroke="#A8A199" stroke-width="0.7" opacity="0.7" />
+          <text x="28" y="14" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#F4EFE6">v.14.1</text>
+          <text x="68" y="14" font-family="Manrope" font-size="8" letter-spacing="3" fill="#7C766C">Q1 2026</text>
+          <text x="138" y="14" font-family="ui-monospace,monospace" font-size="9" fill="#7C766C" text-decoration="underline">changelog →</text>
+        </g>
+
+        <text x="36" y="124" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="124" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="142" x2="96" y2="142" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="172" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <text x="40" y="200" class="anno">git-tag discipline, not marketing copy</text>
+        <path d="M 320 192 C 460 160, 580 100, 660 60" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <span class="semver">
+        <span class="v-tag">v.14.1</span>
+        <span class="v-meta">Q1 2026</span>
+        <a href="#" class="v-link">changelog →</a>
+      </span>
+    </div>
+    <p class="sketch-caption">14 — Open-source discipline. Pairs with an actual <code>version</code> field.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 15 — STANDFIRST COMPLIANCE LINE                          -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-15">
+    <span class="idea__num">Idea 15</span>
+    <h2>A <em>standfirst</em> — a single sentence under the meta, no badge.</h2>
+    <p class="idea__why">
+      Delete the badge entirely. Add one italic Fraunces line under the breadcrumb meta:
+      <em>"Last reviewed <strong>4 May 2026</strong>; supersedes all prior versions."</em>
+      Set against a thin left rule. Reads as the standfirst under a leader article in the
+      FT or the cover note of a legal opinion. The freshness signal becomes a sentence,
+      and the sentence carries an implicit warranty ("supersedes all prior versions") that
+      no chip or pill could.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> trades a chip for a quiet, on-the-record statement.
+      Most "advisory voice" of all fifteen and the only one that says something stronger
+      than "current". Cost: literally the most subtle option — easy to skip past on first
+      scan; gains weight only if a user is already reading carefully.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: standfirst compliance line under meta">
+        <rect x="6" y="6" width="868" height="228" class="hair" />
+        <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+
+        <!-- the standfirst -->
+        <line x1="36" y1="58" x2="36" y2="98" stroke="#A8A199" stroke-width="0.6" opacity="0.45" />
+        <text x="50" y="78" font-family="Fraunces" font-style="italic" font-size="14" fill="#A8A199">Last reviewed</text>
+        <text x="160" y="78" font-family="Fraunces" font-size="14" fill="#F4EFE6">4 May 2026</text>
+        <text x="246" y="78" font-family="Fraunces" font-style="italic" font-size="14" fill="#A8A199">; supersedes all prior versions.</text>
+
+        <text x="36" y="148" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="148" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="166" x2="96" y2="166" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="194" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <text x="540" y="220" class="anno">"supersedes all prior versions" —</text>
+        <text x="540" y="234" class="anno">implicit warranty no chip can carry</text>
+        <path d="M 540 212 C 380 160, 200 110, 100 90" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <p class="standfirst" style="margin: 0;">
+        Last reviewed <strong>4 May 2026</strong>; supersedes all prior versions.
+      </p>
+    </div>
+    <p class="sketch-caption">15 — A sentence, not a chip. Carries an implicit warranty.</p>
+  </section>
+
 </div>
 
 <footer class="foot">
@@ -1214,9 +1617,10 @@
     Sketches only. None of these ship until we agree on a direction. Implementation, when we
     do, lives in <code>src/components/Breadcrumb.jsx</code> and
     <code>public/assets/css/style.css</code> (search <code>ht-breadcrumb__freshness</code>).
-    Idea 03 also touches <code>src/data/programs.js</code> to add a per-program changelog,
-    and ideas 06 (wax seal) and 08 (postage stamp) want a dedicated SVG asset under
-    <code>public/assets/marks/</code> rather than inline.
+    Ideas 03 (changelog), 11 (doc-control), 13 (filing table) and 14 (semver) all want
+    structured fields in <code>src/data/programs.js</code> — doc code, version, last/next
+    review dates. Ideas 06 (wax seal) and 08 (postage stamp) want a dedicated SVG asset
+    under <code>public/assets/marks/</code> rather than inline.
   </p>
   <p><a href="#top">↑ Back to top</a></p>
 </footer>
