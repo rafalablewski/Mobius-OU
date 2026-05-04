@@ -8674,6 +8674,7 @@ span {
   justify-content: space-between;
   align-items: center;
   gap: 24px;
+  min-height: 32px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(201, 168, 106, 0.32);
   margin-bottom: clamp(24px, 3vw, 36px);
@@ -8685,9 +8686,19 @@ span {
     gap: 12px;
   }
 }
-/* Editorial body: compact title block sitting right under the top bar. */
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs,
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__meta {
+  line-height: 1;
+  align-self: center;
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs > li,
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__meta > li {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__editorial-body {
-  margin-bottom: clamp(28px, 4vw, 48px);
+  margin-top: clamp(40px, 5vw, 64px);
 }
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__title {
   font-size: clamp(40px, 5.2vw, 72px);
@@ -8751,22 +8762,22 @@ span {
   height: 100%;
 }
 
-/* Freshness pill: gold dot + uppercase label so visitors clock the
-   recency of the program write-up at a glance. */
+/* Freshness indicator: gold dot + uppercase gold label so visitors clock
+   the recency of the program write-up at a glance. Padding is light so
+   the indicator stays visually aligned with the rest of the meta row. */
 .ht-breadcrumb__freshness {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 10px 4px 8px;
-  border: 1px solid rgba(201, 168, 106, 0.55);
-  background: rgba(201, 168, 106, 0.1);
+  gap: 7px;
+  padding: 2px 8px;
+  background: rgba(201, 168, 106, 0.14);
   color: var(--ht-theme-color-2);
-  letter-spacing: 0.18em;
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1;
 }
 .ht-breadcrumb__freshness-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--ht-theme-color-2);
   box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.22);
