@@ -38,6 +38,52 @@ function Crumbs({ crumbs, current, title }) {
   );
 }
 
+function DocControl({ category, docCode, lastRevisedAt, status = 'up-to-date', classification = 'Client' }) {
+  const STATUS_LABEL = {
+    'up-to-date':   'Up to date',
+    'under-review': 'Under review',
+    'deprecated':   'Deprecated',
+  };
+  return (
+    <div
+      className="ht-breadcrumb__doc-control"
+      role="group"
+      aria-label={`Document control: ${category} ${docCode}, last revised ${lastRevisedAt}, ${STATUS_LABEL[status]}`}
+    >
+      {category && (
+        <span className="ht-breadcrumb__doc-control-tag">
+          <span>{category}</span>
+        </span>
+      )}
+      {docCode && (
+        <span className="ht-breadcrumb__doc-control-cell">
+          <span className="ht-breadcrumb__doc-control-key">Doc</span>
+          <span className="ht-breadcrumb__doc-control-val">{docCode}</span>
+        </span>
+      )}
+      {lastRevisedAt && (
+        <span className="ht-breadcrumb__doc-control-cell">
+          <span className="ht-breadcrumb__doc-control-key">Last revision</span>
+          <span className="ht-breadcrumb__doc-control-val">{lastRevisedAt}</span>
+        </span>
+      )}
+      <span className={`ht-breadcrumb__doc-control-cell is-status is-${status}`}>
+        <span className="ht-breadcrumb__doc-control-key">Status</span>
+        {status === 'up-to-date' && (
+          <span className="ht-breadcrumb__doc-control-mark" aria-hidden="true" />
+        )}
+        <span className="ht-breadcrumb__doc-control-val">{STATUS_LABEL[status]}</span>
+      </span>
+      {classification && (
+        <span className="ht-breadcrumb__doc-control-cell">
+          <span className="ht-breadcrumb__doc-control-key">Class</span>
+          <span className="ht-breadcrumb__doc-control-val">{classification}</span>
+        </span>
+      )}
+    </div>
+  );
+}
+
 export default function Breadcrumb({
   variant = 'aperture',
   title,
@@ -48,11 +94,13 @@ export default function Breadcrumb({
   tagline,
   aside,
   pitch,
-  freshness,
+  docControl,
 }) {
   const { lead, tail } = splitTitle(title, emphasis);
   const hasStage = variant === 'editorial' && (pitch || aside);
-  const className = `ht-breadcrumb-area is-${variant}${hasStage ? ' has-stage' : ''}`;
+  const className = `ht-breadcrumb-area is-${variant}${hasStage ? ' has-stage' : ''}${
+    docControl ? ' has-doc-control' : ''
+  }`;
 
   if (variant === 'editorial') {
     return (
@@ -60,26 +108,20 @@ export default function Breadcrumb({
         <div className="container">
           <div className="ht-breadcrumb__top">
             <Crumbs crumbs={crumbs} current={current} title={title} />
-            {(meta || freshness) && (
+            {meta && (
               <ul className="ht-breadcrumb__meta">
-                {meta &&
-                  meta.map((m, i) => (
-                    <Fragment key={`${m}-${i}`}>
-                      <li>{m}</li>
-                      {i < meta.length - 1 && (
-                        <li className="ht-breadcrumb__sep" aria-hidden="true">·</li>
-                      )}
-                    </Fragment>
-                  ))}
-                {freshness && (
-                  <li className="ht-breadcrumb__freshness">
-                    <span className="ht-breadcrumb__freshness-dot" aria-hidden="true" />
-                    {freshness}
-                  </li>
-                )}
+                {meta.map((m, i) => (
+                  <Fragment key={`${m}-${i}`}>
+                    <li>{m}</li>
+                    {i < meta.length - 1 && (
+                      <li className="ht-breadcrumb__sep" aria-hidden="true">·</li>
+                    )}
+                  </Fragment>
+                ))}
               </ul>
             )}
           </div>
+          {docControl && <DocControl {...docControl} />}
           {hasStage && (
             <div
               className={`ht-breadcrumb__stage${pitch ? ' has-pitch' : ''}${
