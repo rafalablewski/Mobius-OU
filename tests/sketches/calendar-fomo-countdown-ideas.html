@@ -730,6 +730,48 @@
   .bp12--m .bp12__arc-num b { font-size: 12px; }
   .bp12--m .bp12__arc-num span { font-size: 7px; }
 
+  /* ---------------- IDEA 13 — doc-control register (audit-report row) */
+  .bp13__dc {
+    display: flex; flex-wrap: wrap;
+    margin: 0 -22px 14px;
+    border-top: 1px solid rgba(244,239,230,0.16);
+    border-bottom: 1px solid rgba(244,239,230,0.16);
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.85);
+    line-height: 1;
+  }
+  .bp13__dc-cell {
+    padding: 9px 12px;
+    display: inline-flex; flex-direction: column; gap: 4px;
+  }
+  .bp13__dc-cell + .bp13__dc-cell {
+    border-left: 1px solid rgba(244,239,230,0.12);
+  }
+  .bp13__dc-key {
+    font-size: 8px; color: rgba(244,239,230,0.45);
+    letter-spacing: 0.20em;
+  }
+  .bp13__dc-val {
+    font-size: 11px; color: #fff; font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .bp13__dc-val--gold { color: var(--gold-soft); }
+  .bp13__dc-val--green {
+    color: #6FE38F; display: inline-flex; align-items: center; gap: 5px;
+  }
+  .bp13__dc-val--green::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: #22C55E;
+    animation: bp-flash 1.6s ease-in-out infinite;
+  }
+  .bp13--m .bp13__dc { margin: 0 -18px 14px; }
+  .bp13--m .bp13__dc-cell {
+    padding: 8px 10px;
+  }
+  .bp13--m .bp13__dc-val { font-size: 10px; }
+
   /* utility tags shown on the slabs in some ideas */
   .bp__slot--going { border-color: rgba(216,123,74,0.55); }
   .bp__slot--gone {
@@ -1787,6 +1829,105 @@
   <div class="live-caption"><strong>12</strong> · AVAILABLE green flash · 84 px progress arc depletes toward 0 · "2 LEFT" pill alongside · NDA footer</div>
 </section>
 
+<!-- ============================ IDEA 13 ============================ -->
+<section class="idea" id="i13">
+  <div class="idea__num">Idea 13</div>
+  <h2>Doc-control register — <em>monospace tabular row, audit-report tone.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · OPEN cell "2 of 12"</span>
+    <span class="tag">Countdown · CLOSES cell HH:MM:SS</span>
+    <span class="tag">Mobile · cells reflow to 2 rows</span>
+  </div>
+  <p class="idea__why">
+    Borrows the audit-report register from the program-page doc-control row
+    (RBI · DOC PT-GV · LAST REVISION · STATUS ✓ UP TO DATE · CLASS CLIENT).
+    Insert a similar four-cell tabular strip under the top header:
+    <em>HOST · RAFAŁ A. · STATUS · ● AVAILABLE · OPEN · 2 OF 12 · CLOSES ·
+    02:14:38</em>. Monospace, hairline-bordered, reads as instrumentation that
+    matches the rest of the program page exactly. Highest brand fit of all
+    fifteen.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the idea Mobius could ship today without
+    visual debate — it reuses an existing pattern. AVAILABLE green flash and
+    "2 of 12" both live inside the tabular row; HH:MM:SS too. Cleanest
+    information density of the set.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp13">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp__avail">Available</span>
+        </div>
+        <div class="bp13__dc">
+          <div class="bp13__dc-cell">
+            <span class="bp13__dc-key">Status</span>
+            <span class="bp13__dc-val bp13__dc-val--green">Available</span>
+          </div>
+          <div class="bp13__dc-cell">
+            <span class="bp13__dc-key">Open</span>
+            <span class="bp13__dc-val bp13__dc-val--gold">2 / 12</span>
+          </div>
+          <div class="bp13__dc-cell">
+            <span class="bp13__dc-key">Closes</span>
+            <span class="bp13__dc-val bp13__dc-val--gold" id="t13">02:14:38</span>
+          </div>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue · 5</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed · 6</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu · 7</span><span class="bp__slot-time">11:00</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp13 bp13--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">Next · Rafał A.</span>
+          <span class="bp__avail bp__avail--mini">Available</span>
+        </div>
+        <div class="bp13__dc">
+          <div class="bp13__dc-cell">
+            <span class="bp13__dc-key">Status</span>
+            <span class="bp13__dc-val bp13__dc-val--green">Avail.</span>
+          </div>
+          <div class="bp13__dc-cell">
+            <span class="bp13__dc-key">Open</span>
+            <span class="bp13__dc-val bp13__dc-val--gold">2/12</span>
+          </div>
+          <div class="bp13__dc-cell">
+            <span class="bp13__dc-key">Closes</span>
+            <span class="bp13__dc-val bp13__dc-val--gold">02:14:38</span>
+          </div>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot is-active"><span class="bp__slot-day">Tue</span><span class="bp__slot-time">14:00</span></div></li>
+          <li><div class="bp__slot"><span class="bp__slot-day">Wed</span><span class="bp__slot-time">09:30</span></div></li>
+          <li><div class="bp__slot bp__slot--gone"><span class="bp__slot-day">Thu</span><span class="bp__slot-time">—</span></div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA · No mkt · Private</p>
+          <a class="bp__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · cells stay one row</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>13</strong> · audit-report tabular row · STATUS · OPEN · CLOSES · matches the program-page doc-control register · NDA footer</div>
+</section>
+
 </div>
 </div>
 
@@ -1797,7 +1938,7 @@
    for a sketch). Updates every second so the cards feel live.
    ============================================================ */
 (function () {
-  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11'];
+  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11','t13'];
   const t02 = document.getElementById('t02');
   const t12 = document.getElementById('t12');
   const arcFill = document.getElementById('bp12-fill');
