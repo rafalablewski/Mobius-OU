@@ -820,6 +820,74 @@
   .bp14--m .bp14__twin-cell { padding: 8px 10px; }
   .bp14--m .bp14__twin-val { font-size: 12px; }
 
+  /* ---------------- IDEA 15 — reserved-stamp slabs (visible bookings) */
+  .bp15 .bp__slots {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+  .bp15 .bp__slot {
+    padding: 10px 6px 8px;
+    text-align: center; position: relative;
+  }
+  .bp15 .bp__slot-day { font-size: 8px; letter-spacing: 0.16em; }
+  .bp15 .bp__slot-time { font-size: 13px; margin-top: 4px; }
+  .bp15__stamp {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .bp15__stamp-mark {
+    transform: rotate(-12deg);
+    border: 1.5px solid var(--redline);
+    color: var(--redline);
+    background: rgba(178,58,42,0.04);
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700; font-size: 9px; letter-spacing: 0.10em;
+    padding: 2px 6px; border-radius: 2px;
+    line-height: 1;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .bp15 .bp__slot--booked {
+    background: rgba(178,58,42,0.04);
+    border-color: rgba(178,58,42,0.28);
+    cursor: not-allowed;
+  }
+  .bp15 .bp__slot--booked .bp__slot-day,
+  .bp15 .bp__slot--booked .bp__slot-time {
+    color: rgba(255,255,255,0.30);
+  }
+  .bp15__legend {
+    display: flex; align-items: center; gap: 12px;
+    margin: -4px 0 14px;
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .bp15__legend-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .bp15__legend-pill::before {
+    content: ""; width: 8px; height: 8px; border-radius: 1px;
+  }
+  .bp15__legend-pill--open::before { background: rgba(255,255,255,0.30); }
+  .bp15__legend-pill--booked::before {
+    background: rgba(178,58,42,0.18);
+    border: 1px solid var(--redline);
+  }
+  .bp15__legend b { color: var(--gold-soft); font-weight: 600; }
+  .bp15__legend .timer {
+    margin-left: auto;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.02em; color: var(--gold-soft);
+    text-transform: none;
+  }
+  .bp15--m .bp__slots { grid-template-columns: repeat(5, 1fr); gap: 3px; }
+  .bp15--m .bp15 .bp__slot-day { font-size: 7px; }
+  .bp15--m .bp15 .bp__slot-time { font-size: 11px; }
+  .bp15--m .bp15__stamp-mark { font-size: 7px; padding: 1px 4px; }
+  .bp15--m .bp15__legend { font-size: 8px; gap: 8px; }
+  .bp15--m .bp15__legend .timer { font-size: 10px; }
+
   /* utility tags shown on the slabs in some ideas */
   .bp__slot--going { border-color: rgba(216,123,74,0.55); }
   .bp__slot--gone {
@@ -2071,6 +2139,127 @@
   <div class="live-caption"><strong>14</strong> · two paired timers · "next slot in 18 h 23 m" + "window closes in 02:14:38 · 2 LEFT" · NDA footer</div>
 </section>
 
+<!-- ============================ IDEA 15 ============================ -->
+<section class="idea" id="i15">
+  <div class="idea__num">Idea 15</div>
+  <h2>Reserved-stamp slabs — <em>FOMO through visible bookings.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">FOMO · BOOKED stamps on busy slots</span>
+    <span class="tag">Countdown · in the legend row</span>
+    <span class="tag">Mobile · same 5-up grid, smaller stamps</span>
+  </div>
+  <p class="idea__why">
+    Show the whole week's slots as a 5-up grid (Mon–Fri) and put a redlined
+    "BOOKED" stamp over the three already-reserved cells. The two open ones
+    pop visually because they're surrounded by the stamps. No "2 LEFT" copy
+    needed — the visual makes scarcity self-evident. A small legend row holds
+    the live HH:MM:SS countdown to window close. Most editorial of the FOMO
+    treatments — feels like a dossier annotation, not a sales card.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> shipped panel only shows 3 future slots. This
+    shows the whole week, with bookings rendered as redlined stamps so capacity
+    is legible at a glance. Closer to the freshness-badge "redline correction"
+    register than the rest. AVAILABLE green flash sits in the top-right; the
+    stamps do the FOMO work.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp bp15">
+        <div class="bp__top">
+          <span class="bp__eyebrow">This week · with Rafał A.</span>
+          <span class="bp__avail">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+        <div class="bp15__legend">
+          <span class="bp15__legend-pill bp15__legend-pill--open"><b>2</b> open</span>
+          <span class="bp15__legend-pill bp15__legend-pill--booked">3 booked</span>
+          <span class="timer">Closes <span id="t15">02:14:38</span></span>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot bp__slot--booked">
+            <span class="bp__slot-day">Mon · 4</span>
+            <span class="bp__slot-time">10:00</span>
+            <span class="bp15__stamp"><span class="bp15__stamp-mark">Booked</span></span>
+          </div></li>
+          <li><div class="bp__slot is-active">
+            <span class="bp__slot-day">Tue · 5</span>
+            <span class="bp__slot-time">14:00</span>
+          </div></li>
+          <li><div class="bp__slot bp__slot--booked">
+            <span class="bp__slot-day">Wed · 6</span>
+            <span class="bp__slot-time">11:00</span>
+            <span class="bp15__stamp"><span class="bp15__stamp-mark">Booked</span></span>
+          </div></li>
+          <li><div class="bp__slot">
+            <span class="bp__slot-day">Thu · 7</span>
+            <span class="bp__slot-time">09:30</span>
+          </div></li>
+          <li><div class="bp__slot bp__slot--booked">
+            <span class="bp__slot-day">Fri · 8</span>
+            <span class="bp__slot-time">15:30</span>
+            <span class="bp15__stamp"><span class="bp15__stamp-mark">Booked</span></span>
+          </div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00 CET</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px · whole-week grid</b></div>
+    </div>
+    <div class="col">
+      <div class="bp bp15 bp15--m bp--m">
+        <div class="bp__top">
+          <span class="bp__eyebrow">This week · Rafał A.</span>
+          <span class="bp__avail bp__avail--mini">Available</span>
+        </div>
+        <div class="bp__bigtime">14<span>:</span>00</div>
+        <div class="bp__bigmeta"><b>Tue · 5 May</b> · CET</div>
+        <div class="bp15__legend">
+          <span class="bp15__legend-pill bp15__legend-pill--open"><b>2</b></span>
+          <span class="bp15__legend-pill bp15__legend-pill--booked">3 bk.</span>
+          <span class="timer">02:14:38</span>
+        </div>
+        <ul class="bp__slots">
+          <li><div class="bp__slot bp__slot--booked">
+            <span class="bp__slot-day">Mon</span>
+            <span class="bp__slot-time">10:00</span>
+            <span class="bp15__stamp"><span class="bp15__stamp-mark">Bk.</span></span>
+          </div></li>
+          <li><div class="bp__slot is-active">
+            <span class="bp__slot-day">Tue</span>
+            <span class="bp__slot-time">14:00</span>
+          </div></li>
+          <li><div class="bp__slot bp__slot--booked">
+            <span class="bp__slot-day">Wed</span>
+            <span class="bp__slot-time">11:00</span>
+            <span class="bp15__stamp"><span class="bp15__stamp-mark">Bk.</span></span>
+          </div></li>
+          <li><div class="bp__slot">
+            <span class="bp__slot-day">Thu</span>
+            <span class="bp__slot-time">09:30</span>
+          </div></li>
+          <li><div class="bp__slot bp__slot--booked">
+            <span class="bp__slot-day">Fri</span>
+            <span class="bp__slot-time">15:30</span>
+            <span class="bp15__stamp"><span class="bp15__stamp-mark">Bk.</span></span>
+          </div></li>
+        </ul>
+        <button class="bp__cta">Reserve · 14:00</button>
+        <div class="bp__foot">
+          <p class="bp__micro">NDA · No mkt · Private</p>
+          <a class="bp__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>same 5-up · smaller stamps</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>15</strong> · AVAILABLE green flash · whole-week grid · 3 redlined "BOOKED" stamps · 2 open slots stand out · NDA footer</div>
+</section>
+
 </div>
 </div>
 
@@ -2081,7 +2270,7 @@
    for a sketch). Updates every second so the cards feel live.
    ============================================================ */
 (function () {
-  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11','t13','t14b'];
+  const targets = ['t01','t03h','t03m','t03s','t04','t06','t07','t08','t10','t11','t13','t14b','t15'];
   const t02 = document.getElementById('t02');
   const t12 = document.getElementById('t12');
   const t14a = document.getElementById('t14a');
