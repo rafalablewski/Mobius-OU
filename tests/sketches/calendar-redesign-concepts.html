@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calendar / BriefPanel — ten redesigns inspired by Apple, Tesla, Lucid, Adobe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,300..700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-soft:   #14191F;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --gold-soft:  #E2CFA3;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --redline:    #B23A2A;
+    --tesla-red:  #E31937;
+    --adobe-red:  #FA0F00;
+    --adobe-blue: #1473E6;
+    --adobe-pink: #E1306C;
+    --lucid-champagne: #D7C7A1;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 1100px; margin: 0 auto; padding: 72px 32px 120px; }
+
+  /* ---------- header / intro ---------- */
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 44px; line-height: 1.1;
+    margin: 14px 0 18px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 64ch; }
+  .baseline {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil);
+  }
+  .baseline strong { color: var(--ink); }
+
+  /* ---------- baseline (current calendar) ---------- */
+  .baseline-stage {
+    background: var(--ink);
+    border-radius: 3px;
+    padding: 56px 32px;
+    display: flex; justify-content: center;
+    margin-top: 18px;
+  }
+  .current-cal {
+    width: 360px; background: var(--cream);
+    border-radius: 4px;
+    padding: 26px 26px 22px;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .current-cal__eyebrow {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 700;
+  }
+  .current-cal__title {
+    font-family: "Fraunces", serif; font-weight: 400; font-size: 26px;
+    line-height: 1.2; margin: 8px 0 18px;
+  }
+  .current-cal__slot {
+    border: 1px solid var(--hairline); border-radius: 3px;
+    padding: 14px 16px; margin-bottom: 10px;
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+  }
+  .current-cal__slot .day {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); grid-column: 1; grid-row: 1;
+  }
+  .current-cal__slot .time {
+    font-family: "Fraunces", serif; font-size: 22px;
+    grid-column: 1; grid-row: 2; margin-top: 4px;
+  }
+  .current-cal__slot .arrow {
+    grid-column: 2; grid-row: 1 / span 2; color: var(--gold-deep); font-size: 14px;
+  }
+  .current-cal__alt {
+    font-family: "Fraunces", serif; font-style: italic; color: var(--gold-deep);
+    font-size: 14px; margin-top: 6px;
+  }
+  .current-cal__rule {
+    border-top: 1px solid var(--hairline); margin: 18px 0 12px;
+  }
+  .current-cal__micro {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone); line-height: 1.5;
+  }
+
+  /* ---------- ideas grid ---------- */
+  .ideas { display: grid; gap: 56px; }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px;
+    background: var(--cream); padding: 28px 28px 28px;
+  }
+  .idea__num {
+    font-family: "Fraunces", serif;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 26px; line-height: 1.2; margin: 8px 0 6px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__source {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 14px; font-weight: 600;
+  }
+  .idea__source span { color: var(--gold-deep); }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 8px; max-width: 70ch; }
+  .idea__contrast {
+    font-size: 13px; color: var(--pencil); margin: 6px 0 22px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+    max-width: 80ch;
+  }
+  .idea__contrast strong { color: var(--ink); }
+
+  /* dark mounting ground (matches program page hero) */
+  .stage {
+    background: var(--ink);
+    border-radius: 3px;
+    padding: 48px 28px;
+    display: flex; justify-content: center; align-items: center;
+    margin: 8px 0 4px;
+    overflow: hidden;
+  }
+  .stage--wide { padding: 36px 20px; }
+  .live-caption {
+    font-family: "Manrope"; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(244,239,230,0.55);
+    margin-top: 10px;
+  }
+  .live-caption strong { color: var(--gold); font-weight: 500; }
+
+  /* =========================================================
+     IDEA 01 — Apple Stocks-style frosted card
+     ========================================================= */
+  .apple-stocks {
+    width: 360px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 22px;
+    padding: 22px 22px 20px;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    color: #1A1A1F;
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.55), 0 0 0 0.5px rgba(255,255,255,0.4) inset;
+  }
+  .apple-stocks__head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .apple-stocks__title {
+    font-size: 22px; font-weight: 700; letter-spacing: -0.018em;
+  }
+  .apple-stocks__live {
+    font-size: 11px; font-weight: 600; color: #2EA84A;
+    letter-spacing: 0.04em;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .apple-stocks__live::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: #2EA84A;
+  }
+  .apple-stocks__sub {
+    font-size: 13px; color: #6B6B72; margin-bottom: 14px;
+  }
+  .apple-stocks__day {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 14px 0 8px; font-size: 12px; font-weight: 600;
+    color: #6B6B72; letter-spacing: 0.02em;
+  }
+  .apple-stocks__day b {
+    color: #1A1A1F; font-weight: 700;
+  }
+  .apple-stocks__chips {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .apple-stocks__chip {
+    flex: 1; min-width: 0;
+    padding: 11px 4px;
+    background: rgba(11,15,20,0.05);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+    color: #1A1A1F;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .apple-stocks__chip:hover { background: rgba(11,15,20,0.09); }
+  .apple-stocks__chip--primary {
+    background: #1A1A1F; color: #fff;
+  }
+  .apple-stocks__chip--primary:hover { background: #000; }
+  .apple-stocks__more {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 0.5px solid rgba(11,15,20,0.12);
+    font-size: 13px; font-weight: 500; color: #0070E0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .apple-stocks__more svg { width: 12px; height: 12px; }
+
+  /* =========================================================
+     IDEA 02 — Apple Wallet pass (perforated stub)
+     ========================================================= */
+  .wallet {
+    width: 320px; position: relative;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 30px 60px -24px rgba(0,0,0,0.6);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .wallet__top {
+    background: linear-gradient(180deg, #1F252E 0%, #0F141A 100%);
+    color: #fff;
+    padding: 18px 20px 22px;
+    position: relative;
+  }
+  .wallet__brand {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 600;
+  }
+  .wallet__brand b { color: var(--gold); font-weight: 700; }
+  .wallet__date-row {
+    display: flex; align-items: baseline; gap: 16px; margin-top: 18px;
+  }
+  .wallet__day-num {
+    font-family: "Fraunces", serif; font-size: 56px; line-height: 0.9;
+    font-weight: 300; letter-spacing: -0.02em;
+  }
+  .wallet__day-meta {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); line-height: 1.5;
+  }
+  .wallet__day-meta b { color: #fff; font-weight: 600; }
+  .wallet__time {
+    margin-top: 14px;
+    font-family: "Inter"; font-size: 22px; font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .wallet__time small {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); margin-left: 6px; font-weight: 600;
+  }
+  .wallet__perf {
+    height: 14px; background: var(--ink);
+    position: relative;
+  }
+  .wallet__perf::before, .wallet__perf::after {
+    content: ""; position: absolute; top: 50%;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--ink); transform: translateY(-50%);
+  }
+  .wallet__perf::before { left: -7px; }
+  .wallet__perf::after  { right: -7px; }
+  .wallet__perf-line {
+    position: absolute; left: 16px; right: 16px; top: 50%;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255,255,255,0.32) 50%, transparent 0);
+    background-size: 6px 1px; background-repeat: repeat-x;
+  }
+  .wallet__bot {
+    background: linear-gradient(180deg, #1F252E 0%, #0F141A 100%);
+    color: #fff;
+    padding: 16px 20px 18px;
+  }
+  .wallet__alt-row {
+    display: flex; gap: 8px; margin-bottom: 12px;
+  }
+  .wallet__alt {
+    flex: 1; padding: 10px 8px; text-align: center;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;
+    font-size: 11px; letter-spacing: 0.04em;
+  }
+  .wallet__alt b { display: block; font-size: 13px; margin-top: 2px; font-weight: 600; }
+  .wallet__add {
+    width: 100%;
+    padding: 12px;
+    background: #fff; color: #0F141A;
+    border: 0; border-radius: 8px;
+    font-weight: 600; font-size: 14px; letter-spacing: -0.01em;
+    cursor: pointer;
+  }
+
+  /* =========================================================
+     IDEA 03 — Tesla touchscreen slab
+     ========================================================= */
+  .tesla {
+    width: 520px; max-width: 100%;
+    background: #000;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 26px 28px;
+    color: #fff;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  .tesla__top {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 10px; margin-bottom: 18px;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .tesla__top .tesla-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: #fff; font-weight: 500;
+  }
+  .tesla__top .tesla-status::before {
+    content: ""; width: 7px; height: 7px;
+    background: #6FE38F; border-radius: 50%;
+  }
+  .tesla__bigtime {
+    font-family: "Inter"; font-weight: 200; font-size: 88px;
+    line-height: 0.95; letter-spacing: -0.04em;
+    margin: 4px 0;
+  }
+  .tesla__bigtime span { color: rgba(255,255,255,0.4); }
+  .tesla__bigmeta {
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+  .tesla__bigmeta b { color: #fff; font-weight: 500; }
+  .tesla__row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin-top: 22px;
+  }
+  .tesla__opt {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 4px;
+    padding: 14px 12px;
+    cursor: pointer;
+    transition: background .14s, border-color .14s;
+  }
+  .tesla__opt:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.20); }
+  .tesla__opt--active {
+    background: rgba(255,255,255,0.08); border-color: #fff;
+  }
+  .tesla__opt-day {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 500;
+  }
+  .tesla__opt-time {
+    font-size: 18px; font-weight: 400; letter-spacing: -0.01em;
+    margin-top: 6px;
+  }
+  .tesla__cta {
+    width: 100%; margin-top: 18px;
+    background: #fff; color: #000;
+    border: 0; border-radius: 4px;
+    padding: 14px;
+    font-weight: 500; font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .tesla__cta:hover { background: rgba(255,255,255,0.85); }
+  .tesla__foot {
+    display: flex; justify-content: space-between;
+    margin-top: 14px;
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* =========================================================
+     IDEA 04 — Tesla service-appointment style
+     ========================================================= */
+  .tservice {
+    width: 420px;
+    background: #0E1116;
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .tservice__hd {
+    padding: 20px 22px 14px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .tservice__h1 {
+    font-size: 18px; font-weight: 500; letter-spacing: -0.01em;
+  }
+  .tservice__sub {
+    font-size: 11px; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em; margin-top: 4px;
+  }
+  .tservice__icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.85); font-family: "Fraunces", serif; font-style: italic;
+    font-size: 16px;
+  }
+  .tservice__list { padding: 6px 0; }
+  .tservice__row {
+    padding: 14px 22px;
+    display: grid; grid-template-columns: 60px 1fr auto; align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+    transition: background .14s;
+  }
+  .tservice__row:hover { background: rgba(255,255,255,0.03); }
+  .tservice__row:last-child { border-bottom: 0; }
+  .tservice__day {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .tservice__day b {
+    display: block; font-family: "Inter"; font-weight: 300; font-size: 24px;
+    color: #fff; letter-spacing: -0.02em; margin-top: 2px;
+  }
+  .tservice__time {
+    font-size: 15px; font-weight: 400; letter-spacing: -0.01em;
+  }
+  .tservice__time small {
+    display: block; color: rgba(255,255,255,0.5); font-size: 11px;
+    letter-spacing: 0.04em; margin-top: 2px;
+  }
+  .tservice__chev {
+    color: rgba(255,255,255,0.4); font-size: 18px; font-weight: 300;
+  }
+  .tservice__row--top { background: rgba(255,255,255,0.025); }
+  .tservice__row--top .tservice__time::after {
+    content: "Soonest"; display: inline-block; margin-left: 8px;
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    padding: 2px 7px; border: 1px solid rgba(255,255,255,0.3); border-radius: 3px;
+    color: rgba(255,255,255,0.85); vertical-align: middle;
+  }
+  .tservice__ft {
+    padding: 14px 22px 18px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .tservice__alt {
+    font-size: 12px; color: rgba(255,255,255,0.7);
+  }
+  .tservice__cta {
+    background: transparent; color: #fff;
+    border: 1px solid rgba(255,255,255,0.85);
+    padding: 8px 18px; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+    border-radius: 999px; cursor: pointer;
+  }
+  .tservice__cta:hover { background: #fff; color: #000; }
+
+  /* =========================================================
+     IDEA 05 — Lucid concept-cluster (horizontal tickertape)
+     ========================================================= */
+  .lucid {
+    width: 720px; max-width: 100%;
+    background: linear-gradient(180deg, #14181D 0%, #0A0D11 100%);
+    border-radius: 4px;
+    padding: 28px 32px 26px;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    border: 1px solid rgba(215,199,161,0.14);
+    position: relative;
+  }
+  .lucid::before {
+    content: ""; position: absolute; left: 32px; right: 32px; top: 60px;
+    height: 1px; background: linear-gradient(to right,
+      transparent 0,
+      rgba(215,199,161,0.08) 6%,
+      rgba(215,199,161,0.45) 50%,
+      rgba(215,199,161,0.08) 94%,
+      transparent 100%);
+  }
+  .lucid__top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 22px;
+  }
+  .lucid__eyebrow {
+    font-size: 10px; letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--lucid-champagne); font-weight: 400;
+  }
+  .lucid__title {
+    font-family: "Fraunces", serif; font-weight: 200;
+    font-size: 22px; letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.95);
+  }
+  .lucid__title em {
+    font-style: italic; color: var(--lucid-champagne);
+  }
+  .lucid__rail {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    margin-top: 22px; position: relative;
+  }
+  .lucid__node {
+    text-align: center; padding: 18px 8px 4px;
+    position: relative; cursor: pointer;
+  }
+  .lucid__node + .lucid__node {
+    border-left: 1px solid rgba(215,199,161,0.14);
+  }
+  .lucid__node::before {
+    content: ""; position: absolute; top: -6px; left: 50%;
+    transform: translateX(-50%);
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #0A0D11;
+    border: 1px solid var(--lucid-champagne);
+  }
+  .lucid__node--live::before {
+    background: var(--lucid-champagne);
+    box-shadow: 0 0 0 4px rgba(215,199,161,0.18);
+  }
+  .lucid__day {
+    font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(215,199,161,0.7); font-weight: 400;
+  }
+  .lucid__time {
+    font-family: "Inter"; font-weight: 200; font-size: 38px;
+    letter-spacing: -0.03em; margin: 6px 0 4px;
+    color: #fff;
+  }
+  .lucid__time .colon { color: rgba(255,255,255,0.4); }
+  .lucid__zone {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .lucid__bot {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(215,199,161,0.14);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .lucid__bot a {
+    color: var(--lucid-champagne); text-decoration: none;
+    font-family: "Fraunces", serif; font-style: italic;
+    text-transform: none; letter-spacing: 0; font-size: 13px;
+  }
+
+  /* =========================================================
+     IDEA 06 — Lucid Air interior (champagne, glass blades)
+     ========================================================= */
+  .air {
+    width: 460px;
+    background: radial-gradient(ellipse at 50% 0%, #1B1F25 0%, #0B0F14 70%);
+    border-radius: 3px;
+    padding: 36px 32px 28px;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    border: 1px solid rgba(215,199,161,0.10);
+    position: relative;
+  }
+  .air__monogram {
+    width: 56px; height: 56px;
+    margin: 0 auto 18px;
+    border: 1px solid rgba(215,199,161,0.55); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Fraunces", serif; font-weight: 300; font-style: italic;
+    font-size: 26px; color: var(--lucid-champagne);
+    letter-spacing: -0.02em;
+  }
+  .air__center {
+    text-align: center; margin-bottom: 24px;
+  }
+  .air__title {
+    font-family: "Fraunces", serif; font-weight: 200; font-size: 20px;
+    color: rgba(255,255,255,0.9); margin-bottom: 6px;
+  }
+  .air__title em { font-style: italic; color: var(--lucid-champagne); }
+  .air__sub {
+    font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); font-weight: 400;
+  }
+  .air__blades {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: rgba(215,199,161,0.18);
+    border: 1px solid rgba(215,199,161,0.18);
+  }
+  .air__blade {
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.025) 0%,
+      rgba(255,255,255,0) 100%);
+    padding: 22px 12px; text-align: center;
+    cursor: pointer; transition: background .18s;
+  }
+  .air__blade:hover {
+    background: linear-gradient(180deg,
+      rgba(215,199,161,0.10) 0%,
+      rgba(215,199,161,0.02) 100%);
+  }
+  .air__blade-day {
+    font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(215,199,161,0.78);
+  }
+  .air__blade-time {
+    font-family: "Inter"; font-weight: 200; font-size: 28px;
+    letter-spacing: -0.02em; margin: 8px 0 2px; color: #fff;
+  }
+  .air__blade-zone {
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+  }
+  .air__foot {
+    display: flex; justify-content: center; gap: 18px;
+    margin-top: 22px;
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .air__foot span { color: var(--lucid-champagne); }
+
+  /* =========================================================
+     IDEA 07 — Adobe Creative Cloud panel
+     ========================================================= */
+  .adobe-cc {
+    width: 380px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    color: #1A1A1A;
+    font-family: "Inter", sans-serif;
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.55);
+    overflow: hidden;
+  }
+  .adobe-cc__hd {
+    padding: 16px 20px;
+    background: #F5F5F5;
+    border-bottom: 1px solid #E5E5E5;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .adobe-cc__hd-l {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .adobe-cc__logo {
+    width: 24px; height: 24px; border-radius: 4px;
+    background: var(--adobe-red);
+    color: #fff; font-weight: 700; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Inter";
+  }
+  .adobe-cc__h1 { font-size: 14px; font-weight: 600; }
+  .adobe-cc__close {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #E5E5E5; color: #6B6B6B; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .adobe-cc__body { padding: 18px 20px 14px; }
+  .adobe-cc__title {
+    font-size: 16px; font-weight: 600; margin-bottom: 2px;
+  }
+  .adobe-cc__sub {
+    font-size: 12px; color: #6B6B6B; margin-bottom: 16px;
+  }
+  .adobe-cc__row {
+    display: grid; grid-template-columns: auto 1fr auto auto; gap: 12px;
+    align-items: center;
+    padding: 10px 0; border-top: 1px solid #EEE;
+    cursor: pointer;
+  }
+  .adobe-cc__row:hover { background: #FAFAFA; margin: 0 -8px; padding: 10px 8px; border-radius: 4px; }
+  .adobe-cc__row:last-of-type { border-bottom: 1px solid #EEE; }
+  .adobe-cc__swatch {
+    width: 4px; height: 28px; border-radius: 2px;
+    background: var(--adobe-blue);
+  }
+  .adobe-cc__row:nth-of-type(2) .adobe-cc__swatch { background: var(--adobe-pink); }
+  .adobe-cc__row:nth-of-type(3) .adobe-cc__swatch { background: #FFB400; }
+  .adobe-cc__rdate {
+    font-size: 13px; font-weight: 500;
+  }
+  .adobe-cc__rdate small {
+    display: block; color: #6B6B6B; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.02em; margin-top: 1px;
+  }
+  .adobe-cc__rtime {
+    font-family: "JetBrains Mono", monospace; font-size: 13px;
+    color: #1A1A1A;
+  }
+  .adobe-cc__kbd {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; padding: 2px 6px;
+    background: #F0F0F0; border: 1px solid #DADADA;
+    border-radius: 3px; color: #5A5A5A;
+  }
+  .adobe-cc__ft {
+    margin-top: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: #6B6B6B;
+  }
+  .adobe-cc__ft a {
+    color: var(--adobe-blue); text-decoration: none; font-weight: 500;
+  }
+
+  /* =========================================================
+     IDEA 08 — Adobe XD / Spectrum dock (split month + slots)
+     ========================================================= */
+  .xd {
+    width: 640px; max-width: 100%;
+    background: #1E1E1E;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    color: #E6E6E6;
+    font-family: "Inter", sans-serif;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .xd__pane { background: #1E1E1E; padding: 18px 18px; }
+  .xd__pane-h {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .xd__pane-h .xd__nav {
+    display: inline-flex; gap: 4px;
+  }
+  .xd__pane-h .xd__nav span {
+    width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.06); border-radius: 3px;
+    font-size: 12px; cursor: pointer;
+  }
+  .xd__pane-h .xd__nav span:hover { background: rgba(255,255,255,0.12); }
+  .xd__grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+  }
+  .xd__dow {
+    font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); text-align: center; padding: 4px 0;
+  }
+  .xd__cell {
+    aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: rgba(255,255,255,0.7);
+    border-radius: 3px; cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .xd__cell:hover { background: rgba(255,255,255,0.06); }
+  .xd__cell--mute { color: rgba(255,255,255,0.18); }
+  .xd__cell--avail { color: var(--gold); }
+  .xd__cell--avail::after {
+    content: ""; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--gold); position: absolute; margin-top: 22px;
+  }
+  .xd__cell--sel {
+    background: var(--gold); color: #0B0F14; font-weight: 600;
+  }
+  .xd__slots { display: flex; flex-direction: column; gap: 6px; }
+  .xd__slot {
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+    padding: 11px 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .xd__slot:hover { background: rgba(255,255,255,0.07); border-color: var(--gold); }
+  .xd__slot-time {
+    font-family: "JetBrains Mono", monospace; font-size: 14px;
+    color: #fff;
+  }
+  .xd__slot-meta {
+    font-size: 10px; color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+    display: block;
+  }
+  .xd__slot-kbd {
+    font-family: "JetBrains Mono", monospace; font-size: 10px;
+    padding: 3px 7px; background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 3px;
+    color: rgba(255,255,255,0.7);
+  }
+  .xd__slot--sel { border-color: var(--gold); background: rgba(201,168,106,0.10); }
+
+  /* =========================================================
+     IDEA 09 — Apple × Lucid dial (clock-face picker)
+     ========================================================= */
+  .dial {
+    width: 380px;
+    background: rgba(11,15,20,0.72);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: 22px;
+    padding: 28px 28px 24px;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    border: 1px solid rgba(215,199,161,0.14);
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.6);
+  }
+  .dial__hd {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .dial__title {
+    font-family: "Fraunces", serif; font-weight: 300; font-size: 18px;
+    color: rgba(255,255,255,0.92);
+  }
+  .dial__title em { font-style: italic; color: var(--lucid-champagne); }
+  .dial__day {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .dial__face {
+    position: relative;
+    width: 240px; height: 240px;
+    margin: 8px auto 6px;
+    border: 1px solid rgba(215,199,161,0.20);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .dial__face::before {
+    content: ""; position: absolute; inset: 12px;
+    border: 1px dashed rgba(215,199,161,0.10);
+    border-radius: 50%;
+  }
+  .dial__center {
+    text-align: center;
+  }
+  .dial__center .ct {
+    font-family: "Inter"; font-weight: 200; font-size: 48px;
+    letter-spacing: -0.03em; line-height: 1;
+  }
+  .dial__center .cz {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-top: 6px;
+  }
+  .dial__hand {
+    position: absolute; left: 50%; top: 50%;
+    width: 1px; height: 90px;
+    background: var(--lucid-champagne);
+    transform-origin: top center;
+    transform: translate(-50%, 0) rotate(140deg);
+  }
+  .dial__hand::after {
+    content: ""; position: absolute; bottom: -4px; left: 50%;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--lucid-champagne);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px rgba(215,199,161,0.18);
+  }
+  .dial__pip {
+    position: absolute;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(215,199,161,0.55);
+  }
+  .dial__pip--09 { left: 50%; top: 18px; transform: translateX(-50%); }
+  .dial__pip--11 { right: 36px; top: 84px; }
+  .dial__pip--14 { left: 36px; top: 152px; background: var(--lucid-champagne); box-shadow: 0 0 0 4px rgba(215,199,161,0.22); }
+  .dial__pip-lbl {
+    position: absolute;
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    white-space: nowrap;
+  }
+  .dial__pip-lbl--09 { left: 50%; top: -16px; transform: translateX(-50%); }
+  .dial__pip-lbl--11 { right: -34px; top: 80px; }
+  .dial__pip-lbl--14 { left: -36px; top: 148px; color: var(--lucid-champagne); font-weight: 600; }
+  .dial__row {
+    display: flex; justify-content: center; gap: 6px;
+    margin-top: 14px;
+  }
+  .dial__pill {
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 999px;
+    font-size: 11px; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.85);
+    cursor: pointer;
+  }
+  .dial__pill--sel {
+    background: var(--lucid-champagne); color: #0B0F14;
+    border-color: var(--lucid-champagne); font-weight: 600;
+  }
+  .dial__cta {
+    width: 100%; margin-top: 14px;
+    padding: 12px;
+    background: #fff; color: #000;
+    border: 0; border-radius: 10px;
+    font-weight: 500; font-size: 13px; letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+
+  /* =========================================================
+     IDEA 10 — Tesla × Adobe split (calendar grid + slot rail)
+     ========================================================= */
+  .split {
+    width: 680px; max-width: 100%;
+    background: #0A0D11;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    display: grid; grid-template-columns: 280px 1fr;
+    overflow: hidden;
+  }
+  .split__cal {
+    background: #11151B; padding: 22px 22px 18px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .split__cal-h {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+  .split__cal-month {
+    font-family: "Fraunces", serif; font-style: italic; font-weight: 300;
+    font-size: 18px; color: var(--gold-soft);
+  }
+  .split__cal-nav {
+    display: inline-flex; gap: 6px;
+  }
+  .split__cal-nav span {
+    width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 50%;
+    font-size: 10px; color: rgba(255,255,255,0.6); cursor: pointer;
+  }
+  .split__cal-nav span:hover { background: rgba(255,255,255,0.06); }
+  .split__cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+  }
+  .split__dow {
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); text-align: center;
+    padding: 4px 0 6px;
+  }
+  .split__cell {
+    aspect-ratio: 1/1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: rgba(255,255,255,0.62);
+    border-radius: 3px; cursor: pointer;
+    position: relative;
+  }
+  .split__cell:hover { background: rgba(255,255,255,0.05); }
+  .split__cell--mute { color: rgba(255,255,255,0.16); }
+  .split__cell--avail::after {
+    content: ""; position: absolute; bottom: 4px;
+    width: 3px; height: 3px; border-radius: 50%; background: var(--gold);
+  }
+  .split__cell--sel {
+    background: #fff; color: #000; font-weight: 700;
+  }
+  .split__cell--sel::after { background: #000; }
+  .split__rail { padding: 22px 22px 18px; }
+  .split__rail-h {
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-bottom: 4px;
+  }
+  .split__rail-day {
+    font-family: "Fraunces", serif; font-weight: 300; font-size: 22px;
+    color: #fff; margin-bottom: 14px;
+  }
+  .split__rail-day em { font-style: italic; color: var(--gold-soft); }
+  .split__rail-list {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .split__rail-row {
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 12px; align-items: center;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .split__rail-row:hover { border-color: rgba(255,255,255,0.30); }
+  .split__rail-row--booked {
+    opacity: 0.45; cursor: not-allowed;
+  }
+  .split__rail-time {
+    font-family: "JetBrains Mono", monospace; font-size: 13px;
+    color: #fff; letter-spacing: 0;
+  }
+  .split__rail-meta {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .split__rail-tag {
+    font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 999px;
+    background: rgba(201,168,106,0.16); color: var(--gold-soft);
+    border: 1px solid rgba(201,168,106,0.32);
+  }
+  .split__rail-tag--off {
+    background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.4);
+    border-color: rgba(255,255,255,0.10);
+  }
+  .split__rail-foot {
+    display: flex; justify-content: space-between;
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .split__rail-foot a {
+    color: var(--gold-soft); text-decoration: none;
+    font-family: "Fraunces", serif; font-style: italic;
+    text-transform: none; letter-spacing: 0; font-size: 12px;
+  }
+
+  /* nav strip at top of page */
+  .toc {
+    margin: 28px 0 6px; padding: 14px 16px;
+    background: var(--cream);
+    border: 1px solid var(--hairline); border-radius: 4px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 28px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--gold-deep); }
+  .toc a b { font-family: "Fraunces", serif; font-weight: 500; color: var(--gold-deep); margin-right: 8px; }
+
+  @media (max-width: 720px) {
+    .stage { padding: 24px 12px; }
+    .tesla, .lucid, .xd, .split { width: 100% !important; }
+    .toc { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="intro">
+  <div class="eyebrow">Sketches · Calendar · BriefPanel.jsx</div>
+  <h1>Ten redesigns of the <em>"Pick a 30-minute slot"</em> calendar.</h1>
+  <p class="lede">
+    Brief: rethink the booking card on the program page (<code>src/components/BriefPanel.jsx</code>),
+    drawing on visual languages that get scheduling right — Apple's calendar surfaces, Tesla's
+    in-vehicle UI, Lucid's interior-cluster restraint, Adobe's professional dock panels.
+    Each idea below is a live HTML/CSS render sitting on the same dark hero ground the
+    component lives on today, so we can compare without leaving the page.
+  </p>
+  <div class="baseline">
+    <strong>Today.</strong> Cream card on dark hero. Eyebrow / serif title / three uniform
+    slot rows / serif italic alt-link / hairline rule / uppercase microcopy. Reads like a
+    private memo. The redesigns aim to keep that editorial register while borrowing the
+    interaction patterns of these four product families.
+  </div>
+
+  <div class="baseline-stage">
+    <div class="current-cal">
+      <div class="current-cal__eyebrow">Next available with Filip</div>
+      <div class="current-cal__title">Pick a 30-minute slot.</div>
+      <div class="current-cal__slot">
+        <span class="day">Tue · 5 May</span>
+        <span class="time">14:00 CET</span>
+        <span class="arrow">→</span>
+      </div>
+      <div class="current-cal__slot">
+        <span class="day">Wed · 6 May</span>
+        <span class="time">09:30 CET</span>
+        <span class="arrow">→</span>
+      </div>
+      <div class="current-cal__slot">
+        <span class="day">Thu · 7 May</span>
+        <span class="time">11:00 CET</span>
+        <span class="arrow">→</span>
+      </div>
+      <div class="current-cal__alt">Or pick another time →</div>
+      <div class="current-cal__rule"></div>
+      <div class="current-cal__micro">NDA-FIRST · 30-MIN PRIVATE CALL · NO MARKETING</div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <a href="#i1"><b>01</b>Apple Stocks — frosted card, weekday chips</a>
+    <a href="#i2"><b>02</b>Apple Wallet — perforated boarding-pass stub</a>
+    <a href="#i3"><b>03</b>Tesla touchscreen — slab, oversized time</a>
+    <a href="#i4"><b>04</b>Tesla service — appointment list with status</a>
+    <a href="#i5"><b>05</b>Lucid cluster — horizontal hairline rail</a>
+    <a href="#i6"><b>06</b>Lucid Air interior — champagne glass blades</a>
+    <a href="#i7"><b>07</b>Adobe CC — panel with swatches and shortcuts</a>
+    <a href="#i8"><b>08</b>Adobe XD — split month grid + slot dock</a>
+    <a href="#i9"><b>09</b>Apple × Lucid — clock-face dial picker</a>
+    <a href="#i10"><b>10</b>Tesla × Adobe — month + day-rail split panel</a>
+  </div>
+</header>
+
+<div class="ideas">
+
+<!-- ============================ IDEA 01 ============================ -->
+<section class="idea" id="i1">
+  <div class="idea__num">Idea 01</div>
+  <h2>Apple Stocks — <em>frosted card, weekday chips.</em></h2>
+  <div class="idea__source">Inspired by <span>Apple — Stocks / Calendar widget</span></div>
+  <p class="idea__why">
+    The iOS Stocks widget reads as a quiet, pre-rendered surface — frosted background,
+    confident sans, soft chips you can tap without ceremony. Repurpose that for booking:
+    each row is a weekday, the times for that day sit as three pill chips, the soonest
+    is filled solid. A single tap selects, no second screen.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> we drop the serif title in favour of SF-style sans, and
+    we let the visitor see <em>more</em> options at a glance (3 days × 3 times = 9 slots)
+    without making the card taller — chips are denser than rows.
+  </div>
+  <div class="stage">
+    <div class="apple-stocks">
+      <div class="apple-stocks__head">
+        <div class="apple-stocks__title">Filip Z.</div>
+        <div class="apple-stocks__live">Live · CET</div>
+      </div>
+      <div class="apple-stocks__sub">30-minute private call · NDA-first</div>
+
+      <div class="apple-stocks__day">
+        <span><b>Tuesday</b> · 5 May</span><span>3 open</span>
+      </div>
+      <div class="apple-stocks__chips">
+        <div class="apple-stocks__chip apple-stocks__chip--primary">14:00</div>
+        <div class="apple-stocks__chip">15:30</div>
+        <div class="apple-stocks__chip">17:00</div>
+      </div>
+
+      <div class="apple-stocks__day">
+        <span><b>Wednesday</b> · 6 May</span><span>2 open</span>
+      </div>
+      <div class="apple-stocks__chips">
+        <div class="apple-stocks__chip">09:30</div>
+        <div class="apple-stocks__chip">12:00</div>
+      </div>
+
+      <div class="apple-stocks__day">
+        <span><b>Thursday</b> · 7 May</span><span>3 open</span>
+      </div>
+      <div class="apple-stocks__chips">
+        <div class="apple-stocks__chip">11:00</div>
+        <div class="apple-stocks__chip">14:30</div>
+        <div class="apple-stocks__chip">16:00</div>
+      </div>
+
+      <div class="apple-stocks__more">
+        <span>See all available times</span>
+        <span>→</span>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Apple Stocks</strong> · frosted glass · chip-per-time · primary slot solid black</div>
+</section>
+
+<!-- ============================ IDEA 02 ============================ -->
+<section class="idea" id="i2">
+  <div class="idea__num">Idea 02</div>
+  <h2>Apple Wallet — <em>a perforated booking pass.</em></h2>
+  <div class="idea__source">Inspired by <span>Apple — Wallet / boarding pass</span></div>
+  <p class="idea__why">
+    Wallet treats a single piece of information — a boarding time, a coffee balance — as
+    something almost ceremonial. Use the same metaphor for the next slot: top stub
+    shows the date in big serif numerals, perforated rule, bottom stub holds the actual
+    time and an "Add to Apple Wallet"-feeling primary action. Two further options sit as
+    secondary chips in the lower stub.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> commits to a single recommended time instead of three
+    equal-weight rows. Better for "I'll trust your scheduling" visitors; worse for
+    visitors who want to compare. The two micro-alternates partly hedge that.
+  </div>
+  <div class="stage">
+    <div class="wallet">
+      <div class="wallet__top">
+        <div class="wallet__brand">
+          <span><b>MOBIUS</b> · NDA-FIRST CALL</span>
+          <span>30 MIN</span>
+        </div>
+        <div class="wallet__date-row">
+          <div class="wallet__day-num">05</div>
+          <div class="wallet__day-meta">
+            Tuesday<br/><b>May 2026</b><br/>Warsaw · CET
+          </div>
+        </div>
+        <div class="wallet__time">14:00 <small>CET</small></div>
+      </div>
+      <div class="wallet__perf"><div class="wallet__perf-line"></div></div>
+      <div class="wallet__bot">
+        <div class="wallet__alt-row">
+          <div class="wallet__alt">Wed 6 <b>09:30</b></div>
+          <div class="wallet__alt">Thu 7 <b>11:00</b></div>
+        </div>
+        <button class="wallet__add">Reserve this slot →</button>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Apple Wallet</strong> · top stub date · perforated rule · primary CTA holds the bottom stub</div>
+</section>
+
+<!-- ============================ IDEA 03 ============================ -->
+<section class="idea" id="i3">
+  <div class="idea__num">Idea 03</div>
+  <h2>Tesla touchscreen — <em>slab, oversized time, single CTA.</em></h2>
+  <div class="idea__source">Inspired by <span>Tesla — vehicle UI (charging / nav)</span></div>
+  <p class="idea__why">
+    Tesla's centre console reduces every interaction to a hierarchy: one giant primary
+    state, three or four neighbour states, one CTA. The booking parallel is obvious —
+    show the soonest slot at car-charger scale, three alternates as small slabs, and a
+    single full-width "Reserve" button. Pure black, no decoration, no serifs.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> abandons the editorial cream card entirely. Instead the
+    booking surface looks like a piece of professional software running inside the
+    private memo — a deliberate genre clash that says "this is the working part of the
+    page."
+  </div>
+  <div class="stage">
+    <div class="tesla">
+      <div class="tesla__top">
+        <span>Next Private Call · Filip Z.</span>
+        <span class="tesla-status">Available</span>
+      </div>
+      <div class="tesla__bigtime">14<span>:</span>00</div>
+      <div class="tesla__bigmeta"><b>Tuesday · 5 May</b> · CET · 30 min</div>
+
+      <div class="tesla__row">
+        <div class="tesla__opt tesla__opt--active">
+          <div class="tesla__opt-day">Tue · 5 May</div>
+          <div class="tesla__opt-time">14:00</div>
+        </div>
+        <div class="tesla__opt">
+          <div class="tesla__opt-day">Wed · 6 May</div>
+          <div class="tesla__opt-time">09:30</div>
+        </div>
+        <div class="tesla__opt">
+          <div class="tesla__opt-day">Thu · 7 May</div>
+          <div class="tesla__opt-time">11:00</div>
+        </div>
+      </div>
+      <button class="tesla__cta">Reserve · 14:00 CET</button>
+      <div class="tesla__foot">
+        <span>NDA-first · No marketing</span>
+        <span>Pick another time →</span>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Tesla touchscreen</strong> · 88px display time · three slab tiles · single white CTA</div>
+</section>
+
+<!-- ============================ IDEA 04 ============================ -->
+<section class="idea" id="i4">
+  <div class="idea__num">Idea 04</div>
+  <h2>Tesla service — <em>appointment list with a "soonest" tag.</em></h2>
+  <div class="idea__source">Inspired by <span>Tesla — Service appointment / Mobile app</span></div>
+  <p class="idea__why">
+    Tesla's service-appointment screen and the "Schedule Service" flow lean on a
+    monogram circle, a tight three-row appointment list, a faint outline CTA. Adapt
+    that exactly: monogram of the host, a row per slot with day numerals on the left
+    and a "Soonest" tag on the top row, alternates secondary, primary CTA as a
+    pill outline.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> introduces a personal anchor (Filip's monogram) the
+    current card lacks. The "Soonest" tag also explicitly ranks the slots, which
+    today's card avoids — that's a stance to test against the editorial register.
+  </div>
+  <div class="stage">
+    <div class="tservice">
+      <div class="tservice__hd">
+        <div>
+          <div class="tservice__h1">Schedule a private call</div>
+          <div class="tservice__sub">With Filip Z. · 30 min · CET (Warsaw)</div>
+        </div>
+        <div class="tservice__icon">F</div>
+      </div>
+      <div class="tservice__list">
+        <div class="tservice__row tservice__row--top">
+          <div class="tservice__day">Tue<b>05</b></div>
+          <div class="tservice__time">14:00 <small>CET · in 1 day</small></div>
+          <div class="tservice__chev">›</div>
+        </div>
+        <div class="tservice__row">
+          <div class="tservice__day">Wed<b>06</b></div>
+          <div class="tservice__time">09:30 <small>CET · in 2 days</small></div>
+          <div class="tservice__chev">›</div>
+        </div>
+        <div class="tservice__row">
+          <div class="tservice__day">Thu<b>07</b></div>
+          <div class="tservice__time">11:00 <small>CET · in 3 days</small></div>
+          <div class="tservice__chev">›</div>
+        </div>
+      </div>
+      <div class="tservice__ft">
+        <span class="tservice__alt">Or pick another time</span>
+        <button class="tservice__cta">Continue</button>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Tesla service</strong> · monogram · three rows with day-stack numerals · pill-outline CTA</div>
+</section>
+
+<!-- ============================ IDEA 05 ============================ -->
+<section class="idea" id="i5">
+  <div class="idea__num">Idea 05</div>
+  <h2>Lucid cluster — <em>three nodes on a horizontal hairline.</em></h2>
+  <div class="idea__source">Inspired by <span>Lucid Motors — Glass Cockpit / dashboard cluster</span></div>
+  <p class="idea__why">
+    Lucid's dashboard arranges status across one continuous hairline rail with floating
+    nodes — speed, charge, drive mode all read as points on a single horizon. Build the
+    booker the same way: three slots become three pips on a champagne hairline, ultra-thin
+    numerals at 38px, the soonest pip glowing. Wider format than the current card.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> rotates the layout from vertical stack to horizontal rail.
+    Better fit on desktop hero with width to spare; needs a separate stacked treatment on
+    mobile. Reads as instrumentation more than as memo, which is a deliberate signal of
+    precision.
+  </div>
+  <div class="stage stage--wide">
+    <div class="lucid">
+      <div class="lucid__top">
+        <div class="lucid__eyebrow">Next available · Filip Z.</div>
+        <div class="lucid__title">Pick a <em>30-minute</em> slot.</div>
+      </div>
+      <div class="lucid__rail">
+        <div class="lucid__node lucid__node--live">
+          <div class="lucid__day">Tue · 5 May</div>
+          <div class="lucid__time">14<span class="colon">:</span>00</div>
+          <div class="lucid__zone">CET · Warsaw</div>
+        </div>
+        <div class="lucid__node">
+          <div class="lucid__day">Wed · 6 May</div>
+          <div class="lucid__time">09<span class="colon">:</span>30</div>
+          <div class="lucid__zone">CET · Warsaw</div>
+        </div>
+        <div class="lucid__node">
+          <div class="lucid__day">Thu · 7 May</div>
+          <div class="lucid__time">11<span class="colon">:</span>00</div>
+          <div class="lucid__zone">CET · Warsaw</div>
+        </div>
+      </div>
+      <div class="lucid__bot">
+        <span>NDA-first · 30-min · No marketing</span>
+        <a href="#">Or pick another time →</a>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Lucid cluster</strong> · horizontal hairline · three pips on a champagne rail · weight-200 numerals</div>
+</section>
+
+<!-- ============================ IDEA 06 ============================ -->
+<section class="idea" id="i6">
+  <div class="idea__num">Idea 06</div>
+  <h2>Lucid Air interior — <em>champagne monogram + glass blades.</em></h2>
+  <div class="idea__source">Inspired by <span>Lucid Motors — Air cabin interior</span></div>
+  <p class="idea__why">
+    The Lucid Air cabin is composed of vertical glass blades, a champagne palette and a
+    central focal point. Translate to a booker: monogram of the host at the top, three
+    glass-blade slot panels below, hairline gold separators between blades, no
+    backgrounds — only a soft dome glow at the top. Reads as cabin instrumentation
+    more than as a form.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> centres everything (today is left-aligned), and trades
+    "card on dark" for "instrument cluster on dark" — the booker stops looking like a
+    document and starts looking like a piece of equipment.
+  </div>
+  <div class="stage">
+    <div class="air">
+      <div class="air__monogram">F</div>
+      <div class="air__center">
+        <div class="air__title">A <em>30-minute</em> private call.</div>
+        <div class="air__sub">Next three openings · CET</div>
+      </div>
+      <div class="air__blades">
+        <div class="air__blade">
+          <div class="air__blade-day">Tue · 5</div>
+          <div class="air__blade-time">14:00</div>
+          <div class="air__blade-zone">CET</div>
+        </div>
+        <div class="air__blade">
+          <div class="air__blade-day">Wed · 6</div>
+          <div class="air__blade-time">09:30</div>
+          <div class="air__blade-zone">CET</div>
+        </div>
+        <div class="air__blade">
+          <div class="air__blade-day">Thu · 7</div>
+          <div class="air__blade-time">11:00</div>
+          <div class="air__blade-zone">CET</div>
+        </div>
+      </div>
+      <div class="air__foot">
+        <span>NDA-first</span>·<span>30-min</span>·<span>No marketing</span>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Lucid Air interior</strong> · centred · monogram dome · three glass blades on champagne</div>
+</section>
+
+<!-- ============================ IDEA 07 ============================ -->
+<section class="idea" id="i7">
+  <div class="idea__num">Idea 07</div>
+  <h2>Adobe Creative Cloud — <em>panel with swatches and shortcuts.</em></h2>
+  <div class="idea__source">Inspired by <span>Adobe — Creative Cloud panels / Spectrum</span></div>
+  <p class="idea__why">
+    Adobe panels speak to professionals: a header with a brand square, a tight title row,
+    a list of items with thin colour-swatch indicators on the left, monospace for any
+    technical value, and keyboard shortcuts visible on every row. Reframe each booking
+    slot as an item in that list — colour swatch by urgency, JetBrains Mono time, ⌥1/⌥2/⌥3
+    accelerators on hover.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> shifts genre from "editorial memo" to "professional tool."
+    Useful if Mobius wants to feel operational rather than advisory; risky if the rest of
+    the program page is leaning hard into the dossier voice.
+  </div>
+  <div class="stage" style="background: linear-gradient(180deg, #1A1A1A 0%, #0E0E0E 100%);">
+    <div class="adobe-cc">
+      <div class="adobe-cc__hd">
+        <div class="adobe-cc__hd-l">
+          <div class="adobe-cc__logo">M</div>
+          <div class="adobe-cc__h1">Schedule · Filip Z.</div>
+        </div>
+        <div class="adobe-cc__close">×</div>
+      </div>
+      <div class="adobe-cc__body">
+        <div class="adobe-cc__title">Next 30-min openings</div>
+        <div class="adobe-cc__sub">CET · NDA-first · private call</div>
+
+        <div class="adobe-cc__row">
+          <div class="adobe-cc__swatch"></div>
+          <div class="adobe-cc__rdate">Tuesday <small>5 May · soonest</small></div>
+          <div class="adobe-cc__rtime">14:00</div>
+          <div class="adobe-cc__kbd">⌥1</div>
+        </div>
+        <div class="adobe-cc__row">
+          <div class="adobe-cc__swatch"></div>
+          <div class="adobe-cc__rdate">Wednesday <small>6 May</small></div>
+          <div class="adobe-cc__rtime">09:30</div>
+          <div class="adobe-cc__kbd">⌥2</div>
+        </div>
+        <div class="adobe-cc__row">
+          <div class="adobe-cc__swatch"></div>
+          <div class="adobe-cc__rdate">Thursday <small>7 May</small></div>
+          <div class="adobe-cc__rtime">11:00</div>
+          <div class="adobe-cc__kbd">⌥3</div>
+        </div>
+
+        <div class="adobe-cc__ft">
+          <span>30-min · CET</span>
+          <a href="#">Pick another time →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Adobe CC panel</strong> · brand square · per-row swatch · monospace times · ⌥1/⌥2/⌥3 shortcuts</div>
+</section>
+
+<!-- ============================ IDEA 08 ============================ -->
+<section class="idea" id="i8">
+  <div class="idea__num">Idea 08</div>
+  <h2>Adobe XD — <em>split month grid + slot dock.</em></h2>
+  <div class="idea__source">Inspired by <span>Adobe — XD / After Effects panel docks</span></div>
+  <p class="idea__why">
+    XD's panel docks pair a navigator on one side and a list on the other, separated by a
+    thin gridline. For booking: left pane is a small month grid (only weekdays with
+    available slots are coloured), right pane is the day's three time slots — each with a
+    monospace time and a kbd shortcut. Visitors who want to compare days do it on the
+    left; visitors who want to book do it on the right.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> dramatically expands surface area — this is a panel, not a
+    pull-quote. Probably too heavy for the program-page hero, but well-fitted to a
+    dedicated <code>/book</code> route or a click-through state from the lighter cards.
+  </div>
+  <div class="stage stage--wide">
+    <div class="xd">
+      <div class="xd__pane">
+        <div class="xd__pane-h">
+          <span>May 2026</span>
+          <span class="xd__nav"><span>‹</span><span>›</span></span>
+        </div>
+        <div class="xd__grid">
+          <div class="xd__dow">M</div><div class="xd__dow">T</div><div class="xd__dow">W</div>
+          <div class="xd__dow">T</div><div class="xd__dow">F</div><div class="xd__dow">S</div><div class="xd__dow">S</div>
+          <div class="xd__cell xd__cell--mute">28</div><div class="xd__cell xd__cell--mute">29</div>
+          <div class="xd__cell xd__cell--mute">30</div><div class="xd__cell">1</div>
+          <div class="xd__cell">2</div><div class="xd__cell xd__cell--mute">3</div><div class="xd__cell xd__cell--mute">4</div>
+          <div class="xd__cell xd__cell--avail">5</div><div class="xd__cell xd__cell--sel">6</div>
+          <div class="xd__cell xd__cell--avail">7</div><div class="xd__cell xd__cell--avail">8</div>
+          <div class="xd__cell xd__cell--avail">9</div><div class="xd__cell xd__cell--mute">10</div><div class="xd__cell xd__cell--mute">11</div>
+          <div class="xd__cell">12</div><div class="xd__cell xd__cell--avail">13</div>
+          <div class="xd__cell xd__cell--avail">14</div><div class="xd__cell">15</div>
+          <div class="xd__cell xd__cell--avail">16</div><div class="xd__cell xd__cell--mute">17</div><div class="xd__cell xd__cell--mute">18</div>
+          <div class="xd__cell xd__cell--avail">19</div><div class="xd__cell">20</div>
+          <div class="xd__cell xd__cell--avail">21</div><div class="xd__cell">22</div>
+          <div class="xd__cell">23</div><div class="xd__cell xd__cell--mute">24</div><div class="xd__cell xd__cell--mute">25</div>
+        </div>
+      </div>
+      <div class="xd__pane">
+        <div class="xd__pane-h">
+          <span>Wed · 6 May</span>
+          <span style="color: var(--gold);">3 OPEN</span>
+        </div>
+        <div class="xd__slots">
+          <div class="xd__slot xd__slot--sel">
+            <div>
+              <div class="xd__slot-time">09:30 CET</div>
+              <span class="xd__slot-meta">30 min · NDA-first · with Filip</span>
+            </div>
+            <div class="xd__slot-kbd">⌥1</div>
+          </div>
+          <div class="xd__slot">
+            <div>
+              <div class="xd__slot-time">12:00 CET</div>
+              <span class="xd__slot-meta">30 min · NDA-first · with Filip</span>
+            </div>
+            <div class="xd__slot-kbd">⌥2</div>
+          </div>
+          <div class="xd__slot">
+            <div>
+              <div class="xd__slot-time">15:30 CET</div>
+              <span class="xd__slot-meta">30 min · NDA-first · with Filip</span>
+            </div>
+            <div class="xd__slot-kbd">⌥3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Adobe XD dock</strong> · left = month with available-day pips · right = day's slot list</div>
+</section>
+
+<!-- ============================ IDEA 09 ============================ -->
+<section class="idea" id="i9">
+  <div class="idea__num">Idea 09</div>
+  <h2>Apple × Lucid — <em>clock-face dial picker.</em></h2>
+  <div class="idea__source">Inspired by <span>Apple — Watch faces · Lucid — instrument dials</span></div>
+  <p class="idea__why">
+    A literal clock face. The dial shows three pips at 09:30, 11:00 and 14:00, the hand
+    rests on the currently-selected one, and the centre of the face shows the time in
+    huge thin numerals. A pill row underneath flips between the next three weekdays so
+    the visitor can scan a whole week without leaving the dial. White CTA at the bottom.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the boldest departure — turns scheduling into a piece of
+    horology. Risky on accessibility (the dial is decorative; the pills do the real work)
+    and on novelty cost (visitors must learn the metaphor). But it's the most distinctive
+    and the most "house style."
+  </div>
+  <div class="stage">
+    <div class="dial">
+      <div class="dial__hd">
+        <div class="dial__title">Tuesday · <em>5 May</em></div>
+        <div class="dial__day">CET · 30 min</div>
+      </div>
+      <div class="dial__face">
+        <div class="dial__pip dial__pip--09"></div>
+        <div class="dial__pip-lbl dial__pip-lbl--09">09:30</div>
+        <div class="dial__pip dial__pip--11"></div>
+        <div class="dial__pip-lbl dial__pip-lbl--11">11:00</div>
+        <div class="dial__pip dial__pip--14"></div>
+        <div class="dial__pip-lbl dial__pip-lbl--14">14:00</div>
+        <div class="dial__hand"></div>
+        <div class="dial__center">
+          <div class="ct">14:00</div>
+          <div class="cz">CET</div>
+        </div>
+      </div>
+      <div class="dial__row">
+        <div class="dial__pill dial__pill--sel">Tue 5</div>
+        <div class="dial__pill">Wed 6</div>
+        <div class="dial__pill">Thu 7</div>
+      </div>
+      <button class="dial__cta">Reserve · Tue 5 May · 14:00 CET</button>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Apple × Lucid dial</strong> · three pips on the face · day pills below · single CTA</div>
+</section>
+
+<!-- ============================ IDEA 10 ============================ -->
+<section class="idea" id="i10">
+  <div class="idea__num">Idea 10</div>
+  <h2>Tesla × Adobe — <em>month grid + day-rail split panel.</em></h2>
+  <div class="idea__source">Inspired by <span>Tesla — dark UI · Adobe — split-panel docks</span></div>
+  <p class="idea__why">
+    A more product-like cousin of idea 08. Left half is a Tesla-dark month grid with
+    gold pips marking days where Filip has openings; right half is the rail of slots
+    for the selected day, including a "BOOKED" tag style for the unavailable times so
+    the visitor can see how busy the host is — earned credibility via density.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> shows scarcity. Today's card hides booked times entirely;
+    this version makes capacity legible. It also pairs the editorial gold accent with a
+    Tesla-grade neutral surface, so the brand voice survives despite the genre shift.
+  </div>
+  <div class="stage stage--wide">
+    <div class="split">
+      <div class="split__cal">
+        <div class="split__cal-h">
+          <div class="split__cal-month">May <span style="color: rgba(255,255,255,0.45)">2026</span></div>
+          <div class="split__cal-nav"><span>‹</span><span>›</span></div>
+        </div>
+        <div class="split__cal-grid">
+          <div class="split__dow">M</div><div class="split__dow">T</div><div class="split__dow">W</div>
+          <div class="split__dow">T</div><div class="split__dow">F</div><div class="split__dow">S</div><div class="split__dow">S</div>
+          <div class="split__cell split__cell--mute">28</div><div class="split__cell split__cell--mute">29</div>
+          <div class="split__cell split__cell--mute">30</div><div class="split__cell">1</div>
+          <div class="split__cell split__cell--avail">2</div><div class="split__cell split__cell--mute">3</div><div class="split__cell split__cell--mute">4</div>
+          <div class="split__cell split__cell--sel">5</div><div class="split__cell split__cell--avail">6</div>
+          <div class="split__cell split__cell--avail">7</div><div class="split__cell split__cell--avail">8</div>
+          <div class="split__cell split__cell--avail">9</div><div class="split__cell split__cell--mute">10</div><div class="split__cell split__cell--mute">11</div>
+          <div class="split__cell">12</div><div class="split__cell split__cell--avail">13</div>
+          <div class="split__cell split__cell--avail">14</div><div class="split__cell">15</div>
+          <div class="split__cell split__cell--avail">16</div><div class="split__cell split__cell--mute">17</div><div class="split__cell split__cell--mute">18</div>
+          <div class="split__cell split__cell--avail">19</div><div class="split__cell">20</div>
+          <div class="split__cell split__cell--avail">21</div><div class="split__cell">22</div>
+          <div class="split__cell">23</div><div class="split__cell split__cell--mute">24</div><div class="split__cell split__cell--mute">25</div>
+        </div>
+      </div>
+      <div class="split__rail">
+        <div class="split__rail-h">Selected day</div>
+        <div class="split__rail-day">Tue · <em>5 May</em></div>
+        <div class="split__rail-list">
+          <div class="split__rail-row split__rail-row--booked">
+            <div class="split__rail-time">09:00 — 09:30</div>
+            <div class="split__rail-meta">Booked · investor</div>
+            <div class="split__rail-tag split__rail-tag--off">Held</div>
+          </div>
+          <div class="split__rail-row">
+            <div class="split__rail-time">14:00 — 14:30</div>
+            <div class="split__rail-meta">Open · 30 min · CET</div>
+            <div class="split__rail-tag">Soonest</div>
+          </div>
+          <div class="split__rail-row">
+            <div class="split__rail-time">15:30 — 16:00</div>
+            <div class="split__rail-meta">Open · 30 min · CET</div>
+            <div class="split__rail-tag">Open</div>
+          </div>
+          <div class="split__rail-row split__rail-row--booked">
+            <div class="split__rail-time">17:00 — 18:00</div>
+            <div class="split__rail-meta">Booked · briefing</div>
+            <div class="split__rail-tag split__rail-tag--off">Held</div>
+          </div>
+        </div>
+        <div class="split__rail-foot">
+          <span>NDA-first · No marketing</span>
+          <a href="#">Pick another day →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>Tesla × Adobe split</strong> · month grid with gold pips · day-rail showing held & open · scarcity legible</div>
+</section>
+
+</div>
+</div>
+</body>
+</html>
