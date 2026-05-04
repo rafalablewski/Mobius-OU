@@ -556,14 +556,19 @@
     letter-spacing: 0.22em;
     font-size: 10px;
   }
-  /* status indicator — small static filled square, no animation,
-     reads as an audit-table status mark rather than a marketing dot */
+  /* status indicator — small static tick, no animation,
+     reads as an audit-table check mark rather than a marketing dot */
   .doc-control .dc-mark {
     display: inline-block;
-    width: 7px; height: 7px;
-    background: rgba(244,239,230,0.92);
-    margin-right: 8px;
-    vertical-align: 1px;
+    margin-right: 7px;
+    line-height: 1;
+  }
+  .doc-control .dc-mark::before {
+    content: "✓";
+    font-family: "Manrope", sans-serif;
+    font-size: 12px; font-weight: 600;
+    color: rgba(244,239,230,0.95);
+    letter-spacing: 0;
   }
 
   /* per-program reference table inside Idea 11 */
@@ -612,8 +617,11 @@
     color: var(--ink);
   }
   .doc-ref .dr-status::before {
-    content: ""; width: 6px; height: 6px;
-    background: var(--ink);
+    content: "✓";
+    font-family: "Manrope", sans-serif;
+    font-size: 12px; font-weight: 600;
+    color: var(--gold-deep);
+    letter-spacing: 0;
   }
 
   /* Idea 12 — ISO datestamp (FT dateline) */
@@ -1429,11 +1437,11 @@
       Five cells, left to right: <strong>category tag</strong> (<code>RBI</code> or
       <code>CBI</code>) · <strong>doc code</strong> (<code>PT-GV</code>, <code>MT-MEIN</code>,
       <code>CARIB</code> …) · <strong>last revision</strong> (ISO date) ·
-      <strong>status</strong> (<code>CURRENT</code> next to a small static square — the
-      explicit "this is up to date" signal that replaces the old gold pulsing dot) ·
+      <strong>status</strong> (a small static tick next to <code>UP TO DATE</code> — the
+      explicit "this page is current" signal that replaces the old gold pulsing dot) ·
       <strong>classification</strong>. The earlier mock used the abbreviation <code>REV</code>
       and had no status field; the row now spells out <code>LAST REVISION</code> in full and
-      states currency on the record.
+      states currency on the record with a checkmark.
     </p>
     <p class="idea__contrast">
       <strong>Versus the first pass:</strong> the row used to answer only "when was this
@@ -1455,7 +1463,7 @@
         <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">MOBIUS · PROGRAMS · PORTUGAL GOLDEN VISA</text>
 
         <!-- the doc-control row -->
-        <line x1="36" y1="60" x2="700" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <line x1="36" y1="60" x2="744" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
         <!-- cell 1: tag RBI -->
         <rect x="44" y="66" width="38" height="18" fill="none" stroke="#F4EFE6" stroke-width="0.7" opacity="0.85" />
         <text x="63" y="79" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#F4EFE6">RBI</text>
@@ -1468,22 +1476,22 @@
         <text x="212" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">LAST REVISION</text>
         <text x="334" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">2026-05-04</text>
         <line x1="438" y1="50" x2="438" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
-        <!-- cell 4: STATUS [■] CURRENT — explicit "up to date" signal -->
+        <!-- cell 4: STATUS [✓] UP TO DATE — explicit "this page is current" signal -->
         <text x="450" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">STATUS</text>
-        <rect x="510" y="72" width="7" height="7" fill="#F4EFE6" />
-        <text x="524" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CURRENT</text>
-        <line x1="592" y1="50" x2="592" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <polyline points="510,77 514,80.5 520,73" fill="none" stroke="#F4EFE6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="528" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">UP TO DATE</text>
+        <line x1="624" y1="50" x2="624" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
         <!-- cell 5: CLASS -->
-        <text x="604" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
-        <text x="650" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
-        <line x1="36" y1="92" x2="700" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <text x="636" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
+        <text x="682" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
+        <line x1="36" y1="92" x2="744" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
 
         <text x="36" y="148" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
         <text x="178" y="148" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
         <line x1="36" y1="166" x2="96" y2="166" stroke="#C9A86A" stroke-width="1.2" />
         <text x="36" y="194" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
 
-        <text x="36" y="216" class="anno">RBI tag · doc · last revision · status (filled square = current)</text>
+        <text x="36" y="216" class="anno">RBI tag · doc · last revision · status (✓ = up to date)</text>
         <path d="M 280 208 C 380 170, 460 130, 514 86" class="anno-line" />
       </svg>
     </div>
@@ -1498,7 +1506,7 @@
         <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
         <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">MOBIUS · PROGRAMS · MALTA MEIN</text>
 
-        <line x1="36" y1="60" x2="716" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <line x1="36" y1="60" x2="760" y2="60" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
         <!-- cell 1: tag CBI -->
         <rect x="44" y="66" width="38" height="18" fill="none" stroke="#F4EFE6" stroke-width="0.7" opacity="0.85" />
         <text x="63" y="79" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#F4EFE6">CBI</text>
@@ -1511,15 +1519,15 @@
         <text x="228" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">LAST REVISION</text>
         <text x="350" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">2026-04-22</text>
         <line x1="454" y1="50" x2="454" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
-        <!-- cell 4: STATUS [■] CURRENT -->
+        <!-- cell 4: STATUS [✓] UP TO DATE -->
         <text x="466" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">STATUS</text>
-        <rect x="526" y="72" width="7" height="7" fill="#F4EFE6" />
-        <text x="540" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CURRENT</text>
-        <line x1="608" y1="50" x2="608" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
+        <polyline points="526,77 530,80.5 536,73" fill="none" stroke="#F4EFE6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="544" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">UP TO DATE</text>
+        <line x1="640" y1="50" x2="640" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.35" />
         <!-- cell 5: CLASS -->
-        <text x="620" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
-        <text x="666" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
-        <line x1="36" y1="92" x2="716" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
+        <text x="652" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#7C766C">CLASS</text>
+        <text x="698" y="79" font-family="ui-monospace,monospace" font-size="9" letter-spacing="2" fill="#F4EFE6">CLIENT</text>
+        <line x1="36" y1="92" x2="760" y2="92" stroke="#A8A199" stroke-width="0.5" opacity="0.45" />
 
         <text x="36" y="148" font-family="Fraunces" font-size="34" fill="#F4EFE6">Malta</text>
         <text x="124" y="148" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">MEIN</text>
@@ -1540,7 +1548,7 @@
           <span class="dc-tag"><span>RBI</span></span>
           <span class="dc-cell"><span class="dc-key">Doc</span><span class="dc-val">PT-GV</span></span>
           <span class="dc-cell"><span class="dc-key">Last revision</span><span class="dc-val">2026-05-04</span></span>
-          <span class="dc-cell"><span class="dc-key">Status</span><span class="dc-mark"></span><span class="dc-val">Current</span></span>
+          <span class="dc-cell"><span class="dc-key">Status</span><span class="dc-mark" aria-hidden="true"></span><span class="dc-val">Up to date</span></span>
           <span class="dc-cell"><span class="dc-key">Class</span><span class="dc-val">Client</span></span>
         </span>
       </div>
@@ -1550,7 +1558,7 @@
           <span class="dc-tag"><span>CBI</span></span>
           <span class="dc-cell"><span class="dc-key">Doc</span><span class="dc-val">MT-MEIN</span></span>
           <span class="dc-cell"><span class="dc-key">Last revision</span><span class="dc-val">2026-04-22</span></span>
-          <span class="dc-cell"><span class="dc-key">Status</span><span class="dc-mark"></span><span class="dc-val">Current</span></span>
+          <span class="dc-cell"><span class="dc-key">Status</span><span class="dc-mark" aria-hidden="true"></span><span class="dc-val">Up to date</span></span>
           <span class="dc-cell"><span class="dc-key">Class</span><span class="dc-val">Client</span></span>
         </span>
       </div>
@@ -1574,54 +1582,53 @@
           <td class="dr-doc">PT-GV</td>
           <td class="dr-name">Portugal Golden Visa</td>
           <td class="dr-doc">2026-05-04</td>
-          <td><span class="dr-status">Current</span></td>
+          <td><span class="dr-status">Up to date</span></td>
         </tr>
         <tr>
           <td><span class="dr-tag">CBI</span></td>
           <td class="dr-doc">MT-MEIN</td>
           <td class="dr-name">Malta MEIN</td>
           <td class="dr-doc">2026-04-22</td>
-          <td><span class="dr-status">Current</span></td>
+          <td><span class="dr-status">Up to date</span></td>
         </tr>
         <tr>
           <td><span class="dr-tag">RBI</span></td>
           <td class="dr-doc">CH-LS</td>
           <td class="dr-name">Switzerland Lump-Sum</td>
           <td class="dr-doc">2026-03-11</td>
-          <td><span class="dr-status">Current</span></td>
+          <td><span class="dr-status">Up to date</span></td>
         </tr>
         <tr>
           <td><span class="dr-tag">RBI</span></td>
           <td class="dr-doc">IT-FT</td>
           <td class="dr-name">Italy Flat-Tax</td>
           <td class="dr-doc">2026-02-18</td>
-          <td><span class="dr-status">Current</span></td>
+          <td><span class="dr-status">Up to date</span></td>
         </tr>
         <tr>
           <td><span class="dr-tag">CBI</span></td>
           <td class="dr-doc">CARIB</td>
           <td class="dr-name">Caribbean CBI</td>
           <td class="dr-doc">2026-04-30</td>
-          <td><span class="dr-status">Current</span></td>
+          <td><span class="dr-status">Up to date</span></td>
         </tr>
         <tr>
           <td><span class="dr-tag">RBI</span></td>
           <td class="dr-doc">AE-GR</td>
           <td class="dr-name">UAE Golden Residence</td>
           <td class="dr-doc">2026-03-26</td>
-          <td><span class="dr-status">Current</span></td>
+          <td><span class="dr-status">Up to date</span></td>
         </tr>
       </tbody>
     </table>
     <p style="font-size:11px; color:var(--stone); margin: 10px 0 0; line-height: 1.55;">
       The <strong>Status</strong> column carries one of three values:
-      <code>Current</code> (filled square — actively maintained, today's view applies),
-      <code>Under review</code> (open square — rules are changing; partner should
-      double-check before relying on figures), or <code>Deprecated</code> (no square — the
-      page is preserved for archive only). Every program above is currently
-      <code>Current</code>; the field exists so that when, e.g., Portugal's residency-days
-      rule changes again, the page reflects it on the record without us having to take it
-      down.
+      <code>Up to date</code> (tick — actively maintained, today's view applies),
+      <code>Under review</code> (no tick — rules are changing; partner should double-check
+      before relying on figures), or <code>Deprecated</code> (no tick — the page is
+      preserved for archive only). Every program above is currently <code>Up to date</code>;
+      the field exists so that when, e.g., Portugal's residency-days rule changes again,
+      the page reflects it on the record without us having to take it down.
     </p>
     <p class="sketch-caption" style="margin-top: 14px;">
       11 — RBI/CBI is the headline; the doc code is reference, not decoration.
