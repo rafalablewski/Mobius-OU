@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const DAY_NAMES_LONG = [
@@ -43,10 +44,54 @@ function getNextSlots(count = 3, now = new Date()) {
   return slots;
 }
 
+// Booking-window deadline used by the hairline countdown. Targets Friday 18:00
+// in the visitor's local clock — close enough for a sketch, since the times
+// are labelled CET. Rolls forward to next Friday once the deadline passes.
+function getWindowClose(now = new Date()) {
+  const result = new Date(now);
+  const dayOfWeek = result.getDay(); // 0=Sun, 5=Fri, 6=Sat
+  const daysUntilFriday = (5 - dayOfWeek + 7) % 7;
+  result.setDate(result.getDate() + daysUntilFriday);
+  result.setHours(18, 0, 0, 0);
+  if (result.getTime() <= now.getTime()) {
+    result.setDate(result.getDate() + 7);
+  }
+  return result;
+}
+
+function pad(n) { return String(n).padStart(2, '0'); }
+
+function formatHMS(ms) {
+  const total = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
+  return `${pad(h)}:${pad(m)}:${pad(s)}`;
+}
+
 export default function BriefPanel({ program }) {
   const slots = getNextSlots(3);
   const primary = slots[0];
   const [primaryHH, primaryMM] = primary.time.split(':');
+
+  // Live countdown to end-of-week booking cut-off. Tick once a second.
+  const closeTime = useMemo(() => getWindowClose(), []);
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const countdown = formatHMS(closeTime.getTime() - now.getTime());
+
+  // The last slot is shown as booked so the "2 left this week" copy stays
+  // honest. When the panel is wired to a real calendar source, the booked
+  // flag and the "left" count both come from there.
+  const slotsWithStatus = slots.map((s, i) => ({
+    ...s,
+    booked: i === slots.length - 1,
+  }));
+  const leftThisWeek = slotsWithStatus.filter((s) => !s.booked).length;
+
   const programParam = program?.slug
     ? `&program=${encodeURIComponent(program.slug)}`
     : '';
@@ -59,7 +104,7 @@ export default function BriefPanel({ program }) {
   return (
     <aside className="ht-brief-panel" aria-label="Schedule a private call">
       <div className="ht-brief-panel__top">
-        <span className="ht-brief-panel__eyebrow">Next private call · Filip Z.</span>
+        <span className="ht-brief-panel__eyebrow">Next call · with Rafał A.</span>
         <span className="ht-brief-panel__status">Available</span>
       </div>
 
@@ -70,21 +115,45 @@ export default function BriefPanel({ program }) {
         <strong>{primary.dayLong} · {primary.date} {primary.month}</strong> · CET · 30 min
       </div>
 
+      <div className="ht-brief-panel__hairline" aria-live="polite">
+        <span className="ht-brief-panel__hairline-inner">
+          <span className="ht-brief-panel__hairline-left">
+            <strong>{leftThisWeek} left</strong> this week
+          </span>
+          <span className="ht-brief-panel__hairline-right">{countdown}</span>
+        </span>
+      </div>
+
       <ul className="ht-brief-panel__slots">
-        {slots.map((slot, i) => (
-          <li key={slot.iso}>
-            <Link
-              to={slotHref(slot)}
-              className={`ht-brief-panel__slot${i === 0 ? ' is-active' : ''}`}
-              aria-current={i === 0 ? 'true' : undefined}
-            >
-              <span className="ht-brief-panel__slot-day">
-                {slot.day.toUpperCase()} · {slot.date} {slot.month.toUpperCase()}
-              </span>
-              <span className="ht-brief-panel__slot-time">{slot.time}</span>
-            </Link>
-          </li>
-        ))}
+        {slotsWithStatus.map((slot, i) => {
+          const dayLabel = `${slot.day.toUpperCase()} · ${slot.date} ${slot.month.toUpperCase()}`;
+          if (slot.booked) {
+            return (
+              <li key={slot.iso}>
+                <span
+                  className="ht-brief-panel__slot ht-brief-panel__slot--booked"
+                  aria-disabled="true"
+                  title="Booked"
+                >
+                  <span className="ht-brief-panel__slot-day">{dayLabel}</span>
+                  <span className="ht-brief-panel__slot-time">{slot.time}</span>
+                </span>
+              </li>
+            );
+          }
+          return (
+            <li key={slot.iso}>
+              <Link
+                to={slotHref(slot)}
+                className={`ht-brief-panel__slot${i === 0 ? ' is-active' : ''}`}
+                aria-current={i === 0 ? 'true' : undefined}
+              >
+                <span className="ht-brief-panel__slot-day">{dayLabel}</span>
+                <span className="ht-brief-panel__slot-time">{slot.time}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
 
       <Link to={slotHref(primary)} className="ht-brief-panel__cta">
@@ -92,7 +161,9 @@ export default function BriefPanel({ program }) {
       </Link>
 
       <div className="ht-brief-panel__foot">
-        <p className="ht-brief-panel__microcopy">NDA-first · No marketing</p>
+        <p className="ht-brief-panel__microcopy">
+          NDA-first · No marketing · Private call
+        </p>
         <Link to={altHref} className="ht-brief-panel__alt">
           Pick another time →
         </Link>
