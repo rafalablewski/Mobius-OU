@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import BriefPanel from '../components/BriefPanel.jsx';
 import CTABand from '../components/CTABand.jsx';
+import Glyph from '../components/Glyph.jsx';
 import HeroPitchCard from '../components/HeroPitchCard.jsx';
 import { PROGRAMS, PROGRAMS_BY_SLUG } from '../data/programs.js';
 
@@ -95,11 +96,16 @@ export default function ProgramPage() {
         title={lead}
         emphasis={tail}
         crumbs={[
-          { label: 'Home', to: '/' },
+          {
+            label: 'Mobius',
+            to: '/',
+            glyph: <Glyph tone="ivory" size={16} title="Mobius & Partners" />,
+          },
           { label: 'Programs', to: '/pricing' },
           { label: program.name },
         ]}
-        meta={[program.region, program.category, 'Updated 2026.Q1']}
+        meta={[program.region, program.category]}
+        freshness="Updated 2026.Q1"
         tagline={program.tagline}
         aside={<BriefPanel program={program} />}
         pitch={<HeroPitchCard slides={PROGRAM_PITCH} />}

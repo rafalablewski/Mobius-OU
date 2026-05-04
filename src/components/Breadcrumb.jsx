@@ -17,10 +17,16 @@ function Crumbs({ crumbs, current, title }) {
     <ol className="ht-breadcrumb__crumbs">
       {trail.map((c, i) => {
         const isLast = i === trail.length - 1;
+        const inner = (
+          <>
+            {c.glyph && <span className="ht-breadcrumb__crumb-glyph" aria-hidden="true">{c.glyph}</span>}
+            <span className="ht-breadcrumb__crumb-label">{c.label}</span>
+          </>
+        );
         return (
-          <Fragment key={`${c.label}-${i}`}>
-            <li className={isLast ? 'is-current' : ''}>
-              {c.to && !isLast ? <Link to={c.to}>{c.label}</Link> : c.label}
+          <Fragment key={`${typeof c.label === 'string' ? c.label : 'crumb'}-${i}`}>
+            <li className={`ht-breadcrumb__crumb${isLast ? ' is-current' : ''}${c.glyph ? ' has-glyph' : ''}`}>
+              {c.to && !isLast ? <Link to={c.to}>{inner}</Link> : inner}
             </li>
             {!isLast && (
               <li className="ht-breadcrumb__sep" aria-hidden="true">·</li>
@@ -42,11 +48,11 @@ export default function Breadcrumb({
   tagline,
   aside,
   pitch,
+  freshness,
 }) {
   const { lead, tail } = splitTitle(title, emphasis);
-  const className = `ht-breadcrumb-area is-${variant}${
-    variant === 'editorial' && pitch ? ' has-pitch' : ''
-  }`;
+  const hasStage = variant === 'editorial' && (pitch || aside);
+  const className = `ht-breadcrumb-area is-${variant}${hasStage ? ' has-stage' : ''}`;
 
   if (variant === 'editorial') {
     return (
@@ -54,35 +60,48 @@ export default function Breadcrumb({
         <div className="container">
           <div className="ht-breadcrumb__top">
             <Crumbs crumbs={crumbs} current={current} title={title} />
-            {meta && meta.length > 0 && (
+            {(meta || freshness) && (
               <ul className="ht-breadcrumb__meta">
-                {meta.map((m, i) => (
-                  <Fragment key={`${m}-${i}`}>
-                    <li>{m}</li>
-                    {i < meta.length - 1 && (
-                      <li className="ht-breadcrumb__sep" aria-hidden="true">·</li>
-                    )}
-                  </Fragment>
-                ))}
+                {meta &&
+                  meta.map((m, i) => (
+                    <Fragment key={`${m}-${i}`}>
+                      <li>{m}</li>
+                      {i < meta.length - 1 && (
+                        <li className="ht-breadcrumb__sep" aria-hidden="true">·</li>
+                      )}
+                    </Fragment>
+                  ))}
+                {freshness && (
+                  <li className="ht-breadcrumb__freshness">
+                    <span className="ht-breadcrumb__freshness-dot" aria-hidden="true" />
+                    {freshness}
+                  </li>
+                )}
               </ul>
             )}
           </div>
-          {pitch && <div className="ht-breadcrumb__pitch-slot">{pitch}</div>}
-          <div className={`ht-breadcrumb__layout${aside ? ' has-aside' : ''}`}>
-            <div className="ht-breadcrumb__editorial-body">
-              <h1 className="ht-breadcrumb__title">
-                {lead}
-                {tail && (
-                  <>
-                    {' '}
-                    <em>{tail}</em>
-                  </>
-                )}
-              </h1>
-              <span className="ht-breadcrumb__rule" aria-hidden="true" />
-              {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
+          {hasStage && (
+            <div
+              className={`ht-breadcrumb__stage${pitch ? ' has-pitch' : ''}${
+                aside ? ' has-aside' : ''
+              }`}
+            >
+              {pitch && <div className="ht-breadcrumb__stage-pitch">{pitch}</div>}
+              {aside && <div className="ht-breadcrumb__stage-aside">{aside}</div>}
             </div>
-            {aside && <div className="ht-breadcrumb__aside">{aside}</div>}
+          )}
+          <div className="ht-breadcrumb__editorial-body">
+            <h1 className="ht-breadcrumb__title">
+              {lead}
+              {tail && (
+                <>
+                  {' '}
+                  <em>{tail}</em>
+                </>
+              )}
+            </h1>
+            <span className="ht-breadcrumb__rule" aria-hidden="true" />
+            {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
           </div>
         </div>
       </section>
