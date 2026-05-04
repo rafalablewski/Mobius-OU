@@ -8662,39 +8662,65 @@ span {
 
 /* --- Editorial variant: programs ------------------------------------------ */
 .ht-breadcrumb-area.is-editorial {
-  padding: 132px 0 104px;
+  /* Top padding clears the fixed page header (~90px) — without it the
+     top bar slides under the header. */
+  padding: 96px 0 56px;
 }
 @media (max-width: 768px) {
   .ht-breadcrumb-area.is-editorial {
-    padding: 104px 0 72px;
+    padding: 88px 0 40px;
   }
 }
+/* Top bar lives in its own band right under the page header. Padding is
+   symmetric and the band has a fixed min-height so the items always sit
+   on the exact vertical center, with equal dark space above and below. */
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding-bottom: 18px;
+  min-height: 64px;
+  padding: 18px 0;
   border-bottom: 1px solid rgba(201, 168, 106, 0.32);
-  margin-bottom: clamp(72px, 11vw, 140px);
+  margin-bottom: clamp(40px, 5vw, 64px);
 }
 @media (max-width: 768px) {
   .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
     flex-direction: column;
     align-items: flex-start;
+    min-height: 0;
     gap: 12px;
   }
 }
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs,
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__meta {
+  line-height: 1;
+  align-self: center;
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs > li,
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__meta > li {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__editorial-body {
+  margin-top: clamp(40px, 5vw, 64px);
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__title {
+  font-size: clamp(40px, 5.2vw, 72px);
+  line-height: 1.04;
+  max-width: 22ch;
+}
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__rule {
   display: block;
-  margin-top: 28px;
-  width: 64px;
+  margin-top: 20px;
+  width: 56px;
   height: 1px;
   background: var(--ht-theme-color-2);
   transform-origin: left center;
 }
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__dateline {
-  margin-top: 18px;
+  margin-top: 14px;
   font-family: var(--ht-font-serif-body);
   font-size: clamp(15px, 1.2vw, 17px);
   font-style: italic;
@@ -8704,6 +8730,288 @@ span {
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.72);
   max-width: 56ch;
+}
+
+/* Editorial stage: pitch card and BriefPanel side-by-side at the bottom of
+   the hero, so the calendar reads above the fold and the next section
+   starts immediately below. */
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage.has-pitch.has-aside {
+  grid-template-columns: minmax(0, 1fr) clamp(280px, 28%, 340px);
+}
+@media (max-width: 991px) {
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage.has-pitch.has-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Glyph-prefixed crumb (the Mobius mark next to the home link). */
+.ht-breadcrumb__crumb.has-glyph a,
+.ht-breadcrumb__crumb.has-glyph {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ht-breadcrumb__crumb-glyph {
+  display: inline-flex;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+}
+.ht-breadcrumb__crumb-glyph svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Freshness indicator: gold dot + uppercase gold label so visitors clock
+   the recency of the program write-up at a glance. Padding is light so
+   the indicator stays visually aligned with the rest of the meta row. */
+.ht-breadcrumb__freshness {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 8px;
+  background: rgba(201, 168, 106, 0.14);
+  color: var(--ht-theme-color-2);
+  font-weight: 700;
+  line-height: 1;
+}
+.ht-breadcrumb__freshness-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ht-theme-color-2);
+  box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.22);
+  animation: ht-breadcrumb-pulse 2.4s ease-in-out infinite;
+}
+@keyframes ht-breadcrumb-pulse {
+  0%,
+  100% { box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.22); }
+  50% { box-shadow: 0 0 0 5px rgba(201, 168, 106, 0.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ht-breadcrumb__freshness-dot {
+    animation: none;
+  }
+}
+
+/* Editorial pitch card: dossier-style frame with chapter-numbered eyebrow,
+   italic display title, gold hairline rule, serif body, and a footer
+   strip with prev/next chevrons + segmented progress (active segment
+   fills over the autoplay duration). Distinct from the floating
+   glass-blur card pattern. */
+.ht-pitch-card {
+  position: relative;
+  padding: 24px 28px 22px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0.015) 100%
+  );
+  border: 1px solid rgba(201, 168, 106, 0.3);
+  color: var(--ht-white);
+  isolation: isolate;
+}
+/* Top-left and bottom-right corner ticks — small editorial flourish
+   that signals a numbered dossier excerpt rather than a UI card. */
+.ht-pitch-card::before,
+.ht-pitch-card::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+.ht-pitch-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid var(--ht-theme-color-2);
+  border-left: 1px solid var(--ht-theme-color-2);
+}
+.ht-pitch-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid var(--ht-theme-color-2);
+  border-right: 1px solid var(--ht-theme-color-2);
+}
+.ht-pitch-card__viewport {
+  position: relative;
+  min-height: 156px;
+}
+.ht-pitch-card__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 550ms ease, transform 550ms ease;
+  pointer-events: none;
+  margin: 0;
+}
+.ht-pitch-card__slide.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.ht-pitch-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.ht-pitch-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+.ht-pitch-card__chapter {
+  color: var(--ht-theme-color-2);
+}
+.ht-pitch-card__sep {
+  color: rgba(255, 255, 255, 0.32);
+}
+.ht-pitch-card__icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ht-theme-color-2);
+}
+.ht-pitch-card__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.ht-pitch-card__title {
+  font-family: var(--ht-font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--ht-white);
+}
+.ht-pitch-card__rule {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--ht-theme-color-2);
+  margin: 14px 0;
+}
+.ht-pitch-card__copy {
+  font-family: var(--ht-font-serif-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+}
+.ht-pitch-card__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+.ht-pitch-card__nav {
+  appearance: none;
+  border: 1px solid rgba(201, 168, 106, 0.42);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 250ms ease, border-color 250ms ease,
+    color 250ms ease, transform 200ms ease;
+}
+.ht-pitch-card__nav svg {
+  width: 14px;
+  height: 14px;
+}
+.ht-pitch-card__nav:hover {
+  background: rgba(201, 168, 106, 0.12);
+  border-color: var(--ht-theme-color-2);
+  color: var(--ht-theme-color-2);
+}
+.ht-pitch-card__nav:active {
+  transform: scale(0.96);
+}
+.ht-pitch-card__nav:focus-visible {
+  outline: 1px solid var(--ht-theme-color-2);
+  outline-offset: 3px;
+}
+.ht-pitch-card__progress {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ht-pitch-card__segment {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+.ht-pitch-card__segment.is-done {
+  background: var(--ht-theme-color-2);
+}
+.ht-pitch-card__segment-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ht-theme-color-2);
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: ht-pitch-fill linear forwards;
+  will-change: transform;
+}
+@keyframes ht-pitch-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ht-pitch-card__slide {
+    transition: none;
+  }
+  .ht-pitch-card__segment-fill {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+@media (max-width: 575px) {
+  .ht-pitch-card {
+    padding: 20px 22px 20px;
+  }
+  .ht-pitch-card__viewport {
+    min-height: 200px;
+  }
+  .ht-pitch-card__icon {
+    width: 34px;
+    height: 34px;
+  }
+  .ht-pitch-card__title {
+    font-size: 22px;
+  }
+  .ht-pitch-card__copy {
+    font-size: 14px;
+  }
 }
 
 /* --- Aperture variant: every non-program subpage -------------------------- */
@@ -13704,6 +14012,149 @@ span {
   transition: gap 0.25s ease;
 }
 .ht-program__related-card:hover .ht-program__related-link { gap: 12px; }
+
+/* --- Brief panel (calendar-first hero CTA) -------------------------------- */
+/* Sits on the dark editorial breadcrumb as a cream card. Three weekday
+   slots, link-out for "another time", NDA-first microcopy. */
+.ht-brief-panel {
+  background: var(--ht-theme-color-5);
+  border: 1px solid rgba(201, 168, 106, 0.5);
+  border-radius: 3px;
+  padding: 18px 18px 14px;
+  color: var(--ht-heading-color);
+  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.55);
+  animation: ht-breadcrumb-rise 720ms 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.ht-brief-panel__eyebrow {
+  display: block;
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #A07F44;
+  margin-bottom: 6px;
+}
+.ht-brief-panel__title {
+  font-family: var(--ht-font-display);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ht-heading-color);
+  margin: 0 0 12px;
+}
+.ht-brief-panel__slots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.ht-brief-panel__slot {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 6px 12px;
+  align-items: center;
+  background: var(--ht-white);
+  border: 1px solid var(--ht-border-color);
+  padding: 8px 12px;
+  text-decoration: none;
+  color: var(--ht-heading-color);
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+.ht-brief-panel__slot:hover,
+.ht-brief-panel__slot:focus-visible {
+  border-color: var(--ht-theme-color-2);
+  background: #FFFDF7;
+  transform: translateX(2px);
+  color: var(--ht-heading-color);
+}
+.ht-brief-panel__slot-day {
+  grid-column: 1;
+  font-family: var(--ht-font-ui);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+}
+.ht-brief-panel__slot-time {
+  grid-column: 1;
+  grid-row: 2;
+  font-family: var(--ht-font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ht-heading-color);
+}
+.ht-brief-panel__slot-arrow {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  font-family: var(--ht-font-ui);
+  font-size: 15px;
+  color: #A07F44;
+  align-self: center;
+}
+.ht-brief-panel__alt {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--ht-font-serif-body);
+  font-style: italic;
+  font-size: 13px;
+  color: #A07F44;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.ht-brief-panel__alt:hover { color: var(--ht-heading-color); }
+.ht-brief-panel__microcopy {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--ht-border-color);
+  font-family: var(--ht-font-ui);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+}
+
+/* Contact preferred-slot readout (set by ?slot= from a brief panel click) */
+.ht-contact-slot {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  padding: 16px 20px;
+  background: var(--ht-theme-color-5);
+  border-left: 2px solid var(--ht-theme-color-2);
+  border-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 14px;
+}
+.ht-contact-slot__label {
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #A07F44;
+}
+.ht-contact-slot__value {
+  font-family: var(--ht-font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ht-heading-color);
+}
+.ht-contact-slot__program {
+  font-family: var(--ht-font-serif-body);
+  font-size: 14px;
+  color: var(--ht-theme-color-6);
+}
+.ht-contact-slot__program em {
+  font-style: italic;
+  color: var(--ht-heading-color);
+}
 
 /* === Mobile header + nav polish ======================================== */
 @media (max-width: 991px) {

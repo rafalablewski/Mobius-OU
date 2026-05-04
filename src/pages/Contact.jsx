@@ -1,8 +1,47 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import { PROGRAMS_BY_SLUG } from '../data/programs.js';
+
+const DAY_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MONTH_LONG = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+// Parse "YYYY-MM-DDTHH:MM" without timezone interpretation — the panel emits
+// these as Warsaw wall-clock and we display them the same way.
+function readSlot(raw) {
+  if (!raw) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/.exec(raw);
+  if (!m) return null;
+  const [, y, mo, d, h, mi] = m;
+  const date = new Date(Number(y), Number(mo) - 1, Number(d));
+  return {
+    pretty: `${DAY_LONG[date.getDay()]} ${Number(d)} ${MONTH_LONG[date.getMonth()]}, ${h}:${mi} CET`,
+    raw,
+  };
+}
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', goal: '', message: '' });
+  const [params] = useSearchParams();
+  const slot = useMemo(() => readSlot(params.get('slot')), [params]);
+  const program = useMemo(() => {
+    const slug = params.get('program');
+    return slug ? PROGRAMS_BY_SLUG[slug] : null;
+  }, [params]);
+
+  const initialGoal = program?.name ?? '';
+  const initialMessage = slot
+    ? `Preferred slot: ${slot.pretty}.\n\n`
+    : '';
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    goal: initialGoal,
+    message: initialMessage,
+  });
   const [status, setStatus] = useState('idle');
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -80,6 +119,17 @@ export default function Contact() {
                       <h2 className="title wow fadeInUp text-black" data-wow-delay=".5s">Tell us what you're trying <br />
                           to accomplish.</h2>
                   </div>
+                  {slot && (
+                    <p className="ht-contact-slot" role="status">
+                      <span className="ht-contact-slot__label">Preferred slot</span>
+                      <span className="ht-contact-slot__value">{slot.pretty}</span>
+                      {program && (
+                        <span className="ht-contact-slot__program">
+                          for <em>{program.name}</em>
+                        </span>
+                      )}
+                    </p>
+                  )}
                   <div className="ht-contact-wrapper">
                       <form onSubmit={onSubmit} noValidate>
                           <div className="row justify-content-center">
