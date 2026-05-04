@@ -295,9 +295,17 @@
     transition: opacity .18s, transform .18s;
     z-index: 4;
   }
+  /* Invisible bridge that fills the 10px gap between trigger and tooltip
+     so the hover state isn't lost when the cursor crosses the gap. */
+  .status-tooltip::before {
+    content: "";
+    position: absolute;
+    top: -10px; left: 0; right: 0; height: 10px;
+  }
   .status-wrap:hover .status-tooltip,
   .status-wrap:focus-within .status-tooltip {
     opacity: 1; transform: translateY(0);
+    pointer-events: auto;
   }
   .status-tooltip .st-eye {
     font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
@@ -941,7 +949,7 @@
     </div>
     <div class="live-row">
       <span class="live-caption">Live · hover</span>
-      <span class="changelog-tab" tabindex="0">
+      <span class="changelog-tab" tabindex="0" role="button" aria-label="Open changelog drawer; last revised 04 May 2026">
         <span class="ct-key">Last revised</span>
         <span class="ct-val">04 May 2026</span>
         <span class="ct-arrow">→</span>
@@ -1055,7 +1063,7 @@
     </div>
     <div class="live-row">
       <span class="live-caption">Live · hover the&nbsp;<em style="font-family:Fraunces;color:var(--gold);">i</em></span>
-      <div class="status-wrap" tabindex="0">
+      <div class="status-wrap" tabindex="0" role="button" aria-haspopup="true" aria-label="Show revision details; current as of Q1 2026">
         <span class="status-pill">
           <span class="sp-dot"></span>
           Current · Q1 2026
