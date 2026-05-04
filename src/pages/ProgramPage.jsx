@@ -104,8 +104,11 @@ export default function ProgramPage() {
           { label: 'Programs', to: '/pricing' },
           { label: program.name },
         ]}
-        meta={[program.region, program.category]}
-        freshness="Updated 2026.Q1"
+        docControl={{
+          category: program.category,
+          docCode: program.docCode,
+          lastRevisedAt: program.lastRevisedAt,
+        }}
         tagline={program.tagline}
         aside={<BriefPanel program={program} />}
         pitch={<HeroPitchCard slides={PROGRAM_PITCH} />}
