@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Idea 01 — Five Variations of the "Brief a Partner" Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@400;500;600;700&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --redline:    #B23A2A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1080px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  .backlink {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-deep); text-decoration: none;
+    display: inline-block; margin-bottom: 18px;
+  }
+  .backlink:hover { color: var(--ink); }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 44px; line-height: 1.1;
+    margin: 14px 0 18px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 64ch; }
+  .baseline {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil);
+  }
+  .baseline strong { color: var(--ink); }
+
+  .ideas { display: grid; gap: 56px; }
+  .idea { border: 1px solid var(--hairline); border-radius: 4px; background: var(--cream); padding: 28px 28px 8px; }
+  .idea__num {
+    font-family: "Fraunces", serif;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 28px; line-height: 1.2; margin: 8px 0 12px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 8px; }
+  .idea__diff {
+    font-size: 13px; color: var(--pencil); margin: 6px 0 22px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+  }
+  .sketch-frame {
+    background: #FBF7EF;
+    border: 1px solid #D9CFB7;
+    border-radius: 3px;
+    padding: 12px 12px 10px;
+    margin: 8px -4px 24px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 8px 24px -16px rgba(0,0,0,0.18);
+  }
+  .sketch-frame svg { display: block; width: 100%; height: auto; }
+  .sketch-caption {
+    font-family: "Caveat", cursive;
+    font-size: 16px; color: var(--redline);
+    margin: 6px 4px 4px; text-align: center;
+  }
+
+  .hair { stroke: var(--pencil); fill: none; stroke-width: 0.8; opacity: 0.55; }
+  .body-text  { font-family: "Manrope", sans-serif; fill: var(--stone); }
+  .anno {
+    font-family: "Caveat", cursive;
+    fill: var(--redline); font-size: 14px;
+  }
+  .anno-line { stroke: var(--redline); fill: none; stroke-width: 1; stroke-dasharray: 3 3; }
+
+  footer.foot {
+    border-top: 1px solid var(--hairline);
+    margin-top: 72px; padding-top: 24px;
+    color: var(--stone); font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="intro">
+  <a class="backlink" href="./program-page-improvements.html">← back to the five ideas</a>
+  <span class="eyebrow">Tests · Idea 01 · Variations · 2026.Q2</span>
+  <h1>Five ways to land the <em>"Brief a Partner"</em> panel.</h1>
+  <p class="lede">
+    Idea 01 is the right move — give the hero a conversion path without resorting to Astons'
+    shouty red form. But "small panel anchored right" is one of many shapes it can take.
+    Below, five genuinely distinct patterns. Pick one, A/B two, or layer them by breakpoint.
+  </p>
+  <div class="baseline">
+    <strong>Baseline (the original 01):</strong> right-anchored glass card on the hero,
+    three fields (you / jurisdiction / situation), gold "Send brief" button, microcopy
+    "NDA-first · response in 48h · no marketing." Each variation below trades something
+    against that baseline — different friction, different intent, different visual weight.
+  </div>
+</header>
+
+<div class="ideas">
+
+  <!-- ============================================================ -->
+  <!-- 01-A: Inline conversational strip                              -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Variation 01·A</span>
+    <h2>An <em>inline conversational strip</em> directly under the tagline.</h2>
+    <p class="idea__why">
+      No card, no panel — just a single rounded textarea sitting under the tagline like a
+      private-message field. Placeholder reads "Tell us the situation in one sentence…"
+      Gold arrow button on the right. Submitting opens a brief modal for name + email.
+      Lower friction than three fields, conversational instead of formal.
+    </p>
+    <p class="idea__diff">
+      <strong>Trade vs baseline:</strong> faster to start typing, less qualifying data
+      up front. Best when the bottleneck is "they bounced before reaching the contact page,"
+      worst when the inbox needs pre-qualified leads.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: inline conversational strip">
+        <rect x="6" y="6" width="868" height="348" class="hair" />
+        <line x1="6" y1="44" x2="874" y2="44" class="hair" />
+        <text x="22" y="30" class="body-text" font-size="10">HOME · PROGRAMS · PORTUGAL GOLDEN VISA</text>
+        <text x="710" y="30" class="body-text" font-size="10">EUROPE · RBI · 2026.Q1</text>
+        <rect x="6" y="44" width="868" height="310" fill="#1A1F26" opacity="0.96" />
+
+        <text x="56" y="92" font-family="Manrope" font-size="9" fill="#C9A86A" letter-spacing="3">EUROPE · RBI</text>
+        <text x="56" y="148" font-family="Fraunces" font-size="40" fill="#F4EFE6">Portugal</text>
+        <text x="208" y="148" font-family="Fraunces" font-size="40" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="56" y1="166" x2="120" y2="166" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="56" y="192" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- inline strip -->
+        <rect x="56" y="220" width="600" height="48" rx="24" fill="#FBF7EF" stroke="#C9A86A" stroke-width="1" />
+        <text x="80" y="250" font-family="Fraunces" font-size="14" fill="#6B6257" font-style="italic">Tell us the situation in one sentence…</text>
+        <!-- arrow button -->
+        <circle cx="630" cy="244" r="16" fill="#C9A86A" />
+        <text x="630" y="250" text-anchor="middle" font-family="Manrope" font-size="14" fill="#0B0F14">→</text>
+        <text x="56" y="294" font-family="Manrope" font-size="9" fill="#A8A199" letter-spacing="2">NDA-FIRST · WE REPLY WITHIN 48H · NO MARKETING</text>
+
+        <text x="690" y="240" class="anno">conversational, not formal</text>
+        <path d="M 690 244 C 680 248, 670 250, 660 248" class="anno-line" />
+      </svg>
+    </div>
+    <p class="sketch-caption">01·A — One field, no card. Reads like a DM, not a form.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 01-B: Email-gated dossier (inverted offer)                    -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Variation 01·B</span>
+    <h2>An <em>inverted offer</em> — give the dossier, ask for an email.</h2>
+    <p class="idea__why">
+      Flip the conversion logic. Instead of asking the visitor to brief us, we offer
+      something tangible: "Get our 4-page private read on Portugal — minimums, real
+      timelines, what we'd actually advise. Drop your email; the dossier and a calendar
+      link arrive in your inbox." One field, big gold button, secondary link to schedule
+      directly.
+    </p>
+    <p class="idea__diff">
+      <strong>Trade vs baseline:</strong> commits us to producing the dossier (good content
+      hygiene anyway), and inverts the energy — we're being generous, they're not yet
+      committing. Probably the highest-converting variant; best for top-of-funnel traffic.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: email-gated dossier panel">
+        <rect x="6" y="6" width="868" height="448" class="hair" />
+        <line x1="6" y1="44" x2="874" y2="44" class="hair" />
+        <text x="22" y="30" class="body-text" font-size="10">HOME · PROGRAMS · PORTUGAL GOLDEN VISA</text>
+        <rect x="6" y="44" width="868" height="410" fill="#1A1F26" opacity="0.96" />
+
+        <text x="56" y="100" font-family="Manrope" font-size="9" fill="#C9A86A" letter-spacing="3">EUROPE · RBI</text>
+        <text x="56" y="170" font-family="Fraunces" font-size="46" fill="#F4EFE6">Portugal</text>
+        <text x="220" y="170" font-family="Fraunces" font-size="46" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="56" y1="190" x2="120" y2="190" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="56" y="218" font-family="Fraunces" font-size="14" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- dossier card -->
+        <rect x="540" y="100" width="288" height="290" rx="3" fill="#FBF7EF" stroke="#C9A86A" stroke-width="1" />
+        <!-- folded-corner detail -->
+        <path d="M 808 100 L 828 100 L 828 120 Z" fill="#EFE9DC" stroke="#C9A86A" stroke-width="1" />
+        <text x="558" y="132" font-family="Manrope" font-size="9" fill="#A07F44" letter-spacing="3">PRIVATE READ · 4 PAGES</text>
+        <text x="558" y="166" font-family="Fraunces" font-size="20" fill="#1A1F26">The Portugal</text>
+        <text x="558" y="190" font-family="Fraunces" font-size="20" fill="#A07F44" font-style="italic">Dossier, 2026.Q1</text>
+        <text x="558" y="224" font-family="Manrope" font-size="11" fill="#6B6257">Minimums, real timelines,</text>
+        <text x="558" y="240" font-family="Manrope" font-size="11" fill="#6B6257">what we'd actually advise.</text>
+
+        <text x="558" y="278" class="body-text" font-size="9" letter-spacing="2">YOUR EMAIL</text>
+        <line x1="558" y1="294" x2="810" y2="294" class="hair" />
+
+        <rect x="558" y="306" width="252" height="32" fill="#C9A86A" rx="1" />
+        <text x="608" y="326" font-family="Fraunces" font-size="13" fill="#1A1F26">Send the dossier →</text>
+
+        <text x="558" y="362" font-family="Manrope" font-size="10" fill="#A07F44" font-style="italic">or, schedule a call directly →</text>
+
+        <text x="40" y="430" class="anno">we give first; their commitment is just an email</text>
+        <path d="M 360 420 C 420 410, 470 380, 540 360" class="anno-line" />
+      </svg>
+    </div>
+    <p class="sketch-caption">01·B — Inverts the ask. Probably the highest-converting variant.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 01-C: Pill → expand                                            -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Variation 01·C</span>
+    <h2>A <em>collapsed pill</em> that expands into the full panel on tap.</h2>
+    <p class="idea__why">
+      Hero stays editorial-pure: just title, tagline, gold-rule. A small gold-bordered
+      pill sits in the top-right corner — "Brief a Partner ↗". Click and it expands
+      gracefully into the full three-field card (or animates open as a side drawer).
+      Conversion path is one tap away without ever competing with the typography.
+    </p>
+    <p class="idea__diff">
+      <strong>Trade vs baseline:</strong> you keep the cleanest possible hero, at the cost
+      of one extra click. Probably the best fit if our north-star metric is "hero looks
+      like an FT longread, not a landing page."
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: pill that expands into the panel">
+        <rect x="6" y="6" width="868" height="448" class="hair" />
+        <text x="22" y="32" class="body-text" font-size="10" font-style="italic">two states shown side-by-side</text>
+
+        <!-- LEFT: collapsed -->
+        <rect x="20" y="48" width="410" height="396" fill="#1A1F26" opacity="0.96" />
+        <text x="40" y="84" font-family="Manrope" font-size="8" fill="#A8A199" letter-spacing="3">HOME · PROGRAMS · PORTUGAL</text>
+        <text x="40" y="108" font-family="Manrope" font-size="8" fill="#C9A86A" letter-spacing="3">EUROPE · RBI</text>
+        <text x="40" y="170" font-family="Fraunces" font-size="32" fill="#F4EFE6">Portugal</text>
+        <text x="158" y="170" font-family="Fraunces" font-size="32" fill="#C9A86A" font-style="italic">Golden</text>
+        <text x="40" y="206" font-family="Fraunces" font-size="32" fill="#C9A86A" font-style="italic">Visa</text>
+        <line x1="40" y1="226" x2="100" y2="226" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="40" y="252" font-family="Fraunces" font-size="11" fill="#A8A199" font-style="italic">EU residency with the lightest</text>
+        <text x="40" y="268" font-family="Fraunces" font-size="11" fill="#A8A199" font-style="italic">presence requirement in Europe.</text>
+
+        <!-- collapsed pill -->
+        <rect x="280" y="100" width="138" height="28" rx="14" fill="none" stroke="#C9A86A" stroke-width="1" />
+        <text x="349" y="118" text-anchor="middle" font-family="Fraunces" font-size="11" fill="#C9A86A">Brief a Partner ↗</text>
+        <text x="290" y="148" class="anno" font-size="12">collapsed</text>
+
+        <!-- arrow between states -->
+        <path d="M 438 246 L 458 246 M 452 240 L 458 246 L 452 252" stroke="#A07F44" stroke-width="1.5" fill="none" />
+        <text x="448" y="232" text-anchor="middle" class="anno" font-size="12">tap</text>
+
+        <!-- RIGHT: expanded -->
+        <rect x="468" y="48" width="392" height="396" fill="#1A1F26" opacity="0.96" />
+        <text x="488" y="84" font-family="Manrope" font-size="8" fill="#A8A199" letter-spacing="3">HOME · PROGRAMS · PORTUGAL</text>
+        <text x="488" y="108" font-family="Manrope" font-size="8" fill="#C9A86A" letter-spacing="3">EUROPE · RBI</text>
+        <text x="488" y="170" font-family="Fraunces" font-size="32" fill="#F4EFE6">Portugal</text>
+        <text x="606" y="170" font-family="Fraunces" font-size="32" fill="#C9A86A" font-style="italic">Golden</text>
+        <text x="488" y="206" font-family="Fraunces" font-size="32" fill="#C9A86A" font-style="italic">Visa</text>
+
+        <!-- expanded card -->
+        <rect x="606" y="220" width="244" height="206" fill="#FBF7EF" stroke="#C9A86A" stroke-width="1" />
+        <text x="624" y="244" font-family="Fraunces" font-size="13" fill="#1A1F26">Brief a Partner</text>
+        <text x="822" y="244" text-anchor="end" font-family="Manrope" font-size="14" fill="#6B6257">×</text>
+        <line x1="624" y1="252" x2="838" y2="252" class="hair" />
+        <text x="624" y="270" class="body-text" font-size="8">YOU</text>
+        <line x1="624" y1="282" x2="836" y2="282" class="hair" />
+        <text x="624" y="300" class="body-text" font-size="8">JURISDICTION</text>
+        <line x1="624" y1="312" x2="836" y2="312" class="hair" />
+        <text x="624" y="330" class="body-text" font-size="8">SITUATION</text>
+        <line x1="624" y1="342" x2="836" y2="342" class="hair" />
+        <line x1="624" y1="356" x2="836" y2="356" class="hair" />
+        <rect x="624" y="372" width="214" height="26" fill="#C9A86A" rx="1" />
+        <text x="668" y="389" font-family="Fraunces" font-size="11" fill="#0B0F14">Send brief →</text>
+
+        <text x="488" y="408" class="anno" font-size="12">expanded</text>
+      </svg>
+    </div>
+    <p class="sketch-caption">01·C — Collapsed pill (left) → expanded card (right). Cleanest hero.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 01-D: Dock on scroll, with named partner                       -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Variation 01·D</span>
+    <h2>A <em>dock-on-scroll advisor card</em> — appears once the hero is past.</h2>
+    <p class="idea__why">
+      Hero stays absolutely clean. The conversion path arrives later — once the user has
+      scrolled past the hero, a compact card slides in from the bottom-right with a small
+      partner portrait and one line: "Working on Portugal? Brief Filip directly →" Stays
+      docked through the rest of the page. Marries idea 01 and idea 04 (named partner)
+      into one element.
+    </p>
+    <p class="idea__diff">
+      <strong>Trade vs baseline:</strong> the hero is pristine, but the conversion only
+      appears for engaged readers. Skips drive-by traffic on purpose — fine if our buyer
+      reads before they convert.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: dock-on-scroll advisor card">
+        <rect x="6" y="6" width="868" height="448" class="hair" />
+
+        <!-- top hero (clean) -->
+        <rect x="6" y="6" width="868" height="180" fill="#1A1F26" opacity="0.96" />
+        <text x="56" y="42" font-family="Manrope" font-size="9" fill="#A8A199" letter-spacing="3">HOME · PROGRAMS · PORTUGAL</text>
+        <text x="56" y="92" font-family="Manrope" font-size="9" fill="#C9A86A" letter-spacing="3">EUROPE · RBI</text>
+        <text x="56" y="146" font-family="Fraunces" font-size="36" fill="#F4EFE6">Portugal</text>
+        <text x="208" y="146" font-family="Fraunces" font-size="36" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="56" y1="164" x2="116" y2="164" stroke="#C9A86A" stroke-width="1.2" />
+
+        <text x="700" y="100" class="anno">hero stays clean</text>
+        <path d="M 700 104 C 600 110, 500 120, 400 130" class="anno-line" />
+
+        <!-- below hero: article content -->
+        <text x="56" y="218" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">AT A GLANCE</text>
+        <line x1="56" y1="236" x2="540" y2="236" class="hair" />
+        <line x1="56" y1="252" x2="520" y2="252" class="hair" />
+        <line x1="56" y1="268" x2="540" y2="268" class="hair" />
+        <line x1="56" y1="284" x2="430" y2="284" class="hair" />
+        <text x="56" y="320" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">WHAT WE ACTUALLY THINK</text>
+        <line x1="56" y1="338" x2="540" y2="338" class="hair" />
+        <line x1="56" y1="354" x2="510" y2="354" class="hair" />
+        <line x1="56" y1="370" x2="540" y2="370" class="hair" />
+        <line x1="56" y1="386" x2="500" y2="386" class="hair" />
+
+        <!-- floating dock card bottom-right -->
+        <rect x="572" y="318" width="280" height="116" rx="3" fill="#0B0F14" stroke="#C9A86A" stroke-width="1" />
+        <!-- portrait -->
+        <circle cx="612" cy="376" r="28" fill="#1A1F26" stroke="#C9A86A" stroke-width="1" />
+        <circle cx="612" cy="368" r="9" fill="#C9A86A" opacity="0.6" />
+        <path d="M 593 392 Q 612 380 631 392 L 631 404 L 593 404 Z" fill="#C9A86A" opacity="0.6" />
+        <!-- text -->
+        <text x="652" y="358" font-family="Manrope" font-size="9" fill="#A8A199" letter-spacing="2">FILIP MARCZAK</text>
+        <text x="652" y="378" font-family="Fraunces" font-size="13" fill="#F4EFE6">Working on Portugal?</text>
+        <text x="652" y="396" font-family="Fraunces" font-size="13" fill="#C9A86A" font-style="italic">Brief Filip directly →</text>
+
+        <text x="500" y="320" class="anno">slides in once hero scrolls past</text>
+        <path d="M 660 318 C 640 308, 620 300, 600 296" class="anno-line" />
+      </svg>
+    </div>
+    <p class="sketch-caption">01·D — Conversion path docks in only when the reader is engaged.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 01-E: Calendar-first (no form)                                 -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Variation 01·E</span>
+    <h2>A <em>calendar-first</em> panel — three real slots, no form.</h2>
+    <p class="idea__why">
+      Skip the form entirely. The card lists three actually-available slots from a
+      partner's calendar — "Thu 7 May · 14:00 CET / Fri 8 May · 09:30 CET / Mon 11 May ·
+      11:00 CET" — each tile clickable. Picking one opens a name+email modal and books
+      the call. "Or pick another time →" link below as the escape hatch.
+    </p>
+    <p class="idea__diff">
+      <strong>Trade vs baseline:</strong> zero typing to start; signals "we're real
+      advisors with calendars, not a CRM." Costs us partner-time visibility and a Cal.com
+      / Google integration. Best signal of quality bar; worst if a slot books with a
+      tire-kicker.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: calendar-first panel">
+        <rect x="6" y="6" width="868" height="448" class="hair" />
+        <line x1="6" y1="44" x2="874" y2="44" class="hair" />
+        <text x="22" y="30" class="body-text" font-size="10">HOME · PROGRAMS · PORTUGAL GOLDEN VISA</text>
+        <rect x="6" y="44" width="868" height="410" fill="#1A1F26" opacity="0.96" />
+
+        <text x="56" y="100" font-family="Manrope" font-size="9" fill="#C9A86A" letter-spacing="3">EUROPE · RBI</text>
+        <text x="56" y="170" font-family="Fraunces" font-size="46" fill="#F4EFE6">Portugal</text>
+        <text x="220" y="170" font-family="Fraunces" font-size="46" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="56" y1="190" x2="120" y2="190" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="56" y="218" font-family="Fraunces" font-size="14" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- card -->
+        <rect x="540" y="100" width="288" height="296" rx="3" fill="#FBF7EF" stroke="#C9A86A" stroke-width="1" />
+        <text x="558" y="130" font-family="Manrope" font-size="9" fill="#A07F44" letter-spacing="3">NEXT AVAILABLE WITH FILIP</text>
+        <text x="558" y="158" font-family="Fraunces" font-size="18" fill="#1A1F26">Pick a 30-minute slot.</text>
+
+        <!-- slot 1 -->
+        <rect x="558" y="180" width="252" height="44" fill="#FFFFFF" stroke="#D9CFB7" stroke-width="1" />
+        <text x="572" y="200" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">THU · 7 MAY</text>
+        <text x="572" y="218" font-family="Fraunces" font-size="14" fill="#1A1F26">14:00 CET</text>
+        <text x="796" y="208" text-anchor="end" font-family="Manrope" font-size="14" fill="#A07F44">→</text>
+
+        <!-- slot 2 -->
+        <rect x="558" y="230" width="252" height="44" fill="#FFFFFF" stroke="#D9CFB7" stroke-width="1" />
+        <text x="572" y="250" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">FRI · 8 MAY</text>
+        <text x="572" y="268" font-family="Fraunces" font-size="14" fill="#1A1F26">09:30 CET</text>
+        <text x="796" y="258" text-anchor="end" font-family="Manrope" font-size="14" fill="#A07F44">→</text>
+
+        <!-- slot 3 -->
+        <rect x="558" y="280" width="252" height="44" fill="#FFFFFF" stroke="#D9CFB7" stroke-width="1" />
+        <text x="572" y="300" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">MON · 11 MAY</text>
+        <text x="572" y="318" font-family="Fraunces" font-size="14" fill="#1A1F26">11:00 CET</text>
+        <text x="796" y="308" text-anchor="end" font-family="Manrope" font-size="14" fill="#A07F44">→</text>
+
+        <text x="558" y="354" font-family="Manrope" font-size="10" fill="#A07F44" font-style="italic">Or pick another time →</text>
+        <text x="558" y="378" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">NDA-FIRST · 30-MIN PRIVATE CALL</text>
+
+        <text x="40" y="430" class="anno">no form — just live calendar slots</text>
+        <path d="M 320 420 C 420 410, 470 380, 540 350" class="anno-line" />
+      </svg>
+    </div>
+    <p class="sketch-caption">01·E — Calendar slots replace the form. Maximum signal of quality bar.</p>
+  </section>
+
+</div>
+
+<footer class="foot">
+  <strong>How to choose:</strong> 01·A and 01·E minimise typing; 01·B inverts the offer
+  and likely converts highest; 01·C protects the typography; 01·D respects the reader.
+  Worth shipping two and A/B-testing — start with the baseline (current 01) vs 01·B.
+</footer>
+
+</div>
+</body>
+</html>

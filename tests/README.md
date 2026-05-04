@@ -21,6 +21,7 @@ from the production app.
 | --- | --- |
 | `tests/logo-concepts.html` | Standalone preview of logo wordmark concepts (was `public/assets/logo-concepts.html`). |
 | `tests/sketches/program-page-improvements.html` | Five proposed improvements to `ProgramPage.jsx` benchmarked against Astons' Vanuatu landing — ideas + hand-drawn-style wireframes. |
+| `tests/sketches/idea-01-brief-panel-variations.html` | Five distinct UX variations of idea 01's "Brief a Partner" hero panel (inline strip, email-gated dossier, expanding pill, dock-on-scroll, calendar-first). |
 
 ## Viewing
 
