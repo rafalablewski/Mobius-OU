@@ -14078,108 +14078,174 @@ span {
 /* --- Brief panel (calendar-first hero CTA) -------------------------------- */
 /* Sits on the dark editorial breadcrumb as a cream card. Three weekday
    slots, link-out for "another time", NDA-first microcopy. */
+/* Brief panel — Tesla touchscreen register: pure-black slab on the dark
+   hero, oversized soonest-time display, three slabs, single white CTA. */
 .ht-brief-panel {
-  background: var(--ht-theme-color-5);
-  border: 1px solid rgba(201, 168, 106, 0.5);
-  border-radius: 3px;
-  padding: 18px 18px 14px;
-  color: var(--ht-heading-color);
-  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.55);
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 22px 22px 18px;
+  color: #FFF;
+  font-family: var(--ht-font-ui);
+  box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.6);
   animation: ht-breadcrumb-rise 720ms 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
+.ht-brief-panel__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
 .ht-brief-panel__eyebrow {
-  display: block;
   font-family: var(--ht-font-ui);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #A07F44;
-  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.55);
 }
-.ht-brief-panel__title {
-  font-family: var(--ht-font-display);
-  font-size: 19px;
+.ht-brief-panel__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
   font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  color: var(--ht-heading-color);
-  margin: 0 0 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFF;
+}
+.ht-brief-panel__status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ht-theme-color-2);
+  box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.18);
+}
+.ht-brief-panel__bigtime {
+  font-family: var(--ht-font-ui);
+  font-weight: 200;
+  font-size: clamp(56px, 22vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #FFF;
+  margin: 4px 0 8px;
+}
+.ht-brief-panel__bigtime span { color: rgba(255, 255, 255, 0.4); }
+.ht-brief-panel__bigmeta {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 18px;
+}
+.ht-brief-panel__bigmeta strong {
+  color: #FFF;
+  font-weight: 600;
 }
 .ht-brief-panel__slots {
   list-style: none;
-  margin: 0;
+  margin: 0 0 14px;
   padding: 0;
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
 .ht-brief-panel__slot {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 6px 12px;
-  align-items: center;
-  background: var(--ht-white);
-  border: 1px solid var(--ht-border-color);
-  padding: 8px 12px;
+  display: block;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 3px;
+  padding: 12px 10px;
   text-decoration: none;
-  color: var(--ht-heading-color);
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  color: #FFF;
+  transition: background 0.18s ease, border-color 0.18s ease;
 }
 .ht-brief-panel__slot:hover,
 .ht-brief-panel__slot:focus-visible {
-  border-color: var(--ht-theme-color-2);
-  background: #FFFDF7;
-  transform: translateX(2px);
-  color: var(--ht-heading-color);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.30);
+  color: #FFF;
+  outline: none;
+}
+.ht-brief-panel__slot.is-active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.85);
 }
 .ht-brief-panel__slot-day {
-  grid-column: 1;
+  display: block;
   font-family: var(--ht-font-ui);
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: var(--ht-theme-color-6);
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1;
 }
 .ht-brief-panel__slot-time {
-  grid-column: 1;
-  grid-row: 2;
-  font-family: var(--ht-font-display);
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ht-heading-color);
-}
-.ht-brief-panel__slot-arrow {
-  grid-column: 3;
-  grid-row: 1 / span 2;
+  display: block;
   font-family: var(--ht-font-ui);
-  font-size: 15px;
-  color: #A07F44;
-  align-self: center;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: #FFF;
+  margin-top: 6px;
+  line-height: 1;
 }
-.ht-brief-panel__alt {
-  display: inline-block;
-  margin-top: 10px;
-  font-family: var(--ht-font-serif-body);
-  font-style: italic;
-  font-size: 13px;
-  color: #A07F44;
+.ht-brief-panel__cta {
+  display: block;
+  width: 100%;
+  background: #FFF;
+  color: #000;
+  border: 0;
+  border-radius: 3px;
+  padding: 13px 14px;
+  font-family: var(--ht-font-ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: background 0.18s ease, color 0.18s ease;
 }
-.ht-brief-panel__alt:hover { color: var(--ht-heading-color); }
-.ht-brief-panel__microcopy {
-  margin: 10px 0 0;
+.ht-brief-panel__cta:hover,
+.ht-brief-panel__cta:focus-visible {
+  background: var(--ht-theme-color-2);
+  color: #000;
+  outline: none;
+}
+.ht-brief-panel__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
   padding-top: 10px;
-  border-top: 1px solid var(--ht-border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ht-brief-panel__microcopy {
+  margin: 0;
   font-family: var(--ht-font-ui);
   font-size: 9px;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: var(--ht-theme-color-6);
+  color: rgba(255, 255, 255, 0.4);
 }
+.ht-brief-panel__alt {
+  font-family: var(--ht-font-serif-body);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ht-theme-color-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+.ht-brief-panel__alt:hover { color: #FFF; }
 
 /* Contact preferred-slot readout (set by ?slot= from a brief panel click) */
 .ht-contact-slot {

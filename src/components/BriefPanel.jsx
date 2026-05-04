@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAY_NAMES_LONG = [
+  'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+];
 const MONTH_NAMES = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
@@ -27,6 +30,7 @@ function getNextSlots(count = 3, now = new Date()) {
       const dd = String(cursor.getDate()).padStart(2, '0');
       slots.push({
         day: DAY_NAMES[dow],
+        dayLong: DAY_NAMES_LONG[dow],
         date: cursor.getDate(),
         month: MONTH_NAMES[cursor.getMonth()],
         time,
@@ -41,39 +45,58 @@ function getNextSlots(count = 3, now = new Date()) {
 
 export default function BriefPanel({ program }) {
   const slots = getNextSlots(3);
+  const primary = slots[0];
+  const [primaryHH, primaryMM] = primary.time.split(':');
   const programParam = program?.slug
     ? `&program=${encodeURIComponent(program.slug)}`
     : '';
   const altHref = program?.slug
     ? `/contact?program=${encodeURIComponent(program.slug)}`
     : '/contact';
+  const slotHref = (slot) =>
+    `/contact?slot=${encodeURIComponent(slot.iso)}${programParam}`;
 
   return (
     <aside className="ht-brief-panel" aria-label="Schedule a private call">
-      <span className="ht-brief-panel__eyebrow">Next available with Filip</span>
-      <h2 className="ht-brief-panel__title">Pick a 30-minute slot.</h2>
+      <div className="ht-brief-panel__top">
+        <span className="ht-brief-panel__eyebrow">Next private call · Filip Z.</span>
+        <span className="ht-brief-panel__status">Available</span>
+      </div>
+
+      <div className="ht-brief-panel__bigtime" aria-hidden="true">
+        {primaryHH}<span>:</span>{primaryMM}
+      </div>
+      <div className="ht-brief-panel__bigmeta">
+        <strong>{primary.dayLong} · {primary.date} {primary.month}</strong> · CET · 30 min
+      </div>
+
       <ul className="ht-brief-panel__slots">
-        {slots.map((slot) => (
+        {slots.map((slot, i) => (
           <li key={slot.iso}>
             <Link
-              to={`/contact?slot=${encodeURIComponent(slot.iso)}${programParam}`}
-              className="ht-brief-panel__slot"
+              to={slotHref(slot)}
+              className={`ht-brief-panel__slot${i === 0 ? ' is-active' : ''}`}
+              aria-current={i === 0 ? 'true' : undefined}
             >
               <span className="ht-brief-panel__slot-day">
                 {slot.day.toUpperCase()} · {slot.date} {slot.month.toUpperCase()}
               </span>
-              <span className="ht-brief-panel__slot-time">{slot.time} CET</span>
-              <span className="ht-brief-panel__slot-arrow" aria-hidden="true">→</span>
+              <span className="ht-brief-panel__slot-time">{slot.time}</span>
             </Link>
           </li>
         ))}
       </ul>
-      <Link to={altHref} className="ht-brief-panel__alt">
-        Or pick another time →
+
+      <Link to={slotHref(primary)} className="ht-brief-panel__cta">
+        Reserve · {primary.time} CET
       </Link>
-      <p className="ht-brief-panel__microcopy">
-        NDA-first · 30-min private call · No marketing
-      </p>
+
+      <div className="ht-brief-panel__foot">
+        <p className="ht-brief-panel__microcopy">NDA-first · No marketing</p>
+        <Link to={altHref} className="ht-brief-panel__alt">
+          Pick another time →
+        </Link>
+      </div>
     </aside>
   );
 }
