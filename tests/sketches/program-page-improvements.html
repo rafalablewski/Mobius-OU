@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Program Page — Improvement Sketches vs Astons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@400;500;600;700&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --redline:    #B23A2A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1080px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.1;
+    margin: 14px 0 18px;
+    letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 64ch; }
+  .ideas { display: grid; gap: 56px; }
+  .idea { border: 1px solid var(--hairline); border-radius: 4px; background: var(--cream); padding: 28px 28px 8px; }
+  .idea__num {
+    font-family: "Fraunces", serif;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 8px 0 12px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 8px; }
+  .idea__contrast {
+    font-size: 13px; color: var(--pencil); margin: 6px 0 22px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+  }
+  .sketch-frame {
+    background: #FBF7EF;
+    border: 1px solid #D9CFB7;
+    border-radius: 3px;
+    padding: 12px 12px 10px;
+    margin: 8px -4px 24px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 8px 24px -16px rgba(0,0,0,0.18);
+  }
+  .sketch-frame svg { display: block; width: 100%; height: auto; }
+  .sketch-caption {
+    font-family: "Caveat", cursive;
+    font-size: 16px;
+    color: var(--redline);
+    margin: 6px 4px 4px;
+    text-align: center;
+  }
+  /* in-svg sketch primitives — declared on each <svg> via classes for clarity */
+  .pencil  { stroke: var(--pencil);  fill: none; stroke-width: 1.4; }
+  .hair    { stroke: var(--pencil);  fill: none; stroke-width: 0.8; opacity: 0.55; }
+  .gold    { stroke: var(--gold-deep); fill: none; stroke-width: 1.4; }
+  .fill-paper { fill: #F1EAD8; }
+  .fill-ink   { fill: #1A1F26; }
+  .fill-card  { fill: #FFFFFF; stroke: var(--pencil); stroke-width: 1; }
+  .ink-text   { font-family: "Fraunces", serif; fill: #1A1F26; }
+  .body-text  { font-family: "Manrope", sans-serif; fill: var(--stone); }
+  .gold-text  { font-family: "Fraunces", serif; fill: var(--gold-deep); font-style: italic; }
+  .anno {
+    font-family: "Caveat", cursive;
+    fill: var(--redline);
+    font-size: 14px;
+  }
+  .anno-line { stroke: var(--redline); fill: none; stroke-width: 1; stroke-dasharray: 3 3; }
+  footer.foot {
+    border-top: 1px solid var(--hairline);
+    margin-top: 72px;
+    padding-top: 24px;
+    color: var(--stone);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="intro">
+  <span class="eyebrow">Tests · Program-page R&amp;D · 2026.Q2</span>
+  <h1>Five ways our <em>program page</em> can out-class Astons.</h1>
+  <p class="lede">
+    Astons leans on a saturated beach photo, a "largest agent" badge and a loud red consultation
+    form pinned to the hero. We're playing a different game — editorial, advisory, NDA-first.
+    These five moves keep our calm and add the conversion paths we're currently missing.
+  </p>
+</header>
+
+<div class="ideas">
+
+  <!-- ============================================================ -->
+  <!-- IDEA 1: NDA-first floating brief panel                        -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Idea 01</span>
+    <h2>A discreet <em>"Brief a Partner"</em> panel on the hero — not a shouty form.</h2>
+    <p class="idea__why">
+      Astons drops a four-field form straight onto the hero, country code dropdown and all. It works
+      for retail leads, but it cheapens the page. We give the same conversion path as a small,
+      glass-card panel anchored to the right of the hero — three fields, NDA-first microcopy,
+      gold button, no phone number required.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus Astons:</strong> they say "Receive a Consultation." We say "Brief us — we respond
+      under NDA within two business days." Same conversion intent, opposite register.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: hero with floating brief panel">
+        <!-- viewport frame -->
+        <rect x="6" y="6" width="868" height="448" class="hair" />
+        <!-- top nav bar -->
+        <line x1="6" y1="44" x2="874" y2="44" class="hair" />
+        <text x="22" y="30" class="body-text" font-size="10">HOME · PROGRAMS · PORTUGAL GOLDEN VISA</text>
+        <text x="710" y="30" class="body-text" font-size="10">EUROPE · RBI · 2026.Q1</text>
+        <!-- hero body -->
+        <rect x="6" y="44" width="868" height="410" class="fill-ink" opacity="0.96" />
+        <!-- crest rule -->
+        <line x1="56" y1="100" x2="200" y2="100" class="gold" opacity="0.7" />
+        <text x="56" y="92" fill="#C9A86A" font-family="Manrope" font-size="9" letter-spacing="3">EUROPE</text>
+        <!-- title -->
+        <text x="56" y="170" font-family="Fraunces" font-size="46" fill="#F4EFE6">Portugal</text>
+        <text x="220" y="170" font-family="Fraunces" font-size="46" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="56" y1="190" x2="120" y2="190" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="56" y="218" font-family="Fraunces" font-size="14" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- floating brief card (right) -->
+        <rect x="540" y="120" width="288" height="270" rx="3" fill="#FBF7EF" stroke="#C9A86A" stroke-width="1" />
+        <!-- card header -->
+        <text x="558" y="148" class="ink-text" font-size="14">Brief a</text>
+        <text x="600" y="148" class="gold-text" font-size="14"> Partner</text>
+        <line x1="558" y1="158" x2="810" y2="158" class="hair" />
+        <!-- field 1 -->
+        <text x="558" y="180" class="body-text" font-size="9">YOU</text>
+        <line x1="558" y1="196" x2="810" y2="196" class="hair" />
+        <!-- field 2 -->
+        <text x="558" y="222" class="body-text" font-size="9">CURRENT JURISDICTION</text>
+        <line x1="558" y1="238" x2="810" y2="238" class="hair" />
+        <!-- field 3 (multiline) -->
+        <text x="558" y="264" class="body-text" font-size="9">THE SITUATION (BRIEFLY)</text>
+        <line x1="558" y1="280" x2="810" y2="280" class="hair" />
+        <line x1="558" y1="298" x2="810" y2="298" class="hair" />
+        <line x1="558" y1="316" x2="710" y2="316" class="hair" />
+        <!-- microcopy -->
+        <text x="558" y="338" class="body-text" font-size="9" font-style="italic">NDA-first · response in 48h · no marketing</text>
+        <!-- button -->
+        <rect x="558" y="350" width="252" height="28" fill="#C9A86A" rx="1" />
+        <text x="608" y="368" font-family="Fraunces" font-size="12" fill="#1A1F26">Send brief →</text>
+
+        <!-- annotation -->
+        <text x="36" y="430" class="anno">smaller, calmer than Astons' red form</text>
+        <path d="M 360 420 C 420 410, 470 380, 540 350" class="anno-line" />
+      </svg>
+    </div>
+    <p class="sketch-caption">01 — Brief panel sits inside the hero, not on top of it.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 2: Headline-figure ribbon                                -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Idea 02</span>
+    <h2>Replace the "largest agent" badge with a <em>headline-figure ribbon</em>.</h2>
+    <p class="idea__why">
+      Astons pushes a vague credibility tile ("The largest agent · official partner of Vanuatu").
+      Specifics outrank superlatives. We run a hairline-bordered ribbon directly under the hero
+      with four hard numbers — minimum allocation, presence requirement, time-to-PR, and a firm
+      stat (jurisdictions advised). Numbers count up on scroll-in.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus Astons:</strong> "largest agent" is unverifiable. €500,000 / 7 days / 5 years
+      is unarguable. Hard numbers also do double duty as SEO answer-box bait.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: headline-figure ribbon">
+        <rect x="6" y="6" width="868" height="368" class="hair" />
+        <!-- collapsed hero -->
+        <rect x="6" y="6" width="868" height="170" class="fill-ink" opacity="0.96" />
+        <text x="56" y="80" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="190" y="80" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="56" y1="98" x2="116" y2="98" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="56" y="124" font-family="Fraunces" font-size="11" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- ribbon -->
+        <rect x="40" y="200" width="800" height="106" fill="#FBF7EF" stroke="#1A1F26" stroke-width="1" />
+        <line x1="240" y1="210" x2="240" y2="296" class="hair" />
+        <line x1="440" y1="210" x2="440" y2="296" class="hair" />
+        <line x1="640" y1="210" x2="640" y2="296" class="hair" />
+
+        <!-- cell 1 -->
+        <text x="60" y="232" class="body-text" font-size="9" letter-spacing="2">MIN. ALLOCATION</text>
+        <text x="60" y="276" font-family="Fraunces" font-size="32" fill="#1A1F26">€500,000</text>
+        <!-- cell 2 -->
+        <text x="260" y="232" class="body-text" font-size="9" letter-spacing="2">PRESENCE / YR</text>
+        <text x="260" y="276" font-family="Fraunces" font-size="32" fill="#1A1F26">7 days</text>
+        <!-- cell 3 -->
+        <text x="460" y="232" class="body-text" font-size="9" letter-spacing="2">TO PERMANENT RESIDENCY</text>
+        <text x="460" y="276" font-family="Fraunces" font-size="32" fill="#1A1F26">5 years</text>
+        <!-- cell 4 -->
+        <text x="660" y="232" class="body-text" font-size="9" letter-spacing="2">JURISDICTIONS ADVISED</text>
+        <text x="660" y="276" font-family="Fraunces" font-size="32" fill="#C9A86A" font-style="italic">35+</text>
+
+        <!-- annotation -->
+        <text x="220" y="332" class="anno">numbers count up on scroll-in</text>
+        <path d="M 350 330 C 380 320, 420 312, 480 304" class="anno-line" />
+        <text x="40" y="358" class="anno">specifics &gt; superlatives</text>
+      </svg>
+    </div>
+    <p class="sketch-caption">02 — A hairline ribbon of four hard numbers sits flush under the hero.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 3: Dossier hero with watermark crest                     -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Idea 03</span>
+    <h2>Lean further into the <em>intel-brief</em> aesthetic — dossier stamp + watermark crest.</h2>
+    <p class="idea__why">
+      Our hero already has the right tone, but the dark right half is dead space. Fill it with a
+      faint country crest watermark (≈8% opacity), and add a small rotated "PROGRAM DOSSIER · 2026.Q1"
+      stamp in the top-right. Reads like a private-bank research note. Astons reads like a tour
+      brochure.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus Astons:</strong> they fill the hero with a saturated beach photo. We do the
+      opposite — restraint, gravitas, watermark instead of stock photo.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: dossier hero with watermark crest">
+        <rect x="6" y="6" width="868" height="448" class="hair" />
+        <!-- hero -->
+        <rect x="6" y="6" width="868" height="448" class="fill-ink" opacity="0.96" />
+
+        <!-- watermark crest (right, faint) -->
+        <g opacity="0.10" stroke="#C9A86A" fill="none" stroke-width="1.2">
+          <!-- shield -->
+          <path d="M 640 90 L 800 90 L 800 220 Q 720 320 720 320 Q 720 320 640 220 Z" />
+          <!-- quarters -->
+          <line x1="720" y1="90" x2="720" y2="278" />
+          <line x1="640" y1="160" x2="800" y2="160" />
+          <!-- castle motif -->
+          <rect x="660" y="110" width="40" height="30" />
+          <rect x="740" y="110" width="40" height="30" />
+          <rect x="660" y="180" width="40" height="30" />
+          <rect x="740" y="180" width="40" height="30" />
+          <!-- crown -->
+          <path d="M 680 80 L 690 70 L 700 80 L 720 65 L 740 80 L 750 70 L 760 80" />
+        </g>
+
+        <!-- rotated dossier stamp -->
+        <g transform="translate(720 60) rotate(-6)">
+          <rect x="-90" y="-22" width="180" height="44" stroke="#C9A86A" fill="none" stroke-width="1.4" />
+          <text x="0" y="-4" text-anchor="middle" font-family="Fraunces" font-size="9" fill="#C9A86A" letter-spacing="3">PROGRAM DOSSIER</text>
+          <text x="0" y="14" text-anchor="middle" font-family="Manrope" font-size="9" fill="#C9A86A" letter-spacing="3">2026 · Q1 · CONFIDENTIAL-LITE</text>
+        </g>
+
+        <!-- title -->
+        <line x1="56" y1="160" x2="200" y2="160" stroke="#C9A86A" stroke-width="1" />
+        <text x="56" y="152" font-family="Manrope" font-size="9" fill="#C9A86A" letter-spacing="3">EUROPE · RBI</text>
+        <text x="56" y="220" font-family="Fraunces" font-size="48" fill="#F4EFE6">Portugal</text>
+        <text x="232" y="220" font-family="Fraunces" font-size="48" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="56" y1="240" x2="116" y2="240" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="56" y="270" font-family="Fraunces" font-size="14" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- a small "filed by" line -->
+        <text x="56" y="408" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">FILED BY MOBIUS &amp; PARTNERS · WARSAW · UPDATED 14 MARCH</text>
+
+        <!-- annotation -->
+        <text x="500" y="200" class="anno">faint crest watermark, ~8% opacity</text>
+        <path d="M 600 200 C 640 190, 680 180, 720 180" class="anno-line" />
+        <text x="500" y="378" class="anno">reads like research, not brochure</text>
+      </svg>
+    </div>
+    <p class="sketch-caption">03 — Dossier stamp top-right, country crest watermark, "filed by" footer.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 4: Partner pull-quote                                    -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Idea 04</span>
+    <h2>A <em>named partner pull-quote</em> directly under the hero.</h2>
+    <p class="idea__why">
+      Astons shows zero faces — just a beach and a form. Our edge is judgement, so lead with it.
+      Below the hero, a band with a small portrait, the partner's name and role, and one sharp
+      line: "Portugal still works — but only if you can stomach the AIMA queue." That single
+      sentence does more than a paragraph of marketing copy.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus Astons:</strong> they sell the destination. We sell the call you're going to
+      have. The quote is also the SEO snippet Google will pull.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: named partner pull-quote band">
+        <rect x="6" y="6" width="868" height="348" class="hair" />
+        <!-- collapsed hero -->
+        <rect x="6" y="6" width="868" height="120" class="fill-ink" opacity="0.96" />
+        <text x="56" y="68" font-family="Fraunces" font-size="28" fill="#F4EFE6">Portugal</text>
+        <text x="170" y="68" font-family="Fraunces" font-size="28" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <text x="56" y="92" font-family="Fraunces" font-size="11" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- pull-quote band -->
+        <rect x="6" y="126" width="868" height="228" fill="#FAF6EE" stroke="#1A1F26" stroke-width="0.5" opacity="0.9" />
+        <!-- portrait circle -->
+        <circle cx="120" cy="240" r="56" fill="#EFE9DC" stroke="#1A1F26" stroke-width="1" />
+        <!-- crude head silhouette -->
+        <circle cx="120" cy="222" r="20" fill="#C9A86A" opacity="0.5" />
+        <path d="M 80 270 Q 120 244 160 270 L 160 296 L 80 296 Z" fill="#C9A86A" opacity="0.5" />
+        <!-- name + role -->
+        <text x="200" y="200" font-family="Fraunces" font-size="14" fill="#1A1F26">Filip Marczak</text>
+        <text x="200" y="218" font-family="Manrope" font-size="11" fill="#6B6257" letter-spacing="2">PARTNER · EUROPEAN PROGRAMS</text>
+        <!-- big quote mark -->
+        <text x="200" y="270" font-family="Fraunces" font-size="64" fill="#C9A86A" opacity="0.6">“</text>
+        <!-- quote -->
+        <text x="240" y="262" font-family="Fraunces" font-size="20" fill="#1A1F26" font-style="italic">Portugal still works — but only if you</text>
+        <text x="240" y="290" font-family="Fraunces" font-size="20" fill="#1A1F26" font-style="italic">can stomach the AIMA queue.</text>
+        <!-- citation underline -->
+        <line x1="240" y1="306" x2="290" y2="306" stroke="#C9A86A" stroke-width="1" />
+        <text x="240" y="324" font-family="Manrope" font-size="9" fill="#6B6257" letter-spacing="2">FROM A CLIENT BRIEFING · FEB 2026</text>
+
+        <!-- annotation -->
+        <text x="640" y="180" class="anno">Astons has zero faces.</text>
+        <text x="640" y="200" class="anno">We lead with named judgement.</text>
+        <path d="M 690 210 C 600 230, 480 245, 320 260" class="anno-line" />
+      </svg>
+    </div>
+    <p class="sketch-caption">04 — Portrait + name + one-line judgement = social proof we actually have.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 5: Sticky compare/CTA bar                                -->
+  <!-- ============================================================ -->
+  <section class="idea">
+    <span class="idea__num">Idea 05</span>
+    <h2>A <em>sticky compare bar</em> at the bottom of the viewport.</h2>
+    <p class="idea__why">
+      Most clients reading a Portugal page are also looking at Greece, Spain and Malta. Don't make
+      them go back to /pricing. A thin, persistent bar at the bottom of the viewport: "Compare:
+      Greece · Spain · Malta" pills on the left, "Schedule Consultation" button on the right.
+      Stays out of the way, always one click from the next surface.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus Astons:</strong> they keep their consultation form sticky on the side. We keep
+      the comparison shelf sticky instead — that's what HNW clients are actually doing in their
+      heads.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: sticky compare and CTA bar">
+        <rect x="6" y="6" width="868" height="408" class="hair" />
+        <!-- partial page content -->
+        <rect x="6" y="6" width="868" height="120" class="fill-ink" opacity="0.96" />
+        <text x="56" y="68" font-family="Fraunces" font-size="28" fill="#F4EFE6">Portugal</text>
+        <text x="170" y="68" font-family="Fraunces" font-size="28" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <text x="56" y="92" font-family="Fraunces" font-size="11" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- body content placeholder -->
+        <text x="56" y="160" font-family="Manrope" font-size="10" fill="#6B6257" letter-spacing="2">AT A GLANCE</text>
+        <line x1="56" y1="178" x2="540" y2="178" class="hair" />
+        <line x1="56" y1="194" x2="520" y2="194" class="hair" />
+        <line x1="56" y1="210" x2="540" y2="210" class="hair" />
+        <line x1="56" y1="226" x2="430" y2="226" class="hair" />
+        <text x="56" y="262" font-family="Manrope" font-size="10" fill="#6B6257" letter-spacing="2">WHAT WE ACTUALLY THINK</text>
+        <line x1="56" y1="280" x2="540" y2="280" class="hair" />
+        <line x1="56" y1="296" x2="510" y2="296" class="hair" />
+        <line x1="56" y1="312" x2="540" y2="312" class="hair" />
+
+        <!-- timeline placeholder right -->
+        <rect x="600" y="148" width="220" height="180" fill="#F1EAD8" stroke="#D9CFB7" />
+        <text x="616" y="168" font-family="Manrope" font-size="10" fill="#6B6257" letter-spacing="2">TIMELINE</text>
+        <line x1="616" y1="186" x2="800" y2="186" class="hair" />
+        <line x1="616" y1="204" x2="780" y2="204" class="hair" />
+        <line x1="616" y1="222" x2="800" y2="222" class="hair" />
+        <line x1="616" y1="240" x2="760" y2="240" class="hair" />
+
+        <!-- sticky bar -->
+        <rect x="6" y="358" width="868" height="56" fill="#0B0F14" />
+        <text x="32" y="382" font-family="Manrope" font-size="9" fill="#A8A199" letter-spacing="3">COMPARE WITH</text>
+        <!-- pills -->
+        <rect x="32" y="388" width="62" height="20" fill="none" stroke="#C9A86A" stroke-width="1" rx="10" />
+        <text x="63" y="402" font-family="Fraunces" font-size="11" fill="#F4EFE6" text-anchor="middle">Greece</text>
+        <rect x="100" y="388" width="56" height="20" fill="none" stroke="#C9A86A" stroke-width="1" rx="10" />
+        <text x="128" y="402" font-family="Fraunces" font-size="11" fill="#F4EFE6" text-anchor="middle">Spain</text>
+        <rect x="162" y="388" width="56" height="20" fill="none" stroke="#C9A86A" stroke-width="1" rx="10" />
+        <text x="190" y="402" font-family="Fraunces" font-size="11" fill="#F4EFE6" text-anchor="middle">Malta</text>
+
+        <!-- right CTA -->
+        <rect x="660" y="378" width="190" height="28" fill="#C9A86A" rx="1" />
+        <text x="755" y="396" font-family="Fraunces" font-size="12" fill="#0B0F14" text-anchor="middle">Schedule Consultation →</text>
+
+        <!-- annotation -->
+        <text x="280" y="350" class="anno">stays put as you scroll the article</text>
+        <path d="M 280 354 C 240 360, 180 366, 130 376" class="anno-line" />
+      </svg>
+    </div>
+    <p class="sketch-caption">05 — Comparison shelf sticky on the bottom, never more than one click away.</p>
+  </section>
+
+</div>
+
+<footer class="foot">
+  <strong>Where this lives:</strong> all draft sketches and design R&amp;D for the site go under
+  <code>/tests/sketches/</code>. See <code>/tests/README.md</code> and the root <code>CLAUDE.md</code>
+  for the convention.
+</footer>
+
+</div>
+</body>
+</html>
