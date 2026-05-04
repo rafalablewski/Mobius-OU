@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Freshness badge — five redesigns of "UPDATED 2026.Q1"</title>
+<title>Freshness badge — ten redesigns of "UPDATED 2026.Q1"</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@400;500;600;700&display=swap" />
@@ -312,6 +312,210 @@
     text-decoration: underline; text-decoration-color: rgba(160,127,68,0.4);
   }
 
+  /* ============================================================
+     Round 2 — bolder, more decorative concepts
+     ============================================================ */
+
+  /* divider before round 2 */
+  .round-divider {
+    margin: 8px -8px 24px;
+    padding: 28px 28px 24px;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    background: linear-gradient(180deg, transparent, rgba(201,168,106,0.06));
+  }
+  .round-divider .eyebrow { color: var(--gold-deep); }
+  .round-divider h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 30px; line-height: 1.2;
+    margin: 8px 0 10px; letter-spacing: -0.01em;
+  }
+  .round-divider h2 em { font-style: italic; color: var(--gold-deep); }
+  .round-divider p { color: var(--stone); font-size: 14px; line-height: 1.6; max-width: 64ch; margin: 0; }
+
+  /* Idea 6 — wax seal monogram */
+  .wax-seal {
+    --seal: #C9A86A;
+    position: relative;
+    width: 96px; height: 96px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%, #E1C189 0%, #B68C44 55%, #8A6A2C 100%);
+    box-shadow:
+      inset 0 -3px 8px rgba(0,0,0,0.45),
+      inset 0 2px 4px rgba(255,230,180,0.45),
+      0 6px 14px -6px rgba(0,0,0,0.6);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #3A2A12;
+  }
+  .wax-seal::before {
+    content: ""; position: absolute; inset: 6px;
+    border: 1px dashed rgba(58,42,18,0.35);
+    border-radius: 50%;
+  }
+  .wax-seal svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .wax-seal .ws-mono {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 36px; font-weight: 500;
+    text-shadow: 0 1px 0 rgba(255,230,180,0.45);
+    z-index: 1;
+  }
+
+  /* Idea 7 — watermark / chapter heading */
+  .watermark-stage {
+    position: relative; flex: 1; min-width: 360px;
+    background: var(--ink); border-radius: 3px;
+    padding: 30px 24px 26px; overflow: hidden;
+    color: var(--ivory);
+  }
+  .watermark-stage .wm-q {
+    position: absolute; right: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 156px; line-height: 1; font-weight: 300;
+    color: rgba(201,168,106,0.10);
+    letter-spacing: -0.04em;
+    pointer-events: none; user-select: none;
+  }
+  .watermark-stage .wm-meta {
+    position: relative;
+    font-family: "Manrope"; font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(201,168,106,0.85);
+  }
+  .watermark-stage .wm-title {
+    position: relative;
+    font-family: "Fraunces", serif; font-size: 28px;
+    margin-top: 8px; color: rgba(244,239,230,0.92);
+  }
+  .watermark-stage .wm-title em { color: var(--gold); }
+  .watermark-stage .wm-rule {
+    position: relative;
+    width: 56px; height: 1px;
+    background: var(--gold);
+    margin: 10px 0 8px;
+  }
+  .watermark-stage .wm-sub {
+    position: relative;
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 12px; color: rgba(244,239,230,0.55);
+  }
+
+  /* Idea 8 — postage stamp / philatelic */
+  .postage {
+    --p-bg: #FBF7EF;
+    position: relative;
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    background:
+      radial-gradient(circle at 0 50%, transparent 4px, var(--p-bg) 4.5px) -4px 0/10px 10px,
+      var(--p-bg);
+    -webkit-mask:
+      radial-gradient(circle at 0 0, transparent 4px, #000 4.5px) 0 0/10px 10px,
+      radial-gradient(circle at 100% 0, transparent 4px, #000 4.5px) 0 0/10px 10px,
+      radial-gradient(circle at 0 100%, transparent 4px, #000 4.5px) 0 0/10px 10px,
+      radial-gradient(circle at 100% 100%, transparent 4px, #000 4.5px) 0 0/10px 10px;
+    -webkit-mask-composite: source-in;
+    border-radius: 1px;
+    box-shadow: 0 6px 18px -8px rgba(0,0,0,0.5);
+  }
+  /* fallback (without -webkit-mask): perforated border via dashed look */
+  @supports not (-webkit-mask-composite: source-in) {
+    .postage { background: var(--p-bg); border: 2px dashed rgba(201,168,106,0.55); }
+  }
+  .postage .p-frame {
+    border: 1px solid rgba(160,127,68,0.55);
+    padding: 8px 14px; display: flex; flex-direction: column;
+    align-items: center; gap: 2px; min-width: 130px;
+  }
+  .postage .p-eye {
+    font-family: "Manrope"; font-size: 8px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold-deep);
+  }
+  .postage .p-q {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 22px; color: var(--ink); line-height: 1;
+  }
+  .postage .p-rev {
+    font-family: "Manrope"; font-size: 8px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .postage .p-cancel {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 11px; color: var(--redline);
+    transform: rotate(-9deg); opacity: 0.78;
+    border: 1px solid var(--redline); padding: 3px 8px;
+    border-radius: 50%;
+  }
+
+  /* Idea 9 — annotated correction (caveat redline) */
+  .correction {
+    display: inline-flex; align-items: baseline; gap: 12px;
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 17px;
+    color: var(--ivory);
+  }
+  .correction .c-old {
+    position: relative; color: rgba(244,239,230,0.45);
+  }
+  .correction .c-old::after {
+    content: ""; position: absolute; left: -3px; right: -3px;
+    top: 52%; height: 2px;
+    background: var(--redline);
+    transform: rotate(-3deg);
+    border-radius: 2px;
+  }
+  .correction .c-arrow {
+    font-family: "Caveat", cursive; font-style: normal;
+    font-size: 22px; color: var(--redline);
+    line-height: 1; transform: translateY(-2px);
+  }
+  .correction .c-new {
+    color: var(--gold);
+    border-bottom: 1px dashed rgba(201,168,106,0.55);
+    padding-bottom: 2px;
+  }
+  .correction .c-margin {
+    font-family: "Caveat", cursive; font-style: normal;
+    font-size: 16px; color: var(--redline);
+    margin-left: 10px;
+  }
+
+  /* Idea 10 — almanac / roman numeral */
+  .almanac {
+    display: inline-flex; flex-direction: column; align-items: center;
+    padding: 10px 22px;
+    color: var(--gold);
+    font-family: "Fraunces", serif;
+  }
+  .almanac .a-rule {
+    width: 100%; height: 0;
+    border-top: 1px solid rgba(201,168,106,0.55);
+    border-bottom: 0.5px solid rgba(201,168,106,0.35);
+    padding-top: 3px;
+  }
+  .almanac .a-stars {
+    font-size: 9px; letter-spacing: 0.6em;
+    color: rgba(201,168,106,0.7); margin-bottom: 2px;
+  }
+  .almanac .a-roman {
+    font-style: italic; font-size: 22px; line-height: 1;
+    letter-spacing: 0.06em;
+  }
+  .almanac .a-roman .a-sep {
+    color: rgba(201,168,106,0.55); margin: 0 8px;
+    font-style: normal;
+  }
+  .almanac .a-foot {
+    margin-top: 4px;
+    font-family: "Manrope"; font-size: 8px;
+    letter-spacing: 0.42em; text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+  }
+
   footer.foot {
     border-top: 1px solid var(--hairline); margin-top: 72px;
     padding-top: 24px; color: var(--stone); font-size: 13px;
@@ -334,13 +538,15 @@
 
 <header class="intro">
   <span class="eyebrow">Tests · Freshness-badge R&amp;D · 2026.Q2</span>
-  <h1>Five redesigns of the <em>"UPDATED 2026.Q1"</em> badge.</h1>
+  <h1>Ten redesigns of the <em>"UPDATED 2026.Q1"</em> badge.</h1>
   <p class="lede">
-    The current freshness indicator (gold pulsing dot + caps label) does the job, but reads as
-    a generic SaaS "live" pill — slightly at odds with the editorial, advisory register of the
-    rest of the program page. Five alternatives below, ordered loosely from most ornamental to
-    most utilitarian. Each is shown as a pencil sketch and a live HTML mock on dark ground so
-    we can compare the actual rendering, not just the idea.
+    The current freshness indicator (gold pulsing dot + caps label) does the job, but reads
+    as a generic SaaS "live" pill — slightly at odds with the editorial, advisory register
+    of the rest of the program page. Two rounds below. <strong>Round one</strong> (01–05) is
+    the pragmatic set — most could ship next week. <strong>Round two</strong> (06–10) is
+    bolder and more decorative — wax seal, watermark chapter mark, postage stamp, redline
+    correction, almanac. Each is shown as a pencil sketch and a live HTML mock on dark
+    ground so we can compare the actual rendering, not just the idea.
   </p>
 
   <div class="baseline">
@@ -362,6 +568,11 @@
     <li><a href="#idea-03">03 — Changelog tab</a></li>
     <li><a href="#idea-04">04 — Gutter mark</a></li>
     <li><a href="#idea-05">05 — Status pill + tooltip</a></li>
+    <li><a href="#idea-06">06 — Wax seal monogram</a></li>
+    <li><a href="#idea-07">07 — Watermark chapter mark</a></li>
+    <li><a href="#idea-08">08 — Postage stamp</a></li>
+    <li><a href="#idea-09">09 — Redline correction</a></li>
+    <li><a href="#idea-10">10 — Almanac · roman numeral</a></li>
   </ul>
 </header>
 
@@ -664,6 +875,338 @@
     <p class="sketch-caption">05 — Familiar shape, advisory voice, optional depth on hover.</p>
   </section>
 
+  <!-- ============================================================ -->
+  <!-- ROUND TWO — five bolder, more decorative concepts             -->
+  <!-- ============================================================ -->
+  <section class="round-divider" id="round-two">
+    <span class="eyebrow">Round two · 06 — 10</span>
+    <h2>Five more, <em>bolder.</em></h2>
+    <p>
+      Round one stayed close to the existing language of the page. Round two pushes harder
+      on register: a wax-seal signet, a chapter-mark watermark, a passport-style postage
+      stamp, an editor's hand-drawn correction, and an almanac-style roman-numeral plate.
+      Each is more risk and more reward — they only work if executed with discipline, but
+      any one of them could become the page's signature flourish.
+    </p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 6 — WAX SEAL MONOGRAM                                    -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-06">
+    <span class="idea__num">Idea 06</span>
+    <h2>A <em>wax-seal monogram</em> — the page's signet ring.</h2>
+    <p class="idea__why">
+      A small circular seal in the top-right of the hero: pressed gold wax, embossed Mobius
+      monogram in italic Fraunces, "Q1 · MMXXVI · MOBIUS" running along the rim in a thin
+      sans. Reads instantly as ceremony and provenance — the visual language of consular
+      seals, notarised documents and old correspondence. Sits perfectly in a citizenship-
+      and-residency context.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> trades a generic "live" pill for an object that says
+      "this dossier was sealed this quarter." Strongest brand-asset payoff of all ten — the
+      seal itself can spread to the briefs index, partner emails, even physical letterhead.
+      Cost: most production work; needs a clean SVG asset and care that it doesn't read as
+      "wedding invitation." Restraint required.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: wax seal monogram on dark hero">
+        <rect x="6" y="6" width="868" height="268" class="hair" />
+        <rect x="6" y="6" width="868" height="268" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+        <text x="36" y="118" font-family="Fraunces" font-size="36" fill="#F4EFE6">Portugal</text>
+        <text x="186" y="118" font-family="Fraunces" font-size="36" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="136" x2="96" y2="136" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="166" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- the seal -->
+        <g transform="translate(740,52)">
+          <defs>
+            <radialGradient id="waxGrad" cx="38%" cy="32%" r="62%">
+              <stop offset="0%" stop-color="#E8C68B" />
+              <stop offset="55%" stop-color="#B68C44" />
+              <stop offset="100%" stop-color="#7A5722" />
+            </radialGradient>
+            <path id="rimPath" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
+          </defs>
+          <circle cx="50" cy="50" r="44" fill="url(#waxGrad)" stroke="#5A3F18" stroke-width="0.6" />
+          <circle cx="50" cy="50" r="36" fill="none" stroke="#3A2A12" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.5" />
+          <text font-family="Manrope" font-size="6" letter-spacing="2.5" fill="#3A2A12" opacity="0.85">
+            <textPath href="#rimPath">Q1  ·  MMXXVI  ·  MOBIUS  ·  REVIEWED</textPath>
+          </text>
+          <text x="50" y="60" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="34" fill="#3A2A12">M</text>
+          <ellipse cx="40" cy="36" rx="18" ry="6" fill="#FFE3B3" opacity="0.35" />
+        </g>
+
+        <text x="40" y="240" class="anno">a wax seal — same role as the badge,</text>
+        <text x="40" y="254" class="anno">but suddenly the page has a signet ring</text>
+        <path d="M 360 240 C 500 230, 640 180, 740 120" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <span class="live-caption">Live</span>
+      <span class="wax-seal" aria-label="Sealed Q1 2026, Mobius">
+        <svg viewBox="0 0 100 100">
+          <defs>
+            <path id="rimPathLive" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
+          </defs>
+          <text font-family="Manrope" font-size="6" letter-spacing="2.6" fill="#3A2A12" opacity="0.78">
+            <textPath href="#rimPathLive">Q1  ·  MMXXVI  ·  MOBIUS  ·  REVIEWED  ·</textPath>
+          </text>
+        </svg>
+        <span class="ws-mono">M</span>
+      </span>
+      <div style="color:rgba(244,239,230,0.7);font-size:12px;line-height:1.5;max-width:300px;">
+        <div style="font-family:Fraunces;font-style:italic;font-size:15px;color:var(--gold);">Sealed this quarter.</div>
+        Q1 · MMXXVI runs the rim. The "M" is the same wordmark we use in the footer.
+      </div>
+    </div>
+    <p class="sketch-caption">06 — A signet ring for the page. Strongest brand asset of the ten.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 7 — WATERMARK CHAPTER MARK                               -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-07">
+    <span class="idea__num">Idea 07</span>
+    <h2>A giant <em>"Q1"</em> watermark behind the title — a chapter mark.</h2>
+    <p class="idea__why">
+      Set "Q1" as a 150-pt italic Fraunces in 8% gold opacity, anchored to the right of the
+      hero behind the title. Reads first as an aesthetic flourish; reads second as the
+      freshness signal. Echoes the way novels and journals open chapters with a giant
+      drop-numeral. Pairs with a small "MMXXVI · REVISED 04 MAY" caption underneath the
+      lede so the literal information is still legible.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> most atmospheric option — turns the "updated" signal
+      into a piece of typography rather than a chip. Reinforces the periodical framing
+      every program page is reaching for. Cost: pure decoration, doesn't communicate at a
+      glance to a scanner; needs the small caption to pull its weight.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: giant Q1 watermark behind hero title">
+        <rect x="6" y="6" width="868" height="288" class="hair" />
+        <rect x="6" y="6" width="868" height="288" class="fill-ink" opacity="0.96" />
+        <!-- the giant watermark -->
+        <text x="700" y="220" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="240" fill="#C9A86A" opacity="0.10" letter-spacing="-6">Q1</text>
+
+        <text x="36" y="46" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+        <text x="36" y="124" font-family="Fraunces" font-size="40" fill="#F4EFE6">Portugal</text>
+        <text x="200" y="124" font-family="Fraunces" font-size="40" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="144" x2="96" y2="144" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="174" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+        <text x="36" y="220" font-family="Manrope" font-size="9" letter-spacing="4" fill="#C9A86A">MMXXVI · REVISED 04 MAY</text>
+
+        <text x="40" y="266" class="anno">freshness becomes typography —</text>
+        <text x="40" y="280" class="anno">"Q1" reads first as flourish, then as fact</text>
+        <path d="M 360 270 C 500 260, 600 240, 700 220" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <div class="watermark-stage">
+        <span class="wm-q">Q1</span>
+        <div class="wm-meta">EUROPE · RBI</div>
+        <div class="wm-title">Portugal <em>Golden Visa</em></div>
+        <div class="wm-rule"></div>
+        <div class="wm-sub">EU residency with the lightest presence requirement in Europe.</div>
+        <div style="position:relative;margin-top:14px;font-family:Manrope;font-size:10px;letter-spacing:0.32em;color:var(--gold);">
+          MMXXVI · REVISED 04 MAY
+        </div>
+      </div>
+    </div>
+    <p class="sketch-caption">07 — A chapter mark, not a chip. Most atmospheric.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 8 — POSTAGE STAMP                                        -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-08">
+    <span class="idea__num">Idea 08</span>
+    <h2>A <em>postage stamp</em> with a Q1 cancellation mark.</h2>
+    <p class="idea__why">
+      Perforated edges, inner gold-rule frame, "MOBIUS" in small caps along the top, italic
+      "Q1 · 2026" centred, "REV. 04.05" underneath. Overlaid: a small circular cancellation
+      stamp tilted at -9°, "Q1 · 2026" rolling across the corner — exactly like a passport
+      entry stamp. Most thematic option of the ten: directly invokes the visual language of
+      international travel and citizenship.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> turns the freshness mark into a passport-stamp motif
+      that's literally on-theme for the entire site. Memorable, ownable, easy to reuse on
+      brief PDFs and partner letterhead. Cost: technically the trickiest to render
+      (perforations need either CSS masks or an SVG); slightly skeuomorphic, so registration
+      and ink colour have to stay restrained.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: postage stamp with cancellation">
+        <rect x="6" y="6" width="868" height="268" class="hair" />
+        <rect x="6" y="6" width="868" height="268" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+        <text x="36" y="106" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="106" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="124" x2="96" y2="124" stroke="#C9A86A" stroke-width="1.2" />
+
+        <!-- the stamp -->
+        <g transform="translate(680,40)">
+          <!-- perforated edge: dotted outline -->
+          <rect x="0" y="0" width="160" height="100" rx="2" fill="#FBF7EF" stroke="#3A2A12" stroke-width="0.4" stroke-dasharray="2 2.6" />
+          <rect x="6" y="6" width="148" height="88" fill="none" stroke="#A07F44" stroke-width="0.8" />
+          <text x="80" y="24" text-anchor="middle" font-family="Manrope" font-size="7" letter-spacing="3" fill="#A07F44">MOBIUS · PROGRAMS</text>
+          <line x1="40" y1="32" x2="120" y2="32" stroke="#A07F44" stroke-width="0.4" />
+          <text x="80" y="62" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="22" fill="#1A1F26">Q1 · 2026</text>
+          <line x1="40" y1="72" x2="120" y2="72" stroke="#A07F44" stroke-width="0.4" />
+          <text x="80" y="86" text-anchor="middle" font-family="Manrope" font-size="7" letter-spacing="3" fill="#6B6257">REV. 04.05.26</text>
+
+          <!-- cancellation mark (tilted) -->
+          <g transform="translate(118,72) rotate(-9)">
+            <circle cx="0" cy="0" r="22" fill="none" stroke="#B23A2A" stroke-width="1" opacity="0.7" />
+            <circle cx="0" cy="0" r="16" fill="none" stroke="#B23A2A" stroke-width="0.4" opacity="0.55" />
+            <text x="0" y="-2" text-anchor="middle" font-family="Manrope" font-size="6" letter-spacing="2" fill="#B23A2A" opacity="0.85">REVISED</text>
+            <text x="0" y="8" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#B23A2A" opacity="0.85">04 · 05 · 26</text>
+          </g>
+        </g>
+
+        <text x="40" y="244" class="anno">a passport-stamp motif —</text>
+        <text x="40" y="258" class="anno">on-theme for citizenship work</text>
+        <path d="M 280 250 C 400 220, 540 160, 680 90" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <span class="live-caption">Live</span>
+      <div style="position:relative;display:inline-block;">
+        <span class="postage">
+          <span class="p-frame">
+            <span class="p-eye">Mobius · Programs</span>
+            <span class="p-q">Q1 · 2026</span>
+            <span class="p-rev">Rev. 04.05.26</span>
+          </span>
+        </span>
+        <span class="p-cancel" style="position:absolute;right:-4px;bottom:6px;background:rgba(11,15,20,0.6);">
+          REV. 04·05
+        </span>
+      </div>
+      <span class="live-caption" style="margin-left:auto;">on-theme for the whole site</span>
+    </div>
+    <p class="sketch-caption">08 — Most thematic. Reusable on briefs, PDFs, partner letterhead.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 9 — REDLINE CORRECTION                                   -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-09">
+    <span class="idea__num">Idea 09</span>
+    <h2>An <em>editor's correction</em> — old quarter struck through, new one written in.</h2>
+    <p class="idea__why">
+      Show the old period struck through in redline (<s>Q4 2025</s>) and the new one
+      (<em>Q1 2026</em>) written next to it, with a small Caveat-handwriting margin note —
+      "rev. R.A." Looks like an editor has personally amended the file. Most human and
+      irreverent option: the only one that signals not just "this was updated" but "a real
+      person updated it, on purpose, and didn't bother hiding the seam."
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> by far the most distinctive voice — nothing else in our
+      space looks anything like this. Doubles as a quiet brag (we revise often enough that
+      revisions are a feature, not a footnote). Cost: it's a stylistic statement; would feel
+      odd next to a lifeless hero, so it's only worth doing if rest of the page also leans
+      into the "editor's desk" register.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: old quarter crossed out and new quarter written in">
+        <rect x="6" y="6" width="868" height="228" class="hair" />
+        <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+        <text x="36" y="104" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="104" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="122" x2="96" y2="122" stroke="#C9A86A" stroke-width="1.2" />
+
+        <!-- the correction, top-right -->
+        <g transform="translate(580,46)">
+          <text x="0" y="0" font-family="Fraunces" font-style="italic" font-size="18" fill="#A8A199">Q4 2025</text>
+          <line x1="-4" y1="-6" x2="76" y2="-12" stroke="#B23A2A" stroke-width="2" />
+          <text x="92" y="-8" font-family="Caveat" font-size="22" fill="#B23A2A">→</text>
+          <text x="118" y="0" font-family="Fraunces" font-style="italic" font-size="18" fill="#C9A86A">Q1 2026</text>
+          <text x="200" y="-2" font-family="Caveat" font-size="14" fill="#B23A2A">rev. R.A.</text>
+          <line x1="118" y1="6" x2="190" y2="6" stroke="#C9A86A" stroke-width="0.6" stroke-dasharray="2 2" />
+        </g>
+
+        <text x="40" y="200" class="anno">old period struck through, new one written in —</text>
+        <text x="40" y="214" class="anno">a real person revised this</text>
+        <path d="M 380 196 C 480 180, 540 130, 600 62" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <span class="live-caption">Live</span>
+      <span class="correction">
+        <span class="c-old">Q4 2025</span>
+        <span class="c-arrow">→</span>
+        <span class="c-new">Q1 2026</span>
+        <span class="c-margin">rev. R.A.</span>
+      </span>
+    </div>
+    <p class="sketch-caption">09 — Most distinctive voice. Use only if the whole page leans editorial.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IDEA 10 — ALMANAC · ROMAN NUMERAL                             -->
+  <!-- ============================================================ -->
+  <section class="idea" id="idea-10">
+    <span class="idea__num">Idea 10</span>
+    <h2>An <em>almanac plate</em> — Roman numerals between two hairlines.</h2>
+    <p class="idea__why">
+      Two close-set gold hairlines (one heavier, one lighter — the classic "scotch rule"
+      from old almanacs and quarterly journals). Between them, Roman numerals in italic
+      Fraunces: <em>MMXXVI · Q&nbsp;I.</em> Above, four asterisk-spaced stars. Below, "REVISED
+      IV · V" set in tiny tracked caps. Reads as the cover plate of a quarterly bulletin —
+      timeless, mythic, slightly archival. The most "publication" of the ten.
+    </p>
+    <p class="idea__contrast">
+      <strong>Versus today:</strong> trades immediate scannability for a deeper sense of
+      institutional weight — this looks like something the firm <em>publishes</em>, not
+      something the website automatically renders. Pairs naturally with the masthead-line
+      idea (02) and the watermark (07) if we ever consolidate. Cost: roman numerals slow
+      first parse; mitigate by always pairing with a small Arabic caption.
+    </p>
+    <div class="sketch-frame">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sketch: almanac-style roman numeral plate">
+        <rect x="6" y="6" width="868" height="228" class="hair" />
+        <rect x="6" y="6" width="868" height="228" class="fill-ink" opacity="0.96" />
+        <text x="36" y="40" font-family="Manrope" font-size="9" letter-spacing="3" fill="#A8A199">EUROPE · RBI</text>
+        <text x="36" y="106" font-family="Fraunces" font-size="34" fill="#F4EFE6">Portugal</text>
+        <text x="178" y="106" font-family="Fraunces" font-size="34" fill="#C9A86A" font-style="italic">Golden Visa</text>
+        <line x1="36" y1="124" x2="96" y2="124" stroke="#C9A86A" stroke-width="1.2" />
+        <text x="36" y="154" font-family="Fraunces" font-size="13" fill="#A8A199" font-style="italic">EU residency with the lightest presence requirement in Europe.</text>
+
+        <!-- the plate -->
+        <g transform="translate(640,40)">
+          <text x="100" y="14" text-anchor="middle" font-family="Manrope" font-size="10" letter-spacing="6" fill="#C9A86A" opacity="0.7">✦   ✦   ✦   ✦</text>
+          <line x1="20" y1="22" x2="180" y2="22" stroke="#C9A86A" stroke-width="1" />
+          <line x1="20" y1="26" x2="180" y2="26" stroke="#C9A86A" stroke-width="0.4" opacity="0.5" />
+          <text x="100" y="50" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="22" fill="#C9A86A">MMXXVI · Q I</text>
+          <line x1="20" y1="62" x2="180" y2="62" stroke="#C9A86A" stroke-width="0.4" opacity="0.5" />
+          <line x1="20" y1="66" x2="180" y2="66" stroke="#C9A86A" stroke-width="1" />
+          <text x="100" y="84" text-anchor="middle" font-family="Manrope" font-size="7" letter-spacing="4" fill="#A8A199">REVISED IV · V</text>
+        </g>
+
+        <text x="40" y="208" class="anno">looks like the cover plate of a quarterly journal —</text>
+        <text x="40" y="222" class="anno">timeless, slightly mythic</text>
+        <path d="M 380 210 C 500 180, 580 130, 640 70" class="anno-line" />
+      </svg>
+    </div>
+    <div class="live-row">
+      <span class="live-caption">Live</span>
+      <span class="almanac">
+        <span class="a-stars">✦   ✦   ✦   ✦</span>
+        <span class="a-rule"></span>
+        <span class="a-roman" style="margin: 6px 0 4px;">MMXXVI<span class="a-sep">·</span>Q&nbsp;I</span>
+        <span class="a-rule"></span>
+        <span class="a-foot">Revised IV · V</span>
+      </span>
+      <span class="live-caption" style="margin-left:auto;">pairs with 02 (masthead) and 07 (watermark)</span>
+    </div>
+    <p class="sketch-caption">10 — A quarterly-journal cover plate. Most "publication" of the ten.</p>
+  </section>
+
 </div>
 
 <footer class="foot">
@@ -671,7 +1214,9 @@
     Sketches only. None of these ship until we agree on a direction. Implementation, when we
     do, lives in <code>src/components/Breadcrumb.jsx</code> and
     <code>public/assets/css/style.css</code> (search <code>ht-breadcrumb__freshness</code>).
-    Idea 03 also touches <code>src/data/programs.js</code> to add a per-program changelog.
+    Idea 03 also touches <code>src/data/programs.js</code> to add a per-program changelog,
+    and ideas 06 (wax seal) and 08 (postage stamp) want a dedicated SVG asset under
+    <code>public/assets/marks/</code> rather than inline.
   </p>
   <p><a href="#top">↑ Back to top</a></p>
 </footer>
