@@ -8726,67 +8726,141 @@ span {
   }
 }
 
-/* Editorial floats: 1:1 with the homepage hero count-cards + arrow shape.
-   Visuals copied directly from .ht-hero-counter — only positioning changes
-   so the cards sit in the empty band between the top bar and the title. */
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__shape,
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
+/* Editorial pitch slot: floating slider card sitting in the band between the
+   top bar and the title. When present, the top-bar margin shrinks because
+   the pitch card now provides the visual gap. */
+.ht-breadcrumb-area.is-editorial.has-pitch .ht-breadcrumb__top {
+  margin-bottom: clamp(28px, 4vw, 48px);
 }
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__shape .arrow-shape {
-  position: absolute;
-  top: 165px;
-  right: 32%;
-  width: 110px;
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__pitch-slot {
+  margin-bottom: clamp(56px, 8vw, 96px);
+  max-width: clamp(360px, 52vw, 520px);
 }
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__shape .arrow-shape img {
-  width: 100%;
-  height: auto;
-  display: block;
-  opacity: 0.7;
-}
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card,
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card-2 {
-  max-width: 250px;
-  padding: 20px 28px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 30px 90px 0 rgba(4, 31, 31, 0.3);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  position: absolute;
-}
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card-2 {
-  max-width: 280px;
-}
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card h2,
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card-2 h2 {
-  color: var(--ht-white);
-}
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card p,
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card-2 p {
-  font-size: 16px;
-  color: var(--ht-white);
-}
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card {
-  top: 175px;
-  left: 0;
-}
-.ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter .count-card-2 {
-  top: 198px;
-  left: clamp(280px, 26vw, 360px);
-}
-@media (max-width: 1399px) {
-  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__shape {
-    display: none;
+@media (max-width: 991px) {
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__pitch-slot {
+    max-width: 100%;
+    margin-bottom: 40px;
   }
 }
-@media (max-width: 1199px) {
-  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__counter {
-    display: none;
+
+/* The pitch card itself — slider with icon, rule, copy and dot pagination. */
+.ht-pitch-card {
+  position: relative;
+  padding: 22px 28px 24px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 90px rgba(4, 31, 31, 0.32);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--ht-white);
+  overflow: hidden;
+}
+.ht-pitch-card__viewport {
+  position: relative;
+  min-height: 110px;
+}
+.ht-pitch-card__slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 44px 1px 1fr;
+  align-items: center;
+  gap: 22px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  pointer-events: none;
+  margin: 0;
+}
+.ht-pitch-card__slide.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.ht-pitch-card__icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ht-white);
+}
+.ht-pitch-card__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.ht-pitch-card__rule {
+  align-self: stretch;
+  background: rgba(255, 255, 255, 0.22);
+  width: 1px;
+  min-height: 56px;
+}
+.ht-pitch-card__body {
+  min-width: 0;
+}
+.ht-pitch-card__title {
+  font-family: var(--ht-font-display);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  margin: 0 0 6px;
+  color: var(--ht-white);
+}
+.ht-pitch-card__copy {
+  font-family: var(--ht-font-serif-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+}
+.ht-pitch-card__dots {
+  position: absolute;
+  right: 28px;
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+}
+.ht-pitch-card__dot {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  width: 22px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition: background 300ms ease, width 300ms ease;
+}
+.ht-pitch-card__dot.is-active {
+  background: var(--ht-white);
+  width: 26px;
+}
+.ht-pitch-card__dot:focus-visible {
+  outline: 1px solid var(--ht-theme-color-2);
+  outline-offset: 3px;
+}
+@media (max-width: 575px) {
+  .ht-pitch-card {
+    padding: 20px 22px 22px;
+  }
+  .ht-pitch-card__slide {
+    grid-template-columns: 36px 1px 1fr;
+    gap: 16px;
+  }
+  .ht-pitch-card__icon {
+    width: 36px;
+    height: 36px;
+  }
+  .ht-pitch-card__title {
+    font-size: 18px;
+  }
+  .ht-pitch-card__copy {
+    font-size: 14px;
+  }
+  .ht-pitch-card__dots {
+    right: 22px;
   }
 }
 

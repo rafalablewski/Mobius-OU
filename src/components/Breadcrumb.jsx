@@ -41,44 +41,17 @@ export default function Breadcrumb({
   meta,
   tagline,
   aside,
-  floats,
+  pitch,
 }) {
   const { lead, tail } = splitTitle(title, emphasis);
-  const className = `ht-breadcrumb-area is-${variant}`;
+  const className = `ht-breadcrumb-area is-${variant}${
+    variant === 'editorial' && pitch ? ' has-pitch' : ''
+  }`;
 
   if (variant === 'editorial') {
     return (
       <section className={className}>
         <div className="container">
-          {floats && floats.length > 0 && (
-            <>
-              <div className="ht-breadcrumb__shape" aria-hidden="true">
-                <div className="arrow-shape float-bob-x">
-                  <img src="/assets/img/shape/1.svg" alt="" aria-hidden="true" />
-                </div>
-              </div>
-              <div className="ht-breadcrumb__counter" aria-hidden="true">
-                {floats[0] && (
-                  <div className="count-card float-bob-x">
-                    <h2>
-                      <span className="count">{floats[0].count}</span>
-                      {floats[0].plus !== false && <span className="plus">+</span>}
-                    </h2>
-                    <p>{floats[0].label}</p>
-                  </div>
-                )}
-                {floats[1] && (
-                  <div className="count-card-2 float-bob-y">
-                    <h2>
-                      <span className="count">{floats[1].count}</span>
-                      {floats[1].plus !== false && <span className="plus">+</span>}
-                    </h2>
-                    <p>{floats[1].label}</p>
-                  </div>
-                )}
-              </div>
-            </>
-          )}
           <div className="ht-breadcrumb__top">
             <Crumbs crumbs={crumbs} current={current} title={title} />
             {meta && meta.length > 0 && (
@@ -94,6 +67,7 @@ export default function Breadcrumb({
               </ul>
             )}
           </div>
+          {pitch && <div className="ht-breadcrumb__pitch-slot">{pitch}</div>}
           <div className={`ht-breadcrumb__layout${aside ? ' has-aside' : ''}`}>
             <div className="ht-breadcrumb__editorial-body">
               <h1 className="ht-breadcrumb__title">
