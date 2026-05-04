@@ -27,10 +27,10 @@ export default function ProgramPage() {
 
   const related = PROGRAMS.filter((p) => p.slug !== slug).slice(0, 3);
   const { lead, tail } = splitProgramTitle(program);
-  const floats = program.headline
-    .split('·')
-    .map((s) => s.trim())
-    .filter(Boolean);
+  const floats = [
+    { count: 32, label: 'Programs covered across five continents' },
+    { count: 100, label: 'Families relocated under advisory mandate' },
+  ];
 
   return (
     <>
