@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const CHAPTER_DEFINITIONS = [
   { id: 'about',         numeral: 'I',    label: 'About' },
@@ -141,36 +141,47 @@ const CHAPTER_RENDERERS = {
   licenses: FallbackPanel,
 };
 
-function ContentsPage({ program }) {
+function ContentsPage() {
+  const [open, setOpen] = useState(false);
   return (
     <section
-      className="ht-spine__contents"
+      className={`ht-spine__contents${open ? ' is-open' : ''}`}
       id="contents"
-      aria-labelledby="contents-heading"
     >
       <div className="container">
-        <article className="ht-spine__contents-card">
-          <div className="ht-spine__contents-eyebrow">— Contents —</div>
-          <h2 className="ht-spine__contents-heading" id="contents-heading">
-            In this <em>dossier</em>.
-          </h2>
-          <p className="ht-spine__contents-deck">{program.tagline}</p>
-          <ol className="ht-spine__contents-list">
-            {CHAPTER_DEFINITIONS.map((c, i) => (
-              <li key={c.id}>
-                <a href={`#${c.id}`} className="ht-spine__contents-link">
-                  <span className="ht-spine__contents-numeral">{c.numeral}</span>
-                  <span className="ht-spine__contents-label">{c.label}</span>
-                  <span className="ht-spine__contents-leader" aria-hidden="true"></span>
-                  <span className="ht-spine__contents-page">{pad2(i + 1)}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-          <a href="#about" className="ht-spine__contents-begin">
-            Begin reading <span aria-hidden="true">↓</span>
-          </a>
-        </article>
+        <button
+          type="button"
+          className="ht-spine__contents-toggle"
+          aria-expanded={open}
+          aria-controls="contents-list"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="ht-spine__contents-eyebrow">Contents</span>
+          <span className="ht-spine__contents-meta">9 chapters</span>
+          <span className="ht-spine__contents-chevron" aria-hidden="true">
+            {open ? '–' : '+'}
+          </span>
+        </button>
+        <ol
+          className="ht-spine__contents-list"
+          id="contents-list"
+          hidden={!open}
+        >
+          {CHAPTER_DEFINITIONS.map((c, i) => (
+            <li key={c.id}>
+              <a
+                href={`#${c.id}`}
+                className="ht-spine__contents-link"
+                onClick={() => setOpen(false)}
+              >
+                <span className="ht-spine__contents-numeral">{c.numeral}</span>
+                <span className="ht-spine__contents-label">{c.label}</span>
+                <span className="ht-spine__contents-leader" aria-hidden="true"></span>
+                <span className="ht-spine__contents-page">{pad2(i + 1)}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -185,7 +196,7 @@ export default function ProgramSpine({ program }) {
 
   return (
     <div className="ht-spine">
-      <ContentsPage program={program} />
+      <ContentsPage />
       {CHAPTER_DEFINITIONS.map((chapter, i) => {
         const Renderer = CHAPTER_RENDERERS[chapter.id];
         return (

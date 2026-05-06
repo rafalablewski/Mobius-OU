@@ -14111,66 +14111,73 @@ html.has-program-spine {
 
 /* --- Contents page (page 0) ---------------------------------------- */
 
-/* Page-0 / front matter — sized to its card, not a full 100vh slab.
-   That avoids the empty cream gap between hero and chapter I that comes
-   from centring a short card inside a viewport-tall section. */
+/* Page-0 / front matter — collapsible disclosure. Default state is a slim
+   strip ("Contents · 9 chapters · +"); click to expand the chapter list.
+   Eliminates the visible gap between hero and chapter I when collapsed. */
 .ht-spine__contents {
   background: var(--ht-spine-bg);
-  padding: 64px 0 80px;
+  border-bottom: 1px solid var(--ht-spine-hair);
 }
-@media (max-width: 991px) {
-  .ht-spine__contents { padding: 40px 0 56px; }
+.ht-spine__contents-toggle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--ht-spine-ink);
+  font: inherit;
+  text-align: left;
 }
-.ht-spine__contents-card {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 56px 64px 48px;
-  background: #FFFFFF;
-  border: 1px solid var(--ht-spine-hair);
+.ht-spine__contents-toggle:hover .ht-spine__contents-chevron,
+.ht-spine__contents-toggle:focus-visible .ht-spine__contents-chevron {
+  background: var(--ht-spine-gold-deep);
+  color: var(--ht-spine-bg);
 }
-@media (max-width: 767px) {
-  .ht-spine__contents-card { padding: 36px 22px 32px; }
+.ht-spine__contents-toggle:focus-visible {
+  outline: 2px solid var(--ht-spine-gold-deep);
+  outline-offset: 2px;
 }
 .ht-spine__contents-eyebrow {
   font-family: "Manrope", sans-serif;
   font-size: 11px;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.32em;
   color: var(--ht-spine-gold-deep);
   text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 18px;
+  font-weight: 600;
 }
-.ht-spine__contents-heading {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
-  font-size: clamp(32px, 4vw, 48px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  text-align: center;
-  margin: 0 0 8px;
-  color: var(--ht-spine-ink);
-}
-.ht-spine__contents-heading em {
-  font-style: italic;
-  color: var(--ht-spine-gold-deep);
-}
-.ht-spine__contents-deck {
+.ht-spine__contents-meta {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 300;
-  text-align: center;
   color: var(--ht-spine-stone);
   font-size: 16px;
-  line-height: 1.4;
-  margin: 0 auto 26px;
-  max-width: 48ch;
+}
+.ht-spine__contents-chevron {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ht-spine-gold-deep);
+  border-radius: 50%;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ht-spine-gold-deep);
+  background: transparent;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 .ht-spine__contents-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 28px;
+  margin: 0 0 24px;
   border-top: 1px solid var(--ht-spine-hair);
 }
+.ht-spine__contents-list[hidden] { display: none; }
 .ht-spine__contents-list li {
   border-bottom: 1px solid var(--ht-spine-hair);
 }
@@ -14224,22 +14231,8 @@ html.has-program-spine {
 .ht-spine__contents-link:focus-visible .ht-spine__contents-page {
   color: var(--ht-spine-gold-deep);
 }
-.ht-spine__contents-begin {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  color: var(--ht-spine-gold-deep);
-  font-size: 16px;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-  transition: gap 0.18s ease, border-color 0.18s ease;
-}
-.ht-spine__contents-begin:hover { gap: 12px; border-bottom-color: var(--ht-spine-gold-deep); }
 
-/* --- Chapter section (100vh slabs) --------------------------------- */
+/* --- Chapter section ------------------------------------------------ */
 
 .ht-spine__chapter {
   scroll-snap-align: start;
@@ -14247,7 +14240,6 @@ html.has-program-spine {
   display: flex;
   flex-direction: column;
   background: var(--ht-spine-bg);
-  border-top: 1px solid var(--ht-spine-hair);
 }
 .ht-spine__chapter:nth-of-type(2n) { background: var(--ht-spine-bg-alt); }
 
