@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Expanded contents — three finalists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<style>
+  /* ----- shared palette (mirrors the live ProgramSpine) ----- */
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-soft:  #D9BD86;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --hairline-2: rgba(11, 15, 20, 0.28);
+    --redline:    #B23A2A;
+    --green:      #4F7A4A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory); color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding: 72px 32px 120px; }
+
+  /* ----- intro ----- */
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 48px; }
+  header.intro .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 46px; line-height: 1.08;
+    margin: 14px 0 14px; letter-spacing: -0.01em; max-width: 22ch;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 68ch; }
+
+  .baseline-note {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil); max-width: 80ch;
+  }
+  .baseline-note strong { color: var(--ink); }
+  .baseline-note code {
+    background: #FFFDF7; padding: 1px 5px; border-radius: 2px;
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+  }
+
+  /* ----- in-page TOC ----- */
+  nav.idea-toc {
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px 32px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 14px;
+  }
+  nav.idea-toc a {
+    display: flex; justify-content: space-between; gap: 12px;
+    text-decoration: none; color: var(--ink);
+    padding: 7px 0; border-bottom: 1px dotted var(--hairline);
+    font-size: 13px;
+  }
+  nav.idea-toc a span:first-child {
+    color: var(--gold-deep); font-family: "Fraunces", serif;
+    font-style: italic; font-size: 14px; min-width: 32px;
+  }
+  nav.idea-toc a:hover span:last-child { color: var(--gold-deep); }
+  @media (max-width: 720px) { nav.idea-toc { grid-template-columns: 1fr; } }
+
+  /* ----- baseline (today) ----- */
+  .today {
+    margin-top: 40px;
+    padding: 22px 24px;
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+  }
+  .today h3 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 22px; margin: 0 0 4px;
+  }
+  .today p {
+    font-size: 13px; line-height: 1.6; color: var(--stone); margin: 0 0 18px;
+    max-width: 72ch;
+  }
+  .today-contents {
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+  }
+  .today-contents__toggle {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 20px; cursor: default;
+  }
+  .today-contents__eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600;
+  }
+  .today-contents__meta {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-weight: 300; color: var(--stone); font-size: 16px;
+  }
+  .today-contents__chev {
+    margin-left: auto; width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold-deep); border-radius: 50%;
+    font-family: "Cormorant Garamond", serif; font-size: 22px;
+    color: var(--gold-deep);
+  }
+  .today-contents__list {
+    list-style: none; margin: 0; padding: 0 20px;
+    border-top: 1px solid var(--hairline);
+  }
+  .today-contents__list li { border-bottom: 1px solid var(--hairline); }
+  .today-contents__list li:last-child { border-bottom: 0; }
+  .today-contents__link {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 14px 4px; text-decoration: none; color: var(--ink);
+  }
+  .today-contents__link .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 16px; min-width: 40px;
+  }
+  .today-contents__link .label {
+    font-family: "Cormorant Garamond", serif; font-size: 19px;
+  }
+  .today-contents__link .leader {
+    flex: 1; align-self: end; margin: 0 8px 6px;
+    border-bottom: 1px dotted var(--hairline);
+  }
+  .today-contents__link .page {
+    font-family: ui-monospace, "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.12em; color: var(--stone);
+    min-width: 28px; text-align: right;
+  }
+
+  /* ----- ideas grid ----- */
+  section.ideas { display: grid; gap: 64px; }
+  article.idea {
+    border-top: 1px solid var(--hairline-2);
+    padding-top: 32px;
+  }
+  .idea__num {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600; margin: 0 0 6px;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 30px; line-height: 1.15;
+    margin: 0 0 12px; letter-spacing: -0.005em; max-width: 28ch;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__why {
+    color: var(--stone); font-size: 14px; line-height: 1.65;
+    margin: 0 0 14px; max-width: 72ch;
+  }
+  .idea__contrast {
+    margin: 0 0 22px; padding: 12px 14px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; max-width: 80ch;
+  }
+  .idea__contrast strong { color: var(--ink); }
+  .idea__behavior {
+    display: grid; grid-template-columns: 110px 1fr;
+    gap: 6px 18px; margin: 0 0 22px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .idea__behavior dt {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold-deep);
+    padding-top: 2px;
+  }
+  .idea__behavior dd { margin: 0; color: var(--pencil); }
+  .idea__behavior dd code {
+    background: var(--paper); padding: 1px 5px; border-radius: 2px;
+    font-size: 11px;
+  }
+
+  /* ----- mock frame (the "live" rendered surface for each idea) ----- */
+  .mock {
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+    overflow: hidden;
+  }
+  .mock-toggle {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .mock-toggle .eb {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600;
+  }
+  .mock-toggle .meta {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--stone); font-size: 16px;
+  }
+  .mock-toggle .chev {
+    margin-left: auto; width: 26px; height: 26px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold-deep); border-radius: 50%;
+    font-family: "Cormorant Garamond", serif; font-size: 20px;
+    color: var(--gold-deep);
+  }
+
+  /* ----- chapter icons (shared) ----- */
+  .ic {
+    width: 14px; height: 14px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    color: var(--gold-deep);
+  }
+  .ic .solid { fill: currentColor; stroke: none; }
+
+  /* ====================================================================
+     IDEA I — Letterpress mosaic (5×2 hairline grid + colophon)
+     (formerly draft VIII)
+     ==================================================================== */
+  .i01-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .i01-cell {
+    position: relative;
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 18px 14px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    border-right: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    transition: background 0.18s ease;
+    min-height: 110px;
+  }
+  .i01-cell:nth-child(5n) { border-right: 0; }
+  .i01-cell:nth-child(n+6) { border-bottom: 0; }
+  .i01-cell:hover { background: rgba(201, 168, 106, 0.08); }
+  .i01-cell .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--gold-deep);
+    letter-spacing: 0.02em;
+  }
+  .i01-cell .i01-foot {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+  .i01-cell .label {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+  .i01-cell .ic { width: 18px; height: 18px; }
+  .i01-cell .corner {
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--gold);
+    opacity: 0.55;
+  }
+  .i01-cell .corner.tl { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
+  .i01-cell .corner.br { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+
+  .i01-cell.colophon {
+    background: linear-gradient(135deg, rgba(201, 168, 106, 0.06), transparent 65%);
+    cursor: default;
+    pointer-events: none;
+  }
+  .i01-cell.colophon .label {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--stone);
+    line-height: 1.4;
+  }
+  .i01-cell.colophon .num { color: var(--stone); }
+
+  @media (max-width: 880px) {
+    .i01-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
+    .i01-cell { border-right: 1px solid var(--hairline) !important; border-bottom: 1px solid var(--hairline) !important; min-height: 96px; }
+    .i01-cell:nth-child(3n) { border-right: 0 !important; }
+  }
+  @media (max-width: 540px) {
+    .i01-grid { grid-template-columns: repeat(2, 1fr); }
+    .i01-cell:nth-child(3n) { border-right: 1px solid var(--hairline) !important; }
+    .i01-cell:nth-child(2n) { border-right: 0 !important; }
+  }
+
+  /* ====================================================================
+     IDEA II — Phased trio (3×3, grouped by phase)
+     (formerly draft II — number unchanged)
+     ==================================================================== */
+  .i02-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .i02-col { padding: 18px 22px 18px; border-right: 1px solid var(--hairline); }
+  .i02-col:last-child { border-right: 0; }
+  .i02-col__phase {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--hairline-2);
+  }
+  .i02-col__phase-label {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-weight: 400;
+    font-size: 17px; color: var(--gold-deep);
+    letter-spacing: 0.01em;
+  }
+  .i02-col__phase-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.22em;
+    color: var(--stone); text-transform: uppercase;
+  }
+  .i02-col ol { list-style: none; margin: 0; padding: 6px 0 0; }
+  .i02-col li { border-bottom: 1px dotted var(--hairline); }
+  .i02-col li:last-child { border-bottom: 0; }
+  .i02-col a {
+    display: grid;
+    grid-template-columns: 32px 18px 1fr;
+    align-items: center;
+    gap: 0 10px;
+    padding: 9px 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.18s ease;
+  }
+  .i02-col a:hover { color: var(--gold-deep); }
+  .i02-col .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-size: 14px; color: var(--gold-deep);
+  }
+  .i02-col .ic { width: 14px; height: 14px; }
+  .i02-col .label {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px; line-height: 1.25;
+  }
+  @media (max-width: 760px) {
+    .i02-grid { grid-template-columns: 1fr; }
+    .i02-col { border-right: 0; border-bottom: 1px solid var(--hairline); }
+    .i02-col:last-child { border-bottom: 0; }
+  }
+
+  /* ====================================================================
+     IDEA III — Stepper journey bar (9 connected nodes)
+     (formerly draft V)
+     ==================================================================== */
+  .i03-wrap {
+    padding: 30px 24px 28px;
+    border-top: 1px solid var(--hairline);
+    overflow-x: auto;
+  }
+  .i03-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    align-items: start;
+    gap: 0;
+    min-width: 760px;
+  }
+  .i03-track::before {
+    content: ""; position: absolute;
+    left: 5.5%; right: 5.5%;
+    top: 17px; height: 1px;
+    background: var(--hairline-2);
+  }
+  .i03-step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 8px;
+    text-decoration: none; color: var(--ink);
+    padding: 0 6px;
+  }
+  .i03-step .node {
+    position: relative; z-index: 1;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 1px solid var(--hairline-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold-deep);
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .i03-step .ic { width: 14px; height: 14px; margin-top: -2px; }
+  .i03-step .label {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--ink);
+    max-width: 11ch;
+  }
+  .i03-step .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.16em;
+    color: var(--stone); text-transform: uppercase;
+  }
+  .i03-step:hover .node {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+    color: var(--ivory);
+    transform: translateY(-2px);
+  }
+  .i03-step:hover .label { color: var(--gold-deep); }
+
+  .i03-step.is-current .node {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--gold-soft);
+  }
+  .i03-step.is-current::after {
+    content: ""; position: absolute;
+    margin-top: 2px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .i03-legend {
+    margin: 20px 0 0;
+    display: flex; justify-content: space-between; gap: 16px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: var(--stone); text-transform: uppercase;
+    border-top: 1px dotted var(--hairline);
+    padding-top: 12px;
+  }
+
+  @media (max-width: 760px) {
+    .i03-wrap { padding: 22px 0 22px; }
+    .i03-track { min-width: 760px; padding: 0 18px; }
+    .i03-legend { padding: 12px 18px 0; }
+  }
+
+  /* ----- footer ----- */
+  footer.note {
+    margin-top: 96px; padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--stone); line-height: 1.6;
+    max-width: 72ch;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== ICON SYMBOL LIBRARY ============== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="ic-about" viewBox="0 0 18 18">
+      <circle cx="9" cy="9" r="7"/>
+      <circle class="solid" cx="9" cy="5.6" r="0.7"/>
+      <line x1="9" y1="8.2" x2="9" y2="13"/>
+    </symbol>
+    <symbol id="ic-investment" viewBox="0 0 18 18">
+      <circle cx="9" cy="9" r="7"/>
+      <path d="M6.2 6.6 Q9 4.8 11.8 6.6"/>
+      <path d="M6.2 11.4 Q9 13.2 11.8 11.4"/>
+      <line x1="9" y1="3.5" x2="9" y2="14.5"/>
+    </symbol>
+    <symbol id="ic-benefits" viewBox="0 0 18 18">
+      <path d="M9 2.2 L10.65 6.55 L15.4 6.85 L11.75 9.85 L13.05 14.5 L9 11.85 L4.95 14.5 L6.25 9.85 L2.6 6.85 L7.35 6.55 Z"/>
+    </symbol>
+    <symbol id="ic-eligibility" viewBox="0 0 18 18">
+      <circle cx="5" cy="9" r="3"/>
+      <line x1="8" y1="9" x2="16" y2="9"/>
+      <line x1="13" y1="9" x2="13" y2="11.7"/>
+      <line x1="15.5" y1="9" x2="15.5" y2="10.8"/>
+    </symbol>
+    <symbol id="ic-documents" viewBox="0 0 18 18">
+      <path d="M5 4 L11 4 L13.2 6.2 L13.2 14 L5 14 Z"/>
+      <path d="M11 4 L11 6.2 L13.2 6.2"/>
+      <line x1="6.6" y1="9" x2="11.6" y2="9"/>
+      <line x1="6.6" y1="11.4" x2="11.6" y2="11.4"/>
+    </symbol>
+    <symbol id="ic-process" viewBox="0 0 18 18">
+      <line x1="3" y1="9" x2="15" y2="9"/>
+      <circle class="solid" cx="3.5" cy="9" r="1.4"/>
+      <circle cx="9" cy="9" r="1.4"/>
+      <circle cx="14.5" cy="9" r="1.4"/>
+    </symbol>
+    <symbol id="ic-visa-free" viewBox="0 0 18 18">
+      <circle cx="9" cy="9" r="7"/>
+      <ellipse cx="9" cy="9" rx="3" ry="7"/>
+      <line x1="2" y1="9" x2="16" y2="9"/>
+    </symbol>
+    <symbol id="ic-case-studies" viewBox="0 0 18 18">
+      <path d="M4 12.5 Q4 5.5 7.5 5 L7.5 7.2 Q5.8 7.4 5.8 9 L7.5 9 L7.5 12.5 Z"/>
+      <path d="M11 12.5 Q11 5.5 14.5 5 L14.5 7.2 Q12.8 7.4 12.8 9 L14.5 9 L14.5 12.5 Z"/>
+    </symbol>
+    <symbol id="ic-licenses" viewBox="0 0 18 18">
+      <path d="M9 2 L15 4 L15 9.2 Q15 13 9 16 Q3 13 3 9.2 L3 4 Z"/>
+      <path d="M6.4 9.2 L8.1 10.9 L11.6 7.4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page">
+
+  <!-- ============== INTRO ============== -->
+  <header class="intro">
+    <p class="eyebrow">Sketch · ProgramSpine — ContentsPage (expanded) · 2026.Q2 · finalists</p>
+    <h1>Three finalists for the <em>expanded contents</em> disclosure</h1>
+    <p class="lede">
+      Pruned down from the original ten. The shortlist keeps the three
+      that earn their surface in different registers: a glance-able
+      mosaic, a grouped trio that frames the engagement as a sequence,
+      and a one-row stepper that says "this is a path, not a menu."
+      The seven other drafts (compact ledger, doc-control register,
+      running text, drop-cap TOC, marginalia rail, running heads with
+      deks, pure typography index) are kept in earlier commits on this
+      branch if they need to be revisited.
+    </p>
+
+    <div class="baseline-note">
+      <strong>Behavioural contract — held constant across all three:</strong>
+      the toggle stays as <code>Contents · 9 chapters · +</code>. Click
+      any entry → smooth-scroll to that chapter's <code>id</code> +
+      close the disclosure. All nine entries always rendered when open
+      — no overflow, no inner scrolling. Cream spine background, gold
+      accents, italic Cormorant numerals are constants.
+    </div>
+
+    <nav class="idea-toc" aria-label="Jump to a finalist">
+      <a href="#i01"><span>I.</span><span>Letterpress mosaic — 5×2 hairline grid + colophon</span></a>
+      <a href="#i02"><span>II.</span><span>Phased trio — three groups of three</span></a>
+      <a href="#i03"><span>III.</span><span>Stepper journey bar — 9 connected nodes</span></a>
+    </nav>
+
+    <div class="today">
+      <h3>Baseline — what ships today</h3>
+      <p>
+        Toggle expands to nine ~95 px rows. Each row: italic gold Roman
+        numeral · serif title · dotted leader filling the column ·
+        tabular page number. ~850 px total height; the leaders read as
+        filler at any width over ~600 px.
+      </p>
+      <div class="today-contents">
+        <div class="today-contents__toggle">
+          <span class="today-contents__eyebrow">Contents</span>
+          <span class="today-contents__meta">9 chapters</span>
+          <span class="today-contents__chev">–</span>
+        </div>
+        <ol class="today-contents__list">
+          <li><a class="today-contents__link"><span class="num">I</span><span class="label">About</span><span class="leader"></span><span class="page">01</span></a></li>
+          <li><a class="today-contents__link"><span class="num">II</span><span class="label">Investment</span><span class="leader"></span><span class="page">02</span></a></li>
+          <li><a class="today-contents__link"><span class="num">III</span><span class="label">Benefits</span><span class="leader"></span><span class="page">03</span></a></li>
+          <li><a class="today-contents__link"><span class="num">IV</span><span class="label">Eligibility</span><span class="leader"></span><span class="page">04</span></a></li>
+          <li><a class="today-contents__link"><span class="num">V</span><span class="label">Documents</span><span class="leader"></span><span class="page">05</span></a></li>
+          <li><a class="today-contents__link"><span class="num">VI</span><span class="label">Process</span><span class="leader"></span><span class="page">06</span></a></li>
+          <li><a class="today-contents__link"><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="leader"></span><span class="page">07</span></a></li>
+          <li><a class="today-contents__link"><span class="num">VIII</span><span class="label">Case Studies</span><span class="leader"></span><span class="page">08</span></a></li>
+          <li><a class="today-contents__link"><span class="num">IX</span><span class="label">Our Licenses</span><span class="leader"></span><span class="page">09</span></a></li>
+        </ol>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== IDEAS ============== -->
+  <section class="ideas">
+
+    <!-- ===================== IDEA I ===================== -->
+    <article class="idea" id="i01">
+      <p class="idea__num">I — Letterpress mosaic</p>
+      <h2>5×2 hairline cells with corner ticks, <em>tenth cell is the colophon</em></h2>
+      <p class="idea__why">
+        Borrows the page's existing pitch-card corner-tick vocabulary.
+        Nine chapter cells in a 5×2 hairline grid; the tenth cell is
+        deliberately not a chapter — it's a small colophon with edition
+        + imprint. Reads as a printed end-paper, not a list, and uses
+        the asymmetric tenth cell to signal "this is finite, this is
+        what's in the dossier."
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~250 px on desktop. Loses the row-by-row scan in favour of a glance-able mosaic. Uniform Cormorant typography across the cells; the surface itself does the editorial work via hairlines and corner ticks.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>5 cols × 2 rows; 1 px hairlines; faint gold corner ticks on each cell echo the pitch-card frame; tenth cell carries a subtle gold gradient and a serif imprint line.</dd>
+        <dt>Active</dt><dd>Hover wash 8 % gold; corner ticks stay constant. Click → scroll + close. Colophon cell is non-interactive (<code>pointer-events: none</code>).</dd>
+        <dt>Mobile</dt><dd>≤ 880 px: 3 cols × 4 rows. ≤ 540 px: 2 cols × 5 rows. Colophon migrates to the trailing position naturally.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · letterpress</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i01-grid">
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">I</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-about"/></svg><span class="label">About</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">II</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-investment"/></svg><span class="label">Investment</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">III</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-benefits"/></svg><span class="label">Benefits</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IV</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-eligibility"/></svg><span class="label">Eligibility</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">V</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-documents"/></svg><span class="label">Documents</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VI</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-process"/></svg><span class="label">Process</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VII</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-visa-free"/></svg><span class="label">Visa-Free Countries</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VIII</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-case-studies"/></svg><span class="label">Case Studies</span></span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IX</span><span class="i01-foot"><svg class="ic" aria-hidden="true"><use href="#ic-licenses"/></svg><span class="label">Our Licenses</span></span></a>
+          <span class="i01-cell colophon"><span class="corner tl"></span><span class="corner br"></span><span class="num">·</span><span class="i01-foot"><span class="label">Mobius Dossier · Edition 2026.Q1 · printed by hand for the family.</span></span></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA II ===================== -->
+    <article class="idea" id="i02">
+      <p class="idea__num">II — Phased trio</p>
+      <h2>Three groups of three: <em>Orientation</em>, <em>Substance</em>, <em>Evidence</em></h2>
+      <p class="idea__why">
+        Nine flat rows pretend every chapter weighs the same. Group them
+        the way the engagement actually moves —
+        <em>Orientation</em> (About, Investment, Benefits) →
+        <em>Substance</em> (Eligibility, Documents, Process) →
+        <em>Evidence</em> (Visa-Free, Case Studies, Licenses) — and
+        suddenly the contents page tells the reader what the dossier is
+        for, not just where to click.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~220 px on desktop. Same nine anchors, but framed by three editorial phase headers that double as anchor-able micro-landmarks. Mobile collapses to a single column with the same three headings.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Three columns separated by hairlines; phase header in italic Cormorant + monospace tag (<code>I–III</code> / <code>IV–VI</code> / <code>VII–IX</code>).</dd>
+        <dt>Active</dt><dd>Hover lifts the chapter to gold; phase headers are non-interactive labels, not links.</dd>
+        <dt>Mobile</dt><dd>Stacks vertically ≤ 760 px; phase headers stay, hairlines flip from vertical to horizontal.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · 3 phases</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i02-grid">
+          <div class="i02-col">
+            <div class="i02-col__phase">
+              <span class="i02-col__phase-label">Orientation</span>
+              <span class="i02-col__phase-tag">I–III</span>
+            </div>
+            <ol>
+              <li><a><span class="num">I</span><svg class="ic" aria-hidden="true"><use href="#ic-about"/></svg><span class="label">About</span></a></li>
+              <li><a><span class="num">II</span><svg class="ic" aria-hidden="true"><use href="#ic-investment"/></svg><span class="label">Investment</span></a></li>
+              <li><a><span class="num">III</span><svg class="ic" aria-hidden="true"><use href="#ic-benefits"/></svg><span class="label">Benefits</span></a></li>
+            </ol>
+          </div>
+          <div class="i02-col">
+            <div class="i02-col__phase">
+              <span class="i02-col__phase-label">Substance</span>
+              <span class="i02-col__phase-tag">IV–VI</span>
+            </div>
+            <ol>
+              <li><a><span class="num">IV</span><svg class="ic" aria-hidden="true"><use href="#ic-eligibility"/></svg><span class="label">Eligibility</span></a></li>
+              <li><a><span class="num">V</span><svg class="ic" aria-hidden="true"><use href="#ic-documents"/></svg><span class="label">Documents</span></a></li>
+              <li><a><span class="num">VI</span><svg class="ic" aria-hidden="true"><use href="#ic-process"/></svg><span class="label">Process</span></a></li>
+            </ol>
+          </div>
+          <div class="i02-col">
+            <div class="i02-col__phase">
+              <span class="i02-col__phase-label">Evidence</span>
+              <span class="i02-col__phase-tag">VII–IX</span>
+            </div>
+            <ol>
+              <li><a><span class="num">VII</span><svg class="ic" aria-hidden="true"><use href="#ic-visa-free"/></svg><span class="label">Visa-Free Countries</span></a></li>
+              <li><a><span class="num">VIII</span><svg class="ic" aria-hidden="true"><use href="#ic-case-studies"/></svg><span class="label">Case Studies</span></a></li>
+              <li><a><span class="num">IX</span><svg class="ic" aria-hidden="true"><use href="#ic-licenses"/></svg><span class="label">Our Licenses</span></a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA III ===================== -->
+    <article class="idea" id="i03">
+      <p class="idea__num">III — Stepper journey bar</p>
+      <h2>Nine connected nodes in a single horizontal row, <em>journey register</em></h2>
+      <p class="idea__why">
+        The dossier <em>is</em> a sequence — there's a reason "About" is
+        before "Process". Show that. A single horizontal stepper, nine
+        nodes connected by a hairline, italic Roman numeral inside each
+        node, chapter title beneath. Dense, diagrammatic, and quietly
+        signals "this is a path, not a menu."
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~150 px (one row). Trades vertical real-estate for horizontal — works because the labels are short. Adds an at-a-glance current-position indicator (filled ink node + gold dot) the existing list can't carry.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Nine 34 px nodes on a hairline track; italic Cormorant numerals inside; chapter titles below each node, monospace 5/9 progress tag.</dd>
+        <dt>Active</dt><dd>Hover lifts the node 2 px, fills it gold; current chapter is rendered as ink-filled with gold dot. Click → scroll + close.</dd>
+        <dt>Mobile</dt><dd>Track keeps its 760 px min-width and scrolls horizontally inside the disclosure — preserves the single-row gesture rather than collapsing to a list.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · journey</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i03-wrap">
+          <div class="i03-track">
+            <a class="i03-step"><span class="node">I</span><svg class="ic" aria-hidden="true"><use href="#ic-about"/></svg><span class="label">About</span><span class="tag">01</span></a>
+            <a class="i03-step"><span class="node">II</span><svg class="ic" aria-hidden="true"><use href="#ic-investment"/></svg><span class="label">Investment</span><span class="tag">02</span></a>
+            <a class="i03-step is-current"><span class="node">III</span><svg class="ic" aria-hidden="true"><use href="#ic-benefits"/></svg><span class="label">Benefits</span><span class="tag">on page</span></a>
+            <a class="i03-step"><span class="node">IV</span><svg class="ic" aria-hidden="true"><use href="#ic-eligibility"/></svg><span class="label">Eligibility</span><span class="tag">04</span></a>
+            <a class="i03-step"><span class="node">V</span><svg class="ic" aria-hidden="true"><use href="#ic-documents"/></svg><span class="label">Documents</span><span class="tag">05</span></a>
+            <a class="i03-step"><span class="node">VI</span><svg class="ic" aria-hidden="true"><use href="#ic-process"/></svg><span class="label">Process</span><span class="tag">06</span></a>
+            <a class="i03-step"><span class="node">VII</span><svg class="ic" aria-hidden="true"><use href="#ic-visa-free"/></svg><span class="label">Visa-Free</span><span class="tag">07</span></a>
+            <a class="i03-step"><span class="node">VIII</span><svg class="ic" aria-hidden="true"><use href="#ic-case-studies"/></svg><span class="label">Case Studies</span><span class="tag">08</span></a>
+            <a class="i03-step"><span class="node">IX</span><svg class="ic" aria-hidden="true"><use href="#ic-licenses"/></svg><span class="label">Licenses</span><span class="tag">09</span></a>
+          </div>
+          <div class="i03-legend">
+            <span>Orientation · Substance · Evidence</span>
+            <span>3 / 9 read</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <footer class="note">
+    Sketches only — none of this is wired to the live build. Live
+    component lives in <code>src/components/ProgramSpine.jsx</code>
+    (the <code>ContentsPage()</code> function) with CSS in
+    <code>public/assets/css/style.css</code> under
+    <code>.ht-spine__contents*</code>. Earlier ten-draft round of
+    this exploration is preserved in the commit history of branch
+    <code>claude/redesign-expandable-content-KR2tB</code>.
+  </footer>
+
+</div>
+</body>
+</html>
