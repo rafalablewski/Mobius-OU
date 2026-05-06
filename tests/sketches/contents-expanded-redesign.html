@@ -686,6 +686,83 @@
     .i07-aside { border-bottom: 1px solid var(--hairline); }
   }
 
+  /* ====================================================================
+     IDEA 08 — Letterpress mosaic (5×2 hairline grid + colophon)
+     ==================================================================== */
+  .i08-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .i08-cell {
+    position: relative;
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 18px 14px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    border-right: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    transition: background 0.18s ease;
+    min-height: 110px;
+  }
+  .i08-cell:nth-child(5n) { border-right: 0; }
+  .i08-cell:nth-child(n+6) { border-bottom: 0; }
+  .i08-cell:hover { background: rgba(201, 168, 106, 0.08); }
+  .i08-cell .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--gold-deep);
+    letter-spacing: 0.02em;
+  }
+  .i08-cell .label {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.2;
+    margin-top: auto;
+  }
+  .i08-cell .ref {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.18em;
+    color: var(--stone); text-transform: uppercase;
+  }
+  .i08-cell .corner {
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--gold);
+    opacity: 0.55;
+  }
+  .i08-cell .corner.tl { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
+  .i08-cell .corner.br { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+
+  .i08-cell.colophon {
+    background: linear-gradient(135deg, rgba(201, 168, 106, 0.06), transparent 65%);
+    cursor: default;
+    pointer-events: none;
+  }
+  .i08-cell.colophon .label {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--stone);
+    line-height: 1.4;
+  }
+  .i08-cell.colophon .num { color: var(--stone); }
+
+  @media (max-width: 880px) {
+    .i08-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
+    .i08-cell { border-right: 1px solid var(--hairline) !important; border-bottom: 1px solid var(--hairline) !important; min-height: 96px; }
+    .i08-cell:nth-child(3n) { border-right: 0 !important; }
+  }
+  @media (max-width: 540px) {
+    .i08-grid { grid-template-columns: repeat(2, 1fr); }
+    .i08-cell:nth-child(3n) { border-right: 1px solid var(--hairline) !important; }
+    .i08-cell:nth-child(2n) { border-right: 0 !important; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -1089,6 +1166,46 @@
             <li><a><span class="num">VIII</span><span class="label">Case Studies<span class="ref">GV-H</span></span></a></li>
             <li><a><span class="num">IX</span><span class="label">Our Licenses<span class="ref">GV-I</span></span></a></li>
           </ol>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 08 ===================== -->
+    <article class="idea" id="i08">
+      <p class="idea__num">VIII — Letterpress mosaic</p>
+      <h2>5×2 hairline cells with corner ticks, <em>tenth cell is the colophon</em></h2>
+      <p class="idea__why">
+        Borrows the page's existing pitch-card corner-tick vocabulary.
+        Nine chapter cells in a 5×2 hairline grid; the tenth cell is
+        deliberately not a chapter — it's a small colophon with edition
+        + imprint. Reads as a printed end-paper, not a list, and uses
+        the asymmetric tenth cell to signal "this is finite, this is
+        what's in the dossier."
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~250 px on desktop. Loses the row-by-row scan in favour of a glance-able mosaic. Different register from idea 06 (drop-caps) — here the typography is uniform Cormorant; the surface itself does the editorial work via hairlines and corner ticks.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>5 cols × 2 rows; 1 px hairlines; faint gold corner ticks on each cell echo the pitch-card frame; tenth cell carries a subtle gold gradient and a serif imprint line.</dd>
+        <dt>Active</dt><dd>Hover wash 8 % gold; corner ticks stay constant. Click → scroll + close. Colophon cell is non-interactive (<code>pointer-events: none</code>).</dd>
+        <dt>Mobile</dt><dd>≤ 880 px: 3 cols × 4 rows. ≤ 540 px: 2 cols × 5 rows. Colophon migrates to the trailing position naturally.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · letterpress</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i08-grid">
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">I</span><span class="label">About</span><span class="ref">GV-A</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">II</span><span class="label">Investment</span><span class="ref">GV-B</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">III</span><span class="label">Benefits</span><span class="ref">GV-C</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IV</span><span class="label">Eligibility</span><span class="ref">GV-D</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">V</span><span class="label">Documents</span><span class="ref">GV-E</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VI</span><span class="label">Process</span><span class="ref">GV-F</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="ref">GV-G</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VIII</span><span class="label">Case Studies</span><span class="ref">GV-H</span></a>
+          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IX</span><span class="label">Our Licenses</span><span class="ref">GV-I</span></a>
+          <span class="i08-cell colophon"><span class="corner tl"></span><span class="corner br"></span><span class="num">·</span><span class="label">Mobius Dossier · Edition 2026.Q1 · printed by hand for the family.</span></span>
         </div>
       </div>
     </article>
