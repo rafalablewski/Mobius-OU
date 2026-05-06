@@ -1027,9 +1027,65 @@
   .toc a:hover { color: var(--gold-deep); }
   .toc a b { font-family: "Fraunces", serif; font-weight: 500; color: var(--gold-deep); margin-right: 8px; }
 
+  /* Reset native button styling for the inline interactive tiles, chips,
+     options and rows used across the ten concepts — they're authored as
+     <button type="button"> for keyboard / screen-reader semantics, but
+     should render exactly like the visual surface they represent. The
+     per-concept rules below add their own colours, padding and borders
+     on top of this reset. */
+  .apple-stocks__chip,
+  .wallet__alt,
+  .tesla__opt,
+  .tservice__row,
+  .lucid__node,
+  .air__blade,
+  .adobe-cc__row,
+  .xd__cell,
+  .xd__slot,
+  .xd__nav span,
+  .dial__pill,
+  .split__cal-nav span,
+  .split__cell,
+  .split__rail-row {
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .apple-stocks__chip:focus-visible,
+  .wallet__alt:focus-visible,
+  .tesla__opt:focus-visible,
+  .tservice__row:focus-visible,
+  .lucid__node:focus-visible,
+  .air__blade:focus-visible,
+  .adobe-cc__row:focus-visible,
+  .xd__cell:focus-visible,
+  .xd__slot:focus-visible,
+  .dial__pill:focus-visible,
+  .split__cell:focus-visible,
+  .split__rail-row:focus-visible {
+    outline: 2px solid rgba(201,168,106,0.85);
+    outline-offset: 2px;
+  }
+
   @media (max-width: 720px) {
     .stage { padding: 24px 12px; }
     .tesla, .lucid, .xd, .split { width: 100% !important; }
+    /* Multi-column concepts collapse to single column at narrow widths so
+       they remain readable below ~360 px. */
+    .xd, .split { grid-template-columns: 1fr; }
+    .split__cal {
+      border-right: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .tesla__row { grid-template-columns: 1fr; }
+    .lucid__rail { grid-template-columns: 1fr; }
+    .lucid__node + .lucid__node {
+      border-left: 0;
+      border-top: 1px solid rgba(215,199,161,0.14);
+    }
+    .air__blades { grid-template-columns: 1fr; }
     .toc { grid-template-columns: 1fr; }
   }
 </style>
