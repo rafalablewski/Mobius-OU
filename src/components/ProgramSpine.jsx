@@ -54,13 +54,13 @@ function FallbackPanel() {
 
 function ChapterAbout({ program }) {
   return (
-    <div className="ht-spine__about">
-      <h2 className="ht-spine__about-h">At a glance</h2>
-      <p className="ht-spine__body">{program.summary}</p>
+    <div className="ht-program__summary">
+      <h2>At a glance</h2>
+      <p>{program.summary}</p>
       {Array.isArray(program.notes) && program.notes.length > 0 && (
         <>
-          <h3 className="ht-spine__about-sub">What we actually think</h3>
-          <ul className="ht-spine__notes">
+          <h3>What we actually think</h3>
+          <ul className="ht-program__notes">
             {program.notes.map((n, i) => (
               <li key={i}>{n}</li>
             ))}
@@ -76,18 +76,18 @@ function ChapterInvestment({ program }) {
   if (facts.length === 0) return <FallbackPanel />;
   const [headline, ...sidecar] = facts;
   return (
-    <div className="ht-spine__investment">
-      <div className="ht-spine__fact-hero">
-        <span className="ht-spine__fact-hero-label">{headline.label}</span>
-        <span className="ht-spine__fact-hero-value">{headline.value}</span>
-        <span className="ht-spine__fact-hero-tag">Headline figure</span>
+    <div className="ht-program__facts">
+      <div className="ht-program__fact-hero">
+        <span className="ht-program__fact-hero-label">{headline.label}</span>
+        <span className="ht-program__fact-hero-value">{headline.value}</span>
+        <span className="ht-program__fact-hero-tag">Headline figure</span>
       </div>
       {sidecar.length > 0 && (
-        <ul className="ht-spine__fact-sidecar">
+        <ul className="ht-program__fact-sidecar">
           {sidecar.map((f) => (
-            <li key={f.label} className="ht-spine__fact-sidecar-item">
-              <span className="ht-spine__fact-sidecar-label">{f.label}</span>
-              <span className="ht-spine__fact-sidecar-value">{f.value}</span>
+            <li key={f.label} className="ht-program__fact-sidecar-item">
+              <span className="ht-program__fact-sidecar-label">{f.label}</span>
+              <span className="ht-program__fact-sidecar-value">{f.value}</span>
             </li>
           ))}
         </ul>
@@ -114,21 +114,18 @@ function ChapterProcess({ program }) {
   const timeline = Array.isArray(program.timeline) ? program.timeline : [];
   if (timeline.length === 0) return <FallbackPanel />;
   return (
-    <div className="ht-spine__process">
-      <h3 className="ht-spine__about-sub">Engagement timeline</h3>
-      <ol className="ht-spine__timeline">
-        {timeline.map((t, i) => (
-          <li key={t.step} className="ht-spine__timeline-item">
-            <span className="ht-spine__timeline-num">{pad2(i + 1)}</span>
-            <div className="ht-spine__timeline-meta">
-              <span className="ht-spine__timeline-step">{t.step}</span>
-              <span className="ht-spine__timeline-weeks">{t.weeks}</span>
-            </div>
-            <p className="ht-spine__timeline-body">{t.body}</p>
+    <aside className="ht-program__timeline">
+      <h3>Engagement timeline</h3>
+      <ol>
+        {timeline.map((t) => (
+          <li key={t.step}>
+            <span className="ht-program__timeline-step">{t.step}</span>
+            <span className="ht-program__timeline-weeks">{t.weeks}</span>
+            <p>{t.body}</p>
           </li>
         ))}
       </ol>
-    </div>
+    </aside>
   );
 }
 

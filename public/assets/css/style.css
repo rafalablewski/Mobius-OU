@@ -14242,7 +14242,6 @@ html.has-program-spine {
 /* --- Chapter section (100vh slabs) --------------------------------- */
 
 .ht-spine__chapter {
-  min-height: 100vh;
   scroll-snap-align: start;
   scroll-margin-top: var(--ht-spine-band-top);
   display: flex;
@@ -14304,136 +14303,17 @@ html.has-program-spine {
   color: var(--ht-spine-stone);
 }
 
-/* Body sits flush below the band — no vertical centering, no gap. */
+/* Body sits flush below the band; no flex:1 so chapters size to content. */
 .ht-spine__chapter-body {
-  flex: 1;
   padding: 48px 0 80px;
 }
 @media (max-width: 991px) {
   .ht-spine__chapter-body { padding: 32px 0 56px; }
 }
 
-/* --- About chapter (At a glance / What we actually think) ----------- */
-
-.ht-spine__about-h {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
-  font-size: clamp(28px, 3.6vw, 40px);
-  line-height: 1.1;
-  letter-spacing: -0.005em;
-  color: var(--ht-spine-ink);
-  margin: 0 0 18px;
-}
-.ht-spine__about-sub {
-  font-family: "Manrope", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ht-spine-gold-deep);
-  margin: 28px 0 14px;
-}
-.ht-spine__body {
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--ht-spine-ink);
-  margin: 0 0 12px;
-  max-width: 64ch;
-}
-.ht-spine__notes {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--ht-spine-ink);
-  max-width: 68ch;
-}
-.ht-spine__notes li {
-  position: relative;
-  padding: 10px 0 10px 28px;
-  border-bottom: 1px solid var(--ht-spine-hair);
-}
-.ht-spine__notes li:last-child { border-bottom: none; }
-.ht-spine__notes li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  top: 10px;
-  color: var(--ht-spine-gold-deep);
-  font-family: "Cormorant Garamond", serif;
-}
-
-/* --- Investment chapter --------------------------------------------- */
-
-.ht-spine__investment {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 56px;
-  align-items: center;
-}
-@media (max-width: 991px) {
-  .ht-spine__investment { grid-template-columns: 1fr; gap: 32px; }
-}
-.ht-spine__fact-hero {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.ht-spine__fact-hero-label {
-  font-family: "Manrope", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ht-spine-gold-deep);
-}
-.ht-spine__fact-hero-value {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
-  font-size: clamp(48px, 7vw, 88px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ht-spine-ink);
-}
-.ht-spine__fact-hero-tag {
-  font-family: "Manrope", sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ht-spine-stone);
-  margin-top: 4px;
-}
-.ht-spine__fact-sidecar {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border-top: 1px solid var(--ht-spine-hair);
-}
-.ht-spine__fact-sidecar-item {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 24px;
-  align-items: baseline;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--ht-spine-hair);
-}
-@media (max-width: 575px) {
-  .ht-spine__fact-sidecar-item { grid-template-columns: 1fr; gap: 4px; }
-}
-.ht-spine__fact-sidecar-label {
-  font-family: "Manrope", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ht-spine-gold-deep);
-}
-.ht-spine__fact-sidecar-value {
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 16px;
-  line-height: 1.4;
-  color: var(--ht-spine-ink);
-}
+/* Chapters I (About), II (Investment) and VI (Process) reuse the original
+   .ht-program__summary, .ht-program__facts and .ht-program__timeline rules
+   defined further up the file — no spine-specific overrides for them. */
 
 /* --- Benefits chapter (3-up) --------------------------------------- */
 
@@ -14468,59 +14348,6 @@ html.has-program-spine {
   color: var(--ht-spine-ink);
 }
 .ht-spine__benefit-body {
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ht-spine-ink);
-  margin: 0;
-}
-
-/* --- Process / timeline chapter ------------------------------------ */
-
-.ht-spine__timeline {
-  list-style: none;
-  padding: 0;
-  margin: 24px 0 0;
-}
-.ht-spine__timeline-item {
-  display: grid;
-  grid-template-columns: 60px 220px 1fr;
-  column-gap: 24px;
-  padding: 22px 0;
-  border-top: 1px solid var(--ht-spine-hair);
-  align-items: baseline;
-}
-.ht-spine__timeline-item:last-child { border-bottom: 1px solid var(--ht-spine-hair); }
-@media (max-width: 767px) {
-  .ht-spine__timeline-item { grid-template-columns: 40px 1fr; row-gap: 6px; }
-  .ht-spine__timeline-meta { grid-column: 2; }
-  .ht-spine__timeline-body { grid-column: 2; }
-}
-.ht-spine__timeline-num {
-  font-family: ui-monospace, "JetBrains Mono", monospace;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  color: var(--ht-spine-gold-deep);
-}
-.ht-spine__timeline-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.ht-spine__timeline-step {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 500;
-  font-size: 22px;
-  color: var(--ht-spine-ink);
-}
-.ht-spine__timeline-weeks {
-  font-family: "Manrope", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ht-spine-gold-deep);
-}
-.ht-spine__timeline-body {
   font-family: "Newsreader", Georgia, serif;
   font-size: 15px;
   line-height: 1.55;
