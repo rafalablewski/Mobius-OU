@@ -838,6 +838,82 @@
     .i09-list .dek { font-size: 14px; flex-basis: 100%; }
   }
 
+  /* ====================================================================
+     IDEA 10 — Pure typography index (narrow column, minimal)
+     ==================================================================== */
+  .i10-wrap {
+    padding: 36px 32px 36px;
+    border-top: 1px solid var(--hairline);
+    display: flex; justify-content: center;
+  }
+  .i10-col {
+    width: 100%;
+    max-width: 380px;
+  }
+  .i10-col h4 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.32em;
+    color: var(--gold-deep); text-transform: uppercase;
+    font-weight: 500;
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  .i10-col .top-rule {
+    height: 1px;
+    background: var(--ink);
+    margin: 0 0 18px;
+  }
+  .i10-list {
+    list-style: none; margin: 0; padding: 0;
+  }
+  .i10-list li {
+    text-align: center;
+    padding: 6px 0;
+  }
+  .i10-list a {
+    text-decoration: none;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    transition: color 0.18s ease;
+  }
+  .i10-list a:hover { color: var(--gold-deep); }
+  .i10-list .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--gold-deep);
+    min-width: 28px; text-align: right;
+  }
+  .i10-list .label {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.6;
+    letter-spacing: 0.005em;
+  }
+  .i10-list a:hover .label {
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  .i10-col .bot-rule {
+    height: 1px;
+    background: var(--hairline-2);
+    margin: 18px 0 0;
+  }
+  .i10-col .imprint {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--stone);
+    text-align: center;
+    margin: 12px 0 0;
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -1321,6 +1397,53 @@
           <li><a><span class="num">VIII</span><span class="body"><span class="label">Case Studies</span><span class="em-dash">—</span><span class="dek">three real mandates, anonymised — what worked, what cost more than expected.</span></span><span class="ref">GV-H</span></a></li>
           <li><a><span class="num">IX</span><span class="body"><span class="label">Our Licenses</span><span class="em-dash">—</span><span class="dek">the regulators we answer to, the partners we co-sign with, and what isn't ours.</span></span><span class="ref">GV-I</span></a></li>
         </ol>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 10 ===================== -->
+    <article class="idea" id="i10">
+      <p class="idea__num">X — Pure typography index</p>
+      <h2>Narrow centred column, <em>book half-title register</em></h2>
+      <p class="idea__why">
+        The most restrained move on the page. A single 380 px column,
+        centred, bracketed by an ink top-rule and a hairline bottom-rule;
+        nine chapter titles set in Cormorant 19 px, italic numerals,
+        nothing else. Mirrors the half-title page of a serious book —
+        all the navigational utility, none of the print-appendix
+        decoration. Quietly the most editorial of the ten.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~360 px. Removes the leaders, the page-number column and the row hairlines entirely. The single ink rule above + hairline rule below do all the surface work. A counter-proposal to the heavy ideas (06, 08, 09) — proves how light this can read while still anchoring 9 entries.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>One centred column, max 380 px; ink top-rule, hairline bottom-rule, italic Cormorant titles + numerals; small italic imprint line beneath.</dd>
+        <dt>Active</dt><dd>Hover underlines the title in gold (1 px, 4 px offset); colour ramps to gold. Click → scroll + close.</dd>
+        <dt>Mobile</dt><dd>Identical — the column is already narrow; padding shrinks slightly; everything scales gracefully.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i10-wrap">
+          <div class="i10-col">
+            <h4>Index</h4>
+            <div class="top-rule"></div>
+            <ol class="i10-list">
+              <li><a><span class="num">I</span><span class="label">About</span></a></li>
+              <li><a><span class="num">II</span><span class="label">Investment</span></a></li>
+              <li><a><span class="num">III</span><span class="label">Benefits</span></a></li>
+              <li><a><span class="num">IV</span><span class="label">Eligibility</span></a></li>
+              <li><a><span class="num">V</span><span class="label">Documents</span></a></li>
+              <li><a><span class="num">VI</span><span class="label">Process</span></a></li>
+              <li><a><span class="num">VII</span><span class="label">Visa-Free Countries</span></a></li>
+              <li><a><span class="num">VIII</span><span class="label">Case Studies</span></a></li>
+              <li><a><span class="num">IX</span><span class="label">Our Licenses</span></a></li>
+            </ol>
+            <div class="bot-rule"></div>
+            <p class="imprint">Mobius Dossier · Edition 2026.Q1</p>
+          </div>
+        </div>
       </div>
     </article>
 
