@@ -1,10 +1,11 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import BriefPanel from '../components/BriefPanel.jsx';
 import CTABand from '../components/CTABand.jsx';
 import Glyph from '../components/Glyph.jsx';
 import HeroPitchCard from '../components/HeroPitchCard.jsx';
-import { PROGRAMS, PROGRAMS_BY_SLUG } from '../data/programs.js';
+import ProgramSpine from '../components/ProgramSpine.jsx';
+import { PROGRAMS_BY_SLUG } from '../data/programs.js';
 
 const ICON_STROKE = {
   fill: 'none',
@@ -86,7 +87,6 @@ export default function ProgramPage() {
     return <Navigate to="/pricing" replace />;
   }
 
-  const related = PROGRAMS.filter((p) => p.slug !== slug).slice(0, 3);
   const { lead, tail } = splitProgramTitle(program);
 
   return (
@@ -113,70 +113,7 @@ export default function ProgramPage() {
         aside={<BriefPanel program={program} />}
         pitch={<HeroPitchCard slides={PROGRAM_PITCH} />}
       />
-      <section className="ht-program">
-        <div className="container">
-          <div className="ht-program__facts">
-            <div className="ht-program__fact-hero">
-              <span className="ht-program__fact-hero-label">{program.facts[0].label}</span>
-              <span className="ht-program__fact-hero-value">{program.facts[0].value}</span>
-              <span className="ht-program__fact-hero-tag">Headline figure</span>
-            </div>
-            <ul className="ht-program__fact-sidecar">
-              {program.facts.slice(1).map((f) => (
-                <li key={f.label} className="ht-program__fact-sidecar-item">
-                  <span className="ht-program__fact-sidecar-label">{f.label}</span>
-                  <span className="ht-program__fact-sidecar-value">{f.value}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="ht-program__body">
-            <div className="ht-program__summary">
-              <h2>At a glance</h2>
-              <p>{program.summary}</p>
-              <h3>What we actually think</h3>
-              <ul className="ht-program__notes">
-                {program.notes.map((n, i) => (
-                  <li key={i}>{n}</li>
-                ))}
-              </ul>
-            </div>
-            <aside className="ht-program__timeline">
-              <h3>Engagement timeline</h3>
-              <ol>
-                {program.timeline.map((t) => (
-                  <li key={t.step}>
-                    <span className="ht-program__timeline-step">{t.step}</span>
-                    <span className="ht-program__timeline-weeks">{t.weeks}</span>
-                    <p>{t.body}</p>
-                  </li>
-                ))}
-              </ol>
-            </aside>
-          </div>
-
-          {related.length > 0 && (
-            <div className="ht-program__related">
-              <span className="ht-program__eyebrow">Related programs</span>
-              <div className="ht-program__related-grid">
-                {related.map((r) => (
-                  <Link to={`/programs/${r.slug}`} className="ht-program__related-card" key={r.slug}>
-                    <span className="ht-program__related-thumb">
-                      <img src={r.heroImg} alt="" loading="lazy" />
-                    </span>
-                    <span className="ht-program__related-body">
-                      <span className="ht-program__related-region">{r.region}</span>
-                      <span className="ht-program__related-name">{r.name}</span>
-                      <span className="ht-program__related-link">Explore <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
+      <ProgramSpine program={program} />
       <CTABand
         eyebrow="Next step"
         title="Before you commit to this program, hear our read."

@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Program Page — Roman Index Card, five derivations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --redline:    #B23A2A;
+    --green:      #4F7A4A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory); color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1120px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  header.intro .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 48px; line-height: 1.1;
+    margin: 14px 0 18px; letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 68ch; }
+  .baseline {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil);
+  }
+  .baseline strong { color: var(--ink); }
+  .toc {
+    margin-top: 36px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 4px 32px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 18px;
+  }
+  .toc a {
+    display: flex; justify-content: space-between; gap: 12px;
+    text-decoration: none; color: var(--ink);
+    padding: 8px 0; border-bottom: 1px dotted var(--hairline);
+    font-size: 13px;
+  }
+  .toc a span:first-child { color: var(--gold-deep); font-family: "Fraunces", serif; font-style: italic; }
+  .toc a:hover span:last-child { color: var(--gold-deep); }
+
+  .ideas { display: grid; gap: 64px; }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px;
+    background: var(--cream); padding: 28px 28px 24px;
+  }
+  .idea__num {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 28px; line-height: 1.2; margin: 8px 0 12px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 8px; }
+  .idea__contrast {
+    font-size: 13px; color: var(--pencil); margin: 6px 0 22px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+  }
+  .idea__behavior {
+    display: grid; grid-template-columns: 110px 1fr;
+    gap: 6px 14px;
+    font-size: 12px; line-height: 1.55; color: var(--pencil);
+    margin: 0 0 22px; padding: 12px 14px;
+    background: #FFFDF7; border: 1px dashed var(--hairline);
+    border-radius: 2px;
+  }
+  .idea__behavior dt {
+    font-family: "JetBrains Mono", monospace;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-size: 10px; color: var(--gold-deep);
+    padding-top: 2px;
+  }
+  .idea__behavior dd { margin: 0; }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
+  @media (max-width: 880px) { .pair { grid-template-columns: 1fr; } }
+
+  .sketch-frame {
+    background: #FBF7EF; border: 1px solid #D9CFB7; border-radius: 3px;
+    padding: 12px 12px 8px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 8px 24px -16px rgba(0,0,0,0.18);
+  }
+  .sketch-frame svg { display: block; width: 100%; height: auto; }
+  .sketch-caption {
+    font-family: "Caveat", cursive; font-size: 16px;
+    color: var(--redline); margin: 6px 4px 4px; text-align: center;
+  }
+  .pencil  { stroke: var(--pencil); fill: none; stroke-width: 1.4; }
+  .hair    { stroke: var(--pencil); fill: none; stroke-width: 0.8; opacity: 0.55; }
+  .gold    { stroke: var(--gold-deep); fill: none; stroke-width: 1.4; }
+  .gold-fill { fill: var(--gold-deep); }
+  .fill-paper { fill: #F1EAD8; }
+  .fill-ink   { fill: #1A1F26; }
+  .fill-card  { fill: #FFFFFF; stroke: var(--pencil); stroke-width: 1; }
+  .ink-text   { font-family: "Fraunces", serif; fill: #1A1F26; }
+  .body-text  { font-family: "Manrope", sans-serif; fill: var(--stone); }
+  .gold-text  { font-family: "Fraunces", serif; fill: var(--gold-deep); font-style: italic; }
+  .anno {
+    font-family: "Caveat", cursive; fill: var(--redline); font-size: 14px;
+  }
+  .anno-line { stroke: var(--redline); fill: none; stroke-width: 1; stroke-dasharray: 3 3; }
+
+  /* Live mock shared */
+  .mock {
+    border-radius: 3px; overflow: hidden;
+    background: var(--ink); color: var(--ivory);
+    font-family: "Manrope", sans-serif;
+    border: 1px solid #2a2f37;
+    position: relative;
+    min-height: 460px;
+    display: flex; flex-direction: column;
+  }
+  .mock__hero {
+    background: linear-gradient(180deg, #0B0F14 0%, #11161D 100%);
+    padding: 22px 22px 18px; flex: 0 0 auto;
+    border-bottom: 1px solid rgba(201,168,106,0.18);
+  }
+  .mock__title {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 28px; line-height: 1.1; letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+  .mock__title em { font-style: italic; color: var(--gold); }
+  .mock__sub {
+    font-family: "Fraunces", serif; font-style: italic; font-weight: 300;
+    color: rgba(244,239,230,0.72); font-size: 12px; margin: 0;
+  }
+  .mock__chapter {
+    flex: 1 1 auto; background: var(--ivory); color: var(--ink);
+    padding: 24px 22px 22px;
+    position: relative;
+    min-height: 220px;
+  }
+  .mock__chapter h3 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 20px; margin: 0 0 8px; letter-spacing: -0.005em;
+  }
+  .mock__chapter h3 em { font-style: italic; color: var(--gold-deep); }
+  .mock__chapter p {
+    font-size: 12.5px; line-height: 1.55; color: var(--stone);
+    margin: 0 0 8px; max-width: 52ch;
+  }
+  .mock__caption {
+    position: absolute; right: 14px; bottom: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(11,15,20,0.32);
+  }
+
+  footer.foot {
+    border-top: 1px solid var(--hairline); padding-top: 24px; margin-top: 64px;
+    color: var(--stone); font-size: 12px; line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="intro">
+  <div class="eyebrow">Sketches · Navigation · Round 2</div>
+  <h1>The Roman index card, <em>five derivations.</em></h1>
+  <p class="lede">
+    Round one parked on <strong>Idea I — the Roman index card</strong>: hero ends,
+    the next viewport is a single contents page that lists all nine chapters
+    (<em>About · Investment · Benefits · Eligibility · Documents · Process · Visa-Free Countries · Case Studies · Our Licenses</em>)
+    before any of them open. This file keeps that one and pushes it five ways —
+    each pulling on a different register (editorial, modern grid, type-specimen,
+    audit-report, cinema title-card) without abandoning the contents-page idea.
+  </p>
+  <div class="baseline">
+    <strong>The constant.</strong> Every variant still acts as a contents page —
+    nine chapters, Roman numerals, one click commits a snap-scroll into the
+    corresponding 100vh chapter, and a slim chapter band ("II · INVESTMENT")
+    lives at the top of every chapter view from there on. <strong>What changes</strong>
+    is the surface, the typography, and the implicit posture of the page —
+    is this dossier a printed newspaper, a product card-deck, a magazine
+    "in this issue", an audit-report front-matter, or a cinema title-card?
+  </div>
+  <nav class="toc" aria-label="Sketch index">
+    <a href="#i01"><span>I.0</span><span>Roman index card · the keeper (round-one parent)</span></a>
+    <a href="#iA"><span>I.A</span><span>Editorial masthead · newspaper front-matter</span></a>
+    <a href="#iB"><span>I.B</span><span>3×3 card-deck · modern product grid</span></a>
+    <a href="#iC"><span>I.C</span><span>Type-spec stairway · magazine "in this issue"</span></a>
+    <a href="#iD"><span>I.D</span><span>Audit-report contents · doc-control front-matter</span></a>
+    <a href="#iE"><span>I.E</span><span>Cinema marquee · ink black-card title</span></a>
+  </nav>
+</header>
+
+<section class="ideas">
+
+<!-- ============================================================== -->
+<!-- IDEA 01 — Roman index card / paper contents page                -->
+<!-- ============================================================== -->
+<article class="idea" id="i01">
+  <div class="idea__num">Idea I.0 — Roman index card · the keeper</div>
+  <h2>The parent. The dossier opens with a <em>contents page</em>.</h2>
+  <p class="idea__why">
+    Hero ends, the next viewport is a single cream "Contents" card listing all nine
+    chapters in Roman numerals — front-matter of a book. From there, every chapter
+    is its own 100vh panel. A slim chapter band ("II · INVESTMENT") snaps to the top
+    once the reader is past the index.
+  </p>
+  <dl class="idea__behavior">
+    <dt>Scroll</dt><dd>1 wheel-tick = next chapter; CSS <code>scroll-snap-type: y mandatory</code>.</dd>
+    <dt>Active</dt><dd>Roman numeral on top band; thin gold underline on TOC entry.</dd>
+    <dt>Keyboard</dt><dd>↑ / ↓ steps; 1–9 jumps; Esc returns to index.</dd>
+    <dt>Mobile</dt><dd>TOC card stays full-screen; band collapses to "II/IX".</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- hero -->
+          <rect x="20" y="14" width="420" height="56" rx="2" class="fill-ink"/>
+          <text x="32" y="42" class="ink-text" fill="#F4EFE6" font-size="14">Portugal</text>
+          <text x="92" y="42" class="gold-text" font-size="14">Golden Visa</text>
+          <text x="32" y="58" class="body-text" fill="#A8A39A" font-size="9">EU residency · lightest presence requirement</text>
+
+          <!-- contents card centred -->
+          <rect x="80" y="92" width="300" height="232" class="fill-card" rx="2"/>
+          <text x="230" y="116" text-anchor="middle" class="body-text" font-size="9" letter-spacing="3">— CONTENTS —</text>
+          <line x1="200" y1="124" x2="260" y2="124" class="gold"/>
+          <!-- 9 entries -->
+          <g font-family="Fraunces, serif" font-size="11" fill="#1A1F26">
+            <text x="100" y="148"><tspan fill="#A07F44" font-style="italic">I</tspan>     About</text>
+            <text x="100" y="168"><tspan fill="#A07F44" font-style="italic">II</tspan>    Investment</text>
+            <text x="100" y="188"><tspan fill="#A07F44" font-style="italic">III</tspan>   Benefits</text>
+            <text x="100" y="208"><tspan fill="#A07F44" font-style="italic">IV</tspan>    Eligibility</text>
+            <text x="100" y="228"><tspan fill="#A07F44" font-style="italic">V</tspan>     Documents</text>
+            <text x="100" y="248"><tspan fill="#A07F44" font-style="italic">VI</tspan>    Process</text>
+            <text x="100" y="268"><tspan fill="#A07F44" font-style="italic">VII</tspan>   Visa-Free Countries</text>
+            <text x="100" y="288"><tspan fill="#A07F44" font-style="italic">VIII</tspan>  Case Studies</text>
+            <text x="100" y="308"><tspan fill="#A07F44" font-style="italic">IX</tspan>    Our Licenses</text>
+          </g>
+          <!-- chapter band peeking below -->
+          <rect x="20" y="338" width="420" height="28" class="fill-paper"/>
+          <text x="34" y="357" class="gold-text" font-size="11">II · </text>
+          <text x="56" y="357" class="ink-text" font-size="11">INVESTMENT</text>
+          <text x="402" y="357" text-anchor="end" class="body-text" font-size="9" letter-spacing="2">II / IX</text>
+          <!-- annotations -->
+          <path d="M 386 232 L 408 252" class="anno-line"/>
+          <text x="412" y="258" class="anno">click → snap</text>
+          <path d="M 240 366 L 240 376" class="anno-line"/>
+          <text x="246" y="376" class="anno">sticky band on chapter view</text>
+        </svg>
+      </div>
+      <div class="sketch-caption">~ paper contents card, then chapter band ~</div>
+    </div>
+
+    <div>
+      <div class="mock">
+        <div class="mock__hero" style="padding-bottom:14px">
+          <div class="mock__title">Portugal <em>Golden Visa</em></div>
+          <p class="mock__sub">EU residency with the lightest presence requirement in Europe.</p>
+        </div>
+        <div style="background:var(--ivory); flex:1; padding:22px 22px 18px; position:relative;">
+          <div style="text-align:center; font-family:'Manrope',sans-serif; font-size:9px; letter-spacing:0.32em; color:var(--stone); margin-bottom:14px;">— CONTENTS —</div>
+          <ol style="list-style:none; padding:0; margin:0; column-count:1; font-family:'Fraunces',serif; font-size:14px; color:var(--ink); max-width:320px; margin:0 auto;">
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dotted var(--hairline);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">I</em>About</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">01</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--gold-deep);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">II</em><strong style="font-weight:500;">Investment</strong></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em;">▸ 02</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dotted var(--hairline);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">III</em>Benefits</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">03</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dotted var(--hairline);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">IV</em>Eligibility</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">04</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dotted var(--hairline);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">V</em>Documents</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">05</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dotted var(--hairline);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">VI</em>Process</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">06</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dotted var(--hairline);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">VII</em>Visa-Free Countries</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">07</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dotted var(--hairline);"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">VIII</em>Case Studies</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">08</span></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0;"><span><em style="color:var(--gold-deep); font-style:italic; margin-right:14px;">IX</em>Our Licenses</span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.12em;">09</span></li>
+          </ol>
+          <div class="mock__caption">page 0 / contents</div>
+        </div>
+      </div>
+      <div class="sketch-caption">live mock — contents card as page-zero</div>
+    </div>
+  </div>
+
+  <div class="idea__contrast">
+    <strong>vs today.</strong> Today the dossier has no front-matter; the eye lands
+    on €500,000 with no orientation. This treats the program page like a printed
+    report — index first, chapters after, a permanent "II of IX" beat as you read.
+  </div>
+</article>
+
+<!-- ============================================================== -->
+<!-- DERIVATION A — Editorial masthead · newspaper front-matter      -->
+<!-- ============================================================== -->
+<article class="idea" id="iA">
+  <div class="idea__num">Idea I.A — Editorial masthead</div>
+  <h2>The dossier opens like the <em>front page of a paper of record.</em></h2>
+  <p class="idea__why">
+    The contents card is restaged as a newspaper front-matter page. A heavy ink
+    masthead carries the dossier reference (<em>MOBIUS DOSSIER · No. PRT-GV ·
+    2026.Q1</em>); a gold hairline rules it off; a serif italic deck announces
+    "In this dossier" beneath. The nine chapters fall into the wider column
+    with dotted leaders and tabular page numbers, while a narrower column to
+    the right carries a standfirst — three lines of editorial framing telling
+    the reader what they're about to read and why.
+  </p>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Cream paper · ink masthead block · 1 px gold hairline divider · serif body.</dd>
+    <dt>Layout</dt><dd>5/8 column — chapter list with dotted leaders + page numbers; 3/8 — standfirst brief.</dd>
+    <dt>Active</dt><dd>Click any chapter → snap-scroll commits; hover sets gold underline + leader stipple.</dd>
+    <dt>Mobile</dt><dd>Two columns collapse into one; standfirst sits above the chapter list as a pull-quote.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- hero stub -->
+          <rect x="20" y="14" width="420" height="40" rx="2" class="fill-ink"/>
+          <text x="32" y="38" class="ink-text" fill="#F4EFE6" font-size="11">Portugal</text>
+          <text x="80" y="38" class="gold-text" font-size="11">Golden Visa</text>
+          <!-- masthead bar -->
+          <rect x="20" y="64" width="420" height="22" class="fill-ink"/>
+          <text x="32" y="79" font-family="Manrope, sans-serif" font-size="8" fill="#F4EFE6" letter-spacing="3">MOBIUS DOSSIER</text>
+          <text x="160" y="79" font-family="Manrope, sans-serif" font-size="8" fill="#A8A39A" letter-spacing="2">·  No. PRT-GV  ·  EDITION 2026.Q1</text>
+          <text x="430" y="79" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="7" fill="#C9A86A" letter-spacing="2">FRONT MATTER</text>
+          <!-- gold hairline -->
+          <line x1="20" y1="89" x2="440" y2="89" class="gold" stroke-width="0.6"/>
+          <line x1="20" y1="92" x2="440" y2="92" class="gold" stroke-width="0.3" opacity="0.4"/>
+          <!-- paper body -->
+          <rect x="20" y="92" width="420" height="272" fill="#FAF6EE"/>
+          <!-- deck -->
+          <text x="36" y="118" font-family="Fraunces, serif" font-size="20" fill="#1A1F26">In this <tspan font-style="italic" fill="#A07F44">dossier</tspan>.</text>
+          <text x="36" y="134" font-family="Manrope, sans-serif" font-size="7" fill="#6B6257" letter-spacing="2.4">— NINE CHAPTERS · ONE READING ARC —</text>
+          <line x1="36" y1="142" x2="424" y2="142" class="hair"/>
+          <!-- left column: chapter list -->
+          <g font-family="Fraunces, serif" font-size="10" fill="#1A1F26">
+            <text x="36" y="160"><tspan fill="#A07F44" font-style="italic" font-size="9">I.</tspan>  About</text>
+            <text x="36" y="178"><tspan fill="#A07F44" font-style="italic" font-size="9">II.</tspan>  Investment</text>
+            <text x="36" y="196"><tspan fill="#A07F44" font-style="italic" font-size="9">III.</tspan>  Benefits</text>
+            <text x="36" y="214"><tspan fill="#A07F44" font-style="italic" font-size="9">IV.</tspan>  Eligibility</text>
+            <text x="36" y="232"><tspan fill="#A07F44" font-style="italic" font-size="9">V.</tspan>  Documents</text>
+            <text x="36" y="250"><tspan fill="#A07F44" font-style="italic" font-size="9">VI.</tspan>  Process</text>
+            <text x="36" y="268"><tspan fill="#A07F44" font-style="italic" font-size="9">VII.</tspan>  Visa-Free Countries</text>
+            <text x="36" y="286"><tspan fill="#A07F44" font-style="italic" font-size="9">VIII.</tspan>  Case Studies</text>
+            <text x="36" y="304"><tspan fill="#A07F44" font-style="italic" font-size="9">IX.</tspan>  Our Licenses</text>
+          </g>
+          <!-- dotted leaders + page numbers -->
+          <g font-family="JetBrains Mono, monospace" font-size="8" fill="#6B6257" letter-spacing="0.5">
+            <line x1="146" y1="158" x2="266" y2="158" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="160">01</text>
+            <line x1="178" y1="176" x2="266" y2="176" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="178">02</text>
+            <line x1="158" y1="194" x2="266" y2="194" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="196">03</text>
+            <line x1="160" y1="212" x2="266" y2="212" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="214">04</text>
+            <line x1="166" y1="230" x2="266" y2="230" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="232">05</text>
+            <line x1="142" y1="248" x2="266" y2="248" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="250">06</text>
+            <line x1="222" y1="266" x2="266" y2="266" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="268">07</text>
+            <line x1="186" y1="284" x2="266" y2="284" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="286">08</text>
+            <line x1="186" y1="302" x2="266" y2="302" stroke="#6B6257" stroke-width="0.4" stroke-dasharray="1 2"/><text x="270" y="304">09</text>
+          </g>
+          <!-- vertical divider -->
+          <line x1="298" y1="158" x2="298" y2="320" class="hair"/>
+          <!-- right column: standfirst -->
+          <text x="312" y="160" font-family="Manrope, sans-serif" font-size="6.5" fill="#A07F44" letter-spacing="2.4">STANDFIRST</text>
+          <g font-family="Newsreader, Georgia, serif" font-size="8.5" fill="#1A1F26">
+            <text x="312" y="178">Portugal's Golden Visa</text>
+            <text x="312" y="190">remains the lightest-</text>
+            <text x="312" y="202">presence EU residency on</text>
+            <text x="312" y="214">offer — but the rules</text>
+            <text x="312" y="226">moved in 2024.  This</text>
+            <text x="312" y="238">dossier walks the family</text>
+            <text x="312" y="250">brief end-to-end: who</text>
+            <text x="312" y="262">qualifies, what it costs,</text>
+            <text x="312" y="274">how long, and where the</text>
+            <text x="312" y="286">trade-offs sit.</text>
+          </g>
+          <text x="312" y="306" font-family="Fraunces, serif" font-style="italic" font-size="9" fill="#A07F44">— Begin reading ↓</text>
+          <!-- chapter band peek -->
+          <rect x="20" y="338" width="420" height="26" class="fill-ink"/>
+          <text x="34" y="355" class="gold-text" font-size="10">II ·</text>
+          <text x="56" y="355" font-family="Manrope, sans-serif" font-size="9" fill="#F4EFE6" letter-spacing="2">INVESTMENT</text>
+          <text x="424" y="355" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#A8A39A" letter-spacing="2">II / IX  →</text>
+          <!-- annotations -->
+          <path d="M 40 88 L 30 70" class="anno-line"/>
+          <text x="14" y="64" class="anno">ink masthead · gold rule</text>
+          <path d="M 280 178 L 296 152" class="anno-line"/>
+          <text x="296" y="146" class="anno">leaders + tabular page nos</text>
+        </svg>
+      </div>
+      <div class="sketch-caption">~ paper of record · masthead + standfirst ~</div>
+    </div>
+
+    <div>
+      <div class="mock">
+        <div class="mock__hero" style="padding-bottom:12px">
+          <div class="mock__title" style="font-size:24px">Portugal <em>Golden Visa</em></div>
+        </div>
+        <!-- masthead block -->
+        <div style="background:var(--ink); padding:10px 18px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--gold); box-shadow:0 1px 0 rgba(201,168,106,0.3); font-family:'Manrope',sans-serif; font-size:8.5px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ivory);">
+          <span><strong style="font-weight:700;">Mobius Dossier</strong> &nbsp; · &nbsp; <span style="color:rgba(244,239,230,0.55);">No. PRT-GV · Edition 2026.Q1</span></span>
+          <span style="font-family:'JetBrains Mono', monospace; color:var(--gold); letter-spacing:0.18em; font-size:8px;">FRONT MATTER</span>
+        </div>
+        <!-- paper body -->
+        <div style="flex:1; background:var(--cream); padding:22px 22px 0; position:relative;">
+          <h3 style="font-family:'Fraunces',serif; font-weight:400; font-size:30px; margin:0 0 4px; line-height:1.1; letter-spacing:-0.01em; color:var(--ink);">In this <em style="font-style:italic; color:var(--gold-deep);">dossier</em>.</h3>
+          <div style="font-family:'Manrope',sans-serif; font-size:8px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone); margin-bottom:8px;">— Nine chapters · one reading arc —</div>
+          <div style="height:1px; background:var(--hairline); margin-bottom:14px;"></div>
+          <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:24px;">
+            <!-- left column: chapter list with leaders -->
+            <ol style="list-style:none; padding:0; margin:0; font-family:'Fraunces',serif; font-size:13px; color:var(--ink);">
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">I.</em>About<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">01</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0; background:rgba(201,168,106,0.1); margin:0 -6px; padding-left:6px; padding-right:6px;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">II.</em><strong style="font-weight:500;">Investment</strong><span style="flex:1; border-bottom:1px dotted var(--gold-deep); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.08em; font-weight:700;">02 ▸</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">III.</em>Benefits<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">03</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">IV.</em>Eligibility<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">04</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">V.</em>Documents<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">05</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">VI.</em>Process<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">06</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">VII.</em>Visa-Free Countries<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">07</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">VIII.</em>Case Studies<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">08</span></li>
+              <li style="display:flex; align-items:baseline; gap:8px; padding:3px 0;"><em style="color:var(--gold-deep); font-style:italic; min-width:32px;">IX.</em>Our Licenses<span style="flex:1; border-bottom:1px dotted var(--hairline); margin:0 6px 5px;"></span><span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--stone); letter-spacing:0.08em;">09</span></li>
+            </ol>
+            <!-- right column: standfirst -->
+            <aside style="border-left:1px solid var(--hairline); padding-left:16px;">
+              <div style="font-family:'Manrope',sans-serif; font-size:8px; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:6px;">Standfirst</div>
+              <p style="font-family:'Newsreader', Georgia, serif; font-size:11.5px; line-height:1.5; color:var(--ink); margin:0;"><span style="font-family:'Fraunces',serif; font-size:24px; line-height:0.8; float:left; margin:4px 6px 0 0; color:var(--gold-deep);">P</span>ortugal's Golden Visa remains the lightest-presence EU residency on offer — but the rules moved in 2024. This dossier walks the family brief end-to-end: who qualifies, what it costs, how long, and where the trade-offs sit.</p>
+              <p style="font-family:'Fraunces',serif; font-style:italic; font-size:11px; color:var(--gold-deep); margin:12px 0 0;">— Begin reading ↓</p>
+            </aside>
+          </div>
+          <div class="mock__caption">page 0 / front matter</div>
+        </div>
+      </div>
+      <div class="sketch-caption">live mock — masthead + leaders + standfirst</div>
+    </div>
+  </div>
+
+  <div class="idea__contrast">
+    <strong>vs the parent (I.0).</strong> Same intent, more editorial backbone:
+    the masthead block roots the page in "paper of record" register and the
+    standfirst column gives the dossier a one-paragraph thesis before any
+    chapter opens. Cost: more density, less air. <em>Best when</em> we want the
+    contents page to do double duty as an editorial introduction.
+  </div>
+</article>
+
+<!-- ============================================================== -->
+<!-- DERIVATION B — 3×3 card-deck · modern product grid             -->
+<!-- ============================================================== -->
+<article class="idea" id="iB">
+  <div class="idea__num">Idea I.B — 3×3 card-deck</div>
+  <h2>The contents page becomes a <em>3×3 deck</em> — nine clickable cards.</h2>
+  <p class="idea__why">
+    The most "2026 product page" of the five: a clean 3×3 grid of nine cards
+    fills the viewport. Each card carries a Roman numeral, the chapter title,
+    a one-line dek and a doc-ref tag at the foot. Hover lifts the card 4 px
+    and switches its hairline border to gold. The grid renders on cream paper
+    with a slim "Contents · 9 Chapters" eyebrow above and the breadcrumb /
+    dossier code below — same airy proportions as the rest of the brand.
+  </p>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Cream paper · 3×3 CSS grid · 24 px gutter · 1 px hairline cards.</dd>
+    <dt>Card</dt><dd>Roman numeral + serif title + 12 px dek + monospace doc-ref + arrow.</dd>
+    <dt>Hover</dt><dd>Lift -4 px, border ramps to gold, dek darkens, arrow shifts +4 px right.</dd>
+    <dt>Mobile</dt><dd>Grid collapses 3-col → 1-col; cards stack with full-width hairlines.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- hero -->
+          <rect x="20" y="14" width="420" height="40" rx="2" class="fill-ink"/>
+          <text x="32" y="38" class="ink-text" fill="#F4EFE6" font-size="11">Portugal</text>
+          <text x="80" y="38" class="gold-text" font-size="11">Golden Visa</text>
+          <!-- header -->
+          <text x="32" y="74" font-family="Manrope, sans-serif" font-size="6.5" fill="#A07F44" letter-spacing="2.4">CONTENTS · 9 CHAPTERS</text>
+          <text x="32" y="92" font-family="Fraunces, serif" font-size="16" fill="#1A1F26">Pick a <tspan font-style="italic" fill="#A07F44">chapter</tspan>.</text>
+          <text x="430" y="92" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="7" fill="#6B6257" letter-spacing="2">PRT-GV · 2026.Q1</text>
+          <line x1="20" y1="100" x2="440" y2="100" class="hair"/>
+          <!-- 3x3 grid of cards -->
+          <g>
+            <!-- row 1 -->
+            <rect x="22" y="110" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+            <rect x="162" y="110" width="138" height="74" fill="#FFFDF5" stroke="#A07F44" stroke-width="1.3" rx="2"/>
+            <rect x="302" y="110" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+            <!-- row 2 -->
+            <rect x="22" y="190" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+            <rect x="162" y="190" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+            <rect x="302" y="190" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+            <!-- row 3 -->
+            <rect x="22" y="270" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+            <rect x="162" y="270" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+            <rect x="302" y="270" width="138" height="74" fill="#FFFFFF" stroke="#1A1F26" stroke-width="0.6" rx="2"/>
+          </g>
+          <!-- card content (sample) -->
+          <g font-family="Fraunces, serif" font-size="9" fill="#A07F44">
+            <text x="32" y="124" font-style="italic">I</text>
+            <text x="172" y="124" font-style="italic" font-weight="700">II</text>
+            <text x="312" y="124" font-style="italic">III</text>
+            <text x="32" y="204" font-style="italic">IV</text>
+            <text x="172" y="204" font-style="italic">V</text>
+            <text x="312" y="204" font-style="italic">VI</text>
+            <text x="32" y="284" font-style="italic">VII</text>
+            <text x="172" y="284" font-style="italic">VIII</text>
+            <text x="312" y="284" font-style="italic">IX</text>
+          </g>
+          <g font-family="Fraunces, serif" font-size="11" fill="#1A1F26">
+            <text x="32" y="146">About</text>
+            <text x="172" y="146" font-weight="500">Investment</text>
+            <text x="312" y="146">Benefits</text>
+            <text x="32" y="226">Eligibility</text>
+            <text x="172" y="226">Documents</text>
+            <text x="312" y="226">Process</text>
+            <text x="32" y="306">Visa-Free</text>
+            <text x="172" y="306">Case Studies</text>
+            <text x="312" y="306">Our Licenses</text>
+          </g>
+          <g font-family="Manrope, sans-serif" font-size="6" fill="#6B6257">
+            <text x="32" y="160">The shape of the program</text>
+            <text x="172" y="160">€500K qualifying fund</text>
+            <text x="312" y="160">EU mobility &amp; tax</text>
+            <text x="32" y="240">Who, with whom</text>
+            <text x="172" y="240">Apostilled portfolio</text>
+            <text x="312" y="240">Steps &amp; timeline</text>
+            <text x="32" y="320">Schengen &amp; OECD</text>
+            <text x="172" y="320">Three families served</text>
+            <text x="312" y="320">Regulators &amp; bar</text>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="6" fill="#6B6257" letter-spacing="1">
+            <text x="32" y="178">DOC-01  →</text>
+            <text x="172" y="178" fill="#A07F44">DOC-02  →</text>
+            <text x="312" y="178">DOC-03  →</text>
+            <text x="32" y="258">DOC-04  →</text>
+            <text x="172" y="258">DOC-05  →</text>
+            <text x="312" y="258">DOC-06  →</text>
+            <text x="32" y="338">DOC-07  →</text>
+            <text x="172" y="338">DOC-08  →</text>
+            <text x="312" y="338">DOC-09  →</text>
+          </g>
+          <!-- annotations -->
+          <path d="M 230 188 L 250 358" class="anno-line"/>
+          <text x="254" y="368" class="anno">hover lifts -4 px, border → gold</text>
+          <path d="M 30 110 L 14 90" class="anno-line"/>
+          <text x="14" y="84" class="anno">3×3 · 24 px gutter</text>
+        </svg>
+      </div>
+      <div class="sketch-caption">~ nine cards · 3×3 modern grid ~</div>
+    </div>
+
+    <div>
+      <div class="mock">
+        <div class="mock__hero" style="padding-bottom:12px">
+          <div class="mock__title" style="font-size:24px">Portugal <em>Golden Visa</em></div>
+        </div>
+        <div style="flex:1; background:var(--cream); padding:18px 18px 12px; position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding-bottom:10px; border-bottom:1px solid var(--hairline); margin-bottom:14px;">
+            <div>
+              <div style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:4px;">Contents · 9 chapters</div>
+              <div style="font-family:'Fraunces',serif; font-size:18px; color:var(--ink); line-height:1;">Pick a <em style="font-style:italic; color:var(--gold-deep);">chapter</em>.</div>
+            </div>
+            <div style="font-family:'JetBrains Mono', monospace; font-size:8px; letter-spacing:0.18em; color:var(--stone);">PRT-GV · 2026.Q1</div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px;">
+            <!-- generated cards -->
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">I</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">About</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">The shape of the program in one minute.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-01<span>→</span></span></div>
+            <div style="border:1.5px solid var(--gold-deep); padding:10px 11px 9px; background:#FFFDF5; display:flex; flex-direction:column; gap:4px; min-height:78px; box-shadow:0 4px 12px -8px rgba(160,127,68,0.4); transform:translateY(-2px);"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px; font-weight:700;">II</span><strong style="font-family:'Fraunces',serif; font-weight:500; font-size:13px; color:var(--ink); line-height:1;">Investment</strong><span style="font-size:9.5px; color:var(--ink); line-height:1.35; flex:1;">€500K qualifying fund · five-year hold.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--gold-deep); letter-spacing:0.12em; display:flex; justify-content:space-between; font-weight:700;">DOC-02<span>→</span></span></div>
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">III</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">Benefits</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">EU mobility, tax positioning, family.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-03<span>→</span></span></div>
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">IV</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">Eligibility</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">Who qualifies, with whom, and why.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-04<span>→</span></span></div>
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">V</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">Documents</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">The apostilled portfolio in plain order.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-05<span>→</span></span></div>
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">VI</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">Process</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">Steps, timeline, and exit-points.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-06<span>→</span></span></div>
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">VII</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">Visa-Free Countries</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">Schengen and the wider OECD list.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-07<span>→</span></span></div>
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">VIII</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">Case Studies</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">Three families, anonymised, served.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-08<span>→</span></span></div>
+            <div style="border:1px solid var(--ink); padding:10px 11px 9px; background:#fff; display:flex; flex-direction:column; gap:4px; min-height:78px;"><span style="font-family:'Fraunces',serif; font-style:italic; color:var(--gold-deep); font-size:10px;">IX</span><strong style="font-family:'Fraunces',serif; font-weight:400; font-size:13px; color:var(--ink); line-height:1;">Our Licenses</strong><span style="font-size:9.5px; color:var(--stone); line-height:1.35; flex:1;">Regulators, bar, and accreditations.</span><span style="font-family:'JetBrains Mono', monospace; font-size:7.5px; color:var(--stone); letter-spacing:0.12em; display:flex; justify-content:space-between;">DOC-09<span>→</span></span></div>
+          </div>
+          <div class="mock__caption">page 0 · 3×3 deck</div>
+        </div>
+      </div>
+      <div class="sketch-caption">live mock — clickable card-deck contents</div>
+    </div>
+  </div>
+
+  <div class="idea__contrast">
+    <strong>vs the parent (I.0).</strong> Most software-modern of the five. Each
+    chapter gets its own dek, so the contents page actively previews the dossier
+    rather than just listing it. Costs more vertical space than the parent and
+    leans further from "printed report"; its strength is scannability — three
+    glance-equivalents instead of one long list.
+  </div>
+</article>
+
+<!-- ============================================================== -->
+<!-- DERIVATION C — Type-spec stairway · magazine "in this issue"   -->
+<!-- ============================================================== -->
+<article class="idea" id="iC">
+  <div class="idea__num">Idea I.C — Type-spec stairway</div>
+  <h2>No card. No grid. <em>Nine italic titles</em> typeset like a magazine "In this issue".</h2>
+  <p class="idea__why">
+    Pure typography. The contents page strips away the card frame entirely and
+    becomes a vertical stairway of nine chapter titles, each set in Cormorant
+    italic at editorial size (32–44 px). Each line is preceded by a tabular
+    Roman numeral and a small-caps gloss; hairline rules space the lines
+    apart. The effect is the front of <em>The Gentlewoman</em> or <em>Apartamento</em>'s
+    "In this issue" page — a typographic specimen, not a menu.
+  </p>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Cream paper · single column, 64 ch wide · hairline rules between rows.</dd>
+    <dt>Type</dt><dd>Cormorant italic 300, weight matched to Newsreader body in chapters; Manrope eyebrow.</dd>
+    <dt>Hover</dt><dd>Title shifts ink → gold-deep, gloss small-caps fade in, leader rule extends.</dd>
+    <dt>Mobile</dt><dd>Type ramps down to 26 px italic; rules stay; tabular numeral left-aligned.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- hero -->
+          <rect x="20" y="14" width="420" height="36" rx="2" class="fill-ink"/>
+          <text x="32" y="36" class="ink-text" fill="#F4EFE6" font-size="11">Portugal</text>
+          <text x="80" y="36" class="gold-text" font-size="11">Golden Visa</text>
+          <!-- paper body -->
+          <rect x="20" y="58" width="420" height="306" fill="#FAF6EE"/>
+          <!-- eyebrow -->
+          <text x="230" y="78" text-anchor="middle" font-family="Manrope, sans-serif" font-size="6.5" fill="#A07F44" letter-spacing="3.6">— IN THIS DOSSIER —</text>
+          <line x1="180" y1="84" x2="280" y2="84" class="gold" stroke-width="0.4" opacity="0.5"/>
+          <!-- nine italic titles -->
+          <g font-family="Fraunces, serif" font-style="italic" font-weight="300" fill="#1A1F26">
+            <text x="48" y="108" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1">  I  </tspan>About</text>
+            <text x="48" y="138" font-size="20" fill="#A07F44"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1"> II  </tspan>Investment</text>
+            <text x="48" y="168" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1">III  </tspan>Benefits</text>
+            <text x="48" y="198" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1"> IV  </tspan>Eligibility</text>
+            <text x="48" y="228" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1">  V  </tspan>Documents</text>
+            <text x="48" y="258" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1"> VI  </tspan>Process</text>
+            <text x="48" y="288" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1">VII  </tspan>Visa-Free Countries</text>
+            <text x="48" y="318" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1">VIII </tspan>Case Studies</text>
+            <text x="48" y="348" font-size="20"><tspan font-family="JetBrains Mono, monospace" font-style="normal" font-size="8" fill="#A07F44" letter-spacing="1"> IX  </tspan>Our Licenses</text>
+          </g>
+          <!-- glosses on the right -->
+          <g font-family="Manrope, sans-serif" font-size="6" fill="#6B6257" letter-spacing="2.2">
+            <text x="424" y="108" text-anchor="end">— SHAPE</text>
+            <text x="424" y="138" text-anchor="end" fill="#A07F44">— € 500K</text>
+            <text x="424" y="168" text-anchor="end">— EU MOBILITY</text>
+            <text x="424" y="198" text-anchor="end">— FAMILY</text>
+            <text x="424" y="228" text-anchor="end">— PORTFOLIO</text>
+            <text x="424" y="258" text-anchor="end">— TIMELINE</text>
+            <text x="424" y="288" text-anchor="end">— SCHENGEN</text>
+            <text x="424" y="318" text-anchor="end">— THREE FAMILIES</text>
+            <text x="424" y="348" text-anchor="end">— BAR &amp; CSC</text>
+          </g>
+          <!-- hairline rules -->
+          <g stroke="#E2DBCE" stroke-width="0.6">
+            <line x1="40" y1="118" x2="424" y2="118"/>
+            <line x1="40" y1="148" x2="424" y2="148"/>
+            <line x1="40" y1="178" x2="424" y2="178"/>
+            <line x1="40" y1="208" x2="424" y2="208"/>
+            <line x1="40" y1="238" x2="424" y2="238"/>
+            <line x1="40" y1="268" x2="424" y2="268"/>
+            <line x1="40" y1="298" x2="424" y2="298"/>
+            <line x1="40" y1="328" x2="424" y2="328"/>
+          </g>
+          <!-- annotations -->
+          <path d="M 132 134 L 156 96" class="anno-line"/>
+          <text x="160" y="92" class="anno">Cormorant italic 300 · gold on hover/active</text>
+          <path d="M 380 248 L 354 264" class="anno-line"/>
+          <text x="350" y="270" text-anchor="end" class="anno">small-caps gloss · right-aligned</text>
+        </svg>
+      </div>
+      <div class="sketch-caption">~ italic stairway · type-spec ~</div>
+    </div>
+
+    <div>
+      <div class="mock">
+        <div class="mock__hero" style="padding-bottom:12px">
+          <div class="mock__title" style="font-size:24px">Portugal <em>Golden Visa</em></div>
+        </div>
+        <div style="flex:1; background:var(--cream); padding:20px 22px 18px;">
+          <div style="text-align:center; font-family:'Manrope',sans-serif; font-size:8px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:14px;">— In this dossier —</div>
+          <div style="border-top:1px solid var(--hairline);">
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">I</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">About</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— Shape</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px; background:linear-gradient(to right, rgba(201,168,106,0.08), transparent 60%);">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px; font-weight:700;">II</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:22px; color:var(--gold-deep); line-height:1; flex:1;">Investment</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-deep); font-weight:700;">— € 500K</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">III</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">Benefits</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— EU Mobility</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">IV</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">Eligibility</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— Family</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">V</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">Documents</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— Portfolio</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">VI</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">Process</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— Timeline</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">VII</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">Visa-Free Countries</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— Schengen</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--hairline); text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">VIII</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">Case Studies</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— Three families</span>
+            </a>
+            <a style="display:flex; align-items:baseline; padding:7px 0; text-decoration:none; gap:14px;">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--gold-deep); letter-spacing:0.12em; min-width:38px; padding-top:4px;">IX</span>
+              <span style="font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:22px; color:var(--ink); line-height:1; flex:1;">Our Licenses</span>
+              <span style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--stone);">— Bar & CSC</span>
+            </a>
+          </div>
+          <div class="mock__caption">page 0 · type-spec</div>
+        </div>
+      </div>
+      <div class="sketch-caption">live mock — italic stairway · gold on II</div>
+    </div>
+  </div>
+
+  <div class="idea__contrast">
+    <strong>vs the parent (I.0).</strong> Most editorial-typographic of the
+    five. Treats every chapter title as a piece of typography rather than
+    a row in a menu — visual rhythm carries the page rather than the card
+    frame. Cost: less obvious as "navigation"; users have to learn that
+    italic titles are clickable. Pair with a small "click any title to begin"
+    eyebrow on first paint.
+  </div>
+</article>
+
+<!-- ============================================================== -->
+<!-- DERIVATION D — Audit-report contents · doc-control front-matter -->
+<!-- ============================================================== -->
+<article class="idea" id="iD">
+  <div class="idea__num">Idea I.D — Audit-report contents</div>
+  <h2>The contents page becomes a <em>filing reference</em> — front-matter as audit register.</h2>
+  <p class="idea__why">
+    Reuses the program page's existing doc-control register (the one that prints
+    CATEGORY · DOC-CODE · LAST REVISED) and extends it across a full tabular
+    contents. Five monospace columns —
+    <em>SECTION · CHAPTER · DOC-REF · REVISED · STATUS</em> — list nine rows in
+    Roman order, with hairline gold dividers, a green-dot CURRENT indicator on
+    the active row, and a header block carrying the dossier filename
+    (<code>prt-gv/contents.fm</code>). The most institutional of the five —
+    speaks the same language as a regulatory bundle.
+  </p>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Cream paper · monospace columns · hairline gold dividers · sticky header.</dd>
+    <dt>Active</dt><dd>Row gets ink fill + green-dot CURRENT pill; siblings stay outline-only.</dd>
+    <dt>Status</dt><dd>STATUS column also exposes "DRAFT" or "ARCHIVED" if a chapter is in flux.</dd>
+    <dt>Mobile</dt><dd>Table compresses to two columns (SECTION · CHAPTER); rest collapses behind tap.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- hero -->
+          <rect x="20" y="14" width="420" height="36" rx="2" class="fill-ink"/>
+          <text x="32" y="36" class="ink-text" fill="#F4EFE6" font-size="11">Portugal</text>
+          <text x="80" y="36" class="gold-text" font-size="11">Golden Visa</text>
+          <!-- header block -->
+          <rect x="20" y="56" width="420" height="34" fill="#FAF6EE"/>
+          <text x="32" y="72" font-family="JetBrains Mono, monospace" font-size="7" fill="#1A1F26" letter-spacing="2">DOSSIER · PRT-GV  ·  9 SECTIONS  ·  EDITION 2026.Q1</text>
+          <text x="32" y="84" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#A07F44" letter-spacing="1.6">FILING REFERENCE · prt-gv/contents.fm</text>
+          <text x="430" y="72" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B6257" letter-spacing="2">PAGE 0 · FRONT MATTER</text>
+          <text x="430" y="84" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#4F7A4A" letter-spacing="1.6">● CURRENT</text>
+          <line x1="20" y1="92" x2="440" y2="92" class="gold" stroke-width="0.6"/>
+          <!-- table -->
+          <!-- header row -->
+          <rect x="20" y="92" width="420" height="20" fill="#0B0F14"/>
+          <g font-family="JetBrains Mono, monospace" font-size="6" fill="#A8A39A" letter-spacing="1.6">
+            <text x="34" y="105">SECTION</text>
+            <text x="92" y="105">CHAPTER</text>
+            <text x="220" y="105">DOC-REF</text>
+            <text x="298" y="105">REVISED</text>
+            <text x="370" y="105">STATUS</text>
+          </g>
+          <!-- rows -->
+          <g>
+            <line x1="20" y1="112" x2="440" y2="112" stroke="#A07F44" stroke-width="0.4" opacity="0.5"/>
+            <line x1="20" y1="138" x2="440" y2="138" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="164" x2="440" y2="164" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="190" x2="440" y2="190" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="216" x2="440" y2="216" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="242" x2="440" y2="242" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="268" x2="440" y2="268" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="294" x2="440" y2="294" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="320" x2="440" y2="320" stroke="#E2DBCE" stroke-width="0.4"/>
+            <line x1="20" y1="346" x2="440" y2="346" stroke="#A07F44" stroke-width="0.4" opacity="0.5"/>
+          </g>
+          <!-- active row tint -->
+          <rect x="20" y="138" width="420" height="26" fill="#A07F44" opacity="0.08"/>
+          <!-- column dividers -->
+          <g stroke="#A07F44" stroke-width="0.3" opacity="0.4">
+            <line x1="84" y1="92" x2="84" y2="346"/>
+            <line x1="214" y1="92" x2="214" y2="346"/>
+            <line x1="290" y1="92" x2="290" y2="346"/>
+            <line x1="362" y1="92" x2="362" y2="346"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="1">
+            <text x="34" y="128" fill="#A07F44">I</text>     <text x="92" y="128" fill="#1A1F26">About</text>             <text x="220" y="128" fill="#6B6257">ABT-01</text>  <text x="298" y="128" fill="#6B6257">2026.01.18</text> <text x="370" y="128" fill="#4F7A4A">● CURRENT</text>
+            <text x="34" y="154" fill="#A07F44" font-weight="700">II</text> <text x="92" y="154" fill="#1A1F26" font-weight="700">Investment</text>     <text x="220" y="154" fill="#A07F44" font-weight="700">INVT-02</text> <text x="298" y="154" fill="#6B6257">2026.01.18</text> <text x="370" y="154" fill="#4F7A4A" font-weight="700">● ON-PAGE</text>
+            <text x="34" y="180" fill="#A07F44">III</text>   <text x="92" y="180" fill="#1A1F26">Benefits</text>          <text x="220" y="180" fill="#6B6257">BENF-03</text> <text x="298" y="180" fill="#6B6257">2026.01.18</text> <text x="370" y="180" fill="#4F7A4A">● CURRENT</text>
+            <text x="34" y="206" fill="#A07F44">IV</text>    <text x="92" y="206" fill="#1A1F26">Eligibility</text>       <text x="220" y="206" fill="#6B6257">ELIG-04</text> <text x="298" y="206" fill="#6B6257">2026.01.12</text> <text x="370" y="206" fill="#4F7A4A">● CURRENT</text>
+            <text x="34" y="232" fill="#A07F44">V</text>     <text x="92" y="232" fill="#1A1F26">Documents</text>         <text x="220" y="232" fill="#6B6257">DOCS-05</text> <text x="298" y="232" fill="#6B6257">2026.01.12</text> <text x="370" y="232" fill="#4F7A4A">● CURRENT</text>
+            <text x="34" y="258" fill="#A07F44">VI</text>    <text x="92" y="258" fill="#1A1F26">Process</text>           <text x="220" y="258" fill="#6B6257">PROC-06</text> <text x="298" y="258" fill="#6B6257">2026.01.12</text> <text x="370" y="258" fill="#4F7A4A">● CURRENT</text>
+            <text x="34" y="284" fill="#A07F44">VII</text>   <text x="92" y="284" fill="#1A1F26">Visa-Free Countries</text> <text x="220" y="284" fill="#6B6257">VFCT-07</text> <text x="298" y="284" fill="#6B6257">2025.11.04</text> <text x="370" y="284" fill="#B23A2A">● DRAFT</text>
+            <text x="34" y="310" fill="#A07F44">VIII</text>  <text x="92" y="310" fill="#1A1F26">Case Studies</text>      <text x="220" y="310" fill="#6B6257">CASE-08</text> <text x="298" y="310" fill="#6B6257">2025.11.04</text> <text x="370" y="310" fill="#4F7A4A">● CURRENT</text>
+            <text x="34" y="336" fill="#A07F44">IX</text>    <text x="92" y="336" fill="#1A1F26">Our Licenses</text>      <text x="220" y="336" fill="#6B6257">LIC-09</text>  <text x="298" y="336" fill="#6B6257">2026.01.18</text> <text x="370" y="336" fill="#4F7A4A">● CURRENT</text>
+          </g>
+          <!-- annotations -->
+          <path d="M 100 148 L 80 70" class="anno-line"/>
+          <text x="76" y="64" text-anchor="end" class="anno">active row · gold tint · ON-PAGE</text>
+          <path d="M 380 270 L 410 264" class="anno-line"/>
+          <text x="430" y="262" text-anchor="end" class="anno">DRAFT chapter shown plainly</text>
+        </svg>
+      </div>
+      <div class="sketch-caption">~ tabular front-matter · audit register ~</div>
+    </div>
+
+    <div>
+      <div class="mock">
+        <div class="mock__hero" style="padding-bottom:12px">
+          <div class="mock__title" style="font-size:24px">Portugal <em>Golden Visa</em></div>
+        </div>
+        <div style="background:var(--cream); padding:14px 18px 8px; border-bottom:1px solid var(--gold);">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'JetBrains Mono', monospace; font-size:8.5px; letter-spacing:0.18em; color:var(--ink); text-transform:uppercase;">
+            <span><strong>Dossier · PRT-GV</strong> &nbsp;·&nbsp; <span style="color:var(--stone);">9 sections · ed. 2026.Q1</span></span>
+            <span style="color:var(--gold-deep);">prt-gv/contents.fm</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'JetBrains Mono', monospace; font-size:7.5px; letter-spacing:0.18em; color:var(--stone); text-transform:uppercase; margin-top:4px;">
+            <span>Page 0 · Front matter · Contents</span>
+            <span style="color:var(--green);">● Current</span>
+          </div>
+        </div>
+        <div style="flex:1; background:var(--cream); padding:0 18px 18px; position:relative;">
+          <table style="width:100%; border-collapse:collapse; font-family:'JetBrains Mono', monospace; font-size:9px; letter-spacing:0.04em; color:var(--ink);">
+            <thead style="background:var(--ink); color:rgba(244,239,230,0.7);">
+              <tr style="text-transform:uppercase; letter-spacing:0.2em; font-size:7.5px;">
+                <th style="text-align:left; padding:7px 6px; font-weight:600;">§</th>
+                <th style="text-align:left; padding:7px 6px; font-weight:600;">Chapter</th>
+                <th style="text-align:left; padding:7px 6px; font-weight:600;">Doc-ref</th>
+                <th style="text-align:left; padding:7px 6px; font-weight:600;">Revised</th>
+                <th style="text-align:left; padding:7px 6px; font-weight:600;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--hairline);"><td style="padding:6px;color:var(--gold-deep);">I</td><td style="padding:6px;">About</td><td style="padding:6px;color:var(--stone);">ABT-01</td><td style="padding:6px;color:var(--stone);">2026.01.18</td><td style="padding:6px;color:var(--green);">● Current</td></tr>
+              <tr style="background:rgba(201,168,106,0.1); border-bottom:1px solid var(--gold-deep); border-top:1px solid var(--gold-deep);"><td style="padding:7px 6px;color:var(--gold-deep);font-weight:700;">II</td><td style="padding:7px 6px;font-weight:700;">Investment</td><td style="padding:7px 6px;color:var(--gold-deep);font-weight:700;">INVT-02</td><td style="padding:7px 6px;color:var(--stone);">2026.01.18</td><td style="padding:7px 6px;color:var(--green);font-weight:700;">● On-page</td></tr>
+              <tr style="border-bottom:1px solid var(--hairline);"><td style="padding:6px;color:var(--gold-deep);">III</td><td style="padding:6px;">Benefits</td><td style="padding:6px;color:var(--stone);">BENF-03</td><td style="padding:6px;color:var(--stone);">2026.01.18</td><td style="padding:6px;color:var(--green);">● Current</td></tr>
+              <tr style="border-bottom:1px solid var(--hairline);"><td style="padding:6px;color:var(--gold-deep);">IV</td><td style="padding:6px;">Eligibility</td><td style="padding:6px;color:var(--stone);">ELIG-04</td><td style="padding:6px;color:var(--stone);">2026.01.12</td><td style="padding:6px;color:var(--green);">● Current</td></tr>
+              <tr style="border-bottom:1px solid var(--hairline);"><td style="padding:6px;color:var(--gold-deep);">V</td><td style="padding:6px;">Documents</td><td style="padding:6px;color:var(--stone);">DOCS-05</td><td style="padding:6px;color:var(--stone);">2026.01.12</td><td style="padding:6px;color:var(--green);">● Current</td></tr>
+              <tr style="border-bottom:1px solid var(--hairline);"><td style="padding:6px;color:var(--gold-deep);">VI</td><td style="padding:6px;">Process</td><td style="padding:6px;color:var(--stone);">PROC-06</td><td style="padding:6px;color:var(--stone);">2026.01.12</td><td style="padding:6px;color:var(--green);">● Current</td></tr>
+              <tr style="border-bottom:1px solid var(--hairline);"><td style="padding:6px;color:var(--gold-deep);">VII</td><td style="padding:6px;">Visa-Free Countries</td><td style="padding:6px;color:var(--stone);">VFCT-07</td><td style="padding:6px;color:var(--stone);">2025.11.04</td><td style="padding:6px;color:var(--redline);">● Draft</td></tr>
+              <tr style="border-bottom:1px solid var(--hairline);"><td style="padding:6px;color:var(--gold-deep);">VIII</td><td style="padding:6px;">Case Studies</td><td style="padding:6px;color:var(--stone);">CASE-08</td><td style="padding:6px;color:var(--stone);">2025.11.04</td><td style="padding:6px;color:var(--green);">● Current</td></tr>
+              <tr><td style="padding:6px;color:var(--gold-deep);">IX</td><td style="padding:6px;">Our Licenses</td><td style="padding:6px;color:var(--stone);">LIC-09</td><td style="padding:6px;color:var(--stone);">2026.01.18</td><td style="padding:6px;color:var(--green);">● Current</td></tr>
+            </tbody>
+          </table>
+          <div class="mock__caption">contents.fm · audit register</div>
+        </div>
+      </div>
+      <div class="sketch-caption">live mock — front-matter as filing table</div>
+    </div>
+  </div>
+
+  <div class="idea__contrast">
+    <strong>vs the parent (I.0).</strong> Most professional / institutional —
+    speaks the same language as the doc-control register already on the page,
+    so the contents page reads as part of a regulated filing. The bonus
+    columns (DOC-REF, REVISED, STATUS) signal accountability and freshness
+    in one shot. Cost: feels less inviting on cold landing; best when the
+    audience is the family lawyer or accountant, not the prospect.
+  </div>
+</article>
+
+<!-- ============================================================== -->
+<!-- DERIVATION E — Cinema marquee · ink black-card title           -->
+<!-- ============================================================== -->
+<article class="idea" id="iE">
+  <div class="idea__num">Idea I.E — Cinema marquee black-card</div>
+  <h2>Polarity flips. The contents page becomes an <em>opening title plate</em>.</h2>
+  <p class="idea__why">
+    Inverts everything: ink-black ground, gold ornament, italic chapter titles
+    centred and small-caps tracked. The page reads less like a menu and more
+    like the opening plate of a feature film or the front of a Royal Opera House
+    programme. Three gold pips at the top, the dossier line in small Manrope
+    caps, then nine italic Cormorant titles in a single centred column with
+    Roman-numeral subtitles, ending in a slim <em>BEGIN</em> directive at the
+    bottom. The most creative / cinematic of the five — the one that makes the
+    program look <em>chosen</em>, not <em>browsed</em>.
+  </p>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Ink ground (#0B0F14) full-bleed · gold serif italic · centred column.</dd>
+    <dt>Hierarchy</dt><dd>Pips → "Mobius Dossier presents" → program title → italic chapter list → BEGIN.</dd>
+    <dt>Active</dt><dd>Hover swells the line (1.04× scale) + gold underline; click commits scroll.</dd>
+    <dt>Mobile</dt><dd>Same composition, type ramps 22 → 17 px; pips shrink; BEGIN bottom-anchored.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- hero stub -->
+          <rect x="20" y="14" width="420" height="34" rx="2" class="fill-ink"/>
+          <text x="32" y="34" class="ink-text" fill="#F4EFE6" font-size="11">Portugal</text>
+          <text x="80" y="34" class="gold-text" font-size="11">Golden Visa</text>
+          <!-- black ground -->
+          <rect x="20" y="54" width="420" height="310" fill="#0B0F14"/>
+          <!-- gold pips -->
+          <circle cx="216" cy="78" r="2" fill="#C9A86A"/>
+          <circle cx="230" cy="78" r="2.5" fill="#C9A86A"/>
+          <circle cx="244" cy="78" r="2" fill="#C9A86A"/>
+          <!-- "presents" eyebrow -->
+          <text x="230" y="96" text-anchor="middle" font-family="Manrope, sans-serif" font-size="6.5" fill="#A8A39A" letter-spacing="3.6">— MOBIUS DOSSIER PRESENTS —</text>
+          <!-- title -->
+          <text x="230" y="120" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#F4EFE6" letter-spacing="6">PORTUGAL  ·  GOLDEN VISA</text>
+          <line x1="170" y1="128" x2="290" y2="128" stroke="#C9A86A" stroke-width="0.4" opacity="0.5"/>
+          <!-- "an index of nine chapters" -->
+          <text x="230" y="142" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#C9A86A">an index of nine chapters</text>
+          <!-- chapter list -->
+          <g font-family="Fraunces, serif" font-style="italic" font-size="13" fill="#F4EFE6" text-anchor="middle">
+            <text x="230" y="166"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">I.</tspan>  About</text>
+            <text x="230" y="186" fill="#C9A86A" font-weight="500"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">II.</tspan>  Investment</text>
+            <text x="230" y="206"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">III.</tspan>  Benefits</text>
+            <text x="230" y="226"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">IV.</tspan>  Eligibility</text>
+            <text x="230" y="246"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">V.</tspan>  Documents</text>
+            <text x="230" y="266"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">VI.</tspan>  Process</text>
+            <text x="230" y="286"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">VII.</tspan>  Visa-Free Countries</text>
+            <text x="230" y="306"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">VIII.</tspan>  Case Studies</text>
+            <text x="230" y="326"><tspan fill="#C9A86A" font-family="JetBrains Mono, monospace" font-style="normal" font-size="6.5" letter-spacing="2">IX.</tspan>  Our Licenses</text>
+          </g>
+          <!-- credits foot -->
+          <line x1="190" y1="338" x2="270" y2="338" stroke="#C9A86A" stroke-width="0.3" opacity="0.4"/>
+          <text x="230" y="350" text-anchor="middle" font-family="Manrope, sans-serif" font-size="6" fill="#A8A39A" letter-spacing="2.4">AN AUDIT BY MOBIUS &amp; PARTNERS · EDITION 2026.Q1</text>
+          <!-- BEGIN directive -->
+          <text x="230" y="362" text-anchor="middle" font-family="Manrope, sans-serif" font-size="6.5" fill="#C9A86A" letter-spacing="6">B  E  G  I  N  ↓</text>
+          <!-- annotations -->
+          <path d="M 184 78 L 130 70" class="anno-line"/>
+          <text x="120" y="68" text-anchor="end" class="anno">three gold pips · Le Cinéma</text>
+          <path d="M 286 186 L 320 174" class="anno-line"/>
+          <text x="324" y="170" class="anno">italic + small-caps numeral</text>
+        </svg>
+      </div>
+      <div class="sketch-caption">~ ink black-card · cinema title plate ~</div>
+    </div>
+
+    <div>
+      <div class="mock">
+        <div class="mock__hero" style="padding-bottom:12px">
+          <div class="mock__title" style="font-size:24px">Portugal <em>Golden Visa</em></div>
+        </div>
+        <div style="flex:1; background:#0B0F14; padding:24px 22px 18px; position:relative; color:var(--ivory); display:flex; flex-direction:column; align-items:center; gap:0; text-align:center;">
+          <!-- pips -->
+          <div style="display:flex; gap:6px; align-items:center; margin-bottom:12px;">
+            <span style="width:4px; height:4px; border-radius:50%; background:var(--gold);"></span>
+            <span style="width:5px; height:5px; border-radius:50%; background:var(--gold);"></span>
+            <span style="width:4px; height:4px; border-radius:50%; background:var(--gold);"></span>
+          </div>
+          <div style="font-family:'Manrope',sans-serif; font-size:7.5px; letter-spacing:0.4em; text-transform:uppercase; color:rgba(244,239,230,0.55); margin-bottom:10px;">— Mobius Dossier presents —</div>
+          <div style="font-family:'Manrope',sans-serif; font-size:11px; letter-spacing:0.5em; text-transform:uppercase; color:var(--ivory); margin-bottom:6px;">Portugal · Golden Visa</div>
+          <div style="width:80px; height:1px; background:rgba(201,168,106,0.5); margin:0 auto 8px;"></div>
+          <div style="font-family:'Fraunces',serif; font-style:italic; font-size:13px; color:var(--gold); margin-bottom:14px;">an index of nine chapters</div>
+          <ol style="list-style:none; padding:0; margin:0 0 14px; font-family:'Fraunces',serif; font-style:italic; font-size:14px; color:var(--ivory); line-height:1.65; width:100%; max-width:320px;">
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">I.</span><span>About</span></li>
+            <li style="display:flex; gap:10px; justify-content:center; color:var(--gold); font-weight:500;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px; font-weight:700;">II.</span><span style="border-bottom:1px solid var(--gold);">Investment</span></li>
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">III.</span><span>Benefits</span></li>
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">IV.</span><span>Eligibility</span></li>
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">V.</span><span>Documents</span></li>
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">VI.</span><span>Process</span></li>
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">VII.</span><span>Visa-Free Countries</span></li>
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">VIII.</span><span>Case Studies</span></li>
+            <li style="display:flex; gap:10px; justify-content:center;"><span style="font-family:'JetBrains Mono', monospace; font-style:normal; color:var(--gold); font-size:8px; letter-spacing:0.18em; min-width:34px; text-align:right; padding-top:4px;">IX.</span><span>Our Licenses</span></li>
+          </ol>
+          <div style="width:80px; height:1px; background:rgba(201,168,106,0.4); margin:6px auto;"></div>
+          <div style="font-family:'Manrope',sans-serif; font-size:7px; letter-spacing:0.32em; text-transform:uppercase; color:rgba(244,239,230,0.55); margin-bottom:6px;">An audit by Mobius &amp; Partners · Edition 2026.Q1</div>
+          <div style="font-family:'Manrope',sans-serif; font-size:8px; letter-spacing:0.6em; text-transform:uppercase; color:var(--gold);">B&nbsp;&nbsp;E&nbsp;&nbsp;G&nbsp;&nbsp;I&nbsp;&nbsp;N &nbsp; ↓</div>
+          <div class="mock__caption" style="color:rgba(201,168,106,0.5);">page 0 · title plate</div>
+        </div>
+      </div>
+      <div class="sketch-caption">live mock — ink card · cinema title plate</div>
+    </div>
+  </div>
+
+  <div class="idea__contrast">
+    <strong>vs the parent (I.0).</strong> Most creative / cinematic — leans
+    hardest on theatre. Where the parent reads as a printed report, this reads
+    as the front of a programme. Risk: it inverts the page palette mid-scroll
+    (cream → ink → cream), so the snap-transition between contents and chapter I
+    needs a soft fade. Strongest emotional register; weakest scannability.
+  </div>
+</article>
+
+
+</section>
+
+<footer class="foot">
+  <p>
+    All five derivations share the parent's behavioural contract: hero ends →
+    contents page (page 0) → click any chapter → snap-scroll into the
+    corresponding 100vh panel → slim chapter band ("II · INVESTMENT") at the top
+    of every chapter view from there on. They differ only in the surface of the
+    contents page itself — <em>I.A</em> ink masthead + standfirst,
+    <em>I.B</em> 3×3 card-deck, <em>I.C</em> typographic stairway,
+    <em>I.D</em> tabular audit register, <em>I.E</em> cinema title plate.
+  </p>
+  <p>
+    Where it lands in the codebase: between <code>&lt;Breadcrumb /&gt;</code> and
+    <code>&lt;section.ht-program&gt;</code> in
+    <code>src/pages/ProgramPage.jsx</code>. Chapter content draws from
+    <code>src/data/programs.js</code> — three new fields are needed
+    (<em>visaFreeCountries</em>, <em>caseStudies</em>, <em>licenses</em>) for
+    chapters VII–IX. Palette tokens are already in
+    <code>public/assets/css/style.css</code>.
+  </p>
+  <p>
+    Cross-cutting decisions still open: <em>(a)</em> snap-scroll —
+    <code>scroll-snap-type: y mandatory</code> vs. proximity-snap;
+    <em>(b)</em> URL hashes per chapter so deep-links land on the right panel;
+    <em>(c)</em> a <code>prefers-reduced-motion</code> fallback that disables
+    snap and lets free scroll proceed.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
