@@ -44,9 +44,9 @@ function getNextSlots(count = 3, now = new Date()) {
   return slots;
 }
 
-// Booking-window deadline used by the hairline countdown. Targets Friday 18:00
-// in the visitor's local clock — close enough for a sketch, since the times
-// are labelled CET. Rolls forward to next Friday once the deadline passes.
+// Booking-window deadline used by the Closes cell. Targets Friday 18:00 in
+// the visitor's local clock — close enough for a sketch since the times are
+// labelled CET. Rolls forward to next Friday once the deadline passes.
 function getWindowClose(now = new Date()) {
   const result = new Date(now);
   const dayOfWeek = result.getDay(); // 0=Sun, 5=Fri, 6=Sat
@@ -83,9 +83,9 @@ export default function BriefPanel({ program }) {
   }, []);
   const countdown = formatHMS(closeTime.getTime() - now.getTime());
 
-  // The last slot is shown as booked so the "2 left this week" copy stays
+  // The last slot is shown as booked so the "Open · N / 12" copy stays
   // honest. When the panel is wired to a real calendar source, the booked
-  // flag and the "left" count both come from there.
+  // flag and the open count both come from there.
   const slotsWithStatus = slots.map((s, i) => ({
     ...s,
     booked: i === slots.length - 1,
@@ -103,70 +103,85 @@ export default function BriefPanel({ program }) {
 
   return (
     <aside className="ht-brief-panel" aria-label="Schedule a private call">
-      <div className="ht-brief-panel__top">
-        <span className="ht-brief-panel__eyebrow">Next call · with Rafał A.</span>
-        <span className="ht-brief-panel__status">Available</span>
-      </div>
-
-      <div className="ht-brief-panel__bigtime" aria-hidden="true">
-        {primaryHH}<span>:</span>{primaryMM}
-      </div>
-      <div className="ht-brief-panel__bigmeta">
-        <strong>{primary.dayLong} · {primary.date} {primary.month}</strong> · CET · 30 min
-      </div>
-
-      <div className="ht-brief-panel__hairline" aria-live="polite">
-        <span className="ht-brief-panel__hairline-inner">
-          <span className="ht-brief-panel__hairline-left">
-            <strong>{leftThisWeek} left</strong> this week
+      <div className="ht-brief-panel__doc">
+        <div className="ht-brief-panel__doc-tag">
+          <span>Call</span>
+        </div>
+        <div className="ht-brief-panel__doc-cell">
+          <span className="ht-brief-panel__doc-key">Host</span>
+          <span className="ht-brief-panel__doc-val">Rafał A.</span>
+        </div>
+        <div className="ht-brief-panel__doc-cell">
+          <span className="ht-brief-panel__doc-key">Status</span>
+          <span className="ht-brief-panel__doc-val ht-brief-panel__doc-val--avail">
+            Available
           </span>
-          <span className="ht-brief-panel__hairline-right">{countdown}</span>
-        </span>
+        </div>
       </div>
 
-      <ul className="ht-brief-panel__slots">
-        {slotsWithStatus.map((slot, i) => {
-          const dayLabel = `${slot.day.toUpperCase()} · ${slot.date} ${slot.month.toUpperCase()}`;
-          if (slot.booked) {
+      <div className="ht-brief-panel__body">
+        <div className="ht-brief-panel__bigtime" aria-hidden="true">
+          {primaryHH}<span>:</span>{primaryMM}
+        </div>
+        <div className="ht-brief-panel__bigmeta">
+          <strong>{primary.dayLong} · {primary.date} {primary.month}</strong> · CET · 30 min
+        </div>
+
+        <div className="ht-brief-panel__doc-row" aria-live="polite">
+          <div className="ht-brief-panel__doc-row-cell">
+            <span className="ht-brief-panel__doc-row-key">Open</span>
+            <span className="ht-brief-panel__doc-row-val">{leftThisWeek} / 12</span>
+          </div>
+          <div className="ht-brief-panel__doc-row-cell">
+            <span className="ht-brief-panel__doc-row-key">Closes</span>
+            <span className="ht-brief-panel__doc-row-val">{countdown}</span>
+          </div>
+        </div>
+
+        <ul className="ht-brief-panel__slots">
+          {slotsWithStatus.map((slot, i) => {
+            const dayLabel = `${slot.day.toUpperCase()} · ${slot.date} ${slot.month.toUpperCase()}`;
+            if (slot.booked) {
+              return (
+                <li key={slot.iso}>
+                  <span
+                    className="ht-brief-panel__slot ht-brief-panel__slot--booked"
+                    aria-disabled="true"
+                    title="Booked"
+                  >
+                    <span className="ht-brief-panel__slot-day">{dayLabel}</span>
+                    <span className="ht-brief-panel__slot-time">{slot.time}</span>
+                  </span>
+                </li>
+              );
+            }
             return (
               <li key={slot.iso}>
-                <span
-                  className="ht-brief-panel__slot ht-brief-panel__slot--booked"
-                  aria-disabled="true"
-                  title="Booked"
+                <Link
+                  to={slotHref(slot)}
+                  className={`ht-brief-panel__slot${i === 0 ? ' is-active' : ''}`}
+                  aria-current={i === 0 ? 'true' : undefined}
                 >
                   <span className="ht-brief-panel__slot-day">{dayLabel}</span>
                   <span className="ht-brief-panel__slot-time">{slot.time}</span>
-                </span>
+                </Link>
               </li>
             );
-          }
-          return (
-            <li key={slot.iso}>
-              <Link
-                to={slotHref(slot)}
-                className={`ht-brief-panel__slot${i === 0 ? ' is-active' : ''}`}
-                aria-current={i === 0 ? 'true' : undefined}
-              >
-                <span className="ht-brief-panel__slot-day">{dayLabel}</span>
-                <span className="ht-brief-panel__slot-time">{slot.time}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+          })}
+        </ul>
 
-      <Link to={slotHref(primary)} className="ht-brief-panel__cta">
-        Reserve · {primary.time} CET
-      </Link>
-
-      <div className="ht-brief-panel__foot">
-        <p className="ht-brief-panel__microcopy">
-          NDA-first · No marketing · Private call
-        </p>
-        <Link to={altHref} className="ht-brief-panel__alt">
-          Pick another time →
+        <Link to={slotHref(primary)} className="ht-brief-panel__cta">
+          Reserve · {primary.time} CET
         </Link>
+
+        <div className="ht-brief-panel__foot">
+          <p className="ht-brief-panel__microcopy">
+            NDA-first · No marketing · Private call
+          </p>
+          <Link to={altHref} className="ht-brief-panel__alt">
+            Pick another time →
+          </Link>
+        </div>
       </div>
     </aside>
   );
