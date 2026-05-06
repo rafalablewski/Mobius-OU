@@ -14295,18 +14295,12 @@ html.has-program-spine {
   color: var(--ht-spine-stone);
 }
 
-/* Content flush below the sticky band — no top padding, so the first
-   heading sits immediately under the band's gold rule. */
+/* Body sits flush below the band; no flex:1 so chapters size to content. */
 .ht-spine__chapter-body {
-  padding: 0 0 48px;
+  padding: 48px 0 80px;
 }
 @media (max-width: 991px) {
-  .ht-spine__chapter-body { padding: 0 0 32px; }
-}
-/* The original .ht-program__facts and .ht-program__timeline rules add their
-   own internal padding, so neutralise any reliance on chapter-body padding. */
-.ht-spine__chapter-body > .container > .ht-program__summary {
-  padding: 24px 0 0;
+  .ht-spine__chapter-body { padding: 32px 0 56px; }
 }
 
 /* Chapters I (About), II (Investment) and VI (Process) reuse the original
