@@ -14094,7 +14094,13 @@ html.has-program-spine {
 
 .ht-spine {
   --ht-spine-band-h: 40px;
-  --ht-spine-band-top: 92px;
+  /* Matches the actual rendered height of the fixed page header (~82px:
+     min-height 72px on .ht-menu-wrapper is overshot by the nav link
+     padding 26px×2 + line-height + 1px border-bottom). The sticky chapter
+     band sits flush against the header bottom in both natural and stuck
+     states — no page background bleeds through the seam, and the header
+     never overlaps the band's top edge. */
+  --ht-spine-band-top: 82px;
   --ht-spine-bg: #FAF6EE;
   --ht-spine-bg-alt: #F4EFE6;
   --ht-spine-ink: #0B0F14;
@@ -14106,7 +14112,7 @@ html.has-program-spine {
   color: var(--ht-spine-ink);
 }
 @media (max-width: 991px) {
-  .ht-spine { --ht-spine-band-top: 76px; --ht-spine-band-h: 36px; }
+  .ht-spine { --ht-spine-band-h: 36px; }
 }
 
 /* --- Contents page (page 0) ---------------------------------------- */
@@ -14293,6 +14299,57 @@ html.has-program-spine {
   font-size: 10px;
   letter-spacing: 0.18em;
   color: var(--ht-spine-stone);
+}
+
+/* Pager — two-up ↑/↓ pill bolted onto the right edge of the chapter band.
+   Each band's pager advances/retreats from its own chapter index, so click
+   intent is unambiguous. Keyboard mirror (J/K) is wired up in JS. */
+.ht-spine__band-pager {
+  display: inline-flex;
+  align-items: stretch;
+  margin-left: 12px;
+  border: 1px solid rgba(201, 168, 106, 0.45);
+  border-radius: 999px;
+  overflow: hidden;
+  background: transparent;
+}
+.ht-spine__band-pager-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 22px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ht-spine-gold-deep);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.ht-spine__band-pager-btn:hover:not(:disabled) {
+  background: rgba(201, 168, 106, 0.16);
+  color: var(--ht-spine-ink);
+}
+.ht-spine__band-pager-btn:focus-visible {
+  outline: 2px solid var(--ht-spine-gold-deep);
+  outline-offset: 1px;
+}
+.ht-spine__band-pager-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+.ht-spine__band-pager-vbar {
+  width: 1px;
+  align-self: center;
+  height: 12px;
+  background: rgba(201, 168, 106, 0.45);
+}
+@media (max-width: 768px) {
+  .ht-spine__band-counter { display: none; }
+  .ht-spine__band-pager { margin-left: auto; }
 }
 
 /* Body sits flush below the band; no flex:1 so chapters size to content. */

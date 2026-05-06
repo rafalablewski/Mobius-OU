@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Section pager button — ten drafts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-soft:  #D9BD86;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --hairline-2: rgba(11, 15, 20, 0.28);
+    --redline:    #B23A2A;
+    --green:      #4F7A4A;
+    --warm:       #C76B3F;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory); color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding: 72px 32px 120px; }
+
+  /* ----- intro ----- */
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 48px; }
+  header.intro .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 46px; line-height: 1.08;
+    margin: 14px 0 14px; letter-spacing: -0.01em; max-width: 22ch;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 68ch; }
+
+  .baseline {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil); max-width: 80ch;
+  }
+  .baseline strong { color: var(--ink); }
+  .baseline kbd {
+    display: inline-block; padding: 1px 6px; margin: 0 1px;
+    border: 1px solid var(--hairline-2); border-radius: 3px;
+    background: #FFFDF7; font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+  }
+
+  .toc {
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px 32px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 14px;
+  }
+  .toc a {
+    display: flex; justify-content: space-between; gap: 12px;
+    text-decoration: none; color: var(--ink);
+    padding: 7px 0; border-bottom: 1px dotted var(--hairline);
+    font-size: 13px;
+  }
+  .toc a span:first-child {
+    color: var(--gold-deep); font-family: "Fraunces", serif;
+    font-style: italic; font-size: 14px; min-width: 32px;
+  }
+  .toc a:hover span:last-child { color: var(--gold-deep); }
+
+  /* ----- idea card ----- */
+  .ideas { display: grid; gap: 56px; margin-top: 56px; }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px;
+    background: var(--cream); padding: 28px 28px 26px;
+  }
+  .idea__num {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 26px; line-height: 1.2; margin: 6px 0 10px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 12px; }
+  .idea__contrast {
+    font-size: 12.5px; color: var(--pencil); margin: 0 0 20px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+  }
+  .idea__behavior {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 5px 14px;
+    font-size: 12px; line-height: 1.55; color: var(--pencil);
+    margin: 0 0 20px; padding: 12px 14px;
+    background: #FFFDF7; border: 1px dashed var(--hairline);
+    border-radius: 2px;
+  }
+  .idea__behavior dt {
+    font-family: "JetBrains Mono", monospace;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-size: 10px; color: var(--gold-deep);
+    padding-top: 2px;
+  }
+  .idea__behavior dd { margin: 0; }
+  .idea__behavior dd em { color: var(--ink); font-style: normal; font-weight: 600; }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
+  @media (max-width: 920px) { .pair { grid-template-columns: 1fr; } }
+
+  /* ----- sketch (left column) ----- */
+  .sketch-frame {
+    background: #FBF7EF; border: 1px solid #D9CFB7; border-radius: 3px;
+    padding: 14px 14px 10px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 8px 24px -16px rgba(0,0,0,0.18);
+  }
+  .sketch-frame svg { display: block; width: 100%; height: auto; }
+  .sketch-caption {
+    font-family: "Caveat", cursive; font-size: 16px;
+    color: var(--redline); margin: 6px 4px 2px; text-align: center;
+  }
+  .pencil  { stroke: var(--pencil); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .hair    { stroke: var(--pencil); fill: none; stroke-width: 0.8; opacity: 0.55; }
+  .gold    { stroke: var(--gold-deep); fill: none; stroke-width: 1.4; }
+  .gold-fill { fill: var(--gold-deep); }
+  .red     { stroke: var(--redline); fill: none; stroke-width: 1.2; }
+  .red-fill{ fill: var(--redline); }
+  .ink-fill{ fill: var(--ink); }
+  .pencil-fill { fill: var(--pencil); }
+  .pcap {
+    font-family: "Caveat", cursive; font-size: 13px; fill: var(--redline);
+  }
+  .ptag {
+    font-family: "JetBrains Mono", monospace; font-size: 9px;
+    fill: var(--pencil); letter-spacing: 0.08em;
+  }
+  .pserif {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    fill: var(--pencil); font-size: 13px;
+  }
+
+  /* ----- live mock (right column) ----- */
+  .mock {
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #0F141B 0%, #161D26 100%);
+    border-radius: 6px; min-height: 260px;
+    color: #ECE4D2;
+  }
+  .mock__chrome {
+    padding: 14px 18px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; gap: 10px; align-items: baseline;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(236, 228, 210, 0.55);
+  }
+  .mock__chrome strong { color: var(--gold); font-weight: 500; }
+  .mock__stage {
+    position: relative; padding: 28px 22px 30px;
+    min-height: 220px;
+  }
+  .mock__chapterband {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(201, 168, 106, 0.45);
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 600;
+  }
+  .mock__chapterband em {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-weight: 500; font-size: 14px; color: var(--gold);
+    letter-spacing: 0; min-width: 22px;
+  }
+  .mock__chapterband .sep { color: rgba(255,255,255,0.18); letter-spacing: 0; }
+  .mock__chapterband .counter {
+    margin-left: auto; font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.18em; color: rgba(236, 228, 210, 0.55);
+  }
+  .mock__body {
+    padding-top: 18px; font-family: "Cormorant Garamond", serif;
+    font-size: 18px; line-height: 1.45; color: rgba(236, 228, 210, 0.7);
+    max-width: 26ch;
+  }
+
+  /* ===== shared button primitives ===== */
+  .btn-disc {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--gold);
+    color: #FFFDF7; font-size: 18px; font-weight: 500;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 20px -10px rgba(11,15,20,0.6);
+    cursor: pointer; border: 0; transition: transform 0.18s ease, background 0.18s ease;
+  }
+  .btn-disc:hover { background: var(--gold-deep); transform: translateY(-1px); }
+
+  /* ============================================================
+     Idea 01 — Stacked dock (↑ ↓ pair) replacing the back-to-top
+     ============================================================ */
+  .m01-dock {
+    position: absolute; right: 22px; bottom: 22px;
+    display: flex; flex-direction: column; gap: 8px;
+    align-items: center;
+  }
+  .m01-counter {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    color: rgba(236, 228, 210, 0.65);
+    margin-top: 4px;
+  }
+
+  /* ============================================================
+     Idea 02 — Right-edge dot rail (vertical pager)
+     ============================================================ */
+  .m02-rail {
+    position: absolute; right: 18px; top: 70px; bottom: 22px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 14px; padding: 6px 0;
+  }
+  .m02-rail::before {
+    content: ""; position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 1px; background: rgba(201, 168, 106, 0.35);
+    transform: translateX(-0.5px);
+  }
+  .m02-dot {
+    position: relative; width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(236, 228, 210, 0.25); cursor: pointer;
+  }
+  .m02-dot.is-active { background: var(--gold); width: 9px; height: 9px; }
+  .m02-dot.is-active::after {
+    content: ""; position: absolute; inset: -6px;
+    border: 1px solid var(--gold); border-radius: 50%; opacity: 0.5;
+  }
+  .m02-arrow {
+    position: absolute; right: 22px; bottom: 22px;
+    color: var(--gold); font-size: 18px;
+  }
+
+  /* ============================================================
+     Idea 03 — Bottom-centre prev/next pill
+     ============================================================ */
+  .m03-pill {
+    position: absolute; left: 50%; bottom: 22px;
+    transform: translateX(-50%);
+    display: flex; align-items: stretch;
+    background: rgba(11,15,20,0.78); backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 168, 106, 0.4);
+    border-radius: 999px; padding: 4px;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #ECE4D2;
+  }
+  .m03-pill > * {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    cursor: pointer; user-select: none;
+  }
+  .m03-pill .prev { color: rgba(236, 228, 210, 0.6); }
+  .m03-pill .now {
+    color: var(--gold); font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-size: 13px; letter-spacing: 0.04em;
+    text-transform: none; padding: 8px 16px;
+    background: rgba(201, 168, 106, 0.12);
+  }
+  .m03-pill .next { color: var(--gold); font-weight: 600; }
+  .m03-pill .next:hover { background: rgba(201, 168, 106, 0.16); }
+
+  /* ============================================================
+     Idea 04 — Keyboard-hint disc (J/K)
+     ============================================================ */
+  .m04-dock {
+    position: absolute; right: 22px; bottom: 22px;
+    display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+  }
+  .m04-keys {
+    display: flex; gap: 4px; align-items: center;
+    font-family: "JetBrains Mono", monospace; font-size: 9px;
+    color: rgba(236, 228, 210, 0.55); letter-spacing: 0.1em;
+  }
+  .m04-keys kbd {
+    display: inline-block; padding: 2px 6px; border-radius: 3px;
+    border: 1px solid rgba(201, 168, 106, 0.3);
+    background: rgba(255,255,255,0.04); color: var(--gold);
+    font-family: "JetBrains Mono", monospace; font-size: 10px;
+  }
+
+  /* ============================================================
+     Idea 05 — Progress dial (filled arc + Roman numeral centre)
+     ============================================================ */
+  .m05-dial {
+    position: absolute; right: 22px; bottom: 22px;
+    width: 60px; height: 60px; cursor: pointer;
+  }
+  .m05-dial svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .m05-dial circle.track {
+    fill: none; stroke: rgba(201, 168, 106, 0.2); stroke-width: 3;
+  }
+  .m05-dial circle.fill {
+    fill: none; stroke: var(--gold); stroke-width: 3;
+    stroke-linecap: round; transition: stroke-dashoffset 0.4s ease;
+  }
+  .m05-dial .label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .m05-dial .label em {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-weight: 500; font-size: 18px; color: var(--gold); letter-spacing: 0;
+  }
+  .m05-dial .label span {
+    font-family: "JetBrains Mono", monospace; font-size: 8px;
+    color: rgba(236, 228, 210, 0.55); letter-spacing: 0.12em;
+    margin-top: 2px;
+  }
+
+  /* ============================================================
+     Idea 06 — Edge tab pulled from right margin
+     ============================================================ */
+  .m06-tab {
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column;
+    background: var(--gold);
+    border-radius: 6px 0 0 6px;
+    box-shadow: -8px 8px 24px -12px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+  .m06-tab button {
+    width: 32px; height: 44px; border: 0; cursor: pointer;
+    background: transparent; color: var(--ink);
+    font-size: 14px; font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.18s ease;
+  }
+  .m06-tab button:hover { background: rgba(11,15,20,0.1); }
+  .m06-tab .divider { height: 1px; background: rgba(11,15,20,0.18); }
+
+  /* ============================================================
+     Idea 07 — Inline next-chapter ribbon at chapter foot
+     ============================================================ */
+  .m07-ribbon {
+    position: absolute; left: 22px; right: 22px; bottom: 22px;
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 18px;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid rgba(201, 168, 106, 0.3);
+    background: linear-gradient(180deg, rgba(201,168,106,0.06), rgba(201,168,106,0.02));
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(236, 228, 210, 0.7); cursor: pointer;
+  }
+  .m07-ribbon .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 22px; color: var(--gold); letter-spacing: 0;
+    text-transform: none;
+  }
+  .m07-ribbon .label {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 18px; color: #ECE4D2; letter-spacing: 0;
+    text-transform: none; flex: 1;
+  }
+  .m07-ribbon .arrow { color: var(--gold); font-size: 18px; }
+
+  /* ============================================================
+     Idea 08 — Spine band counter as button (no new floater)
+     ============================================================ */
+  .m08-band {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(201, 168, 106, 0.45);
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .m08-band em {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-weight: 500; font-size: 15px; color: var(--gold);
+    letter-spacing: 0; min-width: 22px;
+  }
+  .m08-band .sep { color: rgba(255,255,255,0.18); letter-spacing: 0; }
+  .m08-band .counter {
+    margin-left: auto; font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.18em; color: rgba(236, 228, 210, 0.55);
+  }
+  .m08-band .pager {
+    display: inline-flex; align-items: center;
+    border: 1px solid rgba(201, 168, 106, 0.35);
+    border-radius: 999px; margin-left: 10px;
+    overflow: hidden;
+  }
+  .m08-band .pager button {
+    background: transparent; border: 0; cursor: pointer;
+    color: var(--gold); width: 26px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .m08-band .pager button:hover { background: rgba(201, 168, 106, 0.14); }
+  .m08-band .pager .vbar { width: 1px; height: 12px; background: rgba(201,168,106,0.35); }
+
+  /* ============================================================
+     Idea 09 — Bottom hairline pip-pager (film-strip)
+     ============================================================ */
+  .m09-strip {
+    position: absolute; left: 22px; right: 22px; bottom: 22px;
+    display: flex; align-items: center;
+    height: 16px;
+  }
+  .m09-strip::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 50%;
+    height: 1px; background: rgba(201, 168, 106, 0.35); transform: translateY(-0.5px);
+  }
+  .m09-strip .pip {
+    position: relative; width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(236, 228, 210, 0.2);
+    flex: 0 0 auto; cursor: pointer;
+  }
+  .m09-strip .pip + .pip { margin-left: auto; }
+  .m09-strip .pip.is-active { background: var(--gold); width: 9px; height: 9px; }
+  .m09-strip .pip.is-active::after {
+    content: attr(data-label);
+    position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 13px; color: var(--gold); white-space: nowrap;
+    letter-spacing: 0;
+  }
+  .m09-arrow {
+    position: absolute; right: 22px; bottom: 44px;
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid var(--gold); color: var(--gold);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; cursor: pointer;
+  }
+
+  /* ============================================================
+     Idea 10 — Letterpress numeral chip
+     ============================================================ */
+  .m10-chip {
+    position: absolute; right: 22px; bottom: 22px;
+    width: 78px; padding: 12px 12px 10px;
+    background: var(--cream); color: var(--ink);
+    border: 1px solid var(--hairline-2); border-radius: 4px;
+    box-shadow: 0 8px 20px -10px rgba(0,0,0,0.5),
+                inset 0 0 0 4px var(--cream),
+                inset 0 0 0 5px var(--gold);
+    text-align: center; cursor: pointer;
+    font-family: "Cormorant Garamond", serif;
+  }
+  .m10-chip .now {
+    font-style: italic; font-size: 32px; line-height: 1; color: var(--gold-deep);
+  }
+  .m10-chip .label {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px dotted rgba(11,15,20,0.18);
+    font-family: "Manrope", sans-serif; font-size: 8px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .m10-chip .label em {
+    display: block; font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-size: 14px; color: var(--ink);
+    letter-spacing: 0; text-transform: none; margin-top: 2px;
+  }
+
+  /* footer */
+  footer.outro {
+    margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--stone);
+  }
+  footer.outro code {
+    background: var(--paper); padding: 1px 5px; border-radius: 2px;
+    font-family: "JetBrains Mono", monospace;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============== INTRO ============== -->
+<header class="intro">
+  <p class="eyebrow">Sketch · ProgramPage / ProgramSpine · 2026.Q2</p>
+  <h1>A button to walk the dossier <em>chapter by chapter</em></h1>
+  <p class="lede">
+    Today the only thing pinned at the foot of the program page is the round
+    "back to top" disc. The reader can scroll, but they can't <em>step</em> —
+    chapter I to II to III without nudging the wheel. Ten ideas for adding a
+    next-chapter (and prev-chapter) control. The shipped chapter spine has
+    nine 100vh sections (I About → IX Licenses); every idea below operates on
+    the same nine anchors, only the surface differs.
+  </p>
+
+  <div class="baseline">
+    <strong>Behavioural contract — held constant across all ten:</strong>
+    click the control → smooth-scroll to the next chapter's
+    <code>id</code> with <code>scroll-margin-top: var(--ht-spine-band-top)</code>
+    so it lands flush under the page header and chapter band. Reverse for
+    previous. Keyboard mirror: <kbd>↓</kbd>/<kbd>J</kbd> next,
+    <kbd>↑</kbd>/<kbd>K</kbd> previous. Disabled at chapter I (no prev) and
+    chapter IX (no next), or wraps to first/last in idea 03 only.
+  </div>
+
+  <nav class="toc" aria-label="Table of contents">
+    <a href="#i01"><span>I.</span><span>Stacked dock — ↑/↓ disc pair (replaces back-to-top)</span></a>
+    <a href="#i02"><span>II.</span><span>Right-edge dot rail — nine pips, vertical</span></a>
+    <a href="#i03"><span>III.</span><span>Bottom-centre prev/next pill — labelled neighbours</span></a>
+    <a href="#i04"><span>IV.</span><span>Keyboard-hint disc — ↓ + <code>J</code>/<code>K</code> chord</span></a>
+    <a href="#i05"><span>V.</span><span>Progress dial — filled arc, roman numeral centre</span></a>
+    <a href="#i06"><span>VI.</span><span>Edge tab — pulled from the right margin like a page tab</span></a>
+    <a href="#i07"><span>VII.</span><span>Inline next-chapter ribbon — sticks to chapter foot</span></a>
+    <a href="#i08"><span>VIII.</span><span>Spine band counter as button — no new floating element</span></a>
+    <a href="#i09"><span>IX.</span><span>Hairline film-strip — nine pips along the foot</span></a>
+    <a href="#i10"><span>X.</span><span>Letterpress numeral chip — current Roman + "next" cue</span></a>
+  </nav>
+</header>
+
+
+<!-- ============== IDEAS ============== -->
+<section class="ideas">
+
+<!-- ===================== IDEA 01 ===================== -->
+<article class="idea" id="i01">
+  <p class="idea__num">I — Stacked dock</p>
+  <h2>Two discs, one dock <em>↑ ↓</em></h2>
+  <p class="idea__why">
+    Cheapest evolution: keep the gold back-to-top disc, stack a second one
+    above it pointing down. The current floating button gains a sibling
+    instead of a replacement. A monospace counter ("II / IX") sits beneath
+    the stack so the reader always knows where they are.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> reuses the existing <code>#back-top</code> position and visual weight; reader gets directional control without learning a new affordance.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Two 48 px gold discs stacked vertically with 8 px gap, bottom-right of viewport.</dd>
+    <dt>Active</dt><dd>↑ disabled at chapter I, ↓ disabled at chapter IX; disabled state drops opacity to 0.35.</dd>
+    <dt>Counter</dt><dd>9 px JetBrains Mono "II / IX" pinned under the dock — purely informative, not clickable.</dd>
+    <dt>Mobile</dt><dd>Discs shrink to 40 px; counter stays.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <!-- viewport frame -->
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <!-- chapter band -->
+          <line x1="14" y1="34" x2="346" y2="34" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <text x="312" y="28" class="ptag">02 / 09</text>
+          <!-- body -->
+          <line x1="22" y1="60" x2="220" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="240" y2="76" class="hair"/>
+          <line x1="22" y1="92" x2="180" y2="92" class="hair"/>
+          <!-- dock -->
+          <circle cx="312" cy="138" r="18" class="gold"/>
+          <path d="M306 142 L312 134 L318 142" class="gold"/>
+          <circle cx="312" cy="180" r="18" class="gold-fill"/>
+          <path d="M306 176 L312 184 L318 176" stroke="#FBF7EF" stroke-width="1.6" fill="none"/>
+          <text x="296" y="208" class="ptag">II / IX</text>
+          <!-- caption -->
+          <text x="180" y="206" class="pserif" text-anchor="middle">stacked dock</text>
+        </svg>
+        <p class="sketch-caption">↑ + ↓ — pair, not a single disc</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · ProgramSpine · chapter II</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">Headline figure €500,000 fund subscription with the five-year path to citizenship for the whole immediate family.</p>
+        <div class="m01-dock">
+          <button class="btn-disc" aria-label="Previous chapter">↑</button>
+          <button class="btn-disc" aria-label="Next chapter" style="background:var(--gold-deep);">↓</button>
+          <span class="m01-counter">II / IX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 02 ===================== -->
+<article class="idea" id="i02">
+  <p class="idea__num">II — Right-edge dot rail</p>
+  <h2>Nine pips, <em>vertical</em></h2>
+  <p class="idea__why">
+    A 1 px gold rule glued to the right edge of the viewport with nine evenly
+    spaced dots — one per chapter. The active dot is filled gold and ringed.
+    Click any dot to jump; a lone ↓ disc near the foot advances by one when
+    the reader doesn't want to choose. Doubles as a constantly-visible
+    progress bar.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> trades the single disc for a thin spine of dots; the reader sees the whole table of contents at all times, not just the next step.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Vertical hairline 14–22 px from the right edge; nine 7 px pips, active grows to 9 px and rings.</dd>
+    <dt>Active</dt><dd>Roman numeral tooltip on hover; current pip pulses on chapter change.</dd>
+    <dt>Mobile</dt><dd>Rail collapses to bottom-edge horizontal version (idea IX), or hides; the ↓ disc remains.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="240" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="200" y2="76" class="hair"/>
+          <line x1="22" y1="92" x2="220" y2="92" class="hair"/>
+          <!-- rail -->
+          <line x1="332" y1="44" x2="332" y2="170" class="gold" stroke-dasharray="2 2"/>
+          <circle cx="332" cy="50" r="2.5" class="pencil-fill"/>
+          <circle cx="332" cy="68" r="3.6" class="gold-fill"/>
+          <circle cx="332" cy="68" r="6.5" class="gold"/>
+          <circle cx="332" cy="86" r="2.5" class="pencil-fill"/>
+          <circle cx="332" cy="104" r="2.5" class="pencil-fill"/>
+          <circle cx="332" cy="122" r="2.5" class="pencil-fill"/>
+          <circle cx="332" cy="140" r="2.5" class="pencil-fill"/>
+          <circle cx="332" cy="158" r="2.5" class="pencil-fill"/>
+          <circle cx="332" cy="176" r="2.5" class="pencil-fill"/>
+          <circle cx="332" cy="194" r="2.5" class="pencil-fill"/>
+          <text x="316" y="72" class="pserif" text-anchor="end">II ←</text>
+          <!-- arrow disc -->
+          <circle cx="312" cy="200" r="10" class="gold"/>
+          <path d="M308 198 L312 204 L316 198" class="gold"/>
+          <text x="160" y="208" class="pserif" text-anchor="middle">edge rail · 9 pips</text>
+        </svg>
+        <p class="sketch-caption">progress bar + jump-table in one</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · right-edge dot rail</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">Subscription routes — fund vehicles, capital ranges, lock-up windows.</p>
+        <div class="m02-rail" aria-label="Chapter pager">
+          <span class="m02-dot"></span>
+          <span class="m02-dot is-active" title="II — Investment"></span>
+          <span class="m02-dot"></span>
+          <span class="m02-dot"></span>
+          <span class="m02-dot"></span>
+          <span class="m02-dot"></span>
+          <span class="m02-dot"></span>
+          <span class="m02-dot"></span>
+          <span class="m02-dot"></span>
+        </div>
+        <button class="m02-arrow btn-disc" style="background:transparent; border:1px solid var(--gold); width:32px; height:32px; font-size:14px;" aria-label="Next chapter">↓</button>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 03 ===================== -->
+<article class="idea" id="i03">
+  <p class="idea__num">III — Bottom-centre pill</p>
+  <h2>Prev <em>·</em> here <em>·</em> next, in a pill</h2>
+  <p class="idea__why">
+    A capsule centred at the foot of the viewport with three cells:
+    "← I · About", italic gold "II · Investment" middle marker,
+    "III · Benefits →". The reader doesn't have to imagine what's next — they
+    read the title before they click. Editorial register. The most
+    information-dense option.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> labelled neighbours instead of an unmarked disc; trades discreetness for clarity. Wider footprint — best when chapter titles are kept short.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Frosted ink pill, gold hairline border, 9 px caps for prev/next, italic Cormorant for the centre marker.</dd>
+    <dt>Active</dt><dd>Hover prev/next reveals chapter title in full; centre cell is non-interactive.</dd>
+    <dt>Mobile</dt><dd>Centre marker hides; pill shrinks to ← / → only.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="280" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="240" y2="76" class="hair"/>
+          <line x1="22" y1="92" x2="200" y2="92" class="hair"/>
+          <!-- pill -->
+          <rect x="76" y="180" width="208" height="26" rx="13" class="pencil"/>
+          <line x1="138" y1="184" x2="138" y2="202" class="hair"/>
+          <line x1="220" y1="184" x2="220" y2="202" class="hair"/>
+          <text x="86" y="197" class="ptag">← I · ABOUT</text>
+          <text x="180" y="198" class="pserif" text-anchor="middle">II · Investment</text>
+          <text x="270" y="197" class="ptag" text-anchor="end">BENEFITS →</text>
+          <text x="180" y="222" class="pserif" text-anchor="middle">labelled neighbours</text>
+        </svg>
+        <p class="sketch-caption">prev · here · next — names, not arrows alone</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · bottom pill</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">Five hundred thousand and the family's clock starts.</p>
+        <div class="m03-pill" role="navigation" aria-label="Chapter pager">
+          <span class="prev">← I · About</span>
+          <span class="now">II · Investment</span>
+          <span class="next">Benefits · III →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 04 ===================== -->
+<article class="idea" id="i04">
+  <p class="idea__num">IV — Keyboard-hint disc</p>
+  <h2>↓ disc with a small <em>J / K</em> caption</h2>
+  <p class="idea__why">
+    A single ↓ disc (and ↑ above it) plus a caption underneath:
+    <code>J</code> next, <code>K</code> prev. Speaks to vim-literate readers
+    without alienating the rest — the disc still works on click. The caption
+    is the lightest possible nudge that the keyboard does the same thing.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> teaches a keyboard binding inside the affordance itself, the way Linear and Superhuman do. Loud-quiet — visible only at rest, fades on scroll.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Same disc shape as today; <code>J</code>/<code>K</code> chips beneath in JetBrains Mono.</dd>
+    <dt>Active</dt><dd>Captions fade out while scrolling, return on idle (200 ms debounce).</dd>
+    <dt>Mobile</dt><dd>Captions hidden — the keyboard isn't there.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="220" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="200" y2="76" class="hair"/>
+          <!-- disc -->
+          <circle cx="312" cy="160" r="18" class="gold-fill"/>
+          <path d="M306 156 L312 164 L318 156" stroke="#FBF7EF" stroke-width="1.6" fill="none"/>
+          <!-- key chips -->
+          <rect x="290" y="186" width="20" height="13" rx="2" class="pencil"/>
+          <text x="300" y="195" class="ptag" text-anchor="middle">K</text>
+          <rect x="316" y="186" width="20" height="13" rx="2" class="pencil"/>
+          <text x="326" y="195" class="ptag" text-anchor="middle">J</text>
+          <text x="313" y="210" class="pserif" text-anchor="middle">next prev keys</text>
+          <text x="160" y="206" class="pserif" text-anchor="middle">vim-style chord</text>
+        </svg>
+        <p class="sketch-caption">click works — and so do J / K</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · keyboard-hint dock</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">For power readers — <code style="color:var(--gold)">J</code> next, <code style="color:var(--gold)">K</code> previous.</p>
+        <div class="m04-dock">
+          <button class="btn-disc" aria-label="Next chapter">↓</button>
+          <div class="m04-keys"><kbd>K</kbd> prev <kbd>J</kbd> next</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 05 ===================== -->
+<article class="idea" id="i05">
+  <p class="idea__num">V — Progress dial</p>
+  <h2>Dial with a <em>filled arc</em> and a Roman numeral inside</h2>
+  <p class="idea__why">
+    The button itself is the progress indicator. A 60 px disc with a thin
+    gold arc that fills clockwise as the reader advances — at chapter II the
+    arc fills 22 % of the circumference. Click anywhere on the disc to step
+    forward; long-press (or right-click) to step back. Centre carries the
+    italic Roman numeral and "II / IX" caption.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> one element does both jobs (status + action). Calm — no second disc, no rail, no pill. Loses the prev affordance unless you accept long-press.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>SVG ring, 3 px stroke, gold; centre — Cormorant italic numeral over JetBrains Mono caption.</dd>
+    <dt>Active</dt><dd>Fill animates on chapter change; click anywhere advances; long-press 400 ms reverses.</dd>
+    <dt>Mobile</dt><dd>Same disc, 52 px; long-press still works.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="220" y2="60" class="hair"/>
+          <!-- dial -->
+          <g transform="translate(312 170)">
+            <circle r="22" class="hair" stroke-dasharray="2 2"/>
+            <path d="M0 -22 A22 22 0 0 1 21 6" class="gold" stroke-width="2.4"/>
+            <text y="-1" text-anchor="middle" class="pserif" font-size="14">II</text>
+            <text y="13" text-anchor="middle" class="ptag">II / IX</text>
+          </g>
+          <text x="180" y="208" class="pserif" text-anchor="middle">arc fills as you advance</text>
+        </svg>
+        <p class="sketch-caption">action = status</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · progress dial</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">A single dial. Click forward, long-press back, fill speaks to where you are.</p>
+        <div class="m05-dial" aria-label="Next chapter — 2 of 9">
+          <svg viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="26" class="track"/>
+            <circle cx="30" cy="30" r="26" class="fill"
+              stroke-dasharray="163.36" stroke-dashoffset="127.6"/>
+          </svg>
+          <span class="label"><em>II</em><span>II / IX</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 06 ===================== -->
+<article class="idea" id="i06">
+  <p class="idea__num">VI — Edge tab</p>
+  <h2>A page tab pulled from the <em>right margin</em></h2>
+  <p class="idea__why">
+    A small gold tab fixed to the right edge, hugging it like a paper bookmark.
+    Top half is ↑ (prev), bottom half is ↓ (next), separated by a hairline.
+    Mid-viewport, vertically centred. Reads as "this is a controls dock for
+    paging through the document" the moment the eye lands on it.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> back-to-top disc relocates from corner to mid-edge; freight is similar but the metaphor is "dossier with tabs" rather than "scroll widget".</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>32 × 88 px tab, gold fill, ink chevrons, 6 px outer corner radius (left side rounded only).</dd>
+    <dt>Active</dt><dd>Hover lifts each half independently; disabled half greys out at chapter I / IX.</dd>
+    <dt>Mobile</dt><dd>Tab moves to bottom-right corner (single column ↑ / ↓).</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="220" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="240" y2="76" class="hair"/>
+          <line x1="22" y1="92" x2="200" y2="92" class="hair"/>
+          <!-- tab -->
+          <path d="M354 90 L322 90 Q316 90 316 96 L316 178 Q316 184 322 184 L354 184" class="gold" stroke-width="2"/>
+          <line x1="316" y1="137" x2="354" y2="137" class="hair"/>
+          <path d="M330 110 L335 102 L340 110" class="gold"/>
+          <path d="M330 158 L335 168 L340 158" class="gold"/>
+          <text x="180" y="208" class="pserif" text-anchor="middle">edge tab — bookmark feel</text>
+        </svg>
+        <p class="sketch-caption">attached to the page, not floating over it</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · edge tab</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">Pulled from the margin like a tab on a manila folder.</p>
+        <div class="m06-tab" role="navigation" aria-label="Chapter pager">
+          <button aria-label="Previous chapter">↑</button>
+          <span class="divider"></span>
+          <button aria-label="Next chapter">↓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 07 ===================== -->
+<article class="idea" id="i07">
+  <p class="idea__num">VII — Chapter-foot ribbon</p>
+  <h2>Inline ribbon: <em>"Next — III · Benefits ↓"</em></h2>
+  <p class="idea__why">
+    No floating widget at all. At the bottom of every chapter section, a
+    full-width ribbon with the next chapter's Roman numeral, italic title and
+    a chevron. While the reader is in chapter II, the ribbon stays pinned to
+    the foot of the viewport (sticky-bottom). When chapter III arrives, the
+    ribbon scrolls into the band that introduces it.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> the affordance lives in the document, not on top of it. Most editorial / least UI-shaped — closest to how a magazine ends a section.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Top + bottom hairline gold rules, soft gold gradient inside; italic Cormorant title + chevron.</dd>
+    <dt>Active</dt><dd>Sticky-bottom for ~80vh of the chapter; inert (no fixed widget) above and below that range.</dd>
+    <dt>Mobile</dt><dd>Same ribbon, padding shrinks; chevron stays gold, title stays italic.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="240" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="220" y2="76" class="hair"/>
+          <line x1="22" y1="92" x2="200" y2="92" class="hair"/>
+          <line x1="22" y1="108" x2="240" y2="108" class="hair"/>
+          <!-- ribbon -->
+          <line x1="22" y1="170" x2="338" y2="170" class="gold"/>
+          <line x1="22" y1="200" x2="338" y2="200" class="hair"/>
+          <text x="34" y="190" class="pserif" font-size="15">III</text>
+          <text x="62" y="189" class="ptag">NEXT —</text>
+          <text x="118" y="189" class="pserif">Benefits</text>
+          <path d="M320 184 L326 190 L320 196" class="gold"/>
+          <text x="180" y="218" class="pserif" text-anchor="middle">ribbon at chapter foot</text>
+        </svg>
+        <p class="sketch-caption">no widget — inline + sticky-bottom</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · inline ribbon</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">The ribbon sits at the foot of the chapter, gold-ruled top and bottom — half UI, half magazine sign-off.</p>
+        <div class="m07-ribbon" role="link" aria-label="Next: chapter III, Benefits">
+          <span class="num">III</span>
+          <span style="font-family:'Manrope',sans-serif;font-size:10px;letter-spacing:.22em;color:rgba(236,228,210,0.55);">NEXT —</span>
+          <span class="label">Benefits</span>
+          <span class="arrow">↓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 08 ===================== -->
+<article class="idea" id="i08">
+  <p class="idea__num">VIII — Spine band counter as button</p>
+  <h2>Page the chapter <em>from the band itself</em></h2>
+  <p class="idea__why">
+    Don't add anything floating. The chapter band ("II · INVESTMENT  02/09")
+    already sits sticky at the top — bolt a tiny ↑/↓ pager onto its right
+    edge, after the counter. Same band, more honest about what it does. Most
+    restrained option; nothing new on screen.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> turns the existing informative band into an interactive one; the back-to-top disc can stay or go independently of this. Zero new floating chrome.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Pill with two ↑/↓ buttons, hairline gold border, in the spine band's right-edge cluster, after "02 / 09".</dd>
+    <dt>Active</dt><dd>Disabled at edges; current chapter numeral updates on scroll, pager sits in same place.</dd>
+    <dt>Mobile</dt><dd>"02 / 09" hides; pager stays.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <line x1="22" y1="44" x2="338" y2="44" class="gold"/>
+          <text x="22" y="28" class="pserif">II</text>
+          <text x="42" y="29" class="ptag">·</text>
+          <text x="54" y="28" class="ptag">INVESTMENT</text>
+          <text x="248" y="28" class="ptag">02 / 09</text>
+          <!-- pager -->
+          <rect x="296" y="18" width="46" height="16" rx="8" class="gold"/>
+          <line x1="319" y1="18" x2="319" y2="34" class="hair"/>
+          <path d="M306 28 L309 22 L312 28" class="gold"/>
+          <path d="M327 24 L330 30 L333 24" class="gold"/>
+          <line x1="22" y1="74" x2="220" y2="74" class="hair"/>
+          <line x1="22" y1="90" x2="200" y2="90" class="hair"/>
+          <text x="180" y="208" class="pserif" text-anchor="middle">band as control</text>
+        </svg>
+        <p class="sketch-caption">no floater — pager lives in the band</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · spine band pager</div>
+      <div class="mock__stage">
+        <div class="m08-band" role="navigation" aria-label="Chapter pager">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+          <span class="pager" role="group">
+            <button aria-label="Previous chapter">↑</button>
+            <span class="vbar"></span>
+            <button aria-label="Next chapter">↓</button>
+          </span>
+        </div>
+        <p class="mock__body">Reader's eye is already on the band. Make it work for the click.</p>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 09 ===================== -->
+<article class="idea" id="i09">
+  <p class="idea__num">IX — Hairline film-strip</p>
+  <h2>Nine pips along the <em>foot</em>, behind a 1 px gold rule</h2>
+  <p class="idea__why">
+    A thin gold horizontal line glued to the bottom edge of the viewport,
+    with nine evenly spaced pips on it. Active pip enlarges and pops a
+    Cormorant-italic chapter title above it. A small ↓ disc sits above the
+    strip, right-aligned, for the simple "next" gesture. Reads like a film
+    timeline.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> horizontal mirror of idea II; shorter for tall portrait readers, longer for wide ones; pairs naturally with a scroll-snap chapter spine.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Foot-aligned hairline at bottom: 22 px from edge; pips 7→9 px on active; tooltip rises above.</dd>
+    <dt>Active</dt><dd>Tooltip persists for current chapter; hover any pip to peek title.</dd>
+    <dt>Mobile</dt><dd>Strip remains; tooltip becomes inline (always shown).</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="240" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="200" y2="76" class="hair"/>
+          <line x1="22" y1="92" x2="220" y2="92" class="hair"/>
+          <!-- strip -->
+          <line x1="22" y1="200" x2="338" y2="200" class="gold"/>
+          <circle cx="40" cy="200" r="2.5" class="pencil-fill"/>
+          <circle cx="80" cy="200" r="3.6" class="gold-fill"/>
+          <text x="80" y="190" class="pserif" text-anchor="middle">II Investment</text>
+          <circle cx="120" cy="200" r="2.5" class="pencil-fill"/>
+          <circle cx="160" cy="200" r="2.5" class="pencil-fill"/>
+          <circle cx="200" cy="200" r="2.5" class="pencil-fill"/>
+          <circle cx="240" cy="200" r="2.5" class="pencil-fill"/>
+          <circle cx="280" cy="200" r="2.5" class="pencil-fill"/>
+          <circle cx="320" cy="200" r="2.5" class="pencil-fill"/>
+          <!-- arrow disc -->
+          <circle cx="324" cy="172" r="10" class="gold"/>
+          <path d="M320 170 L324 176 L328 170" class="gold"/>
+          <text x="180" y="218" class="pserif" text-anchor="middle">film strip · 9 pips</text>
+        </svg>
+        <p class="sketch-caption">timeline + nudge</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · hairline film-strip</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">A 1 px gold rule along the bottom edge, scored with nine pips.</p>
+        <button class="m09-arrow" aria-label="Next chapter">↓</button>
+        <div class="m09-strip" aria-label="Chapter pager">
+          <span class="pip"></span>
+          <span class="pip is-active" data-label="II — Investment"></span>
+          <span class="pip"></span>
+          <span class="pip"></span>
+          <span class="pip"></span>
+          <span class="pip"></span>
+          <span class="pip"></span>
+          <span class="pip"></span>
+          <span class="pip"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 10 ===================== -->
+<article class="idea" id="i10">
+  <p class="idea__num">X — Letterpress numeral chip</p>
+  <h2>A cream chip with the current Roman <em>and a "next" cue</em></h2>
+  <p class="idea__why">
+    Bottom-right, a small letterpress-style cream card. Big italic
+    "II" centred, dotted hairline beneath, and small caps "NEXT" with the
+    next chapter's italic name underneath. Click anywhere on the chip to
+    advance. Most decorative of the ten — leans into the dossier feel.
+    Closest cousin to the freshness-badge round-two seal/stamp ideas.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> swaps the gold disc for an editorial card; carries more information at the cost of more pixels. Reads as part of the "audit dossier" register, not a generic UI control.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>78 × ~78 px cream card, gold inset stripe, dotted hairline divider; italic Cormorant 32 px numeral.</dd>
+    <dt>Active</dt><dd>Whole chip is the click target; hover lifts -2 px; right-click sends prev (or long-press on touch).</dd>
+    <dt>Mobile</dt><dd>Chip 64 px, "next" line truncates on overflow.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="208" class="hair"/>
+          <text x="22" y="28" class="ptag">II · INVESTMENT</text>
+          <line x1="22" y1="60" x2="240" y2="60" class="hair"/>
+          <line x1="22" y1="76" x2="200" y2="76" class="hair"/>
+          <!-- chip -->
+          <rect x="280" y="130" width="60" height="68" rx="3" class="pencil"/>
+          <rect x="284" y="134" width="52" height="60" rx="2" class="gold"/>
+          <text x="310" y="160" text-anchor="middle" class="pserif" font-size="20">II</text>
+          <line x1="288" y1="170" x2="332" y2="170" class="hair" stroke-dasharray="2 2"/>
+          <text x="310" y="180" text-anchor="middle" class="ptag">NEXT</text>
+          <text x="310" y="190" text-anchor="middle" class="pserif" font-size="11">Benefits</text>
+          <text x="180" y="208" class="pserif" text-anchor="middle">letterpress chip</text>
+        </svg>
+        <p class="sketch-caption">numeral + "next" line — dossier register</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · numeral chip</div>
+      <div class="mock__stage">
+        <div class="mock__chapterband">
+          <em>II</em><span class="sep">·</span><span>Investment</span>
+          <span class="counter">02 / 09</span>
+        </div>
+        <p class="mock__body">Cream card on ink ground — same family as the freshness seal.</p>
+        <div class="m10-chip" role="button" aria-label="Next chapter — Benefits">
+          <div class="now">II</div>
+          <div class="label">NEXT<em>Benefits</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+</section>
+
+<!-- ============== OUTRO ============== -->
+<footer class="outro">
+  <p>
+    Drafts only — none ship until one is selected. The behavioural contract
+    is identical across all ten; the choice is purely about register and
+    footprint. Keyboard parity (<code>J</code>/<code>K</code> or
+    <code>↑</code>/<code>↓</code>) should ride along with whichever surface
+    wins.
+  </p>
+  <p>
+    File: <code>tests/sketches/section-pager-button-ideas.html</code>.
+    Outside the Vite build by design — open via
+    <code>npx serve .</code> from repo root.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contents disclosure — ten redesigns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-soft:  #D9BD86;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --hairline-2: rgba(11, 15, 20, 0.28);
+    --redline:    #B23A2A;
+    --green:      #4F7A4A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory); color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding: 72px 32px 120px; }
+
+  /* ----- intro ----- */
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 48px; }
+  header.intro .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 46px; line-height: 1.08;
+    margin: 14px 0 14px; letter-spacing: -0.01em; max-width: 22ch;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 68ch; }
+
+  .baseline {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil); max-width: 80ch;
+  }
+  .baseline strong { color: var(--ink); }
+  .baseline code {
+    background: #FFFDF7; padding: 1px 5px; border-radius: 2px;
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+  }
+
+  .toc {
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px 32px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 14px;
+  }
+  .toc a {
+    display: flex; justify-content: space-between; gap: 12px;
+    text-decoration: none; color: var(--ink);
+    padding: 7px 0; border-bottom: 1px dotted var(--hairline);
+    font-size: 13px;
+  }
+  .toc a span:first-child {
+    color: var(--gold-deep); font-family: "Fraunces", serif;
+    font-style: italic; font-size: 14px; min-width: 32px;
+  }
+  .toc a:hover span:last-child { color: var(--gold-deep); }
+
+  /* ----- baseline of today ----- */
+  .today-baseline {
+    margin: 36px 0 0; padding: 18px 22px 22px;
+    background: var(--cream); border: 1px solid var(--hairline);
+    border-radius: 4px;
+  }
+  .today-baseline h3 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-style: italic; font-size: 18px; margin: 0 0 8px;
+    color: var(--gold-deep);
+  }
+  .today-baseline p { margin: 0 0 12px; font-size: 13px; color: var(--stone); line-height: 1.55; }
+
+  /* The actual current-shipped contents disclosure, recreated faithfully */
+  .today-contents {
+    background: var(--cream);
+    border-bottom: 1px solid var(--hairline);
+    padding: 4px 0;
+    font-family: "Manrope", sans-serif;
+  }
+  .today-contents__toggle {
+    display: flex; align-items: center; gap: 16px; padding: 16px 0;
+    font-family: inherit;
+  }
+  .today-contents__eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600;
+  }
+  .today-contents__meta {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--stone); font-size: 16px;
+  }
+  .today-contents__chev {
+    margin-left: auto; width: 28px; height: 28px;
+    border: 1px solid var(--gold-deep); border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--gold-deep); font-family: "Cormorant Garamond", serif; font-size: 22px;
+  }
+  .today-contents__list {
+    list-style: none; padding: 0; margin: 0 0 18px;
+    border-top: 1px solid var(--hairline);
+  }
+  .today-contents__list li { border-bottom: 1px solid var(--hairline); }
+  .today-contents__link {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 12px 4px; text-decoration: none; color: var(--ink);
+  }
+  .today-contents__link .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 16px; min-width: 40px;
+  }
+  .today-contents__link .label {
+    font-family: "Cormorant Garamond", serif; font-size: 19px;
+  }
+  .today-contents__link .leader {
+    flex: 1; align-self: end; margin: 0 8px 6px;
+    border-bottom: 1px dotted var(--hairline);
+  }
+  .today-contents__link .page {
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    letter-spacing: 0.12em; color: var(--stone); min-width: 28px; text-align: right;
+  }
+
+  /* ----- idea card ----- */
+  .ideas { display: grid; gap: 56px; margin-top: 56px; }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px;
+    background: var(--cream); padding: 28px 28px 26px;
+  }
+  .idea__num {
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 13px; letter-spacing: 0.26em; color: var(--gold-deep);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 26px; line-height: 1.2; margin: 6px 0 10px;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__why { color: var(--stone); font-size: 15px; line-height: 1.65; margin: 0 0 12px; }
+  .idea__contrast {
+    font-size: 12.5px; color: var(--pencil); margin: 0 0 20px;
+    padding: 10px 14px; background: var(--paper);
+    border-left: 2px solid var(--gold); border-radius: 2px;
+  }
+  .idea__behavior {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 5px 14px;
+    font-size: 12px; line-height: 1.55; color: var(--pencil);
+    margin: 0 0 20px; padding: 12px 14px;
+    background: #FFFDF7; border: 1px dashed var(--hairline);
+    border-radius: 2px;
+  }
+  .idea__behavior dt {
+    font-family: "JetBrains Mono", monospace;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-size: 10px; color: var(--gold-deep);
+    padding-top: 2px;
+  }
+  .idea__behavior dd { margin: 0; }
+  .idea__behavior dd em { color: var(--ink); font-style: normal; font-weight: 600; }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
+  @media (max-width: 920px) { .pair { grid-template-columns: 1fr; } }
+
+  /* ----- sketch (left column) ----- */
+  .sketch-frame {
+    background: #FBF7EF; border: 1px solid #D9CFB7; border-radius: 3px;
+    padding: 14px 14px 10px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 8px 24px -16px rgba(0,0,0,0.18);
+  }
+  .sketch-frame svg { display: block; width: 100%; height: auto; }
+  .sketch-caption {
+    font-family: "Caveat", cursive; font-size: 16px;
+    color: var(--redline); margin: 6px 4px 2px; text-align: center;
+  }
+  .pencil  { stroke: var(--pencil); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .hair    { stroke: var(--pencil); fill: none; stroke-width: 0.8; opacity: 0.55; }
+  .gold    { stroke: var(--gold-deep); fill: none; stroke-width: 1.4; }
+  .gold-fill { fill: var(--gold-deep); }
+  .red     { stroke: var(--redline); fill: none; stroke-width: 1.2; }
+  .red-fill{ fill: var(--redline); }
+  .pencil-fill { fill: var(--pencil); }
+  .pcap {
+    font-family: "Caveat", cursive; font-size: 13px; fill: var(--redline);
+  }
+  .ptag {
+    font-family: "JetBrains Mono", monospace; font-size: 9px;
+    fill: var(--pencil); letter-spacing: 0.08em;
+  }
+  .pserif {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    fill: var(--pencil); font-size: 13px;
+  }
+
+  /* ----- live mock — renders on spine cream, not dark hero ----- */
+  .mock {
+    position: relative; overflow: hidden;
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+    border-radius: 6px; min-height: 280px;
+    color: var(--ink);
+  }
+  .mock__chrome {
+    padding: 14px 18px 10px;
+    border-bottom: 1px solid var(--hairline);
+    display: flex; gap: 10px; align-items: baseline;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .mock__chrome strong { color: var(--gold-deep); font-weight: 600; }
+  .mock__toggle {
+    display: flex; align-items: center; gap: 16px; padding: 14px 18px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .mock__toggle .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600;
+  }
+  .mock__toggle .meta {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--stone); font-size: 16px;
+  }
+  .mock__toggle .chev {
+    margin-left: auto; width: 26px; height: 26px;
+    border: 1px solid var(--gold-deep); border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--gold-deep); font-family: "Cormorant Garamond", serif; font-size: 20px;
+    line-height: 1;
+  }
+  .mock__stage { padding: 18px; }
+
+  /* ============================================================
+     Idea 01 — 3×3 letterpress grid (no card frames)
+     ============================================================ */
+  .m01-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--hairline);
+    border-left: 1px solid var(--hairline);
+  }
+  .m01-grid > a {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 14px 16px;
+    border-right: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    text-decoration: none; color: var(--ink);
+    transition: background 0.18s ease;
+  }
+  .m01-grid > a:hover { background: rgba(201, 168, 106, 0.08); }
+  .m01-grid > a .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 16px; min-width: 28px;
+  }
+  .m01-grid > a .label {
+    font-family: "Cormorant Garamond", serif; font-size: 17px;
+    flex: 1; line-height: 1.2;
+  }
+  .m01-grid > a .page {
+    font-family: "JetBrains Mono", monospace; font-size: 10px;
+    letter-spacing: 0.14em; color: var(--stone);
+  }
+
+  /* ============================================================
+     Idea 02 — Two-column dense list
+     ============================================================ */
+  .m02-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px;
+  }
+  .m02-list ol {
+    list-style: none; padding: 0; margin: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .m02-list li { border-bottom: 1px solid var(--hairline); }
+  .m02-list a {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 8px 4px; text-decoration: none; color: var(--ink);
+  }
+  .m02-list a .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 14px; min-width: 26px;
+  }
+  .m02-list a .label {
+    font-family: "Cormorant Garamond", serif; font-size: 16px;
+    flex: 1;
+  }
+  .m02-list a .leader {
+    flex: 0 1 60px; align-self: end; margin: 0 6px 5px;
+    border-bottom: 1px dotted var(--hairline);
+  }
+  .m02-list a .page {
+    font-family: "JetBrains Mono", monospace; font-size: 10px;
+    letter-spacing: 0.12em; color: var(--stone); min-width: 22px; text-align: right;
+  }
+  .m02-list a:hover .label { color: var(--gold-deep); }
+
+  /* ============================================================
+     Idea 03 — Inline pill row (chip cloud)
+     ============================================================ */
+  .m03-pills {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 12px 0 4px;
+    border-top: 1px solid var(--hairline);
+  }
+  .m03-pill {
+    display: inline-flex; align-items: baseline; gap: 7px;
+    padding: 7px 12px;
+    background: #FFFDF7;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    text-decoration: none; color: var(--ink);
+    font-size: 12.5px;
+    transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .m03-pill:hover { border-color: var(--gold); background: rgba(201,168,106,0.08); }
+  .m03-pill .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 14px;
+  }
+  .m03-pill .label {
+    font-family: "Cormorant Garamond", serif; font-size: 14px;
+  }
+
+  /* footer */
+  footer.outro {
+    margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--stone);
+  }
+  footer.outro code {
+    background: var(--paper); padding: 1px 5px; border-radius: 2px;
+    font-family: "JetBrains Mono", monospace;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============== INTRO ============== -->
+<header class="intro">
+  <p class="eyebrow">Sketch · ProgramSpine — ContentsPage · 2026.Q2</p>
+  <h1>Ten ways to redesign the <em>expanded contents</em> disclosure</h1>
+  <p class="lede">
+    Today's expanded "Contents · 9 chapters" disclosure is enormous —
+    each row eats ~95 px, the dotted leader stretches across a full
+    desktop column, and the result reads as a print appendix dropped
+    into a webpage. Ten redesigns below, ranging from the most
+    restrained (pure typography) to the most diagrammatic (stepper bar).
+    All keep the same nine anchors and the same toggle affordance —
+    only the surface of the open state changes.
+  </p>
+
+  <div class="baseline">
+    <strong>Behavioural contract — held constant across all ten:</strong>
+    the disclosure toggle (<code>Contents · 9 chapters · +</code>) stays
+    as-is. Click any chapter entry → smooth-scroll to that chapter's
+    <code>id</code>; toggle closes after navigation. Nine entries always
+    visible when open — no overflow, no scrolling within the disclosure.
+    The disclosure renders inside <code>.ht-spine__contents</code> on the
+    cream spine background; gold accents and italic Cormorant numerals
+    are constant.
+  </div>
+
+  <nav class="toc" aria-label="Table of contents">
+    <a href="#i01"><span>I.</span><span>3×3 letterpress grid — three columns, no card frames</span></a>
+    <a href="#i02"><span>II.</span><span>Two-column dense list — same anatomy, doubled</span></a>
+    <a href="#i03"><span>III.</span><span>Inline pill row — italic chip cloud</span></a>
+    <a href="#i04"><span>IV.</span><span>Stepper bar — 9 connected nodes, journey register</span></a>
+    <a href="#i05"><span>V.</span><span>Audit doc-control table — five mono columns</span></a>
+    <a href="#i06"><span>VI.</span><span>Editorial running text — italic standfirst paragraph</span></a>
+    <a href="#i07"><span>VII.</span><span>Drop-cap pair grid — magazine numerals, two cells per row</span></a>
+    <a href="#i08"><span>VIII.</span><span>Active-expanded sidecar — list left, current dek right</span></a>
+    <a href="#i09"><span>IX.</span><span>Filing-tab stack — 9 manila tabs, indented hairlines</span></a>
+    <a href="#i10"><span>X.</span><span>Pure-typography index — minimal, narrow column</span></a>
+  </nav>
+
+  <div class="today-baseline">
+    <h3>Baseline — what ships today</h3>
+    <p>
+      Toggle expands to nine ~95 px rows. Each row: italic gold Roman
+      numeral · serif title · dotted leader fills the column · tabular
+      page number. ~850 px total height; the leaders read as filler in
+      anything wider than ~600 px.
+    </p>
+    <div class="today-contents">
+      <div class="today-contents__toggle">
+        <span class="today-contents__eyebrow">Contents</span>
+        <span class="today-contents__meta">9 chapters</span>
+        <span class="today-contents__chev">–</span>
+      </div>
+      <ol class="today-contents__list">
+        <li><a class="today-contents__link"><span class="num">I</span><span class="label">About</span><span class="leader"></span><span class="page">01</span></a></li>
+        <li><a class="today-contents__link"><span class="num">II</span><span class="label">Investment</span><span class="leader"></span><span class="page">02</span></a></li>
+        <li><a class="today-contents__link"><span class="num">III</span><span class="label">Benefits</span><span class="leader"></span><span class="page">03</span></a></li>
+        <li><a class="today-contents__link"><span class="num">IV</span><span class="label">Eligibility</span><span class="leader"></span><span class="page">04</span></a></li>
+        <li><a class="today-contents__link"><span class="num">V</span><span class="label">Documents</span><span class="leader"></span><span class="page">05</span></a></li>
+        <li><a class="today-contents__link"><span class="num">VI</span><span class="label">Process</span><span class="leader"></span><span class="page">06</span></a></li>
+        <li><a class="today-contents__link"><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="leader"></span><span class="page">07</span></a></li>
+        <li><a class="today-contents__link"><span class="num">VIII</span><span class="label">Case Studies</span><span class="leader"></span><span class="page">08</span></a></li>
+        <li><a class="today-contents__link"><span class="num">IX</span><span class="label">Our Licenses</span><span class="leader"></span><span class="page">09</span></a></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============== IDEAS ============== -->
+<section class="ideas">
+
+<!-- ===================== IDEA 01 ===================== -->
+<article class="idea" id="i01">
+  <p class="idea__num">I — 3×3 letterpress grid</p>
+  <h2>Nine cells, three columns, <em>no card frames</em></h2>
+  <p class="idea__why">
+    Lose the leaders, lose the per-row stripe — pack the nine chapters
+    into a 3×3 grid drawn with hairlines. Each cell carries the italic
+    Roman numeral, the title, and the page number; the grid itself
+    handles separation. Compact (~180 px tall), reads as a dossier
+    index, not a print appendix.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~180 px. Loses the dotted leaders (which are filler at desktop widths anyway). Keeps the editorial type pairing.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>3 columns × 3 rows; 1 px hairline grid in <code>--hairline</code>; no card lift.</dd>
+    <dt>Active</dt><dd>Hover fills the cell with rgba(gold, 0.08); click → scroll + close.</dd>
+    <dt>Mobile</dt><dd>Collapses to 2 columns ≤ 768 px, 1 column ≤ 480 px.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <!-- toggle bar -->
+          <rect x="6" y="6" width="348" height="22" class="hair"/>
+          <text x="14" y="22" class="ptag">CONTENTS · 9 CHAPTERS</text>
+          <circle cx="340" cy="17" r="6" class="gold"/>
+          <line x1="336" y1="17" x2="344" y2="17" class="gold"/>
+          <!-- 3x3 grid -->
+          <line x1="6" y1="40" x2="354" y2="40" class="hair"/>
+          <line x1="6" y1="40" x2="6" y2="208" class="hair"/>
+          <line x1="122" y1="40" x2="122" y2="208" class="hair"/>
+          <line x1="238" y1="40" x2="238" y2="208" class="hair"/>
+          <line x1="354" y1="40" x2="354" y2="208" class="hair"/>
+          <line x1="6" y1="96" x2="354" y2="96" class="hair"/>
+          <line x1="6" y1="152" x2="354" y2="152" class="hair"/>
+          <line x1="6" y1="208" x2="354" y2="208" class="hair"/>
+          <!-- cell contents (sample) -->
+          <text x="14" y="62" class="pserif" font-size="14">I</text>
+          <text x="32" y="62" class="pserif" font-size="14">About</text>
+          <text x="110" y="74" class="ptag" text-anchor="end">01</text>
+          <text x="130" y="62" class="pserif" font-size="14">II</text>
+          <text x="150" y="62" class="pserif" font-size="14">Investment</text>
+          <text x="226" y="74" class="ptag" text-anchor="end">02</text>
+          <text x="246" y="62" class="pserif" font-size="14">III</text>
+          <text x="270" y="62" class="pserif" font-size="14">Benefits</text>
+          <text x="342" y="74" class="ptag" text-anchor="end">03</text>
+          <text x="14" y="118" class="pserif" font-size="14">IV</text>
+          <text x="36" y="118" class="pserif" font-size="14">Eligibility</text>
+          <text x="110" y="130" class="ptag" text-anchor="end">04</text>
+          <text x="130" y="118" class="pserif" font-size="14">V</text>
+          <text x="148" y="118" class="pserif" font-size="14">Documents</text>
+          <text x="226" y="130" class="ptag" text-anchor="end">05</text>
+          <text x="246" y="118" class="pserif" font-size="14">VI</text>
+          <text x="272" y="118" class="pserif" font-size="14">Process</text>
+          <text x="342" y="130" class="ptag" text-anchor="end">06</text>
+          <text x="14" y="174" class="pserif" font-size="14">VII</text>
+          <text x="44" y="174" class="pserif" font-size="14">Visa-Free</text>
+          <text x="110" y="186" class="ptag" text-anchor="end">07</text>
+          <text x="130" y="174" class="pserif" font-size="14">VIII</text>
+          <text x="160" y="174" class="pserif" font-size="14">Cases</text>
+          <text x="226" y="186" class="ptag" text-anchor="end">08</text>
+          <text x="246" y="174" class="pserif" font-size="14">IX</text>
+          <text x="270" y="174" class="pserif" font-size="14">Licenses</text>
+          <text x="342" y="186" class="ptag" text-anchor="end">09</text>
+        </svg>
+        <p class="sketch-caption">3 columns × 3 rows · hairlines do the work</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · 3×3 grid</div>
+      <div class="mock__toggle">
+        <span class="eyebrow">Contents</span>
+        <span class="meta">9 chapters</span>
+        <span class="chev">–</span>
+      </div>
+      <div class="mock__stage" style="padding:0;">
+        <div class="m01-grid">
+          <a href="#"><span class="num">I</span><span class="label">About</span><span class="page">01</span></a>
+          <a href="#"><span class="num">II</span><span class="label">Investment</span><span class="page">02</span></a>
+          <a href="#"><span class="num">III</span><span class="label">Benefits</span><span class="page">03</span></a>
+          <a href="#"><span class="num">IV</span><span class="label">Eligibility</span><span class="page">04</span></a>
+          <a href="#"><span class="num">V</span><span class="label">Documents</span><span class="page">05</span></a>
+          <a href="#"><span class="num">VI</span><span class="label">Process</span><span class="page">06</span></a>
+          <a href="#"><span class="num">VII</span><span class="label">Visa-Free</span><span class="page">07</span></a>
+          <a href="#"><span class="num">VIII</span><span class="label">Case Studies</span><span class="page">08</span></a>
+          <a href="#"><span class="num">IX</span><span class="label">Licenses</span><span class="page">09</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 02 ===================== -->
+<article class="idea" id="i02">
+  <p class="idea__num">II — Two-column dense list</p>
+  <h2>Same anatomy, <em>doubled up</em></h2>
+  <p class="idea__why">
+    The most conservative redesign: keep the row of italic numeral, title,
+    short dotted leader and tabular page — but split into two columns of
+    five (with the ninth filling the second slot of the last row). Half
+    the height for free; the leader becomes meaningful again because the
+    column is narrower.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~280 px. Same vocabulary as the current row, dotted leader returns to its proper, narrow size.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Two equal columns with 32 px gutter; rows separated by hairlines top + bottom.</dd>
+    <dt>Active</dt><dd>Hover ramps the title to gold; click → scroll + close.</dd>
+    <dt>Mobile</dt><dd>Collapses to one column ≤ 600 px (back to original ladder).</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="22" class="hair"/>
+          <text x="14" y="22" class="ptag">CONTENTS · 9 CHAPTERS</text>
+          <circle cx="340" cy="17" r="6" class="gold"/>
+          <line x1="336" y1="17" x2="344" y2="17" class="gold"/>
+          <!-- two columns -->
+          <line x1="14" y1="42" x2="170" y2="42" class="hair"/>
+          <line x1="190" y1="42" x2="346" y2="42" class="hair"/>
+          <g font-family="Cormorant Garamond" font-style="italic" font-size="13" fill="#2A2A2A">
+            <text x="20" y="58">I</text><text x="38" y="58">About</text>
+            <line x1="80" y1="58" x2="150" y2="58" class="hair" stroke-dasharray="2 2"/>
+            <text x="166" y="58" class="ptag" text-anchor="end">01</text>
+            <text x="20" y="78">II</text><text x="38" y="78">Investment</text>
+            <line x1="100" y1="78" x2="150" y2="78" class="hair" stroke-dasharray="2 2"/>
+            <text x="166" y="78" class="ptag" text-anchor="end">02</text>
+            <text x="20" y="98">III</text><text x="44" y="98">Benefits</text>
+            <line x1="92" y1="98" x2="150" y2="98" class="hair" stroke-dasharray="2 2"/>
+            <text x="166" y="98" class="ptag" text-anchor="end">03</text>
+            <text x="20" y="118">IV</text><text x="40" y="118">Eligibility</text>
+            <line x1="100" y1="118" x2="150" y2="118" class="hair" stroke-dasharray="2 2"/>
+            <text x="166" y="118" class="ptag" text-anchor="end">04</text>
+            <text x="20" y="138">V</text><text x="38" y="138">Documents</text>
+            <line x1="106" y1="138" x2="150" y2="138" class="hair" stroke-dasharray="2 2"/>
+            <text x="166" y="138" class="ptag" text-anchor="end">05</text>
+
+            <text x="196" y="58">VI</text><text x="218" y="58">Process</text>
+            <line x1="270" y1="58" x2="324" y2="58" class="hair" stroke-dasharray="2 2"/>
+            <text x="340" y="58" class="ptag" text-anchor="end">06</text>
+            <text x="196" y="78">VII</text><text x="222" y="78">Visa-Free</text>
+            <line x1="280" y1="78" x2="324" y2="78" class="hair" stroke-dasharray="2 2"/>
+            <text x="340" y="78" class="ptag" text-anchor="end">07</text>
+            <text x="196" y="98">VIII</text><text x="228" y="98">Cases</text>
+            <line x1="266" y1="98" x2="324" y2="98" class="hair" stroke-dasharray="2 2"/>
+            <text x="340" y="98" class="ptag" text-anchor="end">08</text>
+            <text x="196" y="118">IX</text><text x="218" y="118">Licenses</text>
+            <line x1="278" y1="118" x2="324" y2="118" class="hair" stroke-dasharray="2 2"/>
+            <text x="340" y="118" class="ptag" text-anchor="end">09</text>
+          </g>
+        </svg>
+        <p class="sketch-caption">narrow column → leader does its job</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · two-column dense</div>
+      <div class="mock__toggle">
+        <span class="eyebrow">Contents</span>
+        <span class="meta">9 chapters</span>
+        <span class="chev">–</span>
+      </div>
+      <div class="mock__stage">
+        <div class="m02-list">
+          <ol>
+            <li><a href="#"><span class="num">I</span><span class="label">About</span><span class="leader"></span><span class="page">01</span></a></li>
+            <li><a href="#"><span class="num">II</span><span class="label">Investment</span><span class="leader"></span><span class="page">02</span></a></li>
+            <li><a href="#"><span class="num">III</span><span class="label">Benefits</span><span class="leader"></span><span class="page">03</span></a></li>
+            <li><a href="#"><span class="num">IV</span><span class="label">Eligibility</span><span class="leader"></span><span class="page">04</span></a></li>
+            <li><a href="#"><span class="num">V</span><span class="label">Documents</span><span class="leader"></span><span class="page">05</span></a></li>
+          </ol>
+          <ol>
+            <li><a href="#"><span class="num">VI</span><span class="label">Process</span><span class="leader"></span><span class="page">06</span></a></li>
+            <li><a href="#"><span class="num">VII</span><span class="label">Visa-Free</span><span class="leader"></span><span class="page">07</span></a></li>
+            <li><a href="#"><span class="num">VIII</span><span class="label">Case Studies</span><span class="leader"></span><span class="page">08</span></a></li>
+            <li><a href="#"><span class="num">IX</span><span class="label">Licenses</span><span class="leader"></span><span class="page">09</span></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 03 ===================== -->
+<article class="idea" id="i03">
+  <p class="idea__num">III — Inline pill row</p>
+  <h2>Italic chip cloud, <em>one wrap-line tall</em></h2>
+  <p class="idea__why">
+    Treat the chapter list as a chip nav — nine pills wrapping in a flex
+    row, each carrying italic numeral and serif title. ~80 px tall on
+    desktop, two wrap-lines on tablet, three on narrow phones. The
+    quietest, most navigation-shaped option of the ten.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~80 px. Loses the page numbers (chips don't really earn them); reads as quick-jump nav, not as a print TOC.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Cream pills with hairline border; <code>flex-wrap</code> reflows naturally.</dd>
+    <dt>Active</dt><dd>Hover ramps border to gold and tints background; current-chapter pill is filled gold + ink text.</dd>
+    <dt>Mobile</dt><dd>Same row, just more wrap.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="22" class="hair"/>
+          <text x="14" y="22" class="ptag">CONTENTS · 9 CHAPTERS</text>
+          <circle cx="340" cy="17" r="6" class="gold"/>
+          <line x1="336" y1="17" x2="344" y2="17" class="gold"/>
+          <line x1="6" y1="40" x2="354" y2="40" class="hair"/>
+          <!-- pills row 1 -->
+          <g font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#2A2A2A">
+            <rect x="14" y="56" width="58" height="22" rx="11" class="hair"/>
+            <text x="22" y="71" font-size="11">I</text><text x="32" y="71">About</text>
+            <rect x="78" y="56" width="78" height="22" rx="11" class="hair"/>
+            <text x="86" y="71" font-size="11">II</text><text x="98" y="71">Investment</text>
+            <rect x="162" y="56" width="68" height="22" rx="11" class="hair"/>
+            <text x="170" y="71" font-size="11">III</text><text x="184" y="71">Benefits</text>
+            <rect x="236" y="56" width="74" height="22" rx="11" class="hair"/>
+            <text x="244" y="71" font-size="11">IV</text><text x="258" y="71">Eligibility</text>
+            <rect x="316" y="56" width="38" height="22" rx="11" class="gold"/>
+            <text x="324" y="71" font-size="11">V</text><text x="332" y="71">Doc</text>
+            <!-- row 2 -->
+            <rect x="14" y="92" width="68" height="22" rx="11" class="hair"/>
+            <text x="22" y="107">VI</text><text x="40" y="107">Process</text>
+            <rect x="88" y="92" width="86" height="22" rx="11" class="hair"/>
+            <text x="96" y="107">VII</text><text x="116" y="107">Visa-Free</text>
+            <rect x="180" y="92" width="78" height="22" rx="11" class="hair"/>
+            <text x="188" y="107">VIII</text><text x="210" y="107">Cases</text>
+            <rect x="264" y="92" width="80" height="22" rx="11" class="hair"/>
+            <text x="272" y="107">IX</text><text x="290" y="107">Licenses</text>
+          </g>
+          <text x="180" y="170" class="pserif" text-anchor="middle">italic chip cloud</text>
+        </svg>
+        <p class="sketch-caption">nav-shaped — wraps to fit any width</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · pill row</div>
+      <div class="mock__toggle">
+        <span class="eyebrow">Contents</span>
+        <span class="meta">9 chapters</span>
+        <span class="chev">–</span>
+      </div>
+      <div class="mock__stage">
+        <div class="m03-pills">
+          <a class="m03-pill" href="#"><span class="num">I</span><span class="label">About</span></a>
+          <a class="m03-pill" href="#"><span class="num">II</span><span class="label">Investment</span></a>
+          <a class="m03-pill" href="#"><span class="num">III</span><span class="label">Benefits</span></a>
+          <a class="m03-pill" href="#"><span class="num">IV</span><span class="label">Eligibility</span></a>
+          <a class="m03-pill" href="#"><span class="num">V</span><span class="label">Documents</span></a>
+          <a class="m03-pill" href="#"><span class="num">VI</span><span class="label">Process</span></a>
+          <a class="m03-pill" href="#"><span class="num">VII</span><span class="label">Visa-Free</span></a>
+          <a class="m03-pill" href="#"><span class="num">VIII</span><span class="label">Case Studies</span></a>
+          <a class="m03-pill" href="#"><span class="num">IX</span><span class="label">Licenses</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+</section>
+
+<!-- ============== OUTRO ============== -->
+<footer class="outro">
+  <p>
+    Drafts only — none ship until one is selected. Same nine anchors and
+    the same toggle in every variant; only the open-state surface differs.
+  </p>
+  <p>
+    File: <code>tests/sketches/contents-disclosure-redesign.html</code>.
+    Outside the Vite build by design — open via
+    <code>npx serve .</code> from repo root.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
