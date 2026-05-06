@@ -535,6 +535,66 @@
     .i05-legend { padding: 12px 18px 0; }
   }
 
+  /* ====================================================================
+     IDEA 06 — Drop-cap magazine TOC (numerals as drop-caps)
+     ==================================================================== */
+  .i06-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .i06-cell {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 18px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--hairline);
+    transition: background 0.18s ease;
+  }
+  .i06-cell:nth-child(odd) { border-right: 1px solid var(--hairline); }
+  .i06-cell:nth-last-child(-n+2) { border-bottom: 0; }
+  .i06-cell:nth-last-child(1) { /* the lone trailing 9th cell */
+    grid-column: 1 / -1;
+    border-right: 0;
+  }
+  .i06-cell:hover {
+    background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 60%);
+  }
+  .i06-cell .num {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--gold-deep);
+    text-align: right;
+    letter-spacing: -0.01em;
+    transition: color 0.18s ease;
+  }
+  .i06-cell:hover .num { color: var(--ink); }
+  .i06-cell .body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .i06-cell .label {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.2;
+  }
+  .i06-cell .small {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.22em;
+    color: var(--stone); text-transform: uppercase;
+  }
+  @media (max-width: 720px) {
+    .i06-grid { grid-template-columns: 1fr; }
+    .i06-cell { border-right: 0 !important; padding: 14px 22px; grid-template-columns: 60px 1fr; }
+    .i06-cell .num { font-size: 44px; }
+    .i06-cell:nth-last-child(1) { grid-column: auto; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -849,6 +909,44 @@
             <span>Orientation · Substance · Evidence</span>
             <span>3 / 9 read</span>
           </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 06 ===================== -->
+    <article class="idea" id="i06">
+      <p class="idea__num">VI — Drop-cap magazine TOC</p>
+      <h2>Big Fraunces italic numerals as drop-caps, <em>two-up cells</em></h2>
+      <p class="idea__why">
+        Make the numerals do all the visual work. 56 px Fraunces italic
+        Roman numerals, drop-cap large, paired with a Cormorant chapter
+        title and a small monospace doc-ref. Two-column grid; the ninth
+        chapter spans the bottom row as a deliberate punctuation. Reads
+        like a luxury monthly's "in this issue" spread.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~470 px. Heavier than the compact ledger but unmistakably editorial — the numerals carry the surface, the labels read second. Removes leaders + page-number column entirely.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Two columns × four rows + a full-width ninth cell; hairline grid; 56 px Fraunces italic numerals to the left of each label.</dd>
+        <dt>Active</dt><dd>Hover wash (gold 8 %) + numeral flips from gold to ink — keeps the label gold-quiet so the numeral leads the gesture.</dd>
+        <dt>Mobile</dt><dd>Single column, numerals shrink to 44 px; ninth cell stops being special.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · in this dossier</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i06-grid">
+          <a class="i06-cell"><span class="num">I</span><span class="body"><span class="label">About</span><span class="small">GV-A · 01</span></span></a>
+          <a class="i06-cell"><span class="num">II</span><span class="body"><span class="label">Investment</span><span class="small">GV-B · 02</span></span></a>
+          <a class="i06-cell"><span class="num">III</span><span class="body"><span class="label">Benefits</span><span class="small">GV-C · 03</span></span></a>
+          <a class="i06-cell"><span class="num">IV</span><span class="body"><span class="label">Eligibility</span><span class="small">GV-D · 04</span></span></a>
+          <a class="i06-cell"><span class="num">V</span><span class="body"><span class="label">Documents</span><span class="small">GV-E · 05</span></span></a>
+          <a class="i06-cell"><span class="num">VI</span><span class="body"><span class="label">Process</span><span class="small">GV-F · 06</span></span></a>
+          <a class="i06-cell"><span class="num">VII</span><span class="body"><span class="label">Visa-Free Countries</span><span class="small">GV-G · 07</span></span></a>
+          <a class="i06-cell"><span class="num">VIII</span><span class="body"><span class="label">Case Studies</span><span class="small">GV-H · 08</span></span></a>
+          <a class="i06-cell"><span class="num">IX</span><span class="body"><span class="label">Our Licenses</span><span class="small">GV-I · 09 · closing chapter</span></span></a>
         </div>
       </div>
     </article>
