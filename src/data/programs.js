@@ -32,6 +32,46 @@ export const PROGRAMS = [
       { step: 'Fund selection', weeks: 'Week 2–4', body: 'Shortlist, due diligence and a Portuguese bank account.' },
       { step: 'Application', weeks: 'Month 2–6', body: 'Biometric appointment in Lisbon; residency cards issued.' },
     ],
+    eligibility: {
+      dependants: 'Spouse, children (incl. adult dependants in full-time study) and parents over 65 where genuinely dependent.',
+      requirements: [
+        'Non-EU/EEA/Swiss citizen at the time of application.',
+        'Clean criminal record — Portuguese and country-of-residence certificates, apostilled.',
+        'Proof of qualifying investment in an approved Portuguese fund.',
+        'Portuguese fiscal number (NIF) and a Portuguese bank account.',
+        'Valid health insurance covering Portugal for the family unit.',
+      ],
+    },
+    documents: [
+      'Passport with at least 12 months remaining validity.',
+      'Criminal record certificate (apostilled, ≤ 3 months old).',
+      'Proof of subscription to a qualifying Portuguese fund.',
+      'Portuguese fiscal number (NIF) and bank account statement.',
+      'Family-status documents — marriage and birth certificates, apostilled.',
+      'Health insurance certificate valid in Portugal.',
+    ],
+    visaFree: {
+      count: '180+ jurisdictions',
+      headline: 'Schengen Area on the same residency card, plus visa-free or visa-on-arrival access across the OECD.',
+      regions: ['Schengen Area (90/180)', 'United Kingdom', 'Japan', 'Singapore', 'Brazil'],
+    },
+    caseStudies: [
+      {
+        profile: 'US founder · post-exit · two school-age children',
+        brief: 'Sale proceeds in USD; family relocated to Lisbon for the academic year while preserving US tax residency for the open year.',
+        outcome: 'Residency cards issued in month 5; tax-residency switch deferred to year-end with a clean break-date.',
+      },
+      {
+        profile: 'UK PE partner · spouse and adult daughter',
+        brief: 'Post-Brexit clients seeking Schengen access without losing UK ordinary residence.',
+        outcome: 'Cards issued in month 6; family met the seven-day presence requirement comfortably across two short visits.',
+      },
+      {
+        profile: 'GCC family office · multi-generational',
+        brief: 'Patriarch, spouse, adult son and parents-in-law — coordinated alongside an existing Maltese MEIN file.',
+        outcome: 'Five residency cards issued in a single Lisbon appointment block, sequenced with the MEIN naturalisation clock.',
+      },
+    ],
   },
   {
     slug: 'malta-mein',

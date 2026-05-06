@@ -14075,6 +14075,673 @@ span {
 }
 .ht-program__related-card:hover .ht-program__related-link { gap: 12px; }
 
+/* ============================================================== */
+/* PROGRAM SPINE — page-0 contents card + 9 full-screen chapters    */
+/* ============================================================== */
+
+/* Mounted by ProgramSpine.jsx via a useEffect that adds .has-program-spine
+   to <html>; that scopes scroll-snap and smooth-scroll to this page only. */
+html.has-program-spine {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.has-program-spine {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+}
+
+.ht-spine {
+  --ht-spine-band-h: 56px;
+  --ht-spine-band-top: 92px;
+  --ht-spine-bg: #FAF6EE;
+  --ht-spine-bg-alt: #F4EFE6;
+  --ht-spine-ink: #0B0F14;
+  --ht-spine-gold: #C9A86A;
+  --ht-spine-gold-deep: #A07F44;
+  --ht-spine-stone: #6B6257;
+  --ht-spine-hair: rgba(11, 15, 20, 0.16);
+  background: var(--ht-spine-bg);
+  color: var(--ht-spine-ink);
+}
+@media (max-width: 991px) {
+  .ht-spine { --ht-spine-band-top: 76px; --ht-spine-band-h: 48px; }
+}
+
+/* --- Contents page (page 0) ---------------------------------------- */
+
+.ht-spine__contents {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-margin-top: var(--ht-spine-band-top);
+  display: flex;
+  align-items: center;
+  background: var(--ht-spine-bg);
+  padding: 80px 0;
+}
+.ht-spine__contents-card {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 64px 48px;
+  background: #FFFFFF;
+  border: 1px solid var(--ht-spine-hair);
+}
+@media (max-width: 767px) {
+  .ht-spine__contents-card { padding: 36px 22px 32px; }
+}
+.ht-spine__contents-eyebrow {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--ht-spine-gold-deep);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.ht-spine__contents-heading {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin: 0 0 8px;
+  color: var(--ht-spine-ink);
+}
+.ht-spine__contents-heading em {
+  font-style: italic;
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__contents-deck {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  text-align: center;
+  color: var(--ht-spine-stone);
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 auto 26px;
+  max-width: 48ch;
+}
+.ht-spine__contents-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  border-top: 1px solid var(--ht-spine-hair);
+}
+.ht-spine__contents-list li {
+  border-bottom: 1px solid var(--ht-spine-hair);
+}
+.ht-spine__contents-link {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 4px;
+  text-decoration: none;
+  color: var(--ht-spine-ink);
+  transition: color 0.18s ease, background 0.18s ease;
+}
+.ht-spine__contents-link:hover,
+.ht-spine__contents-link:focus-visible {
+  color: var(--ht-spine-gold-deep);
+  background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 70%);
+  outline: none;
+}
+.ht-spine__contents-numeral {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ht-spine-gold-deep);
+  font-size: 16px;
+  min-width: 40px;
+}
+.ht-spine__contents-label {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 19px;
+}
+.ht-spine__contents-leader {
+  flex: 1;
+  align-self: end;
+  margin: 0 8px 6px;
+  border-bottom: 1px dotted var(--ht-spine-hair);
+}
+.ht-spine__contents-link:hover .ht-spine__contents-leader,
+.ht-spine__contents-link:focus-visible .ht-spine__contents-leader {
+  border-bottom-color: var(--ht-spine-gold-deep);
+}
+.ht-spine__contents-page {
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ht-spine-stone);
+  min-width: 28px;
+  text-align: right;
+}
+.ht-spine__contents-link:hover .ht-spine__contents-page,
+.ht-spine__contents-link:focus-visible .ht-spine__contents-page {
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__contents-begin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--ht-spine-gold-deep);
+  font-size: 16px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: gap 0.18s ease, border-color 0.18s ease;
+}
+.ht-spine__contents-begin:hover { gap: 12px; border-bottom-color: var(--ht-spine-gold-deep); }
+
+/* --- Chapter section (100vh slabs) --------------------------------- */
+
+.ht-spine__chapter {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-margin-top: var(--ht-spine-band-top);
+  display: flex;
+  flex-direction: column;
+  background: var(--ht-spine-bg);
+  border-top: 1px solid var(--ht-spine-hair);
+}
+.ht-spine__chapter:nth-of-type(2n) { background: var(--ht-spine-bg-alt); }
+
+.ht-spine__band {
+  position: sticky;
+  top: var(--ht-spine-band-top);
+  z-index: 30;
+  background: var(--ht-spine-ink);
+  color: var(--ht-spine-bg);
+  border-top: 1px solid var(--ht-spine-gold);
+  border-bottom: 1px solid var(--ht-spine-gold);
+  height: var(--ht-spine-band-h);
+}
+.ht-spine__band-row {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.ht-spine__band-numeral {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0;
+  color: var(--ht-spine-gold);
+  text-transform: none;
+  min-width: 28px;
+}
+.ht-spine__band-sep {
+  color: rgba(244, 239, 230, 0.45);
+  letter-spacing: 0;
+}
+.ht-spine__band-label {
+  font-weight: 600;
+}
+.ht-spine__band-counter {
+  margin-left: auto;
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(244, 239, 230, 0.65);
+}
+
+.ht-spine__chapter-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0 100px;
+}
+@media (max-width: 991px) {
+  .ht-spine__chapter-body { padding: 56px 0 72px; }
+}
+
+/* --- Headings/body shared inside chapters -------------------------- */
+
+.ht-spine__heading {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--ht-spine-ink);
+  margin: 0 0 18px;
+}
+.ht-spine__heading em { font-style: italic; color: var(--ht-spine-gold-deep); }
+.ht-spine__lede {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.4;
+  color: var(--ht-spine-gold-deep);
+  margin: 0 0 18px;
+  max-width: 38ch;
+}
+.ht-spine__body {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ht-spine-ink);
+  margin: 0 0 12px;
+  max-width: 64ch;
+}
+
+/* --- Two-column grid (lead + aside) -------------------------------- */
+
+.ht-spine__grid--lead-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 991px) {
+  .ht-spine__grid--lead-aside { grid-template-columns: 1fr; gap: 32px; }
+}
+.ht-spine__lead { min-width: 0; }
+.ht-spine__aside {
+  border-left: 1px solid var(--ht-spine-hair);
+  padding: 4px 0 4px 24px;
+}
+@media (max-width: 991px) {
+  .ht-spine__aside {
+    border-left: none;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--ht-spine-hair);
+  }
+}
+.ht-spine__aside-title {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ht-spine-gold-deep);
+  margin: 0 0 14px;
+}
+.ht-spine__aside-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ht-spine-ink);
+}
+.ht-spine__aside-list li {
+  position: relative;
+  padding: 8px 0 8px 22px;
+  border-bottom: 1px solid var(--ht-spine-hair);
+}
+.ht-spine__aside-list li:last-child { border-bottom: none; }
+.ht-spine__aside-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--ht-spine-gold-deep);
+  font-family: "Cormorant Garamond", serif;
+}
+.ht-spine__aside-list--compact li {
+  padding: 6px 0 6px 22px;
+  font-size: 13px;
+}
+
+/* --- Investment chapter --------------------------------------------- */
+
+.ht-spine__investment {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 991px) {
+  .ht-spine__investment { grid-template-columns: 1fr; gap: 32px; }
+}
+.ht-spine__fact-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ht-spine__fact-hero-label {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__fact-hero-value {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ht-spine-ink);
+}
+.ht-spine__fact-hero-tag {
+  font-family: "Manrope", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ht-spine-stone);
+  margin-top: 4px;
+}
+.ht-spine__fact-sidecar {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--ht-spine-hair);
+}
+.ht-spine__fact-sidecar-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ht-spine-hair);
+}
+@media (max-width: 575px) {
+  .ht-spine__fact-sidecar-item { grid-template-columns: 1fr; gap: 4px; }
+}
+.ht-spine__fact-sidecar-label {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__fact-sidecar-value {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ht-spine-ink);
+}
+
+/* --- Benefits chapter (3-up) --------------------------------------- */
+
+.ht-spine__benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 991px) {
+  .ht-spine__benefits-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+.ht-spine__benefit {
+  background: #FFFFFF;
+  border: 1px solid var(--ht-spine-hair);
+  padding: 28px 28px 32px;
+}
+.ht-spine__benefit-kicker {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ht-spine-gold-deep);
+  margin-bottom: 10px;
+  display: block;
+}
+.ht-spine__benefit-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  color: var(--ht-spine-ink);
+}
+.ht-spine__benefit-body {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ht-spine-ink);
+  margin: 0;
+}
+
+/* --- Documents chapter --------------------------------------------- */
+
+.ht-spine__docs-list {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--ht-spine-hair);
+}
+@media (max-width: 767px) {
+  .ht-spine__docs-list { grid-template-columns: 1fr; }
+}
+.ht-spine__docs-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ht-spine-hair);
+}
+.ht-spine__docs-item:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--ht-spine-hair); }
+.ht-spine__docs-item:nth-child(even) { padding-left: 24px; }
+@media (max-width: 767px) {
+  .ht-spine__docs-item:nth-child(odd) { border-right: none; padding-right: 0; }
+  .ht-spine__docs-item:nth-child(even) { padding-left: 0; }
+}
+.ht-spine__docs-num {
+  font-family: ui-monospace, "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ht-spine-gold-deep);
+  min-width: 28px;
+}
+.ht-spine__docs-text {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ht-spine-ink);
+}
+
+/* --- Process / timeline chapter ------------------------------------ */
+
+.ht-spine__timeline {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+.ht-spine__timeline-item {
+  display: grid;
+  grid-template-columns: 60px 220px 1fr;
+  column-gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid var(--ht-spine-hair);
+  align-items: baseline;
+}
+.ht-spine__timeline-item:last-child { border-bottom: 1px solid var(--ht-spine-hair); }
+@media (max-width: 767px) {
+  .ht-spine__timeline-item { grid-template-columns: 40px 1fr; row-gap: 6px; }
+  .ht-spine__timeline-meta { grid-column: 2; }
+  .ht-spine__timeline-body { grid-column: 2; }
+}
+.ht-spine__timeline-num {
+  font-family: ui-monospace, "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__timeline-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ht-spine__timeline-step {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--ht-spine-ink);
+}
+.ht-spine__timeline-weeks {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__timeline-body {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ht-spine-ink);
+  margin: 0;
+}
+
+/* --- Visa-Free big figure ------------------------------------------ */
+
+.ht-spine__big-figure {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(60px, 9vw, 112px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ht-spine-gold-deep);
+  margin: 0 0 18px;
+}
+
+/* --- Case studies -------------------------------------------------- */
+
+.ht-spine__cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 28px;
+}
+@media (max-width: 991px) {
+  .ht-spine__cases-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+.ht-spine__case {
+  background: #FFFFFF;
+  border: 1px solid var(--ht-spine-hair);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ht-spine__case-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__case-profile {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-spine-ink);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.ht-spine__case-brief {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ht-spine-ink);
+  margin: 0;
+}
+.ht-spine__case-outcome {
+  margin: auto 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--ht-spine-hair);
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ht-spine-stone);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ht-spine__case-outcome-label {
+  font-family: "Manrope", sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ht-spine-gold-deep);
+}
+
+/* --- Licenses ------------------------------------------------------ */
+
+.ht-spine__licenses {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 28px;
+}
+@media (max-width: 991px) {
+  .ht-spine__licenses { grid-template-columns: 1fr; gap: 20px; }
+}
+.ht-spine__license {
+  border: 1px solid var(--ht-spine-hair);
+  padding: 22px 24px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ht-spine__license-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 1px solid var(--ht-spine-hair);
+  padding-bottom: 12px;
+}
+.ht-spine__license-regulator {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ht-spine-ink);
+}
+.ht-spine__license-ref {
+  font-family: ui-monospace, "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ht-spine-gold-deep);
+}
+.ht-spine__license-body {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ht-spine-ink);
+  margin: 0;
+}
+
+/* --- Fallback panel ------------------------------------------------ */
+
+.ht-spine__fallback { max-width: 56ch; }
+.ht-spine__fallback-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ht-spine-gold-deep);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ht-spine-gold-deep);
+  padding-bottom: 2px;
+  transition: gap 0.18s ease;
+}
+.ht-spine__fallback-link:hover { gap: 12px; }
+
 /* --- Brief panel (calendar-first hero CTA) -------------------------------- */
 /* Sits on the dark editorial breadcrumb as a cream card. Three weekday
    slots, link-out for "another time", NDA-first microcopy. */
