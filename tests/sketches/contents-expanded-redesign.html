@@ -268,6 +268,62 @@
     .i01-list .label { font-size: 16px; }
   }
 
+  /* ====================================================================
+     IDEA 02 — Phased trio (3×3, grouped by phase)
+     ==================================================================== */
+  .i02-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .i02-col { padding: 18px 22px 18px; border-right: 1px solid var(--hairline); }
+  .i02-col:last-child { border-right: 0; }
+  .i02-col__phase {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--hairline-2);
+  }
+  .i02-col__phase-label {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-weight: 400;
+    font-size: 17px; color: var(--gold-deep);
+    letter-spacing: 0.01em;
+  }
+  .i02-col__phase-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.22em;
+    color: var(--stone); text-transform: uppercase;
+  }
+  .i02-col ol { list-style: none; margin: 0; padding: 6px 0 0; }
+  .i02-col li { border-bottom: 1px dotted var(--hairline); }
+  .i02-col li:last-child { border-bottom: 0; }
+  .i02-col a {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    align-items: baseline;
+    gap: 10px;
+    padding: 9px 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.18s ease;
+  }
+  .i02-col a:hover { color: var(--gold-deep); }
+  .i02-col .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-size: 14px; color: var(--gold-deep);
+  }
+  .i02-col .label {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px; line-height: 1.25;
+  }
+  @media (max-width: 760px) {
+    .i02-grid { grid-template-columns: 1fr; }
+    .i02-col { border-right: 0; border-bottom: 1px solid var(--hairline); }
+    .i02-col:last-child { border-bottom: 0; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -383,6 +439,70 @@
           <li><a><span class="num">VIII</span><span class="label">Case Studies</span><span class="ref">GV-H</span></a></li>
           <li><a><span class="num">IX</span><span class="label">Our Licenses</span><span class="ref">GV-I</span></a></li>
         </ol>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 02 ===================== -->
+    <article class="idea" id="i02">
+      <p class="idea__num">II — Phased trio</p>
+      <h2>Three groups of three: <em>Orientation</em>, <em>Substance</em>, <em>Evidence</em></h2>
+      <p class="idea__why">
+        Nine flat rows pretend every chapter weighs the same. Group them
+        the way the engagement actually moves —
+        <em>Orientation</em> (About, Investment, Benefits) →
+        <em>Substance</em> (Eligibility, Documents, Process) →
+        <em>Evidence</em> (Visa-Free, Case Studies, Licenses) — and
+        suddenly the contents page tells the reader what the dossier is
+        for, not just where to click.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~220 px on desktop. Same nine anchors, but framed by three editorial phase headers that double as anchor-able micro-landmarks. Mobile collapses to a single column with the same three headings.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Three columns separated by hairlines; phase header in italic Cormorant + monospace tag (<code>I–III</code> / <code>IV–VI</code> / <code>VII–IX</code>).</dd>
+        <dt>Active</dt><dd>Hover lifts the chapter to gold; phase headers are non-interactive labels, not links.</dd>
+        <dt>Mobile</dt><dd>Stacks vertically ≤ 760 px; phase headers stay, hairlines flip from vertical to horizontal.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · 3 phases</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i02-grid">
+          <div class="i02-col">
+            <div class="i02-col__phase">
+              <span class="i02-col__phase-label">Orientation</span>
+              <span class="i02-col__phase-tag">I–III</span>
+            </div>
+            <ol>
+              <li><a><span class="num">I</span><span class="label">About</span></a></li>
+              <li><a><span class="num">II</span><span class="label">Investment</span></a></li>
+              <li><a><span class="num">III</span><span class="label">Benefits</span></a></li>
+            </ol>
+          </div>
+          <div class="i02-col">
+            <div class="i02-col__phase">
+              <span class="i02-col__phase-label">Substance</span>
+              <span class="i02-col__phase-tag">IV–VI</span>
+            </div>
+            <ol>
+              <li><a><span class="num">IV</span><span class="label">Eligibility</span></a></li>
+              <li><a><span class="num">V</span><span class="label">Documents</span></a></li>
+              <li><a><span class="num">VI</span><span class="label">Process</span></a></li>
+            </ol>
+          </div>
+          <div class="i02-col">
+            <div class="i02-col__phase">
+              <span class="i02-col__phase-label">Evidence</span>
+              <span class="i02-col__phase-tag">VII–IX</span>
+            </div>
+            <ol>
+              <li><a><span class="num">VII</span><span class="label">Visa-Free Countries</span></a></li>
+              <li><a><span class="num">VIII</span><span class="label">Case Studies</span></a></li>
+              <li><a><span class="num">IX</span><span class="label">Our Licenses</span></a></li>
+            </ol>
+          </div>
+        </div>
       </div>
     </article>
 
