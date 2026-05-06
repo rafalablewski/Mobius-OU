@@ -14093,7 +14093,7 @@ html.has-program-spine {
 }
 
 .ht-spine {
-  --ht-spine-band-h: 56px;
+  --ht-spine-band-h: 40px;
   --ht-spine-band-top: 92px;
   --ht-spine-bg: #FAF6EE;
   --ht-spine-bg-alt: #F4EFE6;
@@ -14106,19 +14106,20 @@ html.has-program-spine {
   color: var(--ht-spine-ink);
 }
 @media (max-width: 991px) {
-  .ht-spine { --ht-spine-band-top: 76px; --ht-spine-band-h: 48px; }
+  .ht-spine { --ht-spine-band-top: 76px; --ht-spine-band-h: 36px; }
 }
 
 /* --- Contents page (page 0) ---------------------------------------- */
 
+/* Page-0 / front matter — sized to its card, not a full 100vh slab.
+   That avoids the empty cream gap between hero and chapter I that comes
+   from centring a short card inside a viewport-tall section. */
 .ht-spine__contents {
-  min-height: 100vh;
-  scroll-snap-align: start;
-  scroll-margin-top: var(--ht-spine-band-top);
-  display: flex;
-  align-items: center;
   background: var(--ht-spine-bg);
-  padding: 80px 0;
+  padding: 64px 0 80px;
+}
+@media (max-width: 991px) {
+  .ht-spine__contents { padding: 40px 0 56px; }
 }
 .ht-spine__contents-card {
   max-width: 720px;
@@ -14251,23 +14252,29 @@ html.has-program-spine {
 }
 .ht-spine__chapter:nth-of-type(2n) { background: var(--ht-spine-bg-alt); }
 
+/* Slim, "horizontal" sticky band — a hairline, not an ink slab. Sits on the
+   chapter's own cream background; the gold rule below is the only weight. */
 .ht-spine__band {
   position: sticky;
   top: var(--ht-spine-band-top);
   z-index: 30;
-  background: var(--ht-spine-ink);
-  color: var(--ht-spine-bg);
-  border-top: 1px solid var(--ht-spine-gold);
+  background: rgba(250, 246, 238, 0.92);
+  -webkit-backdrop-filter: saturate(160%) blur(8px);
+          backdrop-filter: saturate(160%) blur(8px);
+  color: var(--ht-spine-ink);
   border-bottom: 1px solid var(--ht-spine-gold);
   height: var(--ht-spine-band-h);
+}
+.ht-spine__chapter:nth-of-type(2n) .ht-spine__band {
+  background: rgba(244, 239, 230, 0.92);
 }
 .ht-spine__band-row {
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   font-family: "Manrope", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -14275,41 +14282,40 @@ html.has-program-spine {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 0;
-  color: var(--ht-spine-gold);
+  color: var(--ht-spine-gold-deep);
   text-transform: none;
-  min-width: 28px;
+  min-width: 22px;
 }
 .ht-spine__band-sep {
-  color: rgba(244, 239, 230, 0.45);
+  color: var(--ht-spine-hair);
   letter-spacing: 0;
 }
 .ht-spine__band-label {
   font-weight: 600;
+  color: var(--ht-spine-ink);
 }
 .ht-spine__band-counter {
   margin-left: auto;
   font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.18em;
-  color: rgba(244, 239, 230, 0.65);
+  color: var(--ht-spine-stone);
 }
 
+/* Body sits flush below the band — no vertical centering, no gap. */
 .ht-spine__chapter-body {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 0 100px;
+  padding: 48px 0 80px;
 }
 @media (max-width: 991px) {
-  .ht-spine__chapter-body { padding: 56px 0 72px; }
+  .ht-spine__chapter-body { padding: 32px 0 56px; }
 }
 
-/* --- Headings/body shared inside chapters -------------------------- */
+/* --- About chapter (At a glance / What we actually think) ----------- */
 
-.ht-spine__heading {
+.ht-spine__about-h {
   font-family: "Cormorant Garamond", serif;
   font-weight: 400;
   font-size: clamp(28px, 3.6vw, 40px);
@@ -14318,16 +14324,13 @@ html.has-program-spine {
   color: var(--ht-spine-ink);
   margin: 0 0 18px;
 }
-.ht-spine__heading em { font-style: italic; color: var(--ht-spine-gold-deep); }
-.ht-spine__lede {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(20px, 2.4vw, 26px);
-  line-height: 1.4;
+.ht-spine__about-sub {
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
   color: var(--ht-spine-gold-deep);
-  margin: 0 0 18px;
-  max-width: 38ch;
+  margin: 28px 0 14px;
 }
 .ht-spine__body {
   font-family: "Newsreader", Georgia, serif;
@@ -14337,63 +14340,29 @@ html.has-program-spine {
   margin: 0 0 12px;
   max-width: 64ch;
 }
-
-/* --- Two-column grid (lead + aside) -------------------------------- */
-
-.ht-spine__grid--lead-aside {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  gap: 56px;
-  align-items: start;
-}
-@media (max-width: 991px) {
-  .ht-spine__grid--lead-aside { grid-template-columns: 1fr; gap: 32px; }
-}
-.ht-spine__lead { min-width: 0; }
-.ht-spine__aside {
-  border-left: 1px solid var(--ht-spine-hair);
-  padding: 4px 0 4px 24px;
-}
-@media (max-width: 991px) {
-  .ht-spine__aside {
-    border-left: none;
-    padding: 24px 0 0;
-    border-top: 1px solid var(--ht-spine-hair);
-  }
-}
-.ht-spine__aside-title {
-  font-family: "Manrope", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ht-spine-gold-deep);
-  margin: 0 0 14px;
-}
-.ht-spine__aside-list {
+.ht-spine__notes {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-family: "Manrope", sans-serif;
-  font-size: 14px;
-  line-height: 1.55;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
   color: var(--ht-spine-ink);
+  max-width: 68ch;
 }
-.ht-spine__aside-list li {
+.ht-spine__notes li {
   position: relative;
-  padding: 8px 0 8px 22px;
+  padding: 10px 0 10px 28px;
   border-bottom: 1px solid var(--ht-spine-hair);
 }
-.ht-spine__aside-list li:last-child { border-bottom: none; }
-.ht-spine__aside-list li::before {
+.ht-spine__notes li:last-child { border-bottom: none; }
+.ht-spine__notes li::before {
   content: "—";
   position: absolute;
   left: 0;
+  top: 10px;
   color: var(--ht-spine-gold-deep);
   font-family: "Cormorant Garamond", serif;
-}
-.ht-spine__aside-list--compact li {
-  padding: 6px 0 6px 22px;
-  font-size: 13px;
 }
 
 /* --- Investment chapter --------------------------------------------- */
@@ -14506,46 +14475,6 @@ html.has-program-spine {
   margin: 0;
 }
 
-/* --- Documents chapter --------------------------------------------- */
-
-.ht-spine__docs-list {
-  list-style: none;
-  padding: 0;
-  margin: 24px 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-top: 1px solid var(--ht-spine-hair);
-}
-@media (max-width: 767px) {
-  .ht-spine__docs-list { grid-template-columns: 1fr; }
-}
-.ht-spine__docs-item {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--ht-spine-hair);
-}
-.ht-spine__docs-item:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--ht-spine-hair); }
-.ht-spine__docs-item:nth-child(even) { padding-left: 24px; }
-@media (max-width: 767px) {
-  .ht-spine__docs-item:nth-child(odd) { border-right: none; padding-right: 0; }
-  .ht-spine__docs-item:nth-child(even) { padding-left: 0; }
-}
-.ht-spine__docs-num {
-  font-family: ui-monospace, "JetBrains Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--ht-spine-gold-deep);
-  min-width: 28px;
-}
-.ht-spine__docs-text {
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--ht-spine-ink);
-}
-
 /* --- Process / timeline chapter ------------------------------------ */
 
 .ht-spine__timeline {
@@ -14599,138 +14528,22 @@ html.has-program-spine {
   margin: 0;
 }
 
-/* --- Visa-Free big figure ------------------------------------------ */
-
-.ht-spine__big-figure {
-  display: block;
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(60px, 9vw, 112px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ht-spine-gold-deep);
-  margin: 0 0 18px;
-}
-
-/* --- Case studies -------------------------------------------------- */
-
-.ht-spine__cases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 28px;
-}
-@media (max-width: 991px) {
-  .ht-spine__cases-grid { grid-template-columns: 1fr; gap: 20px; }
-}
-.ht-spine__case {
-  background: #FFFFFF;
-  border: 1px solid var(--ht-spine-hair);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.ht-spine__case-num {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 24px;
-  color: var(--ht-spine-gold-deep);
-}
-.ht-spine__case-profile {
-  font-family: "Manrope", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ht-spine-ink);
-  margin: 0;
-  line-height: 1.5;
-  font-weight: 600;
-}
-.ht-spine__case-brief {
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ht-spine-ink);
-  margin: 0;
-}
-.ht-spine__case-outcome {
-  margin: auto 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--ht-spine-hair);
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--ht-spine-stone);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.ht-spine__case-outcome-label {
-  font-family: "Manrope", sans-serif;
-  font-size: 9.5px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ht-spine-gold-deep);
-}
-
-/* --- Licenses ------------------------------------------------------ */
-
-.ht-spine__licenses {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 28px;
-}
-@media (max-width: 991px) {
-  .ht-spine__licenses { grid-template-columns: 1fr; gap: 20px; }
-}
-.ht-spine__license {
-  border: 1px solid var(--ht-spine-hair);
-  padding: 22px 24px;
-  background: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.ht-spine__license-head {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  border-bottom: 1px solid var(--ht-spine-hair);
-  padding-bottom: 12px;
-}
-.ht-spine__license-regulator {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 500;
-  font-size: 18px;
-  color: var(--ht-spine-ink);
-}
-.ht-spine__license-ref {
-  font-family: ui-monospace, "JetBrains Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ht-spine-gold-deep);
-}
-.ht-spine__license-body {
-  font-family: "Newsreader", Georgia, serif;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ht-spine-ink);
-  margin: 0;
-}
-
-/* --- Fallback panel ------------------------------------------------ */
+/* --- Fallback panel (chapters left blank by design) ----------------- */
 
 .ht-spine__fallback { max-width: 56ch; }
+.ht-spine__fallback-body {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.4;
+  color: var(--ht-spine-stone);
+  margin: 0 0 16px;
+}
 .ht-spine__fallback-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 20px;
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-size: 18px;
