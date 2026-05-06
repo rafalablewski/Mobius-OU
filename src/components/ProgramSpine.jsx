@@ -141,6 +141,66 @@ const CHAPTER_RENDERERS = {
   licenses: FallbackPanel,
 };
 
+function ContentsIconDefs() {
+  return (
+    <svg
+      width="0"
+      height="0"
+      style={{ position: 'absolute' }}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <symbol id="ic-about" viewBox="0 0 18 18">
+          <circle cx="9" cy="9" r="7" />
+          <circle className="ht-spine__contents-icon-solid" cx="9" cy="5.6" r="0.7" />
+          <line x1="9" y1="8.2" x2="9" y2="13" />
+        </symbol>
+        <symbol id="ic-investment" viewBox="0 0 18 18">
+          <circle cx="9" cy="9" r="7" />
+          <path d="M6.2 6.6 Q9 4.8 11.8 6.6" />
+          <path d="M6.2 11.4 Q9 13.2 11.8 11.4" />
+          <line x1="9" y1="3.5" x2="9" y2="14.5" />
+        </symbol>
+        <symbol id="ic-benefits" viewBox="0 0 18 18">
+          <path d="M9 2.2 L10.65 6.55 L15.4 6.85 L11.75 9.85 L13.05 14.5 L9 11.85 L4.95 14.5 L6.25 9.85 L2.6 6.85 L7.35 6.55 Z" />
+        </symbol>
+        <symbol id="ic-eligibility" viewBox="0 0 18 18">
+          <circle cx="5" cy="9" r="3" />
+          <line x1="8" y1="9" x2="16" y2="9" />
+          <line x1="13" y1="9" x2="13" y2="11.7" />
+          <line x1="15.5" y1="9" x2="15.5" y2="10.8" />
+        </symbol>
+        <symbol id="ic-documents" viewBox="0 0 18 18">
+          <path d="M5 4 L11 4 L13.2 6.2 L13.2 14 L5 14 Z" />
+          <path d="M11 4 L11 6.2 L13.2 6.2" />
+          <line x1="6.6" y1="9" x2="11.6" y2="9" />
+          <line x1="6.6" y1="11.4" x2="11.6" y2="11.4" />
+        </symbol>
+        <symbol id="ic-process" viewBox="0 0 18 18">
+          <line x1="3" y1="9" x2="15" y2="9" />
+          <circle className="ht-spine__contents-icon-solid" cx="3.5" cy="9" r="1.4" />
+          <circle cx="9" cy="9" r="1.4" />
+          <circle cx="14.5" cy="9" r="1.4" />
+        </symbol>
+        <symbol id="ic-visa-free" viewBox="0 0 18 18">
+          <circle cx="9" cy="9" r="7" />
+          <ellipse cx="9" cy="9" rx="3" ry="7" />
+          <line x1="2" y1="9" x2="16" y2="9" />
+        </symbol>
+        <symbol id="ic-case-studies" viewBox="0 0 18 18">
+          <path d="M4 12.5 Q4 5.5 7.5 5 L7.5 7.2 Q5.8 7.4 5.8 9 L7.5 9 L7.5 12.5 Z" />
+          <path d="M11 12.5 Q11 5.5 14.5 5 L14.5 7.2 Q12.8 7.4 12.8 9 L14.5 9 L14.5 12.5 Z" />
+        </symbol>
+        <symbol id="ic-licenses" viewBox="0 0 18 18">
+          <path d="M9 2 L15 4 L15 9.2 Q15 13 9 16 Q3 13 3 9.2 L3 4 Z" />
+          <path d="M6.4 9.2 L8.1 10.9 L11.6 7.4" />
+        </symbol>
+      </defs>
+    </svg>
+  );
+}
+
 function ContentsPage() {
   const [open, setOpen] = useState(false);
   return (
@@ -148,6 +208,7 @@ function ContentsPage() {
       className={`ht-spine__contents${open ? ' is-open' : ''}`}
       id="contents"
     >
+      <ContentsIconDefs />
       <div className="container">
         <button
           type="button"
@@ -163,24 +224,44 @@ function ContentsPage() {
           </span>
         </button>
         <ol
-          className="ht-spine__contents-list"
+          className="ht-spine__contents-grid"
           id="contents-list"
           hidden={!open}
         >
-          {CHAPTER_DEFINITIONS.map((c, i) => (
-            <li key={c.id}>
+          {CHAPTER_DEFINITIONS.map((c) => (
+            <li key={c.id} className="ht-spine__contents-cell">
               <a
                 href={`#${c.id}`}
-                className="ht-spine__contents-link"
+                className="ht-spine__contents-cell-face"
                 onClick={() => setOpen(false)}
               >
+                <span className="ht-spine__contents-corner ht-spine__contents-corner--tl" aria-hidden="true" />
+                <span className="ht-spine__contents-corner ht-spine__contents-corner--br" aria-hidden="true" />
                 <span className="ht-spine__contents-numeral">{c.numeral}</span>
-                <span className="ht-spine__contents-label">{c.label}</span>
-                <span className="ht-spine__contents-leader" aria-hidden="true"></span>
-                <span className="ht-spine__contents-page">{pad2(i + 1)}</span>
+                <span className="ht-spine__contents-foot">
+                  <svg className="ht-spine__contents-icon" aria-hidden="true">
+                    <use href={`#ic-${c.id}`} />
+                  </svg>
+                  <span className="ht-spine__contents-label">{c.label}</span>
+                </span>
               </a>
             </li>
           ))}
+          <li
+            className="ht-spine__contents-cell ht-spine__contents-cell--colophon"
+            aria-hidden="true"
+          >
+            <span className="ht-spine__contents-cell-face">
+              <span className="ht-spine__contents-corner ht-spine__contents-corner--tl" aria-hidden="true" />
+              <span className="ht-spine__contents-corner ht-spine__contents-corner--br" aria-hidden="true" />
+              <span className="ht-spine__contents-numeral">·</span>
+              <span className="ht-spine__contents-foot">
+                <span className="ht-spine__contents-label">
+                  Mobius Dossier · Edition 2026.Q1 · printed by hand for the family.
+                </span>
+              </span>
+            </span>
+          </li>
         </ol>
       </div>
     </section>

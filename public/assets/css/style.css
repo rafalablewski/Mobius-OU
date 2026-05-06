@@ -14177,65 +14177,129 @@ html.has-program-spine {
   background: transparent;
   transition: background 0.18s ease, color 0.18s ease;
 }
-.ht-spine__contents-list {
+/* Letterpress mosaic — 5×2 hairline grid of nine chapter cells plus a
+   tenth colophon cell. Replaces the prior dotted-leader list. */
+.ht-spine__contents-grid {
   list-style: none;
   padding: 0;
   margin: 0 0 24px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid var(--ht-spine-hair);
 }
-.ht-spine__contents-list[hidden] { display: none; }
-.ht-spine__contents-list li {
+.ht-spine__contents-grid[hidden] { display: none; }
+.ht-spine__contents-cell {
+  display: flex;
+  border-right: 1px solid var(--ht-spine-hair);
   border-bottom: 1px solid var(--ht-spine-hair);
 }
-.ht-spine__contents-link {
+.ht-spine__contents-cell:nth-child(5n) { border-right: 0; }
+.ht-spine__contents-cell:nth-child(n+6) { border-bottom: 0; }
+.ht-spine__contents-cell-face {
+  position: relative;
   display: flex;
-  align-items: baseline;
-  gap: 14px;
-  padding: 12px 4px;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 18px 14px 16px;
   text-decoration: none;
   color: var(--ht-spine-ink);
-  transition: color 0.18s ease, background 0.18s ease;
+  transition: background 0.18s ease;
+  min-height: 110px;
 }
-.ht-spine__contents-link:hover,
-.ht-spine__contents-link:focus-visible {
-  color: var(--ht-spine-gold-deep);
-  background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 70%);
-  outline: none;
+a.ht-spine__contents-cell-face:hover {
+  background: rgba(201, 168, 106, 0.08);
+}
+a.ht-spine__contents-cell-face:focus-visible {
+  background: rgba(201, 168, 106, 0.08);
+  outline: 2px solid var(--ht-spine-gold-deep);
+  outline-offset: -2px;
 }
 .ht-spine__contents-numeral {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 400;
-  color: var(--ht-spine-gold-deep);
   font-size: 16px;
-  min-width: 40px;
+  color: var(--ht-spine-gold-deep);
+  letter-spacing: 0.02em;
+}
+.ht-spine__contents-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
 }
 .ht-spine__contents-label {
   font-family: "Cormorant Garamond", serif;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 17px;
+  line-height: 1.2;
 }
-.ht-spine__contents-leader {
-  flex: 1;
-  align-self: end;
-  margin: 0 8px 6px;
-  border-bottom: 1px dotted var(--ht-spine-hair);
+.ht-spine__contents-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--ht-spine-gold);
+  opacity: 0.55;
+  pointer-events: none;
 }
-.ht-spine__contents-link:hover .ht-spine__contents-leader,
-.ht-spine__contents-link:focus-visible .ht-spine__contents-leader {
-  border-bottom-color: var(--ht-spine-gold-deep);
+.ht-spine__contents-corner--tl {
+  top: 6px;
+  left: 6px;
+  border-right: 0;
+  border-bottom: 0;
 }
-.ht-spine__contents-page {
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
+.ht-spine__contents-corner--br {
+  bottom: 6px;
+  right: 6px;
+  border-left: 0;
+  border-top: 0;
+}
+.ht-spine__contents-cell--colophon { pointer-events: none; }
+.ht-spine__contents-cell--colophon .ht-spine__contents-cell-face {
+  background: linear-gradient(135deg, rgba(201, 168, 106, 0.06), transparent 65%);
+}
+.ht-spine__contents-cell--colophon .ht-spine__contents-numeral {
   color: var(--ht-spine-stone);
-  min-width: 28px;
-  text-align: right;
 }
-.ht-spine__contents-link:hover .ht-spine__contents-page,
-.ht-spine__contents-link:focus-visible .ht-spine__contents-page {
+.ht-spine__contents-cell--colophon .ht-spine__contents-label {
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ht-spine-stone);
+  line-height: 1.4;
+}
+.ht-spine__contents-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   color: var(--ht-spine-gold-deep);
+}
+.ht-spine__contents-icon-solid {
+  fill: currentColor;
+  stroke: none;
+}
+
+@media (max-width: 880px) {
+  .ht-spine__contents-grid { grid-template-columns: repeat(3, 1fr); }
+  .ht-spine__contents-cell {
+    border-right: 1px solid var(--ht-spine-hair);
+    border-bottom: 1px solid var(--ht-spine-hair);
+  }
+  .ht-spine__contents-cell:nth-child(5n) { border-right: 1px solid var(--ht-spine-hair); }
+  .ht-spine__contents-cell:nth-child(3n) { border-right: 0; }
+  .ht-spine__contents-cell:nth-child(n+6) { border-bottom: 1px solid var(--ht-spine-hair); }
+  .ht-spine__contents-cell:last-child { border-bottom: 0; }
+}
+@media (max-width: 540px) {
+  .ht-spine__contents-grid { grid-template-columns: repeat(2, 1fr); }
+  .ht-spine__contents-cell:nth-child(3n) { border-right: 1px solid var(--ht-spine-hair); }
+  .ht-spine__contents-cell:nth-child(2n) { border-right: 0; }
 }
 
 /* --- Chapter section ------------------------------------------------ */
