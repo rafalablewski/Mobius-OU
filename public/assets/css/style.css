@@ -14160,16 +14160,21 @@ span {
   padding: 22px 22px 18px;
 }
 
-/* Bigtime — stays Manrope-200 for visual focal point, but the surrounding
-   register is now monospace audit. */
+/* Bigtime — Fraunces italic 400, opsz 144 / SOFT 30. Same display register
+   as the page wordmark (.ht-wordmark) and the section headers, so the
+   numerals read as part of the dossier rather than as a UI display. */
 .ht-brief-panel__bigtime {
-  font-family: var(--ht-font-ui);
-  font-weight: 200;
-  font-size: clamp(56px, 22vw, 76px);
+  font-family: "Fraunces", "Cormorant Garamond", "Newsreader", Georgia, serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(60px, 22vw, 84px);
   line-height: 0.95;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   color: #FFF;
   margin: 0 0 6px;
+  font-feature-settings: "tnum" 1;
 }
 .ht-brief-panel__bigtime span { color: rgba(255, 255, 255, 0.4); }
 .ht-brief-panel__bigmeta {
