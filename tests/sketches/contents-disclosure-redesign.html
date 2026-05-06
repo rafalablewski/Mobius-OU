@@ -340,6 +340,116 @@
     font-family: "Cormorant Garamond", serif; font-size: 14px;
   }
 
+  /* ============================================================
+     Idea 04 — Stepper bar (9 connected nodes, journey register)
+     ============================================================ */
+  .m04-stepper {
+    position: relative; padding: 28px 0 22px;
+    border-top: 1px solid var(--hairline);
+  }
+  .m04-stepper::before {
+    content: ""; position: absolute;
+    left: 4%; right: 4%; top: 50%;
+    height: 1px; background: var(--gold); opacity: 0.5;
+  }
+  .m04-stepper__row {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(9, 1fr);
+    gap: 4px;
+  }
+  .m04-step {
+    display: flex; flex-direction: column; align-items: center;
+    text-decoration: none; color: var(--ink);
+    text-align: center; gap: 6px;
+  }
+  .m04-step .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 13px;
+    line-height: 1;
+  }
+  .m04-step .node {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--cream); border: 1.5px solid var(--gold);
+    box-shadow: 0 0 0 3px var(--cream);
+    transition: background 0.18s ease;
+  }
+  .m04-step:hover .node { background: var(--gold); }
+  .m04-step .label {
+    font-family: "Cormorant Garamond", serif; font-size: 12px;
+    line-height: 1.1; color: var(--stone);
+    max-width: 9ch; word-break: break-word;
+  }
+  .m04-step:hover .label { color: var(--gold-deep); }
+
+  /* ============================================================
+     Idea 05 — Audit doc-control mono table
+     ============================================================ */
+  .m05-table {
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    font-family: ui-monospace, "JetBrains Mono", monospace;
+    font-size: 10.5px; letter-spacing: 0.12em;
+  }
+  .m05-table__head, .m05-table__row {
+    display: grid;
+    grid-template-columns: 30px 1.6fr 1fr 36px 60px;
+    gap: 14px; padding: 8px 4px; align-items: center;
+    text-transform: uppercase;
+  }
+  .m05-table__head {
+    color: var(--gold-deep); font-weight: 600;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 9.5px;
+  }
+  .m05-table__row { border-bottom: 1px solid var(--hairline); color: var(--ink); }
+  .m05-table__row:last-child { border-bottom: 0; }
+  .m05-table__row:hover { background: rgba(201,168,106,0.06); }
+  .m05-table__row .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; color: var(--gold-deep);
+    letter-spacing: 0; text-transform: none;
+  }
+  .m05-table__row .chap {
+    font-family: "Cormorant Garamond", serif; font-size: 14px;
+    letter-spacing: 0; text-transform: none;
+  }
+  .m05-table__row .ref { color: var(--stone); }
+  .m05-table__row .pg { color: var(--stone); text-align: right; }
+  .m05-table__row .status {
+    display: inline-flex; align-items: center; gap: 5px;
+    color: var(--green); font-weight: 500;
+  }
+  .m05-table__row .status::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+  }
+
+  /* ============================================================
+     Idea 06 — Editorial running text (italic standfirst)
+     ============================================================ */
+  .m06-text {
+    padding: 18px 4px 4px;
+    border-top: 1px solid var(--hairline);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 19px; line-height: 1.55;
+    color: var(--ink); max-width: 64ch;
+  }
+  .m06-text a {
+    color: var(--ink); text-decoration: none;
+    font-style: italic;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.18s ease, color 0.18s ease;
+  }
+  .m06-text a:hover { color: var(--gold-deep); border-bottom-color: var(--gold); }
+  .m06-text .num {
+    font-style: italic; color: var(--gold-deep);
+    font-weight: 500; padding-right: 4px;
+  }
+  .m06-text .sep {
+    color: var(--gold); padding: 0 6px;
+    font-style: normal;
+  }
+
   /* footer */
   footer.outro {
     margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--hairline);
@@ -680,6 +790,255 @@
           <a class="m03-pill" href="#"><span class="num">VIII</span><span class="label">Case Studies</span></a>
           <a class="m03-pill" href="#"><span class="num">IX</span><span class="label">Licenses</span></a>
         </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 04 ===================== -->
+<article class="idea" id="i04">
+  <p class="idea__num">IV — Stepper bar</p>
+  <h2>Nine connected nodes — <em>a journey, not a list</em></h2>
+  <p class="idea__why">
+    Re-read the chapter sequence as a process. A 1 px gold rule across
+    the disclosure, with nine ringed nodes evenly spaced; italic Roman
+    numeral above each, italic chapter label below. Reads as a process
+    indicator — closer to the doc-control register on the program page
+    than to a print TOC. Roughly 130 px tall.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~130 px. Reframes the chapters from "table of contents" to "stages in a dossier" — supports the program page's narrative arc more than its appendix-ness.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>9-column grid; centred gold rule passes through each node; node fills on hover.</dd>
+    <dt>Active</dt><dd>Hover ramps node to gold-fill and label to gold-deep; click → scroll + close.</dd>
+    <dt>Mobile</dt><dd>Becomes vertical at ≤ 700 px (rule rotates 90°, nodes stack).</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="22" class="hair"/>
+          <text x="14" y="22" class="ptag">CONTENTS · 9 CHAPTERS</text>
+          <circle cx="340" cy="17" r="6" class="gold"/>
+          <line x1="336" y1="17" x2="344" y2="17" class="gold"/>
+          <line x1="6" y1="40" x2="354" y2="40" class="hair"/>
+          <!-- gold rule + nodes -->
+          <line x1="22" y1="120" x2="338" y2="120" class="gold"/>
+          <g class="gold">
+            <circle cx="22"  cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="62"  cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="102" cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="142" cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="182" cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="222" cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="262" cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="302" cy="120" r="5" fill="#FBF7EF"/>
+            <circle cx="338" cy="120" r="5" fill="#FBF7EF"/>
+          </g>
+          <!-- numerals above -->
+          <g font-family="Cormorant Garamond" font-style="italic" font-size="12" fill="#A07F44" text-anchor="middle">
+            <text x="22"  y="100">I</text><text x="62"  y="100">II</text>
+            <text x="102" y="100">III</text><text x="142" y="100">IV</text>
+            <text x="182" y="100">V</text><text x="222" y="100">VI</text>
+            <text x="262" y="100">VII</text><text x="302" y="100">VIII</text>
+            <text x="338" y="100">IX</text>
+          </g>
+          <!-- labels below -->
+          <g font-family="Cormorant Garamond" font-size="9" fill="#6B6257" text-anchor="middle">
+            <text x="22"  y="140">About</text>
+            <text x="62"  y="140">Invest</text>
+            <text x="102" y="140">Benefits</text>
+            <text x="142" y="140">Eligibility</text>
+            <text x="182" y="140">Docs</text>
+            <text x="222" y="140">Process</text>
+            <text x="262" y="140">Visa-Free</text>
+            <text x="302" y="140">Cases</text>
+            <text x="338" y="140">Licenses</text>
+          </g>
+          <text x="180" y="180" class="pserif" text-anchor="middle">stepper / journey bar</text>
+        </svg>
+        <p class="sketch-caption">9 stages on a single rule</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · stepper bar</div>
+      <div class="mock__toggle">
+        <span class="eyebrow">Contents</span>
+        <span class="meta">9 chapters</span>
+        <span class="chev">–</span>
+      </div>
+      <div class="mock__stage" style="padding: 0 18px;">
+        <div class="m04-stepper">
+          <div class="m04-stepper__row">
+            <a class="m04-step" href="#"><span class="num">I</span><span class="node"></span><span class="label">About</span></a>
+            <a class="m04-step" href="#"><span class="num">II</span><span class="node"></span><span class="label">Investment</span></a>
+            <a class="m04-step" href="#"><span class="num">III</span><span class="node"></span><span class="label">Benefits</span></a>
+            <a class="m04-step" href="#"><span class="num">IV</span><span class="node"></span><span class="label">Eligibility</span></a>
+            <a class="m04-step" href="#"><span class="num">V</span><span class="node"></span><span class="label">Documents</span></a>
+            <a class="m04-step" href="#"><span class="num">VI</span><span class="node"></span><span class="label">Process</span></a>
+            <a class="m04-step" href="#"><span class="num">VII</span><span class="node"></span><span class="label">Visa-Free</span></a>
+            <a class="m04-step" href="#"><span class="num">VIII</span><span class="node"></span><span class="label">Cases</span></a>
+            <a class="m04-step" href="#"><span class="num">IX</span><span class="node"></span><span class="label">Licenses</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 05 ===================== -->
+<article class="idea" id="i05">
+  <p class="idea__num">V — Audit doc-control table</p>
+  <h2>Five mono columns: <em>chapter as filing reference</em></h2>
+  <p class="idea__why">
+    Reuse the program page's existing doc-control register. A monospace
+    five-column table — <code>NUM · CHAPTER · DOC-REF · PG · STATUS</code>
+    — with green-dot status pips. Treats every chapter like a filed
+    document, which the rest of the page already does for the program
+    itself. Most institutional / least decorative.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~360 px. Adds a doc-ref column (e.g. <code>SEC-I/01</code>) and a status indicator that the current row doesn't carry; lands the disclosure in the same audit-report register as the freshness badge round-three options.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Tabular grid in JetBrains Mono 10.5 px caps; serif italic numeral + serif chapter title interleaved with mono refs.</dd>
+    <dt>Active</dt><dd>Hover tints the row; current chapter status reads <code>ON-PAGE</code> (green dot), others <code>READY</code>.</dd>
+    <dt>Mobile</dt><dd>Doc-ref column hides ≤ 600 px; status pip stays.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="22" class="hair"/>
+          <text x="14" y="22" class="ptag">CONTENTS · 9 CHAPTERS</text>
+          <circle cx="340" cy="17" r="6" class="gold"/>
+          <line x1="336" y1="17" x2="344" y2="17" class="gold"/>
+          <line x1="6" y1="40" x2="354" y2="40" class="hair"/>
+          <!-- header -->
+          <text x="14" y="56" class="ptag">№ · CHAPTER · DOC-REF · PG · STATUS</text>
+          <line x1="6" y1="62" x2="354" y2="62" class="hair"/>
+          <!-- rows -->
+          <g font-family="JetBrains Mono" font-size="9" fill="#2A2A2A">
+            <text x="14" y="78" class="pserif">I</text>
+            <text x="40" y="78" class="pserif">About</text>
+            <text x="120" y="78" letter-spacing="1">SEC-I/01</text>
+            <text x="220" y="78">01</text>
+            <circle cx="260" cy="74" r="3" fill="#4F7A4A"/>
+            <text x="270" y="78" fill="#4F7A4A">READY</text>
+            <line x1="6" y1="84" x2="354" y2="84" class="hair"/>
+
+            <text x="14" y="100" class="pserif">II</text>
+            <text x="40" y="100" class="pserif">Investment</text>
+            <text x="120" y="100" letter-spacing="1">SEC-II/02</text>
+            <text x="220" y="100">02</text>
+            <circle cx="260" cy="96" r="3" fill="#4F7A4A"/>
+            <text x="270" y="100" fill="#4F7A4A">ON-PAGE</text>
+            <line x1="6" y1="106" x2="354" y2="106" class="hair"/>
+
+            <text x="14" y="122" class="pserif">III</text>
+            <text x="40" y="122" class="pserif">Benefits</text>
+            <text x="120" y="122" letter-spacing="1">SEC-III/03</text>
+            <text x="220" y="122">03</text>
+            <circle cx="260" cy="118" r="3" fill="#4F7A4A"/>
+            <text x="270" y="122" fill="#4F7A4A">READY</text>
+            <line x1="6" y1="128" x2="354" y2="128" class="hair"/>
+
+            <text x="14" y="144" class="pserif">IV</text>
+            <text x="40" y="144" class="pserif">Eligibility</text>
+            <text x="120" y="144" letter-spacing="1">SEC-IV/04</text>
+            <text x="220" y="144">04</text>
+            <circle cx="260" cy="140" r="3" fill="#4F7A4A"/>
+            <text x="270" y="144" fill="#4F7A4A">READY</text>
+            <line x1="6" y1="150" x2="354" y2="150" class="hair"/>
+
+            <text x="14" y="166" class="pserif">V</text>
+            <text x="40" y="166" class="pserif">Documents</text>
+            <text x="120" y="166" letter-spacing="1">SEC-V/05</text>
+            <text x="220" y="166">05</text>
+            <circle cx="260" cy="162" r="3" fill="#4F7A4A"/>
+            <text x="270" y="166" fill="#4F7A4A">READY</text>
+            <text x="14" y="186" class="pserif" font-size="11">…</text>
+          </g>
+          <text x="180" y="206" class="pserif" text-anchor="middle">audit register</text>
+        </svg>
+        <p class="sketch-caption">filing reference, not appendix</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · audit table</div>
+      <div class="mock__toggle">
+        <span class="eyebrow">Contents</span>
+        <span class="meta">9 chapters</span>
+        <span class="chev">–</span>
+      </div>
+      <div class="mock__stage" style="padding: 0 18px 18px;">
+        <div class="m05-table">
+          <div class="m05-table__head">
+            <span>№</span><span>Chapter</span><span>Doc-ref</span><span>Pg</span><span>Status</span>
+          </div>
+          <div class="m05-table__row"><span class="num">I</span><span class="chap">About</span><span class="ref">SEC-I/01</span><span class="pg">01</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">II</span><span class="chap">Investment</span><span class="ref">SEC-II/02</span><span class="pg">02</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">III</span><span class="chap">Benefits</span><span class="ref">SEC-III/03</span><span class="pg">03</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">IV</span><span class="chap">Eligibility</span><span class="ref">SEC-IV/04</span><span class="pg">04</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">V</span><span class="chap">Documents</span><span class="ref">SEC-V/05</span><span class="pg">05</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">VI</span><span class="chap">Process</span><span class="ref">SEC-VI/06</span><span class="pg">06</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">VII</span><span class="chap">Visa-Free</span><span class="ref">SEC-VII/07</span><span class="pg">07</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">VIII</span><span class="chap">Case Studies</span><span class="ref">SEC-VIII/08</span><span class="pg">08</span><span class="status">READY</span></div>
+          <div class="m05-table__row"><span class="num">IX</span><span class="chap">Licenses</span><span class="ref">SEC-IX/09</span><span class="pg">09</span><span class="status">READY</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ===================== IDEA 06 ===================== -->
+<article class="idea" id="i06">
+  <p class="idea__num">VI — Editorial running text</p>
+  <h2>One italic <em>standfirst</em> paragraph</h2>
+  <p class="idea__why">
+    Read like a magazine: chapters strung together as a single italic
+    Cormorant paragraph, each title an underline-on-hover link, with
+    gold dot separators between them. "<em>I</em> About <span style="color:var(--gold);font-style:normal">·</span> <em>II</em> Investment <span style="color:var(--gold);font-style:normal">·</span>
+    <em>III</em> Benefits …" Most editorial register; under 100 px.
+  </p>
+  <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~80 px. Drops the print-TOC apparatus entirely (no leaders, no page numbers, no per-row stripe). Closest cousin to a magazine's "in this issue" line.</div>
+  <dl class="idea__behavior">
+    <dt>Surface</dt><dd>Single Cormorant 19 px paragraph; italic numerals in gold-deep, titles inherit ink, gold dots between.</dd>
+    <dt>Active</dt><dd>Hover ramps title colour to gold-deep + underlines with a gold rule; click → scroll + close.</dd>
+    <dt>Mobile</dt><dd>Same paragraph, naturally wraps to 3–5 lines.</dd>
+  </dl>
+
+  <div class="pair">
+    <div>
+      <div class="sketch-frame">
+        <svg viewBox="0 0 360 220">
+          <rect x="6" y="6" width="348" height="22" class="hair"/>
+          <text x="14" y="22" class="ptag">CONTENTS · 9 CHAPTERS</text>
+          <circle cx="340" cy="17" r="6" class="gold"/>
+          <line x1="336" y1="17" x2="344" y2="17" class="gold"/>
+          <line x1="6" y1="40" x2="354" y2="40" class="hair"/>
+          <g font-family="Cormorant Garamond" font-style="italic" font-size="13" fill="#2A2A2A">
+            <text x="14" y="72"><tspan fill="#A07F44">I</tspan> About <tspan fill="#C9A86A">·</tspan> <tspan fill="#A07F44">II</tspan> Investment <tspan fill="#C9A86A">·</tspan></text>
+            <text x="14" y="98"><tspan fill="#A07F44">III</tspan> Benefits <tspan fill="#C9A86A">·</tspan> <tspan fill="#A07F44">IV</tspan> Eligibility <tspan fill="#C9A86A">·</tspan></text>
+            <text x="14" y="124"><tspan fill="#A07F44">V</tspan> Documents <tspan fill="#C9A86A">·</tspan> <tspan fill="#A07F44">VI</tspan> Process <tspan fill="#C9A86A">·</tspan></text>
+            <text x="14" y="150"><tspan fill="#A07F44">VII</tspan> Visa-Free <tspan fill="#C9A86A">·</tspan> <tspan fill="#A07F44">VIII</tspan> Cases <tspan fill="#C9A86A">·</tspan></text>
+            <text x="14" y="176"><tspan fill="#A07F44">IX</tspan> Licenses.</text>
+          </g>
+          <text x="180" y="206" class="pserif" text-anchor="middle">in this issue</text>
+        </svg>
+        <p class="sketch-caption">magazine standfirst, not a TOC</p>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__chrome"><strong>Mock</strong> · running text</div>
+      <div class="mock__toggle">
+        <span class="eyebrow">Contents</span>
+        <span class="meta">9 chapters</span>
+        <span class="chev">–</span>
+      </div>
+      <div class="mock__stage">
+        <p class="m06-text">
+          <a href="#"><span class="num">I</span>About</a><span class="sep">·</span><a href="#"><span class="num">II</span>Investment</a><span class="sep">·</span><a href="#"><span class="num">III</span>Benefits</a><span class="sep">·</span><a href="#"><span class="num">IV</span>Eligibility</a><span class="sep">·</span><a href="#"><span class="num">V</span>Documents</a><span class="sep">·</span><a href="#"><span class="num">VI</span>Process</a><span class="sep">·</span><a href="#"><span class="num">VII</span>Visa-Free Countries</a><span class="sep">·</span><a href="#"><span class="num">VIII</span>Case Studies</a><span class="sep">·</span><a href="#"><span class="num">IX</span>Licenses</a>.
+        </p>
       </div>
     </div>
   </div>
