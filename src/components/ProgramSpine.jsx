@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const CHAPTER_DEFINITIONS = [
   { id: 'about',         numeral: 'I',    label: 'About' },
@@ -188,17 +188,76 @@ function ContentsPage() {
 }
 
 export default function ProgramSpine({ program }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = CHAPTER_DEFINITIONS.length;
+
   useEffect(() => {
     const html = document.documentElement;
     html.classList.add('has-program-spine');
     return () => html.classList.remove('has-program-spine');
   }, []);
 
+  const scrollToChapter = useCallback((idx) => {
+    if (idx < 0 || idx >= total) return;
+    const el = document.getElementById(CHAPTER_DEFINITIONS[idx].id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [total]);
+
+  // Track which chapter is currently in view so J/K keyboard navigation
+  // advances from the right place. The active chapter is the topmost one
+  // whose top has crossed the sticky band offset (--ht-spine-band-top).
+  useEffect(() => {
+    const sections = CHAPTER_DEFINITIONS
+      .map((c) => document.getElementById(c.id))
+      .filter(Boolean);
+    if (sections.length === 0) return undefined;
+
+    const update = () => {
+      const offset = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue('--ht-spine-band-top'),
+      ) || 82;
+      let current = 0;
+      for (let i = 0; i < sections.length; i += 1) {
+        const top = sections[i].getBoundingClientRect().top;
+        if (top - offset <= 1) current = i;
+        else break;
+      }
+      setActiveIndex(current);
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = e.target;
+      if (t && t.matches && t.matches('input, textarea, select, [contenteditable="true"]')) return;
+      if (e.key === 'j' || e.key === 'J') {
+        e.preventDefault();
+        scrollToChapter(activeIndex + 1);
+      } else if (e.key === 'k' || e.key === 'K') {
+        e.preventDefault();
+        scrollToChapter(activeIndex - 1);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [activeIndex, scrollToChapter]);
+
   return (
     <div className="ht-spine">
       <ContentsPage />
       {CHAPTER_DEFINITIONS.map((chapter, i) => {
         const Renderer = CHAPTER_RENDERERS[chapter.id];
+        const isFirst = i === 0;
+        const isLast = i === total - 1;
         return (
           <section
             key={chapter.id}
@@ -216,6 +275,27 @@ export default function ProgramSpine({ program }) {
                 <span className="ht-spine__band-label">{chapter.label}</span>
                 <span className="ht-spine__band-counter">
                   {pad2(i + 1)} <span aria-hidden="true">/</span> 09
+                </span>
+                <span className="ht-spine__band-pager" role="group" aria-label="Chapter pager">
+                  <button
+                    type="button"
+                    className="ht-spine__band-pager-btn"
+                    onClick={() => scrollToChapter(i - 1)}
+                    disabled={isFirst}
+                    aria-label="Previous chapter"
+                  >
+                    <span aria-hidden="true">↑</span>
+                  </button>
+                  <span className="ht-spine__band-pager-vbar" aria-hidden="true" />
+                  <button
+                    type="button"
+                    className="ht-spine__band-pager-btn"
+                    onClick={() => scrollToChapter(i + 1)}
+                    disabled={isLast}
+                    aria-label="Next chapter"
+                  >
+                    <span aria-hidden="true">↓</span>
+                  </button>
                 </span>
               </div>
             </header>
