@@ -446,6 +446,95 @@
     .i04-standfirst::first-letter { font-size: 46px; }
   }
 
+  /* ====================================================================
+     IDEA 05 — Stepper journey bar (9 connected nodes)
+     ==================================================================== */
+  .i05-wrap {
+    padding: 30px 24px 28px;
+    border-top: 1px solid var(--hairline);
+    overflow-x: auto;
+  }
+  .i05-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    align-items: start;
+    gap: 0;
+    min-width: 760px;
+  }
+  .i05-track::before {
+    content: ""; position: absolute;
+    left: 5.5%; right: 5.5%;
+    top: 17px; height: 1px;
+    background: var(--hairline-2);
+  }
+  .i05-step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 8px;
+    text-decoration: none; color: var(--ink);
+    padding: 0 6px;
+  }
+  .i05-step .node {
+    position: relative; z-index: 1;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 1px solid var(--hairline-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold-deep);
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .i05-step .label {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--ink);
+    max-width: 11ch;
+  }
+  .i05-step .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.16em;
+    color: var(--stone); text-transform: uppercase;
+  }
+  .i05-step:hover .node {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+    color: var(--ivory);
+    transform: translateY(-2px);
+  }
+  .i05-step:hover .label { color: var(--gold-deep); }
+
+  .i05-step.is-current .node {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--gold-soft);
+  }
+  .i05-step.is-current::after {
+    content: ""; position: absolute;
+    margin-top: 2px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .i05-legend {
+    margin: 20px 0 0;
+    display: flex; justify-content: space-between; gap: 16px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: var(--stone); text-transform: uppercase;
+    border-top: 1px dotted var(--hairline);
+    padding-top: 12px;
+  }
+
+  @media (max-width: 760px) {
+    .i05-wrap { padding: 22px 0 22px; }
+    .i05-track { min-width: 760px; padding: 0 18px; }
+    .i05-legend { padding: 12px 18px 0; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -715,6 +804,50 @@
           <div class="i04-foot">
             <span>9 chapters · ~22 min read</span>
             <span>Doc · GV-OVR · 2026.Q1</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 05 ===================== -->
+    <article class="idea" id="i05">
+      <p class="idea__num">V — Stepper journey bar</p>
+      <h2>Nine connected nodes in a single horizontal row, <em>journey register</em></h2>
+      <p class="idea__why">
+        The dossier <em>is</em> a sequence — there's a reason "About" is
+        before "Process". Show that. A single horizontal stepper, nine
+        nodes connected by a hairline, italic Roman numeral inside each
+        node, chapter title beneath. Dense, diagrammatic, and quietly
+        signals "this is a path, not a menu."
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~150 px (one row). Trades vertical real-estate for horizontal — works because the labels are short. Adds an at-a-glance current-position indicator (filled ink node + gold dot) the existing list can't carry.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Nine 34 px nodes on a hairline track; italic Cormorant numerals inside; chapter titles below each node, monospace 5/9 progress tag.</dd>
+        <dt>Active</dt><dd>Hover lifts the node 2 px, fills it gold; current chapter is rendered as ink-filled with gold dot. Click → scroll + close.</dd>
+        <dt>Mobile</dt><dd>Track keeps its 760 px min-width and scrolls horizontally inside the disclosure — preserves the single-row gesture rather than collapsing to a list.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · journey</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i05-wrap">
+          <div class="i05-track">
+            <a class="i05-step"><span class="node">I</span><span class="label">About</span><span class="tag">01</span></a>
+            <a class="i05-step"><span class="node">II</span><span class="label">Investment</span><span class="tag">02</span></a>
+            <a class="i05-step is-current"><span class="node">III</span><span class="label">Benefits</span><span class="tag">on page</span></a>
+            <a class="i05-step"><span class="node">IV</span><span class="label">Eligibility</span><span class="tag">04</span></a>
+            <a class="i05-step"><span class="node">V</span><span class="label">Documents</span><span class="tag">05</span></a>
+            <a class="i05-step"><span class="node">VI</span><span class="label">Process</span><span class="tag">06</span></a>
+            <a class="i05-step"><span class="node">VII</span><span class="label">Visa-Free</span><span class="tag">07</span></a>
+            <a class="i05-step"><span class="node">VIII</span><span class="label">Case Studies</span><span class="tag">08</span></a>
+            <a class="i05-step"><span class="node">IX</span><span class="label">Licenses</span><span class="tag">09</span></a>
+          </div>
+          <div class="i05-legend">
+            <span>Orientation · Substance · Evidence</span>
+            <span>3 / 9 read</span>
           </div>
         </div>
       </div>
