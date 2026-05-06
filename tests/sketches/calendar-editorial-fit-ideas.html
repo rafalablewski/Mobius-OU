@@ -947,6 +947,272 @@
   .bp06--m .bp06__slot .time { margin-top: 0; font-size: 19px; }
   .bp06--m .bp06__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
 
+  /* =====================================================
+     IDEA 07 — Wax-seal accent (corner stamp)
+     ===================================================== */
+  .bp07 {
+    width: 320px; padding: 22px 22px 18px;
+    background: #000;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff; font-family: "Manrope", sans-serif;
+    box-shadow: 0 28px 64px -32px rgba(0,0,0,0.65);
+    position: relative; overflow: visible;
+  }
+  /* the wax seal — circular gold border, italic serif monogram, slightly
+     rotated so it reads as a hand-applied stamp */
+  .bp07__seal {
+    position: absolute; top: -16px; right: -10px;
+    width: 56px; height: 56px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(-8deg);
+    background: radial-gradient(circle at 35% 30%,
+      rgba(201,168,106,0.32),
+      rgba(160,127,68,0.18) 60%,
+      rgba(160,127,68,0.10));
+    box-shadow:
+      inset 0 0 0 1px rgba(160,127,68,0.45),
+      0 6px 18px -6px rgba(0,0,0,0.6);
+    pointer-events: none;
+  }
+  .bp07__seal::after {
+    content: ""; position: absolute; inset: 4px;
+    border: 1px dashed rgba(201,168,106,0.45);
+    border-radius: 50%;
+  }
+  .bp07__seal-mono {
+    font-family: "Cormorant Garamond", "Fraunces", serif;
+    font-style: italic; font-weight: 500;
+    font-size: 24px; color: var(--gold-soft);
+    letter-spacing: -0.04em; line-height: 1;
+    transform: rotate(8deg);
+  }
+  .bp07__top {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 10px; margin-bottom: 14px;
+    padding-right: 56px; /* leave room for the seal */
+  }
+  .bp07__eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.20em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    flex: 1 1 auto; min-width: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .bp07__avail {
+    display: inline-flex; align-items: center; gap: 6px;
+    flex: 0 0 auto;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.20em;
+    text-transform: uppercase; color: #fff;
+  }
+  .bp07__bigtime {
+    font-family: "Fraunces", serif;
+    font-weight: 300; font-style: italic;
+    font-size: 80px; line-height: 0.95; letter-spacing: -0.02em;
+    color: #fff; margin: 4px 0 6px;
+  }
+  .bp07__bigtime span { color: rgba(255,255,255,0.4); }
+  .bp07__bigmeta {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin: 0 0 18px;
+  }
+  .bp07__bigmeta b { color: #fff; font-weight: 600; }
+  .bp07__hairline {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin: 0 0 16px;
+    padding: 7px 0;
+    border-top: 1px solid rgba(201,168,106,0.30);
+    border-bottom: 1px solid rgba(201,168,106,0.30);
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .bp07__hairline b { color: #fff; font-weight: 700; }
+  .bp07__hairline .timer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--gold-soft); font-weight: 500;
+  }
+  .bp07__slots {
+    list-style: none; margin: 0 0 14px; padding: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .bp07__slot {
+    display: block; padding: 11px 9px; cursor: pointer;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    transition: background .18s, border-color .18s;
+  }
+  .bp07__slot:hover { background: rgba(255,255,255,0.08); border-color: rgba(201,168,106,0.5); }
+  .bp07__slot.is-active { background: rgba(201,168,106,0.10); border-color: var(--gold); }
+  .bp07__slot.is-booked { opacity: 0.40; cursor: not-allowed; }
+  .bp07__slot.is-booked .time { text-decoration: line-through; }
+  .bp07__slot .day {
+    display: block; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); line-height: 1;
+  }
+  .bp07__slot .time {
+    display: block; font-family: "Fraunces", serif;
+    font-style: italic; font-weight: 300;
+    font-size: 22px; color: #fff;
+    margin-top: 4px; line-height: 1;
+  }
+  .bp07__cta {
+    display: block; width: 100%;
+    background: var(--cream); color: var(--ink);
+    border: 0; padding: 13px 14px;
+    font-weight: 700; font-size: 11px; letter-spacing: 0.20em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background .18s;
+  }
+  .bp07__cta:hover { background: var(--gold); }
+  .bp07__foot {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+  }
+  .bp07__micro {
+    margin: 0; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+  }
+  .bp07__alt {
+    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
+    color: var(--gold);
+  }
+  .bp07--m { width: 280px; padding: 20px 22px; }
+  .bp07--m .bp07__seal { width: 48px; height: 48px; top: -14px; right: -8px; }
+  .bp07--m .bp07__seal-mono { font-size: 20px; }
+  .bp07--m .bp07__bigtime { font-size: 60px; }
+  .bp07--m .bp07__slots { grid-template-columns: 1fr; }
+  .bp07--m .bp07__slot { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 14px; }
+  .bp07--m .bp07__slot .time { margin-top: 0; font-size: 19px; }
+  .bp07--m .bp07__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+  /* =====================================================
+     IDEA 08 — Calling card centred
+     ===================================================== */
+  .bp08 {
+    width: 320px; padding: 24px 22px 20px;
+    background: var(--cream);
+    color: var(--ink); font-family: "Newsreader", serif;
+    text-align: center;
+    box-shadow: 0 28px 64px -32px rgba(0,0,0,0.65);
+    border: 1px solid rgba(160,127,68,0.20);
+    position: relative;
+  }
+  /* double gold rule top and bottom, like a calling-card border */
+  .bp08::before, .bp08::after {
+    content: ""; position: absolute; left: 14px; right: 14px;
+    height: 0;
+    border-top: 1px solid rgba(160,127,68,0.55);
+    border-bottom: 1px solid rgba(160,127,68,0.55);
+    height: 4px;
+    pointer-events: none;
+  }
+  .bp08::before { top: 8px; }
+  .bp08::after  { bottom: 8px; }
+  .bp08__top {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    margin: 14px 0 6px;
+  }
+  .bp08__eyebrow {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .bp08__avail {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .bp08__byline {
+    font-style: italic; font-weight: 400;
+    font-size: 18px; color: var(--gold-deep);
+    margin: 0 0 12px;
+  }
+  .bp08__bigtime {
+    font-family: "Cormorant Garamond", "Fraunces", serif;
+    font-weight: 300; font-style: italic;
+    font-size: 96px; line-height: 0.9; letter-spacing: -0.02em;
+    color: var(--ink); margin: 6px 0 4px;
+  }
+  .bp08__bigtime span { color: rgba(11,15,20,0.4); padding: 0 2px; }
+  .bp08__bigmeta {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); margin: 0 0 14px;
+  }
+  .bp08__bigmeta b { color: var(--ink); font-weight: 700; }
+  .bp08__hairline {
+    display: flex; justify-content: center; align-items: center;
+    gap: 14px; margin: 0 auto 16px;
+    padding: 6px 0;
+    border-top: 1px solid rgba(160,127,68,0.45);
+    border-bottom: 1px solid rgba(160,127,68,0.45);
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .bp08__hairline b { color: var(--ink); font-weight: 700; }
+  .bp08__hairline .timer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--gold-deep); font-weight: 500;
+  }
+  .bp08__slots {
+    list-style: none; margin: 0 auto 14px; padding: 0;
+    max-width: 240px;
+  }
+  .bp08__slot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 8px 0; cursor: pointer;
+    border-bottom: 1px dotted rgba(11,15,20,0.18);
+  }
+  .bp08__slot:last-child { border-bottom: 0; }
+  .bp08__slot:hover { background: rgba(160,127,68,0.06); }
+  .bp08__slot.is-active {
+    background: rgba(160,127,68,0.10);
+    border-bottom-color: var(--ink);
+  }
+  .bp08__slot.is-booked { opacity: 0.40; cursor: not-allowed; }
+  .bp08__slot.is-booked .time { text-decoration: line-through; }
+  .bp08__slot .day {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .bp08__slot .time {
+    font-style: italic; font-weight: 400; font-size: 21px;
+    color: var(--ink);
+  }
+  .bp08__cta {
+    display: inline-block; padding: 8px 24px;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--ink); border-radius: 0;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background .18s, color .18s;
+  }
+  .bp08__cta:hover { background: var(--ink); color: var(--cream); }
+  .bp08__foot {
+    margin-top: 14px;
+    font-family: "Manrope", sans-serif;
+    font-size: 8px; font-weight: 600; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .bp08__alt {
+    display: block; margin-top: 8px;
+    font-family: "Newsreader", serif; font-style: italic;
+    text-transform: none; letter-spacing: 0; font-size: 12px;
+    color: var(--gold-deep); font-weight: 400;
+  }
+  .bp08--m { width: 280px; padding: 18px; }
+  .bp08--m .bp08__bigtime { font-size: 72px; }
+  .bp08--m .bp08__slot .time { font-size: 18px; }
+
   @media (max-width: 720px) {
     .stage { padding: 24px 12px; }
     .toc { grid-template-columns: 1fr; }
@@ -1512,6 +1778,169 @@
   <div class="live-caption"><strong>06</strong> · gold M watermark at 6 % · Fraunces italic numerals · gold border at low opacity</div>
 </section>
 
+<!-- ============================ IDEA 07 ============================ -->
+<section class="idea" id="i7">
+  <div class="idea__num">Idea 07</div>
+  <h2>Wax-seal accent — <em>gold seal in the corner.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">Dark slab + corner seal</span>
+    <span class="tag">Italic monogram inside the seal</span>
+    <span class="tag">Otherwise restrained</span>
+  </div>
+  <p class="idea__why">
+    Reuses the wax-seal direction explored in the freshness-badge round-two
+    sketches and applies it as a corner ornament for the booking panel.
+    A 56 px circular seal at the top-right with a dashed inner ring,
+    radial gold gradient and an italic Cormorant "M" rotated ~8°. The
+    rest of the panel stays dark and restrained — the seal does the
+    "this is a private document" lift on its own.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> minimal layout change — adds one
+    decorative element. The seal aligns the booking panel with the
+    sealed-letter visual language Mobius already explored for the
+    freshness badge, so it fits the broader system. Highest decorative
+    payoff for the smallest structural change.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp07">
+        <span class="bp07__seal" aria-hidden="true">
+          <span class="bp07__seal-mono">M</span>
+        </span>
+        <div class="bp07__top">
+          <span class="bp07__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp07__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp07__bigtime">14<span>:</span>00</div>
+        <div class="bp07__bigmeta"><b>Thursday · 7 May</b> · CET · 30 min</div>
+        <div class="bp07__hairline">
+          <span><b>2 left</b> this week</span>
+          <span class="timer" id="t07">54:06:59</span>
+        </div>
+        <ul class="bp07__slots">
+          <li><div class="bp07__slot is-active"><span class="day">Thu · 7</span><span class="time">14:00</span></div></li>
+          <li><div class="bp07__slot"><span class="day">Fri · 8</span><span class="time">09:30</span></div></li>
+          <li><div class="bp07__slot is-booked"><span class="day">Mon · 11</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp07__cta">Reserve · 14:00 CET</button>
+        <div class="bp07__foot">
+          <p class="bp07__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp07__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp07 bp07--m">
+        <span class="bp07__seal" aria-hidden="true">
+          <span class="bp07__seal-mono">M</span>
+        </span>
+        <div class="bp07__top">
+          <span class="bp07__eyebrow">Next · Rafał A.</span>
+          <span class="bp07__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp07__bigtime">14<span>:</span>00</div>
+        <div class="bp07__bigmeta"><b>Thu · 7 May</b> · CET · 30 min</div>
+        <div class="bp07__hairline">
+          <span><b>2 left</b></span>
+          <span class="timer">54:06:59</span>
+        </div>
+        <ul class="bp07__slots">
+          <li><div class="bp07__slot is-active"><span class="day">Thu · 7 May</span><span class="time">14:00</span></div></li>
+          <li><div class="bp07__slot"><span class="day">Fri · 8 May</span><span class="time">09:30</span></div></li>
+          <li><div class="bp07__slot is-booked"><span class="day">Mon · 11 May</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp07__cta">Reserve · 14:00</button>
+        <div class="bp07__foot">
+          <p class="bp07__micro">NDA · No marketing · Private call</p>
+          <a class="bp07__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · seal scales down</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>07</strong> · 56 px wax-seal at top-right corner · italic M monogram · otherwise restrained dark slab</div>
+</section>
+
+<!-- ============================ IDEA 08 ============================ -->
+<section class="idea" id="i8">
+  <div class="idea__num">Idea 08</div>
+  <h2>Calling card centred — <em>private correspondence.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">Cream calling card · double gold rules</span>
+    <span class="tag">Centred typesetting</span>
+    <span class="tag">Outline CTA pill</span>
+  </div>
+  <p class="idea__why">
+    A formal centred layout: cream calling-card surface with double gold
+    rules near the top and bottom edges (mimicking an engraved card),
+    eyebrow + AVAILABLE stacked above an italic byline, a 96 px
+    Cormorant italic bigtime as the centrepiece, dotted-rule slot list,
+    and a hairline-bordered "Reserve" pill button. Reads as a personal
+    invitation, not a booking widget.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the most ceremonial of the ten — drops
+    the left-aligned dossier register in favour of centred private-
+    correspondence formatting. Best fit if Mobius wants the panel to
+    feel like a personal invitation rather than a section of the dossier.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp08">
+        <div class="bp08__top">
+          <span class="bp08__eyebrow">Private call · No. 03</span>
+          <span class="bp08__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <p class="bp08__byline">with Rafał A.</p>
+        <div class="bp08__bigtime">14<span>:</span>00</div>
+        <div class="bp08__bigmeta"><b>Thursday · 7 May</b> · CET · 30 min</div>
+        <div class="bp08__hairline">
+          <span><b>2 left</b> this week</span>
+          <span class="timer" id="t08">54:06:59</span>
+        </div>
+        <ul class="bp08__slots">
+          <li><div class="bp08__slot is-active"><span class="day">Thu · 7 May</span><span class="time">14:00 CET</span></div></li>
+          <li><div class="bp08__slot"><span class="day">Fri · 8 May</span><span class="time">09:30 CET</span></div></li>
+          <li><div class="bp08__slot is-booked"><span class="day">Mon · 11 May</span><span class="time">11:00 CET</span></div></li>
+        </ul>
+        <button class="bp08__cta">Reserve · 14:00 CET</button>
+        <p class="bp08__foot">NDA-first · No marketing · Private call
+          <a class="bp08__alt">Pick another time →</a>
+        </p>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp08 bp08--m">
+        <div class="bp08__top">
+          <span class="bp08__eyebrow">Call · No. 03</span>
+          <span class="bp08__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <p class="bp08__byline">with Rafał A.</p>
+        <div class="bp08__bigtime">14<span>:</span>00</div>
+        <div class="bp08__bigmeta"><b>Thu · 7 May</b> · CET · 30 min</div>
+        <div class="bp08__hairline">
+          <span><b>2 left</b></span>
+          <span class="timer">54:06:59</span>
+        </div>
+        <ul class="bp08__slots">
+          <li><div class="bp08__slot is-active"><span class="day">Thu · 7</span><span class="time">14:00</span></div></li>
+          <li><div class="bp08__slot"><span class="day">Fri · 8</span><span class="time">09:30</span></div></li>
+          <li><div class="bp08__slot is-booked"><span class="day">Mon · 11</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp08__cta">Reserve · 14:00</button>
+        <p class="bp08__foot">NDA · No marketing · Private call
+          <a class="bp08__alt">Pick another →</a>
+        </p>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · same composition</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>08</strong> · cream calling card · double gold rules · centred typesetting · outline CTA pill</div>
+</section>
+
 </div>
 </div>
 
@@ -1519,7 +1948,7 @@
 /* Shared countdown — anchors to ~54 hours so the digits read as in the
    user's screenshot, then ticks down. */
 (function () {
-  const ids = ['t01','t02','t03','t04','t05','t06'];
+  const ids = ['t01','t02','t03','t04','t05','t06','t07','t08'];
   const target = new Date();
   target.setHours(target.getHours() + 54);
   target.setMinutes(target.getMinutes() + 6);
