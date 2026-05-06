@@ -385,6 +385,67 @@
     .i03-row .status { grid-area: status; }
   }
 
+  /* ====================================================================
+     IDEA 04 — Editorial running text (standfirst paragraph)
+     ==================================================================== */
+  .i04-wrap {
+    padding: 26px 32px 30px;
+    border-top: 1px solid var(--hairline);
+  }
+  .i04-standfirst {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+    max-width: 64ch;
+  }
+  .i04-standfirst::first-letter {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold-deep);
+    font-size: 56px;
+    line-height: 0.9;
+    float: left;
+    padding: 6px 10px 0 0;
+  }
+  .i04-standfirst a {
+    color: var(--ink);
+    font-style: italic;
+    text-decoration: none;
+    background-image: linear-gradient(transparent 60%, rgba(201, 168, 106, 0.28) 60%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: color 0.18s ease, background-size 0.18s ease;
+  }
+  .i04-standfirst a:hover {
+    color: var(--gold-deep);
+    background-size: 100% 0%;
+  }
+  .i04-standfirst .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--gold-deep);
+    font-size: 18px;
+    margin: 0 2px 0 1px;
+    letter-spacing: 0.02em;
+  }
+  .i04-foot {
+    margin: 22px 0 0; padding-top: 14px;
+    border-top: 1px dotted var(--hairline);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: var(--stone); text-transform: uppercase;
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .i04-wrap { padding: 22px 22px 26px; }
+    .i04-standfirst { font-size: 19px; }
+    .i04-standfirst::first-letter { font-size: 46px; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -606,6 +667,55 @@
           <a class="i03-row"><span class="num">VII</span><span class="ch">Visa-Free Countries</span><span class="ref">GV-G</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
           <a class="i03-row"><span class="num">VIII</span><span class="ch">Case Studies</span><span class="ref">GV-H</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
           <a class="i03-row"><span class="num">IX</span><span class="ch">Our Licenses</span><span class="ref">GV-I</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 04 ===================== -->
+    <article class="idea" id="i04">
+      <p class="idea__num">IV — Editorial running text</p>
+      <h2>One standfirst paragraph, <em>nine inline links</em></h2>
+      <p class="idea__why">
+        Resist the appendix completely. Render the contents as a
+        single editorial standfirst — a magazine-style "in this issue"
+        paragraph where the chapter titles are the inline links. Reads
+        as advisory copy first, navigation second, and tells the reader
+        the shape of the dossier without making them parse a list.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~210 px. Loses the explicit list affordance — the trade is that the disclosure now <em>says something</em> rather than just enumerates. Drop-cap + chapter titles in italic Cormorant + small Roman numerals beside each linked title preserve the editorial register.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Single Cormorant 22 px paragraph; gold drop-cap; soft highlight under each link until hover lifts it.</dd>
+        <dt>Active</dt><dd>Hover removes the highlight wash and lifts the title to gold ink; click → scroll + close.</dd>
+        <dt>Mobile</dt><dd>Same paragraph reflows; type drops to 19 px, drop-cap to 46 px; small footer rule keeps the doc-control tone.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">in this dossier</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i04-wrap">
+          <p class="i04-standfirst">
+            We open with <a><span class="num">I</span> About</a> the
+            program, the <a><span class="num">II</span> Investment</a>
+            it asks of you, and the
+            <a><span class="num">III</span> Benefits</a> the family
+            actually inherits. The middle of the dossier is the
+            unromantic part:
+            <a><span class="num">IV</span> Eligibility</a>,
+            <a><span class="num">V</span> Documents</a> and the
+            <a><span class="num">VI</span> Process</a> end-to-end.
+            We close with the supporting evidence — a list of
+            <a><span class="num">VII</span> Visa-Free Countries</a>,
+            three <a><span class="num">VIII</span> Case Studies</a>,
+            and the <a><span class="num">IX</span> Licenses</a> we
+            and our partners hold.
+          </p>
+          <div class="i04-foot">
+            <span>9 chapters · ~22 min read</span>
+            <span>Doc · GV-OVR · 2026.Q1</span>
+          </div>
         </div>
       </div>
     </article>
