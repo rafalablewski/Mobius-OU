@@ -705,6 +705,248 @@
   .bp04--m .bp04__slot .time { margin-top: 0; font-size: 19px; }
   .bp04--m .bp04__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
 
+  /* =====================================================
+     IDEA 05 — Magazine sidecar (print-magazine sidebar)
+     ===================================================== */
+  .bp05 {
+    width: 320px; padding: 24px 22px 20px;
+    background: var(--cream);
+    color: var(--ink); font-family: "Newsreader", serif;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid rgba(11,15,20,0.10);
+    box-shadow: 0 28px 64px -32px rgba(0,0,0,0.65);
+    position: relative;
+  }
+  .bp05__masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; margin-bottom: 6px;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .bp05__masthead .right {
+    font-weight: 600; color: var(--ink);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .bp05__byline {
+    font-style: italic; font-weight: 400;
+    font-size: 18px; color: var(--gold-deep);
+    margin: 0 0 12px;
+  }
+  .bp05__rule {
+    height: 0; border-top: 1px solid rgba(11,15,20,0.18);
+    border-bottom: 1px solid rgba(11,15,20,0.18);
+    height: 4px; margin: 0 0 14px;
+  }
+  .bp05__bigtime {
+    display: flex; align-items: baseline; gap: 12px;
+    margin: 0 0 6px;
+  }
+  .bp05__drop {
+    font-family: "Cormorant Garamond", "Fraunces", serif;
+    font-style: italic; font-weight: 300;
+    font-size: 64px; line-height: 0.9; color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .bp05__drop span { color: rgba(11,15,20,0.4); }
+  .bp05__drop-meta {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); line-height: 1.5;
+  }
+  .bp05__drop-meta b { color: var(--ink); font-weight: 700; display: block; }
+  .bp05__hairline {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin: 14px 0 12px;
+    padding: 6px 0;
+    border-top: 1px solid rgba(160,127,68,0.45);
+    border-bottom: 1px solid rgba(160,127,68,0.45);
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .bp05__hairline b { color: var(--ink); font-weight: 700; }
+  .bp05__hairline .timer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--gold-deep); font-weight: 500;
+  }
+  .bp05__list {
+    list-style: none; margin: 0 0 14px; padding: 0;
+  }
+  .bp05__row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px dotted rgba(11,15,20,0.20);
+    cursor: pointer;
+    transition: background .18s, border-color .18s;
+  }
+  .bp05__row:last-child { border-bottom: 0; }
+  .bp05__row:hover { background: rgba(160,127,68,0.06); }
+  .bp05__row.is-active {
+    background: rgba(160,127,68,0.10);
+    border-bottom: 1px solid var(--ink);
+  }
+  .bp05__row.is-booked { opacity: 0.40; cursor: not-allowed; }
+  .bp05__row.is-booked .time { text-decoration: line-through; }
+  .bp05__row .day {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .bp05__row .time {
+    font-style: italic; font-weight: 400; font-size: 22px;
+    color: var(--ink);
+  }
+  .bp05__cta {
+    display: block; width: 100%;
+    background: var(--ink); color: var(--cream);
+    border: 0; padding: 12px 14px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700; font-size: 11px; letter-spacing: 0.20em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background .18s;
+  }
+  .bp05__cta:hover { background: var(--gold-deep); }
+  .bp05__foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 10px; margin-top: 14px;
+  }
+  .bp05__micro {
+    margin: 0; font-family: "Manrope", sans-serif;
+    font-size: 8px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .bp05__alt {
+    font-style: italic; font-size: 12px; color: var(--gold-deep);
+  }
+  .bp05--m { width: 280px; padding: 18px 18px 16px; }
+  .bp05--m .bp05__drop { font-size: 50px; }
+  .bp05--m .bp05__byline { font-size: 16px; }
+  .bp05--m .bp05__row .time { font-size: 19px; }
+  .bp05--m .bp05__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+  /* =====================================================
+     IDEA 06 — Watermark monogram (faint M behind content)
+     ===================================================== */
+  .bp06 {
+    width: 320px; padding: 22px 22px 18px;
+    background: #000;
+    border: 1px solid rgba(201,168,106,0.20);
+    color: #fff; font-family: "Manrope", sans-serif;
+    box-shadow: 0 28px 64px -32px rgba(0,0,0,0.65);
+    position: relative; overflow: hidden;
+  }
+  .bp06__watermark {
+    position: absolute; right: -18px; bottom: -34px;
+    font-family: "Fraunces", serif;
+    font-weight: 300; font-style: italic;
+    font-size: 280px; line-height: 1;
+    color: rgba(201,168,106,0.06);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .bp06 > *:not(.bp06__watermark) { position: relative; z-index: 1; }
+  .bp06__top {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    padding-bottom: 10px; margin-bottom: 14px;
+  }
+  .bp06__eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.20em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    flex: 1 1 auto; min-width: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .bp06__avail {
+    display: inline-flex; align-items: center; gap: 6px;
+    flex: 0 0 auto;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.20em;
+    text-transform: uppercase; color: #fff;
+  }
+  .bp06__bigtime {
+    font-family: "Fraunces", serif;
+    font-weight: 300; font-style: italic;
+    font-size: 80px; line-height: 0.95; letter-spacing: -0.02em;
+    color: #fff; margin: 4px 0 6px;
+  }
+  .bp06__bigtime span { color: rgba(255,255,255,0.4); }
+  .bp06__bigmeta {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin: 0 0 18px;
+  }
+  .bp06__bigmeta b { color: #fff; font-weight: 600; }
+  .bp06__hairline {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin: 0 0 16px;
+    padding: 7px 0;
+    border-top: 1px solid rgba(201,168,106,0.30);
+    border-bottom: 1px solid rgba(201,168,106,0.30);
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .bp06__hairline b { color: #fff; font-weight: 700; }
+  .bp06__hairline .timer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--gold-soft); font-weight: 500;
+  }
+  .bp06__slots {
+    list-style: none; margin: 0 0 14px; padding: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .bp06__slot {
+    display: block; padding: 11px 9px; cursor: pointer;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.10);
+    transition: background .18s, border-color .18s;
+  }
+  .bp06__slot:hover { background: rgba(0,0,0,0.65); border-color: rgba(201,168,106,0.45); }
+  .bp06__slot.is-active { background: rgba(201,168,106,0.10); border-color: var(--gold); }
+  .bp06__slot.is-booked { opacity: 0.40; cursor: not-allowed; }
+  .bp06__slot.is-booked .time { text-decoration: line-through; }
+  .bp06__slot .day {
+    display: block; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); line-height: 1;
+  }
+  .bp06__slot .time {
+    display: block; font-family: "Fraunces", serif;
+    font-style: italic; font-weight: 300;
+    font-size: 22px; color: #fff;
+    margin-top: 4px; line-height: 1;
+  }
+  .bp06__cta {
+    display: block; width: 100%;
+    background: var(--cream); color: var(--ink);
+    border: 0; padding: 13px 14px;
+    font-weight: 700; font-size: 11px; letter-spacing: 0.20em;
+    text-transform: uppercase; text-align: center; cursor: pointer;
+    transition: background .18s;
+  }
+  .bp06__cta:hover { background: var(--gold); }
+  .bp06__foot {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+  }
+  .bp06__micro {
+    margin: 0; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+  }
+  .bp06__alt {
+    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
+    color: var(--gold);
+  }
+  .bp06--m { width: 280px; padding: 20px 22px; }
+  .bp06--m .bp06__bigtime { font-size: 60px; }
+  .bp06--m .bp06__watermark { font-size: 220px; right: -10px; bottom: -22px; }
+  .bp06--m .bp06__slots { grid-template-columns: 1fr; }
+  .bp06--m .bp06__slot { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 14px; }
+  .bp06--m .bp06__slot .time { margin-top: 0; font-size: 19px; }
+  .bp06--m .bp06__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
+
   @media (max-width: 720px) {
     .stage { padding: 24px 12px; }
     .toc { grid-template-columns: 1fr; }
@@ -1097,6 +1339,179 @@
   <div class="live-caption"><strong>04</strong> · 1px gold border + corner ticks (matches .ht-pitch-card) · Fraunces italic numerals · ghost CTA</div>
 </section>
 
+<!-- ============================ IDEA 05 ============================ -->
+<section class="idea" id="i5">
+  <div class="idea__num">Idea 05</div>
+  <h2>Magazine sidecar — <em>print sidebar layout.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">Cream BG · serif body</span>
+    <span class="tag">Drop-cap-style bigtime</span>
+    <span class="tag">Dotted-rule slot list</span>
+  </div>
+  <p class="idea__why">
+    Borrows from print magazine sidecars — a section opener with a thick
+    rule on top, an italic byline, then a tight list with dotted rules
+    between rows. The bigtime functions like a drop cap: italic Cormorant
+    aligned with metadata to the right (day/zone/duration). Slot list is
+    a dotted-rule register where the day reads as small caps and the time
+    as italic numerals. CTA is a confident black slab.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the only idea with a "section opener"
+    masthead — a thick black rule above the panel. Reads as the right-rail
+    of a magazine spread next to the program-page article. Best fit when
+    the panel sits hero-right on desktop.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp05">
+        <div class="bp05__masthead">
+          <span>Private call · No. 03</span>
+          <span class="right"><span class="greendot"></span>Available</span>
+        </div>
+        <p class="bp05__byline">with Rafał A.</p>
+        <div class="bp05__rule"></div>
+        <div class="bp05__bigtime">
+          <span class="bp05__drop">14<span>:</span>00</span>
+          <span class="bp05__drop-meta">
+            <b>Thursday · 7 May</b>
+            CET · 30 min
+          </span>
+        </div>
+        <div class="bp05__hairline">
+          <span><b>2 left</b> this week</span>
+          <span class="timer" id="t05">54:06:59</span>
+        </div>
+        <ul class="bp05__list">
+          <li><div class="bp05__row is-active"><span class="day">Thu · 7 May</span><span class="time">14:00 CET</span></div></li>
+          <li><div class="bp05__row"><span class="day">Fri · 8 May</span><span class="time">09:30 CET</span></div></li>
+          <li><div class="bp05__row is-booked"><span class="day">Mon · 11 May</span><span class="time">11:00 CET</span></div></li>
+        </ul>
+        <button class="bp05__cta">Reserve · 14:00 CET</button>
+        <div class="bp05__foot">
+          <p class="bp05__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp05__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp05 bp05--m">
+        <div class="bp05__masthead">
+          <span>Call · No. 03</span>
+          <span class="right"><span class="greendot"></span>Available</span>
+        </div>
+        <p class="bp05__byline">with Rafał A.</p>
+        <div class="bp05__rule"></div>
+        <div class="bp05__bigtime">
+          <span class="bp05__drop">14<span>:</span>00</span>
+          <span class="bp05__drop-meta">
+            <b>Thu · 7 May</b>
+            CET · 30 min
+          </span>
+        </div>
+        <div class="bp05__hairline">
+          <span><b>2 left</b></span>
+          <span class="timer">54:06:59</span>
+        </div>
+        <ul class="bp05__list">
+          <li><div class="bp05__row is-active"><span class="day">Thu · 7</span><span class="time">14:00</span></div></li>
+          <li><div class="bp05__row"><span class="day">Fri · 8</span><span class="time">09:30</span></div></li>
+          <li><div class="bp05__row is-booked"><span class="day">Mon · 11</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp05__cta">Reserve · 14:00</button>
+        <div class="bp05__foot">
+          <p class="bp05__micro">NDA · No marketing · Private call</p>
+          <a class="bp05__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>05</strong> · masthead rule · italic byline · drop-cap-style bigtime · dotted-rule slot list</div>
+</section>
+
+<!-- ============================ IDEA 06 ============================ -->
+<section class="idea" id="i6">
+  <div class="idea__num">Idea 06</div>
+  <h2>Watermark monogram — <em>large faint M behind content.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">Dark BG with gold M watermark</span>
+    <span class="tag">Fraunces italic bigtime</span>
+    <span class="tag">Hairline gold rule + bracketed timer</span>
+  </div>
+  <p class="idea__why">
+    Stays dark like the shipped panel but anchors the surface in brand
+    identity. A 280 px Fraunces italic "M" sits behind the content at 6 %
+    opacity, fading off the bottom-right edge — the same Mobius wordmark
+    initial that opens the breadcrumb. Bigtime + slot times shift to
+    Fraunces italic to match the watermark and the page's section
+    headers. Gold border at low opacity replaces the cold white border.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> least invasive of the dark-on-dark
+    variants — the panel remains a "slab" but with personality. The
+    watermark is a quiet brand cue rather than a UI element, so the
+    panel reads as a piece of branded stationery rather than a SaaS
+    widget.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp06">
+        <span class="bp06__watermark" aria-hidden="true">M</span>
+        <div class="bp06__top">
+          <span class="bp06__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp06__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp06__bigtime">14<span>:</span>00</div>
+        <div class="bp06__bigmeta"><b>Thursday · 7 May</b> · CET · 30 min</div>
+        <div class="bp06__hairline">
+          <span><b>2 left</b> this week</span>
+          <span class="timer" id="t06">54:06:59</span>
+        </div>
+        <ul class="bp06__slots">
+          <li><div class="bp06__slot is-active"><span class="day">Thu · 7</span><span class="time">14:00</span></div></li>
+          <li><div class="bp06__slot"><span class="day">Fri · 8</span><span class="time">09:30</span></div></li>
+          <li><div class="bp06__slot is-booked"><span class="day">Mon · 11</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp06__cta">Reserve · 14:00 CET</button>
+        <div class="bp06__foot">
+          <p class="bp06__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp06__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp06 bp06--m">
+        <span class="bp06__watermark" aria-hidden="true">M</span>
+        <div class="bp06__top">
+          <span class="bp06__eyebrow">Next · Rafał A.</span>
+          <span class="bp06__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp06__bigtime">14<span>:</span>00</div>
+        <div class="bp06__bigmeta"><b>Thu · 7 May</b> · CET · 30 min</div>
+        <div class="bp06__hairline">
+          <span><b>2 left</b></span>
+          <span class="timer">54:06:59</span>
+        </div>
+        <ul class="bp06__slots">
+          <li><div class="bp06__slot is-active"><span class="day">Thu · 7 May</span><span class="time">14:00</span></div></li>
+          <li><div class="bp06__slot"><span class="day">Fri · 8 May</span><span class="time">09:30</span></div></li>
+          <li><div class="bp06__slot is-booked"><span class="day">Mon · 11 May</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp06__cta">Reserve · 14:00</button>
+        <div class="bp06__foot">
+          <p class="bp06__micro">NDA · No marketing · Private call</p>
+          <a class="bp06__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · stacked rows</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>06</strong> · gold M watermark at 6 % · Fraunces italic numerals · gold border at low opacity</div>
+</section>
+
 </div>
 </div>
 
@@ -1104,7 +1519,7 @@
 /* Shared countdown — anchors to ~54 hours so the digits read as in the
    user's screenshot, then ticks down. */
 (function () {
-  const ids = ['t01','t02','t03','t04'];
+  const ids = ['t01','t02','t03','t04','t05','t06'];
   const target = new Date();
   target.setHours(target.getHours() + 54);
   target.setMinutes(target.getMinutes() + 6);
