@@ -14078,50 +14078,73 @@ span {
 /* --- Brief panel (calendar-first hero CTA) -------------------------------- */
 /* Sits on the dark editorial breadcrumb as a cream card. Three weekday
    slots, link-out for "another time", NDA-first microcopy. */
-/* Brief panel — Tesla touchscreen register: pure-black slab on the dark
-   hero, oversized soonest-time display, three slabs, single white CTA. */
+/* Brief panel — Idea 02 (audit register): the booking panel reads as
+   another doc-control row of the dossier. Top tabular strip mirrors the
+   .ht-breadcrumb__doc-control pattern (Call tag + Host / Status cells);
+   a second tabular strip below the bigtime carries Open / Closes; the
+   slot grid uses hairline borders; CTA is a ghost-outline button. */
 .ht-brief-panel {
-  background: #000;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  padding: 22px 22px 18px;
-  color: #FFF;
-  font-family: var(--ht-font-ui);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(244, 239, 230, 0.20);
+  border-radius: 0;
+  color: var(--ht-body);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  padding: 0;
+  isolation: isolate;
   box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.6);
   animation: ht-breadcrumb-rise 720ms 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
-.ht-brief-panel__top {
+
+/* Top doc-control strip — mirrors .ht-breadcrumb__doc-control exactly so
+   the booking panel reads as another row of the same audit document. */
+.ht-brief-panel__doc {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 10px;
-  margin-bottom: 14px;
-}
-.ht-brief-panel__eyebrow {
-  font-family: var(--ht-font-ui);
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(244, 239, 230, 0.20);
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  line-height: 1;
 }
-.ht-brief-panel__status {
+.ht-brief-panel__doc-tag {
+  padding: 9px 12px;
+  flex: 0 0 auto;
+  border-right: 1px solid rgba(244, 239, 230, 0.20);
+  background: rgba(244, 239, 230, 0.04);
+  display: inline-flex;
+  align-items: center;
+}
+.ht-brief-panel__doc-tag > span {
+  border: 1px solid rgba(244, 239, 230, 0.45);
+  padding: 3px 8px;
+  letter-spacing: 0.22em;
+  color: rgba(244, 239, 230, 0.95);
+  font-size: 10px;
+}
+.ht-brief-panel__doc-cell {
+  padding: 9px 12px;
+  flex: 1 1 auto;
+  border-right: 1px solid rgba(244, 239, 230, 0.14);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ht-brief-panel__doc-cell:last-child { border-right: 0; }
+.ht-brief-panel__doc-key { color: rgba(244, 239, 230, 0.42); }
+.ht-brief-panel__doc-val {
+  color: rgba(244, 239, 230, 0.92);
+  font-feature-settings: "tnum" 1;
+}
+.ht-brief-panel__doc-val--avail {
+  color: #6FE38F;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  flex: 0 0 auto;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  color: #FFF;
 }
-.ht-brief-panel__status::before {
+.ht-brief-panel__doc-val--avail::before {
   content: "";
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #22C55E;
   box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
@@ -14129,93 +14152,16 @@ span {
 }
 @keyframes ht-brief-panel-flash {
   0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); transform: scale(1); }
-  50%      { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); transform: scale(1.1); }
+  50%      { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); transform: scale(1.1); }
 }
 
-/* Hairline reveal (Idea 10): a gold rule that animates in left-to-right on
-   mount, holding "N LEFT this week" on the left and a live HH:MM:SS countdown
-   to end-of-week on the right. */
-.ht-brief-panel__hairline {
-  position: relative;
-  height: 28px;
-  margin: -6px 0 16px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-.ht-brief-panel__hairline::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 1px;
-  background: linear-gradient(to right,
-    rgba(201, 168, 106, 0) 0%,
-    rgba(201, 168, 106, 0.6) 18%,
-    rgba(201, 168, 106, 0.9) 50%,
-    rgba(201, 168, 106, 0.6) 82%,
-    rgba(201, 168, 106, 0) 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: ht-brief-panel-line-draw 1400ms 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-@keyframes ht-brief-panel-line-draw {
-  to { transform: scaleX(1); }
-}
-.ht-brief-panel__hairline-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0 4px;
-}
-.ht-brief-panel__hairline-inner > * {
-  background: #000;
-  padding: 0 6px;
-}
-.ht-brief-panel__hairline-left {
-  font-family: var(--ht-font-ui);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-}
-.ht-brief-panel__hairline-left strong {
-  color: #FFF;
-  font-weight: 600;
-}
-.ht-brief-panel__hairline-right {
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  color: var(--ht-theme-color-2);
-  font-variant-numeric: tabular-nums;
+/* Body — padded area below the doc strip. */
+.ht-brief-panel__body {
+  padding: 22px 22px 18px;
 }
 
-/* Booked slot — visually present but not interactive, so the "N left" copy
-   on the hairline remains honest. */
-.ht-brief-panel__slot--booked {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.08);
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.ht-brief-panel__slot--booked .ht-brief-panel__slot-time {
-  text-decoration: line-through;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ht-brief-panel__status::before { animation: none; }
-  .ht-brief-panel__hairline::before {
-    animation: none;
-    transform: scaleX(1);
-  }
-}
+/* Bigtime — stays Manrope-200 for visual focal point, but the surrounding
+   register is now monospace audit. */
 .ht-brief-panel__bigtime {
   font-family: var(--ht-font-ui);
   font-weight: 200;
@@ -14223,113 +14169,171 @@ span {
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: #FFF;
-  margin: 4px 0 8px;
+  margin: 0 0 6px;
 }
 .ht-brief-panel__bigtime span { color: rgba(255, 255, 255, 0.4); }
 .ht-brief-panel__bigmeta {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 10px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0 0 18px;
+  color: rgba(244, 239, 230, 0.65);
+  margin: 0 0 16px;
 }
 .ht-brief-panel__bigmeta strong {
   color: #FFF;
-  font-weight: 600;
+  font-weight: 500;
 }
+
+/* Open / Closes doc-row — second tabular strip, replaces the hairline
+   reveal element. Same key/value pattern as the top doc strip but with
+   stacked layout (key above, value below) so the live timer reads
+   prominently. */
+.ht-brief-panel__doc-row {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(244, 239, 230, 0.14);
+  border-bottom: 1px solid rgba(244, 239, 230, 0.14);
+  margin: 0 0 16px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.ht-brief-panel__doc-row-cell {
+  padding: 9px 12px;
+  flex: 1 1 auto;
+  border-right: 1px solid rgba(244, 239, 230, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ht-brief-panel__doc-row-cell:last-child { border-right: 0; }
+.ht-brief-panel__doc-row-key {
+  color: rgba(244, 239, 230, 0.42);
+  font-size: 9px;
+}
+.ht-brief-panel__doc-row-val {
+  color: var(--ht-theme-color-2);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Slot grid — hairline-bordered tabular cells, no individual radii. */
 .ht-brief-panel__slots {
   list-style: none;
   margin: 0 0 14px;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
+  gap: 0;
+  border: 1px solid rgba(244, 239, 230, 0.14);
 }
+.ht-brief-panel__slots > li {
+  border-right: 1px solid rgba(244, 239, 230, 0.10);
+}
+.ht-brief-panel__slots > li:last-child { border-right: 0; }
 .ht-brief-panel__slot {
   display: block;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 3px;
   padding: 12px 10px;
   text-decoration: none;
-  color: #FFF;
-  transition: background 0.18s ease, border-color 0.18s ease;
+  color: var(--ht-body);
+  cursor: pointer;
+  transition: background 0.18s ease;
 }
 .ht-brief-panel__slot:hover,
 .ht-brief-panel__slot:focus-visible {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.30);
-  color: #FFF;
+  background: rgba(244, 239, 230, 0.04);
   outline: none;
 }
 .ht-brief-panel__slot.is-active {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(201, 168, 106, 0.10);
+}
+.ht-brief-panel__slot--booked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(244, 239, 230, 0) 0px,
+    rgba(244, 239, 230, 0) 6px,
+    rgba(244, 239, 230, 0.04) 6px,
+    rgba(244, 239, 230, 0.04) 8px
+  );
+}
+.ht-brief-panel__slot--booked .ht-brief-panel__slot-time {
+  text-decoration: line-through;
 }
 .ht-brief-panel__slot-day {
   display: block;
-  font-family: var(--ht-font-ui);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.20em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(244, 239, 230, 0.50);
   line-height: 1;
 }
 .ht-brief-panel__slot-time {
   display: block;
-  font-family: var(--ht-font-ui);
-  font-weight: 400;
-  font-size: 16px;
-  letter-spacing: -0.01em;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
   color: #FFF;
   margin-top: 6px;
+  letter-spacing: 0.02em;
   line-height: 1;
+  font-feature-settings: "tnum" 1;
 }
+
+/* CTA — ghost outline; fills with ivory on hover. */
 .ht-brief-panel__cta {
   display: block;
   width: 100%;
-  background: #FFF;
-  color: #000;
-  border: 0;
-  border-radius: 3px;
-  padding: 13px 14px;
-  font-family: var(--ht-font-ui);
-  font-weight: 600;
+  background: transparent;
+  color: var(--ht-body);
+  border: 1px solid rgba(244, 239, 230, 0.45);
+  border-radius: 0;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-weight: 500;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
-  transition: background 0.18s ease, color 0.18s ease;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 .ht-brief-panel__cta:hover,
 .ht-brief-panel__cta:focus-visible {
-  background: var(--ht-theme-color-2);
-  color: #000;
+  background: var(--ht-body);
+  color: var(--ht-black);
+  border-color: var(--ht-body);
   outline: none;
 }
+
+/* Footer — hairline above the NDA microcopy. */
 .ht-brief-panel__foot {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
+  border-top: 1px solid rgba(244, 239, 230, 0.20);
+  margin: 14px 0 0;
+  padding: 12px 0 0;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 .ht-brief-panel__microcopy {
   margin: 0;
-  font-family: var(--ht-font-ui);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  font-family: inherit;
+  color: rgba(244, 239, 230, 0.55);
 }
 .ht-brief-panel__alt {
   font-family: var(--ht-font-serif-body);
   font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
   font-size: 12px;
   color: var(--ht-theme-color-2);
   text-decoration: none;
@@ -14337,6 +14341,41 @@ span {
   transition: color 0.18s ease;
 }
 .ht-brief-panel__alt:hover { color: #FFF; }
+
+/* Mobile reflow — at narrow widths the doc strips stack into rows so
+   each label/value reads as its own line, mirroring the existing
+   .ht-breadcrumb__doc-control mobile pattern. The slot grid also drops
+   to a single column with day on the left and time on the right. */
+@media (max-width: 600px) {
+  .ht-brief-panel__doc {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ht-brief-panel__doc-cell,
+  .ht-brief-panel__doc-tag {
+    border-right: 0;
+    border-bottom: 1px solid rgba(244, 239, 230, 0.14);
+  }
+  .ht-brief-panel__doc > :last-child { border-bottom: 0; }
+  .ht-brief-panel__slots {
+    grid-template-columns: 1fr;
+  }
+  .ht-brief-panel__slots > li {
+    border-right: 0;
+    border-bottom: 1px solid rgba(244, 239, 230, 0.10);
+  }
+  .ht-brief-panel__slots > li:last-child { border-bottom: 0; }
+  .ht-brief-panel__slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .ht-brief-panel__slot-time { margin-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ht-brief-panel__doc-val--avail::before { animation: none; }
+}
 
 /* Contact preferred-slot readout (set by ?slot= from a brief panel click) */
 .ht-contact-slot {
