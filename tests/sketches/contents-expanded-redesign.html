@@ -763,6 +763,81 @@
     .i08-cell:nth-child(2n) { border-right: 0 !important; }
   }
 
+  /* ====================================================================
+     IDEA 09 — Running heads with deks (italic taglines per chapter)
+     ==================================================================== */
+  .i09-list {
+    list-style: none; margin: 0; padding: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .i09-list li {
+    border-bottom: 1px solid var(--hairline);
+  }
+  .i09-list li:last-child { border-bottom: 0; }
+  .i09-list a {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: baseline;
+    gap: 18px;
+    padding: 14px 24px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.18s ease;
+  }
+  .i09-list a:hover {
+    background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 70%);
+  }
+  .i09-list .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--gold-deep);
+    text-align: right;
+    letter-spacing: 0.02em;
+  }
+  .i09-list .body {
+    display: flex; flex-wrap: wrap;
+    align-items: baseline; gap: 4px 10px;
+    min-width: 0;
+  }
+  .i09-list .label {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.25;
+  }
+  .i09-list .em-dash {
+    color: var(--gold);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px;
+    margin: 0 2px;
+  }
+  .i09-list .dek {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--stone);
+    flex: 1; min-width: 14ch;
+  }
+  .i09-list .ref {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: var(--stone); text-transform: uppercase;
+    align-self: center;
+  }
+  .i09-list a:hover .label { color: var(--gold-deep); }
+  .i09-list a:hover .ref { color: var(--gold-deep); }
+
+  @media (max-width: 640px) {
+    .i09-list a { grid-template-columns: 38px 1fr; padding: 12px 18px; gap: 12px; }
+    .i09-list .ref { display: none; }
+    .i09-list .label { font-size: 17px; }
+    .i09-list .dek { font-size: 14px; flex-basis: 100%; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -1207,6 +1282,45 @@
           <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IX</span><span class="label">Our Licenses</span><span class="ref">GV-I</span></a>
           <span class="i08-cell colophon"><span class="corner tl"></span><span class="corner br"></span><span class="num">·</span><span class="label">Mobius Dossier · Edition 2026.Q1 · printed by hand for the family.</span></span>
         </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 09 ===================== -->
+    <article class="idea" id="i09">
+      <p class="idea__num">IX — Running heads with deks</p>
+      <h2>Each chapter title carries a <em>one-line italic dek</em></h2>
+      <p class="idea__why">
+        The labels alone don't tell anyone what's actually in each
+        chapter. "About" and "Process" are particularly opaque. Pair
+        every chapter title with a one-line italic dek — magazine
+        running heads — and the disclosure becomes a working summary
+        of the dossier in the same gesture as a TOC. Users decide
+        where to skip to from the dek, not the label.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~510 px. Taller than the compact ledger but earns it: each row now <em>says</em> something. The page-number column is replaced by a doc-ref tag (<code>GV-A</code>…<code>GV-I</code>). The dek line is the only honest case for keeping the rows tall.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Three columns per row: italic numeral · title + em-dash + italic dek · monospace doc-ref. Hairline divider between rows.</dd>
+        <dt>Active</dt><dd>Hover ramps title + ref to gold and washes the row 8 % gold; click → scroll + close.</dd>
+        <dt>Mobile</dt><dd>Doc-ref hides ≤ 640 px; dek wraps to a second line beneath the title.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · with deks</span>
+          <span class="chev">–</span>
+        </div>
+        <ol class="i09-list">
+          <li><a><span class="num">I</span><span class="body"><span class="label">About</span><span class="em-dash">—</span><span class="dek">what the program is, who it's for, and the honest case against it.</span></span><span class="ref">GV-A</span></a></li>
+          <li><a><span class="num">II</span><span class="body"><span class="label">Investment</span><span class="em-dash">—</span><span class="dek">at-cost figures, the markups we don't take, and the true total cost of entry.</span></span><span class="ref">GV-B</span></a></li>
+          <li><a><span class="num">III</span><span class="body"><span class="label">Benefits</span><span class="em-dash">—</span><span class="dek">mobility, tax positioning and family inheritance — modelled, not promised.</span></span><span class="ref">GV-C</span></a></li>
+          <li><a><span class="num">IV</span><span class="body"><span class="label">Eligibility</span><span class="em-dash">—</span><span class="dek">who qualifies, who doesn't, and the source-of-funds threshold in plain language.</span></span><span class="ref">GV-D</span></a></li>
+          <li><a><span class="num">V</span><span class="body"><span class="label">Documents</span><span class="em-dash">—</span><span class="dek">a per-applicant checklist with apostille, translation and notary flags.</span></span><span class="ref">GV-E</span></a></li>
+          <li><a><span class="num">VI</span><span class="body"><span class="label">Process</span><span class="em-dash">—</span><span class="dek">week-by-week timeline from first call to residency card in hand.</span></span><span class="ref">GV-F</span></a></li>
+          <li><a><span class="num">VII</span><span class="body"><span class="label">Visa-Free Countries</span><span class="em-dash">—</span><span class="dek">the actual passport-equivalent footprint after grant, with caveats.</span></span><span class="ref">GV-G</span></a></li>
+          <li><a><span class="num">VIII</span><span class="body"><span class="label">Case Studies</span><span class="em-dash">—</span><span class="dek">three real mandates, anonymised — what worked, what cost more than expected.</span></span><span class="ref">GV-H</span></a></li>
+          <li><a><span class="num">IX</span><span class="body"><span class="label">Our Licenses</span><span class="em-dash">—</span><span class="dek">the regulators we answer to, the partners we co-sign with, and what isn't ours.</span></span><span class="ref">GV-I</span></a></li>
+        </ol>
       </div>
     </article>
 
