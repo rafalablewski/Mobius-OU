@@ -324,6 +324,67 @@
     .i02-col:last-child { border-bottom: 0; }
   }
 
+  /* ====================================================================
+     IDEA 03 — Audit doc-control register (tabular monospace)
+     ==================================================================== */
+  .i03-wrap { padding: 12px 24px 22px; border-top: 1px solid var(--hairline); }
+  .i03-head, .i03-row {
+    display: grid;
+    grid-template-columns: 28px 1.6fr 0.8fr 0.6fr 0.7fr;
+    gap: 14px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+  .i03-head {
+    color: var(--gold-deep);
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    border-bottom: 1px solid var(--hairline-2);
+    font-weight: 500;
+  }
+  .i03-row { color: var(--pencil); text-decoration: none; transition: background 0.18s ease; }
+  .i03-row:last-child { border-bottom: 0; }
+  .i03-row:hover { background: rgba(201, 168, 106, 0.07); }
+  .i03-row .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold-deep);
+  }
+  .i03-row .ch {
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    font-size: 16px;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+  .i03-row .ref { color: var(--stone); }
+  .i03-row .rev { color: var(--stone); }
+  .i03-row .status {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--green); font-weight: 500;
+  }
+  .i03-row .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); display: inline-block;
+  }
+  @media (max-width: 720px) {
+    .i03-head { display: none; }
+    .i03-row {
+      grid-template-columns: 26px 1fr auto;
+      grid-template-areas: "num ch status" "num ref rev";
+      row-gap: 4px; padding: 12px 0;
+    }
+    .i03-row .num { grid-area: num; }
+    .i03-row .ch { grid-area: ch; }
+    .i03-row .ref { grid-area: ref; font-size: 10px; }
+    .i03-row .rev { grid-area: rev; font-size: 10px; text-align: right; }
+    .i03-row .status { grid-area: status; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -502,6 +563,49 @@
               <li><a><span class="num">IX</span><span class="label">Our Licenses</span></a></li>
             </ol>
           </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 03 ===================== -->
+    <article class="idea" id="i03">
+      <p class="idea__num">III — Audit doc-control register</p>
+      <h2>Five tabular columns, <em>matched to the page's audit register</em></h2>
+      <p class="idea__why">
+        The freshness badge and the breadcrumb already use a
+        doc-control register (<code>HOST · STATUS · OPEN · CLOSES</code>).
+        The contents disclosure should join that same conversation
+        rather than dropping a print appendix into the middle of an
+        audit document. Columns:
+        <code>§</code> · <code>CHAPTER</code> · <code>DOC-REF</code> ·
+        <code>REVISED</code> · <code>STATUS</code>.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~360 px. Same nine entries, presented as a filing reference rather than a TOC. Aligns the disclosure with the breadcrumb's <code>.ht-breadcrumb__doc-control</code> pattern that already ships.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Five mono columns under a small-caps header row; italic Cormorant numerals + chapter titles; green dot for ON-PAGE.</dd>
+        <dt>Active</dt><dd>Hover wash (gold 7 %); click → scroll + close. Row is one <code>&lt;a&gt;</code>.</dd>
+        <dt>Mobile</dt><dd>Header hides; each row reflows to a 2-line stack: numeral + chapter + status on top, doc-ref + revised on the line below.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · doc-control</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i03-wrap">
+          <div class="i03-head">
+            <span>§</span><span>Chapter</span><span>Doc-ref</span><span>Revised</span><span>Status</span>
+          </div>
+          <a class="i03-row"><span class="num">I</span><span class="ch">About</span><span class="ref">GV-A</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">II</span><span class="ch">Investment</span><span class="ref">GV-B</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">III</span><span class="ch">Benefits</span><span class="ref">GV-C</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">IV</span><span class="ch">Eligibility</span><span class="ref">GV-D</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">V</span><span class="ch">Documents</span><span class="ref">GV-E</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">VI</span><span class="ch">Process</span><span class="ref">GV-F</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">VII</span><span class="ch">Visa-Free Countries</span><span class="ref">GV-G</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">VIII</span><span class="ch">Case Studies</span><span class="ref">GV-H</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
+          <a class="i03-row"><span class="num">IX</span><span class="ch">Our Licenses</span><span class="ref">GV-I</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
         </div>
       </div>
     </article>
