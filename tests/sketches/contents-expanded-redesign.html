@@ -595,6 +595,97 @@
     .i06-cell:nth-last-child(1) { grid-column: auto; }
   }
 
+  /* ====================================================================
+     IDEA 07 — Marginalia rail (numbered margin notes)
+     ==================================================================== */
+  .i07-wrap {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.9fr) 1px minmax(0, 1.4fr);
+    border-top: 1px solid var(--hairline);
+  }
+  .i07-rule {
+    background: var(--hairline);
+  }
+  .i07-aside {
+    padding: 22px 22px 22px 26px;
+    background: linear-gradient(to right, rgba(201, 168, 106, 0.04), transparent);
+  }
+  .i07-aside h4 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin: 0 0 12px;
+    font-weight: 500;
+  }
+  .i07-aside p {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--pencil);
+    margin: 0 0 8px;
+  }
+  .i07-aside .em-rule {
+    display: inline-block;
+    width: 24px; height: 1px; background: var(--gold);
+    vertical-align: middle; margin: 0 6px 4px 0;
+  }
+  .i07-aside .sign {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--stone);
+  }
+
+  .i07-list {
+    list-style: none; margin: 0; padding: 14px 24px 16px;
+  }
+  .i07-list li { position: relative; }
+  .i07-list a {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    align-items: baseline;
+    gap: 14px;
+    padding: 9px 0 9px 6px;
+    border-bottom: 1px dotted var(--hairline);
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.18s ease, border-color 0.18s ease;
+  }
+  .i07-list li:last-child a { border-bottom: 0; }
+  .i07-list a:hover { color: var(--gold-deep); border-bottom-color: var(--gold-deep); }
+  .i07-list .num {
+    position: relative;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold-deep);
+    text-align: right;
+  }
+  .i07-list .num::after {
+    content: ""; position: absolute;
+    right: -8px; top: 50%;
+    width: 5px; height: 1px; background: var(--gold);
+    transform: translateY(-50%);
+  }
+  .i07-list .label {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px;
+    line-height: 1.25;
+  }
+  .i07-list .ref {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.16em;
+    color: var(--stone); margin-left: 8px;
+  }
+  @media (max-width: 760px) {
+    .i07-wrap { grid-template-columns: 1fr; }
+    .i07-rule { display: none; }
+    .i07-aside { border-bottom: 1px solid var(--hairline); }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -947,6 +1038,57 @@
           <a class="i06-cell"><span class="num">VII</span><span class="body"><span class="label">Visa-Free Countries</span><span class="small">GV-G · 07</span></span></a>
           <a class="i06-cell"><span class="num">VIII</span><span class="body"><span class="label">Case Studies</span><span class="small">GV-H · 08</span></span></a>
           <a class="i06-cell"><span class="num">IX</span><span class="body"><span class="label">Our Licenses</span><span class="small">GV-I · 09 · closing chapter</span></span></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== IDEA 07 ===================== -->
+    <article class="idea" id="i07">
+      <p class="idea__num">VII — Marginalia rail</p>
+      <h2>Italic standfirst on the left, <em>numbered margin notes on the right</em></h2>
+      <p class="idea__why">
+        Two columns. The left holds an italic standfirst — what the
+        dossier is and who it's for; the right is the chapter list
+        rendered as marginalia: tiny gold em-rule, italic numeral,
+        Cormorant title, monospace doc-ref. Reads as a published
+        document with a reader's apparatus, not a navigation menu.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~340 px. Adds a column of advisory copy where today there is dead space; the chapters become the apparatus that supports the reading. Pulls the spine's editorial register into the disclosure itself.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Two-column grid divided by a 1 px hairline; left column carries a soft 4 % gold wash; right is the navigable list.</dd>
+        <dt>Active</dt><dd>Hover lifts each chapter to gold and ramps its bottom hairline to gold; em-rule beside the numeral stays gold throughout.</dd>
+        <dt>Mobile</dt><dd>Stacks vertically ≤ 760 px — standfirst on top, list beneath; the rule rotates to a horizontal divider.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters · with apparatus</span>
+          <span class="chev">–</span>
+        </div>
+        <div class="i07-wrap">
+          <aside class="i07-aside">
+            <h4>Editor's note</h4>
+            <p>
+              <span class="em-rule"></span>This dossier is an audit, not a
+              brochure. It is structured so a family can read it once,
+              forward to a lawyer or a tax adviser, and proceed without
+              picking up the phone — though we'd rather they did.
+            </p>
+            <p class="sign">— Rafał A., principal</p>
+          </aside>
+          <div class="i07-rule"></div>
+          <ol class="i07-list">
+            <li><a><span class="num">I</span><span class="label">About<span class="ref">GV-A</span></span></a></li>
+            <li><a><span class="num">II</span><span class="label">Investment<span class="ref">GV-B</span></span></a></li>
+            <li><a><span class="num">III</span><span class="label">Benefits<span class="ref">GV-C</span></span></a></li>
+            <li><a><span class="num">IV</span><span class="label">Eligibility<span class="ref">GV-D</span></span></a></li>
+            <li><a><span class="num">V</span><span class="label">Documents<span class="ref">GV-E</span></span></a></li>
+            <li><a><span class="num">VI</span><span class="label">Process<span class="ref">GV-F</span></span></a></li>
+            <li><a><span class="num">VII</span><span class="label">Visa-Free Countries<span class="ref">GV-G</span></span></a></li>
+            <li><a><span class="num">VIII</span><span class="label">Case Studies<span class="ref">GV-H</span></span></a></li>
+            <li><a><span class="num">IX</span><span class="label">Our Licenses<span class="ref">GV-I</span></span></a></li>
+          </ol>
         </div>
       </div>
     </article>
