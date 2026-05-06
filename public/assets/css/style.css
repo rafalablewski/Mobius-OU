@@ -14094,11 +14094,13 @@ html.has-program-spine {
 
 .ht-spine {
   --ht-spine-band-h: 40px;
-  /* Matches the fixed page header height (min-height: 72px on
-     .ht-header-area--full .ht-main-header.header-1 .ht-menu-wrapper) so the
-     sticky chapter band abuts the header with no visible page background
-     bleeding through between them. */
-  --ht-spine-band-top: 72px;
+  /* Matches the actual rendered height of the fixed page header (~82px:
+     min-height 72px on .ht-menu-wrapper is overshot by the nav link
+     padding 26px×2 + line-height + 1px border-bottom). The sticky chapter
+     band sits flush against the header bottom in both natural and stuck
+     states — no page background bleeds through the seam, and the header
+     never overlaps the band's top edge. */
+  --ht-spine-band-top: 82px;
   --ht-spine-bg: #FAF6EE;
   --ht-spine-bg-alt: #F4EFE6;
   --ht-spine-ink: #0B0F14;
