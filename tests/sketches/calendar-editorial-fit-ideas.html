@@ -430,6 +430,281 @@
   .bp02--m .bp02__slot { display: flex; justify-content: space-between; align-items: baseline; }
   .bp02--m .bp02__slot .v { margin-top: 0; }
 
+  /* =====================================================
+     IDEA 03 — Letterpress almanac (full serif on parchment)
+     ===================================================== */
+  .bp03 {
+    width: 320px;
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(160,127,68,0.06), transparent 60%),
+      radial-gradient(ellipse at 70% 100%, rgba(160,127,68,0.05), transparent 55%),
+      var(--paper-warm);
+    border: 1px solid rgba(160,127,68,0.30);
+    border-radius: 2px;
+    padding: 22px 22px 18px;
+    color: var(--ink);
+    font-family: "Newsreader", serif;
+    box-shadow: 0 28px 64px -32px rgba(0,0,0,0.65);
+    position: relative;
+  }
+  .bp03::before, .bp03::after {
+    content: ""; position: absolute; left: 14px; right: 14px;
+    height: 1px; background: linear-gradient(to right,
+      transparent, rgba(160,127,68,0.45) 25%, rgba(160,127,68,0.45) 75%, transparent);
+    pointer-events: none;
+  }
+  .bp03::before { top: 6px; }
+  .bp03::after  { bottom: 6px; }
+  .bp03__top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; margin-bottom: 16px;
+  }
+  .bp03__eyebrow {
+    font-family: "Newsreader", serif; font-style: italic;
+    font-weight: 400; font-size: 14px;
+    color: var(--gold-deep);
+    flex: 1 1 auto; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .bp03__avail {
+    display: inline-flex; align-items: center; gap: 6px;
+    flex: 0 0 auto;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .bp03__bigtime {
+    font-family: "Cormorant Garamond", "Fraunces", serif;
+    font-weight: 300; font-style: italic;
+    font-size: 88px; line-height: 0.95; letter-spacing: -0.02em;
+    color: var(--ink); margin: 6px 0 4px;
+    text-align: center;
+  }
+  .bp03__bigtime span { color: rgba(11,15,20,0.4); padding: 0 2px; }
+  .bp03__bigmeta {
+    text-align: center;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); margin: 0 0 18px;
+  }
+  .bp03__bigmeta b { color: var(--ink); font-weight: 700; }
+  .bp03__hairline-pair {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; margin: 0 0 18px;
+    border-top: 1px solid rgba(160,127,68,0.45);
+    border-bottom: 1px solid rgba(160,127,68,0.45);
+    padding: 7px 0;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .bp03__hairline-pair b { color: var(--ink); font-weight: 700; }
+  .bp03__hairline-pair .timer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--gold-deep); font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .bp03__slots {
+    list-style: none; margin: 0 0 14px; padding: 0;
+  }
+  .bp03__slot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 10px 4px; cursor: pointer;
+    border-bottom: 1px solid rgba(160,127,68,0.20);
+    transition: background .18s, border-color .18s;
+  }
+  .bp03__slot:last-child { border-bottom: 0; }
+  .bp03__slot:hover { background: rgba(160,127,68,0.06); }
+  .bp03__slot.is-active {
+    background: rgba(160,127,68,0.10);
+    border-bottom-color: var(--gold-deep);
+  }
+  .bp03__slot.is-booked { opacity: 0.45; cursor: not-allowed; }
+  .bp03__slot.is-booked .time { text-decoration: line-through; }
+  .bp03__slot .day {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .bp03__slot .time {
+    font-family: "Cormorant Garamond", "Fraunces", serif;
+    font-style: italic; font-weight: 400; font-size: 22px;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .bp03__cta {
+    display: block; text-align: center;
+    margin: 14px 0 0; padding: 10px 0;
+    font-family: "Newsreader", serif; font-style: italic;
+    font-weight: 400; font-size: 18px;
+    color: var(--gold-deep); cursor: pointer;
+    border: 0; background: transparent;
+    border-top: 1px solid rgba(160,127,68,0.45);
+    border-bottom: 1px solid rgba(160,127,68,0.45);
+    width: 100%;
+    transition: color .18s;
+  }
+  .bp03__cta:hover { color: var(--ink); }
+  .bp03__cta::before, .bp03__cta::after {
+    content: "—"; color: rgba(160,127,68,0.6);
+    margin: 0 8px; font-style: normal;
+  }
+  .bp03__foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 10px; margin-top: 12px;
+  }
+  .bp03__micro {
+    margin: 0; font-family: "Manrope", sans-serif;
+    font-size: 8px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .bp03__alt {
+    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
+    color: var(--gold-deep);
+  }
+  .bp03--m { width: 280px; padding: 18px; }
+  .bp03--m .bp03__bigtime { font-size: 64px; }
+  .bp03--m .bp03__slot .time { font-size: 19px; }
+  .bp03--m .bp03__cta { font-size: 16px; }
+  .bp03--m .bp03__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+  /* =====================================================
+     IDEA 04 — Pitch-card frame (corner-tick brackets, dossier excerpt)
+     ===================================================== */
+  .bp04 {
+    width: 320px; position: relative;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.035) 0%,
+      rgba(255,255,255,0.015) 100%);
+    border: 1px solid rgba(201,168,106,0.30);
+    color: var(--ivory);
+    font-family: "Manrope", sans-serif;
+    padding: 24px 26px 22px;
+    isolation: isolate;
+  }
+  /* corner ticks — same treatment as .ht-pitch-card */
+  .bp04::before, .bp04::after {
+    content: ""; position: absolute;
+    width: 14px; height: 14px;
+    pointer-events: none;
+  }
+  .bp04::before {
+    top: -1px; left: -1px;
+    border-top: 1px solid var(--gold);
+    border-left: 1px solid var(--gold);
+  }
+  .bp04::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+  }
+  .bp04__top {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(201,168,106,0.22);
+    padding-bottom: 10px; margin-bottom: 14px;
+  }
+  .bp04__eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.20em;
+    text-transform: uppercase; color: var(--gold-soft);
+    flex: 1 1 auto; min-width: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .bp04__avail {
+    display: inline-flex; align-items: center; gap: 6px;
+    flex: 0 0 auto;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.20em;
+    text-transform: uppercase; color: #fff;
+  }
+  .bp04__bigtime {
+    font-family: "Fraunces", serif;
+    font-weight: 300; font-style: italic;
+    font-size: 76px; line-height: 0.95; letter-spacing: -0.02em;
+    color: #fff; margin: 4px 0 6px;
+  }
+  .bp04__bigtime span { color: rgba(255,255,255,0.4); }
+  .bp04__bigmeta {
+    font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(244,239,230,0.60); margin: 0 0 18px;
+  }
+  .bp04__bigmeta b { color: #fff; font-weight: 600; }
+  .bp04__hairline {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; margin: 0 0 16px;
+    padding: 7px 0;
+    border-top: 1px solid rgba(201,168,106,0.30);
+    border-bottom: 1px solid rgba(201,168,106,0.30);
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+  }
+  .bp04__hairline b { color: #fff; font-weight: 700; }
+  .bp04__hairline .timer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--gold-soft); font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .bp04__slots {
+    list-style: none; margin: 0 0 14px; padding: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .bp04__slot {
+    display: block; cursor: pointer;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,106,0.20);
+    padding: 11px 9px;
+    transition: background .18s, border-color .18s;
+  }
+  .bp04__slot:hover { background: rgba(201,168,106,0.08); border-color: rgba(201,168,106,0.5); }
+  .bp04__slot.is-active {
+    background: rgba(201,168,106,0.10); border-color: var(--gold);
+  }
+  .bp04__slot.is-booked {
+    opacity: 0.40; cursor: not-allowed;
+    background: rgba(255,255,255,0.01);
+  }
+  .bp04__slot.is-booked .time { text-decoration: line-through; }
+  .bp04__slot .day {
+    display: block; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(244,239,230,0.55); line-height: 1;
+  }
+  .bp04__slot .time {
+    display: block; font-family: "Fraunces", serif;
+    font-style: italic; font-weight: 300;
+    font-size: 22px; color: #fff;
+    margin-top: 4px; line-height: 1;
+  }
+  .bp04__cta {
+    display: block; width: 100%;
+    background: transparent; color: #fff;
+    border: 1px solid var(--gold);
+    border-radius: 0; padding: 12px 14px;
+    font-family: inherit; font-weight: 600;
+    font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; text-align: center;
+    cursor: pointer; transition: background .18s, color .18s;
+  }
+  .bp04__cta:hover { background: var(--gold); color: var(--ink); }
+  .bp04__foot {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid rgba(201,168,106,0.22);
+  }
+  .bp04__micro {
+    margin: 0; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(244,239,230,0.45);
+  }
+  .bp04__alt {
+    font-family: "Newsreader", serif; font-style: italic; font-size: 12px;
+    color: var(--gold);
+  }
+  .bp04--m { width: 280px; padding: 20px 22px; }
+  .bp04--m .bp04__bigtime { font-size: 60px; }
+  .bp04--m .bp04__slots { grid-template-columns: 1fr; }
+  .bp04--m .bp04__slot { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 14px; }
+  .bp04--m .bp04__slot .time { margin-top: 0; font-size: 19px; }
+  .bp04--m .bp04__foot { flex-direction: column; align-items: flex-start; gap: 4px; }
+
   @media (max-width: 720px) {
     .stage { padding: 24px 12px; }
     .toc { grid-template-columns: 1fr; }
@@ -664,6 +939,164 @@
   <div class="live-caption"><strong>02</strong> · audit register · top tabular row + tabular slot grid + ghost-outline CTA · matches page</div>
 </section>
 
+<!-- ============================ IDEA 03 ============================ -->
+<section class="idea" id="i3">
+  <div class="idea__num">Idea 03</div>
+  <h2>Letterpress almanac — <em>full serif on parchment.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">Cream parchment BG</span>
+    <span class="tag">Cormorant italic numerals</span>
+    <span class="tag">Hairline gold double-rules</span>
+  </div>
+  <p class="idea__why">
+    A printed-almanac register. Subtle warm radial-gradient on cream as
+    parchment ground, two faint gold rules near the top and bottom edges
+    of the panel as if it were a printed page. Bigtime in
+    <em>Cormorant Garamond italic 300</em> at 88 px — quietly dramatic.
+    Slot times in matching serif italic; days in tabular small caps.
+    CTA is a serif italic line bracketed by em-dashes — no button shape
+    at all. Footer microcopy hairline-tabular.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> the most editorial of the ten — drops
+    nearly all the "panel" furniture (pill button, hard borders, chunky
+    type) in favour of typesetting. Lowest interactive affordance; highest
+    register match with the page's body copy and section openers.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp03">
+        <div class="bp03__top">
+          <span class="bp03__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp03__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp03__bigtime">14<span>:</span>00</div>
+        <div class="bp03__bigmeta"><b>Thursday · 7 May</b> · CET · 30 min</div>
+        <div class="bp03__hairline-pair">
+          <span><b>2 left</b> this week</span>
+          <span class="timer" id="t03">54:06:59</span>
+        </div>
+        <ul class="bp03__slots">
+          <li><div class="bp03__slot is-active"><span class="day">Thu · 7 May</span><span class="time">14:00</span></div></li>
+          <li><div class="bp03__slot"><span class="day">Fri · 8 May</span><span class="time">09:30</span></div></li>
+          <li><div class="bp03__slot is-booked"><span class="day">Mon · 11 May</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp03__cta">Reserve · 14:00 CET</button>
+        <div class="bp03__foot">
+          <p class="bp03__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp03__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp03 bp03--m">
+        <div class="bp03__top">
+          <span class="bp03__eyebrow">Next · Rafał A.</span>
+          <span class="bp03__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp03__bigtime">14<span>:</span>00</div>
+        <div class="bp03__bigmeta"><b>Thu · 7 May</b> · CET · 30 min</div>
+        <div class="bp03__hairline-pair">
+          <span><b>2 left</b></span>
+          <span class="timer">54:06:59</span>
+        </div>
+        <ul class="bp03__slots">
+          <li><div class="bp03__slot is-active"><span class="day">Thu · 7 May</span><span class="time">14:00</span></div></li>
+          <li><div class="bp03__slot"><span class="day">Fri · 8 May</span><span class="time">09:30</span></div></li>
+          <li><div class="bp03__slot is-booked"><span class="day">Mon · 11 May</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp03__cta">Reserve · 14:00</button>
+        <div class="bp03__foot">
+          <p class="bp03__micro">NDA · No marketing · Private call</p>
+          <a class="bp03__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · same layout, smaller</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>03</strong> · parchment cream · Cormorant italic 88 px bigtime · serif italic CTA bracketed by em-dashes</div>
+</section>
+
+<!-- ============================ IDEA 04 ============================ -->
+<section class="idea" id="i4">
+  <div class="idea__num">Idea 04</div>
+  <h2>Pitch-card frame — <em>corner-tick brackets, dossier excerpt.</em></h2>
+  <div class="idea__tag">
+    <span class="tag">Reuses .ht-pitch-card surface</span>
+    <span class="tag">Gold corner ticks (top-L + bottom-R)</span>
+    <span class="tag">Fraunces italic bigtime + slot times</span>
+  </div>
+  <p class="idea__why">
+    The page's hero already carries a "dossier excerpt" pitch card with a
+    1 px gold border at 30% opacity, a faint white-on-black gradient, and
+    14 px corner ticks at top-left and bottom-right. Apply the exact same
+    surface to the booking panel — it stops looking like a separate
+    widget and starts reading as another excerpt of the same dossier.
+    Bigtime + slot times shift to Fraunces italic to match the section
+    headers; CTA becomes a hairline gold ghost button.
+  </p>
+  <div class="idea__contrast">
+    <strong>vs. today:</strong> reuses one of the page's own surface
+    treatments verbatim. Cheapest to ship after idea 02 — the CSS lives
+    in the page already. Visual departure is the corner ticks + serif
+    italic numerals; everything else is restraint.
+  </div>
+  <div class="stage">
+    <div class="col">
+      <div class="bp04">
+        <div class="bp04__top">
+          <span class="bp04__eyebrow">Next call · with Rafał A.</span>
+          <span class="bp04__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp04__bigtime">14<span>:</span>00</div>
+        <div class="bp04__bigmeta"><b>Thursday · 7 May</b> · CET · 30 min</div>
+        <div class="bp04__hairline">
+          <span><b>2 left</b> this week</span>
+          <span class="timer" id="t04">54:06:59</span>
+        </div>
+        <ul class="bp04__slots">
+          <li><div class="bp04__slot is-active"><span class="day">Thu · 7</span><span class="time">14:00</span></div></li>
+          <li><div class="bp04__slot"><span class="day">Fri · 8</span><span class="time">09:30</span></div></li>
+          <li><div class="bp04__slot is-booked"><span class="day">Mon · 11</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp04__cta">Reserve · 14:00 CET</button>
+        <div class="bp04__foot">
+          <p class="bp04__micro">NDA-first · No marketing · Private call</p>
+          <a class="bp04__alt">Pick another time →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Desktop · <b>320 px</b></div>
+    </div>
+    <div class="col">
+      <div class="bp04 bp04--m">
+        <div class="bp04__top">
+          <span class="bp04__eyebrow">Next · Rafał A.</span>
+          <span class="bp04__avail"><span class="greendot"></span>Available</span>
+        </div>
+        <div class="bp04__bigtime">14<span>:</span>00</div>
+        <div class="bp04__bigmeta"><b>Thu · 7 May</b> · CET · 30 min</div>
+        <div class="bp04__hairline">
+          <span><b>2 left</b></span>
+          <span class="timer">54:06:59</span>
+        </div>
+        <ul class="bp04__slots">
+          <li><div class="bp04__slot is-active"><span class="day">Thu · 7 May</span><span class="time">14:00</span></div></li>
+          <li><div class="bp04__slot"><span class="day">Fri · 8 May</span><span class="time">09:30</span></div></li>
+          <li><div class="bp04__slot is-booked"><span class="day">Mon · 11 May</span><span class="time">11:00</span></div></li>
+        </ul>
+        <button class="bp04__cta">Reserve · 14:00</button>
+        <div class="bp04__foot">
+          <p class="bp04__micro">NDA · No marketing · Private call</p>
+          <a class="bp04__alt">Pick another →</a>
+        </div>
+      </div>
+      <div class="col__lbl">Mobile · <b>280 px · stacked rows</b></div>
+    </div>
+  </div>
+  <div class="live-caption"><strong>04</strong> · 1px gold border + corner ticks (matches .ht-pitch-card) · Fraunces italic numerals · ghost CTA</div>
+</section>
+
 </div>
 </div>
 
@@ -671,7 +1104,7 @@
 /* Shared countdown — anchors to ~54 hours so the digits read as in the
    user's screenshot, then ticks down. */
 (function () {
-  const ids = ['t01','t02'];
+  const ids = ['t01','t02','t03','t04'];
   const target = new Date();
   target.setHours(target.getHours() + 54);
   target.setMinutes(target.getMinutes() + 6);
