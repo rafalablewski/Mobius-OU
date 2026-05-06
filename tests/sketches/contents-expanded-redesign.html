@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Expanded contents — ten redesigns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<style>
+  /* ----- shared palette (mirrors the live ProgramSpine) ----- */
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-soft:  #D9BD86;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --pencil:     #2A2A2A;
+    --hairline:   rgba(11, 15, 20, 0.16);
+    --hairline-2: rgba(11, 15, 20, 0.28);
+    --redline:    #B23A2A;
+    --green:      #4F7A4A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory); color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding: 72px 32px 120px; }
+
+  /* ----- intro ----- */
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 48px; }
+  header.intro .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 46px; line-height: 1.08;
+    margin: 14px 0 14px; letter-spacing: -0.01em; max-width: 22ch;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.6; max-width: 68ch; }
+
+  .baseline-note {
+    margin-top: 28px; padding: 14px 16px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; color: var(--pencil); max-width: 80ch;
+  }
+  .baseline-note strong { color: var(--ink); }
+  .baseline-note code {
+    background: #FFFDF7; padding: 1px 5px; border-radius: 2px;
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+  }
+
+  /* ----- in-page TOC ----- */
+  nav.idea-toc {
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px 32px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 14px;
+  }
+  nav.idea-toc a {
+    display: flex; justify-content: space-between; gap: 12px;
+    text-decoration: none; color: var(--ink);
+    padding: 7px 0; border-bottom: 1px dotted var(--hairline);
+    font-size: 13px;
+  }
+  nav.idea-toc a span:first-child {
+    color: var(--gold-deep); font-family: "Fraunces", serif;
+    font-style: italic; font-size: 14px; min-width: 32px;
+  }
+  nav.idea-toc a:hover span:last-child { color: var(--gold-deep); }
+  @media (max-width: 720px) { nav.idea-toc { grid-template-columns: 1fr; } }
+
+  /* ----- baseline (today) ----- */
+  .today {
+    margin-top: 40px;
+    padding: 22px 24px;
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+  }
+  .today h3 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 22px; margin: 0 0 4px;
+  }
+  .today p {
+    font-size: 13px; line-height: 1.6; color: var(--stone); margin: 0 0 18px;
+    max-width: 72ch;
+  }
+  .today-contents {
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+  }
+  .today-contents__toggle {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 20px; cursor: default;
+  }
+  .today-contents__eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600;
+  }
+  .today-contents__meta {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-weight: 300; color: var(--stone); font-size: 16px;
+  }
+  .today-contents__chev {
+    margin-left: auto; width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold-deep); border-radius: 50%;
+    font-family: "Cormorant Garamond", serif; font-size: 22px;
+    color: var(--gold-deep);
+  }
+  .today-contents__list {
+    list-style: none; margin: 0; padding: 0 20px;
+    border-top: 1px solid var(--hairline);
+  }
+  .today-contents__list li { border-bottom: 1px solid var(--hairline); }
+  .today-contents__list li:last-child { border-bottom: 0; }
+  .today-contents__link {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 14px 4px; text-decoration: none; color: var(--ink);
+  }
+  .today-contents__link .num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 16px; min-width: 40px;
+  }
+  .today-contents__link .label {
+    font-family: "Cormorant Garamond", serif; font-size: 19px;
+  }
+  .today-contents__link .leader {
+    flex: 1; align-self: end; margin: 0 8px 6px;
+    border-bottom: 1px dotted var(--hairline);
+  }
+  .today-contents__link .page {
+    font-family: ui-monospace, "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.12em; color: var(--stone);
+    min-width: 28px; text-align: right;
+  }
+
+  /* ----- ideas grid ----- */
+  section.ideas { display: grid; gap: 64px; }
+  article.idea {
+    border-top: 1px solid var(--hairline-2);
+    padding-top: 32px;
+  }
+  .idea__num {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600; margin: 0 0 6px;
+  }
+  .idea h2 {
+    font-family: "Fraunces", serif; font-weight: 400;
+    font-size: 30px; line-height: 1.15;
+    margin: 0 0 12px; letter-spacing: -0.005em; max-width: 28ch;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__why {
+    color: var(--stone); font-size: 14px; line-height: 1.65;
+    margin: 0 0 14px; max-width: 72ch;
+  }
+  .idea__contrast {
+    margin: 0 0 22px; padding: 12px 14px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.6; max-width: 80ch;
+  }
+  .idea__contrast strong { color: var(--ink); }
+  .idea__behavior {
+    display: grid; grid-template-columns: 110px 1fr;
+    gap: 6px 18px; margin: 0 0 22px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .idea__behavior dt {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold-deep);
+    padding-top: 2px;
+  }
+  .idea__behavior dd { margin: 0; color: var(--pencil); }
+  .idea__behavior dd code {
+    background: var(--paper); padding: 1px 5px; border-radius: 2px;
+    font-size: 11px;
+  }
+
+  /* ----- mock frame (the "live" rendered surface for each idea) ----- */
+  .mock {
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+    overflow: hidden;
+  }
+  .mock-toggle {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .mock-toggle .eb {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600;
+  }
+  .mock-toggle .meta {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--stone); font-size: 16px;
+  }
+  .mock-toggle .chev {
+    margin-left: auto; width: 26px; height: 26px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold-deep); border-radius: 50%;
+    font-family: "Cormorant Garamond", serif; font-size: 20px;
+    color: var(--gold-deep);
+  }
+
+  /* ----- footer ----- */
+  footer.note {
+    margin-top: 96px; padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--stone); line-height: 1.6;
+    max-width: 72ch;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============== INTRO ============== -->
+  <header class="intro">
+    <p class="eyebrow">Sketch · ProgramSpine — ContentsPage (expanded) · 2026.Q2</p>
+    <h1>Ten ways to redesign the <em>expanded contents</em> disclosure</h1>
+    <p class="lede">
+      The toggle (<em>Contents · 9 chapters · +</em>) is fine. The
+      <em>open</em> state is the problem. Today every chapter eats ~95 px,
+      a dotted leader runs the full column, and the nine entries stack to
+      ~850 px — a print-appendix dropped onto the page, decorative rather
+      than navigational. Ten redesigns below, each holding the same nine
+      anchors, the same toggle, and the same brand register; only the
+      surface of the open state changes.
+    </p>
+
+    <div class="baseline-note">
+      <strong>Behavioural contract — held constant across all ten:</strong>
+      the toggle stays as <code>Contents · 9 chapters · +</code>. Click any
+      entry → smooth-scroll to that chapter's <code>id</code> + close the
+      disclosure. All nine entries always rendered when open — no
+      overflow, no inner scrolling. Cream spine background, gold accents,
+      italic Cormorant numerals are constants.
+    </div>
+
+    <nav class="idea-toc" aria-label="Jump to a redesign">
+      <a href="#i01"><span>I.</span><span>Compact ledger — tight rows, no leaders</span></a>
+      <a href="#i02"><span>II.</span><span>Phased trio — three groups of three</span></a>
+      <a href="#i03"><span>III.</span><span>Audit doc-control register — tabular monospace</span></a>
+      <a href="#i04"><span>IV.</span><span>Editorial running text — standfirst paragraph</span></a>
+      <a href="#i05"><span>V.</span><span>Stepper journey bar — 9 connected nodes</span></a>
+      <a href="#i06"><span>VI.</span><span>Drop-cap magazine TOC — numerals as drop-caps</span></a>
+      <a href="#i07"><span>VII.</span><span>Marginalia rail — numbered margin notes</span></a>
+      <a href="#i08"><span>VIII.</span><span>Letterpress mosaic — 2×5 hairline grid</span></a>
+      <a href="#i09"><span>IX.</span><span>Running heads with deks — italic taglines</span></a>
+      <a href="#i10"><span>X.</span><span>Pure typography index — narrow column, minimal</span></a>
+    </nav>
+
+    <div class="today">
+      <h3>Baseline — what ships today</h3>
+      <p>
+        Toggle expands to nine ~95 px rows. Each row: italic gold Roman
+        numeral · serif title · dotted leader filling the column ·
+        tabular page number. ~850 px total height; the leaders read as
+        filler at any width over ~600 px.
+      </p>
+      <div class="today-contents">
+        <div class="today-contents__toggle">
+          <span class="today-contents__eyebrow">Contents</span>
+          <span class="today-contents__meta">9 chapters</span>
+          <span class="today-contents__chev">–</span>
+        </div>
+        <ol class="today-contents__list">
+          <li><a class="today-contents__link"><span class="num">I</span><span class="label">About</span><span class="leader"></span><span class="page">01</span></a></li>
+          <li><a class="today-contents__link"><span class="num">II</span><span class="label">Investment</span><span class="leader"></span><span class="page">02</span></a></li>
+          <li><a class="today-contents__link"><span class="num">III</span><span class="label">Benefits</span><span class="leader"></span><span class="page">03</span></a></li>
+          <li><a class="today-contents__link"><span class="num">IV</span><span class="label">Eligibility</span><span class="leader"></span><span class="page">04</span></a></li>
+          <li><a class="today-contents__link"><span class="num">V</span><span class="label">Documents</span><span class="leader"></span><span class="page">05</span></a></li>
+          <li><a class="today-contents__link"><span class="num">VI</span><span class="label">Process</span><span class="leader"></span><span class="page">06</span></a></li>
+          <li><a class="today-contents__link"><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="leader"></span><span class="page">07</span></a></li>
+          <li><a class="today-contents__link"><span class="num">VIII</span><span class="label">Case Studies</span><span class="leader"></span><span class="page">08</span></a></li>
+          <li><a class="today-contents__link"><span class="num">IX</span><span class="label">Our Licenses</span><span class="leader"></span><span class="page">09</span></a></li>
+        </ol>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== IDEAS ============== -->
+  <section class="ideas">
+    <!-- Drafts will be appended here, one per commit. -->
+  </section>
+
+  <footer class="note">
+    Sketches only — none of this is wired to the live build. Live
+    component lives in <code>src/components/ProgramSpine.jsx</code>
+    (the <code>ContentsPage()</code> function) with CSS in
+    <code>public/assets/css/style.css</code> under
+    <code>.ht-spine__contents*</code>.
+  </footer>
+
+</div>
+</body>
+</html>
