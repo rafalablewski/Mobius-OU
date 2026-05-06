@@ -215,6 +215,59 @@
     color: var(--gold-deep);
   }
 
+  /* ====================================================================
+     IDEA 01 — Compact ledger (tight rows, no leaders)
+     ==================================================================== */
+  .i01-list {
+    list-style: none; margin: 0; padding: 4px 24px 18px;
+    border-top: 1px solid var(--hairline);
+    counter-reset: i01;
+  }
+  .i01-list li { border-bottom: 1px solid var(--hairline); }
+  .i01-list li:nth-child(3n) { border-bottom: 1px solid var(--hairline-2); }
+  .i01-list li:last-child { border-bottom: 0; }
+  .i01-list a {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: baseline;
+    gap: 18px;
+    padding: 9px 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.18s ease, background 0.18s ease;
+  }
+  .i01-list a:hover {
+    color: var(--gold-deep);
+    background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 70%);
+  }
+  .i01-list .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--gold-deep);
+    text-align: right;
+    letter-spacing: 0.02em;
+  }
+  .i01-list .label {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.25;
+  }
+  .i01-list .ref {
+    font-family: ui-monospace, "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+  .i01-list a:hover .ref { color: var(--gold-deep); }
+  @media (max-width: 520px) {
+    .i01-list a { grid-template-columns: 30px 1fr auto; gap: 12px; }
+    .i01-list .label { font-size: 16px; }
+  }
+
   /* ----- footer ----- */
   footer.note {
     margin-top: 96px; padding-top: 24px;
@@ -295,6 +348,44 @@
 
   <!-- ============== IDEAS ============== -->
   <section class="ideas">
+    <!-- ===================== IDEA 01 ===================== -->
+    <article class="idea" id="i01">
+      <p class="idea__num">I — Compact ledger</p>
+      <h2>Tight single-line rows, <em>no dotted leaders</em></h2>
+      <p class="idea__why">
+        The leaders are filler. Strip them out, halve the row padding,
+        replace the page number with a small monospace doc-ref tag, and
+        the nine entries fit in roughly a third of today's height.
+        Every third row drops a darker hairline so the eye still has a
+        rhythm without the leaders doing the work.
+      </p>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~310 px. Rows go from 95 px to ~38 px. Loses leaders + page numerals; adds a discreet <code>GV-A</code>…<code>GV-I</code> doc-ref tag that ties to the audit register the rest of the dossier already uses.</div>
+      <dl class="idea__behavior">
+        <dt>Surface</dt><dd>Cream rows with hairline dividers; no card frame; every third hairline reads slightly darker (<code>--hairline-2</code>).</dd>
+        <dt>Active</dt><dd>Hover ramps row to gold ink + 8 % gold wash; click → scroll + close.</dd>
+        <dt>Mobile</dt><dd>Same layout; numeral column shrinks 36 → 30 px, label drops to 16 px.</dd>
+      </dl>
+
+      <div class="mock">
+        <div class="mock-toggle">
+          <span class="eb">Contents</span>
+          <span class="meta">9 chapters</span>
+          <span class="chev">–</span>
+        </div>
+        <ol class="i01-list">
+          <li><a><span class="num">I</span><span class="label">About</span><span class="ref">GV-A</span></a></li>
+          <li><a><span class="num">II</span><span class="label">Investment</span><span class="ref">GV-B</span></a></li>
+          <li><a><span class="num">III</span><span class="label">Benefits</span><span class="ref">GV-C</span></a></li>
+          <li><a><span class="num">IV</span><span class="label">Eligibility</span><span class="ref">GV-D</span></a></li>
+          <li><a><span class="num">V</span><span class="label">Documents</span><span class="ref">GV-E</span></a></li>
+          <li><a><span class="num">VI</span><span class="label">Process</span><span class="ref">GV-F</span></a></li>
+          <li><a><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="ref">GV-G</span></a></li>
+          <li><a><span class="num">VIII</span><span class="label">Case Studies</span><span class="ref">GV-H</span></a></li>
+          <li><a><span class="num">IX</span><span class="label">Our Licenses</span><span class="ref">GV-I</span></a></li>
+        </ol>
+      </div>
+    </article>
+
     <!-- Drafts will be appended here, one per commit. -->
   </section>
 
