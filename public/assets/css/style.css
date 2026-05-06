@@ -14094,7 +14094,11 @@ html.has-program-spine {
 
 .ht-spine {
   --ht-spine-band-h: 40px;
-  --ht-spine-band-top: 92px;
+  /* Matches the fixed page header height (min-height: 72px on
+     .ht-header-area--full .ht-main-header.header-1 .ht-menu-wrapper) so the
+     sticky chapter band abuts the header with no visible page background
+     bleeding through between them. */
+  --ht-spine-band-top: 72px;
   --ht-spine-bg: #FAF6EE;
   --ht-spine-bg-alt: #F4EFE6;
   --ht-spine-ink: #0B0F14;
@@ -14106,7 +14110,7 @@ html.has-program-spine {
   color: var(--ht-spine-ink);
 }
 @media (max-width: 991px) {
-  .ht-spine { --ht-spine-band-top: 76px; --ht-spine-band-h: 36px; }
+  .ht-spine { --ht-spine-band-h: 36px; }
 }
 
 /* --- Contents page (page 0) ---------------------------------------- */
