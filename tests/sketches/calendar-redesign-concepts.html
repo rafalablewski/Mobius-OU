@@ -734,12 +734,12 @@
   .xd__pane-h .xd__nav {
     display: inline-flex; gap: 4px;
   }
-  .xd__pane-h .xd__nav span {
+  .xd__pane-h .xd__nav button {
     width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.06); border-radius: 3px;
+    background: rgba(255,255,255,0.06); border: 0; color: inherit; border-radius: 3px;
     font-size: 12px; cursor: pointer;
   }
-  .xd__pane-h .xd__nav span:hover { background: rgba(255,255,255,0.12); }
+  .xd__pane-h .xd__nav button:hover { background: rgba(255,255,255,0.12); }
   .xd__grid {
     display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
   }
@@ -926,12 +926,12 @@
   .split__cal-nav {
     display: inline-flex; gap: 6px;
   }
-  .split__cal-nav span {
+  .split__cal-nav button {
     width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(255,255,255,0.18); border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; background: transparent;
     font-size: 10px; color: rgba(255,255,255,0.6); cursor: pointer;
   }
-  .split__cal-nav span:hover { background: rgba(255,255,255,0.06); }
+  .split__cal-nav button:hover { background: rgba(255,255,255,0.06); }
   .split__cal-grid {
     display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
   }
@@ -1042,9 +1042,9 @@
   .adobe-cc__row,
   .xd__cell,
   .xd__slot,
-  .xd__nav span,
+  .xd__nav button,
   .dial__pill,
-  .split__cal-nav span,
+  .split__cal-nav button,
   .split__cell,
   .split__rail-row {
     font: inherit;
@@ -1062,7 +1062,9 @@
   .adobe-cc__row:focus-visible,
   .xd__cell:focus-visible,
   .xd__slot:focus-visible,
+  .xd__nav button:focus-visible,
   .dial__pill:focus-visible,
+  .split__cal-nav button:focus-visible,
   .split__cell:focus-visible,
   .split__rail-row:focus-visible {
     outline: 2px solid rgba(201,168,106,0.85);
@@ -1485,24 +1487,24 @@
         <div class="adobe-cc__title">Next 30-min openings</div>
         <div class="adobe-cc__sub">CET · NDA-first · private call</div>
 
-        <div class="adobe-cc__row">
+        <button type="button" class="adobe-cc__row">
           <div class="adobe-cc__swatch"></div>
           <div class="adobe-cc__rdate">Tuesday <small>5 May · soonest</small></div>
           <div class="adobe-cc__rtime">14:00</div>
           <div class="adobe-cc__kbd">⌥1</div>
-        </div>
-        <div class="adobe-cc__row">
+        </button>
+        <button type="button" class="adobe-cc__row">
           <div class="adobe-cc__swatch"></div>
           <div class="adobe-cc__rdate">Wednesday <small>6 May</small></div>
           <div class="adobe-cc__rtime">09:30</div>
           <div class="adobe-cc__kbd">⌥2</div>
-        </div>
-        <div class="adobe-cc__row">
+        </button>
+        <button type="button" class="adobe-cc__row">
           <div class="adobe-cc__swatch"></div>
           <div class="adobe-cc__rdate">Thursday <small>7 May</small></div>
           <div class="adobe-cc__rtime">11:00</div>
           <div class="adobe-cc__kbd">⌥3</div>
-        </div>
+        </button>
 
         <div class="adobe-cc__ft">
           <span>30-min · CET</span>
@@ -1536,23 +1538,23 @@
       <div class="xd__pane">
         <div class="xd__pane-h">
           <span>May 2026</span>
-          <span class="xd__nav"><span>‹</span><span>›</span></span>
+          <span class="xd__nav"><button type="button" aria-label="Previous month">‹</button><button type="button" aria-label="Next month">›</button></span>
         </div>
         <div class="xd__grid">
           <div class="xd__dow">M</div><div class="xd__dow">T</div><div class="xd__dow">W</div>
           <div class="xd__dow">T</div><div class="xd__dow">F</div><div class="xd__dow">S</div><div class="xd__dow">S</div>
-          <div class="xd__cell xd__cell--mute">28</div><div class="xd__cell xd__cell--mute">29</div>
-          <div class="xd__cell xd__cell--mute">30</div><div class="xd__cell">1</div>
-          <div class="xd__cell">2</div><div class="xd__cell xd__cell--mute">3</div><div class="xd__cell xd__cell--mute">4</div>
-          <div class="xd__cell xd__cell--avail">5</div><div class="xd__cell xd__cell--sel">6</div>
-          <div class="xd__cell xd__cell--avail">7</div><div class="xd__cell xd__cell--avail">8</div>
-          <div class="xd__cell xd__cell--avail">9</div><div class="xd__cell xd__cell--mute">10</div><div class="xd__cell xd__cell--mute">11</div>
-          <div class="xd__cell">12</div><div class="xd__cell xd__cell--avail">13</div>
-          <div class="xd__cell xd__cell--avail">14</div><div class="xd__cell">15</div>
-          <div class="xd__cell xd__cell--avail">16</div><div class="xd__cell xd__cell--mute">17</div><div class="xd__cell xd__cell--mute">18</div>
-          <div class="xd__cell xd__cell--avail">19</div><div class="xd__cell">20</div>
-          <div class="xd__cell xd__cell--avail">21</div><div class="xd__cell">22</div>
-          <div class="xd__cell">23</div><div class="xd__cell xd__cell--mute">24</div><div class="xd__cell xd__cell--mute">25</div>
+          <button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">28</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">29</button>
+          <button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">30</button><button type="button" class="xd__cell">1</button>
+          <button type="button" class="xd__cell">2</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">3</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">4</button>
+          <button type="button" class="xd__cell xd__cell--avail">5</button><button type="button" class="xd__cell xd__cell--sel" aria-pressed="true">6</button>
+          <button type="button" class="xd__cell xd__cell--avail">7</button><button type="button" class="xd__cell xd__cell--avail">8</button>
+          <button type="button" class="xd__cell xd__cell--avail">9</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">10</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">11</button>
+          <button type="button" class="xd__cell">12</button><button type="button" class="xd__cell xd__cell--avail">13</button>
+          <button type="button" class="xd__cell xd__cell--avail">14</button><button type="button" class="xd__cell">15</button>
+          <button type="button" class="xd__cell xd__cell--avail">16</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">17</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">18</button>
+          <button type="button" class="xd__cell xd__cell--avail">19</button><button type="button" class="xd__cell">20</button>
+          <button type="button" class="xd__cell xd__cell--avail">21</button><button type="button" class="xd__cell">22</button>
+          <button type="button" class="xd__cell">23</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">24</button><button type="button" class="xd__cell xd__cell--mute" aria-disabled="true">25</button>
         </div>
       </div>
       <div class="xd__pane">
@@ -1561,27 +1563,27 @@
           <span style="color: var(--gold);">3 OPEN</span>
         </div>
         <div class="xd__slots">
-          <div class="xd__slot xd__slot--sel">
+          <button type="button" class="xd__slot xd__slot--sel" aria-pressed="true">
             <div>
               <div class="xd__slot-time">09:30 CET</div>
               <span class="xd__slot-meta">30 min · NDA-first · with Filip</span>
             </div>
             <div class="xd__slot-kbd">⌥1</div>
-          </div>
-          <div class="xd__slot">
+          </button>
+          <button type="button" class="xd__slot">
             <div>
               <div class="xd__slot-time">12:00 CET</div>
               <span class="xd__slot-meta">30 min · NDA-first · with Filip</span>
             </div>
             <div class="xd__slot-kbd">⌥2</div>
-          </div>
-          <div class="xd__slot">
+          </button>
+          <button type="button" class="xd__slot">
             <div>
               <div class="xd__slot-time">15:30 CET</div>
               <span class="xd__slot-meta">30 min · NDA-first · with Filip</span>
             </div>
             <div class="xd__slot-kbd">⌥3</div>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -1626,9 +1628,9 @@
         </div>
       </div>
       <div class="dial__row">
-        <div class="dial__pill dial__pill--sel">Tue 5</div>
-        <div class="dial__pill">Wed 6</div>
-        <div class="dial__pill">Thu 7</div>
+        <button type="button" class="dial__pill dial__pill--sel" aria-pressed="true">Tue 5</button>
+        <button type="button" class="dial__pill">Wed 6</button>
+        <button type="button" class="dial__pill">Thu 7</button>
       </div>
       <button class="dial__cta">Reserve · Tue 5 May · 14:00 CET</button>
     </div>
@@ -1657,49 +1659,49 @@
       <div class="split__cal">
         <div class="split__cal-h">
           <div class="split__cal-month">May <span style="color: rgba(255,255,255,0.45)">2026</span></div>
-          <div class="split__cal-nav"><span>‹</span><span>›</span></div>
+          <div class="split__cal-nav"><button type="button" aria-label="Previous month">‹</button><button type="button" aria-label="Next month">›</button></div>
         </div>
         <div class="split__cal-grid">
           <div class="split__dow">M</div><div class="split__dow">T</div><div class="split__dow">W</div>
           <div class="split__dow">T</div><div class="split__dow">F</div><div class="split__dow">S</div><div class="split__dow">S</div>
-          <div class="split__cell split__cell--mute">28</div><div class="split__cell split__cell--mute">29</div>
-          <div class="split__cell split__cell--mute">30</div><div class="split__cell">1</div>
-          <div class="split__cell split__cell--avail">2</div><div class="split__cell split__cell--mute">3</div><div class="split__cell split__cell--mute">4</div>
-          <div class="split__cell split__cell--sel">5</div><div class="split__cell split__cell--avail">6</div>
-          <div class="split__cell split__cell--avail">7</div><div class="split__cell split__cell--avail">8</div>
-          <div class="split__cell split__cell--avail">9</div><div class="split__cell split__cell--mute">10</div><div class="split__cell split__cell--mute">11</div>
-          <div class="split__cell">12</div><div class="split__cell split__cell--avail">13</div>
-          <div class="split__cell split__cell--avail">14</div><div class="split__cell">15</div>
-          <div class="split__cell split__cell--avail">16</div><div class="split__cell split__cell--mute">17</div><div class="split__cell split__cell--mute">18</div>
-          <div class="split__cell split__cell--avail">19</div><div class="split__cell">20</div>
-          <div class="split__cell split__cell--avail">21</div><div class="split__cell">22</div>
-          <div class="split__cell">23</div><div class="split__cell split__cell--mute">24</div><div class="split__cell split__cell--mute">25</div>
+          <button type="button" class="split__cell split__cell--mute" aria-disabled="true">28</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">29</button>
+          <button type="button" class="split__cell split__cell--mute" aria-disabled="true">30</button><button type="button" class="split__cell">1</button>
+          <button type="button" class="split__cell split__cell--avail">2</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">3</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">4</button>
+          <button type="button" class="split__cell split__cell--sel" aria-pressed="true">5</button><button type="button" class="split__cell split__cell--avail">6</button>
+          <button type="button" class="split__cell split__cell--avail">7</button><button type="button" class="split__cell split__cell--avail">8</button>
+          <button type="button" class="split__cell split__cell--avail">9</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">10</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">11</button>
+          <button type="button" class="split__cell">12</button><button type="button" class="split__cell split__cell--avail">13</button>
+          <button type="button" class="split__cell split__cell--avail">14</button><button type="button" class="split__cell">15</button>
+          <button type="button" class="split__cell split__cell--avail">16</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">17</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">18</button>
+          <button type="button" class="split__cell split__cell--avail">19</button><button type="button" class="split__cell">20</button>
+          <button type="button" class="split__cell split__cell--avail">21</button><button type="button" class="split__cell">22</button>
+          <button type="button" class="split__cell">23</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">24</button><button type="button" class="split__cell split__cell--mute" aria-disabled="true">25</button>
         </div>
       </div>
       <div class="split__rail">
         <div class="split__rail-h">Selected day</div>
         <div class="split__rail-day">Tue · <em>5 May</em></div>
         <div class="split__rail-list">
-          <div class="split__rail-row split__rail-row--booked">
+          <button type="button" class="split__rail-row split__rail-row--booked" aria-disabled="true">
             <div class="split__rail-time">09:00 — 09:30</div>
             <div class="split__rail-meta">Booked · investor</div>
             <div class="split__rail-tag split__rail-tag--off">Held</div>
-          </div>
-          <div class="split__rail-row">
+          </button>
+          <button type="button" class="split__rail-row">
             <div class="split__rail-time">14:00 — 14:30</div>
             <div class="split__rail-meta">Open · 30 min · CET</div>
             <div class="split__rail-tag">Soonest</div>
-          </div>
-          <div class="split__rail-row">
+          </button>
+          <button type="button" class="split__rail-row">
             <div class="split__rail-time">15:30 — 16:00</div>
             <div class="split__rail-meta">Open · 30 min · CET</div>
             <div class="split__rail-tag">Open</div>
-          </div>
-          <div class="split__rail-row split__rail-row--booked">
+          </button>
+          <button type="button" class="split__rail-row split__rail-row--booked" aria-disabled="true">
             <div class="split__rail-time">17:00 — 18:00</div>
             <div class="split__rail-meta">Booked · briefing</div>
             <div class="split__rail-tag split__rail-tag--off">Held</div>
-          </div>
+          </button>
         </div>
         <div class="split__rail-foot">
           <span>NDA-first · No marketing</span>
