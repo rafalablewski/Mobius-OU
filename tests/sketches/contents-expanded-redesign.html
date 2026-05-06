@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Expanded contents — ten redesigns</title>
+<title>Expanded contents — three finalists</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
@@ -216,60 +216,86 @@
   }
 
   /* ====================================================================
-     IDEA 01 — Compact ledger (tight rows, no leaders)
+     IDEA I — Letterpress mosaic (5×2 hairline grid + colophon)
+     (formerly draft VIII)
      ==================================================================== */
-  .i01-list {
-    list-style: none; margin: 0; padding: 4px 24px 18px;
-    border-top: 1px solid var(--hairline);
-    counter-reset: i01;
-  }
-  .i01-list li { border-bottom: 1px solid var(--hairline); }
-  .i01-list li:nth-child(3n) { border-bottom: 1px solid var(--hairline-2); }
-  .i01-list li:last-child { border-bottom: 0; }
-  .i01-list a {
+  .i01-grid {
     display: grid;
-    grid-template-columns: 36px 1fr auto;
-    align-items: baseline;
-    gap: 18px;
-    padding: 9px 0;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .i01-cell {
+    position: relative;
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 18px 14px 16px;
     text-decoration: none;
     color: var(--ink);
-    transition: color 0.18s ease, background 0.18s ease;
+    border-right: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    transition: background 0.18s ease;
+    min-height: 110px;
   }
-  .i01-list a:hover {
-    color: var(--gold-deep);
-    background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 70%);
-  }
-  .i01-list .num {
+  .i01-cell:nth-child(5n) { border-right: 0; }
+  .i01-cell:nth-child(n+6) { border-bottom: 0; }
+  .i01-cell:hover { background: rgba(201, 168, 106, 0.08); }
+  .i01-cell .num {
     font-family: "Cormorant Garamond", serif;
     font-style: italic;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--gold-deep);
-    text-align: right;
     letter-spacing: 0.02em;
   }
-  .i01-list .label {
+  .i01-cell .label {
     font-family: "Cormorant Garamond", serif;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 1.25;
+    font-size: 17px;
+    line-height: 1.2;
+    margin-top: auto;
   }
-  .i01-list .ref {
-    font-family: ui-monospace, "JetBrains Mono", monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
+  .i01-cell .ref {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.18em;
+    color: var(--stone); text-transform: uppercase;
+  }
+  .i01-cell .corner {
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--gold);
+    opacity: 0.55;
+  }
+  .i01-cell .corner.tl { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
+  .i01-cell .corner.br { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+
+  .i01-cell.colophon {
+    background: linear-gradient(135deg, rgba(201, 168, 106, 0.06), transparent 65%);
+    cursor: default;
+    pointer-events: none;
+  }
+  .i01-cell.colophon .label {
+    font-style: italic;
+    font-size: 15px;
     color: var(--stone);
-    text-transform: uppercase;
+    line-height: 1.4;
   }
-  .i01-list a:hover .ref { color: var(--gold-deep); }
-  @media (max-width: 520px) {
-    .i01-list a { grid-template-columns: 30px 1fr auto; gap: 12px; }
-    .i01-list .label { font-size: 16px; }
+  .i01-cell.colophon .num { color: var(--stone); }
+
+  @media (max-width: 880px) {
+    .i01-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
+    .i01-cell { border-right: 1px solid var(--hairline) !important; border-bottom: 1px solid var(--hairline) !important; min-height: 96px; }
+    .i01-cell:nth-child(3n) { border-right: 0 !important; }
+  }
+  @media (max-width: 540px) {
+    .i01-grid { grid-template-columns: repeat(2, 1fr); }
+    .i01-cell:nth-child(3n) { border-right: 1px solid var(--hairline) !important; }
+    .i01-cell:nth-child(2n) { border-right: 0 !important; }
   }
 
   /* ====================================================================
-     IDEA 02 — Phased trio (3×3, grouped by phase)
+     IDEA II — Phased trio (3×3, grouped by phase)
+     (formerly draft II — number unchanged)
      ==================================================================== */
   .i02-grid {
     display: grid;
@@ -325,136 +351,15 @@
   }
 
   /* ====================================================================
-     IDEA 03 — Audit doc-control register (tabular monospace)
+     IDEA III — Stepper journey bar (9 connected nodes)
+     (formerly draft V)
      ==================================================================== */
-  .i03-wrap { padding: 12px 24px 22px; border-top: 1px solid var(--hairline); }
-  .i03-head, .i03-row {
-    display: grid;
-    grid-template-columns: 28px 1.6fr 0.8fr 0.6fr 0.7fr;
-    gap: 14px;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--hairline);
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
-    letter-spacing: 0.06em;
-  }
-  .i03-head {
-    color: var(--gold-deep);
-    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
-    border-bottom: 1px solid var(--hairline-2);
-    font-weight: 500;
-  }
-  .i03-row { color: var(--pencil); text-decoration: none; transition: background 0.18s ease; }
-  .i03-row:last-child { border-bottom: 0; }
-  .i03-row:hover { background: rgba(201, 168, 106, 0.07); }
-  .i03-row .num {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--gold-deep);
-  }
-  .i03-row .ch {
-    font-family: "Cormorant Garamond", serif;
-    font-style: normal;
-    font-size: 16px;
-    color: var(--ink);
-    letter-spacing: 0;
-  }
-  .i03-row .ref { color: var(--stone); }
-  .i03-row .rev { color: var(--stone); }
-  .i03-row .status {
-    display: inline-flex; align-items: center; gap: 6px;
-    color: var(--green); font-weight: 500;
-  }
-  .i03-row .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green); display: inline-block;
-  }
-  @media (max-width: 720px) {
-    .i03-head { display: none; }
-    .i03-row {
-      grid-template-columns: 26px 1fr auto;
-      grid-template-areas: "num ch status" "num ref rev";
-      row-gap: 4px; padding: 12px 0;
-    }
-    .i03-row .num { grid-area: num; }
-    .i03-row .ch { grid-area: ch; }
-    .i03-row .ref { grid-area: ref; font-size: 10px; }
-    .i03-row .rev { grid-area: rev; font-size: 10px; text-align: right; }
-    .i03-row .status { grid-area: status; }
-  }
-
-  /* ====================================================================
-     IDEA 04 — Editorial running text (standfirst paragraph)
-     ==================================================================== */
-  .i04-wrap {
-    padding: 26px 32px 30px;
-    border-top: 1px solid var(--hairline);
-  }
-  .i04-standfirst {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 300;
-    font-size: 22px;
-    line-height: 1.55;
-    color: var(--ink);
-    margin: 0;
-    max-width: 64ch;
-  }
-  .i04-standfirst::first-letter {
-    font-family: "Fraunces", serif;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--gold-deep);
-    font-size: 56px;
-    line-height: 0.9;
-    float: left;
-    padding: 6px 10px 0 0;
-  }
-  .i04-standfirst a {
-    color: var(--ink);
-    font-style: italic;
-    text-decoration: none;
-    background-image: linear-gradient(transparent 60%, rgba(201, 168, 106, 0.28) 60%);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    transition: color 0.18s ease, background-size 0.18s ease;
-  }
-  .i04-standfirst a:hover {
-    color: var(--gold-deep);
-    background-size: 100% 0%;
-  }
-  .i04-standfirst .num {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    color: var(--gold-deep);
-    font-size: 18px;
-    margin: 0 2px 0 1px;
-    letter-spacing: 0.02em;
-  }
-  .i04-foot {
-    margin: 22px 0 0; padding-top: 14px;
-    border-top: 1px dotted var(--hairline);
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px; letter-spacing: 0.18em;
-    color: var(--stone); text-transform: uppercase;
-    display: flex; justify-content: space-between; gap: 16px;
-  }
-  @media (max-width: 600px) {
-    .i04-wrap { padding: 22px 22px 26px; }
-    .i04-standfirst { font-size: 19px; }
-    .i04-standfirst::first-letter { font-size: 46px; }
-  }
-
-  /* ====================================================================
-     IDEA 05 — Stepper journey bar (9 connected nodes)
-     ==================================================================== */
-  .i05-wrap {
+  .i03-wrap {
     padding: 30px 24px 28px;
     border-top: 1px solid var(--hairline);
     overflow-x: auto;
   }
-  .i05-track {
+  .i03-track {
     position: relative;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
@@ -462,19 +367,19 @@
     gap: 0;
     min-width: 760px;
   }
-  .i05-track::before {
+  .i03-track::before {
     content: ""; position: absolute;
     left: 5.5%; right: 5.5%;
     top: 17px; height: 1px;
     background: var(--hairline-2);
   }
-  .i05-step {
+  .i03-step {
     display: flex; flex-direction: column; align-items: center;
     text-align: center; gap: 8px;
     text-decoration: none; color: var(--ink);
     padding: 0 6px;
   }
-  .i05-step .node {
+  .i03-step .node {
     position: relative; z-index: 1;
     width: 34px; height: 34px;
     border-radius: 50%;
@@ -487,39 +392,39 @@
     color: var(--gold-deep);
     transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
   }
-  .i05-step .label {
+  .i03-step .label {
     font-family: "Cormorant Garamond", serif;
     font-size: 14px;
     line-height: 1.2;
     color: var(--ink);
     max-width: 11ch;
   }
-  .i05-step .tag {
+  .i03-step .tag {
     font-family: "JetBrains Mono", monospace;
     font-size: 9px; letter-spacing: 0.16em;
     color: var(--stone); text-transform: uppercase;
   }
-  .i05-step:hover .node {
+  .i03-step:hover .node {
     background: var(--gold-deep);
     border-color: var(--gold-deep);
     color: var(--ivory);
     transform: translateY(-2px);
   }
-  .i05-step:hover .label { color: var(--gold-deep); }
+  .i03-step:hover .label { color: var(--gold-deep); }
 
-  .i05-step.is-current .node {
+  .i03-step.is-current .node {
     background: var(--ink);
     border-color: var(--ink);
     color: var(--gold-soft);
   }
-  .i05-step.is-current::after {
+  .i03-step.is-current::after {
     content: ""; position: absolute;
     margin-top: 2px;
     width: 6px; height: 6px; border-radius: 50%;
     background: var(--gold);
   }
 
-  .i05-legend {
+  .i03-legend {
     margin: 20px 0 0;
     display: flex; justify-content: space-between; gap: 16px;
     font-family: "JetBrains Mono", monospace;
@@ -530,388 +435,9 @@
   }
 
   @media (max-width: 760px) {
-    .i05-wrap { padding: 22px 0 22px; }
-    .i05-track { min-width: 760px; padding: 0 18px; }
-    .i05-legend { padding: 12px 18px 0; }
-  }
-
-  /* ====================================================================
-     IDEA 06 — Drop-cap magazine TOC (numerals as drop-caps)
-     ==================================================================== */
-  .i06-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .i06-cell {
-    display: grid;
-    grid-template-columns: 78px 1fr;
-    gap: 14px;
-    align-items: center;
-    padding: 18px 24px;
-    text-decoration: none;
-    color: var(--ink);
-    border-bottom: 1px solid var(--hairline);
-    transition: background 0.18s ease;
-  }
-  .i06-cell:nth-child(odd) { border-right: 1px solid var(--hairline); }
-  .i06-cell:nth-last-child(-n+2) { border-bottom: 0; }
-  .i06-cell:nth-last-child(1) { /* the lone trailing 9th cell */
-    grid-column: 1 / -1;
-    border-right: 0;
-  }
-  .i06-cell:hover {
-    background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 60%);
-  }
-  .i06-cell .num {
-    font-family: "Fraunces", serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 56px;
-    line-height: 0.9;
-    color: var(--gold-deep);
-    text-align: right;
-    letter-spacing: -0.01em;
-    transition: color 0.18s ease;
-  }
-  .i06-cell:hover .num { color: var(--ink); }
-  .i06-cell .body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-  .i06-cell .label {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 1.2;
-  }
-  .i06-cell .small {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9px; letter-spacing: 0.22em;
-    color: var(--stone); text-transform: uppercase;
-  }
-  @media (max-width: 720px) {
-    .i06-grid { grid-template-columns: 1fr; }
-    .i06-cell { border-right: 0 !important; padding: 14px 22px; grid-template-columns: 60px 1fr; }
-    .i06-cell .num { font-size: 44px; }
-    .i06-cell:nth-last-child(1) { grid-column: auto; }
-  }
-
-  /* ====================================================================
-     IDEA 07 — Marginalia rail (numbered margin notes)
-     ==================================================================== */
-  .i07-wrap {
-    display: grid;
-    grid-template-columns: minmax(220px, 0.9fr) 1px minmax(0, 1.4fr);
-    border-top: 1px solid var(--hairline);
-  }
-  .i07-rule {
-    background: var(--hairline);
-  }
-  .i07-aside {
-    padding: 22px 22px 22px 26px;
-    background: linear-gradient(to right, rgba(201, 168, 106, 0.04), transparent);
-  }
-  .i07-aside h4 {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9px; letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-    margin: 0 0 12px;
-    font-weight: 500;
-  }
-  .i07-aside p {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 17px;
-    line-height: 1.5;
-    color: var(--pencil);
-    margin: 0 0 8px;
-  }
-  .i07-aside .em-rule {
-    display: inline-block;
-    width: 24px; height: 1px; background: var(--gold);
-    vertical-align: middle; margin: 0 6px 4px 0;
-  }
-  .i07-aside .sign {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--stone);
-  }
-
-  .i07-list {
-    list-style: none; margin: 0; padding: 14px 24px 16px;
-  }
-  .i07-list li { position: relative; }
-  .i07-list a {
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    align-items: baseline;
-    gap: 14px;
-    padding: 9px 0 9px 6px;
-    border-bottom: 1px dotted var(--hairline);
-    text-decoration: none;
-    color: var(--ink);
-    transition: color 0.18s ease, border-color 0.18s ease;
-  }
-  .i07-list li:last-child a { border-bottom: 0; }
-  .i07-list a:hover { color: var(--gold-deep); border-bottom-color: var(--gold-deep); }
-  .i07-list .num {
-    position: relative;
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--gold-deep);
-    text-align: right;
-  }
-  .i07-list .num::after {
-    content: ""; position: absolute;
-    right: -8px; top: 50%;
-    width: 5px; height: 1px; background: var(--gold);
-    transform: translateY(-50%);
-  }
-  .i07-list .label {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 17px;
-    line-height: 1.25;
-  }
-  .i07-list .ref {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px; letter-spacing: 0.16em;
-    color: var(--stone); margin-left: 8px;
-  }
-  @media (max-width: 760px) {
-    .i07-wrap { grid-template-columns: 1fr; }
-    .i07-rule { display: none; }
-    .i07-aside { border-bottom: 1px solid var(--hairline); }
-  }
-
-  /* ====================================================================
-     IDEA 08 — Letterpress mosaic (5×2 hairline grid + colophon)
-     ==================================================================== */
-  .i08-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .i08-cell {
-    position: relative;
-    display: flex; flex-direction: column; gap: 6px;
-    padding: 18px 14px 16px;
-    text-decoration: none;
-    color: var(--ink);
-    border-right: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-    transition: background 0.18s ease;
-    min-height: 110px;
-  }
-  .i08-cell:nth-child(5n) { border-right: 0; }
-  .i08-cell:nth-child(n+6) { border-bottom: 0; }
-  .i08-cell:hover { background: rgba(201, 168, 106, 0.08); }
-  .i08-cell .num {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--gold-deep);
-    letter-spacing: 0.02em;
-  }
-  .i08-cell .label {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 1.2;
-    margin-top: auto;
-  }
-  .i08-cell .ref {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9px; letter-spacing: 0.18em;
-    color: var(--stone); text-transform: uppercase;
-  }
-  .i08-cell .corner {
-    position: absolute;
-    width: 8px; height: 8px;
-    border: 1px solid var(--gold);
-    opacity: 0.55;
-  }
-  .i08-cell .corner.tl { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
-  .i08-cell .corner.br { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
-
-  .i08-cell.colophon {
-    background: linear-gradient(135deg, rgba(201, 168, 106, 0.06), transparent 65%);
-    cursor: default;
-    pointer-events: none;
-  }
-  .i08-cell.colophon .label {
-    font-style: italic;
-    font-size: 15px;
-    color: var(--stone);
-    line-height: 1.4;
-  }
-  .i08-cell.colophon .num { color: var(--stone); }
-
-  @media (max-width: 880px) {
-    .i08-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
-    .i08-cell { border-right: 1px solid var(--hairline) !important; border-bottom: 1px solid var(--hairline) !important; min-height: 96px; }
-    .i08-cell:nth-child(3n) { border-right: 0 !important; }
-  }
-  @media (max-width: 540px) {
-    .i08-grid { grid-template-columns: repeat(2, 1fr); }
-    .i08-cell:nth-child(3n) { border-right: 1px solid var(--hairline) !important; }
-    .i08-cell:nth-child(2n) { border-right: 0 !important; }
-  }
-
-  /* ====================================================================
-     IDEA 09 — Running heads with deks (italic taglines per chapter)
-     ==================================================================== */
-  .i09-list {
-    list-style: none; margin: 0; padding: 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .i09-list li {
-    border-bottom: 1px solid var(--hairline);
-  }
-  .i09-list li:last-child { border-bottom: 0; }
-  .i09-list a {
-    display: grid;
-    grid-template-columns: 56px 1fr auto;
-    align-items: baseline;
-    gap: 18px;
-    padding: 14px 24px;
-    text-decoration: none;
-    color: var(--ink);
-    transition: background 0.18s ease;
-  }
-  .i09-list a:hover {
-    background: linear-gradient(to right, rgba(201, 168, 106, 0.08), transparent 70%);
-  }
-  .i09-list .num {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 18px;
-    color: var(--gold-deep);
-    text-align: right;
-    letter-spacing: 0.02em;
-  }
-  .i09-list .body {
-    display: flex; flex-wrap: wrap;
-    align-items: baseline; gap: 4px 10px;
-    min-width: 0;
-  }
-  .i09-list .label {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 500;
-    font-size: 19px;
-    line-height: 1.25;
-  }
-  .i09-list .em-dash {
-    color: var(--gold);
-    font-family: "Cormorant Garamond", serif;
-    font-size: 17px;
-    margin: 0 2px;
-  }
-  .i09-list .dek {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 1.4;
-    color: var(--stone);
-    flex: 1; min-width: 14ch;
-  }
-  .i09-list .ref {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px; letter-spacing: 0.18em;
-    color: var(--stone); text-transform: uppercase;
-    align-self: center;
-  }
-  .i09-list a:hover .label { color: var(--gold-deep); }
-  .i09-list a:hover .ref { color: var(--gold-deep); }
-
-  @media (max-width: 640px) {
-    .i09-list a { grid-template-columns: 38px 1fr; padding: 12px 18px; gap: 12px; }
-    .i09-list .ref { display: none; }
-    .i09-list .label { font-size: 17px; }
-    .i09-list .dek { font-size: 14px; flex-basis: 100%; }
-  }
-
-  /* ====================================================================
-     IDEA 10 — Pure typography index (narrow column, minimal)
-     ==================================================================== */
-  .i10-wrap {
-    padding: 36px 32px 36px;
-    border-top: 1px solid var(--hairline);
-    display: flex; justify-content: center;
-  }
-  .i10-col {
-    width: 100%;
-    max-width: 380px;
-  }
-  .i10-col h4 {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9px; letter-spacing: 0.32em;
-    color: var(--gold-deep); text-transform: uppercase;
-    font-weight: 500;
-    margin: 0 0 10px;
-    text-align: center;
-  }
-  .i10-col .top-rule {
-    height: 1px;
-    background: var(--ink);
-    margin: 0 0 18px;
-  }
-  .i10-list {
-    list-style: none; margin: 0; padding: 0;
-  }
-  .i10-list li {
-    text-align: center;
-    padding: 6px 0;
-  }
-  .i10-list a {
-    text-decoration: none;
-    color: var(--ink);
-    display: inline-flex;
-    align-items: baseline;
-    gap: 10px;
-    transition: color 0.18s ease;
-  }
-  .i10-list a:hover { color: var(--gold-deep); }
-  .i10-list .num {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--gold-deep);
-    min-width: 28px; text-align: right;
-  }
-  .i10-list .label {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 1.6;
-    letter-spacing: 0.005em;
-  }
-  .i10-list a:hover .label {
-    text-decoration: underline;
-    text-decoration-color: var(--gold);
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
-  }
-  .i10-col .bot-rule {
-    height: 1px;
-    background: var(--hairline-2);
-    margin: 18px 0 0;
-  }
-  .i10-col .imprint {
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    font-size: 13px;
-    color: var(--stone);
-    text-align: center;
-    margin: 12px 0 0;
+    .i03-wrap { padding: 22px 0 22px; }
+    .i03-track { min-width: 760px; padding: 0 18px; }
+    .i03-legend { padding: 12px 18px 0; }
   }
 
   /* ----- footer ----- */
@@ -929,38 +455,32 @@
 
   <!-- ============== INTRO ============== -->
   <header class="intro">
-    <p class="eyebrow">Sketch · ProgramSpine — ContentsPage (expanded) · 2026.Q2</p>
-    <h1>Ten ways to redesign the <em>expanded contents</em> disclosure</h1>
+    <p class="eyebrow">Sketch · ProgramSpine — ContentsPage (expanded) · 2026.Q2 · finalists</p>
+    <h1>Three finalists for the <em>expanded contents</em> disclosure</h1>
     <p class="lede">
-      The toggle (<em>Contents · 9 chapters · +</em>) is fine. The
-      <em>open</em> state is the problem. Today every chapter eats ~95 px,
-      a dotted leader runs the full column, and the nine entries stack to
-      ~850 px — a print-appendix dropped onto the page, decorative rather
-      than navigational. Ten redesigns below, each holding the same nine
-      anchors, the same toggle, and the same brand register; only the
-      surface of the open state changes.
+      Pruned down from the original ten. The shortlist keeps the three
+      that earn their surface in different registers: a glance-able
+      mosaic, a grouped trio that frames the engagement as a sequence,
+      and a one-row stepper that says "this is a path, not a menu."
+      The seven other drafts (compact ledger, doc-control register,
+      running text, drop-cap TOC, marginalia rail, running heads with
+      deks, pure typography index) are kept in earlier commits on this
+      branch if they need to be revisited.
     </p>
 
     <div class="baseline-note">
-      <strong>Behavioural contract — held constant across all ten:</strong>
-      the toggle stays as <code>Contents · 9 chapters · +</code>. Click any
-      entry → smooth-scroll to that chapter's <code>id</code> + close the
-      disclosure. All nine entries always rendered when open — no
-      overflow, no inner scrolling. Cream spine background, gold accents,
-      italic Cormorant numerals are constants.
+      <strong>Behavioural contract — held constant across all three:</strong>
+      the toggle stays as <code>Contents · 9 chapters · +</code>. Click
+      any entry → smooth-scroll to that chapter's <code>id</code> +
+      close the disclosure. All nine entries always rendered when open
+      — no overflow, no inner scrolling. Cream spine background, gold
+      accents, italic Cormorant numerals are constants.
     </div>
 
-    <nav class="idea-toc" aria-label="Jump to a redesign">
-      <a href="#i01"><span>I.</span><span>Compact ledger — tight rows, no leaders</span></a>
+    <nav class="idea-toc" aria-label="Jump to a finalist">
+      <a href="#i01"><span>I.</span><span>Letterpress mosaic — 5×2 hairline grid + colophon</span></a>
       <a href="#i02"><span>II.</span><span>Phased trio — three groups of three</span></a>
-      <a href="#i03"><span>III.</span><span>Audit doc-control register — tabular monospace</span></a>
-      <a href="#i04"><span>IV.</span><span>Editorial running text — standfirst paragraph</span></a>
-      <a href="#i05"><span>V.</span><span>Stepper journey bar — 9 connected nodes</span></a>
-      <a href="#i06"><span>VI.</span><span>Drop-cap magazine TOC — numerals as drop-caps</span></a>
-      <a href="#i07"><span>VII.</span><span>Marginalia rail — numbered margin notes</span></a>
-      <a href="#i08"><span>VIII.</span><span>Letterpress mosaic — 2×5 hairline grid</span></a>
-      <a href="#i09"><span>IX.</span><span>Running heads with deks — italic taglines</span></a>
-      <a href="#i10"><span>X.</span><span>Pure typography index — narrow column, minimal</span></a>
+      <a href="#i03"><span>III.</span><span>Stepper journey bar — 9 connected nodes</span></a>
     </nav>
 
     <div class="today">
@@ -994,45 +514,48 @@
 
   <!-- ============== IDEAS ============== -->
   <section class="ideas">
-    <!-- ===================== IDEA 01 ===================== -->
+
+    <!-- ===================== IDEA I ===================== -->
     <article class="idea" id="i01">
-      <p class="idea__num">I — Compact ledger</p>
-      <h2>Tight single-line rows, <em>no dotted leaders</em></h2>
+      <p class="idea__num">I — Letterpress mosaic</p>
+      <h2>5×2 hairline cells with corner ticks, <em>tenth cell is the colophon</em></h2>
       <p class="idea__why">
-        The leaders are filler. Strip them out, halve the row padding,
-        replace the page number with a small monospace doc-ref tag, and
-        the nine entries fit in roughly a third of today's height.
-        Every third row drops a darker hairline so the eye still has a
-        rhythm without the leaders doing the work.
+        Borrows the page's existing pitch-card corner-tick vocabulary.
+        Nine chapter cells in a 5×2 hairline grid; the tenth cell is
+        deliberately not a chapter — it's a small colophon with edition
+        + imprint. Reads as a printed end-paper, not a list, and uses
+        the asymmetric tenth cell to signal "this is finite, this is
+        what's in the dossier."
       </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~310 px. Rows go from 95 px to ~38 px. Loses leaders + page numerals; adds a discreet <code>GV-A</code>…<code>GV-I</code> doc-ref tag that ties to the audit register the rest of the dossier already uses.</div>
+      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~250 px on desktop. Loses the row-by-row scan in favour of a glance-able mosaic. Uniform Cormorant typography across the cells; the surface itself does the editorial work via hairlines and corner ticks.</div>
       <dl class="idea__behavior">
-        <dt>Surface</dt><dd>Cream rows with hairline dividers; no card frame; every third hairline reads slightly darker (<code>--hairline-2</code>).</dd>
-        <dt>Active</dt><dd>Hover ramps row to gold ink + 8 % gold wash; click → scroll + close.</dd>
-        <dt>Mobile</dt><dd>Same layout; numeral column shrinks 36 → 30 px, label drops to 16 px.</dd>
+        <dt>Surface</dt><dd>5 cols × 2 rows; 1 px hairlines; faint gold corner ticks on each cell echo the pitch-card frame; tenth cell carries a subtle gold gradient and a serif imprint line.</dd>
+        <dt>Active</dt><dd>Hover wash 8 % gold; corner ticks stay constant. Click → scroll + close. Colophon cell is non-interactive (<code>pointer-events: none</code>).</dd>
+        <dt>Mobile</dt><dd>≤ 880 px: 3 cols × 4 rows. ≤ 540 px: 2 cols × 5 rows. Colophon migrates to the trailing position naturally.</dd>
       </dl>
 
       <div class="mock">
         <div class="mock-toggle">
           <span class="eb">Contents</span>
-          <span class="meta">9 chapters</span>
+          <span class="meta">9 chapters · letterpress</span>
           <span class="chev">–</span>
         </div>
-        <ol class="i01-list">
-          <li><a><span class="num">I</span><span class="label">About</span><span class="ref">GV-A</span></a></li>
-          <li><a><span class="num">II</span><span class="label">Investment</span><span class="ref">GV-B</span></a></li>
-          <li><a><span class="num">III</span><span class="label">Benefits</span><span class="ref">GV-C</span></a></li>
-          <li><a><span class="num">IV</span><span class="label">Eligibility</span><span class="ref">GV-D</span></a></li>
-          <li><a><span class="num">V</span><span class="label">Documents</span><span class="ref">GV-E</span></a></li>
-          <li><a><span class="num">VI</span><span class="label">Process</span><span class="ref">GV-F</span></a></li>
-          <li><a><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="ref">GV-G</span></a></li>
-          <li><a><span class="num">VIII</span><span class="label">Case Studies</span><span class="ref">GV-H</span></a></li>
-          <li><a><span class="num">IX</span><span class="label">Our Licenses</span><span class="ref">GV-I</span></a></li>
-        </ol>
+        <div class="i01-grid">
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">I</span><span class="label">About</span><span class="ref">GV-A</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">II</span><span class="label">Investment</span><span class="ref">GV-B</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">III</span><span class="label">Benefits</span><span class="ref">GV-C</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IV</span><span class="label">Eligibility</span><span class="ref">GV-D</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">V</span><span class="label">Documents</span><span class="ref">GV-E</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VI</span><span class="label">Process</span><span class="ref">GV-F</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="ref">GV-G</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VIII</span><span class="label">Case Studies</span><span class="ref">GV-H</span></a>
+          <a class="i01-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IX</span><span class="label">Our Licenses</span><span class="ref">GV-I</span></a>
+          <span class="i01-cell colophon"><span class="corner tl"></span><span class="corner br"></span><span class="num">·</span><span class="label">Mobius Dossier · Edition 2026.Q1 · printed by hand for the family.</span></span>
+        </div>
       </div>
     </article>
 
-    <!-- ===================== IDEA 02 ===================== -->
+    <!-- ===================== IDEA II ===================== -->
     <article class="idea" id="i02">
       <p class="idea__num">II — Phased trio</p>
       <h2>Three groups of three: <em>Orientation</em>, <em>Substance</em>, <em>Evidence</em></h2>
@@ -1096,101 +619,9 @@
       </div>
     </article>
 
-    <!-- ===================== IDEA 03 ===================== -->
+    <!-- ===================== IDEA III ===================== -->
     <article class="idea" id="i03">
-      <p class="idea__num">III — Audit doc-control register</p>
-      <h2>Five tabular columns, <em>matched to the page's audit register</em></h2>
-      <p class="idea__why">
-        The freshness badge and the breadcrumb already use a
-        doc-control register (<code>HOST · STATUS · OPEN · CLOSES</code>).
-        The contents disclosure should join that same conversation
-        rather than dropping a print appendix into the middle of an
-        audit document. Columns:
-        <code>§</code> · <code>CHAPTER</code> · <code>DOC-REF</code> ·
-        <code>REVISED</code> · <code>STATUS</code>.
-      </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~360 px. Same nine entries, presented as a filing reference rather than a TOC. Aligns the disclosure with the breadcrumb's <code>.ht-breadcrumb__doc-control</code> pattern that already ships.</div>
-      <dl class="idea__behavior">
-        <dt>Surface</dt><dd>Five mono columns under a small-caps header row; italic Cormorant numerals + chapter titles; green dot for ON-PAGE.</dd>
-        <dt>Active</dt><dd>Hover wash (gold 7 %); click → scroll + close. Row is one <code>&lt;a&gt;</code>.</dd>
-        <dt>Mobile</dt><dd>Header hides; each row reflows to a 2-line stack: numeral + chapter + status on top, doc-ref + revised on the line below.</dd>
-      </dl>
-
-      <div class="mock">
-        <div class="mock-toggle">
-          <span class="eb">Contents</span>
-          <span class="meta">9 chapters · doc-control</span>
-          <span class="chev">–</span>
-        </div>
-        <div class="i03-wrap">
-          <div class="i03-head">
-            <span>§</span><span>Chapter</span><span>Doc-ref</span><span>Revised</span><span>Status</span>
-          </div>
-          <a class="i03-row"><span class="num">I</span><span class="ch">About</span><span class="ref">GV-A</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">II</span><span class="ch">Investment</span><span class="ref">GV-B</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">III</span><span class="ch">Benefits</span><span class="ref">GV-C</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">IV</span><span class="ch">Eligibility</span><span class="ref">GV-D</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">V</span><span class="ch">Documents</span><span class="ref">GV-E</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">VI</span><span class="ch">Process</span><span class="ref">GV-F</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">VII</span><span class="ch">Visa-Free Countries</span><span class="ref">GV-G</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">VIII</span><span class="ch">Case Studies</span><span class="ref">GV-H</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-          <a class="i03-row"><span class="num">IX</span><span class="ch">Our Licenses</span><span class="ref">GV-I</span><span class="rev">2026.Q1</span><span class="status"><span class="dot"></span>CURRENT</span></a>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===================== IDEA 04 ===================== -->
-    <article class="idea" id="i04">
-      <p class="idea__num">IV — Editorial running text</p>
-      <h2>One standfirst paragraph, <em>nine inline links</em></h2>
-      <p class="idea__why">
-        Resist the appendix completely. Render the contents as a
-        single editorial standfirst — a magazine-style "in this issue"
-        paragraph where the chapter titles are the inline links. Reads
-        as advisory copy first, navigation second, and tells the reader
-        the shape of the dossier without making them parse a list.
-      </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~210 px. Loses the explicit list affordance — the trade is that the disclosure now <em>says something</em> rather than just enumerates. Drop-cap + chapter titles in italic Cormorant + small Roman numerals beside each linked title preserve the editorial register.</div>
-      <dl class="idea__behavior">
-        <dt>Surface</dt><dd>Single Cormorant 22 px paragraph; gold drop-cap; soft highlight under each link until hover lifts it.</dd>
-        <dt>Active</dt><dd>Hover removes the highlight wash and lifts the title to gold ink; click → scroll + close.</dd>
-        <dt>Mobile</dt><dd>Same paragraph reflows; type drops to 19 px, drop-cap to 46 px; small footer rule keeps the doc-control tone.</dd>
-      </dl>
-
-      <div class="mock">
-        <div class="mock-toggle">
-          <span class="eb">Contents</span>
-          <span class="meta">in this dossier</span>
-          <span class="chev">–</span>
-        </div>
-        <div class="i04-wrap">
-          <p class="i04-standfirst">
-            We open with <a><span class="num">I</span> About</a> the
-            program, the <a><span class="num">II</span> Investment</a>
-            it asks of you, and the
-            <a><span class="num">III</span> Benefits</a> the family
-            actually inherits. The middle of the dossier is the
-            unromantic part:
-            <a><span class="num">IV</span> Eligibility</a>,
-            <a><span class="num">V</span> Documents</a> and the
-            <a><span class="num">VI</span> Process</a> end-to-end.
-            We close with the supporting evidence — a list of
-            <a><span class="num">VII</span> Visa-Free Countries</a>,
-            three <a><span class="num">VIII</span> Case Studies</a>,
-            and the <a><span class="num">IX</span> Licenses</a> we
-            and our partners hold.
-          </p>
-          <div class="i04-foot">
-            <span>9 chapters · ~22 min read</span>
-            <span>Doc · GV-OVR · 2026.Q1</span>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===================== IDEA 05 ===================== -->
-    <article class="idea" id="i05">
-      <p class="idea__num">V — Stepper journey bar</p>
+      <p class="idea__num">III — Stepper journey bar</p>
       <h2>Nine connected nodes in a single horizontal row, <em>journey register</em></h2>
       <p class="idea__why">
         The dossier <em>is</em> a sequence — there's a reason "About" is
@@ -1212,19 +643,19 @@
           <span class="meta">9 chapters · journey</span>
           <span class="chev">–</span>
         </div>
-        <div class="i05-wrap">
-          <div class="i05-track">
-            <a class="i05-step"><span class="node">I</span><span class="label">About</span><span class="tag">01</span></a>
-            <a class="i05-step"><span class="node">II</span><span class="label">Investment</span><span class="tag">02</span></a>
-            <a class="i05-step is-current"><span class="node">III</span><span class="label">Benefits</span><span class="tag">on page</span></a>
-            <a class="i05-step"><span class="node">IV</span><span class="label">Eligibility</span><span class="tag">04</span></a>
-            <a class="i05-step"><span class="node">V</span><span class="label">Documents</span><span class="tag">05</span></a>
-            <a class="i05-step"><span class="node">VI</span><span class="label">Process</span><span class="tag">06</span></a>
-            <a class="i05-step"><span class="node">VII</span><span class="label">Visa-Free</span><span class="tag">07</span></a>
-            <a class="i05-step"><span class="node">VIII</span><span class="label">Case Studies</span><span class="tag">08</span></a>
-            <a class="i05-step"><span class="node">IX</span><span class="label">Licenses</span><span class="tag">09</span></a>
+        <div class="i03-wrap">
+          <div class="i03-track">
+            <a class="i03-step"><span class="node">I</span><span class="label">About</span><span class="tag">01</span></a>
+            <a class="i03-step"><span class="node">II</span><span class="label">Investment</span><span class="tag">02</span></a>
+            <a class="i03-step is-current"><span class="node">III</span><span class="label">Benefits</span><span class="tag">on page</span></a>
+            <a class="i03-step"><span class="node">IV</span><span class="label">Eligibility</span><span class="tag">04</span></a>
+            <a class="i03-step"><span class="node">V</span><span class="label">Documents</span><span class="tag">05</span></a>
+            <a class="i03-step"><span class="node">VI</span><span class="label">Process</span><span class="tag">06</span></a>
+            <a class="i03-step"><span class="node">VII</span><span class="label">Visa-Free</span><span class="tag">07</span></a>
+            <a class="i03-step"><span class="node">VIII</span><span class="label">Case Studies</span><span class="tag">08</span></a>
+            <a class="i03-step"><span class="node">IX</span><span class="label">Licenses</span><span class="tag">09</span></a>
           </div>
-          <div class="i05-legend">
+          <div class="i03-legend">
             <span>Orientation · Substance · Evidence</span>
             <span>3 / 9 read</span>
           </div>
@@ -1232,222 +663,6 @@
       </div>
     </article>
 
-    <!-- ===================== IDEA 06 ===================== -->
-    <article class="idea" id="i06">
-      <p class="idea__num">VI — Drop-cap magazine TOC</p>
-      <h2>Big Fraunces italic numerals as drop-caps, <em>two-up cells</em></h2>
-      <p class="idea__why">
-        Make the numerals do all the visual work. 56 px Fraunces italic
-        Roman numerals, drop-cap large, paired with a Cormorant chapter
-        title and a small monospace doc-ref. Two-column grid; the ninth
-        chapter spans the bottom row as a deliberate punctuation. Reads
-        like a luxury monthly's "in this issue" spread.
-      </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~470 px. Heavier than the compact ledger but unmistakably editorial — the numerals carry the surface, the labels read second. Removes leaders + page-number column entirely.</div>
-      <dl class="idea__behavior">
-        <dt>Surface</dt><dd>Two columns × four rows + a full-width ninth cell; hairline grid; 56 px Fraunces italic numerals to the left of each label.</dd>
-        <dt>Active</dt><dd>Hover wash (gold 8 %) + numeral flips from gold to ink — keeps the label gold-quiet so the numeral leads the gesture.</dd>
-        <dt>Mobile</dt><dd>Single column, numerals shrink to 44 px; ninth cell stops being special.</dd>
-      </dl>
-
-      <div class="mock">
-        <div class="mock-toggle">
-          <span class="eb">Contents</span>
-          <span class="meta">9 chapters · in this dossier</span>
-          <span class="chev">–</span>
-        </div>
-        <div class="i06-grid">
-          <a class="i06-cell"><span class="num">I</span><span class="body"><span class="label">About</span><span class="small">GV-A · 01</span></span></a>
-          <a class="i06-cell"><span class="num">II</span><span class="body"><span class="label">Investment</span><span class="small">GV-B · 02</span></span></a>
-          <a class="i06-cell"><span class="num">III</span><span class="body"><span class="label">Benefits</span><span class="small">GV-C · 03</span></span></a>
-          <a class="i06-cell"><span class="num">IV</span><span class="body"><span class="label">Eligibility</span><span class="small">GV-D · 04</span></span></a>
-          <a class="i06-cell"><span class="num">V</span><span class="body"><span class="label">Documents</span><span class="small">GV-E · 05</span></span></a>
-          <a class="i06-cell"><span class="num">VI</span><span class="body"><span class="label">Process</span><span class="small">GV-F · 06</span></span></a>
-          <a class="i06-cell"><span class="num">VII</span><span class="body"><span class="label">Visa-Free Countries</span><span class="small">GV-G · 07</span></span></a>
-          <a class="i06-cell"><span class="num">VIII</span><span class="body"><span class="label">Case Studies</span><span class="small">GV-H · 08</span></span></a>
-          <a class="i06-cell"><span class="num">IX</span><span class="body"><span class="label">Our Licenses</span><span class="small">GV-I · 09 · closing chapter</span></span></a>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===================== IDEA 07 ===================== -->
-    <article class="idea" id="i07">
-      <p class="idea__num">VII — Marginalia rail</p>
-      <h2>Italic standfirst on the left, <em>numbered margin notes on the right</em></h2>
-      <p class="idea__why">
-        Two columns. The left holds an italic standfirst — what the
-        dossier is and who it's for; the right is the chapter list
-        rendered as marginalia: tiny gold em-rule, italic numeral,
-        Cormorant title, monospace doc-ref. Reads as a published
-        document with a reader's apparatus, not a navigation menu.
-      </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~340 px. Adds a column of advisory copy where today there is dead space; the chapters become the apparatus that supports the reading. Pulls the spine's editorial register into the disclosure itself.</div>
-      <dl class="idea__behavior">
-        <dt>Surface</dt><dd>Two-column grid divided by a 1 px hairline; left column carries a soft 4 % gold wash; right is the navigable list.</dd>
-        <dt>Active</dt><dd>Hover lifts each chapter to gold and ramps its bottom hairline to gold; em-rule beside the numeral stays gold throughout.</dd>
-        <dt>Mobile</dt><dd>Stacks vertically ≤ 760 px — standfirst on top, list beneath; the rule rotates to a horizontal divider.</dd>
-      </dl>
-
-      <div class="mock">
-        <div class="mock-toggle">
-          <span class="eb">Contents</span>
-          <span class="meta">9 chapters · with apparatus</span>
-          <span class="chev">–</span>
-        </div>
-        <div class="i07-wrap">
-          <aside class="i07-aside">
-            <h4>Editor's note</h4>
-            <p>
-              <span class="em-rule"></span>This dossier is an audit, not a
-              brochure. It is structured so a family can read it once,
-              forward to a lawyer or a tax adviser, and proceed without
-              picking up the phone — though we'd rather they did.
-            </p>
-            <p class="sign">— Rafał A., principal</p>
-          </aside>
-          <div class="i07-rule"></div>
-          <ol class="i07-list">
-            <li><a><span class="num">I</span><span class="label">About<span class="ref">GV-A</span></span></a></li>
-            <li><a><span class="num">II</span><span class="label">Investment<span class="ref">GV-B</span></span></a></li>
-            <li><a><span class="num">III</span><span class="label">Benefits<span class="ref">GV-C</span></span></a></li>
-            <li><a><span class="num">IV</span><span class="label">Eligibility<span class="ref">GV-D</span></span></a></li>
-            <li><a><span class="num">V</span><span class="label">Documents<span class="ref">GV-E</span></span></a></li>
-            <li><a><span class="num">VI</span><span class="label">Process<span class="ref">GV-F</span></span></a></li>
-            <li><a><span class="num">VII</span><span class="label">Visa-Free Countries<span class="ref">GV-G</span></span></a></li>
-            <li><a><span class="num">VIII</span><span class="label">Case Studies<span class="ref">GV-H</span></span></a></li>
-            <li><a><span class="num">IX</span><span class="label">Our Licenses<span class="ref">GV-I</span></span></a></li>
-          </ol>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===================== IDEA 08 ===================== -->
-    <article class="idea" id="i08">
-      <p class="idea__num">VIII — Letterpress mosaic</p>
-      <h2>5×2 hairline cells with corner ticks, <em>tenth cell is the colophon</em></h2>
-      <p class="idea__why">
-        Borrows the page's existing pitch-card corner-tick vocabulary.
-        Nine chapter cells in a 5×2 hairline grid; the tenth cell is
-        deliberately not a chapter — it's a small colophon with edition
-        + imprint. Reads as a printed end-paper, not a list, and uses
-        the asymmetric tenth cell to signal "this is finite, this is
-        what's in the dossier."
-      </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~250 px on desktop. Loses the row-by-row scan in favour of a glance-able mosaic. Different register from idea 06 (drop-caps) — here the typography is uniform Cormorant; the surface itself does the editorial work via hairlines and corner ticks.</div>
-      <dl class="idea__behavior">
-        <dt>Surface</dt><dd>5 cols × 2 rows; 1 px hairlines; faint gold corner ticks on each cell echo the pitch-card frame; tenth cell carries a subtle gold gradient and a serif imprint line.</dd>
-        <dt>Active</dt><dd>Hover wash 8 % gold; corner ticks stay constant. Click → scroll + close. Colophon cell is non-interactive (<code>pointer-events: none</code>).</dd>
-        <dt>Mobile</dt><dd>≤ 880 px: 3 cols × 4 rows. ≤ 540 px: 2 cols × 5 rows. Colophon migrates to the trailing position naturally.</dd>
-      </dl>
-
-      <div class="mock">
-        <div class="mock-toggle">
-          <span class="eb">Contents</span>
-          <span class="meta">9 chapters · letterpress</span>
-          <span class="chev">–</span>
-        </div>
-        <div class="i08-grid">
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">I</span><span class="label">About</span><span class="ref">GV-A</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">II</span><span class="label">Investment</span><span class="ref">GV-B</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">III</span><span class="label">Benefits</span><span class="ref">GV-C</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IV</span><span class="label">Eligibility</span><span class="ref">GV-D</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">V</span><span class="label">Documents</span><span class="ref">GV-E</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VI</span><span class="label">Process</span><span class="ref">GV-F</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VII</span><span class="label">Visa-Free Countries</span><span class="ref">GV-G</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">VIII</span><span class="label">Case Studies</span><span class="ref">GV-H</span></a>
-          <a class="i08-cell"><span class="corner tl"></span><span class="corner br"></span><span class="num">IX</span><span class="label">Our Licenses</span><span class="ref">GV-I</span></a>
-          <span class="i08-cell colophon"><span class="corner tl"></span><span class="corner br"></span><span class="num">·</span><span class="label">Mobius Dossier · Edition 2026.Q1 · printed by hand for the family.</span></span>
-        </div>
-      </div>
-    </article>
-
-    <!-- ===================== IDEA 09 ===================== -->
-    <article class="idea" id="i09">
-      <p class="idea__num">IX — Running heads with deks</p>
-      <h2>Each chapter title carries a <em>one-line italic dek</em></h2>
-      <p class="idea__why">
-        The labels alone don't tell anyone what's actually in each
-        chapter. "About" and "Process" are particularly opaque. Pair
-        every chapter title with a one-line italic dek — magazine
-        running heads — and the disclosure becomes a working summary
-        of the dossier in the same gesture as a TOC. Users decide
-        where to skip to from the dek, not the label.
-      </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~510 px. Taller than the compact ledger but earns it: each row now <em>says</em> something. The page-number column is replaced by a doc-ref tag (<code>GV-A</code>…<code>GV-I</code>). The dek line is the only honest case for keeping the rows tall.</div>
-      <dl class="idea__behavior">
-        <dt>Surface</dt><dd>Three columns per row: italic numeral · title + em-dash + italic dek · monospace doc-ref. Hairline divider between rows.</dd>
-        <dt>Active</dt><dd>Hover ramps title + ref to gold and washes the row 8 % gold; click → scroll + close.</dd>
-        <dt>Mobile</dt><dd>Doc-ref hides ≤ 640 px; dek wraps to a second line beneath the title.</dd>
-      </dl>
-
-      <div class="mock">
-        <div class="mock-toggle">
-          <span class="eb">Contents</span>
-          <span class="meta">9 chapters · with deks</span>
-          <span class="chev">–</span>
-        </div>
-        <ol class="i09-list">
-          <li><a><span class="num">I</span><span class="body"><span class="label">About</span><span class="em-dash">—</span><span class="dek">what the program is, who it's for, and the honest case against it.</span></span><span class="ref">GV-A</span></a></li>
-          <li><a><span class="num">II</span><span class="body"><span class="label">Investment</span><span class="em-dash">—</span><span class="dek">at-cost figures, the markups we don't take, and the true total cost of entry.</span></span><span class="ref">GV-B</span></a></li>
-          <li><a><span class="num">III</span><span class="body"><span class="label">Benefits</span><span class="em-dash">—</span><span class="dek">mobility, tax positioning and family inheritance — modelled, not promised.</span></span><span class="ref">GV-C</span></a></li>
-          <li><a><span class="num">IV</span><span class="body"><span class="label">Eligibility</span><span class="em-dash">—</span><span class="dek">who qualifies, who doesn't, and the source-of-funds threshold in plain language.</span></span><span class="ref">GV-D</span></a></li>
-          <li><a><span class="num">V</span><span class="body"><span class="label">Documents</span><span class="em-dash">—</span><span class="dek">a per-applicant checklist with apostille, translation and notary flags.</span></span><span class="ref">GV-E</span></a></li>
-          <li><a><span class="num">VI</span><span class="body"><span class="label">Process</span><span class="em-dash">—</span><span class="dek">week-by-week timeline from first call to residency card in hand.</span></span><span class="ref">GV-F</span></a></li>
-          <li><a><span class="num">VII</span><span class="body"><span class="label">Visa-Free Countries</span><span class="em-dash">—</span><span class="dek">the actual passport-equivalent footprint after grant, with caveats.</span></span><span class="ref">GV-G</span></a></li>
-          <li><a><span class="num">VIII</span><span class="body"><span class="label">Case Studies</span><span class="em-dash">—</span><span class="dek">three real mandates, anonymised — what worked, what cost more than expected.</span></span><span class="ref">GV-H</span></a></li>
-          <li><a><span class="num">IX</span><span class="body"><span class="label">Our Licenses</span><span class="em-dash">—</span><span class="dek">the regulators we answer to, the partners we co-sign with, and what isn't ours.</span></span><span class="ref">GV-I</span></a></li>
-        </ol>
-      </div>
-    </article>
-
-    <!-- ===================== IDEA 10 ===================== -->
-    <article class="idea" id="i10">
-      <p class="idea__num">X — Pure typography index</p>
-      <h2>Narrow centred column, <em>book half-title register</em></h2>
-      <p class="idea__why">
-        The most restrained move on the page. A single 380 px column,
-        centred, bracketed by an ink top-rule and a hairline bottom-rule;
-        nine chapter titles set in Cormorant 19 px, italic numerals,
-        nothing else. Mirrors the half-title page of a serious book —
-        all the navigational utility, none of the print-appendix
-        decoration. Quietly the most editorial of the ten.
-      </p>
-      <div class="idea__contrast"><strong>vs today —</strong> ~850 px → ~360 px. Removes the leaders, the page-number column and the row hairlines entirely. The single ink rule above + hairline rule below do all the surface work. A counter-proposal to the heavy ideas (06, 08, 09) — proves how light this can read while still anchoring 9 entries.</div>
-      <dl class="idea__behavior">
-        <dt>Surface</dt><dd>One centred column, max 380 px; ink top-rule, hairline bottom-rule, italic Cormorant titles + numerals; small italic imprint line beneath.</dd>
-        <dt>Active</dt><dd>Hover underlines the title in gold (1 px, 4 px offset); colour ramps to gold. Click → scroll + close.</dd>
-        <dt>Mobile</dt><dd>Identical — the column is already narrow; padding shrinks slightly; everything scales gracefully.</dd>
-      </dl>
-
-      <div class="mock">
-        <div class="mock-toggle">
-          <span class="eb">Contents</span>
-          <span class="meta">9 chapters</span>
-          <span class="chev">–</span>
-        </div>
-        <div class="i10-wrap">
-          <div class="i10-col">
-            <h4>Index</h4>
-            <div class="top-rule"></div>
-            <ol class="i10-list">
-              <li><a><span class="num">I</span><span class="label">About</span></a></li>
-              <li><a><span class="num">II</span><span class="label">Investment</span></a></li>
-              <li><a><span class="num">III</span><span class="label">Benefits</span></a></li>
-              <li><a><span class="num">IV</span><span class="label">Eligibility</span></a></li>
-              <li><a><span class="num">V</span><span class="label">Documents</span></a></li>
-              <li><a><span class="num">VI</span><span class="label">Process</span></a></li>
-              <li><a><span class="num">VII</span><span class="label">Visa-Free Countries</span></a></li>
-              <li><a><span class="num">VIII</span><span class="label">Case Studies</span></a></li>
-              <li><a><span class="num">IX</span><span class="label">Our Licenses</span></a></li>
-            </ol>
-            <div class="bot-rule"></div>
-            <p class="imprint">Mobius Dossier · Edition 2026.Q1</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Drafts will be appended here, one per commit. -->
   </section>
 
   <footer class="note">
@@ -1455,7 +670,9 @@
     component lives in <code>src/components/ProgramSpine.jsx</code>
     (the <code>ContentsPage()</code> function) with CSS in
     <code>public/assets/css/style.css</code> under
-    <code>.ht-spine__contents*</code>.
+    <code>.ht-spine__contents*</code>. Earlier ten-draft round of
+    this exploration is preserved in the commit history of branch
+    <code>claude/redesign-expandable-content-KR2tB</code>.
   </footer>
 
 </div>
