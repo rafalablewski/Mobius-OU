@@ -14513,7 +14513,7 @@ a.ht-spine__contents-cell-face:focus-visible {
 }
 @media (max-width: 768px) {
   .ht-spine__band-counter { display: none; }
-  .ht-spine__band-pager { margin-left: auto; }
+  .ht-spine__band-pager { margin-left: auto; border: 0; }
   /* Larger touch targets on mobile so the pager actually fires on tap. */
   .ht-spine__band-pager-btn { width: 36px; height: 30px; font-size: 14px; }
   .ht-spine__band-pager-vbar { height: 16px; }
