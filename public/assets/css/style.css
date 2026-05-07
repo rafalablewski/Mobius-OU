@@ -8768,10 +8768,14 @@ span {
   margin-top: 0;
 }
 @media (max-width: 991px) {
+  /* Switch from grid to flex on mobile so the children's named
+     grid-areas (pitch / aside / title) are ignored and they flow
+     naturally in DOM order. Leaving them as grid items collapsed
+     all three onto the same cell and they overlapped. */
   .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage.has-pitch.has-aside {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: none;
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 28px);
   }
   .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage > .ht-breadcrumb__editorial-body {
     margin-top: clamp(12px, 2vw, 20px);
