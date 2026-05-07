@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function splitTitle(title, emphasis) {
@@ -38,7 +38,7 @@ function Crumbs({ crumbs, current, title }) {
   );
 }
 
-function DocControl({ category, docCode, lastRevisedAt, status = 'up-to-date', classification = 'Client' }) {
+function DocControl({ id, category, docCode, lastRevisedAt, status = 'up-to-date', classification = 'Client' }) {
   const STATUS_LABEL = {
     'up-to-date':   'Up to date',
     'under-review': 'Under review',
@@ -46,6 +46,7 @@ function DocControl({ category, docCode, lastRevisedAt, status = 'up-to-date', c
   };
   return (
     <div
+      id={id}
       className="ht-breadcrumb__doc-control"
       role="group"
       aria-label={`Document control: ${category} ${docCode}, last revised ${lastRevisedAt}, ${STATUS_LABEL[status]}`}
@@ -97,10 +98,11 @@ export default function Breadcrumb({
   docControl,
 }) {
   const { lead, tail } = splitTitle(title, emphasis);
+  const [docOpen, setDocOpen] = useState(false);
   const hasStage = variant === 'editorial' && (pitch || aside);
   const className = `ht-breadcrumb-area is-${variant}${hasStage ? ' has-stage' : ''}${
     docControl ? ' has-doc-control' : ''
-  }`;
+  }${docControl && docOpen ? ' is-doc-open' : ''}`;
 
   if (variant === 'editorial') {
     return (
@@ -120,8 +122,24 @@ export default function Breadcrumb({
                 ))}
               </ul>
             )}
+            {docControl && (
+              <button
+                type="button"
+                className="ht-breadcrumb__doc-toggle"
+                aria-expanded={docOpen}
+                aria-controls="ht-breadcrumb-doc-control"
+                onClick={() => setDocOpen((v) => !v)}
+              >
+                <span className="ht-breadcrumb__doc-toggle-label">Doc&nbsp;control</span>
+                <span className="ht-breadcrumb__doc-toggle-chevron" aria-hidden="true">
+                  {docOpen ? '–' : '+'}
+                </span>
+              </button>
+            )}
           </div>
-          {docControl && <DocControl {...docControl} />}
+          {docControl && (
+            <DocControl id="ht-breadcrumb-doc-control" {...docControl} />
+          )}
           {hasStage && (
             <div
               className={`ht-breadcrumb__stage${pitch ? ' has-pitch' : ''}${

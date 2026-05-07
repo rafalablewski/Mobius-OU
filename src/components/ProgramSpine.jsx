@@ -278,10 +278,44 @@ export default function ProgramSpine({ program }) {
     return () => html.classList.remove('has-program-spine');
   }, []);
 
+  // Keep --ht-spine-band-top in sync with the actual rendered height of the
+  // fixed page header. A hard-coded 82px drifts whenever the header chrome
+  // changes (or differs across breakpoints), which leaves a visible seam
+  // between the header bottom and the sticky chapter band on mobile.
+  useEffect(() => {
+    const html = document.documentElement;
+    const update = () => {
+      const header = document.getElementById('header-sticky');
+      if (!header) return;
+      const h = Math.round(header.getBoundingClientRect().height);
+      if (h > 0) html.style.setProperty('--ht-spine-band-top', `${h}px`);
+    };
+    update();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null;
+    const header = document.getElementById('header-sticky');
+    if (ro && header) ro.observe(header);
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+      if (ro) ro.disconnect();
+      html.style.removeProperty('--ht-spine-band-top');
+    };
+  }, []);
+
   const scrollToChapter = useCallback((idx) => {
     if (idx < 0 || idx >= total) return;
     const el = document.getElementById(CHAPTER_DEFINITIONS[idx].id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!el) return;
+    const offset = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--ht-spine-band-top'),
+    ) || 82;
+    // scrollIntoView({block:'start'}) honors scroll-margin-top inconsistently
+    // on iOS Safari, which is why the pager felt stuck on mobile. Computing
+    // the target manually and calling window.scrollTo is reliable everywhere.
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
   }, [total]);
 
   // Track which chapter is currently in view so J/K keyboard navigation

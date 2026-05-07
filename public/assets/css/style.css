@@ -8849,6 +8849,74 @@ span {
     border-bottom: 0;
   }
 }
+
+/* Doc-control disclosure on mobile: the audit-control strip eats too much
+   vertical space on small screens, so it's tucked behind a toggle that
+   sits inline with the crumbs. Desktop keeps the row visible at all times. */
+.ht-breadcrumb__doc-toggle {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px 6px 12px;
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(244, 239, 230, 0.32);
+  color: rgba(244, 239, 230, 0.85);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+}
+.ht-breadcrumb__doc-toggle:focus-visible {
+  outline: 2px solid var(--ht-theme-color-2, #C9A86A);
+  outline-offset: 2px;
+}
+.ht-breadcrumb__doc-toggle-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(244, 239, 230, 0.45);
+  border-radius: 50%;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 14px;
+  line-height: 1;
+}
+@media (max-width: 768px) {
+  .ht-breadcrumb__doc-toggle { display: inline-flex; }
+  .ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__doc-control {
+    display: none;
+  }
+  .ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__doc-control {
+    display: flex;
+  }
+  /* Restore the original editorial-body breathing room when the doc strip
+     is collapsed; the tighter spacing only makes sense with the strip
+     actually rendered. */
+  .ht-breadcrumb-area.is-editorial.has-doc-control:not(.is-doc-open) .ht-breadcrumb__editorial-body {
+    margin-top: clamp(28px, 5vw, 48px);
+  }
+}
+/* On the mobile stacked layout, the toggle should sit at the right edge of
+   its own row rather than be pushed below the crumbs. */
+@media (max-width: 768px) {
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 0;
+  }
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
 /* Spacing inside the editorial breadcrumb: when the doc-control row is
    present, pull the editorial body slightly closer so the row reads as
    part of the header rather than a free-floating block. */
@@ -14414,6 +14482,9 @@ a.ht-spine__contents-cell-face:focus-visible {
 @media (max-width: 768px) {
   .ht-spine__band-counter { display: none; }
   .ht-spine__band-pager { margin-left: auto; }
+  /* Larger touch targets on mobile so the pager actually fires on tap. */
+  .ht-spine__band-pager-btn { width: 36px; height: 30px; font-size: 14px; }
+  .ht-spine__band-pager-vbar { height: 16px; }
 }
 
 /* Body sits flush below the band; no flex:1 so chapters size to content. */
