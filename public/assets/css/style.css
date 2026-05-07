@@ -7475,6 +7475,9 @@
   --ht-font-ui: "Manrope", sans-serif;
   --ht-font-display: "Cormorant Garamond", serif;
   --ht-font-serif-body: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  /* Fallback only — ProgramSpine overrides this with the measured page
+     header height so the sticky chapter band sits flush below it. */
+  --ht-spine-band-top: 60px;
 }
 
 /* --------------------------------------------
@@ -14162,13 +14165,11 @@ html.has-program-spine {
 
 .ht-spine {
   --ht-spine-band-h: 40px;
-  /* Matches the actual rendered height of the fixed page header (~82px:
-     min-height 72px on .ht-menu-wrapper is overshot by the nav link
-     padding 26px×2 + line-height + 1px border-bottom). The sticky chapter
-     band sits flush against the header bottom in both natural and stuck
-     states — no page background bleeds through the seam, and the header
-     never overlaps the band's top edge. */
-  --ht-spine-band-top: 82px;
+  /* --ht-spine-band-top is intentionally NOT declared here. The header's
+     real rendered height differs across breakpoints and changes with the
+     sticky/non-sticky transition, so ProgramSpine measures it in JS and
+     writes the value onto :root. A local declaration here would override
+     the cascade and reintroduce the seam this is trying to avoid. */
   --ht-spine-bg: #FAF6EE;
   --ht-spine-bg-alt: #F4EFE6;
   --ht-spine-ink: #0B0F14;
