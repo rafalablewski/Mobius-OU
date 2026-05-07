@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sketch — Valletta skyline (line-art)</title>
+  <style>
+    :root {
+      --ink: #0B0F14;
+      --cream: #FAF6EE;
+      --bone: #F4EFE6;
+      --gold: #C9A86A;
+      --gold-deep: #A07F44;
+      --stone: #6B6257;
+      --hair: rgba(11,15,20,0.16);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      background: var(--bone);
+      color: var(--ink);
+      padding: 48px 24px 96px;
+      line-height: 1.55;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; }
+    header {
+      border-bottom: 1px solid var(--hair);
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+    }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    h1 {
+      font-family: "Cormorant Garamond", "Newsreader", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(34px, 4.4vw, 52px);
+      line-height: 1.05;
+      margin: 0 0 12px;
+    }
+    h1 em { font-style: italic; color: var(--gold-deep); }
+    .lede {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 17px;
+      max-width: 64ch;
+      color: var(--stone);
+      margin: 0;
+    }
+    h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: 26px;
+      margin: 56px 0 18px;
+    }
+    .surface {
+      border: 1px solid var(--hair);
+      padding: 48px 32px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+    .surface--cream { background: var(--cream); color: var(--ink); }
+    .surface--bone  { background: var(--bone);  color: var(--ink); }
+    .surface--ink   { background: var(--ink);   color: var(--cream); }
+    .surface--gold-on-ink { background: var(--ink); color: var(--gold); }
+    .surface img, .surface svg { width: min(100%, 720px); height: auto; display: block; }
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 720px) {
+      .pair { grid-template-columns: 1fr; }
+    }
+    .meta {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 6px 18px;
+      font-size: 13px;
+      color: var(--stone);
+      max-width: 720px;
+    }
+    .meta dt {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 10.5px;
+      color: var(--stone);
+    }
+    .meta dd {
+      margin: 0;
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+    .legend {
+      margin-top: 12px;
+      list-style: none;
+      padding: 0;
+      counter-reset: bldg;
+      max-width: 720px;
+    }
+    .legend li {
+      counter-increment: bldg;
+      display: grid;
+      grid-template-columns: 24px 180px 1fr;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px dotted var(--hair);
+      font-size: 14px;
+    }
+    .legend li::before {
+      content: counter(bldg, upper-roman);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--gold-deep);
+    }
+    .legend strong {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .swatch-row {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .swatch::before {
+      content: "";
+      width: 18px; height: 18px;
+      border: 1px solid var(--hair);
+    }
+    .swatch--ink::before  { background: var(--ink); }
+    .swatch--cream::before{ background: var(--cream); }
+    .swatch--gold::before { background: var(--gold); }
+    .small-on-dark .surface { padding: 32px 24px; min-height: 220px; }
+    .small-on-dark svg { width: min(100%, 480px); }
+
+    /* In the dossier-band preview, simulate the Mobius breadcrumb: dark ink
+       slab with a left-aligned crumb trail, then the sketch as a faint
+       ornamental band. The sketch is set with a low opacity so the eye
+       still leads with the editorial type. */
+    .dossier-mock {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 56px 32px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dossier-mock .crumbs {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 28px;
+    }
+    .dossier-mock h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.04;
+      margin: 0 0 16px;
+    }
+    .dossier-mock h3 em { font-style: italic; color: var(--gold); }
+    .dossier-mock .skyline {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      margin-top: 24px;
+      color: var(--gold);
+      opacity: 0.55;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Sketch · Programs · Malta</p>
+      <h1>Valletta — <em>line-art skyline</em></h1>
+      <p class="lede">
+        Monoline silhouette of Valletta intended as a decorative band on the
+        Malta MEIN program page (between the editorial breadcrumb and the
+        program spine, or as a watermark inside the breadcrumb stage). Drawn
+        in <code>currentColor</code> so the host page tints it — gold on ink
+        for the dossier hero, ink on cream for body sections.
+      </p>
+
+      <ul class="legend" aria-label="Buildings, left to right">
+        <li><strong>Auberge de Castille</strong>          <span>Classical PM's office — pediment, central portal, flanking windows.</span></li>
+        <li><strong>St Paul's Pro-Cathedral</strong>      <span>Anglican, slim Wren-style spire — the narrowest vertical accent.</span></li>
+        <li><strong>Carmelite Church</strong>             <span>Ribbed dome on a fluted drum with lantern + cross — the icon.</span></li>
+        <li><strong>St John's Co-Cathedral</strong>       <span>Twin bell towers flanking a central pediment and portal.</span></li>
+        <li><strong>Upper Barrakka wall</strong>          <span>Crenellated bastion with the Saluting Battery's three cannon.</span></li>
+      </ul>
+    </header>
+
+    <h2>Cream ground · ink stroke</h2>
+    <div class="surface surface--cream">
+      <object type="image/svg+xml" data="malta-valletta-skyline.svg" aria-label="Valletta skyline on cream"></object>
+    </div>
+    <dl class="meta">
+      <dt>Use</dt>           <dd>Body sections, fee tables, supporting copy where the line should disappear into the page.</dd>
+      <dt>Stroke</dt>        <dd><code>currentColor = var(--ink)</code> — the default body text colour.</dd>
+    </dl>
+
+    <h2>Ink ground · gold stroke (dossier register)</h2>
+    <div class="surface surface--gold-on-ink">
+      <object type="image/svg+xml" data="malta-valletta-skyline.svg" aria-label="Valletta skyline gold-on-ink"></object>
+    </div>
+    <dl class="meta">
+      <dt>Use</dt>           <dd>Inside the editorial breadcrumb hero (the dossier slab) — sits below the crumbs as an ornamental rule.</dd>
+      <dt>Stroke</dt>        <dd><code>currentColor = var(--gold)</code> — picks up the breadcrumb's existing champagne tone.</dd>
+    </dl>
+
+    <h2>Bone ground · ink stroke (program-spine band)</h2>
+    <div class="surface surface--bone">
+      <object type="image/svg+xml" data="malta-valletta-skyline.svg" aria-label="Valletta skyline on bone"></object>
+    </div>
+    <dl class="meta">
+      <dt>Use</dt>           <dd>Between the breadcrumb and the program spine — a tonal break that orients the reader without competing with it.</dd>
+    </dl>
+
+    <h2>Smaller — at half scale</h2>
+    <div class="pair small-on-dark">
+      <div class="surface surface--cream">
+        <object type="image/svg+xml" data="malta-valletta-skyline.svg" aria-label="Valletta — small on cream"></object>
+      </div>
+      <div class="surface surface--ink" style="color: var(--gold);">
+        <object type="image/svg+xml" data="malta-valletta-skyline.svg" aria-label="Valletta — small on ink"></object>
+      </div>
+    </div>
+    <dl class="meta">
+      <dt>Use</dt>           <dd>Marginalia / opening illustration — Cormorant title above, this band below at ~480 px wide.</dd>
+    </dl>
+
+    <h2>In context — dossier hero mock</h2>
+    <div class="surface dossier-mock" style="display:block; padding-top: 56px;">
+      <p class="crumbs">M · MOBIUS · PROGRAMS · MALTA MEIN</p>
+      <h3>Malta <em>MEIN</em></h3>
+      <object class="skyline" type="image/svg+xml" data="malta-valletta-skyline.svg" aria-label="Valletta — skyline ornament beneath the dossier title"></object>
+    </div>
+    <dl class="meta">
+      <dt>Notes</dt>
+      <dd>
+        Skyline sits at ~55% opacity in gold so the title still leads the
+        eye. Scale the SVG to the full container width; it's vector, no LCP
+        cost. If we ever want the skyline to feel even more incidental we
+        drop opacity to ~30% and let the champagne glow handle the rest.
+      </dd>
+    </dl>
+
+    <div class="swatch-row" aria-hidden="true">
+      <span class="swatch swatch--ink">ink #0B0F14</span>
+      <span class="swatch swatch--cream">cream #FAF6EE</span>
+      <span class="swatch swatch--gold">gold #C9A86A</span>
+    </div>
+  </div>
+</body>
+</html>

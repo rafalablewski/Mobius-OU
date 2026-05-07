@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Valletta skyline — monoline.
+  Recognisable silhouettes (left → right):
+    1. Auberge de Castille    (classical PM's office, rusticated facade + pediment)
+    2. St Paul's Pro-Cathedral (Anglican, slim Wren-style spire)
+    3. Carmelite Church        (large ribbed dome with lantern + cross — the icon)
+    4. St John's Co-Cathedral  (paired bell towers flanking a central pediment)
+    5. Upper Barrakka wall     (crenellated fortification + Saluting Battery)
+  Plus: three swallows upper-left, sun burst upper-right, two trees, sea hatching.
+  Palette is stroke="currentColor" so the host page tints it (gold on ink works,
+  ink on cream works). Stroke 1.6, round caps, no fill.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 280"
+  width="800"
+  height="280"
+  role="img"
+  aria-labelledby="malta-valletta-title malta-valletta-desc"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <title id="malta-valletta-title">Valletta skyline</title>
+  <desc id="malta-valletta-desc">
+    Line-art silhouette of Valletta, Malta — Auberge de Castille, St Paul's
+    Pro-Cathedral, the Carmelite dome, St John's Co-Cathedral and the
+    Upper Barrakka fortification wall. Decorative swallows and sun.
+  </desc>
+
+  <!-- ======================================================
+       Decorative top — swallows (left) and sun burst (right)
+       ====================================================== -->
+  <g aria-hidden="true">
+    <!-- swallows: simple "v" curves -->
+    <path d="M 96 60 q 8 -8 16 0 q 8 -8 16 0" />
+    <path d="M 138 44 q 6 -6 12 0 q 6 -6 12 0" />
+    <path d="M 174 56 q 7 -7 14 0 q 7 -7 14 0" />
+
+    <!-- sun: small disc + ten rays -->
+    <circle cx="700" cy="56" r="9" />
+    <g stroke-linecap="round">
+      <line x1="700" y1="30" x2="700" y2="38" />
+      <line x1="700" y1="74" x2="700" y2="82" />
+      <line x1="674" y1="56" x2="682" y2="56" />
+      <line x1="718" y1="56" x2="726" y2="56" />
+      <line x1="681" y1="37" x2="687" y2="43" />
+      <line x1="713" y1="69" x2="719" y2="75" />
+      <line x1="681" y1="75" x2="687" y2="69" />
+      <line x1="713" y1="43" x2="719" y2="37" />
+      <line x1="668" y1="40" x2="674" y2="46" />
+      <line x1="726" y1="66" x2="732" y2="72" />
+    </g>
+  </g>
+
+  <!-- ======================================================
+       1. Auberge de Castille  (x: 50–200)
+       ====================================================== -->
+  <g>
+    <!-- main block -->
+    <rect x="50" y="160" width="150" height="60" />
+    <!-- corner pilasters -->
+    <line x1="62" y1="160" x2="62" y2="220" />
+    <line x1="188" y1="160" x2="188" y2="220" />
+    <!-- entablature line -->
+    <line x1="50" y1="155" x2="200" y2="155" />
+    <!-- triangular pediment -->
+    <path d="M 50 155 L 125 110 L 200 155" />
+    <line x1="64" y1="143" x2="186" y2="143" />
+    <!-- central arched portal -->
+    <path d="M 110 220 L 110 192 Q 125 175 140 192 L 140 220" />
+    <!-- flanking windows (left) -->
+    <rect x="76" y="176" width="14" height="20" />
+    <rect x="76" y="200" width="14" height="14" />
+    <!-- flanking windows (right) -->
+    <rect x="160" y="176" width="14" height="20" />
+    <rect x="160" y="200" width="14" height="14" />
+    <!-- step plinth -->
+    <line x1="46" y1="220" x2="204" y2="220" />
+    <line x1="60" y1="226" x2="190" y2="226" />
+  </g>
+
+  <!-- ======================================================
+       2. St Paul's Anglican Pro-Cathedral  (x: 220–280)
+       ====================================================== -->
+  <g>
+    <!-- nave block -->
+    <rect x="220" y="170" width="60" height="50" />
+    <line x1="220" y1="220" x2="280" y2="220" />
+    <!-- tower base (square) -->
+    <rect x="234" y="120" width="32" height="50" />
+    <!-- belfry -->
+    <rect x="238" y="100" width="24" height="20" />
+    <line x1="244" y1="106" x2="244" y2="114" />
+    <line x1="250" y1="106" x2="250" y2="114" />
+    <line x1="256" y1="106" x2="256" y2="114" />
+    <!-- spire -->
+    <path d="M 238 100 L 250 50 L 262 100" />
+    <!-- cross -->
+    <line x1="250" y1="50" x2="250" y2="38" />
+    <line x1="245" y1="44" x2="255" y2="44" />
+    <!-- nave window -->
+    <rect x="232" y="184" width="14" height="22" />
+    <rect x="254" y="184" width="14" height="22" />
+  </g>
+
+  <!-- ======================================================
+       3. Carmelite Church — the dome  (x: 300–460)
+       ====================================================== -->
+  <g>
+    <!-- side wings (lower flanking blocks) -->
+    <rect x="300" y="170" width="32" height="50" />
+    <rect x="428" y="170" width="32" height="50" />
+    <line x1="296" y1="220" x2="464" y2="220" />
+    <!-- drum (octagonal-ish) with vertical fluting -->
+    <rect x="334" y="115" width="92" height="55" />
+    <line x1="354" y1="120" x2="354" y2="166" />
+    <line x1="380" y1="120" x2="380" y2="166" />
+    <line x1="406" y1="120" x2="406" y2="166" />
+    <!-- entablature above drum -->
+    <line x1="328" y1="115" x2="432" y2="115" />
+    <!-- dome -->
+    <path d="M 332 115 Q 380 18 428 115" />
+    <!-- dome ribs -->
+    <path d="M 348 115 Q 380 38 412 115" opacity="0.85" />
+    <path d="M 366 115 Q 380 60 394 115" opacity="0.6" />
+    <!-- lantern -->
+    <rect x="370" y="22" width="20" height="18" />
+    <line x1="370" y1="22" x2="390" y2="22" />
+    <!-- mini-dome on lantern -->
+    <path d="M 370 22 Q 380 12 390 22" />
+    <!-- cross on lantern -->
+    <line x1="380" y1="12" x2="380" y2="0" />
+    <line x1="375" y1="6" x2="385" y2="6" />
+    <!-- wing windows -->
+    <rect x="306" y="184" width="10" height="22" />
+    <rect x="318" y="184" width="10" height="22" />
+    <rect x="432" y="184" width="10" height="22" />
+    <rect x="444" y="184" width="10" height="22" />
+  </g>
+
+  <!-- ======================================================
+       4. St John's Co-Cathedral — twin bell towers  (x: 480–600)
+       ====================================================== -->
+  <g>
+    <!-- left tower -->
+    <rect x="486" y="130" width="36" height="90" />
+    <line x1="486" y1="160" x2="522" y2="160" />
+    <!-- left belfry opening -->
+    <path d="M 494 138 L 494 152 Q 504 140 514 152 L 514 138 Z" />
+    <!-- left tower roof -->
+    <path d="M 484 130 L 504 110 L 524 130" />
+    <line x1="504" y1="110" x2="504" y2="100" />
+
+    <!-- right tower -->
+    <rect x="558" y="130" width="36" height="90" />
+    <line x1="558" y1="160" x2="594" y2="160" />
+    <!-- right belfry opening -->
+    <path d="M 566 138 L 566 152 Q 576 140 586 152 L 586 138 Z" />
+    <!-- right tower roof -->
+    <path d="M 556 130 L 576 110 L 596 130" />
+    <line x1="576" y1="110" x2="576" y2="100" />
+
+    <!-- central facade between towers -->
+    <rect x="522" y="170" width="36" height="50" />
+    <!-- pediment -->
+    <path d="M 518 170 L 540 148 L 562 170" />
+    <!-- central door -->
+    <path d="M 532 220 L 532 198 Q 540 188 548 198 L 548 220" />
+  </g>
+
+  <!-- ======================================================
+       5. Upper Barrakka — fortification wall  (x: 612–770)
+       ====================================================== -->
+  <g>
+    <!-- bastion wall -->
+    <rect x="612" y="186" width="158" height="34" />
+    <!-- crenellations -->
+    <path d="M 612 186 L 612 178 L 624 178 L 624 186
+             M 632 186 L 632 178 L 644 178 L 644 186
+             M 652 186 L 652 178 L 664 178 L 664 186
+             M 672 186 L 672 178 L 684 178 L 684 186
+             M 692 186 L 692 178 L 704 178 L 704 186
+             M 712 186 L 712 178 L 724 178 L 724 186
+             M 732 186 L 732 178 L 744 178 L 744 186
+             M 752 186 L 752 178 L 764 178 L 764 186" />
+    <!-- arrow-slits -->
+    <line x1="624" y1="200" x2="624" y2="212" />
+    <line x1="652" y1="200" x2="652" y2="212" />
+    <line x1="680" y1="200" x2="680" y2="212" />
+    <line x1="708" y1="200" x2="708" y2="212" />
+    <line x1="736" y1="200" x2="736" y2="212" />
+    <!-- saluting battery — three small cannons on top of wall -->
+    <g>
+      <line x1="640" y1="178" x2="640" y2="170" />
+      <circle cx="640" cy="168" r="2" />
+      <line x1="688" y1="178" x2="688" y2="170" />
+      <circle cx="688" cy="168" r="2" />
+      <line x1="736" y1="178" x2="736" y2="170" />
+      <circle cx="736" cy="168" r="2" />
+    </g>
+  </g>
+
+  <!-- ======================================================
+       Foreground — ground line, two trees, sea hatching
+       ====================================================== -->
+  <g aria-hidden="true">
+    <!-- ground rule -->
+    <line x1="20" y1="232" x2="780" y2="232" />
+    <!-- left tree (small cypress — Valletta has these on the bastions) -->
+    <path d="M 36 232 L 36 210 Q 28 198 36 188 Q 44 198 36 188 Z" />
+    <line x1="36" y1="232" x2="36" y2="194" />
+    <!-- right tree -->
+    <path d="M 776 232 L 776 208 Q 766 196 776 184 Q 786 196 776 184 Z" />
+    <line x1="776" y1="232" x2="776" y2="190" />
+    <!-- sea — short wave hatches under the wall -->
+    <g stroke-linecap="round">
+      <path d="M 80 248 q 8 -4 16 0 q 8 4 16 0" />
+      <path d="M 240 248 q 8 -4 16 0 q 8 4 16 0" />
+      <path d="M 420 248 q 8 -4 16 0 q 8 4 16 0" />
+      <path d="M 580 248 q 8 -4 16 0 q 8 4 16 0" />
+      <path d="M 690 248 q 8 -4 16 0 q 8 4 16 0" />
+    </g>
+  </g>
+
+  <!-- ======================================================
+       Caption
+       ====================================================== -->
+  <g aria-hidden="true" stroke="none" fill="currentColor">
+    <text
+      x="400"
+      y="272"
+      text-anchor="middle"
+      font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+      font-size="14"
+      letter-spacing="6"
+    >VALLETTA</text>
+  </g>
+</svg>
