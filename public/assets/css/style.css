@@ -9007,12 +9007,17 @@ span {
   border-right: 1px solid var(--ht-theme-color-2);
 }
 .ht-pitch-card__viewport {
-  position: relative;
+  /* Grid stack — every slide goes in cell 1/1, so they overlay each other
+     for the cross-fade while the cell auto-sizes to the tallest slide.
+     The previous absolute-positioning approach forced every slide to a
+     fixed 156 px viewport height; on narrow widths the body text simply
+     overflowed the box and bled down into the brief-panel below. */
+  display: grid;
+  grid-template-columns: 1fr;
   min-height: 156px;
 }
 .ht-pitch-card__slide {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 550ms ease, transform 550ms ease;
