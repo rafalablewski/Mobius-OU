@@ -8707,7 +8707,10 @@ span {
   line-height: 1;
 }
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__editorial-body {
-  margin-top: clamp(40px, 5vw, 64px);
+  /* Title sits directly under the stage — the previous 40–64px gap
+     pushed it below the fold whenever the brief panel column was
+     taller than the pitch card. */
+  margin-top: clamp(12px, 1.5vw, 20px);
 }
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__title {
   font-size: clamp(40px, 5.2vw, 72px);
