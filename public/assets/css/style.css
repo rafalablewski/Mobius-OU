@@ -8687,14 +8687,6 @@ span {
   border-bottom: 1px solid rgba(201, 168, 106, 0.32);
   margin-bottom: clamp(40px, 5vw, 64px);
 }
-@media (max-width: 768px) {
-  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 0;
-    gap: 12px;
-  }
-}
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs,
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__meta {
   line-height: 1;
