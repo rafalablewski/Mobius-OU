@@ -202,7 +202,7 @@ function ContentsIconDefs() {
 }
 
 function ContentsPage() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
     <section
       className={`ht-spine__contents${open ? ' is-open' : ''}`}

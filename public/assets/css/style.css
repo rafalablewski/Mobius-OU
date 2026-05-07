@@ -8668,6 +8668,25 @@ span {
   /* Top padding clears the fixed page header (~90px) — without it the
      top bar slides under the header. */
   padding: 96px 0 56px;
+  /* Editorial hero fills the viewport so the dossier title reads as a
+     full-bleed cover. min-height (not height) lets tall content on small
+     screens push the section taller without clipping. 100dvh accounts
+     for mobile browsers that hide the URL bar on scroll. */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.ht-breadcrumb-area.is-editorial > .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+/* Push the stage (pitch card + brief panel) to the foot of the 100vh
+   hero, so the title sits near the top and the booking widgets anchor
+   the bottom of the cover. */
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage {
+  margin-top: auto;
 }
 @media (max-width: 768px) {
   .ht-breadcrumb-area.is-editorial {
