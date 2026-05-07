@@ -8747,12 +8747,34 @@ span {
   gap: clamp(24px, 3vw, 40px);
   align-items: start;
 }
+/* Two-column layout — pitch card on top-left, title block on bottom-left,
+   brief panel on the right spanning both rows. The title nests under the
+   pitch card so it reads as the caption of the cover instead of falling
+   below a tall brief-panel column (which left a huge dark gap before
+   the title appeared). */
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage.has-pitch.has-aside {
   grid-template-columns: minmax(0, 1fr) clamp(280px, 28%, 340px);
+  grid-template-areas:
+    "pitch aside"
+    "title aside";
+  grid-template-rows: auto auto;
+  column-gap: clamp(24px, 3vw, 40px);
+  row-gap: clamp(16px, 2vw, 28px);
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage-pitch  { grid-area: pitch; }
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage-aside  { grid-area: aside; align-self: start; }
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage > .ht-breadcrumb__editorial-body {
+  grid-area: title;
+  margin-top: 0;
 }
 @media (max-width: 991px) {
   .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage.has-pitch.has-aside {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: none;
+    grid-template-rows: auto;
+  }
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage > .ht-breadcrumb__editorial-body {
+    margin-top: clamp(12px, 2vw, 20px);
   }
 }
 

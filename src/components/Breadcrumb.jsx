@@ -140,7 +140,7 @@ export default function Breadcrumb({
           {docControl && (
             <DocControl id="ht-breadcrumb-doc-control" {...docControl} />
           )}
-          {hasStage && (
+          {hasStage ? (
             <div
               className={`ht-breadcrumb__stage${pitch ? ' has-pitch' : ''}${
                 aside ? ' has-aside' : ''
@@ -148,21 +148,39 @@ export default function Breadcrumb({
             >
               {pitch && <div className="ht-breadcrumb__stage-pitch">{pitch}</div>}
               {aside && <div className="ht-breadcrumb__stage-aside">{aside}</div>}
+              {/* Title sits inside the stage so it can occupy the left column
+                  directly under the pitch card. As a sibling outside the
+                  stage, it fell below the taller brief-panel column and
+                  pushed itself off the visible page. */}
+              <div className="ht-breadcrumb__editorial-body">
+                <h1 className="ht-breadcrumb__title">
+                  {lead}
+                  {tail && (
+                    <>
+                      {' '}
+                      <em>{tail}</em>
+                    </>
+                  )}
+                </h1>
+                <span className="ht-breadcrumb__rule" aria-hidden="true" />
+                {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
+              </div>
+            </div>
+          ) : (
+            <div className="ht-breadcrumb__editorial-body">
+              <h1 className="ht-breadcrumb__title">
+                {lead}
+                {tail && (
+                  <>
+                    {' '}
+                    <em>{tail}</em>
+                  </>
+                )}
+              </h1>
+              <span className="ht-breadcrumb__rule" aria-hidden="true" />
+              {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
             </div>
           )}
-          <div className="ht-breadcrumb__editorial-body">
-            <h1 className="ht-breadcrumb__title">
-              {lead}
-              {tail && (
-                <>
-                  {' '}
-                  <em>{tail}</em>
-                </>
-              )}
-            </h1>
-            <span className="ht-breadcrumb__rule" aria-hidden="true" />
-            {tagline && <p className="ht-breadcrumb__dateline">{tagline}</p>}
-          </div>
         </div>
       </section>
     );
