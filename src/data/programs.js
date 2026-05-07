@@ -45,7 +45,7 @@ export const PROGRAMS = [
     headline: '€690k + real estate · EU passport',
     arms: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Coat_of_arms_of_Malta.svg/250px-Coat_of_arms_of_Malta.svg.png',
     heroImg: '/assets/img/blog/13.jpg',
-    heroBg: 'https://images.pexels.com/photos/18021130/pexels-photo-18021130.jpeg?auto=compress&cs=tinysrgb&w=2000',
+    heroBg: 'https://images.pexels.com/photos/35822071/pexels-photo-35822071.jpeg?auto=compress&cs=tinysrgb&w=2000',
     summary:
       'Malta\'s Citizenship by Direct Investment (MEIN) is the last standing EU citizenship-by-investment route. Processing has lengthened and files are scrutinised more than ever; for the right profile the end-state passport remains the strongest mobility prize on the market.',
     facts: [
