@@ -112,7 +112,6 @@ export default function ProgramPage() {
         tagline={program.tagline}
         aside={<BriefPanel program={program} />}
         pitch={<HeroPitchCard slides={PROGRAM_PITCH} />}
-        bgImage={program.heroBg}
       />
       <ProgramSpine program={program} />
       <CTABand
