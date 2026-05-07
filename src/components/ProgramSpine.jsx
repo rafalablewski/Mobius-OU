@@ -291,15 +291,19 @@ export default function ProgramSpine({ program }) {
       if (h > 0) html.style.setProperty('--ht-spine-band-top', `${h}px`);
     };
     update();
-    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null;
+    // ResizeObserver catches every change to the header's rendered height —
+    // including the .sticky class transition that re-paddings the wrapper —
+    // so we don't need to listen on scroll or resize when it's available.
     const header = document.getElementById('header-sticky');
-    if (ro && header) ro.observe(header);
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null;
+    if (ro && header) {
+      ro.observe(header);
+    } else {
+      window.addEventListener('resize', update);
+    }
     return () => {
-      window.removeEventListener('scroll', update);
-      window.removeEventListener('resize', update);
       if (ro) ro.disconnect();
+      else window.removeEventListener('resize', update);
       html.style.removeProperty('--ht-spine-band-top');
     };
   }, []);
