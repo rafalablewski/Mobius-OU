@@ -8544,9 +8544,9 @@ span {
      touch lighter so the photograph is still discernible. */
   background:
     linear-gradient(180deg,
-      rgba(11, 15, 20, 0.95) 0%,
-      rgba(11, 15, 20, 0.88) 45%,
-      rgba(11, 15, 20, 0.96) 100%),
+      rgba(11, 15, 20, 0.985) 0%,
+      rgba(11, 15, 20, 0.95) 45%,
+      rgba(11, 15, 20, 0.99) 100%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.32 0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.28'/></svg>");
   background-blend-mode: normal, overlay;
   opacity: 1;
