@@ -7475,6 +7475,9 @@
   --ht-font-ui: "Manrope", sans-serif;
   --ht-font-display: "Cormorant Garamond", serif;
   --ht-font-serif-body: "Newsreader", Georgia, "Cormorant Garamond", serif;
+  /* Fallback only — ProgramSpine overrides this with the measured page
+     header height so the sticky chapter band sits flush below it. */
+  --ht-spine-band-top: 60px;
 }
 
 /* --------------------------------------------
@@ -8684,14 +8687,6 @@ span {
   border-bottom: 1px solid rgba(201, 168, 106, 0.32);
   margin-bottom: clamp(40px, 5vw, 64px);
 }
-@media (max-width: 768px) {
-  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 0;
-    gap: 12px;
-  }
-}
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs,
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__meta {
   line-height: 1;
@@ -8704,7 +8699,10 @@ span {
   line-height: 1;
 }
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__editorial-body {
-  margin-top: clamp(40px, 5vw, 64px);
+  /* Title sits directly under the stage — the previous 40–64px gap
+     pushed it below the fold whenever the brief panel column was
+     taller than the pitch card. */
+  margin-top: clamp(12px, 1.5vw, 20px);
 }
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__title {
   font-size: clamp(40px, 5.2vw, 72px);
@@ -8741,12 +8739,38 @@ span {
   gap: clamp(24px, 3vw, 40px);
   align-items: start;
 }
+/* Two-column layout — pitch card on top-left, title block on bottom-left,
+   brief panel on the right spanning both rows. The title nests under the
+   pitch card so it reads as the caption of the cover instead of falling
+   below a tall brief-panel column (which left a huge dark gap before
+   the title appeared). */
 .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage.has-pitch.has-aside {
   grid-template-columns: minmax(0, 1fr) clamp(280px, 28%, 340px);
+  grid-template-areas:
+    "pitch aside"
+    "title aside";
+  grid-template-rows: auto auto;
+  column-gap: clamp(24px, 3vw, 40px);
+  row-gap: clamp(16px, 2vw, 28px);
+}
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage-pitch  { grid-area: pitch; }
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage-aside  { grid-area: aside; align-self: start; }
+.ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage > .ht-breadcrumb__editorial-body {
+  grid-area: title;
+  margin-top: 0;
 }
 @media (max-width: 991px) {
+  /* Switch from grid to flex on mobile so the children's named
+     grid-areas (pitch / aside / title) are ignored and they flow
+     naturally in DOM order. Leaving them as grid items collapsed
+     all three onto the same cell and they overlapped. */
   .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage.has-pitch.has-aside {
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 28px);
+  }
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__stage > .ht-breadcrumb__editorial-body {
+    margin-top: clamp(12px, 2vw, 20px);
   }
 }
 
@@ -8849,16 +8873,89 @@ span {
     border-bottom: 0;
   }
 }
-/* Spacing inside the editorial breadcrumb: when the doc-control row is
-   present, pull the editorial body slightly closer so the row reads as
-   part of the header rather than a free-floating block. */
-.ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__top {
-  margin-bottom: clamp(20px, 2.4vw, 28px);
+
+/* Doc-control disclosure: the audit-control strip is tucked behind a
+   toggle that sits inline with the crumbs at every breakpoint. Hidden by
+   default, expands when the user taps "Doc control +". Desktop reveals the
+   row inline beneath the crumbs; mobile reveals the same stacked variant. */
+.ht-breadcrumb__doc-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px 6px 12px;
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(244, 239, 230, 0.32);
+  color: rgba(244, 239, 230, 0.85);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.ht-breadcrumb__doc-toggle:hover {
+  color: rgba(244, 239, 230, 1);
+  border-color: rgba(244, 239, 230, 0.55);
+}
+.ht-breadcrumb__doc-toggle:focus-visible {
+  outline: 2px solid var(--ht-theme-color-2, #C9A86A);
+  outline-offset: 2px;
+}
+.ht-breadcrumb__doc-toggle-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(244, 239, 230, 0.45);
+  border-radius: 50%;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 14px;
+  line-height: 1;
 }
 .ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__doc-control {
+  display: none;
+}
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__doc-control {
+  display: inline-flex;
+}
+/* Stacked variant — used on the small-screen breakpoint where cells
+   wrap to a column. */
+@media (max-width: 600px) {
+  .ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__doc-control {
+    display: flex;
+  }
+}
+/* On the mobile stacked layout, keep the toggle on the same row as the
+   crumbs so it reads as part of the header strip. */
+@media (max-width: 768px) {
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 0;
+  }
+  .ht-breadcrumb-area.is-editorial .ht-breadcrumb__crumbs {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/* Spacing inside the editorial breadcrumb: when the doc-control row is
+   present and EXPANDED, pull the editorial body closer so the strip reads
+   as part of the header. When collapsed, fall back to the original
+   spacing so the title doesn't crowd the crumbs. */
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__top {
+  margin-bottom: clamp(20px, 2.4vw, 28px);
+}
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__doc-control {
   margin-bottom: clamp(28px, 3vw, 40px);
 }
-.ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__editorial-body {
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__editorial-body {
   margin-top: 0;
 }
 
@@ -8902,12 +8999,17 @@ span {
   border-right: 1px solid var(--ht-theme-color-2);
 }
 .ht-pitch-card__viewport {
-  position: relative;
+  /* Grid stack — every slide goes in cell 1/1, so they overlay each other
+     for the cross-fade while the cell auto-sizes to the tallest slide.
+     The previous absolute-positioning approach forced every slide to a
+     fixed 156 px viewport height; on narrow widths the body text simply
+     overflowed the box and bled down into the brief-panel below. */
+  display: grid;
+  grid-template-columns: 1fr;
   min-height: 156px;
 }
 .ht-pitch-card__slide {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 550ms ease, transform 550ms ease;
@@ -14094,13 +14196,11 @@ html.has-program-spine {
 
 .ht-spine {
   --ht-spine-band-h: 40px;
-  /* Matches the actual rendered height of the fixed page header (~82px:
-     min-height 72px on .ht-menu-wrapper is overshot by the nav link
-     padding 26px×2 + line-height + 1px border-bottom). The sticky chapter
-     band sits flush against the header bottom in both natural and stuck
-     states — no page background bleeds through the seam, and the header
-     never overlaps the band's top edge. */
-  --ht-spine-band-top: 82px;
+  /* --ht-spine-band-top is intentionally NOT declared here. The header's
+     real rendered height differs across breakpoints and changes with the
+     sticky/non-sticky transition, so ProgramSpine measures it in JS and
+     writes the value onto :root. A local declaration here would override
+     the cascade and reintroduce the seam this is trying to avoid. */
   --ht-spine-bg: #FAF6EE;
   --ht-spine-bg-alt: #F4EFE6;
   --ht-spine-ink: #0B0F14;
@@ -14414,6 +14514,9 @@ a.ht-spine__contents-cell-face:focus-visible {
 @media (max-width: 768px) {
   .ht-spine__band-counter { display: none; }
   .ht-spine__band-pager { margin-left: auto; }
+  /* Larger touch targets on mobile so the pager actually fires on tap. */
+  .ht-spine__band-pager-btn { width: 36px; height: 30px; font-size: 14px; }
+  .ht-spine__band-pager-vbar { height: 16px; }
 }
 
 /* Body sits flush below the band; no flex:1 so chapters size to content. */

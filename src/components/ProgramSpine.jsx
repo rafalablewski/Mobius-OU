@@ -202,7 +202,7 @@ function ContentsIconDefs() {
 }
 
 function ContentsPage() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
     <section
       className={`ht-spine__contents${open ? ' is-open' : ''}`}
@@ -278,10 +278,48 @@ export default function ProgramSpine({ program }) {
     return () => html.classList.remove('has-program-spine');
   }, []);
 
+  // Keep --ht-spine-band-top in sync with the actual rendered height of the
+  // fixed page header. A hard-coded 82px drifts whenever the header chrome
+  // changes (or differs across breakpoints), which leaves a visible seam
+  // between the header bottom and the sticky chapter band on mobile.
+  useEffect(() => {
+    const html = document.documentElement;
+    const update = () => {
+      const header = document.getElementById('header-sticky');
+      if (!header) return;
+      const h = Math.round(header.getBoundingClientRect().height);
+      if (h > 0) html.style.setProperty('--ht-spine-band-top', `${h}px`);
+    };
+    update();
+    // ResizeObserver catches every change to the header's rendered height —
+    // including the .sticky class transition that re-paddings the wrapper —
+    // so we don't need to listen on scroll or resize when it's available.
+    const header = document.getElementById('header-sticky');
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null;
+    if (ro && header) {
+      ro.observe(header);
+    } else {
+      window.addEventListener('resize', update);
+    }
+    return () => {
+      if (ro) ro.disconnect();
+      else window.removeEventListener('resize', update);
+      html.style.removeProperty('--ht-spine-band-top');
+    };
+  }, []);
+
   const scrollToChapter = useCallback((idx) => {
     if (idx < 0 || idx >= total) return;
     const el = document.getElementById(CHAPTER_DEFINITIONS[idx].id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!el) return;
+    const offset = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--ht-spine-band-top'),
+    ) || 82;
+    // scrollIntoView({block:'start'}) honors scroll-margin-top inconsistently
+    // on iOS Safari, which is why the pager felt stuck on mobile. Computing
+    // the target manually and calling window.scrollTo is reliable everywhere.
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
   }, [total]);
 
   // Track which chapter is currently in view so J/K keyboard navigation

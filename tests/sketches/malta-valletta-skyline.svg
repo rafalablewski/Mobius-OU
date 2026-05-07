@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Valletta — hand-drawn pen sketch.
+  Composition: the iconic view across Marsamxett Harbour from Sliema —
+  St Paul's Anglican spire at left of centre, the Carmelite dome at right
+  of centre, dense Maltese building cluster between and around them, sea
+  hatching at the foot, a loose flock of birds in the upper-left sky.
+
+  Technique notes (vs the earlier monoline draft):
+    · SVG `feTurbulence` + `feDisplacementMap` filter applies a 1.4 px
+      pen-jitter to every building stroke, so the lines feel hand-pressed
+      rather than CAD-clean (ref 2's pen-and-ink, ref 3's loose contour).
+    · Varied stroke weights (0.6 → 2.0) so primary masses read first and
+      the small windows / hatching recede (ref 2).
+    · Hatching strip on the right shoulder of the dome, plus horizontal
+      sea hatching at the foot, supplies tonal depth without fills.
+    · Italic-serif "Malta" caption + underline flourish sits OUTSIDE the
+      roughen filter so the type stays sharp (ref 3's signature).
+
+  Stroke uses `currentColor` so the host page tints it (ink-on-cream for
+  body sections, gold-on-ink for the dossier hero).
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 320"
+  width="800"
+  height="320"
+  role="img"
+  aria-labelledby="malta-title malta-desc"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <title id="malta-title">Valletta, Malta — pen sketch</title>
+  <desc id="malta-desc">
+    Hand-drawn line sketch of Valletta from Sliema: St Paul's Anglican
+    Pro-Cathedral spire, the Carmelite Church dome, dense honey-stone
+    building cluster, sea hatching and a flock of birds. Italic
+    "Malta" signature lower right.
+  </desc>
+
+  <defs>
+    <!-- Roughen filter — gives every path the displaced-edge feel of a
+         pen pressing into paper. Modest scale (1.4) keeps the silhouettes
+         legible at small sizes. -->
+    <filter id="hand" x="-2%" y="-2%" width="104%" height="104%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="7" result="n" />
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.4" />
+    </filter>
+    <!-- A second, finer pass for the smallest strokes (windows, hatching),
+         which would otherwise look too wobbly under a 1.4 displacement. -->
+    <filter id="hand-fine" x="-2%" y="-2%" width="104%" height="104%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11" result="n" />
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0.6" />
+    </filter>
+  </defs>
+
+  <!-- ===========================================================
+       SKY — flock of birds (loose v-shapes at varied sizes)
+       =========================================================== -->
+  <g filter="url(#hand-fine)" stroke-width="1.0">
+    <path d="M 110 78  q 4 -4 8 0 q 4 -4 8 0" />
+    <path d="M 130 64  q 3 -3 6 0 q 3 -3 6 0" />
+    <path d="M 152 82  q 5 -5 10 0 q 5 -5 10 0" />
+    <path d="M 174 60  q 4 -4 8 0 q 4 -4 8 0" />
+    <path d="M 196 76  q 3 -3 6 0 q 3 -3 6 0" />
+    <path d="M 92 96   q 5 -5 10 0 q 5 -5 10 0" />
+    <path d="M 220 90  q 3 -3 6 0 q 3 -3 6 0" />
+    <path d="M 248 70  q 4 -4 8 0 q 4 -4 8 0" />
+    <path d="M 70 120  q 3 -3 6 0 q 3 -3 6 0" />
+    <path d="M 168 102 q 4 -4 8 0 q 4 -4 8 0" />
+    <path d="M 280 96  q 3 -3 6 0 q 3 -3 6 0" />
+    <path d="M 310 80  q 3 -3 6 0 q 3 -3 6 0" />
+  </g>
+
+  <!-- ===========================================================
+       LEFT BUILDING CLUSTER — small Maltese honey-stone houses
+       descending toward the water, irregular roofline.
+       =========================================================== -->
+  <g filter="url(#hand)" stroke-width="1.2">
+    <!-- ground line under the cluster -->
+    <line x1="20" y1="248" x2="200" y2="248" />
+    <!-- block 1 -->
+    <rect x="40"  y="218" width="34" height="30" />
+    <line x1="40"  y1="226" x2="74"  y2="226" />
+    <!-- block 2 -->
+    <rect x="74"  y="206" width="40" height="42" />
+    <!-- block 3 (taller) -->
+    <rect x="114" y="194" width="36" height="54" />
+    <line x1="114" y1="206" x2="150" y2="206" />
+    <!-- block 4 -->
+    <rect x="150" y="210" width="44" height="38" />
+    <!-- chimneys / parapet ticks -->
+    <line x1="56"  y1="218" x2="56"  y2="212" />
+    <line x1="92"  y1="206" x2="92"  y2="200" />
+    <line x1="132" y1="194" x2="132" y2="186" />
+  </g>
+  <!-- left-cluster windows — small, tighter jitter -->
+  <g filter="url(#hand-fine)" stroke-width="0.8">
+    <rect x="46"  y="230" width="6" height="8" />
+    <rect x="60"  y="230" width="6" height="8" />
+    <rect x="80"  y="216" width="6" height="8" />
+    <rect x="94"  y="216" width="6" height="8" />
+    <rect x="80"  y="232" width="6" height="8" />
+    <rect x="94"  y="232" width="6" height="8" />
+    <rect x="120" y="208" width="6" height="8" />
+    <rect x="134" y="208" width="6" height="8" />
+    <rect x="120" y="224" width="6" height="8" />
+    <rect x="134" y="224" width="6" height="8" />
+    <rect x="120" y="240" width="6" height="6" />
+    <rect x="134" y="240" width="6" height="6" />
+    <rect x="156" y="220" width="6" height="8" />
+    <rect x="170" y="220" width="6" height="8" />
+    <rect x="184" y="220" width="6" height="8" />
+    <rect x="156" y="236" width="6" height="8" />
+    <rect x="170" y="236" width="6" height="8" />
+    <rect x="184" y="236" width="6" height="8" />
+  </g>
+
+  <!-- ===========================================================
+       ST PAUL'S ANGLICAN PRO-CATHEDRAL — slim spire, left of centre.
+       Drawn with the heaviest weight after the dome to read clearly.
+       =========================================================== -->
+  <g filter="url(#hand)" stroke-width="1.6">
+    <!-- nave block -->
+    <rect x="206" y="200" width="68" height="48" />
+    <line x1="206" y1="248" x2="274" y2="248" />
+    <!-- tower base (square, two storeys) -->
+    <rect x="220" y="138" width="40" height="62" />
+    <line x1="220" y1="170" x2="260" y2="170" />
+    <!-- belfry openings -->
+    <path d="M 226 144 L 226 158 Q 234 148 242 158 L 242 144 Z" />
+    <path d="M 244 144 L 244 158 Q 252 148 254 158 L 254 144 Z" />
+    <!-- spire — slim and tall -->
+    <path d="M 220 138 L 240 70 L 260 138" />
+    <!-- spire ridge highlights (parallel ribs near the apex) -->
+    <line x1="232" y1="100" x2="240" y2="78" />
+    <line x1="248" y1="100" x2="240" y2="78" />
+    <!-- cross at apex -->
+    <line x1="240" y1="70" x2="240" y2="56" />
+    <line x1="234" y1="62" x2="246" y2="62" />
+    <!-- nave windows (large, arched) -->
+    <path d="M 218 212 L 218 230 Q 226 220 234 230 L 234 212 Z" />
+    <path d="M 246 212 L 246 230 Q 254 220 262 230 L 262 212 Z" />
+    <!-- portal -->
+    <path d="M 234 248 L 234 234 Q 240 226 246 234 L 246 248" />
+  </g>
+
+  <!-- ===========================================================
+       CENTRE CLUSTER — buildings between the spire and the dome.
+       Lower roofline so the dome and spire silhouettes pop.
+       =========================================================== -->
+  <g filter="url(#hand)" stroke-width="1.2">
+    <line x1="274" y1="248" x2="442" y2="248" />
+    <!-- building strip (varied heights) -->
+    <rect x="280" y="218" width="34" height="30" />
+    <rect x="314" y="206" width="42" height="42" />
+    <rect x="356" y="214" width="38" height="34" />
+    <rect x="394" y="200" width="46" height="48" />
+    <!-- roof ticks -->
+    <line x1="296" y1="218" x2="296" y2="212" />
+    <line x1="334" y1="206" x2="334" y2="198" />
+    <line x1="416" y1="200" x2="416" y2="192" />
+  </g>
+  <g filter="url(#hand-fine)" stroke-width="0.8">
+    <!-- centre-cluster windows -->
+    <rect x="286" y="226" width="6" height="8" />
+    <rect x="300" y="226" width="6" height="8" />
+    <rect x="320" y="214" width="6" height="8" />
+    <rect x="334" y="214" width="6" height="8" />
+    <rect x="346" y="214" width="6" height="8" />
+    <rect x="320" y="230" width="6" height="8" />
+    <rect x="334" y="230" width="6" height="8" />
+    <rect x="346" y="230" width="6" height="8" />
+    <rect x="362" y="222" width="6" height="8" />
+    <rect x="376" y="222" width="6" height="8" />
+    <rect x="362" y="236" width="6" height="8" />
+    <rect x="376" y="236" width="6" height="8" />
+    <rect x="400" y="208" width="6" height="8" />
+    <rect x="414" y="208" width="6" height="8" />
+    <rect x="428" y="208" width="6" height="8" />
+    <rect x="400" y="222" width="6" height="8" />
+    <rect x="414" y="222" width="6" height="8" />
+    <rect x="428" y="222" width="6" height="8" />
+    <rect x="400" y="236" width="6" height="8" />
+    <rect x="414" y="236" width="6" height="8" />
+    <rect x="428" y="236" width="6" height="8" />
+  </g>
+
+  <!-- ===========================================================
+       CARMELITE CHURCH DOME — the hero silhouette.
+       Heaviest stroke weight; right shoulder gets parallel hatching.
+       =========================================================== -->
+  <g filter="url(#hand)" stroke-width="2.0">
+    <!-- drum (rectangular with cornice) -->
+    <rect x="460" y="142" width="100" height="58" />
+    <line x1="455" y1="142" x2="565" y2="142" />
+    <line x1="455" y1="200" x2="565" y2="200" />
+    <!-- drum windows (5 round-arched) -->
+    <path d="M 470 152 L 470 168 Q 476 160 482 168 L 482 152 Z" />
+    <path d="M 488 152 L 488 168 Q 494 160 500 168 L 500 152 Z" />
+    <path d="M 506 152 L 506 168 Q 512 160 518 168 L 518 152 Z" />
+    <path d="M 524 152 L 524 168 Q 530 160 536 168 L 536 152 Z" />
+    <path d="M 542 152 L 542 168 Q 548 160 554 168 L 554 152 Z" />
+    <!-- the dome itself -->
+    <path d="M 455 142 Q 510 56 565 142" />
+    <!-- principal ribs -->
+    <path d="M 478 142 Q 510 78 542 142" />
+    <path d="M 495 142 Q 510 100 525 142" />
+    <!-- dome base ring (a slight inner curve so the dome reads as round) -->
+    <path d="M 460 144 Q 510 138 560 144" />
+    <!-- lantern (small drum on top of dome) -->
+    <rect x="500" y="56" width="20" height="18" />
+    <line x1="498" y1="56" x2="522" y2="56" />
+    <!-- mini-dome on lantern -->
+    <path d="M 500 56 Q 510 44 520 56" />
+    <!-- cross on lantern -->
+    <line x1="510" y1="44" x2="510" y2="30" />
+    <line x1="504" y1="36" x2="516" y2="36" />
+  </g>
+  <!-- right-shoulder hatching on the dome — short parallel strokes that
+       follow the curvature, the way ref 2 indicates the shadow side. -->
+  <g filter="url(#hand-fine)" stroke-width="0.7" opacity="0.55">
+    <path d="M 540 140 Q 538 124 548 110" />
+    <path d="M 544 140 Q 542 126 552 114" />
+    <path d="M 548 140 Q 547 128 556 120" />
+    <path d="M 552 140 Q 551 130 558 124" />
+    <path d="M 556 140 Q 555 132 561 130" />
+    <!-- a couple of strokes on the lantern shoulder too -->
+    <path d="M 516 56 q -1 -6 4 -10" />
+    <path d="M 519 56 q -1 -6 4 -10" />
+  </g>
+
+  <!-- ===========================================================
+       RIGHT CLUSTER — buildings sloping down toward the right.
+       =========================================================== -->
+  <g filter="url(#hand)" stroke-width="1.2">
+    <line x1="565" y1="248" x2="780" y2="248" />
+    <!-- cluster blocks -->
+    <rect x="572" y="200" width="40" height="48" />
+    <rect x="612" y="208" width="36" height="40" />
+    <rect x="648" y="214" width="44" height="34" />
+    <rect x="692" y="220" width="40" height="28" />
+    <rect x="732" y="226" width="40" height="22" />
+    <!-- chimneys / parapet ticks -->
+    <line x1="588" y1="200" x2="588" y2="192" />
+    <line x1="624" y1="208" x2="624" y2="202" />
+    <line x1="664" y1="214" x2="664" y2="208" />
+  </g>
+  <g filter="url(#hand-fine)" stroke-width="0.8">
+    <!-- right-cluster windows -->
+    <rect x="578" y="208" width="6" height="8" />
+    <rect x="592" y="208" width="6" height="8" />
+    <rect x="578" y="222" width="6" height="8" />
+    <rect x="592" y="222" width="6" height="8" />
+    <rect x="578" y="236" width="6" height="8" />
+    <rect x="592" y="236" width="6" height="8" />
+    <rect x="618" y="216" width="6" height="8" />
+    <rect x="632" y="216" width="6" height="8" />
+    <rect x="618" y="232" width="6" height="8" />
+    <rect x="632" y="232" width="6" height="8" />
+    <rect x="654" y="222" width="6" height="8" />
+    <rect x="668" y="222" width="6" height="8" />
+    <rect x="680" y="222" width="6" height="8" />
+    <rect x="654" y="236" width="6" height="8" />
+    <rect x="668" y="236" width="6" height="8" />
+    <rect x="680" y="236" width="6" height="8" />
+    <rect x="700" y="228" width="6" height="8" />
+    <rect x="714" y="228" width="6" height="8" />
+    <rect x="740" y="232" width="6" height="6" />
+    <rect x="754" y="232" width="6" height="6" />
+  </g>
+
+  <!-- ===========================================================
+       FOREGROUND — quayside edge, sea hatching, hint of a boat.
+       =========================================================== -->
+  <g filter="url(#hand)" stroke-width="1.0">
+    <!-- quay rule (the top of the wall over the harbour) -->
+    <line x1="20" y1="258" x2="780" y2="258" />
+    <!-- a stylised boat silhouette in the bottom-left water -->
+    <path d="M 116 286 q 12 -8 36 0 z" />
+    <line x1="134" y1="286" x2="134" y2="270" />
+    <line x1="134" y1="270" x2="148" y2="280" />
+  </g>
+  <!-- sea hatching — short horizontal pen ticks of varied length, denser
+       toward the foreground, sparser toward the buildings. Ref 2 used
+       this language to settle the buildings into a horizon. -->
+  <g filter="url(#hand-fine)" stroke-width="0.7" opacity="0.7">
+    <line x1="40"  y1="270" x2="92"  y2="270" />
+    <line x1="180" y1="270" x2="240" y2="270" />
+    <line x1="320" y1="270" x2="380" y2="270" />
+    <line x1="440" y1="270" x2="500" y2="270" />
+    <line x1="560" y1="270" x2="620" y2="270" />
+    <line x1="660" y1="270" x2="720" y2="270" />
+
+    <line x1="60"  y1="282" x2="100" y2="282" />
+    <line x1="200" y1="282" x2="260" y2="282" />
+    <line x1="340" y1="282" x2="380" y2="282" />
+    <line x1="420" y1="282" x2="480" y2="282" />
+    <line x1="540" y1="282" x2="600" y2="282" />
+    <line x1="640" y1="282" x2="700" y2="282" />
+
+    <line x1="30"  y1="294" x2="80"  y2="294" />
+    <line x1="220" y1="294" x2="280" y2="294" />
+    <line x1="360" y1="294" x2="420" y2="294" />
+    <line x1="500" y1="294" x2="560" y2="294" />
+    <line x1="600" y1="294" x2="660" y2="294" />
+    <line x1="700" y1="294" x2="760" y2="294" />
+
+    <line x1="50"  y1="306" x2="120" y2="306" />
+    <line x1="240" y1="306" x2="320" y2="306" />
+    <line x1="400" y1="306" x2="460" y2="306" />
+    <line x1="520" y1="306" x2="600" y2="306" />
+    <line x1="660" y1="306" x2="740" y2="306" />
+  </g>
+
+  <!-- ===========================================================
+       SIGNATURE — italic serif "Malta" + flourish.
+       Outside the filter so the type stays sharp.
+       =========================================================== -->
+  <g stroke="none" fill="currentColor">
+    <text
+      x="640"
+      y="298"
+      font-family="'Cormorant Garamond', 'Newsreader', Georgia, serif"
+      font-style="italic"
+      font-weight="500"
+      font-size="44"
+    >Malta</text>
+  </g>
+  <!-- hand-drawn underline flourish under the caption (kept under the
+       filter so it has the same pen wobble as the buildings) -->
+  <g filter="url(#hand-fine)" stroke-width="1.0">
+    <path d="M 644 306 q 30 4 96 -2 q 12 -1 22 4" />
+  </g>
+</svg>
