@@ -8853,11 +8853,12 @@ span {
   }
 }
 
-/* Doc-control disclosure on mobile: the audit-control strip eats too much
-   vertical space on small screens, so it's tucked behind a toggle that
-   sits inline with the crumbs. Desktop keeps the row visible at all times. */
+/* Doc-control disclosure: the audit-control strip is tucked behind a
+   toggle that sits inline with the crumbs at every breakpoint. Hidden by
+   default, expands when the user taps "Doc control +". Desktop reveals the
+   row inline beneath the crumbs; mobile reveals the same stacked variant. */
 .ht-breadcrumb__doc-toggle {
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 6px 10px 6px 12px;
@@ -8871,6 +8872,11 @@ span {
   text-transform: uppercase;
   line-height: 1;
   cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.ht-breadcrumb__doc-toggle:hover {
+  color: rgba(244, 239, 230, 1);
+  border-color: rgba(244, 239, 230, 0.55);
 }
 .ht-breadcrumb__doc-toggle:focus-visible {
   outline: 2px solid var(--ht-theme-color-2, #C9A86A);
@@ -8888,23 +8894,21 @@ span {
   font-size: 14px;
   line-height: 1;
 }
-@media (max-width: 768px) {
-  .ht-breadcrumb__doc-toggle { display: inline-flex; }
-  .ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__doc-control {
-    display: none;
-  }
+.ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__doc-control {
+  display: none;
+}
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__doc-control {
+  display: inline-flex;
+}
+/* Stacked variant — used on the small-screen breakpoint where cells
+   wrap to a column. */
+@media (max-width: 600px) {
   .ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__doc-control {
     display: flex;
   }
-  /* Restore the original editorial-body breathing room when the doc strip
-     is collapsed; the tighter spacing only makes sense with the strip
-     actually rendered. */
-  .ht-breadcrumb-area.is-editorial.has-doc-control:not(.is-doc-open) .ht-breadcrumb__editorial-body {
-    margin-top: clamp(28px, 5vw, 48px);
-  }
 }
-/* On the mobile stacked layout, the toggle should sit at the right edge of
-   its own row rather than be pushed below the crumbs. */
+/* On the mobile stacked layout, keep the toggle on the same row as the
+   crumbs so it reads as part of the header strip. */
 @media (max-width: 768px) {
   .ht-breadcrumb-area.is-editorial .ht-breadcrumb__top {
     flex-direction: row;
@@ -8921,15 +8925,16 @@ span {
 }
 
 /* Spacing inside the editorial breadcrumb: when the doc-control row is
-   present, pull the editorial body slightly closer so the row reads as
-   part of the header rather than a free-floating block. */
-.ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__top {
+   present and EXPANDED, pull the editorial body closer so the strip reads
+   as part of the header. When collapsed, fall back to the original
+   spacing so the title doesn't crowd the crumbs. */
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__top {
   margin-bottom: clamp(20px, 2.4vw, 28px);
 }
-.ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__doc-control {
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__doc-control {
   margin-bottom: clamp(28px, 3vw, 40px);
 }
-.ht-breadcrumb-area.is-editorial.has-doc-control .ht-breadcrumb__editorial-body {
+.ht-breadcrumb-area.is-editorial.has-doc-control.is-doc-open .ht-breadcrumb__editorial-body {
   margin-top: 0;
 }
 
