@@ -96,17 +96,19 @@ export default function Breadcrumb({
   aside,
   pitch,
   docControl,
+  bgImage,
 }) {
   const { lead, tail } = splitTitle(title, emphasis);
   const [docOpen, setDocOpen] = useState(false);
   const hasStage = variant === 'editorial' && (pitch || aside);
   const className = `ht-breadcrumb-area is-${variant}${hasStage ? ' has-stage' : ''}${
     docControl ? ' has-doc-control' : ''
-  }${docControl && docOpen ? ' is-doc-open' : ''}`;
+  }${docControl && docOpen ? ' is-doc-open' : ''}${bgImage ? ' has-bg-image' : ''}`;
+  const sectionStyle = bgImage ? { backgroundImage: `url(${bgImage})` } : undefined;
 
   if (variant === 'editorial') {
     return (
-      <section className={className}>
+      <section className={className} style={sectionStyle}>
         <div className="container">
           <div className="ht-breadcrumb__top">
             <Crumbs crumbs={crumbs} current={current} title={title} />
@@ -169,7 +171,7 @@ export default function Breadcrumb({
   }
 
   return (
-    <section className={className}>
+    <section className={className} style={sectionStyle}>
       <div className="container">
         <Crumbs crumbs={crumbs} current={current} title={title} />
         <div className="ht-breadcrumb__aperture" aria-hidden="true">
