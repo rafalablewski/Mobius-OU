@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stats-area professional ideas — Round 2 — Mobius drafts</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Manrope:wght@200;300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --body:#F4EFE6; --ink:#0B0F14; --gold:#C9A86A; --border:#E2DBCE;
+    --muted:#6B6257; --cream:#FAF6EE; --text:#1C232B;
+    --ui:'Manrope',sans-serif;
+    --display:'Cormorant Garamond',serif;
+    --body-serif:'Newsreader',Georgia,serif;
+    --mono:'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--body);color:var(--text);
+    font-family:var(--ui);font-size:15px;line-height:1.6;letter-spacing:-0.003em;}
+  .wrap{max-width:1280px;margin:0 auto;padding:80px 40px 160px;}
+
+  /* ---- Page chrome ---- */
+  .page-head{border-bottom:1px solid var(--border);padding-bottom:48px;margin-bottom:24px}
+  .eyebrow{font-family:var(--ui);font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--muted)}
+  h1.title{font-family:var(--display);font-weight:400;font-size:54px;line-height:1.1;
+    letter-spacing:-0.02em;color:var(--ink);margin:8px 0 20px}
+  h1.title em{font-style:italic;color:var(--gold)}
+  .standfirst{font-family:var(--body-serif);max-width:64ch;font-size:17.5px;
+    line-height:1.55;color:var(--text);margin:0}
+  .standfirst code{font-family:var(--mono);font-size:14px;background:rgba(11,15,20,0.06);
+    padding:1px 5px;border-radius:2px}
+  .toc{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 40px;margin-top:36px}
+  .toc a{display:flex;justify-content:space-between;align-items:baseline;
+    text-decoration:none;color:var(--ink);font-family:var(--ui);font-size:13px;
+    padding:7px 0;border-bottom:1px dotted var(--border)}
+  .toc a:hover{color:var(--gold)}
+  .toc .roman{font-family:var(--display);font-style:italic;font-weight:400;
+    color:var(--gold);width:42px;display:inline-block}
+
+  /* ---- Idea block ---- */
+  .idea{margin:80px 0 0;padding-top:48px;border-top:1px solid var(--border)}
+  .idea.baseline{border-top:none;padding-top:0;margin-top:32px}
+  .idea-head{display:grid;grid-template-columns:88px 1fr;gap:24px;margin-bottom:36px}
+  .idea-head .roman{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:60px;color:var(--gold);line-height:0.95}
+  .idea-head h2{font-family:var(--display);font-weight:400;font-size:30px;
+    line-height:1.15;letter-spacing:-0.01em;color:var(--ink);margin:0}
+  .idea-head .dek{font-family:var(--body-serif);font-size:15.5px;line-height:1.55;
+    color:var(--muted);margin:10px 0 0;max-width:64ch}
+  .idea-head .dek code{font-family:var(--mono);font-size:13px;background:rgba(11,15,20,0.06);
+    padding:1px 5px;border-radius:2px}
+  .stage-label{font-family:var(--ui);font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .stage{margin-bottom:28px}
+
+  .notes{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:18px;
+    padding:22px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .notes h3{font-family:var(--ui);font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:500}
+  .notes p{font-family:var(--body-serif);font-size:13.5px;line-height:1.5;
+    color:var(--text);margin:0}
+
+  /* ============================================================ */
+  /* Shared baseline primitives                                   */
+  /* ============================================================ */
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .stats-cell{padding:56px 32px;position:relative;text-align:left}
+  .stats-cell:not(:last-child)::after{content:"";position:absolute;right:0;
+    top:20%;bottom:20%;width:1px;background:var(--border)}
+  .num{font-family:var(--display);font-weight:500;font-size:clamp(48px,5.2vw,72px);
+    line-height:1;letter-spacing:-0.03em;color:var(--ink);
+    display:inline-flex;align-items:baseline;gap:2px;position:relative;z-index:2}
+  .num .plus{font-family:var(--display);color:var(--gold);font-weight:400;
+    font-size:0.5em;margin-left:4px;align-self:flex-start;line-height:1.2}
+  .label{margin-top:20px;font-family:var(--ui);font-weight:500;font-size:12px;
+    letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);position:relative;z-index:2}
+  .body{margin-top:8px;font-family:var(--body-serif);font-size:14px;
+    line-height:1.55;color:var(--muted);max-width:28ch;position:relative;z-index:2}
+
+  /* ============================================================ */
+  /* XI — ANNUAL-REPORT DARK INVERSE BAND                         */
+  /* ============================================================ */
+  .v11 .panel{background:var(--ink);color:var(--cream);padding:64px 48px 56px;
+    position:relative;border-top:1px solid var(--gold)}
+  .v11 .panel-eyebrow{position:absolute;top:18px;right:48px;
+    font-family:var(--display);font-style:italic;font-weight:400;font-size:13px;
+    color:var(--gold);letter-spacing:0.04em}
+  .v11 .panel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .v11 .panel-cell{padding:32px 0 0;position:relative}
+  .v11 .panel-cell:not(:last-child){border-right:1px solid rgba(250,246,238,0.12);
+    padding-right:48px;margin-right:0}
+  .v11 .panel-cell:not(:first-child){padding-left:48px}
+  .v11 .panel-cell .num{color:var(--cream);font-weight:400;font-size:80px}
+  .v11 .panel-cell .num .plus{color:var(--gold)}
+  .v11 .panel-cell .label{color:var(--gold);font-weight:400;letter-spacing:0.22em;
+    font-size:11px}
+  .v11 .panel-cell .body{color:rgba(250,246,238,0.65);font-size:14px;max-width:32ch}
+  .v11 .panel-foot{margin-top:48px;padding-top:18px;border-top:1px solid rgba(250,246,238,0.12);
+    display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;
+    letter-spacing:0.08em;color:rgba(250,246,238,0.5);text-transform:uppercase}
+
+  /* ============================================================ */
+  /* XII — MAGAZINE BIGTIME (overhanging italics)                 */
+  /* ============================================================ */
+  .v12{padding:48px 0 24px}
+  .v12 .big-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-bottom:1px solid var(--border);position:relative}
+  .v12 .big-grid::before{content:"";position:absolute;left:0;right:0;
+    top:50%;height:1px;background:var(--border)}
+  .v12 .big-cell{padding:0 32px 32px;position:relative;text-align:left}
+  .v12 .big-cell:not(:last-child){border-right:1px solid var(--border)}
+  .v12 .bignum{font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:clamp(120px,14vw,180px);line-height:0.85;letter-spacing:-0.04em;
+    color:var(--ink);display:block;margin-bottom:0;position:relative;z-index:2}
+  .v12 .bignum sup{font-family:var(--display);font-style:italic;color:var(--gold);
+    font-size:0.32em;font-weight:400;vertical-align:super;line-height:1}
+  .v12 .big-label{margin-top:20px;font-family:var(--ui);font-weight:500;font-size:12px;
+    letter-spacing:0.22em;text-transform:uppercase;color:var(--ink)}
+  .v12 .big-body{margin-top:6px;font-family:var(--body-serif);font-style:italic;
+    font-size:14.5px;color:var(--muted);max-width:30ch}
+
+  /* ============================================================ */
+  /* XIII — DROP-CAP EDITORIAL                                    */
+  /* ============================================================ */
+  .v13 .ed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;
+    padding:48px 0 32px;border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border)}
+  .v13 .ed-cell{position:relative}
+  .v13 .ed-folio{font-family:var(--ui);font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .v13 .ed-cell::after{content:"";position:absolute;right:-24px;top:24px;bottom:24px;
+    width:1px;background:var(--border)}
+  .v13 .ed-cell:last-child::after{display:none}
+  .v13 .drop{font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:140px;line-height:0.78;letter-spacing:-0.04em;color:var(--ink);
+    float:left;margin:8px 14px 0 0;padding-right:4px}
+  .v13 .drop sup{font-size:0.28em;color:var(--gold);font-weight:400;
+    vertical-align:super;font-style:italic}
+  .v13 .ed-body{font-family:var(--body-serif);font-size:16px;line-height:1.5;
+    color:var(--text);font-style:italic;font-weight:400}
+  .v13 .ed-body strong{font-weight:500;font-style:normal;font-family:var(--ui);
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    display:block;margin-bottom:8px;color:var(--ink)}
+
+  /* ============================================================ */
+  /* XIV — INVESTMENT-BANK TOMBSTONE                              */
+  /* ============================================================ */
+  .v14{padding:24px 0}
+  .v14 .tomb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .v14 .tomb{border:1.5px solid var(--ink);padding:48px 32px 40px;text-align:center;
+    background:var(--cream);position:relative}
+  .v14 .tomb::before{content:"";position:absolute;left:8px;right:8px;top:8px;bottom:8px;
+    border:0.5px solid var(--ink);pointer-events:none}
+  .v14 .tomb-eyebrow{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:13px;letter-spacing:0.14em;color:var(--ink);margin-bottom:8px}
+  .v14 .tomb-rule{display:block;margin:8px auto 18px;width:48px;height:1px;
+    background:var(--ink)}
+  .v14 .tomb .num{font-size:88px;font-weight:400;font-family:var(--display);
+    font-style:italic;letter-spacing:-0.02em}
+  .v14 .tomb .num .plus{font-style:italic;color:var(--ink)}
+  .v14 .tomb-mid{font-family:var(--ui);font-size:11px;font-weight:500;
+    letter-spacing:0.28em;text-transform:uppercase;color:var(--ink);margin-top:18px}
+  .v14 .tomb-foot{font-family:var(--body-serif);font-style:italic;font-size:14px;
+    color:var(--muted);margin-top:14px;max-width:24ch;margin-left:auto;margin-right:auto}
+  .v14 .tomb-imprint{margin-top:22px;padding-top:14px;border-top:0.5px solid var(--ink);
+    font-family:var(--mono);font-size:9px;letter-spacing:0.18em;color:var(--ink);
+    text-transform:uppercase}
+
+  /* ============================================================ */
+  /* XV — TERMINAL DATA ROW (Bloomberg register)                  */
+  /* ============================================================ */
+  .v15 .term{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    background:var(--cream);font-family:var(--mono);font-size:12.5px;color:var(--ink);
+    letter-spacing:0}
+  .v15 .term-head{display:grid;grid-template-columns:90px 1fr 90px 90px 130px 1.4fr;
+    gap:0;padding:14px 24px;border-bottom:1px solid var(--ink);
+    font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+  .v15 .term-row{display:grid;grid-template-columns:90px 1fr 90px 90px 130px 1.4fr;
+    gap:0;padding:18px 24px;align-items:center;border-bottom:1px dotted var(--border)}
+  .v15 .term-row:last-child{border-bottom:none}
+  .v15 .term-row .ticker{font-weight:500;color:var(--gold);font-size:12px}
+  .v15 .term-row .metric{font-family:var(--body-serif);font-size:14.5px;font-style:italic;
+    color:var(--ink)}
+  .v15 .term-row .value{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:26px;color:var(--ink);line-height:1}
+  .v15 .term-row .value .plus{color:var(--gold);font-size:0.5em;vertical-align:super}
+  .v15 .term-row .unit{font-size:11px;color:var(--muted);letter-spacing:0.1em}
+  .v15 .term-row .asof{font-size:11px;color:var(--ink)}
+  .v15 .term-row .source{font-size:12px;color:var(--muted);font-family:var(--body-serif);
+    font-style:italic}
+  .v15 .term-row .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:#3F8F4E;margin-right:6px;vertical-align:middle}
+  .v15 .term-foot{padding:10px 24px;border-top:1px solid var(--ink);font-size:10px;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);
+    display:flex;justify-content:space-between}
+
+  /* ============================================================ */
+  /* XVI — AUDITED STATEMENT FOOTING (doc-control)                */
+  /* ============================================================ */
+  .v16 .audit-strip .stats-grid{border-bottom:none}
+  .v16 .audit-foot{display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;gap:0;
+    border-bottom:1px solid var(--border);
+    font-family:var(--mono);font-size:11px}
+  .v16 .audit-cell{padding:18px 24px;border-right:1px solid var(--border);
+    display:flex;flex-direction:column;gap:6px}
+  .v16 .audit-cell:last-child{border-right:none}
+  .v16 .audit-key{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--muted)}
+  .v16 .audit-val{font-size:13px;color:var(--ink);font-family:var(--body-serif);
+    font-style:italic;letter-spacing:0}
+  .v16 .audit-val .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:#3F8F4E;margin-right:6px;vertical-align:middle}
+  .v16 .signature{margin-top:22px;padding-top:14px;display:flex;justify-content:space-between;
+    align-items:baseline;font-family:var(--ui);font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--muted);
+    border-top:1px dotted var(--border)}
+  .v16 .signature em{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:18px;color:var(--ink);letter-spacing:0;text-transform:none}
+
+  /* ============================================================ */
+  /* XVII — HALF-COVER MAGAZINE FOLIOS                            */
+  /* ============================================================ */
+  .v17 .fol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .v17 .fol-cell{padding:36px 32px 40px;position:relative}
+  .v17 .fol-cell:not(:last-child){border-right:1px solid var(--border)}
+  .v17 .folio{display:flex;justify-content:space-between;align-items:baseline;
+    font-family:var(--ui);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:22px;padding-bottom:12px;
+    border-bottom:0.5px solid var(--ink)}
+  .v17 .folio strong{color:var(--ink);font-weight:500}
+  .v17 .fol-num{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:128px;line-height:0.9;letter-spacing:-0.03em;color:var(--ink);display:block}
+  .v17 .fol-num sup{font-size:0.28em;vertical-align:super;color:var(--gold);
+    font-weight:400}
+  .v17 .fol-label{margin-top:24px;font-family:var(--body-serif);font-style:italic;
+    font-size:18px;line-height:1.3;color:var(--ink);max-width:26ch}
+  .v17 .fol-foot{margin-top:18px;font-family:var(--body-serif);font-size:13px;
+    line-height:1.5;color:var(--muted);max-width:30ch}
+
+  /* ============================================================ */
+  /* XVIII — PRIVATE LETTERHEAD                                   */
+  /* ============================================================ */
+  .v18 .lh-strip{background:var(--cream);padding:48px 0;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .v18 .lh-mast{display:flex;justify-content:space-between;align-items:baseline;
+    padding:0 32px 18px;border-bottom:0.5px solid var(--ink);
+    font-family:var(--ui);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--ink)}
+  .v18 .lh-mast strong{font-family:var(--display);font-style:italic;font-weight:500;
+    font-size:16px;letter-spacing:0.04em;text-transform:none;color:var(--ink)}
+  .v18 .lh-mast em{font-family:var(--body-serif);font-style:italic;color:var(--muted);
+    font-size:13px;letter-spacing:0;text-transform:none}
+  .v18 .lh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:36px 0 0}
+  .v18 .lh-cell{padding:0 32px;position:relative}
+  .v18 .lh-cell:not(:last-child){border-right:0.5px dotted var(--border)}
+  .v18 .lh-ref{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .v18 .lh-line{font-family:var(--body-serif);font-style:italic;font-size:20px;
+    line-height:1.35;color:var(--ink)}
+  .v18 .lh-line .n{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:54px;letter-spacing:-0.02em;color:var(--ink);
+    display:inline-block;vertical-align:-12px;margin-right:6px}
+  .v18 .lh-line .n sup{font-size:0.32em;vertical-align:super;color:var(--gold);
+    font-weight:400}
+  .v18 .lh-body{margin-top:14px;font-family:var(--body-serif);font-size:14px;
+    color:var(--muted);max-width:32ch;line-height:1.55}
+  .v18 .lh-sig{margin-top:24px;font-family:var(--display);font-style:italic;
+    font-size:14px;color:var(--ink)}
+
+  /* ============================================================ */
+  /* XIX — LEAGUE-TABLE ROW                                       */
+  /* ============================================================ */
+  .v19 .lt{border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);
+    background:var(--cream);font-family:var(--body-serif);font-size:15px;color:var(--ink)}
+  .v19 .lt-head{display:grid;grid-template-columns:48px 2fr 1fr 80px 1.4fr;
+    gap:0;padding:14px 28px;border-bottom:1px solid var(--ink);
+    font-family:var(--ui);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--muted)}
+  .v19 .lt-row{display:grid;grid-template-columns:48px 2fr 1fr 80px 1.4fr;
+    gap:0;padding:22px 28px;align-items:center;
+    border-bottom:0.5px dotted var(--border)}
+  .v19 .lt-row:last-child{border-bottom:none}
+  .v19 .lt-rank{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:24px;color:var(--gold);line-height:1}
+  .v19 .lt-metric{font-style:italic}
+  .v19 .lt-val{font-family:var(--display);font-weight:500;font-size:30px;
+    letter-spacing:-0.02em;color:var(--ink);line-height:1}
+  .v19 .lt-val .plus{color:var(--gold);font-size:0.5em;vertical-align:super}
+  .v19 .lt-yoy{font-family:var(--mono);font-size:12px;color:#3F8F4E;text-align:right}
+  .v19 .lt-note{font-size:13px;color:var(--muted);font-style:italic}
+  .v19 .lt-foot{padding:10px 28px;background:var(--ink);color:var(--cream);
+    font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+    display:flex;justify-content:space-between}
+
+  /* ============================================================ */
+  /* XX — FOOTNOTED CITATION                                      */
+  /* ============================================================ */
+  .v20 .cit-strip .stats-grid{border-bottom:none}
+  .v20 .cit-strip .num sup{font-family:var(--body-serif);font-size:0.22em;
+    color:var(--gold);font-weight:400;vertical-align:super;font-style:italic;
+    margin-left:6px}
+  .v20 .footnotes{border-top:0.5px solid var(--ink);border-bottom:1px solid var(--border);
+    padding:18px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    font-family:var(--body-serif);font-size:13px;line-height:1.55;color:var(--text)}
+  .v20 .footnote sup{color:var(--gold);font-style:italic;margin-right:4px;font-size:14px}
+  .v20 .meth{padding:14px 32px 0;font-family:var(--ui);font-size:10px;
+    letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);
+    display:flex;justify-content:space-between}
+  .v20 .meth a{color:var(--gold);text-decoration:none;letter-spacing:0.12em}
+
+  /* ---- Footer ---- */
+  .pagefoot{margin-top:96px;padding-top:32px;border-top:1px solid var(--border);
+    font-family:var(--ui);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--muted);display:flex;justify-content:space-between}
+
+  /* ---- Mobile ---- */
+  @media (max-width:880px){
+    .wrap{padding:48px 20px 80px}
+    h1.title{font-size:36px}
+    .toc{grid-template-columns:1fr}
+    .idea-head{grid-template-columns:60px 1fr;gap:14px}
+    .idea-head .roman{font-size:40px}
+    .idea-head h2{font-size:24px}
+    .stats-grid,
+    .v11 .panel-grid,
+    .v12 .big-grid,
+    .v13 .ed-grid,
+    .v14 .tomb-grid,
+    .v17 .fol-grid,
+    .v18 .lh-grid{grid-template-columns:1fr}
+    .v12 .big-grid::before{display:none}
+    .v11 .panel-cell{padding:24px 0!important;border:none!important;
+      border-bottom:1px solid rgba(250,246,238,0.1)!important}
+    .v11 .panel-cell:last-child{border-bottom:none!important}
+    .v12 .big-cell{border-right:none!important;border-bottom:1px solid var(--border);
+      padding:24px 0!important}
+    .v12 .big-cell:last-child{border-bottom:none}
+    .v13 .ed-cell::after{display:none}
+    .v13 .ed-grid{gap:24px;padding:24px 0}
+    .v15 .term-head{display:none}
+    .v15 .term-row{grid-template-columns:1fr;gap:6px;padding:18px 20px}
+    .v17 .fol-cell{border-right:none!important;border-bottom:1px solid var(--border);
+      padding:28px 20px}
+    .v17 .fol-cell:last-child{border-bottom:none}
+    .v18 .lh-cell{border:none!important;padding:24px 20px;border-bottom:0.5px dotted var(--border)!important}
+    .v18 .lh-cell:last-child{border-bottom:none!important}
+    .v19 .lt-head{display:none}
+    .v19 .lt-row{grid-template-columns:1fr 1fr;gap:8px;padding:18px 20px}
+    .v20 .footnotes{grid-template-columns:1fr;gap:14px}
+    .notes{grid-template-columns:1fr 1fr;gap:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       Page header
+       ============================================================ -->
+  <header class="page-head">
+    <div class="eyebrow">Mobius · drafts · round 2 · /tests/sketches/</div>
+    <h1 class="title">Stats-strip — <em>ten professional-services ideas</em></h1>
+    <p class="standfirst">
+      Round one leaned decorative (laurel wreaths, postage stamps, fleurons —
+      see <code>stats-area-ornament-ideas.html</code>). This round goes the
+      other way. Every device below is a borrowed convention from
+      professional-services typography: the Rothschild annual report inverse
+      band, the FT Weekend drop-cap, the Bloomberg terminal data row, the
+      investment-bank tombstone, the auditor's signed-off doc-control block,
+      the magazine half-cover folio, private-banker letterhead, the back-of-book
+      league table, sourced footnotes. Same brand tokens, same three
+      statistics, all rendered live on the actual cream body.
+    </p>
+    <nav class="toc">
+      <a href="#i11"><span><span class="roman">XI.</span>Annual-report inverse band</span><span>ink reverse</span></a>
+      <a href="#i12"><span><span class="roman">XII.</span>Magazine bigtime italics</span><span>FT feature opener</span></a>
+      <a href="#i13"><span><span class="roman">XIII.</span>Drop-cap editorial</span><span>weekend magazine</span></a>
+      <a href="#i14"><span><span class="roman">XIV.</span>Investment-bank tombstone</span><span>announcement plate</span></a>
+      <a href="#i15"><span><span class="roman">XV.</span>Terminal data row</span><span>Bloomberg / ledger</span></a>
+      <a href="#i16"><span><span class="roman">XVI.</span>Audited statement footing</span><span>doc-control register</span></a>
+      <a href="#i17"><span><span class="roman">XVII.</span>Half-cover magazine folios</span><span>quarterly review</span></a>
+      <a href="#i18"><span><span class="roman">XVIII.</span>Private letterhead</span><span>banker correspondence</span></a>
+      <a href="#i19"><span><span class="roman">XIX.</span>League-table row</span><span>back-of-book ranking</span></a>
+      <a href="#i20"><span><span class="roman">XX.</span>Footnoted citation</span><span>sourced + auditable</span></a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       Baseline
+       ============================================================ -->
+  <section class="idea baseline">
+    <div class="idea-head">
+      <div class="roman">0.</div>
+      <div>
+        <h2>Today — flush hairline grid (baseline)</h2>
+        <p class="dek">Same baseline as round one. Three cells, hairlines, no ornament. Held here so each new device has a direct contrast above it.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render — <code>src/pages/Home.jsx:136-156</code></div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <div class="num">32</div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XI. ANNUAL-REPORT DARK INVERSE BAND
+       ============================================================ -->
+  <section class="idea v11" id="i11">
+    <div class="idea-head">
+      <div class="roman">XI.</div>
+      <div>
+        <h2>Annual-report inverse band</h2>
+        <p class="dek">Borrowed from Rothschild &amp; Co's annual review and Schroders' year-in-numbers spreads. The strip becomes a full-width ink panel with a top gold hairline rule, three white Cormorant numerals with champagne <em>+</em>, gold caps labels, and an "ANNUAL OVERVIEW · 2026.Q1" eyebrow at the top right. A monospace audit footer locks down the source.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="panel">
+        <span class="panel-eyebrow">Annual Overview · 2026.Q1</span>
+        <div class="panel-grid">
+          <div class="panel-cell">
+            <div class="num">14<span class="plus">+</span></div>
+            <div class="label">Years in capital markets</div>
+            <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+          </div>
+          <div class="panel-cell">
+            <div class="num">100<span class="plus">+</span></div>
+            <div class="label">Mandates delivered</div>
+            <div class="body">Across CBI, RBI and tax residency</div>
+          </div>
+          <div class="panel-cell">
+            <div class="num">32</div>
+            <div class="label">Jurisdictions covered</div>
+            <div class="body">From the Caribbean to the Gulf</div>
+          </div>
+        </div>
+        <div class="panel-foot">
+          <span>Mobius &amp; Partners · Private Office</span>
+          <span>Reviewed · R.A. CFA · 2026.Q1</span>
+          <span>NDA-first · No marketing</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>The "year in numbers" spread of every major private-bank or law-firm annual report. Inverse polarity does the work of ornament.</p></div>
+      <div><h3>Surface</h3><p>Ink panel with gold top rule, eyebrow stamp, signed audit foot. No vertical hairlines — column separation via spacing + thin rgba rules.</p></div>
+      <div><h3>Mobile</h3><p>Panel keeps full ink ground; three cells stack vertically with faint horizontal rules between, audit foot wraps to two lines.</p></div>
+      <div><h3>vs today</h3><p>Heaviest break from baseline — the cream-on-cream strip becomes a dark anchor. Adds gravitas + scannability. Best read when the strip is the section, not a sliver.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XII. MAGAZINE BIGTIME ITALICS
+       ============================================================ -->
+  <section class="idea v12" id="i12">
+    <div class="idea-head">
+      <div class="roman">XII.</div>
+      <div>
+        <h2>Magazine bigtime italics</h2>
+        <p class="dek">Borrowed from FT Weekend / Monocle feature openers. Each numeral balloons to clamp(120 px, 14vw, 180 px) in Cormorant italic 300, sitting on the centre hairline like a magazine standfirst. The label slides under the rule in small caps; the dek picks up italic Newsreader. Pure scale + alignment — no drawn ornament.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="big-grid">
+        <div class="big-cell">
+          <span class="bignum">14<sup>+</sup></span>
+          <div class="big-label">Years in capital markets</div>
+          <div class="big-body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="big-cell">
+          <span class="bignum">100<sup>+</sup></span>
+          <div class="big-label">Mandates delivered</div>
+          <div class="big-body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="big-cell">
+          <span class="bignum">32</span>
+          <div class="big-label">Jurisdictions covered</div>
+          <div class="big-body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Magazine feature-opener bigtime. The numeral <em>is</em> the ornament, set at a scale today's 68 px doesn't reach.</p></div>
+      <div><h3>Surface</h3><p>Bottom hairline anchors the strip; a second mid-strip hairline sits behind the numerals so they appear to overhang. The <em>+</em> rises as a small italic superscript.</p></div>
+      <div><h3>Mobile</h3><p>Cells stack; bignum shrinks naturally with clamp. Mid-strip rule disappears so each cell reads as its own standfirst.</p></div>
+      <div><h3>vs today</h3><p>Same structure, ~2.5× scale on the numerals, italic register. Cheapest professional move — no new components, just type tokens.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XIII. DROP-CAP EDITORIAL
+       ============================================================ -->
+  <section class="idea v13" id="i13">
+    <div class="idea-head">
+      <div class="roman">XIII.</div>
+      <div>
+        <h2>Drop-cap editorial</h2>
+        <p class="dek">Borrowed from the Economist's "The world this week" and FT Weekend long-reads. Each numeral becomes a 140 px italic Cormorant drop-cap with a 16 px Newsreader italic paragraph wrapping next to it. A small caps folio sits above each cell. Reads like a paragraph from the firm's quarterly letter — not a stat block.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="ed-grid">
+        <div class="ed-cell">
+          <div class="ed-folio">i.   Years in capital markets</div>
+          <p class="ed-body"><span class="drop">14<sup>+</sup></span><strong>Capital markets</strong>years on the desk and the floor — CFA charter held since 2012, NYSE-licensed advisory through to today.</p>
+        </div>
+        <div class="ed-cell">
+          <div class="ed-folio">ii.   Mandates delivered</div>
+          <p class="ed-body"><span class="drop">100<sup>+</sup></span><strong>Mandates</strong>private files closed across citizenship, residency and tax-residency briefs — every one of them pre-screened on source of funds.</p>
+        </div>
+        <div class="ed-cell">
+          <div class="ed-folio">iii.   Jurisdictions covered</div>
+          <p class="ed-body"><span class="drop">32</span><strong>Jurisdictions</strong>countries where Mobius has a firm or partner operational — from the Caribbean shelf programmes to the Gulf's new tax-residency routes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Magazine drop-cap. The numeral is the typographic lede; the dek expands what the number means in a single italic sentence.</p></div>
+      <div><h3>Surface</h3><p>Top + bottom hairlines, vertical 1 px separators set 24 px from the cell edges so the columns breathe. The drop-cap floats; text wraps.</p></div>
+      <div><h3>Mobile</h3><p>Cells stack with 24 px gap. Drop-cap stays floated, paragraph wraps to 2-3 lines per cell.</p></div>
+      <div><h3>vs today</h3><p>Adds editorial voice the current strip lacks. The number gains a sentence of provenance — readers don't have to <em>guess</em> what "100+" means.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XIV. INVESTMENT-BANK TOMBSTONE
+       ============================================================ -->
+  <section class="idea v14" id="i14">
+    <div class="idea-head">
+      <div class="roman">XIV.</div>
+      <div>
+        <h2>Investment-bank tombstone</h2>
+        <p class="dek">Borrowed from the IPO / M&amp;A announcement plates that ran in the back of the Wall Street Journal through the 1980s and 90s and still appear in Mergermarket. Each cell is a thick-bordered cream plate with double rules, an italic Cormorant eyebrow, a tiny ink rule and a centred bigtime — the visual register of a deal-completion announcement.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="tomb-grid">
+        <div class="tomb">
+          <div class="tomb-eyebrow">Of record</div>
+          <span class="tomb-rule"></span>
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="tomb-mid">Years in capital markets</div>
+          <div class="tomb-foot">CFA-trained, NYSE-seasoned advisory</div>
+          <div class="tomb-imprint">Mobius &amp; Partners · 2026</div>
+        </div>
+        <div class="tomb">
+          <div class="tomb-eyebrow">Of record</div>
+          <span class="tomb-rule"></span>
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="tomb-mid">Mandates delivered</div>
+          <div class="tomb-foot">Across CBI, RBI and tax residency</div>
+          <div class="tomb-imprint">Mobius &amp; Partners · 2026</div>
+        </div>
+        <div class="tomb">
+          <div class="tomb-eyebrow">Of record</div>
+          <span class="tomb-rule"></span>
+          <div class="num">32</div>
+          <div class="tomb-mid">Jurisdictions covered</div>
+          <div class="tomb-foot">From the Caribbean to the Gulf</div>
+          <div class="tomb-imprint">Mobius &amp; Partners · 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Investment-bank tombstone. Thick frame + double inner rule + centred italic bigtime = "this is on record". Adds formality without ornament.</p></div>
+      <div><h3>Surface</h3><p>1.5 px ink outer + 0.5 px inner rule, 8 px gutter between. Cormorant italic numeral at 88 px. Bottom imprint in monospace seals the announcement.</p></div>
+      <div><h3>Mobile</h3><p>Tombs stack with 16 px gap; double rule preserved. Text remains centred.</p></div>
+      <div><h3>vs today</h3><p>From "open grid" to "three sealed plates". Reads as legal-notice rather than editorial — perfect for a firm that opens every brief with an NDA.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XV. TERMINAL DATA ROW
+       ============================================================ -->
+  <section class="idea v15" id="i15">
+    <div class="idea-head">
+      <div class="roman">XV.</div>
+      <div>
+        <h2>Terminal data row</h2>
+        <p class="dek">Borrowed directly from the Bloomberg terminal and the data tables in the Economist's "Indicators" back page. The strip is a single tabular structure with six columns — TICKER · METRIC · VALUE · UNIT · AS OF · SOURCE — and a green status dot on every row. Numerals in Cormorant italic so the ledger doesn't feel like a fintech screenshot.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="term">
+        <div class="term-head">
+          <span>TICKER</span>
+          <span>METRIC</span>
+          <span>VALUE</span>
+          <span>UNIT</span>
+          <span>AS OF</span>
+          <span>SOURCE</span>
+        </div>
+        <div class="term-row">
+          <span class="ticker"><span class="dot"></span>MBS:YRS</span>
+          <span class="metric">Years in capital markets</span>
+          <span class="value">14<span class="plus">+</span></span>
+          <span class="unit">yrs</span>
+          <span class="asof">2026.Q1</span>
+          <span class="source">CFA-trained, NYSE-seasoned advisory</span>
+        </div>
+        <div class="term-row">
+          <span class="ticker"><span class="dot"></span>MBS:MND</span>
+          <span class="metric">Mandates delivered</span>
+          <span class="value">100<span class="plus">+</span></span>
+          <span class="unit">files</span>
+          <span class="asof">2026.Q1</span>
+          <span class="source">Across CBI, RBI and tax residency</span>
+        </div>
+        <div class="term-row">
+          <span class="ticker"><span class="dot"></span>MBS:JUR</span>
+          <span class="metric">Jurisdictions covered</span>
+          <span class="value">32</span>
+          <span class="unit">countries</span>
+          <span class="asof">2026.Q1</span>
+          <span class="source">From the Caribbean to the Gulf</span>
+        </div>
+        <div class="term-foot">
+          <span>NDA-first · Private bench</span>
+          <span>Audit trail · /audits</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Terminal / data-table register. Tickers + status dots + as-of dates signal "live data" without claiming it. Mixes mono (chrome) with italic display (values).</p></div>
+      <div><h3>Surface</h3><p>Single bordered rectangle, dotted row separators, top + bottom solid ink rules. Three rows + a head + a foot — five lines total.</p></div>
+      <div><h3>Mobile</h3><p>Head row hides; each row reflows to a single column with key-value pairs (ticker, metric, value+, unit, as-of, source).</p></div>
+      <div><h3>vs today</h3><p>Most "we measure ourselves" of the ten. Adds 33 % more weight in horizontal direction; loses no information. Strong fit for a firm that markets via audited counts.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XVI. AUDITED STATEMENT FOOTING
+       ============================================================ -->
+  <section class="idea v16" id="i16">
+    <div class="idea-head">
+      <div class="roman">XVI.</div>
+      <div>
+        <h2>Audited statement footing</h2>
+        <p class="dek">Keep the shipped strip exactly. Append a doc-control footer block — REVIEWED · ATTESTED · METHODOLOGY · LAST AUDIT — reusing the same monospace register as <code>.ht-breadcrumb__doc-control</code> on the program pages. Underneath, a signed italic line: <em>"— R.A., CFA · 2026.Q1"</em>. The numbers do not need decoration; they need provenance.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="audit-strip">
+        <div class="stats-grid">
+          <div class="stats-cell">
+            <div class="num">14<span class="plus">+</span></div>
+            <div class="label">Years in capital markets</div>
+            <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+          </div>
+          <div class="stats-cell">
+            <div class="num">100<span class="plus">+</span></div>
+            <div class="label">Mandates delivered</div>
+            <div class="body">Across CBI, RBI and tax residency</div>
+          </div>
+          <div class="stats-cell">
+            <div class="num">32</div>
+            <div class="label">Jurisdictions covered</div>
+            <div class="body">From the Caribbean to the Gulf</div>
+          </div>
+        </div>
+        <div class="audit-foot">
+          <div class="audit-cell">
+            <span class="audit-key">Reviewed</span>
+            <span class="audit-val"><span class="dot"></span>R.A. · CFA</span>
+          </div>
+          <div class="audit-cell">
+            <span class="audit-key">Attested</span>
+            <span class="audit-val">2026.Q1</span>
+          </div>
+          <div class="audit-cell">
+            <span class="audit-key">Methodology</span>
+            <span class="audit-val">/audits/2026-q1</span>
+          </div>
+          <div class="audit-cell">
+            <span class="audit-key">Next review</span>
+            <span class="audit-val">2026.Q2</span>
+          </div>
+        </div>
+        <div class="signature">
+          <span>Signed off — Managing partner</span>
+          <em>— R.A.</em>
+          <span>Mobius &amp; Partners</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Auditor's sign-off block. Each count gains a paper trail: who reviewed, when, where the methodology lives. Reuses the program-page doc-control register verbatim.</p></div>
+      <div><h3>Surface</h3><p>Today's strip plus a 4-column monospace audit row plus a single signature line at the foot. No change to the numerals themselves.</p></div>
+      <div><h3>Mobile</h3><p>Audit foot collapses to two columns × two rows; signature wraps to two lines.</p></div>
+      <div><h3>vs today</h3><p>Closest to baseline of the ten — additive only. Sells <em>trustworthiness</em> rather than <em>presence</em>. Best paired with the audit-trail URL going somewhere real.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XVII. HALF-COVER MAGAZINE FOLIOS
+       ============================================================ -->
+  <section class="idea v17" id="i17">
+    <div class="idea-head">
+      <div class="roman">XVII.</div>
+      <div>
+        <h2>Half-cover magazine folios</h2>
+        <p class="dek">Borrowed from Monocle / Robb Report / the FT's "How to Spend It" inside-cover treatments. Each cell starts with a folio strip ("<strong>PAGE 014</strong> · CAPITAL MARKETS · DOSSIER 2026.Q1"), a hairline ink rule under it, then a 128 px italic Cormorant numeral, then an italic single-sentence label, then a quiet dek line. Reads like a quarterly review's masthead pages.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="fol-grid">
+        <div class="fol-cell">
+          <div class="folio"><span><strong>Page 014</strong>  ·  Capital markets</span><span>Dossier 2026.Q1</span></div>
+          <span class="fol-num">14<sup>+</sup></span>
+          <div class="fol-label">Years on the desk — CFA charter held since 2012.</div>
+          <div class="fol-foot">NYSE-licensed advisory through to today, in private practice since 2018.</div>
+        </div>
+        <div class="fol-cell">
+          <div class="folio"><span><strong>Page 100</strong>  ·  Mandates</span><span>Dossier 2026.Q1</span></div>
+          <span class="fol-num">100<sup>+</sup></span>
+          <div class="fol-label">Private files closed across citizenship, residency and tax.</div>
+          <div class="fol-foot">Every one pre-screened on source of funds before engagement.</div>
+        </div>
+        <div class="fol-cell">
+          <div class="folio"><span><strong>Page 032</strong>  ·  Jurisdictions</span><span>Dossier 2026.Q1</span></div>
+          <span class="fol-num">32</span>
+          <div class="fol-label">Countries where Mobius has a firm or partner operational.</div>
+          <div class="fol-foot">From the Caribbean shelf programmes to the Gulf's new routes.</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Magazine folios. The folio header tells you what chapter of the dossier you're reading; the number is the chapter mark. Pulls the brand's "dossier" voice into the stats.</p></div>
+      <div><h3>Surface</h3><p>Top + bottom hairlines kept; vertical separators kept. Each cell's folio header sits above a thin ink rule — the strip becomes three half-cover pages side by side.</p></div>
+      <div><h3>Mobile</h3><p>Cells stack with a bottom border between. Folio header reflows folio-strong + dossier date onto one line each.</p></div>
+      <div><h3>vs today</h3><p>Same shape as baseline; everything <em>around</em> the numeral changes. The number becomes a typographic anchor for a paragraph of editorial.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XVIII. PRIVATE LETTERHEAD
+       ============================================================ -->
+  <section class="idea v18" id="i18">
+    <div class="idea-head">
+      <div class="roman">XVIII.</div>
+      <div>
+        <h2>Private letterhead</h2>
+        <p class="dek">Borrowed from private-banker stationery — Pictet, Lombard Odier, Rothschild &amp; Co. The strip becomes a piece of correspondence: a letterhead masthead at the top ("MOBIUS &amp; PARTNERS — PRIVATE OFFICE · WARSAW · VALLETTA"), then each cell becomes a short numbered paragraph with the numeral set inline as a typographic flourish, signed off at the foot.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="lh-strip">
+        <div class="lh-mast">
+          <span>Mobius &amp; Partners</span>
+          <strong>Private Office</strong>
+          <em>Warsaw  ·  Valletta  ·  Lisbon</em>
+        </div>
+        <div class="lh-grid">
+          <div class="lh-cell">
+            <div class="lh-ref">Ref. I  /  Capital markets</div>
+            <p class="lh-line"><span class="n">14<sup>+</sup></span> years on the desk —<br>CFA-trained, NYSE-seasoned advisory.</p>
+            <div class="lh-body">In private practice since 2018. Charter held continuously since 2012.</div>
+            <div class="lh-sig">— R.A.</div>
+          </div>
+          <div class="lh-cell">
+            <div class="lh-ref">Ref. II  /  Mandates</div>
+            <p class="lh-line"><span class="n">100<sup>+</sup></span> private files —<br>citizenship, residency and tax.</p>
+            <div class="lh-body">Every brief pre-screened on source of funds before engagement.</div>
+            <div class="lh-sig">— R.A.</div>
+          </div>
+          <div class="lh-cell">
+            <div class="lh-ref">Ref. III  /  Coverage</div>
+            <p class="lh-line"><span class="n">32</span> jurisdictions —<br>firms and partners operational.</p>
+            <div class="lh-body">From the Caribbean shelf programmes to the Gulf's new tax routes.</div>
+            <div class="lh-sig">— R.A.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Private banker's letterhead. Each "letter" is short, signed, referenced. The numeral becomes part of a sentence rather than a standalone display.</p></div>
+      <div><h3>Surface</h3><p>Letterhead masthead at the top with a 0.5 px ink rule underneath. Three columns of correspondence, each with a Ref. tag, an italic body sentence, a quiet dek and a signature.</p></div>
+      <div><h3>Mobile</h3><p>Masthead reflows to two lines. Cells stack with a dotted divider between, signature stays bottom-right of each.</p></div>
+      <div><h3>vs today</h3><p>The numeral stops being a chart datum and becomes a turn of phrase. Most "human" of the ten — the strip reads as written, not measured.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XIX. LEAGUE-TABLE ROW
+       ============================================================ -->
+  <section class="idea v19" id="i19">
+    <div class="idea-head">
+      <div class="roman">XIX.</div>
+      <div>
+        <h2>League-table row</h2>
+        <p class="dek">Borrowed from the back-of-book performance tables in Mergermarket / Private Equity International and the league tables in IFLR rankings. Vertical orientation: each stat is a ranked row with italic-Roman rank, metric, value, year-on-year delta (in muted green) and an italic note. Ink top border at 2 px and a dark ink foot stamp.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="lt">
+        <div class="lt-head">
+          <span>Rank</span>
+          <span>Metric</span>
+          <span>Value</span>
+          <span style="text-align:right">YoY</span>
+          <span>Note</span>
+        </div>
+        <div class="lt-row">
+          <span class="lt-rank">i</span>
+          <span class="lt-metric">Years in capital markets</span>
+          <span class="lt-val">14<span class="plus">+</span></span>
+          <span class="lt-yoy">+1.0</span>
+          <span class="lt-note">CFA-trained, NYSE-seasoned advisory</span>
+        </div>
+        <div class="lt-row">
+          <span class="lt-rank">ii</span>
+          <span class="lt-metric">Mandates delivered</span>
+          <span class="lt-val">100<span class="plus">+</span></span>
+          <span class="lt-yoy">+12</span>
+          <span class="lt-note">Across CBI, RBI and tax residency</span>
+        </div>
+        <div class="lt-row">
+          <span class="lt-rank">iii</span>
+          <span class="lt-metric">Jurisdictions covered</span>
+          <span class="lt-val">32</span>
+          <span class="lt-yoy">+3</span>
+          <span class="lt-note">From the Caribbean to the Gulf</span>
+        </div>
+        <div class="lt-foot">
+          <span>Performance table · Mobius private bench</span>
+          <span>As at 2026.Q1</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Performance league table. Ranking by italic Roman gives editorial register; YoY delta does the work of "we're growing" without claiming it twice.</p></div>
+      <div><h3>Surface</h3><p>Bordered rectangle, dotted row separators, ink foot stamp. Italic Cormorant for ranks + values; mono for deltas; italic Newsreader for notes.</p></div>
+      <div><h3>Mobile</h3><p>Head hides; each row becomes a two-column key-value layout — value alongside rank + metric.</p></div>
+      <div><h3>vs today</h3><p>Three horizontal cells become three vertical rows — denser, more readable, and adds a YoY column the current strip can't carry.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       XX. FOOTNOTED CITATION
+       ============================================================ -->
+  <section class="idea v20" id="i20">
+    <div class="idea-head">
+      <div class="roman">XX.</div>
+      <div>
+        <h2>Footnoted citation</h2>
+        <p class="dek">Borrowed from the way every annual report sources its numbers — and from the way academic typography handles footnotes. Keep the current strip; add a tiny gold superscript marker (<em>†</em>, <em>‡</em>, <em>§</em>) on each numeral, and append a three-column footnote block beneath in Newsreader at 13 px. Every claim becomes auditable inline.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="cit-strip">
+        <div class="stats-grid">
+          <div class="stats-cell">
+            <div class="num">14<span class="plus">+</span><sup>†</sup></div>
+            <div class="label">Years in capital markets</div>
+            <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+          </div>
+          <div class="stats-cell">
+            <div class="num">100<span class="plus">+</span><sup>‡</sup></div>
+            <div class="label">Mandates delivered</div>
+            <div class="body">Across CBI, RBI and tax residency</div>
+          </div>
+          <div class="stats-cell">
+            <div class="num">32<sup>§</sup></div>
+            <div class="label">Jurisdictions covered</div>
+            <div class="body">From the Caribbean to the Gulf</div>
+          </div>
+        </div>
+        <div class="footnotes">
+          <p class="footnote"><sup>†</sup> CFA charter held continuously since 2012; NYSE-licensed advisory 2014 — present.</p>
+          <p class="footnote"><sup>‡</sup> Counts private files closed between 2014 and 2026.Q1 across CBI, RBI and tax-residency briefs. Engagement-letter records on request.</p>
+          <p class="footnote"><sup>§</sup> "Jurisdictions covered" = firms or partners operational and reachable on a 24h call. Full list at /audits/jurisdictions.</p>
+        </div>
+        <div class="meth">
+          <span>Methodology · 2026.Q1</span>
+          <a href="#">View audit trail →</a>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Convention</h3><p>Annual report / academic footnote. The marker says "the number is sourced"; the footnote actually sources it. Mobius's NDA-first voice gets a paper trail.</p></div>
+      <div><h3>Surface</h3><p>Strip unchanged. Below: a 0.5 px ink rule + a three-column footnote block + a one-line methodology stamp with an audit-trail link.</p></div>
+      <div><h3>Mobile</h3><p>Footnote block reflows to a single column; methodology stamp stacks under the link.</p></div>
+      <div><h3>vs today</h3><p>Lightest of the ten on visual change, heaviest on credibility. Every marketing number gets a footnote — the firm that says "we don't sell" earns it by sourcing.</p></div>
+    </div>
+  </section>
+
+  <footer class="pagefoot">
+    <span>/tests/sketches/stats-area-professional-ideas.html · Round 2</span>
+    <span>Mobius · drafts only · not deployed</span>
+  </footer>
+
+</div>
+</body>
+</html>
