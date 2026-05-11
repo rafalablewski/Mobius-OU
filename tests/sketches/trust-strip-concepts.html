@@ -293,70 +293,6 @@
   }
 
   /* ============================================================
-     AXIS A · II — ACCREDITATION SEALS
-     ============================================================ */
-  .a2 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; padding: 10px 0; }
-  .a2__seal {
-    aspect-ratio: 1 / 1; position: relative; border-radius: 50%;
-    border: 1px solid var(--gold-deep);
-    background:
-      radial-gradient(circle at 50% 30%, rgba(201,168,106,0.16), transparent 60%),
-      var(--cream);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 14px; text-align: center;
-    box-shadow:
-      inset 0 0 0 1px rgba(160,127,68,0.18),
-      inset 0 0 0 4px var(--cream),
-      inset 0 0 0 5px rgba(160,127,68,0.35);
-    max-width: 160px; margin: 0 auto;
-  }
-  .a2__seal-top {
-    font-family: "Manrope"; font-weight: 700; font-size: 8.5px;
-    letter-spacing: 0.22em; color: var(--gold-deep); text-transform: uppercase;
-  }
-  .a2__seal-mark {
-    font-family: "Cormorant Garamond", serif; font-style: italic;
-    font-weight: 500; font-size: 24px; color: var(--ink); line-height: 1; margin: 6px 0 4px;
-  }
-  .a2__seal-sub {
-    font-family: "Manrope"; font-weight: 500; font-size: 8px;
-    letter-spacing: 0.18em; color: var(--stone); text-transform: uppercase;
-  }
-  .a2__seal-year { font-family: "Cormorant Garamond", serif; font-size: 11px; color: var(--gold-deep); margin-top: 4px; }
-  @media (max-width: 720px) {
-    .a2 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  }
-
-  /* ============================================================
-     AXIS A · III — PULL-QUOTE RIBBON
-     ============================================================ */
-  .a3 {
-    padding: 36px 40px;
-    border-top: 1px solid var(--gold);
-    border-bottom: 1px solid var(--gold);
-    background:
-      linear-gradient(180deg, rgba(201,168,106,0.06), transparent 30%, transparent 70%, rgba(201,168,106,0.06));
-    display: grid; grid-template-columns: auto 1fr auto; gap: 36px; align-items: center;
-  }
-  .a3__quote-mark { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 96px; color: var(--gold); line-height: 0.8; opacity: 0.55; }
-  .a3__body { min-width: 0; }
-  .a3__quote {
-    font-family: "Newsreader", "Cormorant Garamond", serif; font-style: italic;
-    font-weight: 300; font-size: 22px; line-height: 1.4; color: var(--ink); margin: 0 0 10px;
-  }
-  .a3__quote strong { font-weight: 500; color: var(--ink); font-style: italic; }
-  .a3__attr { font-family: "Manrope"; font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
-  .a3__attr em { font-family: "Cormorant Garamond", serif; font-style: italic; text-transform: none; letter-spacing: 0; color: var(--gold-deep); font-size: 14px; margin-right: 6px; }
-  .a3__meta { display: flex; flex-direction: column; gap: 6px; text-align: right; border-left: 1px solid var(--hairline-2); padding-left: 32px; min-width: 140px; }
-  .a3__meta-k { font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--stone); font-weight: 600; }
-  .a3__meta-v { font-family: "Cormorant Garamond", serif; font-size: 17px; color: var(--ink); }
-  @media (max-width: 720px) {
-    .a3 { grid-template-columns: 1fr; gap: 18px; padding: 28px 24px; }
-    .a3__quote-mark { font-size: 60px; }
-    .a3__meta { border-left: 0; border-top: 1px solid var(--hairline-2); padding-left: 0; padding-top: 14px; text-align: left; }
-  }
-
-  /* ============================================================
      AXIS B · I — REFERENCE-FIDELITY THREE-CARD ROW
      Google + Trustpilot — real brand widgets from /public/ inlined
      as <svg> elements so they stay vector-sharp at any size, locked
@@ -390,114 +326,6 @@
     .b1__svg { width: 100%; height: auto; max-width: 100%; }
   }
 
-  /* ============================================================
-     AXIS B · II — EDITORIAL-RESKIN THREE-CARD ROW
-     (same three sources, Mobius palette)
-     ============================================================ */
-  .b2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .b2__card {
-    background: var(--cream);
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--gold);
-    border-radius: 4px;
-    padding: 22px 24px; min-height: 132px;
-    display: grid; grid-template-rows: auto auto 1fr; gap: 4px;
-    transition: transform .25s, box-shadow .25s;
-  }
-  .b2__card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px -16px rgba(11,15,20,0.18); }
-  .b2__source {
-    font-family: "Manrope"; font-weight: 700; font-size: 10px;
-    letter-spacing: 0.32em; text-transform: uppercase; color: var(--stone);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .b2__source-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
-  }
-  .b2__row {
-    display: flex; align-items: baseline; gap: 12px; margin-top: 6px;
-  }
-  .b2__rating {
-    font-family: "Cormorant Garamond", serif; font-weight: 400; font-style: italic;
-    font-size: 44px; line-height: 1; color: var(--ink); letter-spacing: -0.01em;
-  }
-  .b2__of {
-    font-family: "Cormorant Garamond", serif; font-style: italic;
-    font-size: 18px; color: var(--gold-deep);
-  }
-  .b2__stars {
-    display: inline-flex; gap: 3px; align-items: center;
-    color: var(--gold); font-size: 16px;
-  }
-  .b2__stars .b2__star--off { color: rgba(11,15,20,0.18); }
-  .b2__meta {
-    font-family: "Cormorant Garamond", serif; font-size: 13px;
-    color: var(--stone); margin-top: 6px;
-  }
-  .b2__meta em { font-style: italic; color: var(--ink); }
-  /* Award card variant */
-  .b2__card--award {
-    background:
-      radial-gradient(circle at 80% 0%, rgba(201,168,106,0.10), transparent 50%),
-      var(--cream);
-  }
-  .b2__award {
-    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
-    font-size: 22px; line-height: 1.2; color: var(--ink); margin-top: 6px;
-  }
-  .b2__award-yr {
-    font-family: "Manrope"; font-weight: 700; font-size: 11px;
-    letter-spacing: 0.24em; color: var(--gold-deep);
-  }
-  @media (max-width: 720px) { .b2 { grid-template-columns: 1fr; } }
-
-  /* ============================================================
-     AXIS B · III — DOC-CONTROL AGGREGATOR
-     ============================================================ */
-  .b3 {
-    background: rgba(11,15,20,0.02);
-    border-top: 1px solid var(--hairline-2);
-    border-bottom: 1px solid var(--hairline-2);
-  }
-  .b3__row { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .b3__cell {
-    padding: 22px 28px; border-right: 1px solid var(--hairline);
-    display: grid; grid-template-rows: auto auto auto; gap: 6px;
-  }
-  .b3__cell:last-child { border-right: 0; }
-  .b3__k {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone);
-    display: flex; align-items: center; gap: 7px;
-  }
-  .b3__dot {
-    width: 6px; height: 6px; border-radius: 50%; background: #2E7D5B;
-    box-shadow: 0 0 0 2px rgba(46,125,91,0.22);
-  }
-  .b3__big {
-    display: flex; align-items: baseline; gap: 10px;
-  }
-  .b3__num {
-    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
-    font-size: 36px; line-height: 1; color: var(--ink); letter-spacing: -0.01em;
-  }
-  .b3__of-mono {
-    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px;
-    color: var(--gold-deep);
-  }
-  .b3__sub {
-    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px;
-    color: var(--ink-2);
-  }
-  .b3__sub em {
-    font-family: "Cormorant Garamond", serif; font-style: italic;
-    color: var(--gold-deep); font-size: 13px;
-  }
-  @media (max-width: 720px) {
-    .b3__row { grid-template-columns: 1fr; }
-    .b3__cell { border-right: 0; border-bottom: 1px solid var(--hairline); }
-    .b3__cell:last-child { border-bottom: 0; }
-  }
-
   footer.outro { margin-top: 96px; padding-top: 24px; border-top: 1px solid var(--hairline); color: var(--stone); font-size: 12px; line-height: 1.7; }
 </style>
 </head>
@@ -516,7 +344,7 @@
       <strong>Google 4.8 ★</strong> and <strong>Trustpilot 3.9</strong>
       (consumer-rating aggregator widgets). They speak to different audiences
       and live in different visual registers, so this round splits the file in
-      two and gives three drafts per axis. Pick one from each — or stack one
+      two and shows one finalist draft per axis. Pick one from each — or stack one
       above the other — without the two having to share a frame.
     </p>
 
@@ -526,9 +354,8 @@
         <div class="axis-card__h">"As seen in" — press, awards, accreditations</div>
         <p class="axis-card__b">
           Editorial register. Names that close the deal on their own — FT,
-          Economist, Bloomberg, Corporate Immigration Awards, IMC, CFA. No
-          star ratings; no review counts. Reads like a magazine masthead, not
-          a rating widget.
+          Bloomberg, NYTimes, Huffington Post. No star ratings; no review
+          counts. Reads like a magazine masthead, not a rating widget.
         </p>
       </div>
       <div class="axis-card">
@@ -536,9 +363,8 @@
         <div class="axis-card__h">"What clients said" — Google, Trustpilot, Clutch</div>
         <p class="axis-card__b">
           Aggregator register. The signal is "many strangers said good things"
-          — quantitative, third-party, verifiable on the source. Two reskins
-          plus a doc-control treatment so the widget doesn't fight the
-          dossier voice.
+          — quantitative, third-party, verifiable on the source. The two
+          official rating widgets, side by side at a locked equal height.
         </p>
       </div>
     </div>
@@ -548,24 +374,19 @@
       real brand SVGs (FT, Bloomberg, NYTimes, Huffington Post) but they're
       placed here to test the visual register, not as a claim of coverage —
       replace them with whichever publications have actually written about
-      Mobius. Accreditation bodies (IMC, CFA, IBA, FATF) and all rating
-      numbers (Google 4.8 / 312 reviews; Trustpilot 3.9 / 47; Clutch 5.0 /
-      18) are also stand-ins. Swap for verified affiliations and real
-      source counts before any of these ships.
+      Mobius. Rating numbers in B.I (Google 4.8 / 312 reviews; Trustpilot
+      3.9 / 47) are baked into the source SVGs — swap for verified counts
+      before shipping.
     </div>
 
     <div class="toc-title">Axis A · recognition</div>
     <nav class="toc" aria-label="Axis A concepts">
       <a href="#a1"><span class="toc__num">A.I</span><span class="toc__title">Editorial press line</span><span class="toc__register">As seen in</span></a>
-      <a href="#a2"><span class="toc__num">A.II</span><span class="toc__title">Accreditation seals</span><span class="toc__register">Coin discs</span></a>
-      <a href="#a3"><span class="toc__num">A.III</span><span class="toc__title">Pull-quote ribbon</span><span class="toc__register">Editorial</span></a>
     </nav>
 
     <div class="toc-title">Axis B · social proof</div>
     <nav class="toc" aria-label="Axis B concepts">
       <a href="#b1"><span class="toc__num">B.I</span><span class="toc__title">Reference-fidelity row</span><span class="toc__register">Native brand</span></a>
-      <a href="#b2"><span class="toc__num">B.II</span><span class="toc__title">Editorial reskin row</span><span class="toc__register">Mobius palette</span></a>
-      <a href="#b3"><span class="toc__num">B.III</span><span class="toc__title">Doc-control aggregator</span><span class="toc__register">Audit register</span></a>
     </nav>
   </header>
 
@@ -573,12 +394,13 @@
        AXIS A — INTERNATIONAL RECOGNITION
        ========================================================= -->
   <div class="axis-band">
-    <span class="axis-band__k">Axis A · § I–III</span>
+    <span class="axis-band__k">Axis A · § I</span>
     <h2 class="axis-band__h">International <em>recognition</em> — press, awards, accreditations.</h2>
     <p class="axis-band__b">
-      Strips that say "respected institutions have named us." No star ratings
-      or review counts — the names themselves do the work. Best as a single
-      line above either the hero or the stats tile.
+      A single editorial press line above either the hero or the stats tile —
+      "as seen in" + four real press wordmarks scrolling in a slow marquee,
+      all forced to a single muted-ink register so they read as one
+      institutional line rather than four competing brand identities.
     </p>
   </div>
 
@@ -661,138 +483,7 @@
       <div class="contrast"><strong>vs the reference image:</strong> the reference uses three rounded rating widgets — vertical and self-contained. This has no numbers of its own; it's a masthead, not a scorecard. Doesn't compete with the 14 / 100 / 32 numerals below.</div>
     </article>
 
-    <!-- =========================================================
-         AXIS A · II — ACCREDITATION SEALS
-         ========================================================= -->
-    <article id="a2" class="idea">
-      <div class="idea__head">
-        <span class="idea__num">A.II · Accreditation seals</span>
-        <span class="idea__register">Surface · heritage coin row</span>
-      </div>
-      <h2>Five gold <em>coin discs</em>, evenly spaced.</h2>
-      <p class="idea__dek">
-        Each disc is a circular wax-seal-style emblem — top arc of small-caps
-        institution name, italic monogram in the centre, year on the bottom.
-        Reuses the wax-seal direction already explored in
-        <code class="mono">freshness-badge-redesign.html</code> round two.
-        Recognition tier: top award + top professional council + top
-        qualification + top legal affiliate + top regulatory alignment.
-      </p>
 
-      <p class="panel-label">Pencil sketch</p>
-      <div class="sketch">
-        <svg viewBox="0 0 1000 160" aria-hidden="true">
-          <g fill="none" stroke="#2A2A2A" stroke-width="0.9">
-            <circle cx="120" cy="80" r="56"/><circle cx="120" cy="80" r="50" stroke-dasharray="2 3"/>
-            <circle cx="300" cy="80" r="56"/><circle cx="300" cy="80" r="50" stroke-dasharray="2 3"/>
-            <circle cx="480" cy="80" r="56"/><circle cx="480" cy="80" r="50" stroke-dasharray="2 3"/>
-            <circle cx="660" cy="80" r="56"/><circle cx="660" cy="80" r="50" stroke-dasharray="2 3"/>
-            <circle cx="840" cy="80" r="56"/><circle cx="840" cy="80" r="50" stroke-dasharray="2 3"/>
-          </g>
-          <g fill="#2A2A2A" font-family="Cormorant Garamond" font-style="italic" font-size="22" text-anchor="middle">
-            <text x="120" y="86">CIA</text><text x="300" y="86">IMC</text><text x="480" y="86">CFA</text><text x="660" y="86">IBA</text><text x="840" y="86">FATF</text>
-          </g>
-          <g fill="#6B6257" font-family="Manrope" font-size="8" letter-spacing="2" text-anchor="middle">
-            <text x="120" y="148">AWARD · 2019</text><text x="300" y="148">MEMBER · 2018</text><text x="480" y="148">CHARTER</text><text x="660" y="148">AFFILIATE</text><text x="840" y="148">ALIGNED</text>
-          </g>
-        </svg>
-      </div>
-
-      <p class="panel-label">Live mock — seals + stats tile</p>
-      <div class="mock">
-        <div class="a2">
-          <div class="a2__seal"><span class="a2__seal-top">Award · Winner</span><span class="a2__seal-mark">CIA</span><span class="a2__seal-sub">Corp. Immigration</span><span class="a2__seal-year">2019</span></div>
-          <div class="a2__seal"><span class="a2__seal-top">Member</span><span class="a2__seal-mark">IMC</span><span class="a2__seal-sub">Investment Migration</span><span class="a2__seal-year">since 2018</span></div>
-          <div class="a2__seal"><span class="a2__seal-top">Charterholder</span><span class="a2__seal-mark">CFA</span><span class="a2__seal-sub">CFA Institute</span><span class="a2__seal-year">2011</span></div>
-          <div class="a2__seal"><span class="a2__seal-top">Affiliate</span><span class="a2__seal-mark">IBA</span><span class="a2__seal-sub">Int'l Bar Assoc.</span><span class="a2__seal-year">since 2020</span></div>
-          <div class="a2__seal"><span class="a2__seal-top">KYC · AML</span><span class="a2__seal-mark">FATF</span><span class="a2__seal-sub">Aligned</span><span class="a2__seal-year">recommendations</span></div>
-        </div>
-
-        <div style="height: 36px;"></div>
-
-        <div class="stats-tile">
-          <div class="stats-tile__item"><span class="stats-tile__num">14<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Years in capital markets</div><p class="stats-tile__p">CFA-trained, NYSE-seasoned advisory</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">100<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Mandates delivered</div><p class="stats-tile__p">Across CBI, RBI and tax residency</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">32</span><div class="stats-tile__h">Jurisdictions covered</div><p class="stats-tile__p">From the Caribbean to the Gulf</p></div>
-        </div>
-      </div>
-
-      <div class="register">
-        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Coin disc on cream ground: gold-deep outer hairline + soft radial bloom + nested inner hairline. Italic Cormorant monogram at 24 px. Each disc max 160 px so 5 fit at 1120 px and 3 fit at 360 px.</div></div>
-        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Collapses to a 3-column grid with smaller (8 px) seal type. No horizontal scroll — discs shrink with the column.</div></div>
-      </div>
-      <div class="contrast"><strong>vs the reference image:</strong> trades the consumer-rating language (4.8 ★) for institutional language (member, charterholder, affiliate). Same "I have evidence" emotional payload, different audience.</div>
-    </article>
-
-    <!-- =========================================================
-         AXIS A · III — PULL-QUOTE RIBBON
-         ========================================================= -->
-    <article id="a3" class="idea">
-      <div class="idea__head">
-        <span class="idea__num">A.III · Pull-quote ribbon</span>
-        <span class="idea__register">Surface · editorial standfirst</span>
-      </div>
-      <h2>A single italic <em>pull-quote</em> ribbon, gold-ruled.</h2>
-      <p class="idea__dek">
-        Most editorial of the recognition trio. No logos, no badges — one
-        italic press quote in Newsreader, oversized opening quote mark in
-        gold, attribution in small-caps Manrope, and a tight meta-column on
-        the right with two factual anchors (CIA award + IMC member-since).
-        One sentence does the trust work; the meta column proves it.
-      </p>
-
-      <p class="panel-label">Pencil sketch</p>
-      <div class="sketch">
-        <svg viewBox="0 0 1000 150" aria-hidden="true">
-          <line x1="40" y1="22" x2="960" y2="22" stroke="#C9A86A" stroke-width="1"/>
-          <line x1="40" y1="128" x2="960" y2="128" stroke="#C9A86A" stroke-width="1"/>
-          <text x="58" y="100" font-family="Cormorant Garamond" font-style="italic" font-size="72" fill="#C9A86A" opacity="0.55">"</text>
-          <text x="130" y="72" font-family="Newsreader" font-style="italic" font-size="16" fill="#2A2A2A">"The kind of firm that takes the file you</text>
-          <text x="130" y="92" font-family="Newsreader" font-style="italic" font-size="16" fill="#2A2A2A">can't bring yourself to send anywhere else."</text>
-          <text x="130" y="118" font-family="Manrope" font-size="9" letter-spacing="2" fill="#6B6257">— IMI CONNECT · 2024</text>
-          <line x1="720" y1="36" x2="720" y2="114" stroke="#2A2A2A" stroke-width="0.6"/>
-          <text x="740" y="60" font-family="Manrope" font-size="9" letter-spacing="2" fill="#6B6257">AWARD</text>
-          <text x="740" y="78" font-family="Cormorant Garamond" font-size="14" fill="#2A2A2A">CIA · 2019</text>
-          <text x="740" y="98" font-family="Manrope" font-size="9" letter-spacing="2" fill="#6B6257">MEMBER</text>
-          <text x="740" y="116" font-family="Cormorant Garamond" font-size="14" fill="#2A2A2A">IMC · 2018</text>
-        </svg>
-      </div>
-
-      <p class="panel-label">Live mock — quote ribbon + stats tile</p>
-      <div class="mock">
-        <div class="a3">
-          <div class="a3__quote-mark">"</div>
-          <div class="a3__body">
-            <p class="a3__quote">
-              The kind of firm that takes the <strong>file you can't bring
-              yourself to send anywhere else</strong> — and reads it before
-              the engagement letter is signed.
-            </p>
-            <div class="a3__attr"><em>—</em> Industry trade press · 2024</div>
-          </div>
-          <div class="a3__meta">
-            <span class="a3__meta-k">Award</span>
-            <span class="a3__meta-v">CIA · 2019</span>
-            <span class="a3__meta-k" style="margin-top:6px;">Member since</span>
-            <span class="a3__meta-v">IMC · 2018</span>
-          </div>
-        </div>
-
-        <div style="height: 32px;"></div>
-
-        <div class="stats-tile">
-          <div class="stats-tile__item"><span class="stats-tile__num">14<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Years in capital markets</div><p class="stats-tile__p">CFA-trained, NYSE-seasoned advisory</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">100<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Mandates delivered</div><p class="stats-tile__p">Across CBI, RBI and tax residency</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">32</span><div class="stats-tile__h">Jurisdictions covered</div><p class="stats-tile__p">From the Caribbean to the Gulf</p></div>
-        </div>
-      </div>
-
-      <div class="register">
-        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Two gold hairlines (1 px each) with a 6 % gold radial bloom at top + bottom. Newsreader italic 300 at 22 px; bold emphasis lifts the single line that should be remembered. Hairline-divided meta column anchors the quote with two facts.</div></div>
-        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Three columns collapse to a single column; meta column drops below the quote with a top hairline. Quote mark shrinks 96 → 60 px.</div></div>
-      </div>
-      <div class="contrast"><strong>vs the reference image:</strong> goes the opposite direction — one trust sentence instead of three trust widgets. Highest editorial register, lowest visual mass; the only one of the recognition trio that requires a real press quote to ship.</div>
-    </article>
 
   </div>
 
@@ -800,13 +491,12 @@
        AXIS B — SOCIAL PROOF
        ========================================================= -->
   <div class="axis-band">
-    <span class="axis-band__k">Axis B · § I–III</span>
+    <span class="axis-band__k">Axis B · § I</span>
     <h2 class="axis-band__h">Social <em>proof</em> — Google, Trustpilot, Clutch &amp; the award seal.</h2>
     <p class="axis-band__b">
-      Strips that say "many strangers said good things, and the score is
-      verifiable on the source site." Three treatments of the same three
-      datapoints — reference-faithful, editorial-reskinned, audit-register —
-      so you can pick the one that least dents the dossier voice.
+      Two real brand widgets — Google and Trustpilot — side by side at a
+      locked equal height. "Many strangers said good things, and the score
+      is verifiable on the source site."
     </p>
   </div>
 
@@ -966,191 +656,7 @@
       <div class="contrast"><strong>vs the reference image:</strong> the two real brand widgets, turned horizontal and laid side by side — gold/green top rules retained, source files unaltered. <strong>Honesty tax:</strong> cards must link out (<code class="mono">target="_blank"</code>) to the live source where the rating is verifiable, otherwise the widget reads dishonest. <strong>Asset paths:</strong> the two brand widgets are inlined as raw <code class="mono">&lt;svg&gt;</code> elements (not <code class="mono">&lt;img&gt;</code>, not <code class="mono">data:</code> URIs) so they stay vector-sharp at any rendered size — no rasterisation, no filesystem lookup, no preview-environment quirks. The source files at <code class="mono">public/google.svg</code> and <code class="mono">public/trustpilot.svg</code> remain the canonical artefacts. <strong>Equal height:</strong> the row is locked to a single height via <code class="mono">--b1-row-h: 200px</code>; each SVG fills the height and finds its natural width from its viewBox, so the two widgets align on the same top and bottom baselines without either being squashed. When ported into the React app, you can either inline the same way or use <code class="mono">&lt;img src="/google.svg"&gt;</code> (Vite strips <code class="mono">public/</code> at build).</div>
     </article>
 
-    <!-- =========================================================
-         AXIS B · II — EDITORIAL RESKIN THREE-CARD ROW
-         ========================================================= -->
-    <article id="b2" class="idea">
-      <div class="idea__head">
-        <span class="idea__num">B.II · Editorial-reskin three-card row</span>
-        <span class="idea__register">Surface · Mobius palette</span>
-      </div>
-      <h2>Same three sources, <em>reskinned</em> into the dossier voice.</h2>
-      <p class="idea__dek">
-        Same three datapoints as B.I — Awards / Google / Trustpilot — but
-        every colour, font and ornament is overwritten. Cream cards with 2 px
-        gold top-rules; italic Cormorant numerals at 44 px (matches the
-        stats-tile family below); a single gold-dot source tag in small-caps
-        Manrope at the top; review count in editorial italics at the foot.
-        Loses recognition value of the native brands, gains visual coherence
-        with the rest of the page.
-      </p>
 
-      <p class="panel-label">Pencil sketch</p>
-      <div class="sketch">
-        <svg viewBox="0 0 1000 140" aria-hidden="true">
-          <g fill="none" stroke="#2A2A2A" stroke-width="0.9">
-            <rect x="40" y="20" width="290" height="100" rx="3"/>
-            <rect x="355" y="20" width="290" height="100" rx="3"/>
-            <rect x="670" y="20" width="290" height="100" rx="3"/>
-            <line x1="40" y1="22" x2="330" y2="22" stroke="#C9A86A" stroke-width="2"/>
-            <line x1="355" y1="22" x2="645" y2="22" stroke="#C9A86A" stroke-width="2"/>
-            <line x1="670" y1="22" x2="960" y2="22" stroke="#C9A86A" stroke-width="2"/>
-          </g>
-          <g font-family="Manrope" font-weight="700" font-size="9" letter-spacing="2.5" fill="#6B6257">
-            <text x="56" y="46">● AWARDS</text>
-            <text x="371" y="46">● GOOGLE</text>
-            <text x="686" y="46">● TRUSTPILOT</text>
-          </g>
-          <g font-family="Cormorant Garamond" font-style="italic" font-size="34" fill="#2A2A2A">
-            <text x="56" y="86">CIA</text>
-            <text x="371" y="86">4.8</text>
-            <text x="686" y="86">3.9</text>
-          </g>
-          <g font-family="Cormorant Garamond" font-size="12" fill="#6B6257">
-            <text x="56" y="108">Winner · 2019</text>
-            <text x="371" y="108">★★★★★ · 312 reviews</text>
-            <text x="686" y="108">★★★★☆ · 47 reviews</text>
-          </g>
-        </svg>
-      </div>
-
-      <p class="panel-label">Live mock — reskinned cards + stats tile</p>
-      <div class="mock">
-        <div class="b2">
-
-          <!-- Awards (editorial reskin) -->
-          <div class="b2__card b2__card--award">
-            <div class="b2__source"><span class="b2__source-dot"></span>Awards · Winner</div>
-            <div class="b2__award">Corporate Immigration &amp; Relocation Awards</div>
-            <div class="b2__meta"><em>2019 ·</em> category winner</div>
-            <div class="b2__award-yr" style="margin-top: 6px;">CIA · 2019</div>
-          </div>
-
-          <!-- Google (editorial reskin) -->
-          <div class="b2__card">
-            <div class="b2__source"><span class="b2__source-dot"></span>Google reviews</div>
-            <div class="b2__row">
-              <span class="b2__rating">4.8</span>
-              <span class="b2__of">/ 5.0</span>
-            </div>
-            <div class="b2__stars" style="margin-top:4px;">★ ★ ★ ★ <span class="b2__star--off">★</span></div>
-            <div class="b2__meta"><em>312</em> reviews · maps.google.com</div>
-          </div>
-
-          <!-- Trustpilot (editorial reskin) -->
-          <div class="b2__card">
-            <div class="b2__source"><span class="b2__source-dot"></span>Trustpilot</div>
-            <div class="b2__row">
-              <span class="b2__rating">3.9</span>
-              <span class="b2__of">/ 5.0</span>
-            </div>
-            <div class="b2__stars" style="margin-top:4px;">★ ★ ★ ★ <span class="b2__star--off">★</span></div>
-            <div class="b2__meta"><em>47</em> reviews · trustpilot.com</div>
-          </div>
-
-        </div>
-
-        <div style="height: 32px;"></div>
-
-        <div class="stats-tile">
-          <div class="stats-tile__item"><span class="stats-tile__num">14<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Years in capital markets</div><p class="stats-tile__p">CFA-trained, NYSE-seasoned advisory</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">100<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Mandates delivered</div><p class="stats-tile__p">Across CBI, RBI and tax residency</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">32</span><div class="stats-tile__h">Jurisdictions covered</div><p class="stats-tile__p">From the Caribbean to the Gulf</p></div>
-        </div>
-      </div>
-
-      <div class="register">
-        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Cream cards (matches the stats tile beneath), 2 px gold top-rule (mirrors the yellow accent on Google's card in the reference). Italic Cormorant 44 px rating numerals echo the 80 px stats numerals — strip + tile become one editorial family. Stars in brand gold, off-stars at 18 % ink.</div></div>
-        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Stacks to single column. Source dot + small-caps tag stays inline, the 44 px rating drops to 36 px to keep card height under 132 px.</div></div>
-      </div>
-      <div class="contrast"><strong>vs the reference / vs B.I:</strong> the data is identical to B.I; the visual mass is half. Reads as part of the dossier rather than as a foreign widget stuck on top. Trade-off: a reader scanning fast may not immediately register "this is Google's number" — the source word is small-caps, not the multicolour glyph.</div>
-    </article>
-
-    <!-- =========================================================
-         AXIS B · III — DOC-CONTROL AGGREGATOR
-         ========================================================= -->
-    <article id="b3" class="idea">
-      <div class="idea__head">
-        <span class="idea__num">B.III · Doc-control aggregator</span>
-        <span class="idea__register">Surface · audit register</span>
-      </div>
-      <h2>One monospace <em>audit row</em> — three sources, three numbers.</h2>
-      <p class="idea__dek">
-        Lowest-key social-proof option. Reuses the
-        <code class="mono">.ht-breadcrumb__doc-control</code> register from
-        <code class="mono">Breadcrumb.jsx</code> verbatim — three tabular
-        cells, each carrying a monospace source key + green-dot CURRENT
-        indicator, italic Cormorant rating numeral, monospace
-        "<em>n</em> reviews" sub-line. Same dossier-audit DNA the rest of the
-        program pages already speak; no cards, no stars by default.
-      </p>
-
-      <p class="panel-label">Pencil sketch</p>
-      <div class="sketch">
-        <svg viewBox="0 0 1000 130" aria-hidden="true">
-          <rect x="40" y="20" width="920" height="80" fill="none" stroke="#2A2A2A" stroke-width="0.8"/>
-          <g stroke="#2A2A2A" stroke-width="0.5">
-            <line x1="346" y1="20" x2="346" y2="100"/>
-            <line x1="652" y1="20" x2="652" y2="100"/>
-          </g>
-          <g font-family="JetBrains Mono" fill="#6B6257" font-size="9" letter-spacing="1.5">
-            <text x="56" y="42">● GOOGLE · MAPS</text>
-            <text x="362" y="42">● TRUSTPILOT</text>
-            <text x="668" y="42">● CLUTCH · B2B</text>
-          </g>
-          <g font-family="Cormorant Garamond" font-style="italic" font-size="28" fill="#2A2A2A">
-            <text x="56" y="78">4.8</text>
-            <text x="362" y="78">3.9</text>
-            <text x="668" y="78">5.0</text>
-          </g>
-          <g font-family="JetBrains Mono" fill="#A07F44" font-size="11">
-            <text x="100" y="80">/ 5.0</text><text x="406" y="80">/ 5.0</text><text x="712" y="80">/ 5.0</text>
-          </g>
-          <g font-family="JetBrains Mono" fill="#1C232B" font-size="10">
-            <text x="56" y="96">312 reviews · since 2019</text>
-            <text x="362" y="96">47 reviews · since 2020</text>
-            <text x="668" y="96">18 reviews · since 2022</text>
-          </g>
-        </svg>
-      </div>
-
-      <p class="panel-label">Live mock — doc-control aggregator + stats tile</p>
-      <div class="mock">
-        <div class="b3">
-          <div class="b3__row">
-            <div class="b3__cell">
-              <div class="b3__k"><span class="b3__dot"></span>Google · maps</div>
-              <div class="b3__big"><span class="b3__num">4.8</span><span class="b3__of-mono">/ 5.0</span></div>
-              <div class="b3__sub"><em>312</em> reviews · since 2019</div>
-            </div>
-            <div class="b3__cell">
-              <div class="b3__k"><span class="b3__dot"></span>Trustpilot</div>
-              <div class="b3__big"><span class="b3__num">3.9</span><span class="b3__of-mono">/ 5.0</span></div>
-              <div class="b3__sub"><em>47</em> reviews · since 2020</div>
-            </div>
-            <div class="b3__cell">
-              <div class="b3__k"><span class="b3__dot"></span>Clutch · B2B</div>
-              <div class="b3__big"><span class="b3__num">5.0</span><span class="b3__of-mono">/ 5.0</span></div>
-              <div class="b3__sub"><em>18</em> reviews · since 2022</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="height: 32px;"></div>
-
-        <div class="stats-tile">
-          <div class="stats-tile__item"><span class="stats-tile__num">14<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Years in capital markets</div><p class="stats-tile__p">CFA-trained, NYSE-seasoned advisory</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">100<span class="stats-tile__plus">+</span></span><div class="stats-tile__h">Mandates delivered</div><p class="stats-tile__p">Across CBI, RBI and tax residency</p></div>
-          <div class="stats-tile__item"><span class="stats-tile__num">32</span><div class="stats-tile__h">Jurisdictions covered</div><p class="stats-tile__p">From the Caribbean to the Gulf</p></div>
-        </div>
-      </div>
-
-      <div class="register">
-        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Monospace JetBrains Mono throughout (matches the program-page doc-control). Faint 2 % tint ground; ink hairlines top + bottom; vertical hairline column rules. Italic Cormorant 36 px numerals are the one editorial flourish so the eye still has a hero per cell.</div></div>
-        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Three cells collapse to a single column, vertical rules become horizontal hairlines between rows. Number sizes preserved.</div></div>
-      </div>
-      <div class="contrast"><strong>vs the reference / vs B.I &amp; B.II:</strong> drops every brand cue (no Google G, no Trustpilot green, no rounded card). Reads like an audit filing's third-party verification row — the rating is data, not advertising. Best fit for the editorial voice; lowest source-recognition for fast readers. Honest disclosure: source-link each cell so the reader can verify on Google / Trustpilot / Clutch.</div>
-    </article>
 
   </div>
 
