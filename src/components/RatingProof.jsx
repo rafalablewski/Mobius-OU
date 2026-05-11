@@ -32,6 +32,7 @@ export default function RatingProof({ tone }) {
   const className = tone
     ? `ht-rating-proof ht-rating-proof--${tone}`
     : 'ht-rating-proof';
+  const isFooter = tone === 'footer';
 
   return (
     <div className={className} role="group" aria-label="Independent ratings">
@@ -43,7 +44,14 @@ export default function RatingProof({ tone }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img className="ht-rating-proof__svg" src={src} alt={alt} />
+          <img
+            className="ht-rating-proof__svg"
+            src={src}
+            alt={alt}
+            loading={isFooter ? 'lazy' : 'eager'}
+            decoding="async"
+            fetchpriority={isFooter ? 'low' : 'auto'}
+          />
         </a>
       ))}
     </div>
