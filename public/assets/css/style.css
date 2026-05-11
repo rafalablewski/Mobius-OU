@@ -13554,68 +13554,50 @@ span {
 }
 
 .ht-stats-area--letterhead .ht-stats-area__foot {
-  padding: 22px 40px 18px;
-  border-top: 0.5px solid var(--ht-heading-color);
+  padding: 40px 40px 48px;
 }
-.ht-stats-area--letterhead .ht-stats-area__notes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  font-family: var(--ht-font-serif-body);
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--ht-text-color);
-}
-.ht-stats-area--letterhead .ht-stats-area__notes p {
-  margin: 0;
-}
-.ht-stats-area--letterhead .ht-stats-area__notes sup {
-  margin-right: 4px;
+.ht-stats-area--letterhead .ht-stats-area__colophon {
+  max-width: 76ch;
+  margin: 0 auto;
   font-family: var(--ht-font-serif-body);
   font-style: italic;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--ht-theme-color-2);
-}
-
-.ht-stats-area--letterhead .ht-stats-area__audit {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px dotted var(--ht-border-color);
-  font-family: var(--ht-font-ui);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: 0.005em;
   color: var(--ht-theme-color-6);
+  text-align: center;
 }
-.ht-stats-area--letterhead .ht-stats-area__stamp {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-}
-.ht-stats-area--letterhead .ht-stats-area__dot {
+.ht-stats-area--letterhead .ht-stats-area__m {
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-right: 6px;
-  border-radius: 50%;
-  background: #3F8F4E;
-  vertical-align: middle;
+  margin: 0 2px 0 6px;
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.25em;
+  line-height: 1;
+  color: var(--ht-theme-color-2);
+  vertical-align: -0.04em;
+}
+.ht-stats-area--letterhead .ht-stats-area__m:first-child {
+  margin-left: 0;
+}
+.ht-stats-area--letterhead .ht-stats-area__bullet {
+  display: inline-block;
+  margin: 0 4px;
+  color: var(--ht-theme-color-2);
+  font-style: normal;
 }
 .ht-stats-area--letterhead .ht-stats-area__audit-link {
-  padding-bottom: 1px;
-  border-bottom: 0.5px solid transparent;
   color: var(--ht-theme-color-2);
   text-decoration: none;
-  letter-spacing: 0.18em;
-  transition: border-color 0.15s;
+  border-bottom: 0.5px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity 0.15s;
+  white-space: nowrap;
 }
 .ht-stats-area--letterhead .ht-stats-area__audit-link:hover {
-  border-bottom-color: var(--ht-theme-color-2);
+  opacity: 0.7;
 }
 
 @media (max-width: 880px) {
@@ -13634,16 +13616,12 @@ span {
     display: none;
   }
   .ht-stats-area--letterhead .ht-stats-area__foot {
-    padding: 18px 20px 14px;
+    padding: 28px 20px 32px;
   }
-  .ht-stats-area--letterhead .ht-stats-area__notes {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .ht-stats-area--letterhead .ht-stats-area__audit {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  .ht-stats-area--letterhead .ht-stats-area__colophon {
+    font-size: 15px;
+    line-height: 1.75;
+    text-align: left;
   }
 }
 
