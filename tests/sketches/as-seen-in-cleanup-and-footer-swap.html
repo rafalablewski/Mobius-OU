@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>"AS SEEN IN" — cleanup the homepage line stack + replace the footer duplicate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" />
+<style>
+  :root {
+    /* mirrors public/assets/css/style.css :root */
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --border:     #E2DBCE;
+    /* the two competing hairline tokens — the source of today's "different lines" complaint */
+    --hairline-warm: #E2DBCE;             /* used by .ht-stats-area override */
+    --hairline-ink:  rgba(11,15,20,0.20); /* used by .ht-press-line top + bottom */
+    --footer-bg:   #0B0F14;
+    --footer-fg:   #FAF6EE;
+    --footer-rule: rgba(250,246,238,0.18);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page chrome ----------------------------------------------------------- */
+  .page { max-width: 1120px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--border); padding-bottom: 36px; margin-bottom: 48px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 48px; line-height: 1.1; margin: 14px 0 18px; letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.65; max-width: 70ch; }
+  .lede strong { color: var(--ink); }
+  .lede code, code.mono {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+    background: rgba(11,15,20,0.05); padding: 1px 6px; border-radius: 2px;
+  }
+
+  /* Part band ------------------------------------------------------------- */
+  .part-band {
+    margin: 96px 0 32px; padding: 22px 28px;
+    background: var(--ink); color: var(--cream);
+    border-radius: 4px;
+    display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: baseline;
+  }
+  .part-band__k {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+  }
+  .part-band__h {
+    font-family: "Cormorant Garamond", serif; font-weight: 400; font-style: italic;
+    font-size: 28px; line-height: 1.2;
+  }
+  .part-band__h em { color: var(--gold); }
+
+  /* Diagnosis ------------------------------------------------------------- */
+  .diag { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .diag { grid-template-columns: 1fr; } }
+  .diag-card {
+    border: 1px solid var(--border); border-radius: 3px; padding: 18px 20px;
+    background: var(--cream);
+  }
+  .diag-card h3 {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 22px; margin: 0 0 8px;
+  }
+  .diag-card p { margin: 0; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+  .swatch { display: inline-block; width: 18px; height: 2px; vertical-align: middle; margin: 0 4px; }
+  .swatch--warm { background: var(--hairline-warm); }
+  .swatch--ink  { background: rgba(11,15,20,0.20); }
+
+  /* TOC ------------------------------------------------------------------- */
+  .toc-title {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin: 36px 0 12px;
+  }
+  .toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .toc a {
+    display: block; padding: 14px 12px;
+    border: 1px solid var(--border); border-radius: 3px;
+    background: var(--cream);
+    text-decoration: none; color: var(--ink); transition: all .2s;
+  }
+  .toc a:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .toc__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 22px; letter-spacing: 0.04em;
+  }
+  .toc__title { display: block; font-size: 12px; line-height: 1.4; margin-top: 4px; }
+  .toc__register {
+    display: block; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone); margin-top: 6px;
+  }
+  @media (max-width: 720px) { .toc { grid-template-columns: 1fr; } }
+
+  /* Idea card ------------------------------------------------------------- */
+  .idea {
+    margin: 72px 0 0;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px;
+    align-items: stretch;
+  }
+  @media (max-width: 980px) { .idea { grid-template-columns: 1fr; } }
+  .idea__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 56px; color: var(--gold-deep); line-height: 1;
+  }
+  .idea__title {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 28px; line-height: 1.15; margin: 8px 0 14px;
+  }
+  .idea__title em { font-style: italic; color: var(--gold-deep); }
+  .idea__body { font-size: 14px; line-height: 1.65; color: var(--ink-2); margin: 0 0 16px; }
+  .reg {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin: 14px 0; padding: 12px 0;
+    display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 6px;
+    font-size: 12px; line-height: 1.5;
+  }
+  .reg dt {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .reg dd { margin: 0; color: var(--ink-2); }
+  .contrast {
+    font-size: 13px; line-height: 1.65; color: var(--ink-2);
+    background: var(--paper); border-left: 2px solid var(--gold);
+    padding: 12px 14px; margin: 0;
+  }
+  .contrast strong { color: var(--ink); }
+
+  /* Mock host ------------------------------------------------------------- */
+  .mock {
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden; position: relative;
+  }
+  .mock--ink { background: var(--footer-bg); color: var(--footer-fg); }
+  .mock__label {
+    position: absolute; top: 12px; right: 14px; z-index: 2;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .mock--ink .mock__label { color: var(--gold); }
+  .mock__body { padding: 8px 0 24px; }
+  .mock--ink .mock__body { padding: 28px 28px 18px; }
+
+  /* Sketch / code --------------------------------------------------------- */
+  .sketch {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; line-height: 1.5; color: var(--stone);
+    white-space: pre; background: var(--paper);
+    padding: 16px 18px; border: 1px solid var(--border);
+    border-radius: 3px; overflow-x: auto;
+  }
+  pre.code {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px; line-height: 1.6; color: var(--ink-2);
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 3px; padding: 12px 14px; overflow-x: auto; margin: 12px 0 0;
+  }
+  pre.code .k { color: var(--gold-deep); }
+  pre.code .c { color: var(--stone); font-style: italic; }
+  pre.code .s { color: #2C5F35; }
+
+  /* ---------------------------------------------------------------------- */
+  /* Shared "real" tokens — mirror Home.jsx / PressLine.jsx                  */
+  /* ---------------------------------------------------------------------- */
+  .pl__label {
+    font-family: "Manrope", sans-serif;
+    font-weight: 600; font-size: 10px;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--stone); white-space: nowrap;
+  }
+  .pl__set { display: inline-flex; align-items: center; gap: 56px; }
+  .pl__logo {
+    display: block; background-color: currentColor; opacity: 0.72;
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+    flex-shrink: 0;
+  }
+  .pl__logo--ft  { width: 90px;  height: 46px;
+    -webkit-mask-image: url(../../public/financialtimes.svg);
+            mask-image: url(../../public/financialtimes.svg); }
+  .pl__logo--bb  { width: 62px;  height: 32px;
+    -webkit-mask-image: url(../../public/bloomberg.svg);
+            mask-image: url(../../public/bloomberg.svg); }
+  .pl__logo--nyt { width: 142px; height: 28px;
+    -webkit-mask-image: url(../../public/nytimes-wordmark.svg);
+            mask-image: url(../../public/nytimes-wordmark.svg); }
+  .pl__logo--hp  { width: 100px; height: 26px;
+    -webkit-mask-image: url(../../public/huffingtonpost.svg);
+            mask-image: url(../../public/huffingtonpost.svg); }
+  @media (max-width: 720px) {
+    .pl__set { gap: 28px; flex-wrap: wrap; }
+    .pl__logo--ft  { width: 72px;  height: 36px; }
+    .pl__logo--bb  { width: 50px;  height: 26px; }
+    .pl__logo--nyt { width: 116px; height: 22px; }
+    .pl__logo--hp  { width: 80px;  height: 22px; }
+  }
+
+  /* Stats — same DNA as .ht-stats-area override */
+  .st-wrap { display: grid; grid-template-columns: repeat(3, 1fr); position: relative; }
+  .st-item { padding: 56px 32px; text-align: left; position: relative; }
+  .st-item + .st-item::before {
+    content: ""; position: absolute; left: 0; top: 20%; bottom: 20%; width: 1px;
+    background: var(--border);
+  }
+  .st-num {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(40px, 5vw, 68px); font-weight: 500;
+    line-height: 1; letter-spacing: -0.03em; color: var(--ink);
+    display: inline-flex; align-items: baseline; gap: 2px;
+    margin: 0;
+  }
+  .st-plus {
+    color: var(--gold); font-size: 0.55em; font-weight: 400;
+    align-self: flex-start; line-height: 1.2; margin-left: 4px;
+  }
+  .st-label {
+    font-family: "Manrope", sans-serif; font-weight: 500;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink); margin: 20px 0 8px;
+  }
+  .st-body {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 14px; line-height: 1.55; color: var(--stone); margin: 0; max-width: 28ch;
+  }
+  @media (max-width: 720px) {
+    .st-wrap { grid-template-columns: 1fr; }
+    .st-item + .st-item::before {
+      left: 24px; right: 24px; top: auto; bottom: 0; width: auto; height: 1px;
+    }
+  }
+
+  /* ============================ PART A — VARIANTS ====================== */
+
+  /* A.0 BASELINE */
+  .a0 .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 22px 24px;
+    border-top: 1px solid var(--hairline-ink);
+    border-bottom: 1px solid var(--hairline-ink);
+    color: var(--ink);
+  }
+  .a0 .pl-area { padding: 56px 0; }
+  .a0 .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .a0 .st-area { padding: 40px 0 0; }
+  .a0 .st-wrapper-line { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  /* A.I NO PRESS-LINE BORDER */
+  .a1 .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 22px 24px; color: var(--ink);
+  }
+  .a1 .pl-area { padding: 56px 0; }
+  .a1 .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .a1 .st-area { padding: 16px 0 0; }
+  .a1 .st-wrapper-line { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  /* A.II SINGLE SHARED RAIL */
+  .a2 .slab { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .a2 .slab-inner { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .a2 .slab__press {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 28px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* A.III UNIFIED HAIRLINE COLOUR */
+  .a3 .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 22px 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .a3 .pl-area { padding: 56px 0; }
+  .a3 .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .a3 .st-area { padding: 40px 0 0; }
+  .a3 .st-wrapper-line { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  /* A.IV LABEL-LED RUNNING HEAD */
+  .a4 .pl-area { padding: 56px 0 28px; }
+  .a4 .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .a4 .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; column-gap: 20px;
+    align-items: center; padding: 0 24px 22px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .a4 .st-area { padding: 16px 0 0; }
+  .a4 .st-wrapper-line { border-bottom: 1px solid var(--border); }
+  .a4 .pl__label::after {
+    content: ""; display: inline-block; height: 1px; width: 28px;
+    background: var(--border); vertical-align: middle; margin-left: 14px;
+  }
+
+  /* A.V SINGLE SLAB FUSED */
+  .a5 .slab { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .a5 .slab-inner {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 28px 0;
+  }
+  .a5 .slab__press {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 6px 32px 28px;
+  }
+  .a5 .slab__pip { text-align: center; padding: 0 0 18px; }
+  .a5 .slab__pip::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--gold); opacity: 0.85;
+  }
+  .a5 .st-item { padding: 24px 32px 8px; }
+
+  /* A.VI CENTRED MASTHEAD */
+  .a6 .pl-area { padding: 64px 0 36px; text-align: center; }
+  .a6 .pl-wrap {
+    display: inline-flex; align-items: center; gap: 44px;
+    color: var(--ink); padding: 0;
+  }
+  .a6 .pl-wrap .pl__label::after {
+    content: "·"; margin-left: 28px; color: var(--gold-deep); font-size: 16px;
+  }
+  .a6 .pl__set { gap: 44px; }
+  .a6 .st-area { padding: 8px 0 0; }
+  .a6 .st-wrapper-line { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  /* ============================ PART B — VARIANTS ====================== */
+
+  .mock__legal {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 12px; line-height: 1.55;
+    color: rgba(250,246,238,0.55);
+    padding: 18px 28px 24px;
+    border-top: 1px solid var(--footer-rule);
+    margin: 28px -28px 0;
+  }
+  .mock__legal span { color: var(--footer-fg); }
+
+  /* shared footer PressLine for the baseline (static variant) */
+  .pl-static {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center;
+    padding: 22px 0; margin: 0 -28px;
+    border-top: 1px solid var(--footer-rule);
+    border-bottom: 1px solid var(--footer-rule);
+    color: var(--footer-fg);
+  }
+  .pl-static .pl__label {
+    color: rgba(250,246,238,0.55); padding-left: 28px;
+  }
+  .pl-static .pl__set {
+    display: inline-flex; align-items: center; gap: 56px; padding-right: 28px;
+    flex-wrap: wrap;
+  }
+  .pl-static .pl__logo { opacity: 0.55; }
+  .pl-static .pl__logo--ft  { width: 96px;  height: 48px; }
+  .pl-static .pl__logo--bb  { width: 66px;  height: 32px; }
+  .pl-static .pl__logo--nyt { width: 150px; height: 30px; }
+  .pl-static .pl__logo--hp  { width: 106px; height: 28px; }
+
+  /* The two real brand widgets — referenced as <img src=...> */
+  .badge { display: block; height: 96px; width: auto; border-radius: 4px; }
+  .badge--google     { background: white; }
+  .badge--trustpilot { background: #EBF1F5; }
+
+  /* B.I Native side-by-side */
+  .b1 .row { display: flex; justify-content: center; gap: 28px; align-items: center; padding: 18px 0 4px; }
+
+  /* B.II Eyebrow + left-aligned row */
+  .b2 .head {
+    font-family: "Manrope", sans-serif; font-weight: 600;
+    font-size: 10px; letter-spacing: 0.36em; text-transform: uppercase;
+    color: rgba(250,246,238,0.55); margin: 18px 0 14px;
+  }
+  .b2 .row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; padding-bottom: 14px; }
+  .b2 .badge { height: 84px; }
+
+  /* B.III Single hairline rail */
+  .b3 .rail {
+    border-top: 1px solid var(--footer-rule);
+    padding: 22px 0 6px; margin: 8px 0 0;
+    display: flex; justify-content: center; gap: 28px; align-items: center;
+  }
+  .b3 .badge { height: 88px; }
+
+  /* B.IV Compact ink-framed cards */
+  .b4 .row { display: flex; justify-content: center; gap: 22px; align-items: center; padding: 14px 0 4px; }
+  .b4 .frame {
+    border: 1px solid var(--footer-rule); padding: 10px 14px;
+    border-radius: 4px; background: rgba(250,246,238,0.02);
+  }
+  .b4 .badge { height: 64px; }
+
+  /* B.V Inline with copyright row */
+  .b5 .inline {
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    border-top: 1px solid var(--footer-rule);
+    padding: 16px 0 0; margin-top: 24px;
+  }
+  .b5 .inline-copy {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 12px; line-height: 1.55;
+    color: rgba(250,246,238,0.55); flex: 1 1 320px; min-width: 0;
+  }
+  .b5 .inline-copy span { color: var(--footer-fg); }
+  .b5 .inline-badges { display: flex; gap: 14px; align-items: center; }
+  .b5 .badge { height: 48px; border-radius: 3px; }
+
+  /* Recommendation block -------------------------------------------------- */
+  .ship {
+    margin-top: 88px; padding: 28px 32px;
+    background: var(--ink); color: var(--cream);
+    border-radius: 4px;
+  }
+  .ship h2 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 30px; margin: 0 0 12px;
+  }
+  .ship h2 em { font-style: italic; color: var(--gold); }
+  .ship p { font-size: 14px; line-height: 1.65; margin: 0 0 12px; color: rgba(250,246,238,0.78); }
+  .ship pre.code { background: rgba(0,0,0,0.35); border-color: rgba(250,246,238,0.15); color: rgba(250,246,238,0.92); }
+  .ship pre.code .c { color: rgba(250,246,238,0.55); }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="intro">
+    <p class="eyebrow">Sketch · "AS SEEN IN" — two problems, one file</p>
+    <h1>The "AS SEEN IN" duplicate — <em>cleanup + footer swap</em></h1>
+    <p class="lede">
+      The press credit appears twice in the shipped UI: once at the top of
+      <code class="mono">Home.jsx</code> / <code class="mono">About.jsx</code> via <code class="mono">&lt;PressLine variant="marquee" /&gt;</code>,
+      and again in the footer via <code class="mono">&lt;PressLine variant="static" /&gt;</code> at
+      <code class="mono">Footer.jsx:66</code>. The homepage one also stacks four hairlines in
+      two different colour tokens against the <code class="mono">.ht-stats-area</code> tile below it.
+      This file pairs the two fixes side by side — <strong>Part A</strong> redesigns the homepage
+      strip to fix the doubled lines, <strong>Part B</strong> replaces the footer instance with the
+      Google + Trustpilot SVG badges already shipped at
+      <code class="mono">/public/google.svg</code> and <code class="mono">/public/trustpilot.svg</code>.
+    </p>
+
+    <div class="diag">
+      <div class="diag-card">
+        <h3>The two hairlines today</h3>
+        <p>
+          <span class="swatch swatch--ink"></span>
+          <code class="mono">rgba(11,15,20,0.20)</code> — cooler, ink-tinted. Used on
+          <code class="mono">.ht-press-line</code> top + bottom (<code class="mono">style.css:16084</code>).
+        </p>
+        <p style="margin-top:6px;">
+          <span class="swatch swatch--warm"></span>
+          <code class="mono">var(--ht-border-color)</code> = <code class="mono">#E2DBCE</code> — warmer,
+          paper-tinted. Used on <code class="mono">.ht-stats-area</code> top + bottom
+          (<code class="mono">style.css:13378</code>).
+        </p>
+        <p style="margin-top:6px;">Same weight (1 px), different colour temperature. On cream they read as <em>two systems</em>, not one.</p>
+      </div>
+      <div class="diag-card">
+        <h3>The footer duplicate</h3>
+        <p>
+          <code class="mono">Footer.jsx:66</code> renders the same press credit as
+          <code class="mono">Home.jsx</code> and <code class="mono">About.jsx</code> — four wordmarks every page.
+          No new information. The replacement asset (<code class="mono">RatingProof.jsx</code>) already
+          exists and ships on the Contact page; this file shows five ways to drop it into
+          the footer band instead.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- =================================================================== -->
+  <!-- PART A — homepage press-line + stats slab                           -->
+  <!-- =================================================================== -->
+  <section class="part-band">
+    <span class="part-band__k">Part A</span>
+    <h2 class="part-band__h">Homepage press-line — <em>fix the doubled hairlines</em></h2>
+  </section>
+
+  <p class="toc-title">Six variants — Part A</p>
+  <nav class="toc">
+    <a href="#a0"><span class="toc__num">0</span><span class="toc__title">Today (baseline)</span><span class="toc__register">For comparison</span></a>
+    <a href="#a1"><span class="toc__num">I</span><span class="toc__title">No press-line border</span><span class="toc__register">Strip · cleanest</span></a>
+    <a href="#a2"><span class="toc__num">II</span><span class="toc__title">Single shared rail</span><span class="toc__register">Two-row slab</span></a>
+    <a href="#a3"><span class="toc__num">III</span><span class="toc__title">Unified hairline colour</span><span class="toc__register">Conservative</span></a>
+    <a href="#a4"><span class="toc__num">IV</span><span class="toc__title">Label-led running head</span><span class="toc__register">Editorial</span></a>
+    <a href="#a5"><span class="toc__num">V</span><span class="toc__title">Press + stats fused</span><span class="toc__register">One slab</span></a>
+    <a href="#a6"><span class="toc__num">VI</span><span class="toc__title">Centred masthead, no rules</span><span class="toc__register">Boldest swap</span></a>
+  </nav>
+
+  <!-- A.0 -->
+  <section class="idea a0" id="a0">
+    <div>
+      <div class="idea__num">0</div>
+      <h2 class="idea__title">Today — <em>baseline</em></h2>
+      <p class="idea__body">
+        Exact render of the section as shipped. The two ink-tinted rules at the top
+        and bottom of the press-line are clearly visible against the two warm-tinted
+        rules that bracket the stats tile.
+      </p>
+      <dl class="reg">
+        <dt>Rules</dt><dd>4 (2 ink + 2 warm)</dd>
+        <dt>Tokens</dt><dd><code class="mono">rgba(11,15,20,0.20)</code> + <code class="mono">--ht-border-color</code></dd>
+        <dt>Gap</dt><dd>56 + 40 = 96 px between sections</dd>
+      </dl>
+      <p class="contrast"><strong>The problem:</strong> two visually distinct line systems
+      stacked too close. Reads as if two unrelated components were glued together
+      (which is technically true — <code class="mono">PressLine.jsx</code> and the stats markup
+      in <code class="mono">Home.jsx</code> were styled in different passes).</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">Today</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- A.I -->
+  <section class="idea a1" id="a1">
+    <div>
+      <div class="idea__num">I</div>
+      <h2 class="idea__title">No press-line border — <em>let the stats slab do the framing</em></h2>
+      <p class="idea__body">
+        Strip both rules off <code class="mono">.ht-press-line</code>. The press strip becomes
+        a quiet eyebrow row sitting on cream; the stats slab below keeps its own rules
+        and now visibly <em>opens</em> the credibility section. Cleanest minimum-change fix —
+        four rules drop to two.
+      </p>
+      <div class="sketch">┌──────────────────────────────────────────────────────────┐
+│  AS SEEN IN    FT   Bloomberg   NYT   HuffPost           │
+├──────────────────────────────────────────────────────────┤  ← stats top
+│   14+      │     100+      │     32                      │
+│   YEARS…   │   MANDATES…   │   JURISDICTIONS…            │
+└──────────────────────────────────────────────────────────┘  ← stats bottom
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Press strip: cream, no rules. Stats: unchanged.</dd>
+        <dt>Rules</dt><dd>2 (both warm <code class="mono">--ht-border-color</code>).</dd>
+        <dt>Change</dt><dd><code class="mono">PressLine.jsx</code> CSS only — drop two <code class="mono">border-*</code> rules.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules. Lowest risk. The press strip loses
+      a touch of "card" weight, but the wordmarks were already the focal point.</p>
+      <pre class="code"><span class="c">/* style.css ~16079 — strip the two rules on .ht-press-line */</span>
+.ht-press-line {
+  <span class="c">/* remove: border-top + border-bottom */</span>
+  padding: 22px 24px;
+}</pre>
+    </div>
+    <div class="mock">
+      <span class="mock__label">A.I · No press-line border</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- A.II -->
+  <section class="idea a2" id="a2">
+    <div>
+      <div class="idea__num">II</div>
+      <h2 class="idea__title">Single shared rail — <em>one slab, three rules</em></h2>
+      <p class="idea__body">
+        Both press-line and stats sit inside one bordered slab. Top hairline, mid
+        hairline between logos and numbers, bottom hairline. The mid rule reads as
+        a deliberate row divider rather than a closed-then-reopened box.
+      </p>
+      <div class="sketch">┌──────────────────────────────────────────────────────────┐  ← top
+│  AS SEEN IN    FT   Bloomberg   NYT   HuffPost           │
+├──────────────────────────────────────────────────────────┤  ← mid
+│   14+      │     100+      │     32                      │
+│   YEARS…   │   MANDATES…   │   JURISDICTIONS…            │
+└──────────────────────────────────────────────────────────┘  ← bottom
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>One bordered slab on cream, container-width.</dd>
+        <dt>Rules</dt><dd>3 (all warm, same token, evenly spaced).</dd>
+        <dt>Change</dt><dd>Wrap both sections in a shared container; restyle rules.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -1 rule, and the three remaining rules are
+      <em>visually intentional</em>. Trades a tiny bit of structural separation for
+      a much tighter read.</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">A.II · Single shared rail</span>
+      <div class="mock__body" style="padding-top: 24px;">
+        <div class="slab">
+          <div class="slab-inner">
+            <div class="slab__press">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+            <div class="slab__stats st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A.III -->
+  <section class="idea a3" id="a3">
+    <div>
+      <div class="idea__num">III</div>
+      <h2 class="idea__title">Unified hairline colour — <em>most conservative</em></h2>
+      <p class="idea__body">
+        Keep structure identical to today. Only change: swap the press-line's
+        ink-tinted <code class="mono">rgba(11,15,20,0.20)</code> for the same
+        <code class="mono">--ht-border-color</code> the stats area already uses. Four rules
+        remain but they now read as one consistent system. No JSX change.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Unchanged.</dd>
+        <dt>Rules</dt><dd>4 — all warm <code class="mono">#E2DBCE</code>.</dd>
+        <dt>Change</dt><dd>Two-line CSS swap.</dd>
+        <dt>Risk</dt><dd>Zero. Strictly cosmetic.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> still four rules, still doubled-up, but they're the
+      same colour. Solves the "different lines" half of the complaint; doesn't address the
+      "too many" half. <strong>Lowest-effort fallback</strong> if we want to ship in one PR
+      without touching markup.</p>
+      <pre class="code"><span class="c">/* style.css:16084 */</span>
+.ht-press-line {
+  border-top:    1px solid <span class="k">var(--ht-border-color)</span>;
+  border-bottom: 1px solid <span class="k">var(--ht-border-color)</span>;
+  <span class="c">/* was: rgba(11,15,20,0.20) */</span>
+}</pre>
+    </div>
+    <div class="mock">
+      <span class="mock__label">A.III · Unified colour</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- A.IV -->
+  <section class="idea a4" id="a4">
+    <div>
+      <div class="idea__num">IV</div>
+      <h2 class="idea__title">Label-led running head — <em>program-page register</em></h2>
+      <p class="idea__body">
+        The "AS SEEN IN" label gets a short hairline trailing off after it (the same
+        running-head treatment used on the program-page chapter band). The press
+        strip's <em>bottom</em> rule then doubles as the <em>top</em> rule of the stats slab —
+        one shared edge, no gap.
+      </p>
+      <div class="sketch">
+  AS SEEN IN ──     FT    Bloomberg    NYT    HuffPost
+  ────────────────────────────────────────────────────────  ← shared edge
+   14+      │     100+      │     32
+   YEARS…   │   MANDATES…   │   JURISDICTIONS…
+  ────────────────────────────────────────────────────────
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Cream. Label hairline as ornament + one shared edge.</dd>
+        <dt>Rules</dt><dd>2 (shared rule + stats bottom).</dd>
+        <dt>Change</dt><dd>Remove press-line top rule; align stats top to press-line bottom.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules. Reuses the dossier's editorial running-head
+      pattern, so it lands inside an existing visual grammar instead of inventing a new one.</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">A.IV · Label-led</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- A.V -->
+  <section class="idea a5" id="a5">
+    <div>
+      <div class="idea__num">V</div>
+      <h2 class="idea__title">Press + stats fused — <em>one credibility slab</em></h2>
+      <p class="idea__body">
+        The boldest structural fix. Press logos and stat numbers live in one
+        ruled cream tile, separated only by a centred gold pip (the same ornament
+        the hero count cards use). Two outer rules.
+      </p>
+      <div class="sketch">┌──────────────────────────────────────────────────────────┐  ← top
+│   AS SEEN IN    FT    Bloomberg    NYT    HuffPost       │
+│                         ·                                │  ← gold pip
+│   14+         100+         32                            │
+│   YEARS…      MANDATES…    JURISDICTIONS…                │
+└──────────────────────────────────────────────────────────┘  ← bottom
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>One ruled slab, gold pip as the only internal divider.</dd>
+        <dt>Rules</dt><dd>2 (outer top + outer bottom only).</dd>
+        <dt>Change</dt><dd>Wrap both in one section; replace stats top+mid borders with pip.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules. Strongest "single credibility slab" read.
+      Risk: loses the per-stat vertical dividers (currently <code class="mono">.ht-stats-items::after</code>) —
+      worth deciding whether to keep them.</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">A.V · One slab</span>
+      <div class="mock__body" style="padding-top: 24px;">
+        <div class="slab">
+          <div class="slab-inner">
+            <div class="slab__press">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+            <div class="slab__pip"></div>
+            <div class="slab__stats st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A.VI -->
+  <section class="idea a6" id="a6">
+    <div>
+      <div class="idea__num">VI</div>
+      <h2 class="idea__title">Centred masthead, no rules — <em>boldest swap</em></h2>
+      <p class="idea__body">
+        Drop every line from the press strip. The label and four wordmarks set as a
+        single horizontal masthead line, centred on cream with generous breathing room.
+        The four rules collapse to just the two that bracket the stats slab.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Cream, centred, no chrome at all on press row.</dd>
+        <dt>Rules</dt><dd>2 (only the stats slab keeps its rules).</dd>
+        <dt>Change</dt><dd>New <code class="mono">.ht-press-line--masthead</code> variant.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules, and the press strip stops shouting. Best
+      register match for the editorial tone, but loses some visual weight at desktop — worth
+      A/B-ing against I and II.</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">A.VI · Masthead</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- PART B — footer social proof swap                                   -->
+  <!-- =================================================================== -->
+  <section class="part-band">
+    <span class="part-band__k">Part B</span>
+    <h2 class="part-band__h">Footer — <em>swap the press-line for Google + Trustpilot</em></h2>
+  </section>
+
+  <p class="lede" style="margin-top: 8px;">
+    Five drafts that replace <code class="mono">&lt;PressLine variant="static" /&gt;</code> at
+    <code class="mono">Footer.jsx:66</code> with the existing Google + Trustpilot widgets at
+    <code class="mono">/public/google.svg</code> and <code class="mono">/public/trustpilot.svg</code>. All five
+    reuse <code class="mono">RatingProof.jsx</code> with an optional <code class="mono">tone</code> or <code class="mono">size</code>
+    prop. Ranked from richest brand signal to quietest legal-row inline.
+  </p>
+
+  <p class="toc-title">Five variants — Part B</p>
+  <nav class="toc">
+    <a href="#b0"><span class="toc__num">0</span><span class="toc__title">Today — static PressLine</span><span class="toc__register">Baseline</span></a>
+    <a href="#b1"><span class="toc__num">I</span><span class="toc__title">Native side-by-side</span><span class="toc__register">Reference-fidelity</span></a>
+    <a href="#b2"><span class="toc__num">II</span><span class="toc__title">Eyebrow + left-aligned row</span><span class="toc__register">Editorial</span></a>
+    <a href="#b3"><span class="toc__num">III</span><span class="toc__title">Single hairline rail</span><span class="toc__register">Quietest</span></a>
+    <a href="#b4"><span class="toc__num">IV</span><span class="toc__title">Compact ink-framed cards</span><span class="toc__register">Dossier register</span></a>
+    <a href="#b5"><span class="toc__num">V</span><span class="toc__title">Inline with copyright row</span><span class="toc__register">Maximum density</span></a>
+  </nav>
+
+  <!-- B.0 -->
+  <section class="idea" id="b0">
+    <div>
+      <div class="idea__num">0</div>
+      <h2 class="idea__title">Today — <em>static PressLine</em></h2>
+      <p class="idea__body">
+        Faithful render of what the footer ships today. The same four press wordmarks
+        that already appear above the fold on Home and About — repeated here on dark
+        with the "AS SEEN IN" eyebrow, bracketed by two ivory hairlines.
+      </p>
+      <dl class="reg">
+        <dt>Source</dt><dd><code class="mono">Footer.jsx:66</code> → <code class="mono">PressLine.jsx</code> static</dd>
+        <dt>Problem</dt><dd>Duplicates the homepage credit. No new information.</dd>
+        <dt>Better job</dt><dd>Verifiable ratings the reader can click out to.</dd>
+      </dl>
+    </div>
+    <div class="mock mock--ink">
+      <span class="mock__label">Today</span>
+      <div class="mock__body">
+        <div class="pl-static">
+          <span class="pl__label">As seen in</span>
+          <div class="pl__set">
+            <span class="pl__logo pl__logo--ft"></span>
+            <span class="pl__logo pl__logo--bb"></span>
+            <span class="pl__logo pl__logo--nyt"></span>
+            <span class="pl__logo pl__logo--hp"></span>
+          </div>
+        </div>
+        <div class="mock__legal">
+          ©2026 <span>Mobius Global OÜ</span>, trading as <span>Mobius &amp; Partners</span>.
+          All rights reserved. &nbsp;|&nbsp; Educational and strategic advisory only — not legal,
+          tax or investment advice.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B.I -->
+  <section class="idea b1" id="b1">
+    <div>
+      <div class="idea__num">I</div>
+      <h2 class="idea__title">Native side-by-side — <em>reference-fidelity</em></h2>
+      <p class="idea__body">
+        Direct port of <code class="mono">RatingProof.jsx</code> from the Contact page. Both badges keep
+        their native brand backgrounds (Google: white card with green top rule, Trustpilot:
+        slate card with green title bar). Sized to 96 px for footer density — about half the
+        Contact-page height of 200 px.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Centred row, native brand backgrounds intact.</dd>
+        <dt>Height</dt><dd>96 px (Contact page is 200 px).</dd>
+        <dt>Change</dt><dd>Reuse <code class="mono">RatingProof.jsx</code> with a <code class="mono">size="compact"</code> prop.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> swaps borrowed press credit for first-party verifiable
+      ratings. Strongest social-proof read. Trade-off: two card chromes on dark is the loudest
+      visual move of the five.</p>
+      <pre class="code"><span class="c">// Footer.jsx — line 66</span>
+- &lt;<span class="k">PressLine</span> variant=<span class="s">"static"</span> /&gt;
++ &lt;<span class="k">RatingProof</span> tone=<span class="s">"footer"</span> /&gt;</pre>
+    </div>
+    <div class="mock mock--ink">
+      <span class="mock__label">B.I · Native</span>
+      <div class="mock__body">
+        <div class="row">
+          <a href="https://maps.google.com/" target="_blank" rel="noopener">
+            <img class="badge badge--google" src="../../public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
+          </a>
+          <a href="https://trustpilot.com/" target="_blank" rel="noopener">
+            <img class="badge badge--trustpilot" src="../../public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
+          </a>
+        </div>
+        <div class="mock__legal">
+          ©2026 <span>Mobius Global OÜ</span>, trading as <span>Mobius &amp; Partners</span>.
+          All rights reserved. &nbsp;|&nbsp; Educational and strategic advisory only.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B.II -->
+  <section class="idea b2" id="b2">
+    <div>
+      <div class="idea__num">II</div>
+      <h2 class="idea__title">Eyebrow + left-aligned row — <em>editorial register</em></h2>
+      <p class="idea__body">
+        Small-caps "INDEPENDENT RATINGS" eyebrow over a left-aligned row of the two
+        badges. Mirrors how the existing footer widget columns (Advisory, Programs, Firm,
+        Intelligence) are headed, so the new strip lands inside the footer's existing
+        typographic system rather than feeling bolted on.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Left-aligned, footer-column-aligned, no rules.</dd>
+        <dt>Eyebrow</dt><dd>Manrope 600, 10 px, 0.36em tracking.</dd>
+        <dt>Height</dt><dd>84 px badges.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> matches the footer's editorial register. The eyebrow
+      does the explanatory work — readers know what they're looking at without a sentence.</p>
+    </div>
+    <div class="mock mock--ink">
+      <span class="mock__label">B.II · Eyebrow</span>
+      <div class="mock__body">
+        <p class="head">Independent ratings</p>
+        <div class="row">
+          <a href="https://maps.google.com/" target="_blank" rel="noopener">
+            <img class="badge badge--google" src="../../public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
+          </a>
+          <a href="https://trustpilot.com/" target="_blank" rel="noopener">
+            <img class="badge badge--trustpilot" src="../../public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
+          </a>
+        </div>
+        <div class="mock__legal">
+          ©2026 <span>Mobius Global OÜ</span>, trading as <span>Mobius &amp; Partners</span>.
+          All rights reserved. &nbsp;|&nbsp; Educational and strategic advisory only.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B.III -->
+  <section class="idea b3" id="b3">
+    <div>
+      <div class="idea__num">III</div>
+      <h2 class="idea__title">Single hairline rail — <em>quietest</em></h2>
+      <p class="idea__body">
+        One ivory hairline above the badges, none below. The two widgets float on
+        the dark ground, lined up with the copyright row underneath which provides the
+        natural bottom edge.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>One top rule. Centred badges.</dd>
+        <dt>Rules</dt><dd>1 (vs today's 2).</dd>
+        <dt>Height</dt><dd>88 px badges.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> fewer rules, same band height. Closest in feel to
+      today's static PressLine but with the right content.</p>
+    </div>
+    <div class="mock mock--ink">
+      <span class="mock__label">B.III · Rail</span>
+      <div class="mock__body">
+        <div class="rail">
+          <a href="https://maps.google.com/" target="_blank" rel="noopener">
+            <img class="badge badge--google" src="../../public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
+          </a>
+          <a href="https://trustpilot.com/" target="_blank" rel="noopener">
+            <img class="badge badge--trustpilot" src="../../public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
+          </a>
+        </div>
+        <div class="mock__legal">
+          ©2026 <span>Mobius Global OÜ</span>, trading as <span>Mobius &amp; Partners</span>.
+          All rights reserved. &nbsp;|&nbsp; Educational and strategic advisory only.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B.IV -->
+  <section class="idea b4" id="b4">
+    <div>
+      <div class="idea__num">IV</div>
+      <h2 class="idea__title">Compact ink-framed cards — <em>dossier register</em></h2>
+      <p class="idea__body">
+        Each badge sits in a thin ivory-hairline frame (the same one the footer's
+        copyright row uses). Reduces the visual "card" weight of the native brand
+        backgrounds without losing the brand colours that make them recognisable.
+        Smallest badges of the five — 64 px height.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Two thin ivory frames, centred row.</dd>
+        <dt>Height</dt><dd>64 px badges.</dd>
+        <dt>Risk</dt><dd>Frame can read as "another card around the card".</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> the smallest footer footprint of the five. Best when
+      we want the badges present and verifiable but quiet.</p>
+    </div>
+    <div class="mock mock--ink">
+      <span class="mock__label">B.IV · Framed</span>
+      <div class="mock__body">
+        <div class="row">
+          <a class="frame" href="https://maps.google.com/" target="_blank" rel="noopener">
+            <img class="badge badge--google" src="../../public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
+          </a>
+          <a class="frame" href="https://trustpilot.com/" target="_blank" rel="noopener">
+            <img class="badge badge--trustpilot" src="../../public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
+          </a>
+        </div>
+        <div class="mock__legal">
+          ©2026 <span>Mobius Global OÜ</span>, trading as <span>Mobius &amp; Partners</span>.
+          All rights reserved. &nbsp;|&nbsp; Educational and strategic advisory only.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B.V -->
+  <section class="idea b5" id="b5">
+    <div>
+      <div class="idea__num">V</div>
+      <h2 class="idea__title">Inline with the copyright row — <em>maximum density</em></h2>
+      <p class="idea__body">
+        Both badges fold into the existing copyright/legal row rather than getting their
+        own band. The ratings sit at the right edge of the line, opposite the copyright
+        text — present and verifiable but not consuming a whole row.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Inline on the copyright row, right-aligned.</dd>
+        <dt>Height</dt><dd>48 px badges.</dd>
+        <dt>Change</dt><dd>Restructure the bottom of <code class="mono">Footer.jsx</code>.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> the only option that <em>reduces</em> footer height. Risk:
+      48 px badges are small — Trustpilot's star pattern is still readable but the
+      Google star count loses presence.</p>
+    </div>
+    <div class="mock mock--ink">
+      <span class="mock__label">B.V · Inline</span>
+      <div class="mock__body">
+        <p style="font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: rgba(250,246,238,0.65); line-height: 1.6; margin: 0;">
+          Independent strategic advisory on global mobility, citizenship and residency programs,
+          tax residency planning and legacy structures for private clients.
+        </p>
+        <div class="inline">
+          <div class="inline-copy">
+            ©2026 <span>Mobius Global OÜ</span>, trading as <span>Mobius &amp; Partners</span>.
+            All rights reserved.
+          </div>
+          <div class="inline-badges">
+            <a href="https://maps.google.com/" target="_blank" rel="noopener">
+              <img class="badge badge--google" src="../../public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
+            </a>
+            <a href="https://trustpilot.com/" target="_blank" rel="noopener">
+              <img class="badge badge--trustpilot" src="../../public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- Recommendation                                                       -->
+  <!-- =================================================================== -->
+  <section class="ship">
+    <h2>Recommendations — <em>ship A.I + B.II</em></h2>
+    <p>
+      <strong>Part A · variant I (no press-line border)</strong> is the cleanest fix for the
+      doubled-rules problem and keeps every other component untouched. Four rules drop to
+      two, in one consistent token. <strong>A.III (unify the colour)</strong> is the one-line CSS
+      fallback if we'd rather not lose the press-line frame.
+    </p>
+    <p>
+      <strong>Part B · variant II (eyebrow + left-aligned row)</strong> matches the footer's
+      existing typographic system (the same eyebrow style the four widget columns use),
+      keeps the badges at a readable 84 px, and avoids stacking another row of hairlines
+      next to the copyright divider. <strong>B.III (rail)</strong> is the fallback for the lightest
+      treatment.
+    </p>
+    <p>Both <code class="mono">Home.jsx</code> and <code class="mono">About.jsx</code> render
+    <code class="mono">PressLine.jsx</code>'s marquee variant, so the Part A CSS change
+    automatically applies to both pages.</p>
+    <pre class="code"><span class="c">// Footer.jsx — Part B swap</span>
+- <span class="k">import</span> PressLine <span class="k">from</span> <span class="s">'./PressLine.jsx'</span>;
++ <span class="k">import</span> RatingProof <span class="k">from</span> <span class="s">'./RatingProof.jsx'</span>;
+…
+- &lt;<span class="k">PressLine</span> variant=<span class="s">"static"</span> /&gt;
++ &lt;<span class="k">RatingProof</span> tone=<span class="s">"footer"</span> /&gt;</pre>
+  </section>
+
+</main>
+</body>
+</html>
