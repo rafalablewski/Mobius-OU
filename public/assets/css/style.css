@@ -13515,6 +13515,7 @@ span {
    .is-focal to whichever card the wrap is currently centred on. */
 .ht-stats-scroller {
   position: relative;
+  min-width: 0;
 }
 .ht-stats-area .ht-stats-wrapper {
   background: transparent;

@@ -39,7 +39,6 @@ export default function Home() {
         const d = Math.abs(cardCenter - center);
         if (d < bestDist) { bestDist = d; bestIdx = i; }
       }
-      cards.forEach((c, i) => c.classList.toggle('is-focal', i === bestIdx));
       const stat = cards[bestIdx].dataset.stat;
       if (stat) setActiveStat(stat);
     };
@@ -206,31 +205,31 @@ export default function Home() {
                       </aside>
                       <div className="ht-stats-scroller wow fadeInUp" data-wow-delay=".3s" ref={statsScrollerRef}>
                           <div className="ht-stats-wrapper" role="list">
-                              <div className="ht-stats-items" role="listitem" data-stat="14">
+                              <div className={`ht-stats-items${activeStat === '14' ? ' is-focal' : ''}`} role="listitem" data-stat="14">
                                   <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
                                   <h4>Years on the desk &mdash; CFA-trained, NYSE-seasoned advisory.</h4>
                                   <div className="ht-stats-rule" aria-hidden="true"></div>
                                   <p>In private practice since 2018. Charter held continuously since 2012.</p>
                               </div>
-                              <div className="ht-stats-items" role="listitem" data-stat="100">
+                              <div className={`ht-stats-items${activeStat === '100' ? ' is-focal' : ''}`} role="listitem" data-stat="100">
                                   <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
                                   <h4>Private files &mdash; citizenship, residency and tax.</h4>
                                   <div className="ht-stats-rule" aria-hidden="true"></div>
                                   <p>Every brief pre-screened on source of funds before engagement.</p>
                               </div>
-                              <div className="ht-stats-items" role="listitem" data-stat="32">
+                              <div className={`ht-stats-items${activeStat === '32' ? ' is-focal' : ''}`} role="listitem" data-stat="32">
                                   <h2 className="number"><span className="count">32</span></h2>
                                   <h4>Jurisdictions &mdash; firms and partners operational.</h4>
                                   <div className="ht-stats-rule" aria-hidden="true"></div>
                                   <p>From the Caribbean shelf programmes to the Gulf&rsquo;s new tax routes.</p>
                               </div>
-                              <div className="ht-stats-items" role="listitem" data-stat="5">
+                              <div className={`ht-stats-items${activeStat === '5' ? ' is-focal' : ''}`} role="listitem" data-stat="5">
                                   <h2 className="number"><span className="count">5</span></h2>
                                   <h4>Offices &mdash; local presence where the programmes are written.</h4>
                                   <div className="ht-stats-rule" aria-hidden="true"></div>
                                   <p>Counsel on the ground from Europe to the Gulf, briefed in your timezone.</p>
                               </div>
-                              <div className="ht-stats-items" role="listitem" data-stat="1">
+                              <div className={`ht-stats-items${activeStat === '1' ? ' is-focal' : ''}`} role="listitem" data-stat="1">
                                   <h2 className="number"><span className="count">1</span></h2>
                                   <h4>Dedicated team &mdash; senior bench, no junior handoffs.</h4>
                                   <div className="ht-stats-rule" aria-hidden="true"></div>
