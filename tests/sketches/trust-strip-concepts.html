@@ -22,13 +22,8 @@
     --hairline:   rgba(11, 15, 20, 0.12);
     --hairline-2: rgba(11, 15, 20, 0.20);
 
-    /* native brand colours used only in the reference-fidelity mock (B.I) */
-    --google-blue:   #4285F4;
-    --google-red:    #EA4335;
-    --google-yellow: #FBBC04;
-    --google-green:  #34A853;
-    --trustpilot:    #00B67A;
-    --award-red:     #B03A2E;
+    /* red double-ring on the constructed CIA award card in B.I */
+    --award-red:  #B03A2E;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -322,89 +317,67 @@
 
   /* ============================================================
      AXIS B · I — REFERENCE-FIDELITY THREE-CARD ROW
-     (Google G in native 4-colour, Trustpilot green, awards seal)
+     Google + Trustpilot use the real brand widgets from /public/
+     (google.svg, trustpilot.svg). CIA award card constructed in HTML
+     to match the rounded-corner + soft-shadow + top-stripe register.
      ============================================================ */
-  .b1 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .b1__card {
-    background: #fff;
-    border: 1px solid var(--border); border-radius: 6px;
-    padding: 20px 22px; min-height: 132px;
-    display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center;
-    transition: transform .25s, box-shadow .25s;
+  .b1 {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    align-items: center;
   }
-  .b1__card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px -16px rgba(11,15,20,0.18); }
-  .b1__card--top-rule { border-top: 3px solid var(--google-yellow); }
-  .b1__mark { width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; }
-  .b1__title {
-    font-family: "Manrope"; font-weight: 500; font-size: 15px; color: var(--ink);
-    margin-bottom: 4px; line-height: 1.3;
-  }
-  .b1__rating {
-    display: flex; align-items: center; gap: 8px;
-    font-family: "Manrope"; font-weight: 700; font-size: 22px; color: var(--ink);
-  }
-  .b1__stars { display: inline-flex; gap: 2px; }
-  .b1__stars--google { color: #F4B400; }
-  .b1__count {
-    font-family: "Manrope"; font-weight: 500; font-size: 11px;
-    color: #5f6368; margin-top: 4px;
-  }
-  /* Trustpilot card */
-  .b1__card--tp { padding: 0; min-height: 132px; }
-  .b1__tp-mast {
-    background: #fff; padding: 16px 22px 12px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .b1__tp-logo {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-family: "Manrope"; font-weight: 700; font-size: 14px; letter-spacing: 0.04em;
-    color: var(--ink);
-  }
-  .b1__tp-body { padding: 12px 22px 16px; display: flex; flex-direction: column; gap: 6px; }
-  .b1__tp-rating { font-family: "Manrope"; font-weight: 700; font-size: 18px; color: var(--ink); }
-  .b1__tp-count { font-family: "Manrope"; font-size: 11px; color: #6b6e75; }
-  .b1__tp-stars { display: inline-flex; gap: 3px; margin-top: 2px; }
-  .b1__tp-star {
-    width: 24px; height: 24px; background: var(--trustpilot);
+  .b1__cell {
     display: flex; align-items: center; justify-content: center;
+    transition: transform .25s ease;
   }
-  .b1__tp-star--off { background: #DCDCE6; }
-  .b1__tp-star svg { width: 16px; height: 16px; fill: #fff; }
-  /* Award card */
-  .b1__card--award {
-    grid-template-columns: 76px 1fr;
+  .b1__cell:hover { transform: translateY(-2px); }
+  .b1__svg {
+    display: block; width: 100%; height: auto;
+  }
+  /* CIA award card — matches the SVG widgets' visual register */
+  .b1__award-card {
+    position: relative;
+    width: 100%;
     background: #fff;
+    border-radius: 8px;
+    box-shadow:
+      0 12px 28px -16px rgba(11,15,20,0.22),
+      0 2px 6px -3px rgba(11,15,20,0.10);
+    padding: 28px 24px;
+    display: flex; align-items: center; gap: 18px;
+    overflow: hidden;
+  }
+  .b1__award-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 8px; background: var(--award-red);
   }
   .b1__award-seal {
-    width: 76px; height: 76px; border-radius: 50%;
+    flex-shrink: 0;
+    width: 84px; height: 84px; border-radius: 50%;
     border: 3px double var(--award-red);
     background: #fff;
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; padding: 4px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 6px; text-align: center;
   }
   .b1__award-top {
     font-family: "Cormorant Garamond", serif; font-weight: 700;
-    font-size: 6.5px; color: var(--award-red); line-height: 1.1; letter-spacing: 0.04em;
+    font-size: 7px; color: var(--award-red); line-height: 1.15; letter-spacing: 0.04em;
   }
   .b1__award-win {
     font-family: "Manrope"; font-weight: 800; font-size: 8.5px;
-    letter-spacing: 0.16em; color: var(--award-red); margin: 2px 0 1px;
+    letter-spacing: 0.18em; color: var(--award-red); margin: 3px 0 2px;
   }
   .b1__award-yr {
-    font-family: "Manrope"; font-weight: 700; font-size: 8.5px; color: var(--ink);
+    font-family: "Manrope"; font-weight: 700; font-size: 9px;
+    color: var(--ink); letter-spacing: 0.05em;
   }
+  .b1__award-body { min-width: 0; }
   .b1__award-title {
-    font-family: "Manrope"; font-weight: 500; font-size: 14px; color: var(--ink); line-height: 1.35;
+    font-family: "Manrope"; font-weight: 500; font-size: 15px;
+    color: var(--ink); line-height: 1.35;
   }
   .b1__award-sub {
-    font-family: "Manrope"; font-weight: 500; font-size: 11px;
-    color: var(--stone); margin-top: 4px; display: flex; align-items: center; gap: 6px;
-  }
-  .b1__award-arrow {
-    width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border);
-    display: inline-flex; align-items: center; justify-content: center;
-    color: var(--stone); font-size: 12px;
+    font-family: "Manrope"; font-weight: 500; font-size: 12px;
+    color: var(--stone); margin-top: 6px;
   }
   @media (max-width: 720px) { .b1 { grid-template-columns: 1fr; } }
 
@@ -821,12 +794,15 @@
       </div>
       <h2>The reference image, <em>turned horizontal</em>.</h2>
       <p class="idea__dek">
-        Closest possible mirror of the screenshot — three rounded white cards,
-        each in its source's native brand language. Google G in its 4-colour
-        glyph; Trustpilot in its green-square stars; Corporate Immigration
-        Awards in red double-ring seal. Highest source-recognition value,
-        also the loudest visually — sits inside the cream container of the
-        page but doesn't try to match its palette.
+        Closest possible mirror of the screenshot. The Google and Trustpilot
+        widgets are the real brand SVGs from
+        <code class="mono">/public/google.svg</code> and
+        <code class="mono">/public/trustpilot.svg</code> — full pre-rendered
+        rating cards with drop shadow, top accent and native typography baked
+        in. The Corporate Immigration Awards card is built in HTML to match
+        their visual register (white card, soft drop shadow, red top stripe,
+        red double-ring winner seal). Highest source-recognition value of
+        the social-proof trio; loudest visually.
       </p>
 
       <p class="panel-label">Pencil sketch</p>
@@ -863,62 +839,29 @@
       <div class="mock">
         <div class="b1">
 
-          <!-- Award card (red double-ring seal) -->
-          <div class="b1__card b1__card--award">
-            <div class="b1__award-seal">
-              <div class="b1__award-top">Corporate<br/>Immigration<br/>Awards</div>
-              <div class="b1__award-win">WINNER</div>
-              <div class="b1__award-yr">2019</div>
-            </div>
-            <div>
-              <div class="b1__award-title">Corporate Immigration &amp; Relocation Awards</div>
-              <div class="b1__award-sub">
-                <span class="b1__award-arrow">+</span>
-                <span>Category winner · 2019</span>
+          <!-- CIA award card — built in HTML to match the SVGs' register -->
+          <div class="b1__cell">
+            <div class="b1__award-card">
+              <div class="b1__award-seal">
+                <div class="b1__award-top">Corporate<br/>Immigration<br/>Awards</div>
+                <div class="b1__award-win">WINNER</div>
+                <div class="b1__award-yr">2019</div>
+              </div>
+              <div class="b1__award-body">
+                <div class="b1__award-title">Corporate Immigration &amp; Relocation Awards</div>
+                <div class="b1__award-sub">Category winner · 2019</div>
               </div>
             </div>
           </div>
 
-          <!-- Google card (4-colour G + yellow top rule) -->
-          <div class="b1__card b1__card--top-rule">
-            <div class="b1__mark">
-              <!-- Native Google G -->
-              <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
-                <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
-                <path fill="#EA4335" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
-                <path fill="#34A853" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
-                <path fill="#FBBC04" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.002-.001 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
-              </svg>
-            </div>
-            <div>
-              <div class="b1__title">Google Rating</div>
-              <div class="b1__rating">
-                4.8
-                <span class="b1__stars b1__stars--google">★★★★★</span>
-              </div>
-              <div class="b1__count">312 reviews · maps.google.com</div>
-            </div>
+          <!-- Google — real brand widget from /public/google.svg -->
+          <div class="b1__cell">
+            <img class="b1__svg" src="/public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
           </div>
 
-          <!-- Trustpilot card (green squares + green word) -->
-          <div class="b1__card b1__card--tp">
-            <div class="b1__tp-mast">
-              <span class="b1__tp-logo">
-                <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9.5 9,9" fill="#00B67A"/></svg>
-                Trustpilot
-              </span>
-            </div>
-            <div class="b1__tp-body">
-              <div class="b1__tp-stars">
-                <span class="b1__tp-star"><svg viewBox="0 0 24 24"><polygon points="12,3 14.5,9 21,9.5 16,14 17.5,20.5 12,17 6.5,20.5 8,14 3,9.5 9.5,9"/></svg></span>
-                <span class="b1__tp-star"><svg viewBox="0 0 24 24"><polygon points="12,3 14.5,9 21,9.5 16,14 17.5,20.5 12,17 6.5,20.5 8,14 3,9.5 9.5,9"/></svg></span>
-                <span class="b1__tp-star"><svg viewBox="0 0 24 24"><polygon points="12,3 14.5,9 21,9.5 16,14 17.5,20.5 12,17 6.5,20.5 8,14 3,9.5 9.5,9"/></svg></span>
-                <span class="b1__tp-star"><svg viewBox="0 0 24 24"><polygon points="12,3 14.5,9 21,9.5 16,14 17.5,20.5 12,17 6.5,20.5 8,14 3,9.5 9.5,9"/></svg></span>
-                <span class="b1__tp-star b1__tp-star--off"><svg viewBox="0 0 24 24"><polygon points="12,3 14.5,9 21,9.5 16,14 17.5,20.5 12,17 6.5,20.5 8,14 3,9.5 9.5,9"/></svg></span>
-              </div>
-              <div class="b1__tp-rating">Rated 3.9 / 5.0</div>
-              <div class="b1__tp-count">47 reviews · trustpilot.com</div>
-            </div>
+          <!-- Trustpilot — real brand widget from /public/trustpilot.svg -->
+          <div class="b1__cell">
+            <img class="b1__svg" src="/public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
           </div>
 
         </div>
@@ -933,10 +876,10 @@
       </div>
 
       <div class="register">
-        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Three rounded white cards on the cream page. Each carries its source's native brand: Google G 4-colour glyph + yellow top-rule on the middle card; Trustpilot green stars + green word logo on the right; CIA double-ring red seal on the left. Sans-serif (Manrope) overrides the page's serif inside the cards so the source signal is unmistakable.</div></div>
-        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Cards stack to single column with their internal layouts intact — the Google glyph and Trustpilot mast preserve their proportion. Touch targets ~88 px tall.</div></div>
+        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Three cards in a 3-column grid. Two are real brand SVGs (<code class="mono">/public/google.svg</code> — white card, green top stripe, 4-colour Google G, 4.8★ baked in; <code class="mono">/public/trustpilot.svg</code> — green header band, light-blue body, four green Trustpilot stars, rated 3.9 baked in). The third is built in HTML with matching ingredients: white card, 8 px red top stripe, soft drop shadow, red double-ring winner seal.</div></div>
+        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Grid collapses to single column. SVGs scale by width so their native aspect ratios are preserved; the CIA card flexes to match.</div></div>
       </div>
-      <div class="contrast"><strong>vs the reference image:</strong> 1:1 mirror, only turned horizontal — Awards / Google / Trustpilot in their native registers, gold top rule retained on the Google card. <strong>Honesty tax:</strong> cards must link out (<code class="mono">target="_blank"</code>) to the live source where the rating is verifiable — otherwise the widget reads dishonest.</div>
+      <div class="contrast"><strong>vs the reference image:</strong> 1:1 mirror, only turned horizontal — Awards / Google / Trustpilot in their native registers, gold/green top rules retained. <strong>Honesty tax:</strong> cards must link out (<code class="mono">target="_blank"</code>) to the live source where the rating is verifiable, otherwise the widget reads dishonest. <strong>Production path:</strong> the SVGs use <code class="mono">/public/google.svg</code> here so the static-served sketch resolves them; when ported into the React app, Vite strips <code class="mono">public/</code> at build, so the production paths become <code class="mono">/google.svg</code> and <code class="mono">/trustpilot.svg</code>.</div>
     </article>
 
     <!-- =========================================================
