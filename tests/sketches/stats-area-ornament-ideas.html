@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stats-area ornament ideas — Mobius drafts</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Manrope:wght@200;300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --body:#F4EFE6; --ink:#0B0F14; --gold:#C9A86A; --border:#E2DBCE;
+    --muted:#6B6257; --cream:#FAF6EE; --text:#1C232B;
+    --ui:'Manrope',sans-serif;
+    --display:'Cormorant Garamond',serif;
+    --body-serif:'Newsreader',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--body);color:var(--text);
+    font-family:var(--ui);font-size:15px;line-height:1.6;letter-spacing:-0.003em;}
+  .wrap{max-width:1280px;margin:0 auto;padding:80px 40px 160px;}
+
+  /* ---- Page chrome ---- */
+  .page-head{border-bottom:1px solid var(--border);padding-bottom:48px;margin-bottom:24px}
+  .eyebrow{font-family:var(--ui);font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--muted)}
+  h1.title{font-family:var(--display);font-weight:400;font-size:54px;line-height:1.1;
+    letter-spacing:-0.02em;color:var(--ink);margin:8px 0 20px}
+  h1.title em{font-style:italic;color:var(--gold)}
+  .standfirst{font-family:var(--body-serif);max-width:64ch;font-size:17.5px;
+    line-height:1.55;color:var(--text);margin:0}
+  .toc{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 40px;margin-top:36px}
+  .toc a{display:flex;justify-content:space-between;align-items:baseline;
+    text-decoration:none;color:var(--ink);font-family:var(--ui);font-size:13px;
+    padding:7px 0;border-bottom:1px dotted var(--border)}
+  .toc a:hover{color:var(--gold)}
+  .toc .roman{font-family:var(--display);font-style:italic;font-weight:400;
+    color:var(--gold);width:36px;display:inline-block}
+
+  /* ---- Idea block ---- */
+  .idea{margin:80px 0 0;padding-top:48px;border-top:1px solid var(--border)}
+  .idea.baseline{border-top:none;padding-top:0;margin-top:32px}
+  .idea-head{display:grid;grid-template-columns:88px 1fr;gap:24px;margin-bottom:36px}
+  .idea-head .roman{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:60px;color:var(--gold);line-height:0.95}
+  .idea-head h2{font-family:var(--display);font-weight:400;font-size:30px;
+    line-height:1.15;letter-spacing:-0.01em;color:var(--ink);margin:0}
+  .idea-head .dek{font-family:var(--body-serif);font-size:15.5px;line-height:1.55;
+    color:var(--muted);margin:10px 0 0;max-width:64ch}
+  .stage-label{font-family:var(--ui);font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .stage{margin-bottom:28px}
+
+  .notes{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:18px;
+    padding:22px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .notes h3{font-family:var(--ui);font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:500}
+  .notes p{font-family:var(--body-serif);font-size:13.5px;line-height:1.5;
+    color:var(--text);margin:0}
+
+  /* ============================================================ */
+  /* Shared stats primitives — mirror of the shipped Home.jsx     */
+  /* ============================================================ */
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .stats-cell{padding:56px 32px;position:relative;text-align:left}
+  .stats-cell:not(:last-child)::after{content:"";position:absolute;right:0;
+    top:20%;bottom:20%;width:1px;background:var(--border)}
+  .num{font-family:var(--display);font-weight:500;font-size:clamp(48px,5.2vw,72px);
+    line-height:1;letter-spacing:-0.03em;color:var(--ink);
+    display:inline-flex;align-items:baseline;gap:2px;position:relative;z-index:2}
+  .num .plus{font-family:var(--display);color:var(--gold);font-weight:400;
+    font-size:0.5em;margin-left:4px;align-self:flex-start;line-height:1.2}
+  .label{margin-top:20px;font-family:var(--ui);font-weight:500;font-size:12px;
+    letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);position:relative;z-index:2}
+  .body{margin-top:8px;font-family:var(--body-serif);font-size:14px;
+    line-height:1.55;color:var(--muted);max-width:28ch;position:relative;z-index:2}
+
+  /* ============================================================ */
+  /* I — LAUREL WREATH CRESTS                                     */
+  /* ============================================================ */
+  .v1 .stats-cell{padding:72px 32px 64px}
+  .v1 .crest{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);
+    width:300px;height:210px;color:var(--gold);opacity:0.42;pointer-events:none;z-index:1}
+  .v1 .stat-content{position:relative;z-index:2;text-align:center;display:flex;
+    flex-direction:column;align-items:center}
+  .v1 .body{text-align:center;max-width:32ch}
+
+  /* ============================================================ */
+  /* II — COIN MEDALLIONS                                         */
+  /* ============================================================ */
+  .v2 .stats-grid{border:none;gap:24px}
+  .v2 .stats-cell{padding:32px 16px;text-align:center;border:none}
+  .v2 .stats-cell::after{display:none}
+  .v2 .coin{width:260px;height:260px;margin:0 auto;position:relative;
+    display:flex;align-items:center;justify-content:center;color:var(--gold)}
+  .v2 .coin svg{position:absolute;inset:0;width:100%;height:100%}
+  .v2 .coin .num{font-size:78px}
+  .v2 .label{margin-top:24px;text-align:center}
+  .v2 .body{margin:8px auto 0;text-align:center;max-width:34ch}
+
+  /* ============================================================ */
+  /* III — ENGRAVED CARTOUCHE                                     */
+  /* ============================================================ */
+  .v3 .stats-grid{border:none;gap:0}
+  .v3 .stats-cell{padding:24px 18px;border:none}
+  .v3 .stats-cell::after{display:none}
+  .v3 .cartouche{border:1px solid rgba(201,168,106,0.55);
+    padding:52px 28px 44px;position:relative;background:rgba(250,246,238,0.4);
+    text-align:center}
+  .v3 .cartouche::before,
+  .v3 .cartouche::after{content:"";position:absolute;left:50%;width:140px;height:14px;
+    transform:translateX(-50%);background-repeat:no-repeat;background-position:center;
+    background-size:contain}
+  .v3 .cartouche::before{
+    top:-7px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 14' fill='none' stroke='%23C9A86A' stroke-width='1'><path d='M0 7 L52 7'/><path d='M88 7 L140 7'/><circle cx='70' cy='7' r='2.6' fill='%23C9A86A'/><path d='M58 7 Q64 2 70 4 Q76 2 82 7'/><path d='M58 7 Q64 12 70 10 Q76 12 82 7'/></svg>");
+  }
+  .v3 .cartouche::after{
+    bottom:-7px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 14' fill='none' stroke='%23C9A86A' stroke-width='1'><path d='M0 7 L52 7'/><path d='M88 7 L140 7'/><circle cx='70' cy='7' r='2.6' fill='%23C9A86A'/><path d='M58 7 Q64 2 70 4 Q76 2 82 7'/><path d='M58 7 Q64 12 70 10 Q76 12 82 7'/></svg>");
+  }
+  .v3 .label{text-align:center}
+  .v3 .body{margin:8px auto 0;text-align:center;max-width:32ch}
+
+  /* ============================================================ */
+  /* IV — POSTAGE-STAMP FRAME                                     */
+  /* ============================================================ */
+  .v4 .stats-grid{border:none;gap:18px;padding:24px 0}
+  .v4 .stats-cell{padding:0;border:none}
+  .v4 .stats-cell::after{display:none}
+  .v4 .stamp{background:var(--cream);padding:40px 28px 36px;
+    text-align:center;position:relative;
+    --p:8px;
+    --b:transparent;
+    mask:
+      radial-gradient(circle var(--p) at top    left,    var(--b) 98%, #000) top    left,
+      radial-gradient(circle var(--p) at top    right,   var(--b) 98%, #000) top    right,
+      radial-gradient(circle var(--p) at bottom left,    var(--b) 98%, #000) bottom left,
+      radial-gradient(circle var(--p) at bottom right,   var(--b) 98%, #000) bottom right,
+      linear-gradient(#000 0 0) center / calc(100% - 2*var(--p)) calc(100% - 2*var(--p)) no-repeat;
+    mask-composite:add;-webkit-mask-composite:source-over;
+    border:1px dashed rgba(11,15,20,0.18);
+    box-shadow:0 0 0 1px rgba(201,168,106,0.25) inset}
+  .v4 .stamp-inner{border:1px solid rgba(201,168,106,0.45);
+    padding:28px 16px 24px;position:relative}
+  .v4 .stamp .denom{position:absolute;top:10px;right:14px;font-family:var(--ui);
+    font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);
+    font-weight:500}
+  .v4 .stamp .imprint{position:absolute;bottom:10px;left:14px;font-family:var(--ui);
+    font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+  .v4 .label{text-align:center;margin-top:18px}
+  .v4 .body{margin:6px auto 0;text-align:center;max-width:30ch}
+
+  /* ============================================================ */
+  /* V — FILIGREE CORNERS                                         */
+  /* ============================================================ */
+  .v5 .stats-cell{padding:64px 36px}
+  .v5 .stats-cell::before,
+  .v5 .stats-cell .corner-br{position:absolute;width:48px;height:48px;
+    color:var(--gold);opacity:0.7;pointer-events:none;z-index:1;
+    background-repeat:no-repeat;background-position:center;background-size:contain}
+  .v5 .stats-cell::before{
+    content:"";left:16px;top:16px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23C9A86A' stroke-width='0.9'><path d='M2 12 Q12 12 12 2'/><path d='M2 22 Q22 22 22 2'/><path d='M6 14 Q14 14 14 6 Q18 8 18 14 Q14 18 14 18'/><circle cx='14' cy='14' r='1.4' fill='%23C9A86A' stroke='none'/></svg>");
+  }
+  .v5 .stats-cell .corner-br{
+    right:16px;bottom:16px;transform:rotate(180deg);
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23C9A86A' stroke-width='0.9'><path d='M2 12 Q12 12 12 2'/><path d='M2 22 Q22 22 22 2'/><path d='M6 14 Q14 14 14 6 Q18 8 18 14 Q14 18 14 18'/><circle cx='14' cy='14' r='1.4' fill='%23C9A86A' stroke='none'/></svg>");
+  }
+
+  /* ============================================================ */
+  /* VI — GUILLOCHÉ BANKNOTE ENGRAVING                            */
+  /* ============================================================ */
+  .v6 .stats-cell{padding:64px 32px;overflow:hidden}
+  .v6 .guilloche{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);
+    width:260px;height:200px;color:var(--gold);opacity:0.16;pointer-events:none;z-index:1}
+
+  /* ============================================================ */
+  /* VII — COMPASS-ROSE BACKDROP                                  */
+  /* ============================================================ */
+  .v7 .stats-cell{padding:72px 32px;overflow:hidden}
+  .v7 .rose{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);
+    width:240px;height:240px;color:var(--ink);opacity:0.08;pointer-events:none;z-index:1}
+  .v7 .stats-cell:nth-child(3) .rose{opacity:0.14}
+
+  /* ============================================================ */
+  /* VIII — WAX-SEAL ACCENT                                       */
+  /* ============================================================ */
+  .v8 .stats-cell{padding:64px 32px}
+  .v8 .seal{position:absolute;top:18px;right:18px;width:56px;height:56px;
+    border-radius:50%;border:1px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    transform:rotate(8deg);color:var(--gold)}
+  .v8 .seal::before{content:"";position:absolute;inset:4px;border-radius:50%;
+    border:1px dashed rgba(201,168,106,0.5)}
+  .v8 .seal .m{font-family:var(--display);font-style:italic;font-weight:500;
+    font-size:24px;line-height:1}
+
+  /* ============================================================ */
+  /* IX — ROMAN NUMERAL PAIRING + FLEURON DIVIDERS                */
+  /* ============================================================ */
+  .v9 .stats-cell{padding:60px 32px}
+  .v9 .roman-pair{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:14px;letter-spacing:0.08em;color:var(--gold);
+    display:block;margin-bottom:8px;text-transform:none}
+  .v9 .stats-cell:not(:last-child)::after{
+    background:none;width:auto;top:50%;right:-7px;height:14px;bottom:auto;
+    transform:translateY(-50%);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold);font-size:14px;line-height:1;
+    content:"❦";font-family:'Cormorant Garamond',serif;
+    background:var(--body);padding:0 4px}
+  .v9 .stats-grid{position:relative}
+  .v9 .stats-grid::before,
+  .v9 .stats-grid::after{content:"✣";position:absolute;left:50%;
+    transform:translate(-50%,-50%);color:var(--gold);font-family:var(--display);
+    font-size:13px;background:var(--body);padding:0 8px;line-height:1}
+  .v9 .stats-grid::before{top:0}
+  .v9 .stats-grid::after{bottom:0;transform:translate(-50%,50%)}
+
+  /* ============================================================ */
+  /* X — DECORATIVE PULL-RULES (typographic restraint)            */
+  /* ============================================================ */
+  .v10 .stats-grid{border:none;position:relative;padding:48px 0}
+  .v10 .stats-cell{padding:8px 32px}
+  .v10 .stats-cell::after{display:none}
+  .v10 .stats-grid::before,
+  .v10 .stats-grid::after{content:"";position:absolute;left:0;right:0;height:1px;
+    background:var(--border)}
+  .v10 .stats-grid::before{top:0}
+  .v10 .stats-grid::after{bottom:0}
+  .v10 .top-ornament,
+  .v10 .bot-ornament{position:absolute;left:50%;transform:translate(-50%,-50%);
+    background:var(--body);padding:0 14px;color:var(--gold);font-family:var(--display);
+    font-style:italic;font-size:18px;letter-spacing:0.4em;line-height:1;
+    display:inline-flex;gap:6px;align-items:center}
+  .v10 .top-ornament{top:0}
+  .v10 .bot-ornament{bottom:0;transform:translate(-50%,50%)}
+  .v10 .divider{position:absolute;top:50%;transform:translate(-50%,-50%);
+    color:var(--gold);font-family:var(--display);font-style:italic;font-size:20px;
+    line-height:1;background:var(--body);padding:4px 0}
+  .v10 .divider-l{left:33.333%}
+  .v10 .divider-r{left:66.666%}
+  .v10 .stats-grid{display:grid}
+
+  /* ---- Footer ---- */
+  .pagefoot{margin-top:96px;padding-top:32px;border-top:1px solid var(--border);
+    font-family:var(--ui);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--muted);display:flex;justify-content:space-between}
+
+  /* ---- Mobile ---- */
+  @media (max-width:880px){
+    .wrap{padding:48px 20px 80px}
+    h1.title{font-size:36px}
+    .toc{grid-template-columns:1fr}
+    .idea-head{grid-template-columns:60px 1fr;gap:14px}
+    .idea-head .roman{font-size:40px}
+    .idea-head h2{font-size:24px}
+    .stats-grid{grid-template-columns:1fr}
+    .stats-cell:not(:last-child)::after{height:1px!important;width:auto!important;
+      left:24px;right:24px;top:auto;bottom:0;transform:none!important}
+    .v2 .coin{width:200px;height:200px}
+    .v2 .coin .num{font-size:60px}
+    .notes{grid-template-columns:1fr 1fr;gap:16px}
+    .v10 .divider{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       Page header
+       ============================================================ -->
+  <header class="page-head">
+    <div class="eyebrow">Mobius · drafts · /tests/sketches/</div>
+    <h1 class="title">Stats-strip ornament ideas — <em>ten ways to make 14 / 100 / 32 carry more weight</em></h1>
+    <p class="standfirst">
+      The shipped strip in <code>Home.jsx:136</code> is a flush hairline grid:
+      three Cormorant numerals, a champagne <em>+</em>, a Manrope label and a
+      Newsreader dek. It reads cleanly but it is bare — the user is right that
+      it reads <em>merde</em> next to firms that wreath their numerals in
+      laurel, coin or banknote ornament. Ten drafts below, arranged most-literal
+      → most-restrained, each rendered live on the actual body cream with the
+      real three statistics. Pick one or hybridise. Nothing here ships until
+      ported into <code>style.css</code> with the same class names.
+    </p>
+    <nav class="toc">
+      <a href="#i1"><span><span class="roman">I.</span>Laurel wreath crests</span><span>most literal</span></a>
+      <a href="#i2"><span><span class="roman">II.</span>Coin medallions</span><span>numismatic</span></a>
+      <a href="#i3"><span><span class="roman">III.</span>Engraved cartouche frame</span><span>banknote vignette</span></a>
+      <a href="#i4"><span><span class="roman">IV.</span>Postage-stamp frame</span><span>passport register</span></a>
+      <a href="#i5"><span><span class="roman">V.</span>Filigree corner ornaments</span><span>Victorian engraving</span></a>
+      <a href="#i6"><span><span class="roman">VI.</span>Guilloché banknote engraving</span><span>capital markets</span></a>
+      <a href="#i7"><span><span class="roman">VII.</span>Compass-rose backdrop</span><span>maritime · jurisdictions</span></a>
+      <a href="#i8"><span><span class="roman">VIII.</span>Wax-seal corner accent</span><span>dossier · NDA</span></a>
+      <a href="#i9"><span><span class="roman">IX.</span>Roman numeral pairing + fleurons</span><span>encyclopaedic</span></a>
+      <a href="#i10"><span><span class="roman">X.</span>Decorative pull-rules</span><span>most restrained</span></a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       Baseline — today
+       ============================================================ -->
+  <section class="idea baseline">
+    <div class="idea-head">
+      <div class="roman">0.</div>
+      <div>
+        <h2>Today — flush hairline grid (baseline)</h2>
+        <p class="dek">Currently shipped. Three cells, top + bottom hairline, vertical hairlines between. No ornament whatsoever — the cells do the work alone.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render — <code>src/pages/Home.jsx:136-156</code></div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <div class="num">32</div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       I. LAUREL WREATH CRESTS
+       ============================================================ -->
+  <section class="idea v1" id="i1">
+    <div class="idea-head">
+      <div class="roman">I.</div>
+      <div>
+        <h2>Laurel wreath crests</h2>
+        <p class="dek">The literal answer to the reference. Each numeral sits centred inside a 300×210 px hairline laurel wreath in gold at 42 % opacity. Numerals retain Cormorant Garamond 500 at 72 px; label and dek centre under the wreath. The most explicit "award-badge" register of the ten — closest to what the user saw on the other site.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <svg class="crest" viewBox="0 0 300 210" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 60 188 C 32 150, 32 60, 150 32" />
+              <path d="M 240 188 C 268 150, 268 60, 150 32" />
+            </g>
+            <g fill="currentColor">
+              <ellipse cx="56" cy="172" rx="11" ry="3.6" transform="rotate(-22 56 172)"/>
+              <ellipse cx="46" cy="150" rx="12" ry="4"   transform="rotate(-32 46 150)"/>
+              <ellipse cx="40" cy="126" rx="12" ry="4"   transform="rotate(-44 40 126)"/>
+              <ellipse cx="42" cy="100" rx="12" ry="4"   transform="rotate(-58 42 100)"/>
+              <ellipse cx="54" cy="76"  rx="12" ry="4"   transform="rotate(-74 54 76)"/>
+              <ellipse cx="76" cy="56"  rx="11" ry="3.6" transform="rotate(-92 76 56)"/>
+              <ellipse cx="104" cy="42" rx="10" ry="3.4" transform="rotate(-108 104 42)"/>
+              <ellipse cx="132" cy="34" rx="9"  ry="3.2" transform="rotate(-120 132 34)"/>
+
+              <ellipse cx="244" cy="172" rx="11" ry="3.6" transform="rotate(22 244 172)"/>
+              <ellipse cx="254" cy="150" rx="12" ry="4"   transform="rotate(32 254 150)"/>
+              <ellipse cx="260" cy="126" rx="12" ry="4"   transform="rotate(44 260 126)"/>
+              <ellipse cx="258" cy="100" rx="12" ry="4"   transform="rotate(58 258 100)"/>
+              <ellipse cx="246" cy="76"  rx="12" ry="4"   transform="rotate(74 246 76)"/>
+              <ellipse cx="224" cy="56"  rx="11" ry="3.6" transform="rotate(92 224 56)"/>
+              <ellipse cx="196" cy="42"  rx="10" ry="3.4" transform="rotate(108 196 42)"/>
+              <ellipse cx="168" cy="34"  rx="9"  ry="3.2" transform="rotate(120 168 34)"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
+              <path d="M 138 188 Q 150 196 162 188"/>
+              <path d="M 140 192 L 134 202"/>
+              <path d="M 160 192 L 166 202"/>
+            </g>
+          </svg>
+          <div class="stat-content">
+            <div class="num">14<span class="plus">+</span></div>
+            <div class="label">Years in capital markets</div>
+            <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+          </div>
+        </div>
+        <div class="stats-cell">
+          <svg class="crest" viewBox="0 0 300 210" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 60 188 C 32 150, 32 60, 150 32" />
+              <path d="M 240 188 C 268 150, 268 60, 150 32" />
+            </g>
+            <g fill="currentColor">
+              <ellipse cx="56" cy="172" rx="11" ry="3.6" transform="rotate(-22 56 172)"/>
+              <ellipse cx="46" cy="150" rx="12" ry="4"   transform="rotate(-32 46 150)"/>
+              <ellipse cx="40" cy="126" rx="12" ry="4"   transform="rotate(-44 40 126)"/>
+              <ellipse cx="42" cy="100" rx="12" ry="4"   transform="rotate(-58 42 100)"/>
+              <ellipse cx="54" cy="76"  rx="12" ry="4"   transform="rotate(-74 54 76)"/>
+              <ellipse cx="76" cy="56"  rx="11" ry="3.6" transform="rotate(-92 76 56)"/>
+              <ellipse cx="104" cy="42" rx="10" ry="3.4" transform="rotate(-108 104 42)"/>
+              <ellipse cx="132" cy="34" rx="9"  ry="3.2" transform="rotate(-120 132 34)"/>
+
+              <ellipse cx="244" cy="172" rx="11" ry="3.6" transform="rotate(22 244 172)"/>
+              <ellipse cx="254" cy="150" rx="12" ry="4"   transform="rotate(32 254 150)"/>
+              <ellipse cx="260" cy="126" rx="12" ry="4"   transform="rotate(44 260 126)"/>
+              <ellipse cx="258" cy="100" rx="12" ry="4"   transform="rotate(58 258 100)"/>
+              <ellipse cx="246" cy="76"  rx="12" ry="4"   transform="rotate(74 246 76)"/>
+              <ellipse cx="224" cy="56"  rx="11" ry="3.6" transform="rotate(92 224 56)"/>
+              <ellipse cx="196" cy="42"  rx="10" ry="3.4" transform="rotate(108 196 42)"/>
+              <ellipse cx="168" cy="34"  rx="9"  ry="3.2" transform="rotate(120 168 34)"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
+              <path d="M 138 188 Q 150 196 162 188"/>
+              <path d="M 140 192 L 134 202"/>
+              <path d="M 160 192 L 166 202"/>
+            </g>
+          </svg>
+          <div class="stat-content">
+            <div class="num">100<span class="plus">+</span></div>
+            <div class="label">Mandates delivered</div>
+            <div class="body">Across CBI, RBI and tax residency</div>
+          </div>
+        </div>
+        <div class="stats-cell">
+          <svg class="crest" viewBox="0 0 300 210" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 60 188 C 32 150, 32 60, 150 32" />
+              <path d="M 240 188 C 268 150, 268 60, 150 32" />
+            </g>
+            <g fill="currentColor">
+              <ellipse cx="56" cy="172" rx="11" ry="3.6" transform="rotate(-22 56 172)"/>
+              <ellipse cx="46" cy="150" rx="12" ry="4"   transform="rotate(-32 46 150)"/>
+              <ellipse cx="40" cy="126" rx="12" ry="4"   transform="rotate(-44 40 126)"/>
+              <ellipse cx="42" cy="100" rx="12" ry="4"   transform="rotate(-58 42 100)"/>
+              <ellipse cx="54" cy="76"  rx="12" ry="4"   transform="rotate(-74 54 76)"/>
+              <ellipse cx="76" cy="56"  rx="11" ry="3.6" transform="rotate(-92 76 56)"/>
+              <ellipse cx="104" cy="42" rx="10" ry="3.4" transform="rotate(-108 104 42)"/>
+              <ellipse cx="132" cy="34" rx="9"  ry="3.2" transform="rotate(-120 132 34)"/>
+
+              <ellipse cx="244" cy="172" rx="11" ry="3.6" transform="rotate(22 244 172)"/>
+              <ellipse cx="254" cy="150" rx="12" ry="4"   transform="rotate(32 254 150)"/>
+              <ellipse cx="260" cy="126" rx="12" ry="4"   transform="rotate(44 260 126)"/>
+              <ellipse cx="258" cy="100" rx="12" ry="4"   transform="rotate(58 258 100)"/>
+              <ellipse cx="246" cy="76"  rx="12" ry="4"   transform="rotate(74 246 76)"/>
+              <ellipse cx="224" cy="56"  rx="11" ry="3.6" transform="rotate(92 224 56)"/>
+              <ellipse cx="196" cy="42"  rx="10" ry="3.4" transform="rotate(108 196 42)"/>
+              <ellipse cx="168" cy="34"  rx="9"  ry="3.2" transform="rotate(120 168 34)"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
+              <path d="M 138 188 Q 150 196 162 188"/>
+              <path d="M 140 192 L 134 202"/>
+              <path d="M 160 192 L 166 202"/>
+            </g>
+          </svg>
+          <div class="stat-content">
+            <div class="num">32</div>
+            <div class="label">Jurisdictions covered</div>
+            <div class="body">From the Caribbean to the Gulf</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>Inline SVG laurel — two mirrored half-arcs of 8 leaves each, ribbon knot at the foot. Hairline gold, 42 % opacity, behind the numeral.</p></div>
+      <div><h3>Surface</h3><p>Cream body unchanged. Top + bottom hairlines kept. Numerals centred over the wreath; label + dek stack below.</p></div>
+      <div><h3>Mobile</h3><p>Wreath shrinks to 240 × 168 px and stays centred. Cells stack vertically; wreaths repeat per cell.</p></div>
+      <div><h3>vs today</h3><p>Closest mirror of the reference image. Risk: reads "awards-page literal" if the dek doesn't pull back. Best used sparingly — perhaps cell 2 only.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       II. COIN MEDALLIONS
+       ============================================================ -->
+  <section class="idea v2" id="i2">
+    <div class="idea-head">
+      <div class="roman">II.</div>
+      <div>
+        <h2>Coin medallions</h2>
+        <p class="dek">Each numeral becomes a commemorative coin: a 260 × 260 px hairline gold disc with a double-ring border, the numeral seated in the centre and a small reeded inner ring. Reads numismatic / institutional — closer to a sovereign mint than a corporate badge.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <div class="coin">
+            <svg viewBox="0 0 260 260" aria-hidden="true">
+              <circle cx="130" cy="130" r="126" fill="none" stroke="#C9A86A" stroke-width="1"/>
+              <circle cx="130" cy="130" r="118" fill="none" stroke="#C9A86A" stroke-width="0.6"/>
+              <circle cx="130" cy="130" r="100" fill="none" stroke="#C9A86A" stroke-width="0.4" stroke-dasharray="1 3"/>
+              <g fill="#C9A86A">
+                <circle cx="130" cy="14" r="1.6"/>
+                <circle cx="130" cy="246" r="1.6"/>
+                <circle cx="14" cy="130" r="1.6"/>
+                <circle cx="246" cy="130" r="1.6"/>
+              </g>
+            </svg>
+            <div class="num">14<span class="plus">+</span></div>
+          </div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <div class="coin">
+            <svg viewBox="0 0 260 260" aria-hidden="true">
+              <circle cx="130" cy="130" r="126" fill="none" stroke="#C9A86A" stroke-width="1"/>
+              <circle cx="130" cy="130" r="118" fill="none" stroke="#C9A86A" stroke-width="0.6"/>
+              <circle cx="130" cy="130" r="100" fill="none" stroke="#C9A86A" stroke-width="0.4" stroke-dasharray="1 3"/>
+              <g fill="#C9A86A">
+                <circle cx="130" cy="14" r="1.6"/>
+                <circle cx="130" cy="246" r="1.6"/>
+                <circle cx="14" cy="130" r="1.6"/>
+                <circle cx="246" cy="130" r="1.6"/>
+              </g>
+            </svg>
+            <div class="num">100<span class="plus">+</span></div>
+          </div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <div class="coin">
+            <svg viewBox="0 0 260 260" aria-hidden="true">
+              <circle cx="130" cy="130" r="126" fill="none" stroke="#C9A86A" stroke-width="1"/>
+              <circle cx="130" cy="130" r="118" fill="none" stroke="#C9A86A" stroke-width="0.6"/>
+              <circle cx="130" cy="130" r="100" fill="none" stroke="#C9A86A" stroke-width="0.4" stroke-dasharray="1 3"/>
+              <g fill="#C9A86A">
+                <circle cx="130" cy="14" r="1.6"/>
+                <circle cx="130" cy="246" r="1.6"/>
+                <circle cx="14" cy="130" r="1.6"/>
+                <circle cx="246" cy="130" r="1.6"/>
+              </g>
+            </svg>
+            <div class="num">32</div>
+          </div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>Hairline double-ring gold disc + dashed inner reeded ring + four cardinal pips at N/E/S/W. No fill; coin reads as engraved, not stamped.</p></div>
+      <div><h3>Surface</h3><p>Hairlines removed — discs do the work. Numerals re-sized to 78 px inside the disc; label and dek below the coin.</p></div>
+      <div><h3>Mobile</h3><p>Coin shrinks to 200 × 200, stays centred above each cell's label + dek. Cells stack vertically.</p></div>
+      <div><h3>vs today</h3><p>Carries more visual mass than the wreath but is more abstract. Adds height — the strip stops being a thin band and becomes a small "triptych" of medallions.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       III. ENGRAVED CARTOUCHE
+       ============================================================ -->
+  <section class="idea v3" id="i3">
+    <div class="idea-head">
+      <div class="roman">III.</div>
+      <div>
+        <h2>Engraved cartouche frame</h2>
+        <p class="dek">Each cell sits inside a hairline gold cartouche — the kind that vignettes a banknote portrait. Top + bottom edges break with a small filigree ornament (two scalloped half-arcs around a central pip). Cream-tinted fill at 40 % so the cartouche reads as a faint plate, not a heavy card.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <div class="cartouche">
+            <div class="num">14<span class="plus">+</span></div>
+            <div class="label">Years in capital markets</div>
+            <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+          </div>
+        </div>
+        <div class="stats-cell">
+          <div class="cartouche">
+            <div class="num">100<span class="plus">+</span></div>
+            <div class="label">Mandates delivered</div>
+            <div class="body">Across CBI, RBI and tax residency</div>
+          </div>
+        </div>
+        <div class="stats-cell">
+          <div class="cartouche">
+            <div class="num">32</div>
+            <div class="label">Jurisdictions covered</div>
+            <div class="body">From the Caribbean to the Gulf</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>1 px gold border at 55 % opacity, plus top + bottom centered filigree breakers (inline SVG data-URI). Centre fill is cream at 40 %.</p></div>
+      <div><h3>Surface</h3><p>Three discrete plaques, not a continuous strip. Numeral, label, dek all centred inside each cartouche.</p></div>
+      <div><h3>Mobile</h3><p>Cartouches stack with 16 px gap; widths fluid. Filigree breakers retain at 140 × 14.</p></div>
+      <div><h3>vs today</h3><p>Moves from "open grid" to "framed exhibits". More formal — like a museum label or a banknote vignette. Loses the continuous hairline read of the current strip.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IV. POSTAGE-STAMP FRAME
+       ============================================================ -->
+  <section class="idea v4" id="i4">
+    <div class="idea-head">
+      <div class="roman">IV.</div>
+      <div>
+        <h2>Postage-stamp frame</h2>
+        <p class="dek">Each cell becomes a postage stamp — scalloped perforated edge masked into the cream rectangle, an inner gold-hairline frame, and tiny denomination marks: "MOBIUS · 2026" top-right in gold, "PRIVATE · NDA-FIRST" bottom-left in muted caps. Reads as travel / passport register — fits a firm that places people across borders.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <div class="stamp">
+            <span class="denom">Mobius · 2026</span>
+            <div class="stamp-inner">
+              <div class="num">14<span class="plus">+</span></div>
+              <div class="label">Years in capital markets</div>
+              <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+            </div>
+            <span class="imprint">Private · NDA-first</span>
+          </div>
+        </div>
+        <div class="stats-cell">
+          <div class="stamp">
+            <span class="denom">Mobius · 2026</span>
+            <div class="stamp-inner">
+              <div class="num">100<span class="plus">+</span></div>
+              <div class="label">Mandates delivered</div>
+              <div class="body">Across CBI, RBI and tax residency</div>
+            </div>
+            <span class="imprint">Private · NDA-first</span>
+          </div>
+        </div>
+        <div class="stats-cell">
+          <div class="stamp">
+            <span class="denom">Mobius · 2026</span>
+            <div class="stamp-inner">
+              <div class="num">32</div>
+              <div class="label">Jurisdictions covered</div>
+              <div class="body">From the Caribbean to the Gulf</div>
+            </div>
+            <span class="imprint">Private · NDA-first</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>CSS mask radial-gradient corners + dashed border imitates perforation. Inner gold-hairline frame. Two corner microtypes (denom + imprint) frame the stamp like a real stamp.</p></div>
+      <div><h3>Surface</h3><p>Cream-cream cards on cream body — only the perforation + gold frame separate them. The body cream tile is implicit, not boxy.</p></div>
+      <div><h3>Mobile</h3><p>Stamps stack with 18 px gap; same perforation logic scales. Microtype shrinks to 8 px.</p></div>
+      <div><h3>vs today</h3><p>Picks up the passport theme of CBI/RBI work directly. More playful than the cartouche — could read kitsch if the dek isn't restrained. Strong fit for the "32 jurisdictions" cell especially.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       V. FILIGREE CORNERS
+       ============================================================ -->
+  <section class="idea v5" id="i5">
+    <div class="idea-head">
+      <div class="roman">V.</div>
+      <div>
+        <h2>Filigree corner ornaments</h2>
+        <p class="dek">Keep the current strip intact and add a small (48 px) gold filigree scroll in the top-left and bottom-right corners of each cell. Same ornament every cell, reads like the engraved corners of a Victorian banknote or share certificate.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <span class="corner-br"></span>
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <span class="corner-br"></span>
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <span class="corner-br"></span>
+          <div class="num">32</div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>Inline SVG data-URI filigree at 48 × 48, rotated 180° for the bottom-right corner. Gold at 70 % opacity, 0.9 px stroke.</p></div>
+      <div><h3>Surface</h3><p>No layout change. Numerals stay left-aligned. The hairline strip just gains four small embellishments per cell.</p></div>
+      <div><h3>Mobile</h3><p>Corners reduce to 36 × 36 px and tuck into the padding inset.</p></div>
+      <div><h3>vs today</h3><p>Lightest-touch decorative option. Picks up "share certificate" / capital-markets associations without changing structure. Risk: too small to register on first scroll.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VI. GUILLOCHÉ BANKNOTE ENGRAVING
+       ============================================================ -->
+  <section class="idea v6" id="i6">
+    <div class="idea-head">
+      <div class="roman">VI.</div>
+      <div>
+        <h2>Guilloché banknote engraving</h2>
+        <p class="dek">A faint guilloché pattern — interlocking concentric ellipses, the security-print mark you see on the back of a banknote or share certificate — behind each numeral at 16 % gold opacity. Reads "this is capital-markets work" without saying it. Best paired with the existing capital-markets stat.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <svg class="guilloche" viewBox="0 0 260 200" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="0.5">
+              <ellipse cx="130" cy="100" rx="120" ry="80"/>
+              <ellipse cx="130" cy="100" rx="110" ry="74"/>
+              <ellipse cx="130" cy="100" rx="100" ry="68"/>
+              <ellipse cx="130" cy="100" rx="90"  ry="62"/>
+              <ellipse cx="130" cy="100" rx="80"  ry="56"/>
+              <ellipse cx="130" cy="100" rx="70"  ry="50" transform="rotate(15 130 100)"/>
+              <ellipse cx="130" cy="100" rx="70"  ry="50" transform="rotate(-15 130 100)"/>
+              <ellipse cx="130" cy="100" rx="60"  ry="42" transform="rotate(30 130 100)"/>
+              <ellipse cx="130" cy="100" rx="60"  ry="42" transform="rotate(-30 130 100)"/>
+              <ellipse cx="130" cy="100" rx="50"  ry="34" transform="rotate(45 130 100)"/>
+              <ellipse cx="130" cy="100" rx="50"  ry="34" transform="rotate(-45 130 100)"/>
+              <ellipse cx="130" cy="100" rx="40"  ry="26" transform="rotate(60 130 100)"/>
+              <ellipse cx="130" cy="100" rx="40"  ry="26" transform="rotate(-60 130 100)"/>
+              <ellipse cx="130" cy="100" rx="30"  ry="20" transform="rotate(75 130 100)"/>
+              <ellipse cx="130" cy="100" rx="30"  ry="20" transform="rotate(-75 130 100)"/>
+              <ellipse cx="130" cy="100" rx="20"  ry="14"/>
+            </g>
+          </svg>
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <svg class="guilloche" viewBox="0 0 260 200" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="0.5">
+              <ellipse cx="130" cy="100" rx="120" ry="80"/>
+              <ellipse cx="130" cy="100" rx="110" ry="74"/>
+              <ellipse cx="130" cy="100" rx="100" ry="68"/>
+              <ellipse cx="130" cy="100" rx="90"  ry="62"/>
+              <ellipse cx="130" cy="100" rx="80"  ry="56"/>
+              <ellipse cx="130" cy="100" rx="70"  ry="50" transform="rotate(15 130 100)"/>
+              <ellipse cx="130" cy="100" rx="70"  ry="50" transform="rotate(-15 130 100)"/>
+              <ellipse cx="130" cy="100" rx="60"  ry="42" transform="rotate(30 130 100)"/>
+              <ellipse cx="130" cy="100" rx="60"  ry="42" transform="rotate(-30 130 100)"/>
+              <ellipse cx="130" cy="100" rx="50"  ry="34" transform="rotate(45 130 100)"/>
+              <ellipse cx="130" cy="100" rx="50"  ry="34" transform="rotate(-45 130 100)"/>
+              <ellipse cx="130" cy="100" rx="40"  ry="26" transform="rotate(60 130 100)"/>
+              <ellipse cx="130" cy="100" rx="40"  ry="26" transform="rotate(-60 130 100)"/>
+              <ellipse cx="130" cy="100" rx="30"  ry="20" transform="rotate(75 130 100)"/>
+              <ellipse cx="130" cy="100" rx="30"  ry="20" transform="rotate(-75 130 100)"/>
+              <ellipse cx="130" cy="100" rx="20"  ry="14"/>
+            </g>
+          </svg>
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <svg class="guilloche" viewBox="0 0 260 200" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="0.5">
+              <ellipse cx="130" cy="100" rx="120" ry="80"/>
+              <ellipse cx="130" cy="100" rx="110" ry="74"/>
+              <ellipse cx="130" cy="100" rx="100" ry="68"/>
+              <ellipse cx="130" cy="100" rx="90"  ry="62"/>
+              <ellipse cx="130" cy="100" rx="80"  ry="56"/>
+              <ellipse cx="130" cy="100" rx="70"  ry="50" transform="rotate(15 130 100)"/>
+              <ellipse cx="130" cy="100" rx="70"  ry="50" transform="rotate(-15 130 100)"/>
+              <ellipse cx="130" cy="100" rx="60"  ry="42" transform="rotate(30 130 100)"/>
+              <ellipse cx="130" cy="100" rx="60"  ry="42" transform="rotate(-30 130 100)"/>
+              <ellipse cx="130" cy="100" rx="50"  ry="34" transform="rotate(45 130 100)"/>
+              <ellipse cx="130" cy="100" rx="50"  ry="34" transform="rotate(-45 130 100)"/>
+              <ellipse cx="130" cy="100" rx="40"  ry="26" transform="rotate(60 130 100)"/>
+              <ellipse cx="130" cy="100" rx="40"  ry="26" transform="rotate(-60 130 100)"/>
+              <ellipse cx="130" cy="100" rx="30"  ry="20" transform="rotate(75 130 100)"/>
+              <ellipse cx="130" cy="100" rx="30"  ry="20" transform="rotate(-75 130 100)"/>
+              <ellipse cx="130" cy="100" rx="20"  ry="14"/>
+            </g>
+          </svg>
+          <div class="num">32</div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>Sixteen concentric ellipses rotated at 15° increments, all in gold at 16 % opacity. Reads as engraved security-print rosette behind the numeral.</p></div>
+      <div><h3>Surface</h3><p>Strip unchanged. Pattern is below the type stack, masked by the cell padding so it never bleeds across the vertical hairlines.</p></div>
+      <div><h3>Mobile</h3><p>Pattern crops naturally — only the central 60 % is visible at small widths, which keeps it from looking like a watermark covering the whole cell.</p></div>
+      <div><h3>vs today</h3><p>Most "financial-document" of the ten options. Cheapest to ship: zero structural change, one SVG. Risk: at the wrong opacity it reads as background noise.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VII. COMPASS-ROSE BACKDROP
+       ============================================================ -->
+  <section class="idea v7" id="i7">
+    <div class="idea-head">
+      <div class="roman">VII.</div>
+      <div>
+        <h2>Compass-rose backdrop</h2>
+        <p class="dek">A 240 × 240 px 16-point compass rose at 8 % ink opacity behind each numeral — and 14 % on the jurisdictions cell where it has the strongest semantic fit. Reads maritime / cartographic / dossier-exploration. Picks up the brand's "from the Caribbean to the Gulf" register directly.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <svg class="rose" viewBox="0 0 240 240" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="0.8">
+              <circle cx="120" cy="120" r="116"/>
+              <circle cx="120" cy="120" r="92"/>
+              <circle cx="120" cy="120" r="40"/>
+            </g>
+            <g fill="currentColor">
+              <path d="M120 6 L126 116 L120 120 L114 116 Z" opacity="0.9"/>
+              <path d="M120 234 L126 124 L120 120 L114 124 Z" opacity="0.5"/>
+              <path d="M6 120 L116 114 L120 120 L116 126 Z" opacity="0.5"/>
+              <path d="M234 120 L124 114 L120 120 L124 126 Z" opacity="0.5"/>
+              <path d="M40 40 L114 114 L120 120 L116 110 Z" opacity="0.35"/>
+              <path d="M200 40 L126 114 L120 120 L124 110 Z" opacity="0.35"/>
+              <path d="M40 200 L114 126 L120 120 L116 130 Z" opacity="0.35"/>
+              <path d="M200 200 L126 126 L120 120 L124 130 Z" opacity="0.35"/>
+            </g>
+            <g fill="currentColor" font-family="Cormorant Garamond" font-style="italic" font-size="12">
+              <text x="120" y="0" text-anchor="middle" dy="14">N</text>
+              <text x="240" y="120" text-anchor="end"    dy="4" dx="-4">E</text>
+              <text x="120" y="240" text-anchor="middle" dy="-4">S</text>
+              <text x="0"   y="120" text-anchor="start"  dy="4" dx="4">W</text>
+            </g>
+          </svg>
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <svg class="rose" viewBox="0 0 240 240" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="0.8">
+              <circle cx="120" cy="120" r="116"/>
+              <circle cx="120" cy="120" r="92"/>
+              <circle cx="120" cy="120" r="40"/>
+            </g>
+            <g fill="currentColor">
+              <path d="M120 6 L126 116 L120 120 L114 116 Z" opacity="0.9"/>
+              <path d="M120 234 L126 124 L120 120 L114 124 Z" opacity="0.5"/>
+              <path d="M6 120 L116 114 L120 120 L116 126 Z" opacity="0.5"/>
+              <path d="M234 120 L124 114 L120 120 L124 126 Z" opacity="0.5"/>
+              <path d="M40 40 L114 114 L120 120 L116 110 Z" opacity="0.35"/>
+              <path d="M200 40 L126 114 L120 120 L124 110 Z" opacity="0.35"/>
+              <path d="M40 200 L114 126 L120 120 L116 130 Z" opacity="0.35"/>
+              <path d="M200 200 L126 126 L120 120 L124 130 Z" opacity="0.35"/>
+            </g>
+            <g fill="currentColor" font-family="Cormorant Garamond" font-style="italic" font-size="12">
+              <text x="120" y="0" text-anchor="middle" dy="14">N</text>
+              <text x="240" y="120" text-anchor="end"    dy="4" dx="-4">E</text>
+              <text x="120" y="240" text-anchor="middle" dy="-4">S</text>
+              <text x="0"   y="120" text-anchor="start"  dy="4" dx="4">W</text>
+            </g>
+          </svg>
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <svg class="rose" viewBox="0 0 240 240" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="0.8">
+              <circle cx="120" cy="120" r="116"/>
+              <circle cx="120" cy="120" r="92"/>
+              <circle cx="120" cy="120" r="40"/>
+            </g>
+            <g fill="currentColor">
+              <path d="M120 6 L126 116 L120 120 L114 116 Z" opacity="0.9"/>
+              <path d="M120 234 L126 124 L120 120 L114 124 Z" opacity="0.5"/>
+              <path d="M6 120 L116 114 L120 120 L116 126 Z" opacity="0.5"/>
+              <path d="M234 120 L124 114 L120 120 L124 126 Z" opacity="0.5"/>
+              <path d="M40 40 L114 114 L120 120 L116 110 Z" opacity="0.35"/>
+              <path d="M200 40 L126 114 L120 120 L124 110 Z" opacity="0.35"/>
+              <path d="M40 200 L114 126 L120 120 L116 130 Z" opacity="0.35"/>
+              <path d="M200 200 L126 126 L120 120 L124 130 Z" opacity="0.35"/>
+            </g>
+            <g fill="currentColor" font-family="Cormorant Garamond" font-style="italic" font-size="12">
+              <text x="120" y="0" text-anchor="middle" dy="14">N</text>
+              <text x="240" y="120" text-anchor="end"    dy="4" dx="-4">E</text>
+              <text x="120" y="240" text-anchor="middle" dy="-4">S</text>
+              <text x="0"   y="120" text-anchor="start"  dy="4" dx="4">W</text>
+            </g>
+          </svg>
+          <div class="num">32</div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>16-point compass rose, three concentric rings, four cardinal points labelled in Cormorant italic. Ink colour at 8 % / 14 % opacity.</p></div>
+      <div><h3>Surface</h3><p>Strip unchanged. Rose centred behind the numeral, ink rather than gold so it reads as map / parchment, not award.</p></div>
+      <div><h3>Mobile</h3><p>Rose centred in each stacked cell. Cardinal labels remain legible at 200 × 200 px.</p></div>
+      <div><h3>vs today</h3><p>Strongest semantic fit for "jurisdictions covered". Could be applied to only the third cell as a hybrid — different ornament per cell — but that risks losing visual rhythm.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VIII. WAX-SEAL ACCENT
+       ============================================================ -->
+  <section class="idea v8" id="i8">
+    <div class="idea-head">
+      <div class="roman">VIII.</div>
+      <div>
+        <h2>Wax-seal corner accent</h2>
+        <p class="dek">Most restrained of the ornamental options. Keep the shipped strip exactly; add a single 56 px gold seal in the top-right corner of each cell — circular hairline ring + dashed inner ring + italic Cormorant <em>M</em> rotated 8°. Reuses the wax-seal direction already explored in <code>freshness-badge-redesign.html</code> round two.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <span class="seal" aria-hidden="true"><span class="m">M</span></span>
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <span class="seal" aria-hidden="true"><span class="m">M</span></span>
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <span class="seal" aria-hidden="true"><span class="m">M</span></span>
+          <div class="num">32</div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>CSS-only — two concentric circles + Cormorant italic <em>M</em> rotated 8°. No SVG. Cheap, reuses tokens already in the design system.</p></div>
+      <div><h3>Surface</h3><p>Strip identical to today. Single decorative pip per cell — three across the strip, like three notarial stamps on a dossier page.</p></div>
+      <div><h3>Mobile</h3><p>Seal drops to 44 px and tucks into the top-right inset of each stacked cell.</p></div>
+      <div><h3>vs today</h3><p>Lightest change of the ten. Best register for the dossier voice — formal but quiet. Risk: too small to register as ornament; reads more as "marking" than "decorating".</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IX. ROMAN NUMERAL PAIRING + FLEURONS
+       ============================================================ -->
+  <section class="idea v9" id="i9">
+    <div class="idea-head">
+      <div class="roman">IX.</div>
+      <div>
+        <h2>Roman numeral pairing + fleuron dividers</h2>
+        <p class="dek">Type-only ornament — no drawn marks. Above each Arabic numeral, set the Roman equivalent in Cormorant italic at 14 px in gold (<em>XIV+ · C+ · XXXII</em>) like an encyclopaedic gloss. Replace the bare vertical hairlines with a tiny fleuron (<em>❦</em>) sitting on the rule, and stamp the top + bottom horizontals with a <em>✣</em> end-stop. Encyclopaedic / almanac register.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="stats-grid">
+        <div class="stats-cell">
+          <span class="roman-pair">XIV +</span>
+          <div class="num">14<span class="plus">+</span></div>
+          <div class="label">Years in capital markets</div>
+          <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+        </div>
+        <div class="stats-cell">
+          <span class="roman-pair">C +</span>
+          <div class="num">100<span class="plus">+</span></div>
+          <div class="label">Mandates delivered</div>
+          <div class="body">Across CBI, RBI and tax residency</div>
+        </div>
+        <div class="stats-cell">
+          <span class="roman-pair">XXXII</span>
+          <div class="num">32</div>
+          <div class="label">Jurisdictions covered</div>
+          <div class="body">From the Caribbean to the Gulf</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>Three Unicode glyphs (✣, ❦), three Roman gloss labels. Zero SVG, zero raster. Adds 14 px of typographic ornament per cell.</p></div>
+      <div><h3>Surface</h3><p>Hairline strip intact. Vertical hairlines pick up a centre fleuron; top + bottom hairlines pick up centre end-stops.</p></div>
+      <div><h3>Mobile</h3><p>Roman gloss + fleurons survive at any width. Stacked dividers get the fleuron centred horizontally rather than vertically.</p></div>
+      <div><h3>vs today</h3><p>Most "Mobius-voice" of the ten — almanac, encyclopaedic, NDA-first. Cheapest to ship, no new assets. Risk: in print-light environments the gold fleurons may not register strongly enough.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       X. DECORATIVE PULL-RULES
+       ============================================================ -->
+  <section class="idea v10" id="i10">
+    <div class="idea-head">
+      <div class="roman">X.</div>
+      <div>
+        <h2>Decorative pull-rules</h2>
+        <p class="dek">The most restrained option. No ornament inside the cells at all; the only change is at the top and bottom of the strip, where the hairlines pick up a centre wordmark in spaced Cormorant italic — <em>· M · O · B · I · U · S ·</em> — sitting on the rule like the masthead bar on a broadsheet. Vertical dividers gain a small italic <em>&</em> ampersand at the midpoint.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render</div>
+    <div class="stage">
+      <div class="v10-frame" style="position:relative">
+        <div class="stats-grid">
+          <span class="top-ornament">·  M  O  B  I  U  S  ·</span>
+          <span class="divider divider-l">&amp;</span>
+          <span class="divider divider-r">&amp;</span>
+          <span class="bot-ornament">·  M  O  B  I  U  S  ·</span>
+          <div class="stats-cell">
+            <div class="num">14<span class="plus">+</span></div>
+            <div class="label">Years in capital markets</div>
+            <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+          </div>
+          <div class="stats-cell">
+            <div class="num">100<span class="plus">+</span></div>
+            <div class="label">Mandates delivered</div>
+            <div class="body">Across CBI, RBI and tax residency</div>
+          </div>
+          <div class="stats-cell">
+            <div class="num">32</div>
+            <div class="label">Jurisdictions covered</div>
+            <div class="body">From the Caribbean to the Gulf</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><h3>Ornament</h3><p>Pure type — the wordmark sits centred on the top + bottom hairlines, masking them. Italic ampersand sits on each vertical divider at the midpoint.</p></div>
+      <div><h3>Surface</h3><p>No SVG, no border changes. The strip becomes a masthead-style band with two visible rules + two name-stops.</p></div>
+      <div><h3>Mobile</h3><p>Verticals collapse; only top + bottom wordmarks remain. Wordmark spacing tightens at narrow widths.</p></div>
+      <div><h3>vs today</h3><p>Closest to today of the ten — almost a tweak rather than a redesign. Best for users who like the current strip but want a single accent of personality.</p></div>
+    </div>
+  </section>
+
+  <footer class="pagefoot">
+    <span>/tests/sketches/stats-area-ornament-ideas.html</span>
+    <span>Mobius · drafts only · not deployed</span>
+  </footer>
+
+</div>
+</body>
+</html>
