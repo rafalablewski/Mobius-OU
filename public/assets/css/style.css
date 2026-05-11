@@ -16060,4 +16060,229 @@ a.ht-spine__contents-cell-face:focus-visible {
   max-width: 64ch;
 }
 
+/* === Press line ("As seen in") ========================================== *
+ * Two variants: .ht-press-line--marquee (cream ground, scrolling, used on
+ * Home + About + similar editorial pages) and .ht-press-line--static (ink
+ * ground, no animation, used in the footer).
+ *
+ * Each logo is a <span> whose background is currentColor and whose
+ * mask-image is the brand SVG from /public/. That gives us one unified
+ * colour across the four wordmarks without inlining SVG content.
+ * Originally sketched at tests/sketches/trust-strip-concepts.html#a1.
+ * ========================================================================= */
+
+.ht-press-line-area {
+  padding: 56px 0;
+  background: var(--ht-body);
+}
+
+.ht-press-line {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: center;
+  border-top: 1px solid rgba(11, 15, 20, 0.20);
+  border-bottom: 1px solid rgba(11, 15, 20, 0.20);
+  padding: 22px 24px;
+  color: var(--ht-heading-color);
+}
+
+.ht-press-line__label {
+  font-family: var(--ht-font-ui);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+  white-space: nowrap;
+}
+
+/* Marquee viewport — clipped, with a soft edge-fade mask so logos enter and
+   leave behind the page rather than at a hard cut. */
+.ht-press-line__viewport {
+  overflow: hidden;
+  min-width: 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+          mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 40px,
+    black calc(100% - 40px),
+    transparent 100%
+  );
+}
+
+/* Two identical sets back-to-back. Each set carries a trailing
+   padding-right equal to the inter-logo gap, so translateX(-50%) lands set 2
+   exactly where set 1 started — a seamless infinite loop. */
+.ht-press-line__track {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  animation: ht-press-line-marquee 28s linear infinite;
+  will-change: transform;
+}
+.ht-press-line__viewport:hover .ht-press-line__track {
+  animation-play-state: paused;
+}
+.ht-press-line__set {
+  display: inline-flex;
+  align-items: center;
+  gap: 56px;
+  padding-right: 56px;
+  flex-shrink: 0;
+}
+
+/* Each logo is a div whose background is painted in currentColor and
+   masked by the brand SVG. */
+.ht-press-line__logo {
+  display: block;
+  background-color: currentColor;
+  opacity: 0.72;
+  transition: opacity 0.2s ease;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  flex-shrink: 0;
+}
+.ht-press-line__logo:hover { opacity: 1; }
+
+/* Per-logo dimensions. Heights tuned for optical balance — the four
+   wordmarks have very different x-heights so they need different boxes. */
+.ht-press-line__logo--ft  {
+  width: 112px; height: 56px;
+  -webkit-mask-image: url(/financialtimes.svg);
+          mask-image: url(/financialtimes.svg);
+}
+.ht-press-line__logo--bb  {
+  width: 76px; height: 38px;
+  -webkit-mask-image: url(/bloomberg.svg);
+          mask-image: url(/bloomberg.svg);
+}
+.ht-press-line__logo--nyt {
+  width: 170px; height: 34px;
+  -webkit-mask-image: url(/nytimes-wordmark.svg);
+          mask-image: url(/nytimes-wordmark.svg);
+}
+.ht-press-line__logo--hp  {
+  width: 120px; height: 32px;
+  -webkit-mask-image: url(/huffingtonpost.svg);
+          mask-image: url(/huffingtonpost.svg);
+}
+
+/* Static variant — footer-friendly, no animation, no edge mask, inverts to
+   ivory on dark ground. */
+.ht-press-line--static {
+  border-top-color: rgba(250, 246, 238, 0.18);
+  border-bottom-color: rgba(250, 246, 238, 0.18);
+  color: var(--ht-theme-color-5);
+  padding: 22px 0;
+  margin: 56px 0 28px;
+}
+.ht-press-line--static .ht-press-line__label {
+  color: rgba(250, 246, 238, 0.55);
+}
+.ht-press-line--static .ht-press-line__set {
+  flex-wrap: wrap;
+  padding-right: 0;
+}
+.ht-press-line--static .ht-press-line__logo {
+  opacity: 0.55;
+}
+
+@keyframes ht-press-line-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ht-press-line__track { animation: none; }
+}
+
+@media (max-width: 720px) {
+  .ht-press-line-area { padding: 36px 0; }
+  .ht-press-line {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 16px;
+  }
+  .ht-press-line__set {
+    gap: 36px;
+    padding-right: 36px;
+  }
+  .ht-press-line__track {
+    animation-duration: 22s;
+  }
+  /* Static (footer) — let logos wrap onto a second row on narrow viewports
+     instead of forcing horizontal scroll. */
+  .ht-press-line--static .ht-press-line__set {
+    gap: 28px 24px;
+    flex-wrap: wrap;
+  }
+}
+
+/* === Rating proof (Google + Trustpilot) ================================= *
+ * Two real brand widgets side by side at a locked equal height. Used once,
+ * late in the funnel, at the conversion point (Contact page above the form).
+ * Each cell links out to the live source so the rating is verifiable.
+ * Originally sketched at tests/sketches/trust-strip-concepts.html#b1.
+ * ========================================================================= */
+
+.ht-rating-proof {
+  --ht-rating-row-h: 200px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin: 0 auto 40px;
+  max-width: 880px;
+}
+
+.ht-rating-proof__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--ht-rating-row-h);
+  text-decoration: none;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+.ht-rating-proof__cell:hover { transform: translateY(-2px); }
+
+.ht-rating-proof__svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  /* Vector-render with full precision */
+  shape-rendering: geometricPrecision;
+}
+
+@media (max-width: 720px) {
+  .ht-rating-proof {
+    --ht-rating-row-h: auto;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ht-rating-proof__cell {
+    height: auto;
+    width: 100%;
+    max-width: 360px;
+  }
+  .ht-rating-proof__svg {
+    height: auto;
+    width: 100%;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

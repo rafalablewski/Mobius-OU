@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Glyph from './Glyph';
+import PressLine from './PressLine.jsx';
 
 export default function Footer() {
   return (
@@ -61,6 +62,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        <PressLine variant="static" />
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
           <p>

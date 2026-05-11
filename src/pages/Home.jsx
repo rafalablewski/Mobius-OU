@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import TopPrograms from '../components/TopPrograms.jsx';
 import Principles from '../components/Principles.jsx';
+import PressLine from '../components/PressLine.jsx';
 import Approach from '../components/Approach.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import { PROGRAMS } from '../data/programs.js';
@@ -129,6 +130,8 @@ export default function Home() {
           </section>
 
           <Principles />
+
+          <PressLine />
 
           <section className="ht-stats-area fix">
               <div className="container">

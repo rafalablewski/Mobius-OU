@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import PressLine from '../components/PressLine.jsx';
 
 export default function About() {
   return (
@@ -37,6 +38,8 @@ export default function About() {
                   </div>
               </div>
           </section>
+
+          <PressLine />
 
           <section className="ht-process-area inner-two fix section-padding">
               <div className="ht-process-shape">
