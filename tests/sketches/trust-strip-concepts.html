@@ -22,8 +22,6 @@
     --hairline:   rgba(11, 15, 20, 0.12);
     --hairline-2: rgba(11, 15, 20, 0.20);
 
-    /* red double-ring on the constructed CIA award card in B.I */
-    --award-red:  #B03A2E;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -317,9 +315,9 @@
 
   /* ============================================================
      AXIS B · I — REFERENCE-FIDELITY THREE-CARD ROW
-     Google + Trustpilot use the real brand widgets from /public/
-     (google.svg, trustpilot.svg). CIA award card constructed in HTML
-     to match the rounded-corner + soft-shadow + top-stripe register.
+     Google + Trustpilot — real brand widgets from /public/ inlined
+     as <svg> elements so they stay vector-sharp at any size, locked
+     to a single row height for visual coherence.
      ============================================================ */
   .b1 {
     --b1-row-h: 200px;
@@ -335,11 +333,6 @@
   .b1__cell:hover { transform: translateY(-2px); }
   /* SVG cells size by content (svg's intrinsic aspect × locked height) */
   .b1__cell--svg { flex: 0 0 auto; }
-  /* CIA award fills the remaining width */
-  .b1__cell--award {
-    flex: 1 1 0;
-    min-width: 260px;
-  }
   /* Inline SVG — vector-sharp at any size; height-locked so all three cards align */
   .b1__svg {
     display: block;
@@ -348,59 +341,10 @@
     shape-rendering: geometricPrecision;
     text-rendering: geometricPrecision;
   }
-  /* CIA award card — matches the SVG widgets' visual register and row height */
-  .b1__award-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow:
-      0 12px 28px -16px rgba(11,15,20,0.22),
-      0 2px 6px -3px rgba(11,15,20,0.10);
-    padding: 28px 24px;
-    display: flex; align-items: center; gap: 18px;
-    overflow: hidden;
-  }
-  .b1__award-card::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0;
-    height: 8px; background: var(--award-red);
-  }
-  .b1__award-seal {
-    flex-shrink: 0;
-    width: 84px; height: 84px; border-radius: 50%;
-    border: 3px double var(--award-red);
-    background: #fff;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 6px; text-align: center;
-  }
-  .b1__award-top {
-    font-family: "Cormorant Garamond", serif; font-weight: 700;
-    font-size: 7px; color: var(--award-red); line-height: 1.15; letter-spacing: 0.04em;
-  }
-  .b1__award-win {
-    font-family: "Manrope"; font-weight: 800; font-size: 8.5px;
-    letter-spacing: 0.18em; color: var(--award-red); margin: 3px 0 2px;
-  }
-  .b1__award-yr {
-    font-family: "Manrope"; font-weight: 700; font-size: 9px;
-    color: var(--ink); letter-spacing: 0.05em;
-  }
-  .b1__award-body { min-width: 0; }
-  .b1__award-title {
-    font-family: "Manrope"; font-weight: 500; font-size: 15px;
-    color: var(--ink); line-height: 1.35;
-  }
-  .b1__award-sub {
-    font-family: "Manrope"; font-weight: 500; font-size: 12px;
-    color: var(--stone); margin-top: 6px;
-  }
   @media (max-width: 720px) {
     .b1 { flex-direction: column; align-items: stretch; }
     .b1__cell { height: auto; width: 100%; }
-    .b1__cell--award { min-width: 0; }
     .b1__svg { width: 100%; height: auto; max-width: 100%; }
-    .b1__award-card { height: auto; min-height: 140px; }
   }
 
   /* ============================================================
@@ -816,65 +760,43 @@
       </div>
       <h2>The reference image, <em>turned horizontal</em>.</h2>
       <p class="idea__dek">
-        Closest possible mirror of the screenshot. The Google and Trustpilot
-        widgets are the real brand SVGs from
-        <code class="mono">/public/google.svg</code> and
+        The two real brand widgets, side by side at a locked equal height.
+        Source files at <code class="mono">/public/google.svg</code> and
         <code class="mono">/public/trustpilot.svg</code> — full pre-rendered
         rating cards with drop shadow, top accent and native typography baked
-        in. The Corporate Immigration Awards card is built in HTML to match
-        their visual register (white card, soft drop shadow, red top stripe,
-        red double-ring winner seal). Highest source-recognition value of
-        the social-proof trio; loudest visually.
+        in — inlined here as raw <code class="mono">&lt;svg&gt;</code>
+        elements so they stay vector-sharp at any rendered size. Highest
+        source-recognition value of the social-proof trio; loudest visually.
       </p>
 
       <p class="panel-label">Pencil sketch</p>
       <div class="sketch">
         <svg viewBox="0 0 1000 150" aria-hidden="true">
           <g fill="none" stroke="#2A2A2A" stroke-width="0.9">
-            <rect x="40" y="20" width="290" height="110" rx="6"/>
-            <rect x="355" y="20" width="290" height="110" rx="6"/>
-            <rect x="670" y="20" width="290" height="110" rx="6"/>
+            <rect x="200" y="20" width="320" height="110" rx="6"/>
+            <rect x="560" y="20" width="280" height="110" rx="6"/>
           </g>
-          <line x1="355" y1="22" x2="645" y2="22" stroke="#FBBC04" stroke-width="3"/>
-          <g fill="none" stroke="#B03A2E" stroke-width="1.2">
-            <circle cx="84" cy="75" r="26"/><circle cx="84" cy="75" r="22"/>
-          </g>
+          <line x1="200" y1="22" x2="520" y2="22" stroke="#FBBC04" stroke-width="3"/>
           <g fill="none" stroke="#2A2A2A" stroke-width="1">
-            <circle cx="395" cy="75" r="24"/>
+            <circle cx="250" cy="75" r="26"/>
           </g>
-          <g fill="#34A853"><rect x="704" y="62" width="22" height="22"/></g>
-          <g fill="#34A853"><rect x="730" y="62" width="22" height="22"/></g>
-          <g fill="#34A853"><rect x="756" y="62" width="22" height="22"/></g>
-          <g fill="#34A853"><rect x="782" y="62" width="22" height="22"/></g>
-          <g fill="#DCDCE6"><rect x="808" y="62" width="22" height="22"/></g>
+          <g fill="#34A853"><rect x="588" y="62" width="22" height="22"/></g>
+          <g fill="#34A853"><rect x="614" y="62" width="22" height="22"/></g>
+          <g fill="#34A853"><rect x="640" y="62" width="22" height="22"/></g>
+          <g fill="#34A853"><rect x="666" y="62" width="22" height="22"/></g>
+          <g fill="#DCDCE6"><rect x="692" y="62" width="22" height="22"/></g>
           <g font-family="Manrope" font-size="9" letter-spacing="2" fill="#6B6257">
-            <text x="120" y="58">CORPORATE</text><text x="120" y="72">IMMIGRATION</text><text x="120" y="86">AWARDS</text>
-            <text x="430" y="58">GOOGLE RATING</text>
-            <text x="704" y="48">TRUSTPILOT</text>
+            <text x="295" y="58">GOOGLE RATING</text>
+            <text x="588" y="48">TRUSTPILOT</text>
           </g>
-          <text x="430" y="86" font-family="Manrope" font-weight="700" font-size="22" fill="#2A2A2A">4.8 ★★★★★</text>
-          <text x="704" y="108" font-family="Manrope" font-size="11" fill="#6B6e75">RATED 3.9/5.0</text>
+          <text x="295" y="86" font-family="Manrope" font-weight="700" font-size="22" fill="#2A2A2A">4.8 ★★★★★</text>
+          <text x="588" y="108" font-family="Manrope" font-size="11" fill="#6B6e75">RATED 3.9/5.0</text>
         </svg>
       </div>
 
       <p class="panel-label">Live mock — native-brand cards + stats tile</p>
       <div class="mock">
         <div class="b1">
-
-          <!-- CIA award card — built in HTML to match the SVGs' register -->
-          <div class="b1__cell b1__cell--award">
-            <div class="b1__award-card">
-              <div class="b1__award-seal">
-                <div class="b1__award-top">Corporate<br/>Immigration<br/>Awards</div>
-                <div class="b1__award-win">WINNER</div>
-                <div class="b1__award-yr">2019</div>
-              </div>
-              <div class="b1__award-body">
-                <div class="b1__award-title">Corporate Immigration &amp; Relocation Awards</div>
-                <div class="b1__award-sub">Category winner · 2019</div>
-              </div>
-            </div>
-          </div>
 
           <!-- Google — real brand widget (public/google.svg inlined as <svg> for vector sharpness) -->
           <div class="b1__cell b1__cell--svg">
@@ -976,10 +898,10 @@
       </div>
 
       <div class="register">
-        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Three cards in a 3-column grid. Two are real brand SVGs (<code class="mono">/public/google.svg</code> — white card, green top stripe, 4-colour Google G, 4.8★ baked in; <code class="mono">/public/trustpilot.svg</code> — green header band, light-blue body, four green Trustpilot stars, rated 3.9 baked in). The third is built in HTML with matching ingredients: white card, 8 px red top stripe, soft drop shadow, red double-ring winner seal.</div></div>
-        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Grid collapses to single column. SVGs scale by width so their native aspect ratios are preserved; the CIA card flexes to match.</div></div>
+        <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Two real brand SVGs in a centred flex row, both locked to the same row height via <code class="mono">--b1-row-h</code>. <code class="mono">/public/google.svg</code> — white card, green top stripe, 4-colour Google G, 4.8★ baked in. <code class="mono">/public/trustpilot.svg</code> — green header band, light-blue body, four green Trustpilot stars, rated 3.9 baked in. Each finds its natural width from its viewBox so neither widget is squashed or stretched.</div></div>
+        <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Row stacks vertically; SVGs swap from height-locked to width: 100% so their native aspect ratios are preserved on small screens.</div></div>
       </div>
-      <div class="contrast"><strong>vs the reference image:</strong> 1:1 mirror, only turned horizontal — Awards / Google / Trustpilot in their native registers, gold/green top rules retained. <strong>Honesty tax:</strong> cards must link out (<code class="mono">target="_blank"</code>) to the live source where the rating is verifiable, otherwise the widget reads dishonest. <strong>Asset paths:</strong> the two brand widgets are inlined as raw <code class="mono">&lt;svg&gt;</code> elements (not <code class="mono">&lt;img&gt;</code>, not <code class="mono">data:</code> URIs) so they stay vector-sharp at any rendered size — no rasterisation, no filesystem lookup, no preview-environment quirks. The source files at <code class="mono">public/google.svg</code> and <code class="mono">public/trustpilot.svg</code> remain the canonical artefacts. <strong>Equal height:</strong> the row is locked to a single height via <code class="mono">--b1-row-h: 200px</code>; each SVG fills the height and finds its natural width from its viewBox; the CIA card flex-grows to fill the remainder. When ported into the React app, you can either inline the same way or use <code class="mono">&lt;img src="/google.svg"&gt;</code> (Vite strips <code class="mono">public/</code> at build).</div>
+      <div class="contrast"><strong>vs the reference image:</strong> the two real brand widgets, turned horizontal and laid side by side — gold/green top rules retained, source files unaltered. <strong>Honesty tax:</strong> cards must link out (<code class="mono">target="_blank"</code>) to the live source where the rating is verifiable, otherwise the widget reads dishonest. <strong>Asset paths:</strong> the two brand widgets are inlined as raw <code class="mono">&lt;svg&gt;</code> elements (not <code class="mono">&lt;img&gt;</code>, not <code class="mono">data:</code> URIs) so they stay vector-sharp at any rendered size — no rasterisation, no filesystem lookup, no preview-environment quirks. The source files at <code class="mono">public/google.svg</code> and <code class="mono">public/trustpilot.svg</code> remain the canonical artefacts. <strong>Equal height:</strong> the row is locked to a single height via <code class="mono">--b1-row-h: 200px</code>; each SVG fills the height and finds its natural width from its viewBox, so the two widgets align on the same top and bottom baselines without either being squashed. When ported into the React app, you can either inline the same way or use <code class="mono">&lt;img src="/google.svg"&gt;</code> (Vite strips <code class="mono">public/</code> at build).</div>
     </article>
 
     <!-- =========================================================
