@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TopPrograms from '../components/TopPrograms.jsx';
 import Principles from '../components/Principles.jsx';
@@ -10,8 +10,17 @@ import { PROGRAMS } from '../data/programs.js';
 const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
 const CBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'CBI');
 
+const STATS_DICTUMS = [
+  { stat: '14',  line: 'Time is the easy figure — and the only one in this trade nobody can rent.', sig: 'No. 01 · Tenure' },
+  { stat: '100', line: 'Every file pre-screened on source of funds before it is opened.',           sig: 'No. 02 · Provenance' },
+  { stat: '32',  line: 'A jurisdiction we don’t visit, we don’t quote.',                  sig: 'No. 03 · Scope' },
+  { stat: '5',   line: 'Counsel on the ground — briefed in your timezone, not ours.',               sig: 'No. 04 · Presence' },
+  { stat: '1',   line: 'The partner you brief is the partner who writes the file.',                 sig: 'No. 05 · Bench' },
+];
+
 export default function Home() {
   const statsScrollerRef = useRef(null);
+  const [activeStat, setActiveStat] = useState(STATS_DICTUMS[0].stat);
 
   useEffect(() => {
     const scroller = statsScrollerRef.current;
@@ -31,6 +40,8 @@ export default function Home() {
         if (d < bestDist) { bestDist = d; bestIdx = i; }
       }
       cards.forEach((c, i) => c.classList.toggle('is-focal', i === bestIdx));
+      const stat = cards[bestIdx].dataset.stat;
+      if (stat) setActiveStat(stat);
     };
     update();
     const onClick = (e) => {
@@ -179,37 +190,52 @@ export default function Home() {
                           <em>Audit trail on request</em>
                       </Link>
                   </div>
-                  <div className="ht-stats-scroller wow fadeInUp" data-wow-delay=".3s" ref={statsScrollerRef}>
-                      <div className="ht-stats-wrapper" role="list">
-                          <div className="ht-stats-items" role="listitem">
-                              <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
-                              <h4>Years on the desk &mdash; CFA-trained, NYSE-seasoned advisory.</h4>
-                              <div className="ht-stats-rule" aria-hidden="true"></div>
-                              <p>In private practice since 2018. Charter held continuously since 2012.</p>
-                          </div>
-                          <div className="ht-stats-items" role="listitem">
-                              <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
-                              <h4>Private files &mdash; citizenship, residency and tax.</h4>
-                              <div className="ht-stats-rule" aria-hidden="true"></div>
-                              <p>Every brief pre-screened on source of funds before engagement.</p>
-                          </div>
-                          <div className="ht-stats-items" role="listitem">
-                              <h2 className="number"><span className="count">32</span></h2>
-                              <h4>Jurisdictions &mdash; firms and partners operational.</h4>
-                              <div className="ht-stats-rule" aria-hidden="true"></div>
-                              <p>From the Caribbean shelf programmes to the Gulf&rsquo;s new tax routes.</p>
-                          </div>
-                          <div className="ht-stats-items" role="listitem">
-                              <h2 className="number"><span className="count">5</span></h2>
-                              <h4>Offices &mdash; local presence where the programmes are written.</h4>
-                              <div className="ht-stats-rule" aria-hidden="true"></div>
-                              <p>Counsel on the ground from Europe to the Gulf, briefed in your timezone.</p>
-                          </div>
-                          <div className="ht-stats-items" role="listitem">
-                              <h2 className="number"><span className="count">1</span></h2>
-                              <h4>Dedicated team &mdash; senior bench, no junior handoffs.</h4>
-                              <div className="ht-stats-rule" aria-hidden="true"></div>
-                              <p>The partner you brief is the partner who writes the file.</p>
+                  <div className="ht-stats-frame">
+                      <aside className="ht-stats-companion wow fadeInLeft" data-wow-delay=".2s" aria-live="polite">
+                          {STATS_DICTUMS.map((d) => (
+                              <div
+                                key={d.stat}
+                                className={`ht-stats-dictum${d.stat === activeStat ? ' is-active' : ''}`}
+                                data-stat={d.stat}
+                                aria-hidden={d.stat !== activeStat}
+                              >
+                                  <p className="ht-stats-dictum__line">{d.line}</p>
+                                  <span className="ht-stats-dictum__sig">{d.sig}</span>
+                              </div>
+                          ))}
+                      </aside>
+                      <div className="ht-stats-scroller wow fadeInUp" data-wow-delay=".3s" ref={statsScrollerRef}>
+                          <div className="ht-stats-wrapper" role="list">
+                              <div className="ht-stats-items" role="listitem" data-stat="14">
+                                  <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
+                                  <h4>Years on the desk &mdash; CFA-trained, NYSE-seasoned advisory.</h4>
+                                  <div className="ht-stats-rule" aria-hidden="true"></div>
+                                  <p>In private practice since 2018. Charter held continuously since 2012.</p>
+                              </div>
+                              <div className="ht-stats-items" role="listitem" data-stat="100">
+                                  <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
+                                  <h4>Private files &mdash; citizenship, residency and tax.</h4>
+                                  <div className="ht-stats-rule" aria-hidden="true"></div>
+                                  <p>Every brief pre-screened on source of funds before engagement.</p>
+                              </div>
+                              <div className="ht-stats-items" role="listitem" data-stat="32">
+                                  <h2 className="number"><span className="count">32</span></h2>
+                                  <h4>Jurisdictions &mdash; firms and partners operational.</h4>
+                                  <div className="ht-stats-rule" aria-hidden="true"></div>
+                                  <p>From the Caribbean shelf programmes to the Gulf&rsquo;s new tax routes.</p>
+                              </div>
+                              <div className="ht-stats-items" role="listitem" data-stat="5">
+                                  <h2 className="number"><span className="count">5</span></h2>
+                                  <h4>Offices &mdash; local presence where the programmes are written.</h4>
+                                  <div className="ht-stats-rule" aria-hidden="true"></div>
+                                  <p>Counsel on the ground from Europe to the Gulf, briefed in your timezone.</p>
+                              </div>
+                              <div className="ht-stats-items" role="listitem" data-stat="1">
+                                  <h2 className="number"><span className="count">1</span></h2>
+                                  <h4>Dedicated team &mdash; senior bench, no junior handoffs.</h4>
+                                  <div className="ht-stats-rule" aria-hidden="true"></div>
+                                  <p>The partner you brief is the partner who writes the file.</p>
+                              </div>
                           </div>
                       </div>
                   </div>
