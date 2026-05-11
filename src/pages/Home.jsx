@@ -195,21 +195,23 @@ export default function Home() {
                       <div className="ht-stats-masthead__controls">
                           <button
                             type="button"
-                            className="ht-stats-nav"
+                            className="ht-stats-nav ht-stats-nav--prev"
                             onClick={() => goToOffset(-1)}
                             disabled={activeIdx <= 0}
                             aria-label="Previous figure"
                           >
-                              <span aria-hidden="true">&lsaquo;</span>
+                              <span className="ht-stats-nav__chev" aria-hidden="true">&lsaquo;</span>
+                              <span className="ht-stats-nav__label">Prev</span>
                           </button>
                           <button
                             type="button"
-                            className="ht-stats-nav"
+                            className="ht-stats-nav ht-stats-nav--next"
                             onClick={() => goToOffset(1)}
                             disabled={activeIdx >= STATS_DICTUMS.length - 1}
                             aria-label="Next figure"
                           >
-                              <span aria-hidden="true">&rsaquo;</span>
+                              <span className="ht-stats-nav__label">Next</span>
+                              <span className="ht-stats-nav__chev" aria-hidden="true">&rsaquo;</span>
                           </button>
                           <Link to="/contact" className="ht-stats-audit">
                               <em>Audit trail on request</em>
