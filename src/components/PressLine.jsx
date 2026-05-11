@@ -1,11 +1,7 @@
 /**
- * PressLine — "As seen in" credibility strip.
- *
- *   variant="marquee"  Cream ground, slow horizontal scroll. Used on
- *                      editorial pages (Home, About) above where the reader
- *                      drops into substance.
- *   variant="static"   Ink ground, no animation. Used in the site footer as
- *                      a quiet credibility tag above the legal copy.
+ * PressLine — "As seen in" credibility strip. Cream ground, slow horizontal
+ * scroll, used on editorial pages (Home, About) above where the reader drops
+ * into substance.
  *
  * Each logo is a <span> whose background is painted in currentColor and
  * masked by the brand SVG in /public/. That gives us:
@@ -39,16 +35,7 @@ function LogoSet({ ariaHidden = false }) {
   );
 }
 
-export default function PressLine({ variant = 'marquee' }) {
-  if (variant === 'static') {
-    return (
-      <div className="ht-press-line ht-press-line--static" role="group" aria-label="As seen in">
-        <span className="ht-press-line__label">As seen in</span>
-        <LogoSet />
-      </div>
-    );
-  }
-
+export default function PressLine() {
   return (
     <section className="ht-press-line-area" aria-label="As seen in">
       <div className="container">

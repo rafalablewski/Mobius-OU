@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Glyph from './Glyph';
-import PressLine from './PressLine.jsx';
+import RatingProof from './RatingProof.jsx';
 
 export default function Footer() {
   return (
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <PressLine variant="static" />
+        <RatingProof tone="footer" />
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
           <p>
