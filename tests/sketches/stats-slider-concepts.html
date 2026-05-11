@@ -82,7 +82,12 @@
   }
 
   /* Idea cards ------------------------------------------------------------ */
-  .ideas { display: grid; gap: 56px; margin-top: 56px; }
+  .ideas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+    margin-top: 56px;
+  }
   .idea {
     border: 1px solid var(--hairline); border-radius: 4px; background: var(--cream);
     padding: 28px 28px 36px;
@@ -394,7 +399,7 @@
   /* ================================================================= */
   /* VI — Ticker marquee (MINE 1)                                       */
   /* ================================================================= */
-  .i6-stage { position: relative; padding: 0; }
+  .i6-stage { position: relative; padding: 0; overflow: hidden; }
   .i6-stage::before, .i6-stage::after {
     content: ""; position: absolute; top: 0; bottom: 0; width: 64px;
     z-index: 2; pointer-events: none;
