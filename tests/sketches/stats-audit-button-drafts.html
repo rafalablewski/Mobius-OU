@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit button — 10 drafts — Mobius sketches</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Manrope:wght@200;300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --body:#F4EFE6; --ink:#0B0F14; --gold:#C9A86A; --border:#E2DBCE;
+    --muted:#6B6257; --text:#1C232B;
+    --ui:'Manrope',sans-serif;
+    --display:'Cormorant Garamond',serif;
+    --body-serif:'Newsreader',Georgia,serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--body);color:var(--text);
+    font-family:var(--ui);font-size:15px;line-height:1.6;letter-spacing:-0.003em}
+  .wrap{max-width:1180px;margin:0 auto;padding:80px 40px 160px}
+
+  /* page chrome */
+  .page-head{border-bottom:1px solid var(--border);padding-bottom:40px;margin-bottom:48px}
+  .eyebrow{font-family:var(--ui);font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--muted)}
+  h1.title{font-family:var(--display);font-weight:400;font-size:48px;line-height:1.1;
+    letter-spacing:-0.02em;color:var(--ink);margin:8px 0 16px}
+  h1.title em{font-style:italic;color:var(--gold)}
+  .standfirst{font-family:var(--body-serif);max-width:64ch;font-size:17px;
+    line-height:1.55;margin:0}
+
+  /* variant block */
+  .v{margin:80px 0 0;padding-top:36px;border-top:1px solid var(--border);
+    display:grid;grid-template-columns:200px 1fr;gap:40px}
+  .v:first-of-type{border-top:none;padding-top:0;margin-top:24px}
+  .v__num{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:44px;color:var(--gold);line-height:0.95}
+  .v__meta h2{font-family:var(--display);font-weight:400;font-size:22px;
+    line-height:1.2;letter-spacing:-0.01em;color:var(--ink);margin:0 0 10px}
+  .v__meta .rationale{font-family:var(--body-serif);font-size:14.5px;
+    line-height:1.55;color:var(--muted);max-width:46ch;margin:0}
+  .v__stage{margin-top:24px;padding:36px 32px 40px;
+    border-top:1px solid var(--border);
+    background:transparent}
+
+  /* shared colophon-context — last line of the footnotes, for register */
+  .col{max-width:46ch;font-family:var(--body-serif);font-style:italic;
+    font-weight:300;font-size:15.5px;line-height:1.7;color:var(--muted);
+    padding-left:36px;position:relative;margin:0 0 28px}
+  .col .m{position:absolute;left:0;top:-2px;font-family:var(--display);
+    font-style:italic;font-weight:500;font-size:1.5em;line-height:1;color:var(--gold)}
+
+  /* ============================================================
+     I. Ghost outline  (CURRENT BASELINE — what's live now)
+     ============================================================ */
+  .b-ghost{display:inline-block;padding:12px 22px;
+    font-family:var(--ui);font-size:11px;font-weight:500;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--gold);
+    background:transparent;border:1px solid var(--gold);
+    text-decoration:none;transition:background .15s,color .15s}
+  .b-ghost:hover{background:var(--gold);color:var(--body)}
+
+  /* ============================================================
+     II. Underlined italic — pure typography
+     ============================================================ */
+  .b-underline{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:22px;color:var(--gold);text-decoration:none;
+    border-bottom:0.5px solid var(--gold);padding-bottom:2px;
+    transition:opacity .15s}
+  .b-underline:hover{opacity:0.7}
+  .b-underline .arrow{display:inline-block;margin-left:6px;font-size:0.85em}
+
+  /* ============================================================
+     III. Asterism — old-typography flourish above the link
+     ============================================================ */
+  .b-aster{display:inline-block;text-align:left}
+  .b-aster .glyph{font-family:var(--display);font-size:18px;color:var(--gold);
+    letter-spacing:0.4em;margin-bottom:8px;display:block;line-height:1}
+  .b-aster a{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:20px;color:var(--ink);text-decoration:none;
+    border-bottom:0.5px solid var(--gold);padding-bottom:2px;
+    transition:color .15s}
+  .b-aster a:hover{color:var(--gold)}
+
+  /* ============================================================
+     IV. Newsreader inline arrow — italic body link, long tail
+     ============================================================ */
+  .b-news{font-family:var(--body-serif);font-style:italic;font-weight:400;
+    font-size:17px;color:var(--ink);text-decoration:none;
+    border-bottom:0.5px solid var(--gold);padding-bottom:3px;
+    transition:color .15s;display:inline-flex;align-items:center;gap:14px}
+  .b-news:hover{color:var(--gold)}
+  .b-news .tail{flex:0 0 auto;width:32px;height:1px;background:var(--gold);
+    position:relative}
+  .b-news .tail::after{content:"";position:absolute;right:-1px;top:-3px;
+    width:6px;height:6px;border-top:1px solid var(--gold);
+    border-right:1px solid var(--gold);transform:rotate(45deg)}
+
+  /* ============================================================
+     V. Mono caps + bullet — courthouse plaque
+     ============================================================ */
+  .b-mono{display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--ink);text-decoration:none;
+    padding:0;transition:color .15s}
+  .b-mono .dot{display:inline-block;width:5px;height:5px;
+    background:var(--gold);border-radius:50%}
+  .b-mono .arr{color:var(--gold);font-family:var(--ui);font-size:13px}
+  .b-mono:hover{color:var(--gold)}
+
+  /* ============================================================
+     VI. Brackets — typographic frame
+     ============================================================ */
+  .b-brack{font-family:var(--body-serif);font-style:italic;font-weight:300;
+    font-size:18px;color:var(--ink);text-decoration:none;
+    display:inline-flex;align-items:baseline;gap:8px;
+    transition:color .15s}
+  .b-brack .bk{font-family:var(--display);font-style:italic;
+    font-size:32px;color:var(--gold);font-weight:400;line-height:0.8}
+  .b-brack:hover{color:var(--gold)}
+
+  /* ============================================================
+     VII. Triple-rule plaque — horizontal rules sandwiching caps
+     ============================================================ */
+  .b-plaque{display:inline-block;text-align:center;text-decoration:none;
+    color:var(--ink);transition:color .15s}
+  .b-plaque hr{border:none;border-top:0.5px solid var(--ink);
+    margin:0 auto;width:120px;height:1px}
+  .b-plaque .lbl{font-family:var(--ui);font-size:10px;font-weight:500;
+    letter-spacing:0.32em;text-transform:uppercase;
+    padding:10px 8px;display:block}
+  .b-plaque .arr{color:var(--gold)}
+  .b-plaque:hover .lbl{color:var(--gold)}
+
+  /* ============================================================
+     VIII. Captioned ghost — sub-line above the ghost button
+     ============================================================ */
+  .b-caption{display:inline-block;text-align:left}
+  .b-caption .sub{font-family:var(--body-serif);font-style:italic;font-weight:300;
+    font-size:13.5px;color:var(--muted);margin-bottom:10px;display:block;
+    letter-spacing:0.01em}
+  .b-caption a{display:inline-block;padding:11px 20px;
+    font-family:var(--ui);font-size:10.5px;font-weight:500;letter-spacing:0.24em;
+    text-transform:uppercase;color:var(--gold);
+    background:transparent;border:0.5px solid var(--gold);
+    text-decoration:none;transition:background .15s,color .15s}
+  .b-caption a:hover{background:var(--gold);color:var(--body)}
+
+  /* ============================================================
+     IX. Wax-seal disc — italic Cormorant in a gold ring
+     ============================================================ */
+  .b-seal{display:inline-flex;align-items:center;gap:18px;text-decoration:none;
+    color:var(--ink);transition:color .15s}
+  .b-seal .disc{width:78px;height:78px;border-radius:50%;
+    border:1px solid var(--gold);display:flex;align-items:center;
+    justify-content:center;flex-direction:column;
+    font-family:var(--display);font-style:italic;color:var(--gold);
+    line-height:1;position:relative;
+    box-shadow:inset 0 0 0 4px rgba(201,168,106,0.08)}
+  .b-seal .disc .audit{font-size:16px;font-weight:500}
+  .b-seal .disc .yr{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--muted);font-style:normal;margin-top:4px;font-family:var(--ui)}
+  .b-seal .lbl{font-family:var(--body-serif);font-style:italic;
+    font-size:15.5px;color:var(--ink)}
+  .b-seal .lbl .arr{color:var(--gold);margin-left:4px}
+  .b-seal:hover .disc{background:var(--gold);color:var(--body)}
+  .b-seal:hover .disc .yr{color:var(--body)}
+
+  /* ============================================================
+     X. Filing card — manila tab, italic body, file glyph
+     ============================================================ */
+  .b-file{display:inline-flex;align-items:stretch;text-decoration:none;
+    color:var(--ink);transition:transform .15s}
+  .b-file .tab{background:var(--gold);color:var(--body);
+    padding:8px 12px;font-family:var(--ui);font-size:10px;font-weight:500;
+    letter-spacing:0.18em;text-transform:uppercase;
+    display:flex;align-items:center;gap:6px}
+  .b-file .tab .glyph{display:inline-block;width:10px;height:12px;
+    border:1px solid var(--body);position:relative}
+  .b-file .tab .glyph::after{content:"";position:absolute;
+    top:1.5px;left:1.5px;right:1.5px;height:1px;background:var(--body);
+    box-shadow:0 2px 0 var(--body),0 4px 0 var(--body)}
+  .b-file .card{background:transparent;border:1px solid var(--gold);
+    border-left:none;padding:8px 16px;font-family:var(--body-serif);
+    font-style:italic;font-size:14.5px;color:var(--ink);
+    display:flex;align-items:center;gap:10px}
+  .b-file .card .arr{color:var(--gold)}
+  .b-file:hover{transform:translateX(2px)}
+
+  /* page foot */
+  .pagefoot{margin-top:96px;padding-top:32px;border-top:1px solid var(--border);
+    font-family:var(--ui);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--muted);display:flex;justify-content:space-between}
+
+  /* mobile */
+  @media (max-width:780px){
+    .wrap{padding:48px 20px 80px}
+    h1.title{font-size:32px}
+    .v{grid-template-columns:1fr;gap:14px}
+    .v__num{font-size:32px}
+    .col{max-width:none}
+    .b-seal{flex-direction:column;align-items:flex-start;gap:10px}
+    .b-file{flex-wrap:wrap}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-head">
+    <div class="eyebrow">Mobius · audit button · /tests/sketches/</div>
+    <h1 class="title">Audit-trail button — <em>ten drafts in context</em></h1>
+    <p class="standfirst">
+      The live page now has a gold ghost button below the colophon. You
+      asked for ten variants. Each draft is rendered with its last
+      footnote line above so the register pairing is visible — a button
+      that looks fine in isolation can fight with the italic prose
+      sitting next to it. Ordered loosely from most reserved
+      (typography only) to most graphical (seal, filing tab).
+      <code>I</code> is what's currently live.
+    </p>
+  </header>
+
+  <!-- ============================================================
+       I. GHOST OUTLINE  (current baseline)
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">I.</div>
+    <div class="v__meta">
+      <h2>Ghost outline <span style="color:var(--muted);font-size:0.6em;letter-spacing:0.18em;text-transform:uppercase;font-family:var(--ui);">— live now</span></h2>
+      <p class="rationale">Manrope caps, gold border, transparent fill, inverts on hover. Reserved, institutional, matches every other CTA on the site. The neutral default.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-ghost">Audit trail on request →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       II. UNDERLINED ITALIC
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">II.</div>
+    <div class="v__meta">
+      <h2>Underlined italic</h2>
+      <p class="rationale">No button shell at all — italic Cormorant 22 px, gold hairline underline. Reads as a continuation of the colophon, like a footnote anchor in a journal. Quietest possible CTA.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-underline">Audit trail on request<span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       III. ASTERISM FLOURISH
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">III.</div>
+    <div class="v__meta">
+      <h2>Asterism flourish</h2>
+      <p class="rationale">Three gold asterisks above an italic link. Old-typography device used in long-form articles to mark a section break before a footer note. Most distinctively editorial of the typographic-only set.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <div class="b-aster">
+          <span class="glyph">✦ ✦ ✦</span>
+          <a href="#">Audit trail on request →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IV. NEWSREADER INLINE ARROW
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">IV.</div>
+    <div class="v__meta">
+      <h2>Newsreader inline + long-tail arrow</h2>
+      <p class="rationale">Italic body-serif link with a drawn arrow (1 px gold tail + chevron). Sits visually like one more line of the colophon but the arrow signals "go further". The arrow is the only graphic element.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-news">Audit trail on request<span class="tail"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       V. MONO CAPS + GOLD DOT
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">V.</div>
+    <div class="v__meta">
+      <h2>Mono caps with gold bullet</h2>
+      <p class="rationale">System-mono caps, gold dot prefix, gold arrow suffix. Looks like a status line or a register entry. The mono+dot pairs with audit/compliance register; the smallest visual footprint of any framed option.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-mono"><span class="dot"></span>Audit trail on request<span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VI. BRACKET BUTTON
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">VI.</div>
+    <div class="v__meta">
+      <h2>Bracket frame</h2>
+      <p class="rationale">Italic Cormorant brackets at 32 px frame the italic prose — typographic chrome instead of a box. Reads as an editor's annotation. Light, but unmistakeably a clickable artifact.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-brack"><span class="bk">[</span>Audit trail on request →<span class="bk">]</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VII. TRIPLE-RULE PLAQUE
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">VII.</div>
+    <div class="v__meta">
+      <h2>Triple-rule plaque</h2>
+      <p class="rationale">Two ink hairlines sandwich tracked caps. Looks like a courthouse register entry or a vintage banking ledger heading. Symmetrical, formal, the gold reduced to a single arrow.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-plaque">
+          <hr>
+          <span class="lbl">Audit trail on request <span class="arr">→</span></span>
+          <hr>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VIII. CAPTIONED GHOST
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">VIII.</div>
+    <div class="v__meta">
+      <h2>Captioned ghost</h2>
+      <p class="rationale">The ghost button (I.) but with an italic sub-line above it carrying the methodology stamp that used to live as a separate stamp + dot. Two-line stack: provenance on top, the CTA below. Adds the metadata back without the dotted-rule machinery.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <div class="b-caption">
+          <span class="sub">Methodology as at 2026.Q1, on the Mobius private bench.</span>
+          <a href="#">Audit trail on request →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IX. WAX-SEAL DISC
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">IX.</div>
+    <div class="v__meta">
+      <h2>Wax-seal disc</h2>
+      <p class="rationale">A 78 px gold ring with italic "Audit / 2026.Q1" inside, paired with an italic link to the right. Evokes an embossed seal or a notarised stamp. Most graphic of the set — could read as artifact rather than CTA, so the inline link does the clicking work.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-seal">
+          <span class="disc">
+            <span class="audit">Audit</span>
+            <span class="yr">2026.Q1</span>
+          </span>
+          <span class="lbl">View the full trail<span class="arr">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       X. FILING CARD
+       ============================================================ -->
+  <section class="v">
+    <div class="v__num">X.</div>
+    <div class="v__meta">
+      <h2>Filing-card tab</h2>
+      <p class="rationale">A gold tab (file-icon glyph + "AUDIT" caps) attached to a hairline-bordered card with the italic link. Reads as a manila file you can pull. Most literal artifact of the set — leans editorial-archival.</p>
+      <div class="v__stage">
+        <p class="col"><span class="m">§</span> Firms or partners reachable on a 24-hour call.</p>
+        <a href="#" class="b-file">
+          <span class="tab"><span class="glyph"></span>Audit</span>
+          <span class="card">Trail on request<span class="arr">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pagefoot">
+    <span>/tests/sketches/stats-audit-button-drafts.html</span>
+    <span>Mobius · audit-button drafts · 10/10</span>
+  </footer>
+
+</div>
+</body>
+</html>
