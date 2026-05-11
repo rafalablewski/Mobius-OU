@@ -16238,50 +16238,35 @@ a.ht-spine__contents-cell-face:focus-visible {
  * ========================================================================= */
 
 .ht-rating-proof {
-  --ht-rating-row-h: 200px;
   display: flex;
-  gap: 18px;
+  gap: 24px;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
-  margin: 0 auto 40px;
-  max-width: 880px;
+  flex-wrap: wrap;
+  margin: 0 auto 48px;
 }
 
 .ht-rating-proof__cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--ht-rating-row-h);
+  display: block;
   text-decoration: none;
   transition: transform 0.25s ease;
-  flex-shrink: 0;
 }
 .ht-rating-proof__cell:hover { transform: translateY(-2px); }
 
+/* Explicit height on the <img> itself — keeps sizing deterministic and
+   sidesteps the flex-item / intrinsic-image circular-sizing trap. */
 .ht-rating-proof__svg {
   display: block;
-  height: 100%;
+  height: 200px;
   width: auto;
-  max-width: 100%;
-  /* Vector-render with full precision */
-  shape-rendering: geometricPrecision;
 }
 
 @media (max-width: 720px) {
-  .ht-rating-proof {
-    --ht-rating-row-h: auto;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .ht-rating-proof__cell {
-    height: auto;
-    width: 100%;
-    max-width: 360px;
-  }
+  .ht-rating-proof { gap: 16px; margin-bottom: 36px; }
   .ht-rating-proof__svg {
     height: auto;
     width: 100%;
+    max-width: 360px;
   }
 }
 
