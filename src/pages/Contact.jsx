@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
+import RatingProof from '../components/RatingProof.jsx';
 import { PROGRAMS_BY_SLUG } from '../data/programs.js';
 
 const DAY_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -130,6 +131,8 @@ export default function Contact() {
                       )}
                     </p>
                   )}
+                  <RatingProof />
+
                   <div className="ht-contact-wrapper">
                       <form onSubmit={onSubmit} noValidate>
                           <div className="row justify-content-center">
