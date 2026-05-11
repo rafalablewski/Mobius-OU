@@ -16061,14 +16061,19 @@ a.ht-spine__contents-cell-face:focus-visible {
 }
 
 /* === Press line ("As seen in") ========================================== *
- * Two variants: .ht-press-line--marquee (cream ground, scrolling, used on
- * Home + About + similar editorial pages) and .ht-press-line--static (ink
- * ground, no animation, used in the footer).
+ * Cream ground, scrolling marquee. Used on Home + About + similar editorial
+ * pages above the .ht-stats-area "14 / 100 / 32" tile.
+ *
+ * No top/bottom hairline by design — the .ht-stats-area below carries its
+ * own --ht-border-color rules, and a second pair here was reading as
+ * doubled lines in a slightly different ink-tinted token. The press strip
+ * is now a quiet eyebrow row; the stats slab opens the credibility block.
+ * Originally sketched at tests/sketches/trust-strip-concepts.html#a1,
+ * line-stack cleanup at tests/sketches/as-seen-in-cleanup-and-footer-swap.html#a1.
  *
  * Each logo is a <span> whose background is currentColor and whose
  * mask-image is the brand SVG from /public/. That gives us one unified
  * colour across the four wordmarks without inlining SVG content.
- * Originally sketched at tests/sketches/trust-strip-concepts.html#a1.
  * ========================================================================= */
 
 .ht-press-line-area {
@@ -16081,8 +16086,6 @@ a.ht-spine__contents-cell-face:focus-visible {
   grid-template-columns: auto 1fr;
   gap: 28px;
   align-items: center;
-  border-top: 1px solid rgba(11, 15, 20, 0.20);
-  border-bottom: 1px solid rgba(11, 15, 20, 0.20);
   padding: 22px 24px;
   color: var(--ht-heading-color);
 }
@@ -16179,26 +16182,6 @@ a.ht-spine__contents-cell-face:focus-visible {
           mask-image: url(/huffingtonpost.svg);
 }
 
-/* Static variant — footer-friendly, no animation, no edge mask, inverts to
-   ivory on dark ground. */
-.ht-press-line--static {
-  border-top-color: rgba(250, 246, 238, 0.18);
-  border-bottom-color: rgba(250, 246, 238, 0.18);
-  color: var(--ht-theme-color-5);
-  padding: 22px 0;
-  margin: 56px 0 28px;
-}
-.ht-press-line--static .ht-press-line__label {
-  color: rgba(250, 246, 238, 0.55);
-}
-.ht-press-line--static .ht-press-line__set {
-  flex-wrap: wrap;
-  padding-right: 0;
-}
-.ht-press-line--static .ht-press-line__logo {
-  opacity: 0.55;
-}
-
 @keyframes ht-press-line-marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -16222,19 +16205,18 @@ a.ht-spine__contents-cell-face:focus-visible {
   .ht-press-line__track {
     animation-duration: 22s;
   }
-  /* Static (footer) — let logos wrap onto a second row on narrow viewports
-     instead of forcing horizontal scroll. */
-  .ht-press-line--static .ht-press-line__set {
-    gap: 28px 24px;
-    flex-wrap: wrap;
-  }
 }
 
 /* === Rating proof (Google + Trustpilot) ================================= *
- * Two real brand widgets side by side at a locked equal height. Used once,
- * late in the funnel, at the conversion point (Contact page above the form).
+ * Two real brand widgets side by side at a locked equal height.
+ *
+ * Default      Contact page, above the form — 200 px, conversion-point
+ *              treatment. Sketched at trust-strip-concepts.html#b1.
+ * --footer     Site footer credibility row — 96 px, replaces the duplicate
+ *              "AS SEEN IN" PressLine. Sketched at
+ *              as-seen-in-cleanup-and-footer-swap.html#b1.
+ *
  * Each cell links out to the live source so the rating is verifiable.
- * Originally sketched at tests/sketches/trust-strip-concepts.html#b1.
  * ========================================================================= */
 
 .ht-rating-proof {
@@ -16261,12 +16243,29 @@ a.ht-spine__contents-cell-face:focus-visible {
   width: auto;
 }
 
+/* Footer variant — half height, sits between the widget grid and the
+   copyright row. The copyright row already provides its own top hairline
+   (.ht-footer-copyright { border-top: ... }), so no extra rules here. */
+.ht-rating-proof--footer {
+  margin: 56px auto 0;
+  gap: 28px;
+}
+.ht-rating-proof--footer .ht-rating-proof__svg {
+  height: 96px;
+}
+
 @media (max-width: 720px) {
   .ht-rating-proof { gap: 16px; margin-bottom: 36px; }
   .ht-rating-proof__svg {
     height: auto;
     width: 100%;
     max-width: 360px;
+  }
+  .ht-rating-proof--footer { margin-top: 40px; gap: 16px; }
+  .ht-rating-proof--footer .ht-rating-proof__svg {
+    height: auto;
+    width: 100%;
+    max-width: 320px;
   }
 }
 
