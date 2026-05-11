@@ -18,9 +18,19 @@ export default function Home() {
     if (!scroller) return;
     const wrapper = scroller.querySelector('.ht-stats-wrapper');
     if (!wrapper) return;
+    const cards = Array.from(wrapper.querySelectorAll('.ht-stats-items'));
+    if (!cards.length) return;
     const update = () => {
-      const atEnd = wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 4;
-      scroller.classList.toggle('is-end', atEnd);
+      const center = wrapper.scrollLeft + wrapper.clientWidth / 2;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        const c = cards[i];
+        const cardCenter = c.offsetLeft + c.offsetWidth / 2;
+        const d = Math.abs(cardCenter - center);
+        if (d < bestDist) { bestDist = d; bestIdx = i; }
+      }
+      cards.forEach((c, i) => c.classList.toggle('is-focal', i === bestIdx));
     };
     update();
     wrapper.addEventListener('scroll', update, { passive: true });

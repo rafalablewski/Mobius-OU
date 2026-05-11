@@ -13422,24 +13422,13 @@ span {
 .ht-stats-audit:hover::after {
   transform: translateX(3px);
 }
-/* Wrapper for the horizontal scroller — carries the right-edge fade hint
-   so the scroll affordance is visual rather than a native scrollbar. */
+/* Wrapper for the horizontal scroller — focal-grow effect: the card
+   nearest the centre of the viewport sits at scale 1 / opacity 1;
+   siblings drop to scale 0.86 / opacity 0.4. The JS in Home.jsx adds
+   .is-focal to whichever card the wrap is currently centred on. */
 .ht-stats-scroller {
   position: relative;
 }
-.ht-stats-scroller::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 64px;
-  background: linear-gradient(90deg, rgba(244, 239, 230, 0), var(--ht-body));
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-.ht-stats-scroller.is-end::after { opacity: 0; }
 .ht-stats-area .ht-stats-wrapper {
   background: transparent;
   border-radius: 0;
@@ -13456,16 +13445,33 @@ span {
   -ms-overflow-style: none;
 }
 .ht-stats-area .ht-stats-wrapper::-webkit-scrollbar { display: none; }
-/* When the wrapper sits inside a .ht-stats-scroller (Home), give the last
-   card breathing room before the right-edge fade. */
+/* Focal-grow only inside .ht-stats-scroller (Home). About.jsx keeps
+   the plain proximity-snap strip. */
 .ht-stats-scroller .ht-stats-wrapper {
-  padding-right: 64px;
+  --ht-stats-card-w: clamp(260px, 24vw, 300px);
+  gap: 40px;
+  padding-block: 12px 16px;
+  padding-inline: max(16px, calc(50% - var(--ht-stats-card-w) / 2));
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 .ht-stats-area .ht-stats-items {
   flex: 0 0 clamp(280px, 26vw, 340px);
   padding: 8px 0 0;
   text-align: left;
   scroll-snap-align: start;
+}
+.ht-stats-scroller .ht-stats-items {
+  flex-basis: var(--ht-stats-card-w);
+  scroll-snap-align: center;
+  transform: scale(0.86);
+  opacity: 0.4;
+  transform-origin: center center;
+  transition: transform 420ms cubic-bezier(.4, 0, .2, 1), opacity 420ms ease;
+}
+.ht-stats-scroller .ht-stats-items.is-focal {
+  transform: scale(1);
+  opacity: 1;
 }
 .ht-stats-area .ht-stats-items::after,
 .ht-stats-area .ht-stats-items::before {
@@ -13539,6 +13545,10 @@ span {
   }
   .ht-stats-area .ht-stats-items {
     flex: 0 0 78vw;
+  }
+  .ht-stats-scroller .ht-stats-wrapper {
+    --ht-stats-card-w: 78vw;
+    gap: 24px;
   }
   .ht-stats-area .ht-stats-items p,
   .ht-stats-area .ht-stats-items h4 {
