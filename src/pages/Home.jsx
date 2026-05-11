@@ -56,6 +56,15 @@ export default function Home() {
     };
   }, []);
 
+  const activeIdx = STATS_DICTUMS.findIndex((d) => d.stat === activeStat);
+  const goToOffset = (delta) => {
+    const next = activeIdx + delta;
+    if (next < 0 || next >= STATS_DICTUMS.length) return;
+    const wrapper = statsScrollerRef.current?.querySelector('.ht-stats-wrapper');
+    const target = wrapper?.querySelectorAll('.ht-stats-items')[next];
+    if (target) target.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  };
+
   return (
     <>
       <section className="ht-hero-area" style={{ "backgroundImage": "url(/assets/img/hero/hero-bg.jpg)", "backgroundSize": "cover", "backgroundPosition": "center", "backgroundRepeat": "no-repeat" }}>
@@ -183,9 +192,29 @@ export default function Home() {
               <div className="container">
                   <div className="ht-stats-masthead wow fadeInUp" data-wow-delay=".2s">
                       <div className="ht-stats-eyebrow">The practice in three figures.</div>
-                      <Link to="/contact" className="ht-stats-audit">
-                          <em>Audit trail on request</em>
-                      </Link>
+                      <div className="ht-stats-masthead__controls">
+                          <button
+                            type="button"
+                            className="ht-stats-nav"
+                            onClick={() => goToOffset(-1)}
+                            disabled={activeIdx <= 0}
+                            aria-label="Previous figure"
+                          >
+                              <span aria-hidden="true">&lsaquo;</span>
+                          </button>
+                          <button
+                            type="button"
+                            className="ht-stats-nav"
+                            onClick={() => goToOffset(1)}
+                            disabled={activeIdx >= STATS_DICTUMS.length - 1}
+                            aria-label="Next figure"
+                          >
+                              <span aria-hidden="true">&rsaquo;</span>
+                          </button>
+                          <Link to="/contact" className="ht-stats-audit">
+                              <em>Audit trail on request</em>
+                          </Link>
+                      </div>
                   </div>
                   <div className="ht-stats-frame">
                       <aside className="ht-stats-companion wow fadeInLeft" data-wow-delay=".2s" aria-live="polite">
