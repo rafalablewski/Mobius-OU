@@ -133,23 +133,53 @@ export default function Home() {
 
           <PressLine />
 
-          <section className="ht-stats-area fix">
+          <section className="ht-stats-area ht-stats-area--letterhead fix">
               <div className="container">
-                  <div className="ht-stats-wrapper wow fadeInUp" data-wow-delay=".2s">
-                      <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
-                          <h4>Years in capital markets</h4>
-                          <p>CFA-trained, NYSE-seasoned advisory</p>
+                  <div className="ht-stats-area__paper wow fadeInUp" data-wow-delay=".2s">
+                      <div className="ht-stats-area__mast">
+                          <span className="ht-stats-area__firm">Mobius &amp; Partners</span>
+                          <span className="ht-stats-area__office">Private Office</span>
+                          <span className="ht-stats-area__cities">Warsaw</span>
                       </div>
-                      <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
-                          <h4>Mandates delivered</h4>
-                          <p>Across CBI, RBI and tax residency</p>
+                      <div className="ht-stats-area__grid">
+                          <div className="ht-stats-area__cell">
+                              <div className="ht-stats-area__ref">Ref. I&nbsp; /&nbsp; Capital markets</div>
+                              <p className="ht-stats-area__line">
+                                  <span className="ht-stats-area__n">14<span className="ht-stats-area__plus">+</span></span>
+                                  {' '}years on the desk —<br />CFA-trained, NYSE-seasoned advisory.<sup className="ht-stats-area__fn">†</sup>
+                              </p>
+                              <div className="ht-stats-area__body">In private practice since 2018. Charter held continuously since 2012.</div>
+                              <div className="ht-stats-area__sig">— R.A.</div>
+                          </div>
+                          <div className="ht-stats-area__cell">
+                              <div className="ht-stats-area__ref">Ref. II&nbsp; /&nbsp; Mandates</div>
+                              <p className="ht-stats-area__line">
+                                  <span className="ht-stats-area__n">100<span className="ht-stats-area__plus">+</span></span>
+                                  {' '}private files —<br />citizenship, residency and tax.<sup className="ht-stats-area__fn">‡</sup>
+                              </p>
+                              <div className="ht-stats-area__body">Every brief pre-screened on source of funds before engagement.</div>
+                              <div className="ht-stats-area__sig">— R.A.</div>
+                          </div>
+                          <div className="ht-stats-area__cell">
+                              <div className="ht-stats-area__ref">Ref. III&nbsp; /&nbsp; Coverage</div>
+                              <p className="ht-stats-area__line">
+                                  <span className="ht-stats-area__n">32</span>
+                                  {' '}jurisdictions —<br />firms and partners operational.<sup className="ht-stats-area__fn">§</sup>
+                              </p>
+                              <div className="ht-stats-area__body">From the Caribbean shelf programmes to the Gulf's new tax routes.</div>
+                              <div className="ht-stats-area__sig">— R.A.</div>
+                          </div>
                       </div>
-                      <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">32</span></h2>
-                          <h4>Jurisdictions covered</h4>
-                          <p>From the Caribbean to the Gulf</p>
+                      <div className="ht-stats-area__foot">
+                          <div className="ht-stats-area__notes">
+                              <p><sup>†</sup> CFA charter held continuously since 2012; NYSE-licensed advisory 2014 — present.</p>
+                              <p><sup>‡</sup> Counts private files closed between 2014 and 2026.Q1 across CBI, RBI and tax-residency briefs. Engagement-letter records on request.</p>
+                              <p><sup>§</sup> &ldquo;Jurisdictions covered&rdquo; means firms or partners operational and reachable on a 24-hour call.</p>
+                          </div>
+                          <div className="ht-stats-area__audit">
+                              <span className="ht-stats-area__stamp"><span className="ht-stats-area__dot"></span>Methodology&nbsp; ·&nbsp; 2026.Q1&nbsp; ·&nbsp; Mobius private bench</span>
+                              <a href="#" className="ht-stats-area__audit-link">View audit trail →</a>
+                          </div>
                       </div>
                   </div>
               </div>

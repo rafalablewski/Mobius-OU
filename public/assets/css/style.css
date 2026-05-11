@@ -13463,6 +13463,232 @@ span {
   }
 }
 
+/* === Stats section — letterhead variant (Home only) ==================== */
+/* Modifier on top of the shared .ht-stats-area block. About.jsx keeps the
+   legacy .ht-stats-items grid; only Home.jsx adds the --letterhead suffix. */
+.ht-stats-area--letterhead {
+  padding: 40px 0 24px;
+}
+.ht-stats-area--letterhead .ht-stats-area__paper {
+  background: var(--ht-theme-color-5);
+  border-top: 1px solid var(--ht-border-color);
+  border-bottom: 1px solid var(--ht-border-color);
+}
+
+.ht-stats-area--letterhead .ht-stats-area__mast {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 28px 40px 18px;
+  border-bottom: 0.5px solid var(--ht-heading-color);
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ht-heading-color);
+}
+.ht-stats-area--letterhead .ht-stats-area__firm {
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ht-heading-color);
+}
+.ht-stats-area--letterhead .ht-stats-area__office {
+  letter-spacing: 0.32em;
+}
+.ht-stats-area--letterhead .ht-stats-area__cities {
+  font-family: var(--ht-font-serif-body);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ht-theme-color-6);
+}
+
+.ht-stats-area--letterhead .ht-stats-area__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 40px 0 32px;
+}
+.ht-stats-area--letterhead .ht-stats-area__cell {
+  padding: 0 36px;
+  position: relative;
+}
+.ht-stats-area--letterhead .ht-stats-area__cell:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 6px;
+  bottom: 6px;
+  border-left: 0.5px dotted var(--ht-border-color);
+}
+.ht-stats-area--letterhead .ht-stats-area__ref {
+  margin-bottom: 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-2);
+}
+.ht-stats-area--letterhead .ht-stats-area__line {
+  margin: 0;
+  font-family: var(--ht-font-serif-body);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--ht-heading-color);
+}
+.ht-stats-area--letterhead .ht-stats-area__n {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: -14px;
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ht-heading-color);
+}
+.ht-stats-area--letterhead .ht-stats-area__n .ht-stats-area__plus {
+  margin-left: 1px;
+  font-size: 0.32em;
+  vertical-align: super;
+  color: var(--ht-theme-color-2);
+  font-weight: 400;
+}
+.ht-stats-area--letterhead .ht-stats-area__fn {
+  margin-left: 1px;
+  font-family: var(--ht-font-serif-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.7em;
+  letter-spacing: 0;
+  vertical-align: super;
+  color: var(--ht-theme-color-2);
+}
+.ht-stats-area--letterhead .ht-stats-area__body {
+  margin-top: 16px;
+  max-width: 34ch;
+  font-family: var(--ht-font-serif-body);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ht-theme-color-6);
+}
+.ht-stats-area--letterhead .ht-stats-area__sig {
+  margin-top: 22px;
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ht-heading-color);
+}
+
+.ht-stats-area--letterhead .ht-stats-area__foot {
+  padding: 22px 40px 18px;
+  border-top: 0.5px solid var(--ht-heading-color);
+}
+.ht-stats-area--letterhead .ht-stats-area__notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  font-family: var(--ht-font-serif-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ht-text-color);
+}
+.ht-stats-area--letterhead .ht-stats-area__notes p {
+  margin: 0;
+}
+.ht-stats-area--letterhead .ht-stats-area__notes sup {
+  margin-right: 4px;
+  font-family: var(--ht-font-serif-body);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ht-theme-color-2);
+}
+
+.ht-stats-area--letterhead .ht-stats-area__audit {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dotted var(--ht-border-color);
+  font-family: var(--ht-font-ui);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+}
+.ht-stats-area--letterhead .ht-stats-area__stamp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+.ht-stats-area--letterhead .ht-stats-area__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #3F8F4E;
+  vertical-align: middle;
+}
+.ht-stats-area--letterhead .ht-stats-area__audit-link {
+  padding-bottom: 1px;
+  border-bottom: 0.5px solid transparent;
+  color: var(--ht-theme-color-2);
+  text-decoration: none;
+  letter-spacing: 0.18em;
+  transition: border-color 0.15s;
+}
+.ht-stats-area--letterhead .ht-stats-area__audit-link:hover {
+  border-bottom-color: var(--ht-theme-color-2);
+}
+
+@media (max-width: 880px) {
+  .ht-stats-area--letterhead .ht-stats-area__mast {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 24px 20px 14px;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__grid {
+    grid-template-columns: 1fr;
+    padding: 24px 0 14px;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__cell {
+    padding: 20px;
+    border-bottom: 0.5px dotted var(--ht-border-color);
+  }
+  .ht-stats-area--letterhead .ht-stats-area__cell:last-child {
+    border-bottom: none;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__cell::after {
+    display: none;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__foot {
+    padding: 18px 20px 14px;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__notes {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__audit {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 
 /* === Unified slider navigation ========================================= */
 /* Single source of truth for every carousel prev/next across the site.
