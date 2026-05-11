@@ -13470,44 +13470,8 @@ span {
   padding: 40px 0 24px;
 }
 .ht-stats-area--letterhead .ht-stats-area__paper {
-  background: var(--ht-theme-color-5);
   border-top: 1px solid var(--ht-border-color);
   border-bottom: 1px solid var(--ht-border-color);
-}
-
-.ht-stats-area--letterhead .ht-stats-area__mast {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding: 28px 40px 18px;
-  border-bottom: 0.5px solid var(--ht-heading-color);
-  font-family: var(--ht-font-ui);
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ht-heading-color);
-}
-.ht-stats-area--letterhead .ht-stats-area__firm {
-  font-family: var(--ht-font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  color: var(--ht-heading-color);
-}
-.ht-stats-area--letterhead .ht-stats-area__office {
-  letter-spacing: 0.32em;
-}
-.ht-stats-area--letterhead .ht-stats-area__cities {
-  font-family: var(--ht-font-serif-body);
-  font-style: italic;
-  font-size: 14px;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ht-theme-color-6);
 }
 
 .ht-stats-area--letterhead .ht-stats-area__grid {
@@ -13655,12 +13619,6 @@ span {
 }
 
 @media (max-width: 880px) {
-  .ht-stats-area--letterhead .ht-stats-area__mast {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    padding: 24px 20px 14px;
-  }
   .ht-stats-area--letterhead .ht-stats-area__grid {
     grid-template-columns: 1fr;
     padding: 24px 0 14px;

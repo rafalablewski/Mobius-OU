@@ -136,11 +136,6 @@ export default function Home() {
           <section className="ht-stats-area ht-stats-area--letterhead fix">
               <div className="container">
                   <div className="ht-stats-area__paper wow fadeInUp" data-wow-delay=".2s">
-                      <div className="ht-stats-area__mast">
-                          <span className="ht-stats-area__firm">Mobius &amp; Partners</span>
-                          <span className="ht-stats-area__office">Private Office</span>
-                          <span className="ht-stats-area__cities">Warsaw</span>
-                      </div>
                       <div className="ht-stats-area__grid">
                           <div className="ht-stats-area__cell">
                               <div className="ht-stats-area__ref">Ref. I&nbsp; /&nbsp; Capital markets</div>
