@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stats section — five visual redesigns (creative · minimalistic · professional + 2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --border:     #E2DBCE;
+    --hairline:   rgba(11, 15, 20, 0.12);
+    --hairline-2: rgba(11, 15, 20, 0.20);
+    --green:      #4F7A4A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page chrome ----------------------------------------------------------- */
+  .page { max-width: 1180px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 48px; line-height: 1.1; margin: 14px 0 18px; letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.65; max-width: 64ch; }
+  .lede strong { color: var(--ink); }
+
+  /* Diagnosis box --------------------------------------------------------- */
+  .diagnosis {
+    margin-top: 28px; padding: 18px 22px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.65; color: var(--ink-2);
+  }
+  .diagnosis strong { color: var(--ink); }
+  .diagnosis ol { margin: 8px 0 0 20px; padding: 0; }
+  .diagnosis li { margin-bottom: 4px; }
+  code.mono, .diagnosis code {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+    background: rgba(11,15,20,0.05); padding: 1px 6px; border-radius: 2px;
+  }
+
+  /* TOC -------------------------------------------------------------------- */
+  .toc-title {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin: 44px 0 12px;
+  }
+  .toc {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+  }
+  @media (max-width: 880px) { .toc { grid-template-columns: repeat(2, 1fr); } }
+  .toc a {
+    display: block; padding: 14px 12px;
+    border: 1px solid var(--hairline); border-radius: 3px;
+    background: var(--cream);
+    text-decoration: none; color: var(--ink); transition: all .2s;
+  }
+  .toc a:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .toc__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 22px; letter-spacing: 0.04em;
+  }
+  .toc__title {
+    display: block; font-size: 12px; line-height: 1.4;
+    margin-top: 4px; color: var(--ink);
+  }
+  .toc__register {
+    display: block; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone); margin-top: 6px;
+  }
+
+  /* Idea cards ------------------------------------------------------------- */
+  .ideas { display: grid; gap: 56px; margin-top: 56px; }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px; background: var(--cream);
+    padding: 28px 28px 36px;
+  }
+  .idea__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+  .idea__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; letter-spacing: 0.24em; color: var(--gold-deep);
+    text-transform: uppercase;
+  }
+  .idea__register {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  .idea h2 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 30px; line-height: 1.15; margin: 6px 0 10px; letter-spacing: -0.005em;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__dek { color: var(--stone); font-size: 14px; line-height: 1.6; max-width: 72ch; margin: 0 0 22px; }
+
+  .panel-label {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+    border-top: 1px solid var(--hairline); padding-top: 14px; margin-top: 28px;
+  }
+
+  .register {
+    margin-top: 18px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    font-size: 12px;
+  }
+  .register dt {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600; margin-bottom: 3px;
+  }
+  .register dd { margin: 0; color: var(--ink-2); line-height: 1.5; }
+  @media (max-width: 720px) { .register { grid-template-columns: repeat(2, 1fr); } }
+
+  .vs-today {
+    margin-top: 18px; padding: 12px 14px;
+    background: rgba(11,15,20,0.04); border-radius: 3px;
+    font-size: 12px; line-height: 1.6; color: var(--ink-2);
+  }
+  .vs-today strong {
+    color: var(--gold-deep); font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-weight: 400; font-size: 13px;
+  }
+
+  /* Live mock — ground ---------------------------------------------------- */
+  .mock {
+    margin-top: 10px; background: var(--ivory);
+    border: 1px solid var(--hairline); border-radius: 3px;
+    padding: 56px 40px; overflow: hidden;
+  }
+  .mock--paper { background: var(--paper); }
+  .mock--ink   { background: var(--ink);  color: var(--cream); }
+
+  /* ========================================================================
+     BASELINE — render of what the user pasted in the screenshot
+     (deliberately reproduces the three reported issues so we can see them)
+     ===================================================================== */
+  .baseline-tile {
+    background: var(--cream);
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .baseline-cell {
+    padding: 44px 36px; position: relative;
+  }
+  .baseline-cell + .baseline-cell::before {
+    content: ""; position: absolute; left: 0; top: 20%; bottom: 20%;
+    width: 1px; background: var(--border);
+  }
+  .baseline-cell__line1 {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 44px; line-height: 1.05; letter-spacing: -0.01em; color: var(--ink);
+  }
+  .baseline-cell__plus {
+    color: var(--gold-deep); font-size: 0.55em; vertical-align: super; margin-left: 1px;
+  }
+  .baseline-cell__tail {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 24px; color: var(--ink-2); margin-left: 8px;
+  }
+  .baseline-cell__line2 {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 24px; line-height: 1.25; color: var(--ink); margin-top: 6px;
+  }
+  /* The three footnote markers at deliberately mismatched sizes — the bug */
+  .baseline-cell__mark { color: var(--gold-deep); margin-left: 4px; font-style: italic; vertical-align: super; }
+  .baseline-cell__mark--a { font-size: 0.7em;  }
+  .baseline-cell__mark--b { font-size: 1.05em; }
+  .baseline-cell__mark--c { font-size: 0.85em; }
+  .baseline-cell__body {
+    font-family: "Cormorant Garamond", serif; font-size: 18px;
+    line-height: 1.5; color: var(--stone); margin-top: 28px; max-width: 36ch;
+  }
+  .baseline-cell__by {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; color: var(--stone); margin-top: 28px;
+  }
+  .baseline-button-wrap {
+    text-align: center; margin-top: 40px;
+  }
+  .baseline-button {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 18px; color: var(--ink);
+    padding: 10px 22px; border: 1px solid var(--hairline-2);
+    border-radius: 2px; background: transparent;
+  }
+  .baseline-button::before { content: "["; color: var(--gold-deep); font-size: 22px; }
+  .baseline-button::after  { content: "]"; color: var(--gold-deep); font-size: 22px; }
+
+  /* ========================================================================
+     I — CREATIVE: editorial pull-quote with gold seal markers
+     ===================================================================== */
+  .c1 {
+    position: relative;
+  }
+  .c1__masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--hairline-2);
+    padding-bottom: 12px; margin-bottom: 36px;
+  }
+  .c1__eyebrow {
+    font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  .c1__audit {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--ink); font-size: 15px;
+    text-decoration: none; border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
+  .c1__audit::after { content: "→"; color: var(--gold-deep); }
+  .c1__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  }
+  .c1__cell {
+    padding: 12px 32px; position: relative;
+  }
+  .c1__cell + .c1__cell { border-left: 1px solid var(--hairline); }
+  .c1__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 96px; line-height: 0.9; color: var(--ink); letter-spacing: -0.02em;
+    display: inline-block;
+  }
+  .c1__plus { color: var(--gold-deep); font-size: 0.4em; vertical-align: super; margin-left: 4px; }
+  /* Uniform gold seal — all three identical 14×14 wax-disc with footnote letter */
+  .c1__seal {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--gold); color: var(--ink);
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 11px; line-height: 1; font-weight: 500;
+    margin-left: 10px; vertical-align: middle;
+    box-shadow: inset 0 0 0 1px rgba(11,15,20,0.15);
+  }
+  .c1__quote {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 22px; line-height: 1.3; color: var(--ink); margin: 22px 0 14px;
+  }
+  .c1__quote em { color: var(--gold-deep); font-style: italic; }
+  .c1__body {
+    font-family: "Newsreader", serif; font-size: 14px; line-height: 1.65;
+    color: var(--stone); margin: 0 0 18px; max-width: 32ch;
+  }
+  .c1__by {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 12px; letter-spacing: 0.05em; color: var(--gold-deep);
+  }
+  .c1__footnotes {
+    margin-top: 36px; padding-top: 16px;
+    border-top: 1px solid var(--hairline);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    font-family: "Cormorant Garamond", serif; font-size: 12px; line-height: 1.5;
+    color: var(--stone);
+  }
+  .c1__footnotes .c1__seal { width: 14px; height: 14px; font-size: 9px; margin-right: 6px; margin-left: 0; }
+
+  /* ========================================================================
+     II — MINIMALISTIC: stripped editorial, no footnote glyphs at all
+     ===================================================================== */
+  .m1__masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 48px;
+  }
+  .m1__eyebrow {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; letter-spacing: 0.06em; color: var(--stone);
+  }
+  .m1__audit {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; color: var(--ink); text-decoration: none;
+  }
+  .m1__audit em { color: var(--gold-deep); }
+  .m1__audit::after { content: " →"; color: var(--gold-deep); }
+  .m1__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px;
+  }
+  .m1__cell { }
+  .m1__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 88px; line-height: 1; color: var(--ink); letter-spacing: -0.02em;
+  }
+  .m1__plus { color: var(--gold-deep); font-size: 0.42em; vertical-align: super; margin-left: 2px; }
+  .m1__tag {
+    margin-top: 8px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 19px; color: var(--ink-2); line-height: 1.3;
+  }
+  .m1__rule {
+    height: 1px; background: var(--hairline); margin: 22px 0 18px;
+  }
+  .m1__body {
+    font-family: "Newsreader", serif; font-size: 14px; line-height: 1.65;
+    color: var(--stone); margin: 0 0 18px; max-width: 30ch;
+  }
+  .m1__by {
+    display: flex; align-items: baseline; gap: 8px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 12px; color: var(--stone);
+  }
+  .m1__by::before {
+    content: ""; flex: 0 0 24px; height: 1px; background: var(--hairline);
+  }
+
+  /* ========================================================================
+     III — PROFESSIONAL: audit-report doc-control register
+     ===================================================================== */
+  .p1__masthead {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 22px;
+  }
+  .p1__title {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); display: inline-flex; align-items: center; gap: 12px;
+  }
+  .p1__title::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+    box-shadow: 0 0 0 3px rgba(79,122,74,0.18);
+  }
+  .p1__audit {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    border: 1px solid var(--hairline-2); padding: 8px 14px; border-radius: 2px;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: border-color .2s;
+  }
+  .p1__audit:hover { border-color: var(--gold); }
+  .p1__audit::after { content: "→"; color: var(--gold-deep); }
+
+  .p1__table {
+    width: 100%; border-collapse: collapse;
+    border-top: 1px solid var(--hairline-2); border-bottom: 1px solid var(--hairline-2);
+  }
+  .p1__table thead th {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); font-weight: 500; text-align: left;
+    padding: 10px 12px; border-bottom: 1px solid var(--hairline);
+  }
+  .p1__table tbody td {
+    padding: 18px 12px; vertical-align: top;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .p1__table tbody tr:last-child td { border-bottom: none; }
+  .p1__ref {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; color: var(--gold-deep); letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .p1__metric {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 36px; line-height: 1; color: var(--ink); letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .p1__metric .plus { color: var(--gold-deep); font-size: 0.5em; vertical-align: super; }
+  .p1__detail {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 16px; color: var(--ink-2); line-height: 1.4;
+  }
+  .p1__detail small {
+    display: block; margin-top: 4px;
+    font-family: "Newsreader", serif; font-style: normal;
+    font-size: 13px; color: var(--stone); line-height: 1.55;
+  }
+  .p1__source {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .p1__source::before {
+    content: "●"; color: var(--green); margin-right: 6px; font-size: 8px;
+  }
+
+  /* ========================================================================
+     IV — MARGINALIA JOURNAL (mine 1)
+     ===================================================================== */
+  .v1__masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--hairline-2); padding-bottom: 14px; margin-bottom: 40px;
+  }
+  .v1__eyebrow {
+    font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  .v1__audit {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 15px; color: var(--ink); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .v1__audit::before { content: "›"; color: var(--gold-deep); font-size: 18px; }
+  .v1__audit::after  { content: "→"; color: var(--gold-deep); }
+
+  .v1__row {
+    display: grid; grid-template-columns: 1fr 1.4fr 40px;
+    gap: 28px; padding: 32px 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: start;
+  }
+  .v1__row:last-of-type { border-bottom: none; }
+  .v1__left { }
+  .v1__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 84px; line-height: 0.95; color: var(--ink); letter-spacing: -0.02em;
+    display: inline-block;
+  }
+  .v1__plus { color: var(--gold-deep); font-size: 0.42em; vertical-align: super; margin-left: 2px; }
+  .v1__tag {
+    margin-top: 8px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 18px; color: var(--ink-2); max-width: 24ch; line-height: 1.3;
+  }
+  .v1__right {
+    padding-top: 8px;
+  }
+  .v1__lede {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 22px; line-height: 1.35; color: var(--ink); margin: 0 0 10px;
+  }
+  .v1__body {
+    font-family: "Newsreader", serif; font-size: 14px; line-height: 1.7;
+    color: var(--stone); margin: 0 0 12px; max-width: 48ch;
+  }
+  .v1__by {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 13px; color: var(--gold-deep); letter-spacing: 0.04em;
+  }
+  /* Uniform marginalia rail — same glyph, same size, same colour */
+  .v1__rail {
+    align-self: stretch; padding-top: 18px;
+    border-left: 1px solid var(--hairline);
+    text-align: center;
+  }
+  .v1__rail__ref {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 13px; letter-spacing: 0.06em; color: var(--gold-deep);
+  }
+  .v1__rail__note {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone); margin-top: 6px; line-height: 1.3;
+  }
+
+  /* ========================================================================
+     V — ALMANAC PLATE (mine 2)
+     ===================================================================== */
+  .a1__masthead {
+    display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px;
+  }
+  .a1__eyebrow {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; letter-spacing: 0.06em; color: var(--stone);
+  }
+  .a1__audit {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    border: 1px solid var(--gold); padding: 9px 16px; border-radius: 2px;
+    background: rgba(201,168,106,0.06);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background .2s;
+  }
+  .a1__audit:hover { background: rgba(201,168,106,0.18); }
+  .a1__audit::after { content: "→"; color: var(--gold-deep); font-size: 12px; }
+  .a1__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .a1__plate {
+    position: relative;
+    background: var(--cream);
+    border: 1px solid rgba(201,168,106,0.42);
+    padding: 28px 24px 24px;
+    border-radius: 2px;
+  }
+  /* Corner ticks (echo of .ht-pitch-card) */
+  .a1__plate::before, .a1__plate::after,
+  .a1__plate > .tick-tl, .a1__plate > .tick-br {
+    content: ""; position: absolute; width: 10px; height: 10px;
+    border-color: var(--gold);
+  }
+  .a1__plate::before { top: -1px; left: -1px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .a1__plate::after  { bottom: -1px; right: -1px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  .a1__ref {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .a1__ref .pip {
+    display: inline-block; width: 5px; height: 5px;
+    background: var(--gold); border-radius: 50%; margin-right: 8px;
+    vertical-align: middle;
+  }
+  .a1__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 88px; line-height: 1; color: var(--ink); letter-spacing: -0.02em;
+    margin-top: 16px; display: inline-block;
+  }
+  .a1__plus { color: var(--gold-deep); font-size: 0.42em; vertical-align: super; margin-left: 2px; }
+  .a1__tag {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 17px; color: var(--ink-2); margin-top: 10px; line-height: 1.3;
+  }
+  .a1__rule {
+    height: 1px; background: var(--hairline); margin: 18px 0 14px;
+  }
+  .a1__body {
+    font-family: "Newsreader", serif; font-size: 13px; line-height: 1.65;
+    color: var(--stone); margin: 0 0 14px; min-height: 60px;
+  }
+  .a1__foot {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--hairline); padding-top: 10px;
+  }
+  .a1__by {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 12px; color: var(--gold-deep);
+  }
+  .a1__since {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  /* Footer ---------------------------------------------------------------- */
+  footer.outro {
+    margin-top: 96px; padding-top: 32px;
+    border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--stone); line-height: 1.65;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="intro">
+    <div class="eyebrow">Sketch · stats-section-redesign</div>
+    <h1>Five redesigns for the <em>14 / 100 / 32</em> stats strip.</h1>
+    <p class="lede">
+      <strong>Reading the screenshot.</strong> Three editorial pull-stats with footnote markers
+      (<code>†</code>&nbsp;<code>‡</code>&nbsp;<code>§</code>) and a centred bracketed
+      <em>[ Audit trail on request → ]</em> button below. The information is good and the
+      typography is right — but the layout has three concrete problems.
+    </p>
+
+    <div class="diagnosis">
+      <strong>What's broken (per the brief).</strong>
+      <ol>
+        <li><strong>The whole strip doesn't sit as a section.</strong> Three columns of italic
+          serif body copy run together; the eye has no anchor between numeral, claim and source,
+          and the byline (<em>— R.A.</em>) repeats three times within a few centimetres.</li>
+        <li><strong>The footnote glyphs are different sizes.</strong> <code>†</code>,
+          <code>‡</code> and <code>§</code> are three unrelated glyphs at three unrelated optical
+          weights — they read as decoration, not as a key, and there's no marginalia/footer block
+          to land on.</li>
+        <li><strong>The audit-trail button is in the wrong place.</strong> A bracketed serif pill
+          centred under three columns reads as an aside, not as the section's primary tell-the-rest
+          affordance. The brief calls for it on the <em>right-hand side</em>.</li>
+      </ol>
+    </div>
+
+    <p class="lede" style="margin-top:24px;">
+      Every redesign below holds the <strong>data and voice constant</strong> — the three numerals,
+      the three editorial claims and the &mdash;&nbsp;R.A. byline don't change. What changes is the
+      <strong>surface</strong>: how the three claims relate, how (or whether) the footnote system
+      survives, and where the audit-trail CTA lands.
+    </p>
+  </header>
+
+  <!-- Baseline today =================================================== -->
+  <section>
+    <div class="eyebrow">Baseline · today</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;margin:8px 0 14px;">
+      <em>(0)</em> What the screenshot shows
+    </h2>
+    <p style="font-size:13px; color: var(--stone); line-height: 1.65; max-width:68ch; margin:0 0 18px;">
+      Faithful reproduction so the three issues are visible side-by-side with the five candidates
+      below. The mismatched footnote markers and the centred bracket button are reproduced
+      deliberately — these are the bugs.
+    </p>
+    <div class="mock">
+      <div class="baseline-tile">
+        <div class="baseline-cell">
+          <div>
+            <span class="baseline-cell__line1">14<span class="baseline-cell__plus">+</span></span>
+            <span class="baseline-cell__tail">years on the desk —</span>
+          </div>
+          <div class="baseline-cell__line2">
+            CFA-trained, NYSE-seasoned advisory.<span class="baseline-cell__mark baseline-cell__mark--a">†</span>
+          </div>
+          <p class="baseline-cell__body">In private practice since 2018. Charter held continuously since 2012.</p>
+          <div class="baseline-cell__by">— R.A.</div>
+        </div>
+        <div class="baseline-cell">
+          <div>
+            <span class="baseline-cell__line1">100<span class="baseline-cell__plus">+</span></span>
+            <span class="baseline-cell__tail">private files —</span>
+          </div>
+          <div class="baseline-cell__line2">
+            citizenship, residency and tax.<span class="baseline-cell__mark baseline-cell__mark--b">‡</span>
+          </div>
+          <p class="baseline-cell__body">Every brief pre-screened on source of funds before engagement.</p>
+          <div class="baseline-cell__by">— R.A.</div>
+        </div>
+        <div class="baseline-cell">
+          <div>
+            <span class="baseline-cell__line1">32</span>
+            <span class="baseline-cell__tail">jurisdictions —</span>
+          </div>
+          <div class="baseline-cell__line2">
+            firms and partners operational.<span class="baseline-cell__mark baseline-cell__mark--c">§</span>
+          </div>
+          <p class="baseline-cell__body">From the Caribbean shelf programmes to the Gulf's new tax routes.</p>
+          <div class="baseline-cell__by">— R.A.</div>
+        </div>
+      </div>
+      <div class="baseline-button-wrap">
+        <button class="baseline-button">Audit trail on request →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOC =============================================================== -->
+  <div class="toc-title">The five candidates</div>
+  <nav class="toc">
+    <a href="#i-creative">
+      <span class="toc__num">I</span>
+      <span class="toc__title">Editorial pull-quote with gold seal markers</span>
+      <span class="toc__register">Creative</span>
+    </a>
+    <a href="#ii-minimal">
+      <span class="toc__num">II</span>
+      <span class="toc__title">Stripped editorial — no footnote glyphs</span>
+      <span class="toc__register">Minimalistic</span>
+    </a>
+    <a href="#iii-professional">
+      <span class="toc__num">III</span>
+      <span class="toc__title">Audit-report doc-control register</span>
+      <span class="toc__register">Professional</span>
+    </a>
+    <a href="#iv-marginalia">
+      <span class="toc__num">IV</span>
+      <span class="toc__title">Marginalia journal (mine #1)</span>
+      <span class="toc__register">Editorial / longform</span>
+    </a>
+    <a href="#v-almanac">
+      <span class="toc__num">V</span>
+      <span class="toc__title">Almanac plate (mine #2)</span>
+      <span class="toc__register">Dossier / pitch-card</span>
+    </a>
+  </nav>
+
+  <div class="ideas">
+
+    <!-- ============================================================== -->
+    <!-- I — CREATIVE                                                    -->
+    <!-- ============================================================== -->
+    <article class="idea" id="i-creative">
+      <div class="idea__head">
+        <div class="idea__num">I · Editorial pull-quote</div>
+        <div class="idea__register">Creative</div>
+      </div>
+      <h2>Three pull-quotes, three identical <em>gold seals</em>.</h2>
+      <p class="idea__dek">
+        Numerals dominate at 96 px italic; the editorial claim becomes a short italic
+        pull-quote ending in <em>— R.A.</em> The mismatched <code>† ‡ §</code> glyphs are
+        replaced by three identical <strong>14 px circular gold seals</strong> carrying
+        the letters <em>a / b / c</em> — same shape, same size, same colour — and the
+        footnote text lands in a discreet three-column band at the foot of the section.
+        Section masthead carries the audit-trail link on the right.
+      </p>
+
+      <div class="panel-label">Live mock — on page-body cream</div>
+      <div class="mock">
+        <div class="c1">
+          <div class="c1__masthead">
+            <div class="c1__eyebrow">The Practice · in three figures</div>
+            <a class="c1__audit" href="#">Audit trail on request</a>
+          </div>
+          <div class="c1__grid">
+            <div class="c1__cell">
+              <div>
+                <span class="c1__num">14<span class="c1__plus">+</span></span>
+                <span class="c1__seal" aria-label="footnote a">a</span>
+              </div>
+              <div class="c1__quote"><em>Years on the desk</em> — CFA-trained, NYSE-seasoned advisory.</div>
+              <p class="c1__body">In private practice since 2018. Charter held continuously since 2012.</p>
+              <div class="c1__by">— R.A.</div>
+            </div>
+            <div class="c1__cell">
+              <div>
+                <span class="c1__num">100<span class="c1__plus">+</span></span>
+                <span class="c1__seal" aria-label="footnote b">b</span>
+              </div>
+              <div class="c1__quote"><em>Private files</em> — citizenship, residency and tax.</div>
+              <p class="c1__body">Every brief pre-screened on source of funds before engagement.</p>
+              <div class="c1__by">— R.A.</div>
+            </div>
+            <div class="c1__cell">
+              <div>
+                <span class="c1__num">32</span>
+                <span class="c1__seal" aria-label="footnote c">c</span>
+              </div>
+              <div class="c1__quote"><em>Jurisdictions</em> — firms and partners operational.</div>
+              <p class="c1__body">From the Caribbean shelf programmes to the Gulf's new tax routes.</p>
+              <div class="c1__by">— R.A.</div>
+            </div>
+          </div>
+          <div class="c1__footnotes">
+            <div><span class="c1__seal">a</span>Verified by CFA Institute; charter no. on request.</div>
+            <div><span class="c1__seal">b</span>File count covers 2018–25; client identities withheld under NDA.</div>
+            <div><span class="c1__seal">c</span>Active partners as of 2026.Q1; full bench list on request.</div>
+          </div>
+        </div>
+      </div>
+
+      <dl class="register">
+        <div><dt>Surface</dt><dd>Page-body cream, hairline column dividers, no card frame.</dd></div>
+        <div><dt>Markers</dt><dd>Three identical 18 px gold discs (a / b / c).</dd></div>
+        <div><dt>CTA</dt><dd>Top-right of masthead — italic serif link with gold underline.</dd></div>
+        <div><dt>Mobile</dt><dd>Columns stack; footnotes drop into a single column under each stat.</dd></div>
+      </dl>
+
+      <div class="vs-today">
+        <strong>vs today.</strong>
+        Fixes all three issues at once: footnote glyphs become a uniform key, the audit-trail
+        button moves into the masthead on the right, and the numerals get enough air that the
+        section reads as <em>three claims with three sources</em> rather than three paragraphs of
+        italic body copy in a row.
+      </div>
+    </article>
+
+    <!-- ============================================================== -->
+    <!-- II — MINIMALISTIC                                               -->
+    <!-- ============================================================== -->
+    <article class="idea" id="ii-minimal">
+      <div class="idea__head">
+        <div class="idea__num">II · Stripped editorial</div>
+        <div class="idea__register">Minimalistic</div>
+      </div>
+      <h2>Cut the footnotes. <em>Three stats, one masthead, one link.</em></h2>
+      <p class="idea__dek">
+        The boldest fix: <strong>remove the footnote system entirely</strong>. The three
+        claims aren't long enough to warrant references on the page; the audit-trail link
+        is the catch-all "show your working" affordance. No card, no border, no plus-disc
+        — three editorial cells separated by air on cream. The Audit trail link sits as
+        an italic right-aligned tagline in the section masthead.
+      </p>
+
+      <div class="panel-label">Live mock — on page-body cream</div>
+      <div class="mock">
+        <div class="m1__masthead">
+          <div class="m1__eyebrow">The practice in three figures.</div>
+          <a class="m1__audit" href="#"><em>Audit trail on request</em></a>
+        </div>
+        <div class="m1__grid">
+          <div class="m1__cell">
+            <span class="m1__num">14<span class="m1__plus">+</span></span>
+            <div class="m1__tag">Years on the desk — CFA-trained, NYSE-seasoned advisory.</div>
+            <div class="m1__rule"></div>
+            <p class="m1__body">In private practice since 2018. Charter held continuously since 2012.</p>
+            <div class="m1__by">— R.A.</div>
+          </div>
+          <div class="m1__cell">
+            <span class="m1__num">100<span class="m1__plus">+</span></span>
+            <div class="m1__tag">Private files — citizenship, residency and tax.</div>
+            <div class="m1__rule"></div>
+            <p class="m1__body">Every brief pre-screened on source of funds before engagement.</p>
+            <div class="m1__by">— R.A.</div>
+          </div>
+          <div class="m1__cell">
+            <span class="m1__num">32</span>
+            <div class="m1__tag">Jurisdictions — firms and partners operational.</div>
+            <div class="m1__rule"></div>
+            <p class="m1__body">From the Caribbean shelf programmes to the Gulf's new tax routes.</p>
+            <div class="m1__by">— R.A.</div>
+          </div>
+        </div>
+      </div>
+
+      <dl class="register">
+        <div><dt>Surface</dt><dd>Pure cream, no frame, no dividers, 56 px gutter between cells.</dd></div>
+        <div><dt>Markers</dt><dd>None — footnotes removed. Audit trail carries the citation burden.</dd></div>
+        <div><dt>CTA</dt><dd>Right-aligned italic link in the masthead, gold arrow only.</dd></div>
+        <div><dt>Mobile</dt><dd>Cells stack; the rule between tag and body lets each one breathe.</dd></div>
+      </dl>
+
+      <div class="vs-today">
+        <strong>vs today.</strong>
+        The mismatched-glyph problem disappears by deletion. The audit-trail moves to the right.
+        Risk: loses the "we have receipts" signal that the footnote markers were reaching for —
+        only ship this if you're confident the audit-trail CTA carries that load on its own.
+      </div>
+    </article>
+
+    <!-- ============================================================== -->
+    <!-- III — PROFESSIONAL                                               -->
+    <!-- ============================================================== -->
+    <article class="idea" id="iii-professional">
+      <div class="idea__head">
+        <div class="idea__num">III · Doc-control register</div>
+        <div class="idea__register">Professional</div>
+      </div>
+      <h2>Restate the three stats as <em>filing references</em>.</h2>
+      <p class="idea__dek">
+        Reuses the audit-report DNA from <code>.ht-breadcrumb__doc-control</code> and the
+        program-page front-matter. Each stat becomes a row in a tabular ledger
+        (<code>REF · METRIC · DETAIL · SOURCE</code>), with a monospace REF code replacing the
+        decorative footnote glyph and a green-dot <em>CURRENT</em> indicator on the source cell.
+        The Audit trail button sits in the table header on the right — same monospace
+        register as the column headings, so it reads as <em>part of the ledger</em>.
+      </p>
+
+      <div class="panel-label">Live mock — on page-body cream</div>
+      <div class="mock">
+        <div class="p1__masthead">
+          <div class="p1__title">MOBIUS · Practice register · 2026.Q1</div>
+          <a class="p1__audit" href="#">Audit trail on request</a>
+        </div>
+        <table class="p1__table">
+          <thead>
+            <tr>
+              <th style="width:14%;">Ref</th>
+              <th style="width:18%;">Metric</th>
+              <th>Detail</th>
+              <th style="width:22%; text-align:right;">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="p1__ref">PR-001/A</span></td>
+              <td><span class="p1__metric">14<span class="plus">+</span></span></td>
+              <td>
+                <span class="p1__detail">
+                  <em>Years on the desk.</em> CFA-trained, NYSE-seasoned advisory.
+                  <small>In private practice since 2018. Charter held continuously since 2012. — R.A.</small>
+                </span>
+              </td>
+              <td style="text-align:right;"><span class="p1__source">CFA Institute · verified</span></td>
+            </tr>
+            <tr>
+              <td><span class="p1__ref">PR-001/B</span></td>
+              <td><span class="p1__metric">100<span class="plus">+</span></span></td>
+              <td>
+                <span class="p1__detail">
+                  <em>Private files.</em> Citizenship, residency and tax.
+                  <small>Every brief pre-screened on source of funds before engagement. — R.A.</small>
+                </span>
+              </td>
+              <td style="text-align:right;"><span class="p1__source">Internal · NDA · 2018&ndash;25</span></td>
+            </tr>
+            <tr>
+              <td><span class="p1__ref">PR-001/C</span></td>
+              <td><span class="p1__metric">32</span></td>
+              <td>
+                <span class="p1__detail">
+                  <em>Jurisdictions.</em> Firms and partners operational.
+                  <small>From the Caribbean shelf programmes to the Gulf's new tax routes. — R.A.</small>
+                </span>
+              </td>
+              <td style="text-align:right;"><span class="p1__source">Partner bench · 2026.Q1</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <dl class="register">
+        <div><dt>Surface</dt><dd>Hairline-ruled table on cream; no card; mirrors program-page doc-control.</dd></div>
+        <div><dt>Markers</dt><dd>Monospace REF codes (PR-001/A&hellip;C). No decorative glyphs.</dd></div>
+        <div><dt>CTA</dt><dd>Right-aligned monospace ghost button in the table masthead.</dd></div>
+        <div><dt>Mobile</dt><dd>Each row collapses to a stacked card (REF · METRIC · DETAIL · SOURCE).</dd></div>
+      </dl>
+
+      <div class="vs-today">
+        <strong>vs today.</strong>
+        The most "audit firm" register of the five — every footnote becomes a real citation,
+        the audit-trail button stops looking like decoration and starts looking like a column
+        header, and the whole section ties visually to the program-page front-matter the site
+        already uses. Loses some warmth — feels procedural rather than editorial.
+      </div>
+    </article>
+
+    <!-- ============================================================== -->
+    <!-- IV — MARGINALIA JOURNAL (mine 1)                                -->
+    <!-- ============================================================== -->
+    <article class="idea" id="iv-marginalia">
+      <div class="idea__head">
+        <div class="idea__num">IV · Marginalia journal</div>
+        <div class="idea__register">Editorial / longform — mine #1</div>
+      </div>
+      <h2>Stacked rows with a <em>marginalia rail</em> on the right.</h2>
+      <p class="idea__dek">
+        Three horizontal rows instead of three columns — gives each stat a full editorial
+        line and stops the three columns of italic running together. A 40 px
+        <strong>marginalia rail</strong> on the right holds a uniformly-sized
+        <em>a / b / c</em> reference plus a small-caps source line (<code>CFA · 2012</code>
+        etc.), so the footnote system stays but every marker is the same glyph at the same
+        size. Audit-trail returns to the top-right of the section masthead.
+      </p>
+
+      <div class="panel-label">Live mock — on page-body cream</div>
+      <div class="mock">
+        <div class="v1__masthead">
+          <div class="v1__eyebrow">The practice · three figures, three sources</div>
+          <a class="v1__audit" href="#">Audit trail on request</a>
+        </div>
+
+        <div class="v1__row">
+          <div class="v1__left">
+            <span class="v1__num">14<span class="v1__plus">+</span></span>
+            <div class="v1__tag">Years on the desk</div>
+          </div>
+          <div class="v1__right">
+            <p class="v1__lede">CFA-trained, NYSE-seasoned advisory.</p>
+            <p class="v1__body">In private practice since 2018. Charter held continuously since 2012.</p>
+            <div class="v1__by">— R.A.</div>
+          </div>
+          <div class="v1__rail">
+            <div class="v1__rail__ref">a</div>
+            <div class="v1__rail__note">CFA<br>2012</div>
+          </div>
+        </div>
+
+        <div class="v1__row">
+          <div class="v1__left">
+            <span class="v1__num">100<span class="v1__plus">+</span></span>
+            <div class="v1__tag">Private files</div>
+          </div>
+          <div class="v1__right">
+            <p class="v1__lede">Citizenship, residency and tax.</p>
+            <p class="v1__body">Every brief pre-screened on source of funds before engagement.</p>
+            <div class="v1__by">— R.A.</div>
+          </div>
+          <div class="v1__rail">
+            <div class="v1__rail__ref">b</div>
+            <div class="v1__rail__note">NDA<br>2018&ndash;25</div>
+          </div>
+        </div>
+
+        <div class="v1__row">
+          <div class="v1__left">
+            <span class="v1__num">32</span>
+            <div class="v1__tag">Jurisdictions</div>
+          </div>
+          <div class="v1__right">
+            <p class="v1__lede">Firms and partners operational.</p>
+            <p class="v1__body">From the Caribbean shelf programmes to the Gulf's new tax routes.</p>
+            <div class="v1__by">— R.A.</div>
+          </div>
+          <div class="v1__rail">
+            <div class="v1__rail__ref">c</div>
+            <div class="v1__rail__note">PARTNERS<br>2026.Q1</div>
+          </div>
+        </div>
+      </div>
+
+      <dl class="register">
+        <div><dt>Surface</dt><dd>Three hairline-divided rows; marginalia rail bordered-left only.</dd></div>
+        <div><dt>Markers</dt><dd>Italic Cormorant <em>a / b / c</em> + tiny monospace source tag — identical optical size.</dd></div>
+        <div><dt>CTA</dt><dd>Italic serif link in the section masthead with a leading <em>›</em> chevron.</dd></div>
+        <div><dt>Mobile</dt><dd>Numeral column stacks above body; marginalia rail collapses to inline tag under byline.</dd></div>
+      </dl>
+
+      <div class="vs-today">
+        <strong>vs today.</strong>
+        The boldest structural change — three columns become three rows. Each stat gets room to
+        breathe and the marginalia rail does the citation work the broken footnote markers were
+        trying to do. The audit-trail link sits on the masthead so the section closes cleanly on
+        the right margin.
+      </div>
+    </article>
+
+    <!-- ============================================================== -->
+    <!-- V — ALMANAC PLATE (mine 2)                                      -->
+    <!-- ============================================================== -->
+    <article class="idea" id="v-almanac">
+      <div class="idea__head">
+        <div class="idea__num">V · Almanac plate</div>
+        <div class="idea__register">Dossier / pitch-card — mine #2</div>
+      </div>
+      <h2>Three <em>hairline-framed plates</em> with corner ticks.</h2>
+      <p class="idea__dek">
+        Borrows the dossier-frame language of the site's <code>.ht-pitch-card</code> — each stat
+        sits in its own hairline plate with gold corner ticks and a monospace REF chip at the
+        top. The footnote glyphs disappear entirely (the REF chip carries the citation), and
+        each plate closes with a hairline-divided foot row holding <em>— R.A.</em> and a
+        small-caps source line. The Audit trail CTA is a right-aligned gold-outline ghost
+        button in the section masthead — the brief register, not editorial.
+      </p>
+
+      <div class="panel-label">Live mock — on page-body cream</div>
+      <div class="mock">
+        <div class="a1__masthead">
+          <div class="a1__eyebrow">The practice · 2026.Q1 almanac</div>
+          <a class="a1__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="a1__grid">
+          <div class="a1__plate">
+            <div class="a1__ref"><span class="pip"></span>PR-001 / A · CFA</div>
+            <div>
+              <span class="a1__num">14<span class="a1__plus">+</span></span>
+            </div>
+            <div class="a1__tag">Years on the desk — CFA-trained, NYSE-seasoned advisory.</div>
+            <div class="a1__rule"></div>
+            <p class="a1__body">In private practice since 2018. Charter held continuously since 2012.</p>
+            <div class="a1__foot">
+              <div class="a1__by">— R.A.</div>
+              <div class="a1__since">since 2012</div>
+            </div>
+          </div>
+          <div class="a1__plate">
+            <div class="a1__ref"><span class="pip"></span>PR-001 / B · NDA</div>
+            <div>
+              <span class="a1__num">100<span class="a1__plus">+</span></span>
+            </div>
+            <div class="a1__tag">Private files — citizenship, residency and tax.</div>
+            <div class="a1__rule"></div>
+            <p class="a1__body">Every brief pre-screened on source of funds before engagement.</p>
+            <div class="a1__foot">
+              <div class="a1__by">— R.A.</div>
+              <div class="a1__since">2018&ndash;25</div>
+            </div>
+          </div>
+          <div class="a1__plate">
+            <div class="a1__ref"><span class="pip"></span>PR-001 / C · PARTNERS</div>
+            <div>
+              <span class="a1__num">32</span>
+            </div>
+            <div class="a1__tag">Jurisdictions — firms and partners operational.</div>
+            <div class="a1__rule"></div>
+            <p class="a1__body">From the Caribbean shelf programmes to the Gulf's new tax routes.</p>
+            <div class="a1__foot">
+              <div class="a1__by">— R.A.</div>
+              <div class="a1__since">2026.Q1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <dl class="register">
+        <div><dt>Surface</dt><dd>Cream plates with gold hairline + corner ticks (echo of pitch-card frame).</dd></div>
+        <div><dt>Markers</dt><dd>Monospace REF chip with a gold pip — same chip per plate.</dd></div>
+        <div><dt>CTA</dt><dd>Right-aligned monospace ghost button on a soft gold tint, top of section.</dd></div>
+        <div><dt>Mobile</dt><dd>Plates stack vertically; corner ticks stay; foot row keeps byline left, source right.</dd></div>
+      </dl>
+
+      <div class="vs-today">
+        <strong>vs today.</strong>
+        The most dossier-coded of the five — each stat reads as its own indexed plate, like a page
+        out of the program-page front-matter. Audit-trail button is a visual sibling of the REF
+        chips, so the citation system is consistent top-to-bottom. Heavier visual mass than the
+        minimalist version; better when the section needs to stand alone above the fold.
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="outro">
+    Five drafts. Hold the copy and voice constant; only the surface, the citation system and the
+    CTA placement change. My pick depends on context — <strong>III (Doc-control)</strong> if the
+    section needs to feel like an audit firm, <strong>IV (Marginalia)</strong> if it needs to
+    feel like an editorial column, <strong>I (Pull-quote)</strong> if you want to keep the
+    column layout but fix the three bugs in place.
+  </footer>
+
+</div>
+</body>
+</html>
