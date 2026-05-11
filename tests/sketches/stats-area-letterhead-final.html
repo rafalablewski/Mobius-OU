@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stats-area finalist — Private letterhead with footnotes — Mobius drafts</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Manrope:wght@200;300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --body:#F4EFE6; --ink:#0B0F14; --gold:#C9A86A; --border:#E2DBCE;
+    --muted:#6B6257; --cream:#FAF6EE; --text:#1C232B;
+    --ui:'Manrope',sans-serif;
+    --display:'Cormorant Garamond',serif;
+    --body-serif:'Newsreader',Georgia,serif;
+    --mono:'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--body);color:var(--text);
+    font-family:var(--ui);font-size:15px;line-height:1.6;letter-spacing:-0.003em;}
+  .wrap{max-width:1280px;margin:0 auto;padding:80px 40px 160px;}
+
+  /* ---- Page chrome ---- */
+  .page-head{border-bottom:1px solid var(--border);padding-bottom:48px;margin-bottom:48px}
+  .eyebrow{font-family:var(--ui);font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--muted)}
+  h1.title{font-family:var(--display);font-weight:400;font-size:54px;line-height:1.1;
+    letter-spacing:-0.02em;color:var(--ink);margin:8px 0 20px}
+  h1.title em{font-style:italic;color:var(--gold)}
+  .standfirst{font-family:var(--body-serif);max-width:64ch;font-size:17.5px;
+    line-height:1.55;color:var(--text);margin:0}
+  .standfirst code{font-family:var(--mono);font-size:14px;background:rgba(11,15,20,0.06);
+    padding:1px 5px;border-radius:2px}
+
+  /* ---- Block headers ---- */
+  .block{margin:96px 0 0;padding-top:48px;border-top:1px solid var(--border)}
+  .block:first-of-type{border-top:none;padding-top:0;margin-top:32px}
+  .block-head{display:grid;grid-template-columns:88px 1fr;gap:24px;margin-bottom:36px}
+  .block-head .roman{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:60px;color:var(--gold);line-height:0.95}
+  .block-head h2{font-family:var(--display);font-weight:400;font-size:30px;
+    line-height:1.15;letter-spacing:-0.01em;color:var(--ink);margin:0}
+  .block-head .dek{font-family:var(--body-serif);font-size:15.5px;line-height:1.55;
+    color:var(--muted);margin:10px 0 0;max-width:64ch}
+  .block-head .dek code{font-family:var(--mono);font-size:13px;background:rgba(11,15,20,0.06);
+    padding:1px 5px;border-radius:2px}
+  .stage-label{font-family:var(--ui);font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+
+  /* ============================================================ */
+  /* BASELINE — today                                             */
+  /* ============================================================ */
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .stats-cell{padding:56px 32px;position:relative;text-align:left}
+  .stats-cell:not(:last-child)::after{content:"";position:absolute;right:0;
+    top:20%;bottom:20%;width:1px;background:var(--border)}
+  .num{font-family:var(--display);font-weight:500;font-size:clamp(48px,5.2vw,72px);
+    line-height:1;letter-spacing:-0.03em;color:var(--ink);
+    display:inline-flex;align-items:baseline;gap:2px;position:relative;z-index:2}
+  .num .plus{font-family:var(--display);color:var(--gold);font-weight:400;
+    font-size:0.5em;margin-left:4px;align-self:flex-start;line-height:1.2}
+  .label{margin-top:20px;font-family:var(--ui);font-weight:500;font-size:12px;
+    letter-spacing:0.18em;text-transform:uppercase;color:var(--ink)}
+  .body{margin-top:8px;font-family:var(--body-serif);font-size:14px;
+    line-height:1.55;color:var(--muted);max-width:28ch}
+
+  /* ============================================================ */
+  /* FINALIST — XVIII + XX merge                                  */
+  /*   Private letterhead masthead + per-Ref correspondence       */
+  /*   + footnote citation block + audit trail stamp              */
+  /* ============================================================ */
+  .lh{background:var(--cream);padding:0;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+  /* --- Masthead --- */
+  .lh-mast{display:flex;justify-content:space-between;align-items:baseline;
+    padding:28px 40px 18px;border-bottom:0.5px solid var(--ink);
+    font-family:var(--ui);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--ink)}
+  .lh-mast .firm{font-family:var(--display);font-style:italic;font-weight:500;
+    font-size:18px;letter-spacing:0.02em;text-transform:none;color:var(--ink)}
+  .lh-mast .office{letter-spacing:0.32em}
+  .lh-mast .cities{font-family:var(--body-serif);font-style:italic;color:var(--muted);
+    font-size:14px;letter-spacing:0;text-transform:none}
+
+  /* --- Three correspondence columns --- */
+  .lh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:40px 0 32px}
+  .lh-cell{padding:0 36px;position:relative}
+  .lh-cell:not(:last-child)::after{content:"";position:absolute;right:0;top:6px;bottom:6px;
+    width:1px;border-left:0.5px dotted var(--border)}
+  .lh-ref{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .lh-line{font-family:var(--body-serif);font-style:italic;font-size:20px;
+    line-height:1.35;color:var(--ink);margin:0}
+  .lh-line .n{font-family:var(--display);font-style:italic;font-weight:400;
+    font-size:60px;letter-spacing:-0.02em;color:var(--ink);
+    display:inline-block;vertical-align:-14px;margin-right:6px;line-height:1}
+  .lh-line .n .plus{font-size:0.32em;vertical-align:super;color:var(--gold);
+    font-weight:400;margin-left:1px}
+  /* Footnote marker — end of lead clause, italic gold superscript */
+  .lh-line sup.fn{font-family:var(--body-serif);font-style:italic;font-weight:400;
+    font-size:0.7em;color:var(--gold);vertical-align:super;
+    margin-left:1px;letter-spacing:0}
+  .lh-body{margin-top:16px;font-family:var(--body-serif);font-size:14.5px;
+    color:var(--muted);max-width:34ch;line-height:1.55}
+  .lh-sig{margin-top:22px;font-family:var(--display);font-style:italic;
+    font-size:15px;color:var(--ink)}
+
+  /* --- Footnote block (XX layered in) --- */
+  .lh-foot{border-top:0.5px solid var(--ink);padding:22px 40px 18px}
+  .lh-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    font-family:var(--body-serif);font-size:13.5px;line-height:1.55;color:var(--text)}
+  .lh-notes p{margin:0}
+  .lh-notes sup{font-family:var(--body-serif);font-style:italic;color:var(--gold);
+    font-size:14px;margin-right:4px;font-weight:400}
+
+  /* --- Audit trail stamp --- */
+  .lh-audit{margin-top:18px;padding-top:14px;border-top:1px dotted var(--border);
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:var(--ui);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--muted)}
+  .lh-audit .stamp{font-family:var(--mono);font-size:10px;letter-spacing:0.16em}
+  .lh-audit .stamp .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:#3F8F4E;margin-right:6px;vertical-align:middle}
+  .lh-audit a{color:var(--gold);text-decoration:none;letter-spacing:0.18em;
+    border-bottom:0.5px solid transparent;padding-bottom:1px;transition:border-color .15s}
+  .lh-audit a:hover{border-bottom-color:var(--gold)}
+
+  /* ============================================================ */
+  /* Decisions register + ship plan                               */
+  /* ============================================================ */
+  .decisions,
+  .ship{display:grid;grid-template-columns:200px 1fr;gap:36px;
+    padding:22px 0;border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);margin-top:36px}
+  .decisions:not(:last-child){border-bottom:none}
+  .decisions h3,
+  .ship h3{font-family:var(--ui);font-size:10px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--muted);margin:0;font-weight:500}
+  .decisions ul,
+  .ship ul{margin:0;padding:0;list-style:none}
+  .decisions li,
+  .ship li{font-family:var(--body-serif);font-size:14.5px;line-height:1.6;
+    color:var(--text);padding:8px 0;border-bottom:1px dotted var(--border);
+    display:grid;grid-template-columns:200px 1fr;gap:24px}
+  .decisions li:last-child,
+  .ship li:last-child{border-bottom:none}
+  .decisions li b,
+  .ship li b{font-family:var(--ui);font-size:11px;font-weight:500;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--ink)}
+  .decisions li code,
+  .ship li code{font-family:var(--mono);font-size:13px;background:rgba(11,15,20,0.06);
+    padding:1px 5px;border-radius:2px}
+
+  /* ---- Mobile preview frame ---- */
+  .mobile-frame{max-width:420px;margin:0;border:1px solid var(--border);
+    background:var(--body);padding:0;overflow:hidden}
+  .mobile-frame .lh{border:none}
+  .mobile-frame .lh-mast{flex-direction:column;align-items:flex-start;gap:6px;
+    padding:24px 20px 14px}
+  .mobile-frame .lh-grid{grid-template-columns:1fr;padding:24px 0 14px;gap:0}
+  .mobile-frame .lh-cell{padding:20px;border-bottom:0.5px dotted var(--border)}
+  .mobile-frame .lh-cell:last-child{border-bottom:none}
+  .mobile-frame .lh-cell::after{display:none}
+  .mobile-frame .lh-foot{padding:18px 20px 14px}
+  .mobile-frame .lh-notes{grid-template-columns:1fr;gap:14px}
+  .mobile-frame .lh-audit{flex-direction:column;gap:8px;align-items:flex-start}
+
+  /* ---- Footer ---- */
+  .pagefoot{margin-top:96px;padding-top:32px;border-top:1px solid var(--border);
+    font-family:var(--ui);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--muted);display:flex;justify-content:space-between}
+
+  /* ---- Mobile global ---- */
+  @media (max-width:880px){
+    .wrap{padding:48px 20px 80px}
+    h1.title{font-size:34px}
+    .block-head{grid-template-columns:60px 1fr;gap:14px}
+    .block-head .roman{font-size:40px}
+    .block-head h2{font-size:24px}
+
+    /* Baseline: stack */
+    .stats-grid{grid-template-columns:1fr}
+    .stats-cell:not(:last-child)::after{height:1px;width:auto;left:24px;right:24px;
+      top:auto;bottom:0;transform:none}
+
+    /* Finalist desktop mock: stack */
+    .lh-mast{flex-direction:column;align-items:flex-start;gap:6px;padding:24px 20px 14px}
+    .lh-grid{grid-template-columns:1fr;padding:24px 0 14px;gap:0}
+    .lh-cell{padding:20px;border-bottom:0.5px dotted var(--border)}
+    .lh-cell:last-child{border-bottom:none}
+    .lh-cell::after{display:none}
+    .lh-foot{padding:18px 20px 14px}
+    .lh-notes{grid-template-columns:1fr;gap:14px}
+    .lh-audit{flex-direction:column;gap:8px;align-items:flex-start}
+
+    /* Decisions: single column */
+    .decisions,
+    .ship{grid-template-columns:1fr;gap:16px}
+    .decisions li,
+    .ship li{grid-template-columns:1fr;gap:6px}
+
+    .mobile-frame{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       Page header
+       ============================================================ -->
+  <header class="page-head">
+    <div class="eyebrow">Mobius · finalist · /tests/sketches/</div>
+    <h1 class="title">Stats-strip finalist — <em>private letterhead, with footnoted citation and audit trail</em></h1>
+    <p class="standfirst">
+      You picked <strong>XVIII</strong> (private letterhead) as the base and asked
+      for <strong>XX</strong>'s footnote citation + audit-trail layered on top.
+      This file isolates a single combined mock with the merge decisions
+      pinned down — where the footnote markers land, where the footnote
+      block sits, where the audit stamp goes — so the next step is just
+      porting class-for-class into <code>Home.jsx</code> + <code>style.css</code>.
+      Audit link is rendered with <code>href="#"</code> per your direction; no
+      route created yet. Baseline of today held below for direct contrast.
+    </p>
+  </header>
+
+  <!-- ============================================================
+       Baseline — today
+       ============================================================ -->
+  <section class="block">
+    <div class="block-head">
+      <div class="roman">0.</div>
+      <div>
+        <h2>Today — flush hairline grid (baseline)</h2>
+        <p class="dek">Currently shipped at <code>src/pages/Home.jsx:136-156</code>. Three cells, top + bottom hairline, vertical hairlines between. Held here so the finalist below has a direct contrast above it.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render — <code>src/pages/Home.jsx:136-156</code></div>
+    <div class="stats-grid">
+      <div class="stats-cell">
+        <div class="num">14<span class="plus">+</span></div>
+        <div class="label">Years in capital markets</div>
+        <div class="body">CFA-trained, NYSE-seasoned advisory</div>
+      </div>
+      <div class="stats-cell">
+        <div class="num">100<span class="plus">+</span></div>
+        <div class="label">Mandates delivered</div>
+        <div class="body">Across CBI, RBI and tax residency</div>
+      </div>
+      <div class="stats-cell">
+        <div class="num">32</div>
+        <div class="label">Jurisdictions covered</div>
+        <div class="body">From the Caribbean to the Gulf</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Finalist — XVIII + XX merge — DESKTOP
+       ============================================================ -->
+  <section class="block">
+    <div class="block-head">
+      <div class="roman">I.</div>
+      <div>
+        <h2>Finalist — private letterhead + footnoted citation + audit stamp</h2>
+        <p class="dek">A single piece of correspondence on cream stationery. Masthead with the firm name, office register and city list. Three Ref. paragraphs, each setting the numeral inline as a typographic flourish and signed <em>— R.A.</em>. A thin ink rule separates the correspondence from a three-column footnote block — every number on the masthead is sourced underneath it. A faint dotted rule below carries the audit stamp on the left and an "audit trail" link on the right.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render — desktop</div>
+
+    <div class="lh">
+      <!-- Masthead -->
+      <div class="lh-mast">
+        <span class="firm">Mobius &amp; Partners</span>
+        <span class="office">Private Office</span>
+        <span class="cities">Warsaw  ·  Valletta  ·  Lisbon</span>
+      </div>
+
+      <!-- Three correspondence columns -->
+      <div class="lh-grid">
+        <div class="lh-cell">
+          <div class="lh-ref">Ref. I  /  Capital markets</div>
+          <p class="lh-line">
+            <span class="n">14<span class="plus">+</span></span>
+            years on the desk —<br>CFA-trained, NYSE-seasoned advisory.<sup class="fn">†</sup>
+          </p>
+          <div class="lh-body">In private practice since 2018. Charter held continuously since 2012.</div>
+          <div class="lh-sig">— R.A.</div>
+        </div>
+        <div class="lh-cell">
+          <div class="lh-ref">Ref. II  /  Mandates</div>
+          <p class="lh-line">
+            <span class="n">100<span class="plus">+</span></span>
+            private files —<br>citizenship, residency and tax.<sup class="fn">‡</sup>
+          </p>
+          <div class="lh-body">Every brief pre-screened on source of funds before engagement.</div>
+          <div class="lh-sig">— R.A.</div>
+        </div>
+        <div class="lh-cell">
+          <div class="lh-ref">Ref. III  /  Coverage</div>
+          <p class="lh-line">
+            <span class="n">32</span>
+            jurisdictions —<br>firms and partners operational.<sup class="fn">§</sup>
+          </p>
+          <div class="lh-body">From the Caribbean shelf programmes to the Gulf's new tax routes.</div>
+          <div class="lh-sig">— R.A.</div>
+        </div>
+      </div>
+
+      <!-- Footnote block + audit stamp -->
+      <div class="lh-foot">
+        <div class="lh-notes">
+          <p><sup>†</sup> CFA charter held continuously since 2012; NYSE-licensed advisory 2014 — present.</p>
+          <p><sup>‡</sup> Counts private files closed between 2014 and 2026.Q1 across CBI, RBI and tax-residency briefs. Engagement-letter records on request.</p>
+          <p><sup>§</sup> &ldquo;Jurisdictions covered&rdquo; means firms or partners operational and reachable on a 24h call. Full list under audit.</p>
+        </div>
+        <div class="lh-audit">
+          <span class="stamp"><span class="dot"></span>Methodology  ·  2026.Q1  ·  Mobius private bench</span>
+          <a href="#">View audit trail →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Finalist — mobile preview (sticky desktop visual frame)
+       ============================================================ -->
+  <section class="block">
+    <div class="block-head">
+      <div class="roman">II.</div>
+      <div>
+        <h2>Mobile — single column stack</h2>
+        <p class="dek">Same content, single column. Masthead collapses to a stacked block; correspondence cells stack with a dotted rule between; footnotes stack; audit stamp stacks above the trail link. Rendered inside a 420 px frame so the desktop sketch and the mobile reflow sit side-by-side on a wide window.</p>
+      </div>
+    </div>
+    <div class="stage-label">Live render — narrow viewport simulation</div>
+    <div class="mobile-frame">
+      <div class="lh">
+        <div class="lh-mast">
+          <span class="firm">Mobius &amp; Partners</span>
+          <span class="office">Private Office</span>
+          <span class="cities">Warsaw  ·  Valletta  ·  Lisbon</span>
+        </div>
+        <div class="lh-grid">
+          <div class="lh-cell">
+            <div class="lh-ref">Ref. I  /  Capital markets</div>
+            <p class="lh-line">
+              <span class="n">14<span class="plus">+</span></span>
+              years on the desk —<br>CFA-trained, NYSE-seasoned advisory.<sup class="fn">†</sup>
+            </p>
+            <div class="lh-body">In private practice since 2018. Charter held continuously since 2012.</div>
+            <div class="lh-sig">— R.A.</div>
+          </div>
+          <div class="lh-cell">
+            <div class="lh-ref">Ref. II  /  Mandates</div>
+            <p class="lh-line">
+              <span class="n">100<span class="plus">+</span></span>
+              private files —<br>citizenship, residency and tax.<sup class="fn">‡</sup>
+            </p>
+            <div class="lh-body">Every brief pre-screened on source of funds before engagement.</div>
+            <div class="lh-sig">— R.A.</div>
+          </div>
+          <div class="lh-cell">
+            <div class="lh-ref">Ref. III  /  Coverage</div>
+            <p class="lh-line">
+              <span class="n">32</span>
+              jurisdictions —<br>firms and partners operational.<sup class="fn">§</sup>
+            </p>
+            <div class="lh-body">From the Caribbean shelf programmes to the Gulf's new tax routes.</div>
+            <div class="lh-sig">— R.A.</div>
+          </div>
+        </div>
+        <div class="lh-foot">
+          <div class="lh-notes">
+            <p><sup>†</sup> CFA charter held continuously since 2012; NYSE-licensed advisory 2014 — present.</p>
+            <p><sup>‡</sup> Counts private files closed between 2014 and 2026.Q1 across CBI, RBI and tax-residency briefs.</p>
+            <p><sup>§</sup> "Jurisdictions covered" means firms or partners operational and reachable on a 24h call.</p>
+          </div>
+          <div class="lh-audit">
+            <span class="stamp"><span class="dot"></span>Methodology · 2026.Q1</span>
+            <a href="#">View audit trail →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Decisions register
+       ============================================================ -->
+  <section class="block">
+    <div class="block-head">
+      <div class="roman">III.</div>
+      <div>
+        <h2>Merge decisions, pinned</h2>
+        <p class="dek">The two patterns each made independent choices in their own files. Where they conflict, this is the resolution.</p>
+      </div>
+    </div>
+    <div class="decisions">
+      <h3>Decision</h3>
+      <ul>
+        <li><b>Marker position</b><span>At end of the lead italic clause, not on the numeral itself. Reads as a sentence-final reference, not as &ldquo;fourteen-dagger years&rdquo;. Matches annual-report typography.</span></li>
+        <li><b>Marker glyphs</b><span>Kept <code>†</code>, <code>‡</code>, <code>§</code> as in XX. Roman <code>i / ii / iii</code> would have collided with the <code>Ref. I / II / III</code> tags inside each cell.</span></li>
+        <li><b>Marker style</b><span>Newsreader italic, gold, 0.7em superscript. Pairs with the Cormorant italic body but stays smaller than the inline numeral.</span></li>
+        <li><b>Footnote placement</b><span>Strip-wide block under all three letters, inside the same letterhead frame. Not per-cell — each cell already carries Ref. tag + sentence + dek + signature; a fourth element would crowd it.</span></li>
+        <li><b>Footnote rule</b><span>0.5 px ink line above the footnote block (mirrors the masthead rule). Dotted rule below it separates the audit stamp.</span></li>
+        <li><b>Audit stamp</b><span>Below the footnotes, not above. Two halves on one line — monospace methodology stamp on the left, gold audit-trail link on the right. Stacks on mobile.</span></li>
+        <li><b>Audit URL</b><span>Renders as <code>href=&quot;#&quot;</code> with the visual treatment intact. No route created. Wire it up later when an <code>/audits</code> page exists.</span></li>
+        <li><b>Cell signatures</b><span>Kept per-cell <em>— R.A.</em>. Removing them and signing once at the foot would collapse three letters into one and break the correspondence register.</span></li>
+        <li><b>Cell dividers</b><span>0.5 px dotted vertical between cells (faint), no top/bottom interior rule. Lets the masthead rule and the footnote rule do the framing.</span></li>
+        <li><b>Body wrapper</b><span>Cream (<code>--ht-theme-color-5</code>, <code>#FAF6EE</code>) inside hairline-bordered container on cream body (<code>#F4EFE6</code>). Subtle stationery effect without becoming a card.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Ship plan
+       ============================================================ -->
+  <section class="block">
+    <div class="block-head">
+      <div class="roman">IV.</div>
+      <div>
+        <h2>Ship plan — where this ports to</h2>
+        <p class="dek">When you give the go-ahead, the port is mechanical. No new dependencies, no new routes, no asset additions. CSS extends the existing <code>.ht-stats-area</code> block; JSX replaces the body of the existing section.</p>
+      </div>
+    </div>
+    <div class="ship">
+      <h3>Change</h3>
+      <ul>
+        <li><b>JSX</b><span>Replace the children of <code>&lt;section className=&quot;ht-stats-area fix&quot;&gt;</code> at <code>src/pages/Home.jsx:136-156</code> with the masthead + three <code>.lh-cell</code> Ref. blocks + footnote block + audit stamp.</span></li>
+        <li><b>CSS</b><span>Add a <code>.ht-stats-area--letterhead</code> modifier in <code>public/assets/css/style.css</code> alongside the existing <code>.ht-stats-area</code> block at <code>style.css:13370</code>. New rules for <code>.ht-stats-area__mast</code>, <code>.ht-stats-area__grid</code>, <code>.ht-stats-area__cell</code>, <code>.ht-stats-area__ref</code>, <code>.ht-stats-area__line</code>, <code>.ht-stats-area__body</code>, <code>.ht-stats-area__sig</code>, <code>.ht-stats-area__foot</code>, <code>.ht-stats-area__notes</code>, <code>.ht-stats-area__audit</code>.</span></li>
+        <li><b>Tokens reused</b><span><code>--ht-body</code>, <code>--ht-theme-color-5</code> (cream), <code>--ht-heading-color</code>, <code>--ht-theme-color-2</code> (gold), <code>--ht-theme-color-6</code> (muted), <code>--ht-border-color</code>, <code>--ht-font-display</code>, <code>--ht-font-serif-body</code>, <code>--ht-font-ui</code>. No new tokens needed.</span></li>
+        <li><b>New font</b><span>JetBrains Mono used here for the methodology stamp and Ref tags. Already absent from the live bundle — needs either a Google Fonts add or substitution for the existing system mono stack. Recommend system mono stack to avoid a fourth font load: <code>ui-monospace, SFMono-Regular, Menlo, monospace</code>.</span></li>
+        <li><b>Audit route</b><span>Skip. <code>href=&quot;#&quot;</code> ships as-is. Separate ticket when the methodology page is written.</span></li>
+        <li><b>Removed</b><span>The flush hairline grid disappears from the home page. Other pages don't use <code>.ht-stats-area</code> (verified — only <code>Home.jsx</code> references it), so no other surface breaks.</span></li>
+        <li><b>Risk</b><span>The letterhead is taller than today's strip (~360 px vs ~220 px). Slight layout shift below the fold. Acceptable.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="pagefoot">
+    <span>/tests/sketches/stats-area-letterhead-final.html</span>
+    <span>Mobius · finalist · ready to port</span>
+  </footer>
+
+</div>
+</body>
+</html>
