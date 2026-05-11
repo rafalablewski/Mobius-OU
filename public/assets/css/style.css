@@ -13368,97 +13368,193 @@ span {
 }
 
 /* === Stats section redesign (editorial, flush, no card) ================ */
+/* === Stats strip — minimalistic editorial =============================
+   The practice in three figures. No card, no border around the strip;
+   three cells separated by air with a hairline rule inside each cell
+   between tag and body. Audit-trail CTA sits in the masthead, top-right.
+   ====================================================================== */
 .ht-stats-area {
-  padding: 40px 0 0;
+  padding: 72px 0 24px;
 }
-/* Override: no ivory card, no radius -- just a flush grid with hairlines. */
+.ht-stats-masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding-bottom: 18px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--ht-border-color);
+}
+.ht-stats-eyebrow {
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ht-theme-color-6);
+  letter-spacing: 0.01em;
+}
+.ht-stats-audit {
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--ht-heading-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+.ht-stats-audit em {
+  font-style: italic;
+}
+.ht-stats-audit::after {
+  content: "→";
+  color: var(--ht-theme-color-2);
+  font-style: normal;
+  margin-left: 2px;
+  transition: transform 0.2s ease;
+}
+.ht-stats-audit:hover {
+  color: var(--ht-theme-color-2);
+}
+.ht-stats-audit:hover::after {
+  transform: translateX(3px);
+}
+/* Wrapper for the horizontal scroller — focal-grow effect: the card
+   nearest the centre of the viewport sits at scale 1 / opacity 1;
+   siblings drop to scale 0.86 / opacity 0.4. The JS in Home.jsx adds
+   .is-focal to whichever card the wrap is currently centred on. */
+.ht-stats-scroller {
+  position: relative;
+}
 .ht-stats-area .ht-stats-wrapper {
   background: transparent;
   border-radius: 0;
-  border-top: 1px solid var(--ht-border-color);
-  border-bottom: 1px solid var(--ht-border-color);
-  grid-template-columns: repeat(3, 1fr);
+  border: none;
+  display: flex;
+  gap: 56px;
+  padding: 0 0 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline-start: 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+}
+.ht-stats-area .ht-stats-wrapper::-webkit-scrollbar { display: none; }
+/* Focal-grow only inside .ht-stats-scroller (Home). About.jsx keeps
+   the plain proximity-snap strip. */
+.ht-stats-scroller .ht-stats-wrapper {
+  --ht-stats-card-w: clamp(260px, 24vw, 300px);
+  gap: 40px;
+  padding-block: 12px 16px;
+  padding-inline: max(16px, calc(50% - var(--ht-stats-card-w) / 2));
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 .ht-stats-area .ht-stats-items {
-  padding: 56px 32px;
+  flex: 0 0 clamp(280px, 26vw, 340px);
+  padding: 8px 0 0;
   text-align: left;
+  scroll-snap-align: start;
 }
-@media (max-width: 991px) {
-  .ht-stats-area .ht-stats-items {
-    padding: 44px 24px;
-  }
+.ht-stats-scroller .ht-stats-items {
+  flex-basis: var(--ht-stats-card-w);
+  scroll-snap-align: center;
+  transform: scale(0.86);
+  opacity: 0.4;
+  transform-origin: center center;
+  transition: transform 420ms cubic-bezier(.4, 0, .2, 1), opacity 420ms ease;
 }
-@media (max-width: 575px) {
-  .ht-stats-area .ht-stats-items {
-    padding: 36px 20px;
-    text-align: center;
-  }
+.ht-stats-scroller .ht-stats-items.is-focal {
+  transform: scale(1);
+  opacity: 1;
 }
-/* Remove the double-"+" ghost (JSX already prints a literal +). */
+.ht-stats-area .ht-stats-items::after,
+.ht-stats-area .ht-stats-items::before {
+  content: none;
+}
 .ht-stats-area .ht-stats-items .number::after {
   content: none;
 }
-/* Divider becomes a full-height hairline flush to the grid, no fixed 160px. */
-.ht-stats-area .ht-stats-items:not(:last-child)::after {
-  height: auto;
-  top: 20%;
-  bottom: 20%;
-  transform: none;
-  background: var(--ht-border-color);
-}
-@media (max-width: 575px) {
-  .ht-stats-area .ht-stats-items:not(:last-child)::after {
-    height: 1px;
-    width: auto;
-    left: 24px;
-    right: 24px;
-    top: auto;
-    bottom: 0;
-    transform: none;
-  }
-}
-/* Numbers: Fraunces display, tighter leading, champagne "+" baked into text. */
+/* Numerals — italic Cormorant, large, gold "+" superscript. */
 .ht-stats-area .ht-stats-items .number {
   font-family: var(--ht-font-display);
-  font-size: clamp(40px, 5vw, 68px);
-  font-weight: 500;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(56px, 6.4vw, 88px);
   line-height: 1;
-  letter-spacing: -0.03em;
-  text-transform: none;
+  letter-spacing: -0.02em;
   color: var(--ht-heading-color);
   display: inline-flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 0;
+  margin: 0;
 }
-/* Label: Inter caps, tiny tracking */
 .ht-stats-area .ht-stats-items .number .plus {
   font-family: var(--ht-font-display);
+  font-style: italic;
   color: var(--ht-theme-color-2);
   font-weight: 400;
-  font-size: 0.55em;
+  font-size: 0.42em;
   margin-left: 4px;
   align-self: flex-start;
   line-height: 1.2;
 }
+/* Tag — italic Cormorant; replaces the old caps h4. */
 .ht-stats-area .ht-stats-items h4 {
-  margin-top: 20px;
-  font-family: var(--ht-font-ui);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ht-heading-color);
-}
-.ht-stats-area .ht-stats-items p {
-  margin-top: 8px;
-  font-family: var(--ht-font-serif-body);
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ht-theme-color-6);
+  margin: 14px 0 0;
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ht-heading-color-2, #1C232B);
   max-width: 28ch;
 }
-@media (max-width: 575px) {
-  .ht-stats-area .ht-stats-items p {
+.ht-stats-rule {
+  height: 1px;
+  background: var(--ht-border-color);
+  margin: 22px 0 18px;
+  max-width: 240px;
+}
+.ht-stats-area .ht-stats-items p {
+  margin: 0;
+  font-family: var(--ht-font-serif-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ht-theme-color-6);
+  max-width: 32ch;
+}
+@media (max-width: 991px) {
+  .ht-stats-area .ht-stats-wrapper { gap: 40px; }
+}
+@media (max-width: 767px) {
+  .ht-stats-area {
+    padding: 56px 0 16px;
+  }
+  .ht-stats-masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .ht-stats-area .ht-stats-items {
+    flex: 0 0 78vw;
+  }
+  .ht-stats-scroller .ht-stats-wrapper {
+    --ht-stats-card-w: 78vw;
+    gap: 24px;
+  }
+  .ht-stats-area .ht-stats-items p,
+  .ht-stats-area .ht-stats-items h4 {
+    max-width: none;
+  }
+  .ht-stats-rule {
     max-width: none;
   }
 }
@@ -15183,12 +15279,6 @@ a.ht-spine__contents-cell-face:focus-visible {
     padding: 120px 0 56px !important;
   }
   /* Stats section kept readable */
-  .ht-stats-area {
-    padding: 24px 0 0;
-  }
-  .ht-stats-area .ht-stats-items {
-    padding: 28px 20px;
-  }
   /* Service card padding trim */
   .ht-services-area .ht-services-items {
     padding: 28px 22px;

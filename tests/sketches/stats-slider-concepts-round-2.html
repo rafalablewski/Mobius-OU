@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stats slider — round two (ten more drafts)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --gold-soft:  rgba(201,168,106,0.18);
+    --stone:      #6B6257;
+    --border:     #E2DBCE;
+    --hairline:   rgba(11, 15, 20, 0.12);
+    --hairline-2: rgba(11, 15, 20, 0.20);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page chrome ---------------------------------------------------------- */
+  .page { max-width: 1240px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 48px; line-height: 1.1; margin: 14px 0 18px; letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.65; max-width: 64ch; }
+  .lede strong { color: var(--ink); }
+  .lede a { color: var(--gold-deep); }
+  code.mono {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+    background: rgba(11,15,20,0.05); padding: 1px 6px; border-radius: 2px;
+  }
+
+  /* TOC ------------------------------------------------------------------- */
+  .toc-title {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin: 28px 0 12px;
+  }
+  .toc {
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px;
+  }
+  @media (max-width: 980px) { .toc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .toc a {
+    display: block; padding: 14px 12px;
+    border: 1px solid var(--hairline); border-radius: 3px;
+    background: var(--cream);
+    text-decoration: none; color: var(--ink); transition: all .2s;
+  }
+  .toc a:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .toc__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 22px; letter-spacing: 0.04em;
+  }
+  .toc__title {
+    display: block; font-size: 12px; line-height: 1.4;
+    margin-top: 4px; color: var(--ink);
+  }
+  .toc__register {
+    display: block; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone); margin-top: 6px;
+  }
+
+  /* Idea cards ------------------------------------------------------------ */
+  .ideas {
+    display: grid; grid-template-columns: minmax(0, 1fr);
+    gap: 56px; margin-top: 56px;
+  }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px; background: var(--cream);
+    padding: 28px 28px 36px; min-width: 0;
+  }
+  .idea__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+  .idea__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; letter-spacing: 0.24em; color: var(--gold-deep);
+    text-transform: uppercase;
+  }
+  .idea__register {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  .idea h2 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 28px; line-height: 1.15; margin: 6px 0 10px; letter-spacing: -0.005em;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__dek { color: var(--stone); font-size: 14px; line-height: 1.6; max-width: 72ch; margin: 0 0 22px; }
+
+  .panel-label {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+    border-top: 1px solid var(--hairline); padding-top: 14px; margin-top: 28px;
+  }
+
+  .register {
+    margin-top: 18px;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;
+    font-size: 12px;
+  }
+  .register dt {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600; margin-bottom: 3px;
+  }
+  .register dd { margin: 0; color: var(--ink-2); line-height: 1.5; }
+  @media (max-width: 720px) { .register { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  .vs-today {
+    margin-top: 18px; padding: 12px 14px;
+    background: rgba(11,15,20,0.04); border-radius: 3px;
+    font-size: 12px; line-height: 1.6; color: var(--ink-2);
+  }
+  .vs-today strong {
+    color: var(--gold-deep); font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-weight: 400; font-size: 13px;
+  }
+
+  /* Live mock ground ----------------------------------------------------- */
+  .mock {
+    margin-top: 10px; background: var(--ivory);
+    border: 1px solid var(--hairline); border-radius: 3px;
+    padding: 36px 0 24px;
+    overflow: hidden;
+    position: relative;
+  }
+  .mock__masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0 36px 16px;
+    margin: 0 36px 24px 36px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mock__eye {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 15px; color: var(--stone); letter-spacing: 0.01em;
+  }
+  .mock__audit {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; color: var(--ink); text-decoration: none;
+  }
+  .mock__audit::after { content: " →"; color: var(--gold-deep); }
+  .mock--noeye .mock__masthead { display: none; }
+
+  /* Shared card body ----------------------------------------------------- */
+  .ss-card {
+    flex: 0 0 clamp(280px, 26vw, 320px);
+    scroll-snap-align: start;
+    padding: 0;
+    min-width: 0;
+  }
+  .ss-card__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: clamp(56px, 6.4vw, 88px); line-height: 1; color: var(--ink);
+    letter-spacing: -0.02em;
+    display: inline-flex; align-items: baseline;
+    margin: 0;
+  }
+  .ss-card__plus {
+    color: var(--gold-deep); font-size: 0.42em; line-height: 1.2;
+    margin-left: 4px; align-self: flex-start; font-style: italic;
+  }
+  .ss-card__tag {
+    margin: 14px 0 0;
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 19px; line-height: 1.35; color: var(--ink-2);
+    max-width: 28ch;
+  }
+  .ss-card__rule {
+    height: 1px; background: var(--border); margin: 22px 0 18px; max-width: 240px;
+  }
+  .ss-card__body {
+    font-family: "Newsreader", serif; font-size: 14px; line-height: 1.7;
+    color: var(--stone); margin: 0; max-width: 32ch;
+  }
+
+  /* ================================================================= */
+  /* XI — Cover flow (CREATIVE)                                          */
+  /* ================================================================= */
+  .x1-stage {
+    perspective: 1400px;
+    perspective-origin: center 40%;
+    padding: 0 36px;
+    height: 360px;
+    position: relative;
+  }
+  .x1-track {
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+  }
+  .x1-card {
+    position: absolute; top: 0; left: 50%;
+    width: 360px; height: 320px;
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 32px 28px;
+    transform-origin: center center;
+    transition: transform 500ms cubic-bezier(.4,0,.2,1), opacity 500ms ease;
+    cursor: pointer;
+    backface-visibility: hidden;
+    box-shadow: 0 12px 30px -10px rgba(11,15,20,0.18);
+  }
+  .x1-card[data-pos="0"]   { transform: translateX(-50%) translateZ(120px); opacity: 1; z-index: 5; cursor: default; }
+  .x1-card[data-pos="-1"]  { transform: translateX(calc(-50% - 280px)) translateZ(40px) rotateY(35deg); opacity: 0.6; z-index: 4; }
+  .x1-card[data-pos="1"]   { transform: translateX(calc(-50% + 280px)) translateZ(40px) rotateY(-35deg); opacity: 0.6; z-index: 4; }
+  .x1-card[data-pos="-2"]  { transform: translateX(calc(-50% - 480px)) translateZ(-40px) rotateY(45deg); opacity: 0.35; z-index: 3; }
+  .x1-card[data-pos="2"]   { transform: translateX(calc(-50% + 480px)) translateZ(-40px) rotateY(-45deg); opacity: 0.35; z-index: 3; }
+  .x1-card[data-pos="-3"], .x1-card[data-pos="3"], .x1-card[data-pos="-4"], .x1-card[data-pos="4"] {
+    transform: translateX(-50%) translateZ(-200px); opacity: 0; z-index: 1; pointer-events: none;
+  }
+  .x1-card__num   { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 88px; line-height: 1; color: var(--ink); }
+  .x1-card__plus  { color: var(--gold-deep); font-size: 0.42em; vertical-align: super; }
+  .x1-card__tag   { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 18px; color: var(--ink-2); margin: 12px 0 0; max-width: 30ch; line-height: 1.3; }
+  .x1-card__body  { font-family: "Newsreader", serif; font-size: 13px; color: var(--stone); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--border); max-width: 32ch; line-height: 1.6; }
+  .x1-pips {
+    display: flex; gap: 12px; justify-content: center; margin: 12px 0 0;
+  }
+  .x1-pips button {
+    width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--hairline-2);
+    background: transparent; padding: 0; cursor: pointer;
+  }
+  .x1-pips button.is-active { background: var(--gold); border-color: var(--gold); }
+
+  /* ================================================================= */
+  /* XII — Magazine spread two-up (CREATIVE)                             */
+  /* ================================================================= */
+  .x2-stage { padding: 0 36px; }
+  .x2-folio {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .x2-folio__spread {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 15px; letter-spacing: 0.06em;
+  }
+  .x2-folio__page {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .x2-viewport { overflow: hidden; position: relative; }
+  .x2-rail {
+    display: flex;
+    transition: transform 500ms cubic-bezier(.4,0,.2,1);
+  }
+  .x2-spread {
+    flex: 0 0 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+    padding-bottom: 8px;
+    position: relative;
+  }
+  .x2-spread::before {
+    content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(180deg, transparent 0, var(--hairline) 18%, var(--hairline) 82%, transparent 100%);
+  }
+  .x2-spread .ss-card { flex: 1 1 auto; max-width: none; }
+  .x2-spread .ss-card__num { font-size: 96px; }
+  .x2-spread .ss-card__tag { font-size: 22px; max-width: 36ch; }
+  .x2-spread .ss-card__body { font-size: 14px; max-width: 38ch; }
+  .x2-nav {
+    margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 15px; color: var(--ink);
+  }
+  .x2-nav button {
+    background: transparent; border: none; cursor: pointer;
+    font-family: inherit; font-size: inherit; font-style: italic; color: var(--ink); padding: 2px 0;
+  }
+  .x2-nav button[disabled] { opacity: 0.4; cursor: not-allowed; }
+  .x2-nav button .arr { color: var(--gold-deep); }
+
+  /* ================================================================= */
+  /* XIII — Split-flap flip (SUPER CREATIVE)                             */
+  /* ================================================================= */
+  .x3-stage { padding: 0 36px; position: relative; }
+  .x3-display {
+    height: 320px; perspective: 1400px;
+    background: var(--cream);
+    border: 1px solid var(--hairline); border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .x3-half {
+    position: absolute; left: 0; right: 0; height: 50%;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    background: var(--cream);
+  }
+  .x3-half--top    { top: 0; transform-origin: bottom center; border-bottom: 1px solid rgba(11,15,20,0.08); }
+  .x3-half--bottom { bottom: 0; transform-origin: top center; }
+  .x3-half {
+    transition: transform 260ms cubic-bezier(.55,0,.4,1), opacity 260ms ease;
+  }
+  .x3-content {
+    position: absolute; left: 0; right: 0; top: 0;
+    padding: 32px 36px;
+    width: 100%; height: 320px;
+  }
+  .x3-half--bottom .x3-content { top: -160px; }
+  .x3-content__num { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 120px; line-height: 1; color: var(--ink); }
+  .x3-content__plus { color: var(--gold-deep); font-size: 0.42em; vertical-align: super; }
+  .x3-content__tag { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 22px; color: var(--ink-2); margin: 18px 0 0; max-width: 40ch; line-height: 1.3; }
+  .x3-content__rule { height: 1px; background: var(--border); margin: 20px 0 14px; max-width: 240px; }
+  .x3-content__body { font-family: "Newsreader", serif; font-size: 14px; color: var(--stone); line-height: 1.7; max-width: 50ch; }
+  .x3-half--top.is-flipped    { transform: rotateX(-90deg); opacity: 0.3; }
+  .x3-half--bottom.is-flipped { transform: rotateX( 90deg); opacity: 0.3; }
+  .x3-nav {
+    margin-top: 18px; display: flex; justify-content: space-between; align-items: center;
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone);
+  }
+  .x3-nav button {
+    background: transparent; border: 1px solid var(--hairline-2); padding: 8px 14px;
+    border-radius: 2px; cursor: pointer; font-family: inherit; font-size: 11px;
+    letter-spacing: inherit; text-transform: uppercase; color: var(--ink);
+  }
+  .x3-nav button:hover { border-color: var(--gold); }
+
+  /* ================================================================= */
+  /* XIV — Header tabs (PROFESSIONAL)                                    */
+  /* ================================================================= */
+  .x4-stage { padding: 0 36px; }
+  .x4-tabs {
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0; border-bottom: 1px solid var(--hairline);
+    margin-bottom: 28px;
+  }
+  .x4-tab {
+    background: transparent; border: none; padding: 14px 12px 12px;
+    cursor: pointer; text-align: left; position: relative;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    border-right: 1px solid var(--hairline);
+    color: var(--stone);
+    transition: color .2s, background .2s;
+  }
+  .x4-tab:last-child { border-right: none; }
+  .x4-tab:hover { color: var(--ink); }
+  .x4-tab__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 22px; color: var(--ink); display: block; line-height: 1;
+  }
+  .x4-tab__num .plus { color: var(--gold-deep); font-size: 0.5em; vertical-align: super; }
+  .x4-tab__label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    margin-top: 6px; display: block;
+  }
+  .x4-tab.is-active { color: var(--ink); }
+  .x4-tab.is-active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
+    height: 2px; background: var(--gold);
+  }
+  .x4-panel {
+    padding: 8px 0 0; min-height: 200px;
+  }
+  .x4-panel .ss-card__num { font-size: 104px; }
+  .x4-panel .ss-card__tag { font-size: 22px; max-width: 44ch; }
+  .x4-panel .ss-card__body { font-size: 15px; max-width: 48ch; }
+
+  /* ================================================================= */
+  /* XV — Hairline progress bar only (MINIMALISTIC)                      */
+  /* ================================================================= */
+  .x5-scroller { padding: 0 36px; position: relative; }
+  .x5-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 4px 0 16px 0;
+    scrollbar-width: none;
+  }
+  .x5-wrap::-webkit-scrollbar { display: none; }
+  .x5-bar {
+    height: 1px; background: var(--hairline); position: relative;
+    margin: 0 36px;
+  }
+  .x5-bar__fill {
+    position: absolute; top: 0; left: 0; bottom: 0;
+    background: var(--gold);
+    width: 20%; transition: width .15s ease;
+  }
+
+  /* ================================================================= */
+  /* XVI — Focal-grow strip (MINE 1)                                     */
+  /* ================================================================= */
+  .x6-scroller { padding: 0 36px; overflow: hidden; }
+  .x6-wrap {
+    display: flex; gap: 32px; overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 24px 30% 24px 30%;
+    scrollbar-width: none;
+  }
+  .x6-wrap::-webkit-scrollbar { display: none; }
+  .x6-wrap .ss-card {
+    flex: 0 0 240px; scroll-snap-align: center;
+    transition: transform 400ms cubic-bezier(.4,0,.2,1), opacity 400ms ease;
+    transform: scale(0.82);
+    opacity: 0.45;
+  }
+  .x6-wrap .ss-card.is-focal {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .x6-wrap .ss-card__num { font-size: 80px; }
+  .x6-wrap .ss-card__tag { font-size: 17px; max-width: 24ch; }
+  .x6-wrap .ss-card__body { font-size: 13px; max-width: 28ch; }
+
+  /* ================================================================= */
+  /* XVII — Numbered chip bar (MINE 2)                                   */
+  /* ================================================================= */
+  .x7-stage { padding: 0 36px; }
+  .x7-chips {
+    display: flex; gap: 8px; margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .x7-chip {
+    background: transparent; border: 1px solid var(--hairline);
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--ink); font-size: 15px;
+    transition: all .2s;
+    display: inline-flex; align-items: baseline; gap: 4px;
+  }
+  .x7-chip:hover { border-color: var(--gold-deep); }
+  .x7-chip.is-active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+  .x7-chip__plus { color: var(--gold-deep); font-size: 0.7em; vertical-align: super; }
+  .x7-chip.is-active .x7-chip__plus { color: var(--ink); }
+  .x7-scroller { overflow: hidden; }
+  .x7-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 4px 0 12px 0;
+    scrollbar-width: none;
+  }
+  .x7-wrap::-webkit-scrollbar { display: none; }
+
+  /* ================================================================= */
+  /* XVIII — Slide-up reveal deck (MINE 3)                               */
+  /* ================================================================= */
+  .x8-stage { padding: 0 36px; }
+  .x8-deck {
+    position: relative; height: 360px;
+    perspective: 1200px;
+  }
+  .x8-deck__card {
+    position: absolute; left: 0; right: 0; top: 0;
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 36px 36px 30px;
+    transition: transform 500ms cubic-bezier(.4,0,.2,1), opacity 500ms ease, box-shadow 500ms;
+    box-shadow: 0 4px 16px -6px rgba(11,15,20,0.10);
+  }
+  .x8-deck__card[data-pos="0"]  { transform: translateY(0) scale(1);     z-index: 5; }
+  .x8-deck__card[data-pos="1"]  { transform: translateY(14px) scale(0.97); z-index: 4; opacity: 0.85; }
+  .x8-deck__card[data-pos="2"]  { transform: translateY(26px) scale(0.94); z-index: 3; opacity: 0.65; }
+  .x8-deck__card[data-pos="3"]  { transform: translateY(36px) scale(0.91); z-index: 2; opacity: 0.4; }
+  .x8-deck__card[data-pos="4"]  { transform: translateY(44px) scale(0.88); z-index: 1; opacity: 0.2; }
+  .x8-deck__card[data-pos="-1"] { transform: translateY(-120%) scale(1);   z-index: 0; opacity: 0; }
+  .x8-deck__num { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 100px; line-height: 1; color: var(--ink); }
+  .x8-deck__plus { color: var(--gold-deep); font-size: 0.42em; vertical-align: super; }
+  .x8-deck__tag { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 22px; color: var(--ink-2); margin: 16px 0 0; max-width: 36ch; line-height: 1.3; }
+  .x8-deck__rule { height: 1px; background: var(--border); margin: 22px 0 16px; max-width: 240px; }
+  .x8-deck__body { font-family: "Newsreader", serif; font-size: 14px; color: var(--stone); margin: 0; line-height: 1.7; max-width: 44ch; }
+  .x8-deck__counter {
+    position: absolute; top: 16px; right: 20px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 13px; color: var(--gold-deep); letter-spacing: 0.08em;
+  }
+  .x8-nav {
+    margin-top: 24px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .x8-nav button {
+    background: transparent; border: 1px solid var(--hairline-2); padding: 8px 18px;
+    border-radius: 2px; cursor: pointer;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 15px; color: var(--ink);
+  }
+  .x8-nav button:hover { border-color: var(--gold); }
+  .x8-nav button[disabled] { opacity: 0.4; cursor: not-allowed; }
+
+  /* ================================================================= */
+  /* XIX — Marginalia footnote pulls (MINE 4)                            */
+  /* ================================================================= */
+  .x9-stage { padding: 0 36px; }
+  .x9-masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+  }
+  .x9-eyebrow {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 15px; color: var(--stone);
+  }
+  .x9-eyebrow .pull {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--hairline-2);
+    color: var(--ink); cursor: pointer;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 13px; margin: 0 2px;
+    padding: 0; vertical-align: middle;
+    transition: all .2s;
+  }
+  .x9-eyebrow .pull:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+  .x9-eyebrow .pull.is-active {
+    background: var(--gold); border-color: var(--gold); color: var(--ink);
+  }
+  .x9-panel {
+    position: relative; min-height: 200px;
+  }
+  .x9-panel .ss-card {
+    position: absolute; left: 0; right: 0; top: 0;
+    opacity: 0; transition: opacity 400ms ease;
+    pointer-events: none;
+    flex: none;
+  }
+  .x9-panel .ss-card.is-active { opacity: 1; pointer-events: auto; }
+  .x9-panel .ss-card__num { font-size: 96px; }
+  .x9-panel .ss-card__tag { font-size: 22px; max-width: 40ch; }
+  .x9-panel .ss-card__body { font-size: 14px; max-width: 44ch; }
+
+  /* ================================================================= */
+  /* XX — Hover-magnify cards (MINE 5)                                   */
+  /* ================================================================= */
+  .x10-stage {
+    padding: 0 36px;
+    display: flex; gap: 12px;
+    align-items: flex-start;
+    overflow: hidden;
+  }
+  .x10-cell {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 18px 16px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: flex-grow 400ms cubic-bezier(.4,0,.2,1), background 300ms, border-color 300ms, opacity 300ms;
+    opacity: 0.6;
+  }
+  .x10-stage:hover .x10-cell { opacity: 0.45; }
+  .x10-stage .x10-cell:hover,
+  .x10-stage .x10-cell:focus-within {
+    opacity: 1;
+    flex-grow: 3;
+    background: var(--cream);
+    border-color: var(--hairline);
+  }
+  .x10-cell__num { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 58px; line-height: 1; color: var(--ink); transition: font-size 400ms; }
+  .x10-cell:hover .x10-cell__num { font-size: 88px; }
+  .x10-cell__plus { color: var(--gold-deep); font-size: 0.42em; vertical-align: super; }
+  .x10-cell__tag {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 13px; color: var(--ink-2); margin: 8px 0 0;
+    line-height: 1.3; max-width: 14ch;
+    overflow: hidden;
+    transition: font-size 400ms, max-width 400ms;
+  }
+  .x10-cell:hover .x10-cell__tag { font-size: 19px; max-width: 30ch; }
+  .x10-cell__rule { height: 1px; background: var(--border); margin: 12px 0 10px; max-width: 100px; opacity: 0; transition: opacity 400ms; }
+  .x10-cell:hover .x10-cell__rule { opacity: 1; max-width: 200px; }
+  .x10-cell__body {
+    font-family: "Newsreader", serif; font-size: 12px; color: var(--stone);
+    line-height: 1.55; margin: 0; max-height: 0; overflow: hidden;
+    transition: max-height 400ms, font-size 300ms, opacity 300ms;
+    opacity: 0;
+  }
+  .x10-cell:hover .x10-cell__body {
+    max-height: 120px; font-size: 13px; opacity: 1;
+  }
+
+  footer.outro {
+    margin-top: 96px; padding-top: 32px;
+    border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--stone); line-height: 1.65;
+  }
+
+  @media (max-width: 820px) {
+    .x1-stage { height: 320px; }
+    .x1-card { width: 280px; height: 280px; padding: 24px 22px; }
+    .x1-card[data-pos="-1"]  { transform: translateX(calc(-50% - 200px)) translateZ(40px) rotateY(35deg); }
+    .x1-card[data-pos="1"]   { transform: translateX(calc(-50% + 200px)) translateZ(40px) rotateY(-35deg); }
+    .x2-spread { grid-template-columns: 1fr; column-gap: 0; row-gap: 32px; }
+    .x2-spread::before { display: none; }
+    .x4-tab__label { display: none; }
+    .x10-cell__tag { display: none; }
+    .x10-cell:hover .x10-cell__tag { display: block; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="intro">
+    <div class="eyebrow">Sketch · stats-slider-concepts · round 2</div>
+    <h1>Ten more drafts of the <em>5-card stats slider</em>.</h1>
+    <p class="lede">
+      Round one (in <code class="mono">stats-slider-concepts.html</code>) covered ten
+      mechanics — page-turner, Roman rail, accordion, doc-control pager, pips, ticker,
+      thumbnail rail, edge chevrons, keyboard hint and a drag-scrub rail.
+      This round explores ten <strong>different</strong> answers: 3D depth, two-up spreads,
+      split-flap flips, header tabs, a single hairline progress bar, focal-grow on scroll,
+      tab-like chips, a stacked card deck, masthead footnote pulls and hover-magnify.
+    </p>
+  </header>
+
+  <!-- TOC =============================================================== -->
+  <div class="toc-title">Round two — ten more</div>
+  <nav class="toc">
+    <a href="#xi"><span class="toc__num">XI</span><span class="toc__title">Cover flow (3D)</span><span class="toc__register">Creative</span></a>
+    <a href="#xii"><span class="toc__num">XII</span><span class="toc__title">Magazine spread (two-up)</span><span class="toc__register">Creative</span></a>
+    <a href="#xiii"><span class="toc__num">XIII</span><span class="toc__title">Split-flap flip</span><span class="toc__register">Super creative</span></a>
+    <a href="#xiv"><span class="toc__num">XIV</span><span class="toc__title">Header tabs with stat labels</span><span class="toc__register">Professional</span></a>
+    <a href="#xv"><span class="toc__num">XV</span><span class="toc__title">Hairline bar, nothing else</span><span class="toc__register">Minimalistic</span></a>
+    <a href="#xvi"><span class="toc__num">XVI</span><span class="toc__title">Focal-grow on scroll</span><span class="toc__register">Mine #1</span></a>
+    <a href="#xvii"><span class="toc__num">XVII</span><span class="toc__title">Numbered chip bar (top)</span><span class="toc__register">Mine #2</span></a>
+    <a href="#xviii"><span class="toc__num">XVIII</span><span class="toc__title">Slide-up reveal deck</span><span class="toc__register">Mine #3</span></a>
+    <a href="#xix"><span class="toc__num">XIX</span><span class="toc__title">Marginalia footnote pulls</span><span class="toc__register">Mine #4</span></a>
+    <a href="#xx"><span class="toc__num">XX</span><span class="toc__title">Hover-magnify cells</span><span class="toc__register">Mine #5</span></a>
+  </nav>
+
+  <div class="ideas">
+
+    <!-- =============== XI =============== -->
+    <article class="idea" id="xi">
+      <div class="idea__head"><div class="idea__num">XI · Cover flow</div><div class="idea__register">Creative</div></div>
+      <h2>Cards in <em>perspective</em> — Apple Music's cover flow.</h2>
+      <p class="idea__dek">
+        Five cards arranged in 3D depth with the active card at front and centre, two on each
+        side rotated 35° and 45° around Y, scaled and faded with distance. Click any side card
+        to bring it forward; click pips below to jump. Heaviest visual mass of round two — the
+        most "designed".
+      </p>
+      <div class="panel-label">Live mock — click side cards</div>
+      <div class="mock mock--noeye">
+        <div class="x1-stage" id="x1">
+          <div class="x1-track" data-track></div>
+        </div>
+        <div class="x1-pips" data-pips></div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Click side cards or pips below.</dd></div>
+        <div><dt>Snap</dt><dd>Discrete position; CSS transition between positions.</dd></div>
+        <div><dt>Indicator</dt><dd>Stack depth + active pip.</dd></div>
+        <div><dt>Mobile</dt><dd>Side cards closer to centre; same mechanic.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Strongest visual statement of the twenty drafts. Works when
+        the section's job is to <em>impress</em> as much as inform.
+      </div>
+    </article>
+
+    <!-- =============== XII =============== -->
+    <article class="idea" id="xii">
+      <div class="idea__head"><div class="idea__num">XII · Magazine spread</div><div class="idea__register">Creative</div></div>
+      <h2>Two cards at a time — <em>like a print spread</em>.</h2>
+      <p class="idea__dek">
+        Pairs of cards as facing pages, with a faint hairline gutter down the middle. Paginate
+        by overlapping pairs (I–II, II–III, III–IV, IV–V), so each click advances by one card
+        but two are always visible. Italic <em>Spread I — II</em> indicator top-left and a
+        monospace page reference top-right.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x2-stage" id="x2">
+          <div class="x2-folio">
+            <div class="x2-folio__spread"><em>Spread <span data-spread>I — II</span></em></div>
+            <div class="x2-folio__page"><span data-page>01</span> / 04</div>
+          </div>
+          <div class="x2-viewport"><div class="x2-rail" data-rail></div></div>
+          <div class="x2-nav">
+            <button data-prev><span class="arr">←</span> Previous spread</button>
+            <button data-next>Next spread <span class="arr">→</span></button>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Two italic Prev / Next buttons.</dd></div>
+        <div><dt>Snap</dt><dd>Paginate by 1 card; two visible at all times.</dd></div>
+        <div><dt>Indicator</dt><dd>Italic spread label + monospace page count.</dd></div>
+        <div><dt>Mobile</dt><dd>Spread collapses to a stacked pair.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Reads as editorial layout — the section becomes a literal
+        spread. Loses the at-a-glance "five facts" but gains print register.
+      </div>
+    </article>
+
+    <!-- =============== XIII =============== -->
+    <article class="idea" id="xiii">
+      <div class="idea__head"><div class="idea__num">XIII · Split-flap flip</div><div class="idea__register">Super creative</div></div>
+      <h2>Top half flips up, <em>bottom half flips down</em>.</h2>
+      <p class="idea__dek">
+        Each card lives in a horizontally split display — top half rotates -90° on X (lifts up
+        and away) while the bottom half rotates from +90° to 0° (drops into place) with a 120 ms
+        stagger. Echoes Vestaboard / airport split-flap signage. Most mechanical of the twenty.
+        Monospace Prev / Next chips.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x3-stage" id="x3">
+          <div class="x3-display">
+            <div class="x3-half x3-half--top"    data-half="top">
+              <div class="x3-content" data-content></div>
+            </div>
+            <div class="x3-half x3-half--bottom" data-half="bottom">
+              <div class="x3-content" data-content></div>
+            </div>
+          </div>
+          <div class="x3-nav">
+            <span><span data-cur>01</span> / 05 — STATS</span>
+            <span style="display:inline-flex;gap:8px;">
+              <button data-prev>◁ Prev</button>
+              <button data-next>Next ▷</button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Monospace Prev / Next chips.</dd></div>
+        <div><dt>Snap</dt><dd>Discrete one-card flip per click.</dd></div>
+        <div><dt>Indicator</dt><dd>Counter top-left of nav row.</dd></div>
+        <div><dt>Mobile</dt><dd>Display reduces height; same animation.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Most novel motion — the section becomes a mechanism. Pairs
+        well with audit-firm register (the split-flap evokes precision rather than play).
+      </div>
+    </article>
+
+    <!-- =============== XIV =============== -->
+    <article class="idea" id="xiv">
+      <div class="idea__head"><div class="idea__num">XIV · Header tabs</div><div class="idea__register">Professional</div></div>
+      <h2>Five tabs, each labeled with the <em>stat itself</em>.</h2>
+      <p class="idea__dek">
+        Five tabs across the top: <em>14+ · YEARS</em> · <em>100+ · FILES</em> · <em>32 · JURIS</em>
+        · <em>5 · OFFICES</em> · <em>1 · TEAM</em>. Active tab has a 2 px gold underline. One card visible at a
+        time below at full width. Reads like a financial report's data-sheet selector — strong
+        institutional register.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x4-stage" id="x4">
+          <div class="x4-tabs" data-tabs></div>
+          <div class="x4-panel" data-panel></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Five tabs across the top.</dd></div>
+        <div><dt>Snap</dt><dd>Discrete — one card visible at a time.</dd></div>
+        <div><dt>Indicator</dt><dd>Active tab has 2 px gold underline.</dd></div>
+        <div><dt>Mobile</dt><dd>Labels hide; only numerals stay.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> The tabs <em>summarise</em> the strip before the user even
+        opens any card — the numerals are visible up-front in the navigation itself. Highest
+        information density at rest.
+      </div>
+    </article>
+
+    <!-- =============== XV =============== -->
+    <article class="idea" id="xv">
+      <div class="idea__head"><div class="idea__num">XV · Hairline bar only</div><div class="idea__register">Minimalistic</div></div>
+      <h2>A 1 px rail with a <em>gold fill</em>. Nothing else.</h2>
+      <p class="idea__dek">
+        More restrained than round one's pip rail (V). The strip scrolls normally; the only
+        affordance is a single hairline rail under the cards with a gold fill that traces
+        scroll position. No pips, no arrows, no counter, no fade. The user's gesture is the
+        navigation — the bar just confirms how far they've gone.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x5-scroller" id="x5">
+          <div class="x5-wrap" data-wrap></div>
+        </div>
+        <div class="x5-bar"><div class="x5-bar__fill" data-bar></div></div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>None — scroll / swipe / wheel.</dd></div>
+        <div><dt>Snap</dt><dd>Proximity; relies on native gesture.</dd></div>
+        <div><dt>Indicator</dt><dd>1 px hairline rail with gold fill.</dd></div>
+        <div><dt>Mobile</dt><dd>Identical; touch swipe is primary.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> The lowest-mass affordance of the twenty drafts. Best when
+        confident the user can scroll — pairs with V's pips for the next step up.
+      </div>
+    </article>
+
+    <!-- =============== XVI =============== -->
+    <article class="idea" id="xvi">
+      <div class="idea__head"><div class="idea__num">XVI · Focal-grow on scroll</div><div class="idea__register">Mine #1</div></div>
+      <h2>The centre card <em>grows</em>. Others stay quiet.</h2>
+      <p class="idea__dek">
+        All five cards visible in a scroller; the one nearest the centre of the viewport
+        is at scale 1 and full opacity. Cards either side scale to 0.82 and drop to 0.45 opacity.
+        Continuous transitions on scroll. No buttons — the focal point moves with the gesture.
+      </p>
+      <div class="panel-label">Live mock — scroll to shift focus</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x6-scroller" id="x6">
+          <div class="x6-wrap" data-wrap></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Scroll / swipe; centre auto-focuses.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory; snaps each card to centre.</dd></div>
+        <div><dt>Indicator</dt><dd>Scale + opacity differential.</dd></div>
+        <div><dt>Mobile</dt><dd>Same — paddings reduce for narrow viewport.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> The strip becomes a focal stack — the eye is told what to
+        look at without buttons or tabs. Works when there's a "current" fact the page wants to
+        emphasise.
+      </div>
+    </article>
+
+    <!-- =============== XVII =============== -->
+    <article class="idea" id="xvii">
+      <div class="idea__head"><div class="idea__num">XVII · Numbered chip bar</div><div class="idea__register">Mine #2</div></div>
+      <h2>Five italic chips: <em>14+ · 100+ · 32 · 5 · 1</em>.</h2>
+      <p class="idea__dek">
+        Above the strip, five italic-serif chips carrying the numerals themselves. Click a
+        chip to jump; active chip is filled gold. Different from V's pips (round 1) because
+        the chips show the <em>value</em> — you know which card you're jumping to before you
+        click. Different from XIV's tabs because chips are pill-shaped and the strip still
+        scrolls below.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x7-stage" id="x7">
+          <div class="x7-chips" data-chips></div>
+          <div class="x7-scroller"><div class="x7-wrap" data-wrap></div></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Five italic pill chips above the strip.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory; smooth scroll on click.</dd></div>
+        <div><dt>Indicator</dt><dd>Active chip filled gold.</dd></div>
+        <div><dt>Mobile</dt><dd>Chips wrap to two rows if needed.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Chips double as navigation and overview — the user can scan
+        all five values at a glance without committing to scroll. More legible than V's pips,
+        lighter than XIV's tabs.
+      </div>
+    </article>
+
+    <!-- =============== XVIII =============== -->
+    <article class="idea" id="xviii">
+      <div class="idea__head"><div class="idea__num">XVIII · Slide-up reveal deck</div><div class="idea__register">Mine #3</div></div>
+      <h2>Cards stacked like a <em>Rolodex</em>. Slide the top one up.</h2>
+      <p class="idea__dek">
+        Visual deck of five cards stacked with each card peeking a few pixels below the next.
+        The active card sits on top at scale 1; cards behind step down in scale + opacity.
+        Click <em>Next</em> and the top card slides up off-screen, revealing the next. A small
+        italic counter in the corner shows position.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x8-stage" id="x8">
+          <div class="x8-deck" data-deck></div>
+          <div class="x8-nav">
+            <button data-prev>← Previous</button>
+            <button data-next>Next →</button>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Italic Prev / Next buttons.</dd></div>
+        <div><dt>Snap</dt><dd>Discrete — slide animation per click.</dd></div>
+        <div><dt>Indicator</dt><dd>Italic Roman counter on the top card.</dd></div>
+        <div><dt>Mobile</dt><dd>Deck height shortens; same stack maths.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Most "card deck" of the twenty — the metaphor is literal.
+        Works when the section should feel like a hand-shuffled stack rather than a strip.
+      </div>
+    </article>
+
+    <!-- =============== XIX =============== -->
+    <article class="idea" id="xix">
+      <div class="idea__head"><div class="idea__num">XIX · Marginalia footnote pulls</div><div class="idea__register">Mine #4</div></div>
+      <h2>Footnote markers <em>a · b · c · d · e</em> in the masthead.</h2>
+      <p class="idea__dek">
+        Five small italic gold-circle "footnote" markers live in the section eyebrow: <em>The practice in three
+        figures<sup>a · b · c · d · e</sup></em>. Click any marker to reveal that card below in a single-card
+        viewport with a 400 ms cross-fade. The strip becomes a footnote system — most editorial
+        register of the twenty.
+      </p>
+      <div class="panel-label">Live mock — click a, b, c, d, e</div>
+      <div class="mock mock--noeye">
+        <div class="x9-stage" id="x9">
+          <div class="x9-masthead">
+            <div class="x9-eyebrow" data-pulls>
+              <em>The practice in three figures&thinsp;</em>
+              <button class="pull is-active" data-idx="0">a</button>
+              <button class="pull" data-idx="1">b</button>
+              <button class="pull" data-idx="2">c</button>
+              <button class="pull" data-idx="3">d</button>
+              <button class="pull" data-idx="4">e</button>
+            </div>
+            <a class="mock__audit" href="#">Audit trail on request</a>
+          </div>
+          <div class="x9-panel" data-panel></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Five italic-circle pulls in the masthead.</dd></div>
+        <div><dt>Snap</dt><dd>Cross-fade between panels (400 ms).</dd></div>
+        <div><dt>Indicator</dt><dd>Active pull filled gold.</dd></div>
+        <div><dt>Mobile</dt><dd>Pulls wrap to a second line under the title.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Restates the slider as a footnote system — pairs naturally
+        with the editorial register of the site. The masthead becomes the navigation.
+      </div>
+    </article>
+
+    <!-- =============== XX =============== -->
+    <article class="idea" id="xx">
+      <div class="idea__head"><div class="idea__num">XX · Hover-magnify cells</div><div class="idea__register">Mine #5</div></div>
+      <h2>All five visible. <em>Hover to magnify.</em></h2>
+      <p class="idea__dek">
+        Five cells side-by-side at neutral size; hovering any cell flex-grows it to 3× the space,
+        bumps its numeral from 58 px to 88 px, fades in body copy, and dims the others to 0.45.
+        No buttons, no scroll, no clicks. The mouse is the selector. Touch fallback: tap uses
+        <code class="mono">:focus-within</code>.
+      </p>
+      <div class="panel-label">Live mock — hover the cells</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="x10-stage" id="x10" data-stage></div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Hover (or focus on touch) to expand.</dd></div>
+        <div><dt>Snap</dt><dd>N/A — flex-grow transition.</dd></div>
+        <div><dt>Indicator</dt><dd>Magnified cell + dimmed siblings.</dd></div>
+        <div><dt>Mobile</dt><dd>Tap to focus; tag/body appear on focus.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> No scroll at all — the strip is static. Information reveals
+        itself on interest. Most "Apple keynote" register; works best at the top of a page
+        where the full row fits horizontally.
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="outro">
+    Twenty drafts total across two rounds. The most distinctive of round two:
+    <strong>XIV</strong> (header tabs — most institutional), <strong>XV</strong> (hairline bar —
+    lowest mass), <strong>XVI</strong> (focal-grow — most natural feeling),
+    <strong>XIX</strong> (footnote pulls — most editorial),
+    <strong>XX</strong> (hover-magnify — most Apple).
+    The wilder bets — <strong>XI</strong> (cover flow) and <strong>XIII</strong> (split-flap)
+    — change the whole register of the section.
+  </footer>
+
+</div>
+
+<script>
+  // ====== Shared data ===============================================
+  const STATS = [
+    { n: "14",  plus: true,  short: "Years",     tab: "YEARS",  tag: "Years on the desk — CFA-trained, NYSE-seasoned advisory.",         body: "In private practice since 2018. Charter held continuously since 2012." },
+    { n: "100", plus: true,  short: "Files",     tab: "FILES",  tag: "Private files — citizenship, residency and tax.",                  body: "Every brief pre-screened on source of funds before engagement." },
+    { n: "32",  plus: false, short: "Juris.",    tab: "JURIS",  tag: "Jurisdictions — firms and partners operational.",                  body: "From the Caribbean shelf programmes to the Gulf's new tax routes." },
+    { n: "5",   plus: false, short: "Offices",   tab: "OFFICES",tag: "Offices — local presence where the programmes are written.",      body: "Counsel on the ground from Europe to the Gulf, briefed in your timezone." },
+    { n: "1",   plus: false, short: "Team",      tab: "TEAM",   tag: "Dedicated team — senior bench, no junior handoffs.",               body: "The partner you brief is the partner who writes the file." },
+  ];
+  const ROMAN = ['I','II','III','IV','V'];
+
+  function cardHTML(s, klass = 'ss-card') {
+    return `
+      <div class="${klass}">
+        <h2 class="ss-card__num"><span>${s.n}</span>${s.plus ? '<span class="ss-card__plus">+</span>' : ''}</h2>
+        <div class="ss-card__tag">${s.tag}</div>
+        <div class="ss-card__rule"></div>
+        <p class="ss-card__body">${s.body}</p>
+      </div>`;
+  }
+
+  // ====== XI — Cover flow ==========================================
+  (function(){
+    const root = document.getElementById('x1');
+    if (!root) return;
+    const track = root.querySelector('[data-track]');
+    track.innerHTML = STATS.map((s, i) => `
+      <div class="x1-card" data-i="${i}">
+        <div class="x1-card__num">${s.n}${s.plus ? '<span class="x1-card__plus">+</span>' : ''}</div>
+        <div class="x1-card__tag">${s.tag}</div>
+        <p class="x1-card__body">${s.body}</p>
+      </div>`).join('');
+    const pips = document.querySelector('#xi [data-pips], #xi .x1-pips') || track.parentElement.parentElement.querySelector('.x1-pips');
+    // pips lives outside the stage, build it
+    const pipBar = document.querySelector('#xi .x1-pips');
+    pipBar.innerHTML = STATS.map((_, i) => `<button class="${i===0?'is-active':''}" data-idx="${i}"></button>`).join('');
+    let active = 0;
+    const update = () => {
+      track.querySelectorAll('.x1-card').forEach((c, i) => {
+        c.dataset.pos = String(i - active);
+      });
+      pipBar.querySelectorAll('button').forEach((b, i) => b.classList.toggle('is-active', i === active));
+    };
+    track.addEventListener('click', e => {
+      const c = e.target.closest('.x1-card');
+      if (!c) return;
+      active = +c.dataset.i;
+      update();
+    });
+    pipBar.addEventListener('click', e => {
+      const b = e.target.closest('button[data-idx]');
+      if (!b) return;
+      active = +b.dataset.idx;
+      update();
+    });
+    update();
+  })();
+
+  // ====== XII — Magazine spread ====================================
+  (function(){
+    const root = document.getElementById('x2');
+    if (!root) return;
+    const rail = root.querySelector('[data-rail]');
+    // 4 overlapping spreads: (0,1) (1,2) (2,3) (3,4)
+    const spreads = [];
+    for (let i = 0; i < STATS.length - 1; i++) spreads.push([i, i+1]);
+    rail.innerHTML = spreads.map(([a, b]) => `
+      <div class="x2-spread">${cardHTML(STATS[a])}${cardHTML(STATS[b])}</div>
+    `).join('');
+    let idx = 0;
+    const total = spreads.length;
+    const update = () => {
+      rail.style.transform = `translateX(${-idx * 100}%)`;
+      root.querySelector('[data-spread]').textContent = `${ROMAN[spreads[idx][0]]} — ${ROMAN[spreads[idx][1]]}`;
+      root.querySelector('[data-page]').textContent = String(idx + 1).padStart(2, '0');
+      root.querySelector('[data-prev]').disabled = idx === 0;
+      root.querySelector('[data-next]').disabled = idx === total - 1;
+    };
+    root.querySelector('[data-prev]').addEventListener('click', () => { if (idx > 0) { idx--; update(); }});
+    root.querySelector('[data-next]').addEventListener('click', () => { if (idx < total - 1) { idx++; update(); }});
+    update();
+  })();
+
+  // ====== XIII — Split-flap =========================================
+  (function(){
+    const root = document.getElementById('x3');
+    if (!root) return;
+    const halves = root.querySelectorAll('.x3-half');
+    const topContent = halves[0].querySelector('[data-content]');
+    const botContent = halves[1].querySelector('[data-content]');
+    let idx = 0;
+    function renderInto(el, i) {
+      const s = STATS[i];
+      el.innerHTML = `
+        <h2 class="x3-content__num">${s.n}${s.plus ? '<span class="x3-content__plus">+</span>' : ''}</h2>
+        <div class="x3-content__tag">${s.tag}</div>
+        <div class="x3-content__rule"></div>
+        <p class="x3-content__body">${s.body}</p>`;
+    }
+    function set(i) {
+      renderInto(topContent, i);
+      renderInto(botContent, i);
+      root.querySelector('[data-cur]').textContent = String(i + 1).padStart(2, '0');
+    }
+    function flipTo(n) {
+      const next = (idx + n + STATS.length) % STATS.length;
+      // Phase 1: both halves fold away (top lifts up, bottom drops down).
+      halves[0].classList.add('is-flipped');
+      halves[1].classList.add('is-flipped');
+      // Phase 2: while folded away, swap to next card content.
+      setTimeout(() => {
+        idx = next;
+        set(idx);
+        // Phase 3: fold back into place — the new card appears with the same motion.
+        requestAnimationFrame(() => {
+          halves[0].classList.remove('is-flipped');
+          halves[1].classList.remove('is-flipped');
+        });
+      }, 290);
+    }
+    set(0);
+    root.querySelector('[data-prev]').addEventListener('click', () => flipTo(-1));
+    root.querySelector('[data-next]').addEventListener('click', () => flipTo(1));
+  })();
+
+  // ====== XIV — Header tabs =========================================
+  (function(){
+    const root = document.getElementById('x4');
+    if (!root) return;
+    const tabs = root.querySelector('[data-tabs]');
+    const panel = root.querySelector('[data-panel]');
+    tabs.innerHTML = STATS.map((s, i) => `
+      <button class="x4-tab ${i===0?'is-active':''}" data-idx="${i}">
+        <span class="x4-tab__num">${s.n}${s.plus ? '<span class="plus">+</span>' : ''}</span>
+        <span class="x4-tab__label">${s.tab}</span>
+      </button>`).join('');
+    function set(i) {
+      tabs.querySelectorAll('.x4-tab').forEach((b, j) => b.classList.toggle('is-active', i === j));
+      panel.innerHTML = cardHTML(STATS[i]);
+    }
+    tabs.addEventListener('click', e => {
+      const b = e.target.closest('.x4-tab');
+      if (b) set(+b.dataset.idx);
+    });
+    set(0);
+  })();
+
+  // ====== XV — Hairline bar only ====================================
+  (function(){
+    const root = document.getElementById('x5');
+    if (!root) return;
+    const wrap = root.querySelector('.x5-wrap');
+    wrap.innerHTML = STATS.map(s => cardHTML(s)).join('');
+    const bar = root.parentElement.querySelector('[data-bar]');
+    const update = () => {
+      const max = wrap.scrollWidth - wrap.clientWidth;
+      const pct = max <= 0 ? 100 : ((wrap.scrollLeft + wrap.clientWidth) / wrap.scrollWidth) * 100;
+      bar.style.width = pct + '%';
+    };
+    wrap.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(wrap);
+    update();
+  })();
+
+  // ====== XVI — Focal-grow =========================================
+  (function(){
+    const root = document.getElementById('x6');
+    if (!root) return;
+    const wrap = root.querySelector('[data-wrap]');
+    wrap.innerHTML = STATS.map(s => cardHTML(s)).join('');
+    const cards = wrap.querySelectorAll('.ss-card');
+    const update = () => {
+      const center = wrap.scrollLeft + wrap.clientWidth / 2;
+      let bestIdx = 0; let bestDist = Infinity;
+      cards.forEach((c, i) => {
+        const cardCenter = c.offsetLeft + c.offsetWidth / 2;
+        const d = Math.abs(cardCenter - center);
+        if (d < bestDist) { bestDist = d; bestIdx = i; }
+      });
+      cards.forEach((c, i) => c.classList.toggle('is-focal', i === bestIdx));
+    };
+    wrap.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(wrap);
+    setTimeout(update, 50);
+  })();
+
+  // ====== XVII — Numbered chip bar ==================================
+  (function(){
+    const root = document.getElementById('x7');
+    if (!root) return;
+    const chips = root.querySelector('[data-chips]');
+    const wrap = root.querySelector('.x7-wrap');
+    chips.innerHTML = STATS.map((s, i) => `
+      <button class="x7-chip ${i===0?'is-active':''}" data-idx="${i}">${s.n}${s.plus ? '<span class="x7-chip__plus">+</span>' : ''}</button>
+    `).join('');
+    wrap.innerHTML = STATS.map(s => cardHTML(s)).join('');
+    chips.addEventListener('click', e => {
+      const b = e.target.closest('.x7-chip');
+      if (!b) return;
+      const idx = +b.dataset.idx;
+      const cards = wrap.querySelectorAll('.ss-card');
+      cards[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    const cards = wrap.querySelectorAll('.ss-card');
+    wrap.addEventListener('scroll', () => {
+      const center = wrap.scrollLeft + wrap.clientWidth / 2;
+      let bestIdx = 0;
+      cards.forEach((c, i) => { if (c.offsetLeft <= center) bestIdx = i; });
+      chips.querySelectorAll('.x7-chip').forEach((b, i) => b.classList.toggle('is-active', i === bestIdx));
+    }, { passive: true });
+  })();
+
+  // ====== XVIII — Slide-up deck =====================================
+  (function(){
+    const root = document.getElementById('x8');
+    if (!root) return;
+    const deck = root.querySelector('[data-deck]');
+    deck.innerHTML = STATS.map((s, i) => `
+      <div class="x8-deck__card" data-i="${i}">
+        <div class="x8-deck__counter">${ROMAN[i]} / V</div>
+        <h2 class="x8-deck__num">${s.n}${s.plus ? '<span class="x8-deck__plus">+</span>' : ''}</h2>
+        <div class="x8-deck__tag">${s.tag}</div>
+        <div class="x8-deck__rule"></div>
+        <p class="x8-deck__body">${s.body}</p>
+      </div>`).join('');
+    let active = 0;
+    const update = () => {
+      const cards = deck.querySelectorAll('.x8-deck__card');
+      cards.forEach((c, i) => {
+        let pos = i - active;
+        if (pos < 0) pos = -1;
+        c.dataset.pos = String(pos);
+      });
+      root.querySelector('[data-prev]').disabled = active === 0;
+      root.querySelector('[data-next]').disabled = active === STATS.length - 1;
+    };
+    root.querySelector('[data-prev]').addEventListener('click', () => { if (active > 0) { active--; update(); }});
+    root.querySelector('[data-next]').addEventListener('click', () => { if (active < STATS.length - 1) { active++; update(); }});
+    update();
+  })();
+
+  // ====== XIX — Marginalia pulls ====================================
+  (function(){
+    const root = document.getElementById('x9');
+    if (!root) return;
+    const pulls = root.querySelector('[data-pulls]');
+    const panel = root.querySelector('[data-panel]');
+    panel.innerHTML = STATS.map((s, i) => `
+      <div class="ss-card ${i===0?'is-active':''}" data-i="${i}">
+        <h2 class="ss-card__num"><span>${s.n}</span>${s.plus ? '<span class="ss-card__plus">+</span>' : ''}</h2>
+        <div class="ss-card__tag">${s.tag}</div>
+        <div class="ss-card__rule"></div>
+        <p class="ss-card__body">${s.body}</p>
+      </div>`).join('');
+    pulls.addEventListener('click', e => {
+      const b = e.target.closest('.pull');
+      if (!b) return;
+      const idx = +b.dataset.idx;
+      pulls.querySelectorAll('.pull').forEach((p, i) => p.classList.toggle('is-active', i === idx));
+      panel.querySelectorAll('.ss-card').forEach((c, i) => c.classList.toggle('is-active', i === idx));
+    });
+  })();
+
+  // ====== XX — Hover-magnify cells =================================
+  (function(){
+    const root = document.getElementById('x10');
+    if (!root) return;
+    root.innerHTML = STATS.map(s => `
+      <div class="x10-cell" tabindex="0">
+        <div class="x10-cell__num">${s.n}${s.plus ? '<span class="x10-cell__plus">+</span>' : ''}</div>
+        <div class="x10-cell__tag">${s.tag}</div>
+        <div class="x10-cell__rule"></div>
+        <p class="x10-cell__body">${s.body}</p>
+      </div>`).join('');
+  })();
+
+</script>
+</body>
+</html>

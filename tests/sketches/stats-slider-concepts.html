@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stats slider — ten drafts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --gold-soft:  rgba(201,168,106,0.18);
+    --stone:      #6B6257;
+    --border:     #E2DBCE;
+    --hairline:   rgba(11, 15, 20, 0.12);
+    --hairline-2: rgba(11, 15, 20, 0.20);
+    --green:      #4F7A4A;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page chrome ---------------------------------------------------------- */
+  .page { max-width: 1240px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 36px; margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 48px; line-height: 1.1; margin: 14px 0 18px; letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.65; max-width: 64ch; }
+  .lede strong { color: var(--ink); }
+  code.mono {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+    background: rgba(11,15,20,0.05); padding: 1px 6px; border-radius: 2px;
+  }
+
+  /* TOC ------------------------------------------------------------------- */
+  .toc-title {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin: 28px 0 12px;
+  }
+  .toc {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+  }
+  @media (max-width: 980px) { .toc { grid-template-columns: repeat(2, 1fr); } }
+  .toc a {
+    display: block; padding: 14px 12px;
+    border: 1px solid var(--hairline); border-radius: 3px;
+    background: var(--cream);
+    text-decoration: none; color: var(--ink); transition: all .2s;
+  }
+  .toc a:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .toc__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 22px; letter-spacing: 0.04em;
+  }
+  .toc__title {
+    display: block; font-size: 12px; line-height: 1.4;
+    margin-top: 4px; color: var(--ink);
+  }
+  .toc__register {
+    display: block; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone); margin-top: 6px;
+  }
+
+  /* Idea cards ------------------------------------------------------------ */
+  .ideas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+    margin-top: 56px;
+  }
+  .idea {
+    border: 1px solid var(--hairline); border-radius: 4px; background: var(--cream);
+    padding: 28px 28px 36px;
+  }
+  .idea__head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+  .idea__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; letter-spacing: 0.24em; color: var(--gold-deep);
+    text-transform: uppercase;
+  }
+  .idea__register {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  .idea h2 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 28px; line-height: 1.15; margin: 6px 0 10px; letter-spacing: -0.005em;
+  }
+  .idea h2 em { font-style: italic; color: var(--gold-deep); }
+  .idea__dek { color: var(--stone); font-size: 14px; line-height: 1.6; max-width: 72ch; margin: 0 0 22px; }
+
+  .panel-label {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+    border-top: 1px solid var(--hairline); padding-top: 14px; margin-top: 28px;
+  }
+
+  .register {
+    margin-top: 18px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    font-size: 12px;
+  }
+  .register dt {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600; margin-bottom: 3px;
+  }
+  .register dd { margin: 0; color: var(--ink-2); line-height: 1.5; }
+  @media (max-width: 720px) { .register { grid-template-columns: repeat(2, 1fr); } }
+
+  .vs-today {
+    margin-top: 18px; padding: 12px 14px;
+    background: rgba(11,15,20,0.04); border-radius: 3px;
+    font-size: 12px; line-height: 1.6; color: var(--ink-2);
+  }
+  .vs-today strong {
+    color: var(--gold-deep); font-family: "Cormorant Garamond", serif;
+    font-style: italic; font-weight: 400; font-size: 13px;
+  }
+
+  /* Live mock ground ----------------------------------------------------- */
+  .mock {
+    margin-top: 10px; background: var(--ivory);
+    border: 1px solid var(--hairline); border-radius: 3px;
+    padding: 36px 0 24px;
+    overflow: hidden;
+    position: relative;
+  }
+  .mock__masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0 36px 16px;
+    margin: 0 36px 24px 36px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mock__eye {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 15px; color: var(--stone); letter-spacing: 0.01em;
+  }
+  .mock__audit {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 14px; color: var(--ink); text-decoration: none;
+  }
+  .mock__audit::after { content: " →"; color: var(--gold-deep); }
+  .mock--noeye .mock__masthead { display: none; }
+
+  /* Shared card body ----------------------------------------------------- */
+  .ss-card {
+    flex: 0 0 clamp(280px, 26vw, 320px);
+    scroll-snap-align: start;
+    padding: 0;
+  }
+  .ss-card__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: clamp(56px, 6.4vw, 88px); line-height: 1; color: var(--ink);
+    letter-spacing: -0.02em;
+    display: inline-flex; align-items: baseline;
+  }
+  .ss-card__plus {
+    color: var(--gold-deep); font-size: 0.42em; line-height: 1.2;
+    margin-left: 4px; align-self: flex-start; font-style: italic;
+  }
+  .ss-card__tag {
+    margin: 14px 0 0;
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 19px; line-height: 1.35; color: var(--ink-2);
+    max-width: 28ch;
+  }
+  .ss-card__rule {
+    height: 1px; background: var(--border); margin: 22px 0 18px; max-width: 240px;
+  }
+  .ss-card__body {
+    font-family: "Newsreader", serif; font-size: 14px; line-height: 1.7;
+    color: var(--stone); margin: 0; max-width: 32ch;
+  }
+
+  /* Baseline scroller (matches what's shipped today) -------------------- */
+  .b0-scroller { position: relative; padding: 0 36px; }
+  .b0-scroller::after {
+    content: ""; position: absolute; top: 0; right: 36px; bottom: 0; width: 64px;
+    background: linear-gradient(90deg, rgba(244,239,230,0), var(--ivory));
+    pointer-events: none;
+  }
+  .b0-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 4px 64px 12px 0;
+    scrollbar-width: none;
+  }
+  .b0-wrap::-webkit-scrollbar { display: none; }
+
+  /* ================================================================= */
+  /* I — Page-turner ledger (CREATIVE)                                  */
+  /* ================================================================= */
+  .i1-stage { padding: 0 36px; position: relative; min-height: 280px; }
+  .i1-stage__viewport {
+    overflow: hidden; position: relative; min-height: 240px;
+  }
+  .i1-stage__rail {
+    display: flex; transition: transform 480ms cubic-bezier(.4,.0,.2,1);
+  }
+  .i1-stage__rail .ss-card {
+    flex: 0 0 100%; max-width: 720px; padding-right: 64px;
+  }
+  .i1-stage__rail .ss-card__num { font-size: 120px; }
+  .i1-stage__rail .ss-card__tag { font-size: 26px; max-width: 36ch; }
+  .i1-stage__rail .ss-card__body { font-size: 16px; max-width: 56ch; }
+  .i1-stage__folio {
+    position: absolute; top: 0; right: 36px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 18px;
+    letter-spacing: 0.08em;
+  }
+  .i1-stage__nav {
+    margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--ink); font-size: 16px;
+  }
+  .i1-stage__nav button {
+    background: transparent; border: none; padding: 4px 0; cursor: pointer;
+    font-family: inherit; font-style: italic; font-size: 16px; color: var(--ink);
+  }
+  .i1-stage__nav button[disabled] { color: var(--stone); opacity: 0.5; cursor: not-allowed; }
+  .i1-stage__nav button .arr { color: var(--gold-deep); }
+  .i1-stage__counter {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--stone); font-size: 13px; letter-spacing: 0.08em;
+  }
+
+  /* ================================================================= */
+  /* II — Roman numeral rail (CREATIVE)                                 */
+  /* ================================================================= */
+  .i2-stage { display: grid; grid-template-columns: 64px 1fr; gap: 24px; padding: 0 36px; }
+  .i2-rail {
+    display: flex; flex-direction: column; gap: 14px;
+    padding-top: 8px;
+    border-right: 1px solid var(--hairline);
+    padding-right: 14px;
+  }
+  .i2-rail button {
+    background: transparent; border: none; padding: 6px 0; cursor: pointer;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 22px; color: var(--stone); letter-spacing: 0.04em;
+    text-align: right; transition: color .2s;
+    position: relative;
+  }
+  .i2-rail button.is-active { color: var(--gold-deep); font-weight: 500; }
+  .i2-rail button.is-active::after {
+    content: ""; position: absolute; right: -15px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  }
+  .i2-rail button:hover { color: var(--ink); }
+  .i2-scroller { position: relative; overflow: hidden; }
+  .i2-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 24px 12px 0;
+    scrollbar-width: none;
+  }
+  .i2-wrap::-webkit-scrollbar { display: none; }
+
+  /* ================================================================= */
+  /* III — Typographic accordion (SUPER CREATIVE)                       */
+  /* ================================================================= */
+  .i3-stage { padding: 0 36px; }
+  .i3-row {
+    display: flex; gap: 0; height: 320px;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .i3-cell {
+    border-left: 1px solid var(--hairline);
+    overflow: hidden; cursor: pointer; position: relative;
+    transition: flex-grow 600ms cubic-bezier(.4,0,.2,1), flex-basis 600ms;
+    flex: 0 0 88px;
+    background: var(--cream);
+  }
+  .i3-cell:first-child { border-left: none; }
+  .i3-cell:last-child { border-right: none; }
+  .i3-cell.is-open { flex: 1 1 0; background: var(--ivory); cursor: default; }
+  .i3-cell__spine {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity .3s;
+  }
+  .i3-cell__spine span {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 38px; line-height: 1; color: var(--ink);
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    letter-spacing: 0.04em;
+  }
+  .i3-cell.is-open .i3-cell__spine { opacity: 0; pointer-events: none; }
+  .i3-cell__open {
+    position: absolute; inset: 0; padding: 32px 36px;
+    display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; transition: opacity .4s .2s;
+    pointer-events: none;
+  }
+  .i3-cell.is-open .i3-cell__open { opacity: 1; pointer-events: auto; }
+  .i3-cell__open .ss-card__num { font-size: 92px; }
+  .i3-cell__hover-num {
+    position: absolute; top: 22px; right: 22px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 14px; letter-spacing: 0.08em;
+  }
+  .i3-cell.is-open .i3-cell__hover-num { display: none; }
+
+  /* ================================================================= */
+  /* IV — Doc-control pager (PROFESSIONAL)                              */
+  /* ================================================================= */
+  .i4-controls {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 36px; margin-bottom: 16px;
+  }
+  .i4-counter {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .i4-counter .num { color: var(--ink); }
+  .i4-counter .total { color: var(--gold-deep); }
+  .i4-pager { display: flex; gap: 8px; }
+  .i4-pager button {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink); background: transparent;
+    border: 1px solid var(--hairline-2);
+    padding: 8px 14px; border-radius: 2px; cursor: pointer;
+    transition: border-color .2s;
+  }
+  .i4-pager button:hover { border-color: var(--gold); }
+  .i4-pager button[disabled] { opacity: 0.4; cursor: not-allowed; }
+  .i4-scroller { overflow: hidden; padding: 0 36px; }
+  .i4-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 0 12px 0;
+    scrollbar-width: none;
+  }
+  .i4-wrap::-webkit-scrollbar { display: none; }
+  .i4-progress {
+    margin: 18px 36px 0;
+    height: 1px; background: var(--hairline); position: relative;
+  }
+  .i4-progress::after {
+    content: ""; position: absolute; inset: 0; right: auto;
+    width: 20%; background: var(--gold);
+    transition: width .4s ease;
+  }
+
+  /* ================================================================= */
+  /* V — Five pips (MINIMALISTIC)                                       */
+  /* ================================================================= */
+  .i5-scroller { overflow: hidden; padding: 0 36px; }
+  .i5-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 0 12px 0;
+    scrollbar-width: none;
+  }
+  .i5-wrap::-webkit-scrollbar { display: none; }
+  .i5-pips {
+    display: flex; gap: 14px; justify-content: center;
+    margin-top: 24px;
+  }
+  .i5-pips button {
+    width: 9px; height: 9px; border-radius: 50%;
+    border: 1px solid var(--hairline-2); background: transparent;
+    padding: 0; cursor: pointer;
+    transition: background .2s, border-color .2s, transform .2s;
+  }
+  .i5-pips button.is-active {
+    background: var(--gold); border-color: var(--gold);
+    transform: scale(1.15);
+  }
+  .i5-pips button:hover { border-color: var(--gold); }
+
+  /* ================================================================= */
+  /* VI — Ticker marquee (MINE 1)                                       */
+  /* ================================================================= */
+  .i6-stage { position: relative; padding: 0; overflow: hidden; }
+  .i6-stage::before, .i6-stage::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 64px;
+    z-index: 2; pointer-events: none;
+  }
+  .i6-stage::before { left: 0; background: linear-gradient(90deg, var(--ivory), rgba(244,239,230,0)); }
+  .i6-stage::after  { right: 0; background: linear-gradient(90deg, rgba(244,239,230,0), var(--ivory)); }
+  .i6-control {
+    position: absolute; top: -32px; right: 36px; z-index: 3;
+    background: transparent; border: none; padding: 4px 8px;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 13px; color: var(--stone); cursor: pointer;
+    letter-spacing: 0.04em;
+  }
+  .i6-control:hover { color: var(--ink); }
+  .i6-control .ico { color: var(--gold-deep); margin-right: 4px; }
+  .i6-marquee {
+    display: flex; gap: 56px; padding-left: 56px;
+    width: max-content;
+    animation: i6-roll 32s linear infinite;
+  }
+  .i6-stage[data-paused="true"] .i6-marquee { animation-play-state: paused; }
+  .i6-stage:hover .i6-marquee { animation-play-state: paused; }
+  @keyframes i6-roll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ================================================================= */
+  /* VII — Thumbnail rail (MINE 2)                                      */
+  /* ================================================================= */
+  .i7-stage { display: grid; grid-template-columns: 1fr 80px; gap: 28px; padding: 0 36px; }
+  .i7-scroller { overflow: hidden; }
+  .i7-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 4px 0 12px 0; scrollbar-width: none;
+  }
+  .i7-wrap::-webkit-scrollbar { display: none; }
+  .i7-thumbs {
+    display: flex; flex-direction: column; gap: 10px;
+    border-left: 1px solid var(--hairline); padding-left: 14px;
+  }
+  .i7-thumbs button {
+    background: var(--cream); border: 1px solid var(--hairline);
+    padding: 10px 0; cursor: pointer;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 22px; line-height: 1; color: var(--ink);
+    letter-spacing: -0.01em;
+    border-radius: 2px;
+    transition: all .2s;
+    aspect-ratio: 1 / 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .i7-thumbs button.is-active { border-color: var(--gold); background: var(--gold-soft); }
+  .i7-thumbs button:hover { border-color: var(--gold-deep); }
+
+  /* ================================================================= */
+  /* VIII — Edge ghost chevrons (MINE 3)                                */
+  /* ================================================================= */
+  .i8-stage { position: relative; padding: 0 64px; }
+  .i8-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: transparent; border: none; padding: 12px 8px; cursor: pointer;
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 56px; line-height: 1; color: var(--stone); font-weight: 300;
+    z-index: 3; transition: color .2s, transform .2s;
+  }
+  .i8-arrow:hover { color: var(--gold-deep); transform: translateY(-50%) scale(1.1); }
+  .i8-arrow[disabled] { opacity: 0.2; cursor: not-allowed; }
+  .i8-arrow[disabled]:hover { color: var(--stone); transform: translateY(-50%); }
+  .i8-arrow--prev { left: 16px; }
+  .i8-arrow--next { right: 16px; }
+  .i8-scroller { overflow: hidden; }
+  .i8-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 4px 0 12px 0; scrollbar-width: none;
+  }
+  .i8-wrap::-webkit-scrollbar { display: none; }
+
+  /* ================================================================= */
+  /* IX — Keyboard hint + thin progress bar (MINE 4)                    */
+  /* ================================================================= */
+  .i9-stage { padding: 0 36px; position: relative; }
+  .i9-keychip {
+    position: absolute; top: -38px; right: 36px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+    border: 1px solid var(--hairline-2); padding: 5px 10px; border-radius: 2px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .i9-keychip kbd {
+    font-family: inherit; background: var(--cream);
+    padding: 1px 5px; border: 1px solid var(--hairline);
+    border-radius: 2px; font-size: 10px; color: var(--ink);
+  }
+  .i9-scroller { overflow: hidden; outline: none; }
+  .i9-scroller:focus-within .i9-keychip { color: var(--ink); border-color: var(--gold); }
+  .i9-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 4px 0 16px 0; scrollbar-width: none;
+  }
+  .i9-wrap::-webkit-scrollbar { display: none; }
+  .i9-progress {
+    height: 1px; background: var(--hairline); position: relative; margin-top: 6px;
+  }
+  .i9-progress span {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--gold);
+    width: 20%; transition: width .25s ease;
+  }
+
+  /* ================================================================= */
+  /* X — Scrub rail with grip (MINE 5)                                  */
+  /* ================================================================= */
+  .i10-stage { padding: 0 36px; }
+  .i10-scroller { overflow: hidden; }
+  .i10-wrap {
+    display: flex; gap: 56px; overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 4px 0 12px 0; scrollbar-width: none;
+  }
+  .i10-wrap::-webkit-scrollbar { display: none; }
+  .i10-rail {
+    margin: 24px auto 0; max-width: 320px;
+    height: 1px; background: var(--hairline); position: relative;
+    cursor: pointer;
+    touch-action: none;
+  }
+  .i10-rail__thumb {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    height: 5px; border-radius: 2px;
+    background: var(--gold);
+    width: 24%; left: 0;
+    cursor: grab; transition: background .2s;
+  }
+  .i10-rail__thumb:hover { background: var(--gold-deep); }
+  .i10-rail__thumb.is-drag { cursor: grabbing; background: var(--gold-deep); }
+  .i10-rail__ticks {
+    position: absolute; inset: -6px 0; pointer-events: none;
+    display: flex; justify-content: space-between;
+  }
+  .i10-rail__ticks span {
+    width: 1px; height: 13px; background: var(--hairline-2);
+  }
+
+  footer.outro {
+    margin-top: 96px; padding-top: 32px;
+    border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--stone); line-height: 1.65;
+  }
+
+  @media (max-width: 720px) {
+    .i2-stage { grid-template-columns: 48px 1fr; gap: 16px; padding: 0 20px; }
+    .i7-stage { grid-template-columns: 1fr 64px; gap: 16px; padding: 0 20px; }
+    .i3-row { height: 280px; }
+    .i3-cell { flex: 0 0 64px; }
+    .i3-cell__open { padding: 24px 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="intro">
+    <div class="eyebrow">Sketch · stats-slider-concepts</div>
+    <h1>Ten drafts of the <em>5-card stats slider</em>.</h1>
+    <p class="lede">
+      Shipped today on Home: five cells in a flex scroller with hidden scrollbar,
+      <code class="mono">scroll-snap-type: x proximity</code> and a soft right-edge
+      ivory→transparent fade that fades out via <code class="mono">.is-end</code>
+      when the user reaches the last card. Works, but the affordance is implicit —
+      the fade is the only signal that there's more. Ten drafts below try different
+      answers to the same question: <strong>how does the reader move through five cards?</strong>
+    </p>
+    <p class="lede" style="margin-top:16px;">
+      Each mock holds the data constant (the five live cells) so flipping between
+      drafts feels apples-to-apples. Every draft is real working HTML/CSS — try
+      scrolling, clicking, dragging.
+    </p>
+  </header>
+
+  <!-- Baseline today =================================================== -->
+  <section>
+    <div class="eyebrow">Baseline · today</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;margin:8px 0 14px;">
+      <em>(0)</em> Shipped — fade-on-right scroller
+    </h2>
+    <div class="mock mock--noeye">
+      <div class="b0-scroller" id="b0">
+        <div class="b0-wrap" data-wrap>
+          <!-- cards injected -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOC =============================================================== -->
+  <div class="toc-title">The ten candidates</div>
+  <nav class="toc">
+    <a href="#i"><span class="toc__num">I</span><span class="toc__title">Page-turner ledger</span><span class="toc__register">Creative</span></a>
+    <a href="#ii"><span class="toc__num">II</span><span class="toc__title">Roman numeral rail</span><span class="toc__register">Creative</span></a>
+    <a href="#iii"><span class="toc__num">III</span><span class="toc__title">Typographic accordion</span><span class="toc__register">Super creative</span></a>
+    <a href="#iv"><span class="toc__num">IV</span><span class="toc__title">Doc-control pager</span><span class="toc__register">Professional</span></a>
+    <a href="#v"><span class="toc__num">V</span><span class="toc__title">Five pips, nothing else</span><span class="toc__register">Minimalistic</span></a>
+    <a href="#vi"><span class="toc__num">VI</span><span class="toc__title">Ticker marquee</span><span class="toc__register">Mine #1</span></a>
+    <a href="#vii"><span class="toc__num">VII</span><span class="toc__title">Thumbnail rail (right)</span><span class="toc__register">Mine #2</span></a>
+    <a href="#viii"><span class="toc__num">VIII</span><span class="toc__title">Edge-ghost chevrons</span><span class="toc__register">Mine #3</span></a>
+    <a href="#ix"><span class="toc__num">IX</span><span class="toc__title">Keyboard hint + thin bar</span><span class="toc__register">Mine #4</span></a>
+    <a href="#x"><span class="toc__num">X</span><span class="toc__title">Scrub rail with grip</span><span class="toc__register">Mine #5</span></a>
+  </nav>
+
+  <div class="ideas">
+
+    <!-- =============== I =============== -->
+    <article class="idea" id="i">
+      <div class="idea__head"><div class="idea__num">I · Page-turner ledger</div><div class="idea__register">Creative</div></div>
+      <h2>One card at a time. <em>Turn the page.</em></h2>
+      <p class="idea__dek">
+        Cards become pages of a bound ledger — one visible at a time, full editorial breathing
+        room (120 px numerals, 26 px italic tags). A folio number <em>II / V</em> sits
+        top-right of the spread; bottom edge carries <em>← Previous</em> and <em>Next page →</em>
+        italic-serif buttons. Slide transition is 480 ms. Heaviest visual mass of the ten.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i1-stage" id="i1">
+          <div class="i1-stage__folio"><span data-folio>I</span> / V</div>
+          <div class="i1-stage__viewport"><div class="i1-stage__rail" data-rail></div></div>
+          <div class="i1-stage__nav">
+            <button data-prev><span class="arr">←</span> Previous</button>
+            <span class="i1-stage__counter">Page <span data-page>1</span> of 5</span>
+            <button data-next>Next page <span class="arr">→</span></button>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Italic serif Prev / Next buttons + folio.</dd></div>
+        <div><dt>Snap</dt><dd>One-card paginate. No free scroll.</dd></div>
+        <div><dt>Indicator</dt><dd>Folio number + "Page n of 5".</dd></div>
+        <div><dt>Mobile</dt><dd>Buttons keep position; numerals reflow.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> The boldest editorial swap — turns a strip into a spread.
+        Loses the at-a-glance "five facts" read; gains a slow, deliberate dossier register.
+      </div>
+    </article>
+
+    <!-- =============== II =============== -->
+    <article class="idea" id="ii">
+      <div class="idea__head"><div class="idea__num">II · Roman numeral rail</div><div class="idea__register">Creative</div></div>
+      <h2>A vertical <em>I — V</em> on the left side of the strip.</h2>
+      <p class="idea__dek">
+        Borrows from the program-page contents register. A left rail carries five Roman
+        numerals with a small gold dot beside the active one; click any numeral to jump.
+        The strip itself still scrolls naturally and the rail tracks scroll position.
+        Direct-jump access without taking screen real estate from the cards.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i2-stage" id="i2">
+          <div class="i2-rail" data-rail>
+            <button data-idx="0" class="is-active">I</button>
+            <button data-idx="1">II</button>
+            <button data-idx="2">III</button>
+            <button data-idx="3">IV</button>
+            <button data-idx="4">V</button>
+          </div>
+          <div class="i2-scroller"><div class="i2-wrap" data-wrap></div></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Vertical Roman numeral rail on the left.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory scroll-snap on card width.</dd></div>
+        <div><dt>Indicator</dt><dd>Gold dot beside active numeral.</dd></div>
+        <div><dt>Mobile</dt><dd>Rail narrows to 48 px; numerals shrink.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Keeps the free-scroll affordance; adds direct jump access.
+        Pulls visual register from the program-page contents card — feels native to the site.
+      </div>
+    </article>
+
+    <!-- =============== III =============== -->
+    <article class="idea" id="iii">
+      <div class="idea__head"><div class="idea__num">III · Typographic accordion</div><div class="idea__register">Super creative</div></div>
+      <h2>Five cells. <em>One open, four spines.</em></h2>
+      <p class="idea__dek">
+        No scroll at all. The five cells share one fixed-width row; one is expanded at full
+        flex-grow, the other four collapse to 88 px vertical slivers showing only their italic
+        numeral rotated 90° — like a row of book spines on a shelf. Click any sliver to open it.
+        600 ms ease for the flex transition. Highest "what is this?" moment of the ten.
+      </p>
+      <div class="panel-label">Live mock — click a spine to open it</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i3-stage" id="i3">
+          <div class="i3-row" data-row></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Click a spine. No scrolling needed.</dd></div>
+        <div><dt>Snap</dt><dd>N/A — flex transition between cells.</dd></div>
+        <div><dt>Indicator</dt><dd>Spine numeral; expanded cell has cream→ivory tint.</dd></div>
+        <div><dt>Mobile</dt><dd>Row height 280 px, spines 64 px.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Replaces the slider mechanic entirely. Reads as a curated
+        bookshelf — all five visible at once but only one open. Heaviest design choice; the
+        most distinctive of the ten. May feel "designed" rather than transparent.
+      </div>
+    </article>
+
+    <!-- =============== IV =============== -->
+    <article class="idea" id="iv">
+      <div class="idea__head"><div class="idea__num">IV · Doc-control pager</div><div class="idea__register">Professional</div></div>
+      <h2>Monospace counter, monospace pager. <em>Audit register.</em></h2>
+      <p class="idea__dek">
+        Reuses the audit-report DNA from <code class="mono">.ht-breadcrumb__doc-control</code>:
+        monospace counter <em>01 / 05 — STATS · 2026.Q1</em> top-left, <em>◁ PREV</em>
+        and <em>NEXT ▷</em> monospace chip-buttons top-right. Mandatory snap, one-card advance per
+        click. Hairline gold progress rail under the strip fills as you advance. The slider
+        mechanic looks like part of the dossier rather than UI.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock mock--noeye">
+        <div class="i4-controls" id="i4">
+          <div class="i4-counter"><span class="num" data-cur>01</span> / <span class="total">05</span> &nbsp; — &nbsp; STATS · 2026.Q1</div>
+          <div class="i4-pager">
+            <button data-prev>◁ Prev</button>
+            <button data-next>Next ▷</button>
+          </div>
+        </div>
+        <div class="i4-scroller"><div class="i4-wrap" data-wrap></div></div>
+        <div class="i4-progress"><span data-bar style="width:20%;"></span></div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Monospace ◁ Prev / Next ▷ chips.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory; smooth scroll between cards.</dd></div>
+        <div><dt>Indicator</dt><dd>Counter + hairline progress rail.</dd></div>
+        <div><dt>Mobile</dt><dd>Counter wraps under chips.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Pulls the doc-control register from the program page; the
+        slider stops looking like UI and starts looking like an audit-report widget. The most
+        institutional of the ten.
+      </div>
+    </article>
+
+    <!-- =============== V =============== -->
+    <article class="idea" id="v">
+      <div class="idea__head"><div class="idea__num">V · Five pips, nothing else</div><div class="idea__register">Minimalistic</div></div>
+      <h2>Five hairline dots. <em>That's it.</em></h2>
+      <p class="idea__dek">
+        Below the strip — five 9 px circles, four hairline-outlined, one solid gold for the
+        active card. No arrows, no counter, no fade overlay. Mandatory scroll-snap so each
+        gesture lands on a card; pips are click-jumpable. The most restrained of the ten —
+        affordance is the dot rail and nothing else.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div id="i5">
+          <div class="i5-scroller"><div class="i5-wrap" data-wrap></div></div>
+          <div class="i5-pips" data-pips>
+            <button class="is-active" data-idx="0" aria-label="Card 1"></button>
+            <button data-idx="1" aria-label="Card 2"></button>
+            <button data-idx="2" aria-label="Card 3"></button>
+            <button data-idx="3" aria-label="Card 4"></button>
+            <button data-idx="4" aria-label="Card 5"></button>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Five 9 px pips below the strip.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory snap; smooth scroll.</dd></div>
+        <div><dt>Indicator</dt><dd>Active pip is solid gold.</dd></div>
+        <div><dt>Mobile</dt><dd>Pips stay 9 px; centered.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Drops the fade entirely in favour of an explicit dot rail.
+        Cleanest affordance of the ten; lowest visual mass.
+      </div>
+    </article>
+
+    <!-- =============== VI =============== -->
+    <article class="idea" id="vi">
+      <div class="idea__head"><div class="idea__num">VI · Ticker marquee</div><div class="idea__register">Mine #1</div></div>
+      <h2>Auto-scrolls right at <em>ticker pace</em>.</h2>
+      <p class="idea__dek">
+        The strip moves on its own — 32 s per full loop, constant linear pace, infinite repeat.
+        Pauses on hover and on focus-within. Edge gradients on both sides so cards enter and
+        leave softly. A small italic <em>⏸ Paused</em> / <em>▶ Playing</em> control top-right
+        for users who'd rather take control. Financial-paper register — closest mood is a
+        stock ticker.
+      </p>
+      <div class="panel-label">Live mock — hover to pause</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i6-stage" id="i6" data-paused="false">
+          <button class="i6-control" data-toggle><span class="ico" data-ico>⏸</span><span data-label>Pause</span></button>
+          <div class="i6-marquee" data-marquee></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>None — auto-plays. Hover pauses.</dd></div>
+        <div><dt>Snap</dt><dd>None — constant linear scroll.</dd></div>
+        <div><dt>Indicator</dt><dd>Italic Pause/Play chip top-right.</dd></div>
+        <div><dt>Mobile</dt><dd>Same animation; touch pauses too.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Moves without being asked. Best when the goal is "show
+        breadth" rather than "let the user pick" — accessibility note: respect
+        <code class="mono">prefers-reduced-motion</code> when shipping.
+      </div>
+    </article>
+
+    <!-- =============== VII =============== -->
+    <article class="idea" id="vii">
+      <div class="idea__head"><div class="idea__num">VII · Thumbnail rail</div><div class="idea__register">Mine #2</div></div>
+      <h2>Five numeral thumbnails on the <em>right margin</em>.</h2>
+      <p class="idea__dek">
+        An 80 px column on the right of the strip carries five square thumbnails — each is just
+        the italic numeral on a cream card. Active thumbnail is bordered gold and tinted; click
+        any to jump. The main strip on the left scrolls normally and the rail tracks it.
+        Inverts the rail-on-the-left register of II.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i7-stage" id="i7">
+          <div class="i7-scroller"><div class="i7-wrap" data-wrap></div></div>
+          <div class="i7-thumbs" data-thumbs>
+            <button class="is-active" data-idx="0">14</button>
+            <button data-idx="1">100</button>
+            <button data-idx="2">32</button>
+            <button data-idx="3">5</button>
+            <button data-idx="4">1</button>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Right-side column of five numeral thumbs.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory; smooth scroll.</dd></div>
+        <div><dt>Indicator</dt><dd>Active thumb: gold border + soft tint.</dd></div>
+        <div><dt>Mobile</dt><dd>Rail narrows to 64 px; still vertical.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Shows the whole set at a glance even when only one is in view.
+        Costs ~80 px of width on the right; rewards with a permanent overview.
+      </div>
+    </article>
+
+    <!-- =============== VIII =============== -->
+    <article class="idea" id="viii">
+      <div class="idea__head"><div class="idea__num">VIII · Edge-ghost chevrons</div><div class="idea__register">Mine #3</div></div>
+      <h2>Two italic chevrons floating at the <em>strip edges</em>.</h2>
+      <p class="idea__dek">
+        Two oversized italic Cormorant chevrons (<em>‹</em>, <em>›</em>) sit at the left
+        and right edges of the strip, vertically centered. Stone-grey by default, gold on
+        hover, faded to 0.2 when there's nothing to scroll in that direction. Pure typography
+        — no buttons, no circles, no chrome. Click scrolls one card-width with smooth behaviour.
+      </p>
+      <div class="panel-label">Live mock</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i8-stage" id="i8">
+          <button class="i8-arrow i8-arrow--prev" data-prev disabled>‹</button>
+          <button class="i8-arrow i8-arrow--next" data-next>›</button>
+          <div class="i8-scroller"><div class="i8-wrap" data-wrap></div></div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Two italic Cormorant chevrons, edge-anchored.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory; smooth scroll on click.</dd></div>
+        <div><dt>Indicator</dt><dd>Chevron opacity (0.2 at boundary).</dd></div>
+        <div><dt>Mobile</dt><dd>Chevrons shrink to 40 px; still edge-aligned.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Adds explicit click affordance without adding chrome — the
+        chevrons read as ornament until you mouse over them. Most timeless of the ten.
+      </div>
+    </article>
+
+    <!-- =============== IX =============== -->
+    <article class="idea" id="ix">
+      <div class="idea__head"><div class="idea__num">IX · Keyboard hint + thin progress bar</div><div class="idea__register">Mine #4</div></div>
+      <h2>A keyboard chip and a <em>1 px gold rail</em>.</h2>
+      <p class="idea__dek">
+        Top-right of the masthead: a monospace chip <em>[ ← / → ]</em> hints at keyboard
+        navigation. The strip listens to arrow keys, Home, End and 1–5 when focused. Below
+        the cards, a 1 px hairline track with a gold fill traces scroll position. No buttons
+        on the surface — the affordance is the keyboard hint plus the progress bar. Lowest
+        visual mass after V.
+      </p>
+      <div class="panel-label">Live mock — focus and use ← / →</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i9-stage" id="i9">
+          <span class="i9-keychip"><kbd>←</kbd> <kbd>→</kbd> to navigate</span>
+          <div class="i9-scroller" tabindex="0">
+            <div class="i9-wrap" data-wrap></div>
+            <div class="i9-progress"><span data-bar></span></div>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Keyboard hint chip + arrow-key listener.</dd></div>
+        <div><dt>Snap</dt><dd>Mandatory; smooth scroll on keystroke.</dd></div>
+        <div><dt>Indicator</dt><dd>1 px gold rail under the strip.</dd></div>
+        <div><dt>Mobile</dt><dd>Keyboard chip hides; rail stays.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Rewards keyboard-literate readers; trusts the rest to swipe
+        / scroll naturally. The gold rail does what the fade does today — but as a measure,
+        not a hint.
+      </div>
+    </article>
+
+    <!-- =============== X =============== -->
+    <article class="idea" id="x">
+      <div class="idea__head"><div class="idea__num">X · Scrub rail with grip</div><div class="idea__register">Mine #5</div></div>
+      <h2>A draggable <em>hairline rail</em> below the strip.</h2>
+      <p class="idea__dek">
+        Below the strip, a 320 px hairline track with a gold thumb whose width reflects the
+        visible fraction of the strip. Drag the thumb to scrub through the cards; click
+        anywhere on the track to jump there. Tick marks at the five card positions. The
+        rail is both progress indicator and direct manipulation control — same hairline
+        + gold register as the rest of the page.
+      </p>
+      <div class="panel-label">Live mock — drag the gold grip</div>
+      <div class="mock">
+        <div class="mock__masthead">
+          <div class="mock__eye">The practice in three figures.</div>
+          <a class="mock__audit" href="#">Audit trail on request</a>
+        </div>
+        <div class="i10-stage" id="i10">
+          <div class="i10-scroller"><div class="i10-wrap" data-wrap></div></div>
+          <div class="i10-rail" data-rail>
+            <div class="i10-rail__ticks"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="i10-rail__thumb" data-thumb></div>
+          </div>
+        </div>
+      </div>
+      <dl class="register">
+        <div><dt>Affordance</dt><dd>Draggable gold thumb on a hairline rail.</dd></div>
+        <div><dt>Snap</dt><dd>Proximity; rail snaps to nearest tick on release.</dd></div>
+        <div><dt>Indicator</dt><dd>Thumb position + width = visible fraction.</dd></div>
+        <div><dt>Mobile</dt><dd>Touch drag works; thumb height 5 px stays.</dd></div>
+      </dl>
+      <div class="vs-today">
+        <strong>vs today.</strong> Most "premium product" of the ten — closest in mood to
+        Lucid / Tesla scroll affordances. Direct manipulation feels good; needs JS so
+        keep simple.
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="outro">
+    Ten drafts. The shipped fade is the lightest possible affordance — these explore what
+    happens when you give the slider an actual voice. <strong>V</strong> if you want the least
+    chrome, <strong>IV</strong> if you want the strip to feel institutional, <strong>II</strong>
+    if you want it to feel native to the program-page register, <strong>VIII</strong> if you
+    want it to feel timeless. The wilder bets — <strong>III</strong> (accordion) and
+    <strong>VI</strong> (ticker) — change the whole mechanic.
+  </footer>
+
+</div>
+
+<script>
+  // ====== Shared data ===============================================
+  const STATS = [
+    { n: "14",  plus: true,  tag: "Years on the desk — CFA-trained, NYSE-seasoned advisory.",         body: "In private practice since 2018. Charter held continuously since 2012." },
+    { n: "100", plus: true,  tag: "Private files — citizenship, residency and tax.",                  body: "Every brief pre-screened on source of funds before engagement." },
+    { n: "32",  plus: false, tag: "Jurisdictions — firms and partners operational.",                  body: "From the Caribbean shelf programmes to the Gulf's new tax routes." },
+    { n: "5",   plus: false, tag: "Offices — local presence where the programmes are written.",      body: "Counsel on the ground from Europe to the Gulf, briefed in your timezone." },
+    { n: "1",   plus: false, tag: "Dedicated team — senior bench, no junior handoffs.",               body: "The partner you brief is the partner who writes the file." },
+  ];
+
+  function cardHTML(s) {
+    return `
+      <div class="ss-card">
+        <h2 class="ss-card__num"><span>${s.n}</span>${s.plus ? '<span class="ss-card__plus">+</span>' : ''}</h2>
+        <div class="ss-card__tag">${s.tag}</div>
+        <div class="ss-card__rule"></div>
+        <p class="ss-card__body">${s.body}</p>
+      </div>`;
+  }
+
+  function fillWrap(selector) {
+    document.querySelectorAll(selector + ' [data-wrap]').forEach(w => {
+      w.innerHTML = STATS.map(cardHTML).join('');
+    });
+  }
+
+  // 0, II, IV, V, VII, VIII, IX
+  ['#b0', '#i2', '#i4', '#i5', '#i7', '#i8', '#i9'].forEach(fillWrap);
+
+  // ====== I — Page-turner =========================================
+  (function(){
+    const root = document.getElementById('i1');
+    if (!root) return;
+    const rail = root.querySelector('[data-rail]');
+    rail.innerHTML = STATS.map(cardHTML).join('');
+    let idx = 0;
+    const total = STATS.length;
+    const update = () => {
+      rail.style.transform = `translateX(${-idx * 100}%)`;
+      root.querySelector('[data-page]').textContent = idx + 1;
+      const folio = ['I','II','III','IV','V'][idx];
+      root.querySelector('[data-folio]').textContent = folio;
+      root.querySelector('[data-prev]').disabled = idx === 0;
+      root.querySelector('[data-next]').disabled = idx === total - 1;
+    };
+    root.querySelector('[data-prev]').addEventListener('click', () => { if (idx > 0) { idx--; update(); }});
+    root.querySelector('[data-next]').addEventListener('click', () => { if (idx < total - 1) { idx++; update(); }});
+    update();
+  })();
+
+  // ====== II — Roman numeral rail =================================
+  (function(){
+    const root = document.getElementById('i2');
+    if (!root) return;
+    const wrap = root.querySelector('.i2-wrap');
+    const rail = root.querySelector('[data-rail]');
+    rail.addEventListener('click', e => {
+      const btn = e.target.closest('button[data-idx]');
+      if (!btn) return;
+      const idx = +btn.dataset.idx;
+      const cards = wrap.querySelectorAll('.ss-card');
+      cards[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    wrap.addEventListener('scroll', () => {
+      const cards = wrap.querySelectorAll('.ss-card');
+      const center = wrap.scrollLeft + wrap.clientWidth / 2;
+      let activeIdx = 0;
+      cards.forEach((c, i) => {
+        if (c.offsetLeft <= center) activeIdx = i;
+      });
+      rail.querySelectorAll('button').forEach((b, i) => b.classList.toggle('is-active', i === activeIdx));
+    }, { passive: true });
+  })();
+
+  // ====== III — Accordion =========================================
+  (function(){
+    const root = document.getElementById('i3');
+    if (!root) return;
+    const row = root.querySelector('[data-row]');
+    row.innerHTML = STATS.map((s, i) => `
+      <div class="i3-cell ${i === 0 ? 'is-open' : ''}" data-idx="${i}">
+        <div class="i3-cell__spine"><span>${['I','II','III','IV','V'][i]}</span></div>
+        <div class="i3-cell__hover-num">${['I','II','III','IV','V'][i]}</div>
+        <div class="i3-cell__open">${cardHTML(s).replace('<div class="ss-card">','<div class="ss-card" style="max-width:none">')}</div>
+      </div>`).join('');
+    row.addEventListener('click', e => {
+      const cell = e.target.closest('.i3-cell');
+      if (!cell) return;
+      row.querySelectorAll('.i3-cell').forEach(c => c.classList.remove('is-open'));
+      cell.classList.add('is-open');
+    });
+  })();
+
+  // ====== IV — Doc-control pager ==================================
+  (function(){
+    const root = document.getElementById('i4');
+    if (!root) return;
+    const wrap = root.parentElement.querySelector('.i4-wrap');
+    const bar  = root.parentElement.querySelector('[data-bar]');
+    const cur  = root.querySelector('[data-cur]');
+    let idx = 0;
+    const go = (i) => {
+      idx = Math.max(0, Math.min(STATS.length - 1, i));
+      const cards = wrap.querySelectorAll('.ss-card');
+      cards[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      cur.textContent = String(idx + 1).padStart(2, '0');
+      bar.style.width = ((idx + 1) / STATS.length * 100) + '%';
+      root.querySelector('[data-prev]').disabled = idx === 0;
+      root.querySelector('[data-next]').disabled = idx === STATS.length - 1;
+    };
+    root.querySelector('[data-prev]').addEventListener('click', () => go(idx - 1));
+    root.querySelector('[data-next]').addEventListener('click', () => go(idx + 1));
+    go(0);
+  })();
+
+  // ====== V — Pips ================================================
+  (function(){
+    const root = document.getElementById('i5');
+    if (!root) return;
+    const wrap = root.querySelector('.i5-wrap');
+    const pips = root.querySelector('[data-pips]');
+    pips.addEventListener('click', e => {
+      const b = e.target.closest('button[data-idx]');
+      if (!b) return;
+      const idx = +b.dataset.idx;
+      const cards = wrap.querySelectorAll('.ss-card');
+      cards[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    wrap.addEventListener('scroll', () => {
+      const cards = wrap.querySelectorAll('.ss-card');
+      const center = wrap.scrollLeft + wrap.clientWidth / 2;
+      let activeIdx = 0;
+      cards.forEach((c, i) => {
+        if (c.offsetLeft <= center) activeIdx = i;
+      });
+      pips.querySelectorAll('button').forEach((b, i) => b.classList.toggle('is-active', i === activeIdx));
+    }, { passive: true });
+  })();
+
+  // ====== VI — Ticker marquee =====================================
+  (function(){
+    const root = document.getElementById('i6');
+    if (!root) return;
+    const marquee = root.querySelector('[data-marquee]');
+    // duplicate the set so the loop is seamless
+    marquee.innerHTML = (STATS.concat(STATS)).map(cardHTML).join('');
+    const toggle = root.querySelector('[data-toggle]');
+    let paused = false;
+    toggle.addEventListener('click', () => {
+      paused = !paused;
+      root.dataset.paused = paused ? 'true' : 'false';
+      root.querySelector('[data-ico]').textContent = paused ? '▶' : '⏸';
+      root.querySelector('[data-label]').textContent = paused ? 'Play' : 'Pause';
+    });
+  })();
+
+  // ====== VII — Thumbnail rail ====================================
+  (function(){
+    const root = document.getElementById('i7');
+    if (!root) return;
+    const wrap = root.querySelector('.i7-wrap');
+    const thumbs = root.querySelector('[data-thumbs]');
+    thumbs.addEventListener('click', e => {
+      const b = e.target.closest('button[data-idx]');
+      if (!b) return;
+      const idx = +b.dataset.idx;
+      const cards = wrap.querySelectorAll('.ss-card');
+      cards[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    wrap.addEventListener('scroll', () => {
+      const cards = wrap.querySelectorAll('.ss-card');
+      const center = wrap.scrollLeft + wrap.clientWidth / 2;
+      let activeIdx = 0;
+      cards.forEach((c, i) => { if (c.offsetLeft <= center) activeIdx = i; });
+      thumbs.querySelectorAll('button').forEach((b, i) => b.classList.toggle('is-active', i === activeIdx));
+    }, { passive: true });
+  })();
+
+  // ====== VIII — Edge chevrons ====================================
+  (function(){
+    const root = document.getElementById('i8');
+    if (!root) return;
+    const wrap = root.querySelector('.i8-wrap');
+    const prev = root.querySelector('[data-prev]');
+    const next = root.querySelector('[data-next]');
+    const cardWidth = () => {
+      const c = wrap.querySelector('.ss-card');
+      return c ? c.offsetWidth + 56 : 320;
+    };
+    prev.addEventListener('click', () => wrap.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
+    next.addEventListener('click', () => wrap.scrollBy({ left:  cardWidth(), behavior: 'smooth' }));
+    const update = () => {
+      prev.disabled = wrap.scrollLeft <= 4;
+      next.disabled = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 4;
+    };
+    wrap.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+
+  // ====== IX — Keyboard hint + bar ================================
+  (function(){
+    const root = document.getElementById('i9');
+    if (!root) return;
+    const scroller = root.querySelector('.i9-scroller');
+    const wrap = root.querySelector('.i9-wrap');
+    const bar  = root.querySelector('[data-bar]');
+    const cardWidth = () => {
+      const c = wrap.querySelector('.ss-card');
+      return c ? c.offsetWidth + 56 : 320;
+    };
+    const update = () => {
+      const max = wrap.scrollWidth - wrap.clientWidth;
+      const pct = max <= 0 ? 100 : ((wrap.scrollLeft + wrap.clientWidth) / wrap.scrollWidth) * 100;
+      bar.style.width = pct + '%';
+    };
+    wrap.addEventListener('scroll', update, { passive: true });
+    scroller.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { wrap.scrollBy({ left: cardWidth(), behavior: 'smooth' }); e.preventDefault(); }
+      else if (e.key === 'ArrowLeft') { wrap.scrollBy({ left: -cardWidth(), behavior: 'smooth' }); e.preventDefault(); }
+      else if (e.key === 'Home') { wrap.scrollTo({ left: 0, behavior: 'smooth' }); e.preventDefault(); }
+      else if (e.key === 'End')  { wrap.scrollTo({ left: wrap.scrollWidth, behavior: 'smooth' }); e.preventDefault(); }
+      else if (e.key >= '1' && e.key <= '5') {
+        const idx = +e.key - 1;
+        wrap.querySelectorAll('.ss-card')[idx]?.scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
+        e.preventDefault();
+      }
+    });
+    update();
+  })();
+
+  // ====== X — Scrub rail ===========================================
+  (function(){
+    const root = document.getElementById('i10');
+    if (!root) return;
+    const wrap = root.querySelector('.i10-wrap');
+    const rail = root.querySelector('[data-rail]');
+    const thumb = root.querySelector('[data-thumb]');
+    let dragging = false;
+
+    const syncFromScroll = () => {
+      const max = wrap.scrollWidth - wrap.clientWidth;
+      const pct = max <= 0 ? 0 : wrap.scrollLeft / max;
+      const visible = wrap.clientWidth / wrap.scrollWidth;
+      thumb.style.width = (Math.max(0.12, visible) * 100) + '%';
+      thumb.style.left  = (pct * (100 - Math.max(12, visible * 100))) + '%';
+    };
+    const scrollFromRail = (clientX) => {
+      const r = rail.getBoundingClientRect();
+      const x = Math.max(0, Math.min(r.width, clientX - r.left));
+      const max = wrap.scrollWidth - wrap.clientWidth;
+      wrap.scrollLeft = (x / r.width) * max;
+    };
+
+    wrap.addEventListener('scroll', () => { if (!dragging) syncFromScroll(); }, { passive: true });
+    rail.addEventListener('pointerdown', e => {
+      dragging = true; thumb.classList.add('is-drag');
+      rail.setPointerCapture(e.pointerId);
+      scrollFromRail(e.clientX);
+    });
+    rail.addEventListener('pointermove', e => { if (dragging) scrollFromRail(e.clientX); });
+    rail.addEventListener('pointerup', e => { dragging = false; thumb.classList.remove('is-drag'); rail.releasePointerCapture(e.pointerId); });
+
+    syncFromScroll();
+  })();
+
+</script>
+</body>
+</html>
