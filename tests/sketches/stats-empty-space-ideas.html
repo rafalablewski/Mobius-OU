@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stats slider — 10 scroll-proof companion ideas (v2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" />
+<style>
+  :root {
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --gold-soft:  rgba(201, 168, 106, 0.18);
+    --stone:      #6B6257;
+    --border:     #E2DBCE;
+    --hairline:   rgba(11, 15, 20, 0.12);
+    --hairline-2: rgba(11, 15, 20, 0.20);
+    --serif:      "Cormorant Garamond", "Newsreader", Georgia, serif;
+    --body:       "Manrope", system-ui, sans-serif;
+    --mono:       "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page chrome ----------------------------------------------------------- */
+  .page { max-width: 1280px; margin: 0 auto; padding: 64px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--hairline); padding-bottom: 32px; margin-bottom: 40px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: 44px; line-height: 1.12; margin: 12px 0 16px; letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 15.5px; line-height: 1.65; max-width: 68ch; }
+  .lede strong { color: var(--ink); }
+  code.mono {
+    font-family: var(--mono); font-size: 12px;
+    background: rgba(11,15,20,0.05); padding: 1px 6px; border-radius: 2px;
+  }
+
+  .diagnosis {
+    margin-top: 22px; padding: 16px 20px;
+    background: var(--paper); border-left: 2px solid var(--gold);
+    font-size: 13px; line-height: 1.65; color: var(--ink-2);
+  }
+  .diagnosis strong { color: var(--ink); }
+  .diagnosis p { margin: 0 0 8px; }
+  .diagnosis p:last-child { margin: 0; }
+  .diagnosis ol { margin: 6px 0 0 20px; padding: 0; }
+  .diagnosis li { margin-bottom: 4px; }
+
+  /* v2 banner ------------------------------------------------------------- */
+  .v2-banner {
+    margin-top: 18px; padding: 14px 18px;
+    background: #1C232B; color: var(--ivory);
+    border-radius: 3px; font-size: 13px; line-height: 1.55;
+  }
+  .v2-banner strong { color: var(--gold); font-weight: 600; }
+  .v2-banner code { background: rgba(244,239,230,0.1); color: var(--gold); }
+
+  /* TOC ------------------------------------------------------------------- */
+  .toc-title {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin: 32px 0 10px;
+  }
+  .toc {
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px;
+  }
+  @media (max-width: 980px) { .toc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .toc a {
+    display: block; padding: 12px 12px;
+    border: 1px solid var(--hairline); border-radius: 3px;
+    background: var(--cream);
+    text-decoration: none; color: var(--ink); transition: all .2s;
+  }
+  .toc a:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .toc__num {
+    font-family: var(--serif); font-style: italic;
+    color: var(--gold-deep); font-size: 20px; letter-spacing: 0.04em;
+  }
+  .toc__name {
+    display: block; font-size: 12.5px; line-height: 1.35; margin-top: 3px;
+  }
+  .toc__tag {
+    display: block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin-top: 5px;
+  }
+
+  /* Concept block --------------------------------------------------------- */
+  .concept { margin-top: 56px; scroll-margin-top: 24px; }
+  .concept__head {
+    display: flex; align-items: baseline; gap: 16px;
+    padding-bottom: 12px; margin-bottom: 18px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .concept__num {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    color: var(--gold-deep); font-size: 30px; line-height: 1;
+    min-width: 50px;
+  }
+  .concept__title {
+    font-family: var(--serif); font-weight: 400;
+    font-size: 24px; line-height: 1.2; margin: 0;
+  }
+  .concept__title em { font-style: italic; }
+  .concept__tag {
+    font-family: var(--body); font-size: 10px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--stone);
+    padding: 4px 10px; border: 1px solid var(--hairline); border-radius: 999px;
+    margin-left: auto; flex-shrink: 0;
+  }
+  .concept__tag.tag-creative   { color: var(--gold-deep); border-color: var(--gold); }
+  .concept__tag.tag-super      { color: #4F7A4A; border-color: #4F7A4A; }
+  .concept__tag.tag-minimal    { color: var(--ink-2); }
+  .concept__tag.tag-pro        { color: var(--ink); border-color: var(--ink); }
+  .concept__tag.tag-future     { color: #2A4A66; border-color: #2A4A66; }
+  .concept__tag.tag-mine       { color: var(--stone); }
+
+  .concept__body { font-size: 14px; line-height: 1.6; color: var(--ink-2); max-width: 72ch; }
+  .concept__body p { margin: 0 0 8px; }
+  .concept__why {
+    margin-top: 14px; padding: 10px 14px;
+    background: rgba(11, 15, 20, 0.03);
+    border-left: 2px solid var(--hairline-2);
+    font-size: 12.5px; line-height: 1.6; color: var(--ink-2);
+  }
+  .concept__why strong { color: var(--ink); }
+
+  /* Two-state mock pair (the scroll-proof part) -------------------------- */
+  .state-pair {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-top: 20px;
+  }
+  @media (max-width: 1080px) { .state-pair { grid-template-columns: 1fr; } }
+
+  .state-mock { display: flex; flex-direction: column; gap: 8px; }
+  .state-label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .state-label .focal-of {
+    font-family: var(--serif); font-style: italic; font-size: 12px;
+    text-transform: none; letter-spacing: 0; color: var(--ink);
+  }
+  .state-label .focal-of em { color: var(--gold-deep); }
+
+  /* The faithful section mock — 2-col grid: companion | scroller */
+  .section-mock {
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 18px 0 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .section-mock__head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; padding: 0 20px 10px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 14px;
+  }
+  .section-mock__eyebrow {
+    font-family: var(--serif); font-style: italic; font-size: 14px;
+    color: var(--stone);
+  }
+  .section-mock__audit {
+    font-family: var(--serif); font-style: italic; font-size: 11px;
+    color: var(--ink); display: inline-flex; align-items: baseline; gap: 4px;
+  }
+  .section-mock__audit::after { content: "→"; color: var(--gold-deep); font-style: normal; }
+
+  /* === The architecture: stable companion column + horizontal scroller === */
+  .section-mock__body {
+    display: grid;
+    grid-template-columns: minmax(180px, 220px) 1fr;
+    gap: 0;
+    align-items: stretch;
+    min-height: 230px;
+  }
+  .section-mock__companion {
+    padding: 4px 16px 16px;
+    border-right: 1px solid var(--hairline);
+    position: relative;
+    overflow: hidden;
+  }
+  /* The right-hand horizontal scroller — overflow:hidden clips card edges
+     so the visual conveys "card 2/3/4 are off-screen left/right" */
+  .section-mock__scroller {
+    position: relative;
+    overflow: hidden;
+    padding: 16px 0 16px 24px;
+  }
+  .section-mock__cards {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    height: 100%;
+    transition: transform 360ms ease;
+  }
+  .section-mock__card {
+    flex: 0 0 180px;
+    text-align: left;
+    transition: transform 360ms ease, opacity 360ms ease;
+  }
+  .section-mock__card .num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 56px; line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .section-mock__card .num .plus {
+    color: var(--gold); font-size: 0.42em; vertical-align: super; margin-left: 2px;
+  }
+  .section-mock__card .tag {
+    font-family: var(--serif); font-style: italic; font-size: 13px; line-height: 1.35;
+    margin: 8px 0 0; max-width: 22ch; color: var(--ink-2);
+  }
+  .section-mock__card .rule {
+    height: 1px; background: var(--hairline); margin: 10px 0 8px; max-width: 140px;
+  }
+  .section-mock__card .body {
+    font-family: var(--serif); font-size: 11px; line-height: 1.6;
+    color: var(--stone); max-width: 26ch; margin: 0;
+  }
+  .section-mock__card .dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--gold);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+  }
+  .section-mock__card .dot::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+  }
+
+  /* States */
+  .section-mock__card.focal { transform: scale(1); opacity: 1; }
+  .section-mock__card.near  { transform: scale(0.86); opacity: 0.55; }
+  .section-mock__card.far   { transform: scale(0.86); opacity: 0.28; }
+
+  /* State A: scroll position 0, card 1 is focal centred — but with
+     the new architecture the focal sits at the start of the scroller
+     column, not the start of the section. */
+  .state-a .section-mock__cards { transform: translateX(0); }
+  /* State B: scrolled so card 3 (32) is centred; cards 1+2 have moved
+     off the left edge (clipped by overflow:hidden). */
+  .state-b .section-mock__cards { transform: translateX(-376px); }
+
+  /* Cursor change preview hooks (matches the live CSS we shipped) */
+  .section-mock__card.focal { cursor: default; }
+  .section-mock__card.near,
+  .section-mock__card.far  { cursor: pointer; }
+  .section-mock__card.near:hover  { opacity: 0.72; }
+  .section-mock__card.far:hover   { opacity: 0.45; }
+
+  /* Companion stable-vs-changing affordance */
+  .section-mock__companion::before {
+    content: ""; position: absolute; top: 4px; bottom: 4px; left: 0;
+    width: 2px; background: var(--gold);
+    opacity: 0.6;
+  }
+  .companion-stamp {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--stone);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+  .companion-stamp::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* ====================================================================
+     Per-concept companion styles
+     ==================================================================== */
+
+  /* 01 Margin marginalia */
+  .c1-marg {
+    font-family: "Caveat", var(--serif);
+    color: var(--gold-deep);
+    font-size: 17px; line-height: 1.35;
+    transform: rotate(-1.5deg);
+    padding: 6px 4px 0 8px;
+  }
+  .c1-marg small {
+    display: block; margin-top: 8px;
+    font-family: "Caveat", cursive; font-size: 13px; color: var(--stone);
+  }
+
+  /* 02 Year ladder */
+  .c2-ladder ol {
+    list-style: none; margin: 0; padding: 0; position: relative;
+  }
+  .c2-ladder ol::before {
+    content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px;
+    width: 1px; background: var(--hairline-2);
+  }
+  .c2-ladder li {
+    position: relative; padding: 5px 0 5px 22px;
+    font-family: var(--serif); font-size: 13px; color: var(--stone);
+  }
+  .c2-ladder li::before {
+    content: ""; position: absolute; left: 1px; top: 11px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--ivory); border: 1px solid var(--hairline-2);
+  }
+  .c2-ladder li.is-active { color: var(--ink); font-style: italic; }
+  .c2-ladder li.is-active::before {
+    background: var(--gold); border-color: var(--gold-deep);
+    box-shadow: 0 0 0 3px rgba(201,168,106,0.18);
+  }
+  .c2-ladder li em { font-style: italic; color: var(--ink); }
+  .c2-ladder li small { display: block; font-size: 11px; color: var(--stone); margin-top: 1px; }
+
+  /* 03 Practice wall (live data) */
+  .c3-wall {
+    border: 1px solid var(--hairline);
+    background: var(--cream);
+    padding: 10px 12px;
+    font-family: var(--serif);
+  }
+  .c3-wall header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 6px; margin-bottom: 6px;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone); font-family: var(--body); font-weight: 600;
+  }
+  .c3-wall .live {
+    display: inline-flex; align-items: center; gap: 5px;
+    color: var(--gold-deep);
+  }
+  .c3-wall .live::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: #4F7A4A; box-shadow: 0 0 0 2px rgba(79,122,74,0.18);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .55; transform: scale(0.92); }
+  }
+  .c3-wall table { width: 100%; border-collapse: collapse; }
+  .c3-wall td {
+    font-size: 11.5px; padding: 3px 0; color: var(--ink-2);
+    border-bottom: 1px dotted var(--hairline);
+  }
+  .c3-wall td:first-child { font-style: italic; color: var(--stone); }
+  .c3-wall td:last-child { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--ink); }
+  .c3-wall .delta-up { color: #4F7A4A; }
+  .c3-wall .delta-dn { color: #9C4D3F; }
+  .c3-wall footer {
+    margin-top: 6px; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--stone); font-family: var(--body);
+  }
+
+  /* 04 Single dictum */
+  .c4-dictum {
+    font-family: var(--serif); font-style: italic;
+    font-size: 17px; line-height: 1.4;
+    color: var(--ink-2);
+  }
+  .c4-dictum::before {
+    content: "“"; display: block; font-size: 42px; line-height: 0.5;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  .c4-dictum .sig {
+    display: block; margin-top: 14px;
+    font-family: var(--body); font-style: normal;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  .c4-dictum .sig::before {
+    content: ""; display: inline-block; width: 18px; height: 1px;
+    background: var(--stone); vertical-align: middle; margin-right: 8px;
+  }
+
+  /* 05 Source-of-funds index */
+  .c5-index {
+    background: var(--cream);
+    border: 1px solid var(--hairline);
+    padding: 10px 12px;
+    font-family: var(--mono);
+    font-size: 10px; color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .c5-index header {
+    font-family: var(--body); font-size: 9px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone); font-weight: 600;
+    padding-bottom: 5px; border-bottom: 1px solid var(--hairline);
+    margin-bottom: 6px;
+    display: flex; justify-content: space-between;
+  }
+  .c5-index .row {
+    display: grid; grid-template-columns: 22px 1fr auto; gap: 8px;
+    padding: 2px 0;
+  }
+  .c5-index .row > span:first-child { color: var(--stone); }
+  .c5-index .row > span:last-child { color: var(--gold-deep); }
+  .c5-index footer {
+    margin-top: 6px; padding-top: 4px; border-top: 1px solid var(--hairline);
+    font-family: var(--serif); font-style: italic; font-size: 11px;
+    color: var(--ink-2);
+  }
+
+  /* 06 Constellation map */
+  .c6-const {
+    position: relative;
+    background: linear-gradient(160deg, #0B0F14 0%, #1C232B 100%);
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 10px 12px;
+    color: var(--ivory);
+    aspect-ratio: 1 / 0.85;
+  }
+  .c6-const header {
+    font-family: var(--body); font-size: 9px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(244,239,230,0.55); font-weight: 600;
+  }
+  .c6-const svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .c6-const .legend {
+    position: absolute; left: 12px; bottom: 8px;
+    font-family: var(--serif); font-style: italic; font-size: 11px;
+    color: var(--ivory);
+  }
+  .c6-const .legend em { color: var(--gold); font-style: italic; }
+
+  /* 07 Dotted jurisdictions map */
+  .c7-map svg { width: 100%; height: auto; display: block; }
+  .c7-map .cap {
+    font-family: var(--serif); font-style: italic;
+    font-size: 12px; color: var(--stone); margin-top: 4px;
+  }
+  .c7-map .cap em { color: var(--gold-deep); font-style: italic; }
+
+  /* 08 Sticky figure index */
+  .c8-scrub ol { list-style: none; margin: 0; padding: 0; }
+  .c8-scrub li {
+    display: grid; grid-template-columns: 38px 1fr;
+    align-items: baseline; gap: 8px;
+    padding: 5px 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background .18s ease;
+  }
+  .c8-scrub li:hover { background: rgba(11,15,20,0.04); }
+  .c8-scrub li.is-active { background: rgba(201,168,106,0.10); }
+  .c8-scrub li .n {
+    font-family: var(--serif); font-style: italic; font-size: 18px;
+    color: var(--ink); line-height: 1; text-align: right;
+  }
+  .c8-scrub li.is-active .n { color: var(--gold-deep); }
+  .c8-scrub li .lbl {
+    font-family: var(--serif); font-style: italic; font-size: 11px;
+    line-height: 1.3; color: var(--ink-2);
+  }
+
+  /* 09 Editor's note */
+  .c9-note { font-family: var(--serif); }
+  .c9-note .label {
+    font-family: var(--body); font-size: 9px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold-deep); font-weight: 600;
+    margin-bottom: 6px;
+    padding-top: 4px; border-top: 1px solid var(--ink);
+  }
+  .c9-note p {
+    font-size: 12px; line-height: 1.55; color: var(--ink-2); margin: 0 0 6px;
+  }
+  .c9-note .sign {
+    display: flex; align-items: center; gap: 8px; margin-top: 8px;
+  }
+  .c9-note .monogram {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--ink); color: var(--gold);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-style: italic; font-size: 14px; flex-shrink: 0;
+  }
+  .c9-note .by {
+    font-family: var(--serif); font-style: italic; font-size: 11px; color: var(--ink);
+  }
+
+  /* 10 Wax seal */
+  .c10-seal { position: relative; max-width: 160px; margin: 0 auto; }
+  .c10-seal svg { width: 100%; height: auto; display: block; }
+  .c10-seal .caption {
+    text-align: center; margin-top: 6px;
+    font-family: var(--serif); font-style: italic; font-size: 11px;
+    color: var(--stone);
+  }
+  .c10-seal .caption em { color: var(--ink); }
+
+  footer.foot {
+    margin-top: 64px; padding-top: 18px; border-top: 1px solid var(--hairline);
+    font-family: var(--serif); font-style: italic; color: var(--stone);
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="intro">
+    <div class="eyebrow">Sketch · v2 · Home › Stats slider</div>
+    <h1>“The practice in three figures.” — <em>scroll-proof companion redesigns</em></h1>
+    <p class="lede">
+      Ten concepts for the quiet zone beside the focal-grow stats slider — <strong>each rewritten so it survives the slider scrolling</strong>. The companion no longer lives in the scroller's left padding (which evaporates the moment card 2 comes into focus); it sits in its own column, stable, while the slider scrolls beside it.
+    </p>
+
+    <div class="v2-banner">
+      <strong>v1 (committed earlier) was wrong about the layout.</strong>
+      My first pass placed companion content in the empty ivory zone left of the focal card. That zone is actually the scroller's <code>padding-inline: calc(50% - card-w / 2)</code> — it only exists at <code>scrollLeft: 0</code>. Once the reader slides to card 2 (100+), card 1 (14+) moves left into that zone; on card 3 (32) it's gone entirely. So every v1 mock was lying.
+    </p>
+    </div>
+
+    <div class="diagnosis">
+      <p><strong>v2 architecture (single change across all 10 concepts):</strong></p>
+      <ol>
+        <li>The section becomes a <strong>two-column grid</strong>: <code class="mono">grid-template-columns: minmax(220px, 280px) 1fr</code>.</li>
+        <li>Left column holds the <strong>companion</strong> — stable, doesn't scroll horizontally. Receives <code>position: sticky</code> inside the section so it also stays put if the section is tall.</li>
+        <li>Right column holds the <strong>focal-grow scroller</strong> — its own <code>overflow-x: auto</code>, scroll-snap, focal-grow exactly as today.</li>
+        <li>Companion content can <strong>react to the focal stat</strong>: a JS class toggle (the same one that adds <code>.is-focal</code> to the active card) also sets <code>data-focal="14"|"100"|"32"|"5"|"1"</code> on the companion. CSS handles the swap.</li>
+      </ol>
+      <p>Each concept below renders <strong>two scroll states side by side</strong>: <em>State A · focal = 14+</em> (initial) and <em>State B · focal = 32</em> (mid-scroll, cards 1–2 clipped off the left edge of the scroller column). The companion holds its position across both — only its content reacts.</p>
+    </div>
+
+    <div class="toc-title">10 concepts (rewritten)</div>
+    <nav class="toc">
+      <a href="#c1"><span class="toc__num">01</span><span class="toc__name">Margin marginalia</span><span class="toc__tag">Creative</span></a>
+      <a href="#c2"><span class="toc__num">02</span><span class="toc__name">Year ladder</span><span class="toc__tag">Creative</span></a>
+      <a href="#c3"><span class="toc__num">03</span><span class="toc__name">Practice wall (live)</span><span class="toc__tag">Super creative</span></a>
+      <a href="#c4"><span class="toc__num">04</span><span class="toc__name">A single dictum</span><span class="toc__tag">Minimalistic</span></a>
+      <a href="#c5"><span class="toc__num">05</span><span class="toc__name">Source-of-funds index</span><span class="toc__tag">Professional</span></a>
+      <a href="#c6"><span class="toc__num">06</span><span class="toc__name">Constellation of offices</span><span class="toc__tag">Futuristic</span></a>
+      <a href="#c7"><span class="toc__num">07</span><span class="toc__name">Dotted jurisdictions map</span><span class="toc__tag">Mine</span></a>
+      <a href="#c8"><span class="toc__num">08</span><span class="toc__name">Sticky figure index</span><span class="toc__tag">Mine</span></a>
+      <a href="#c9"><span class="toc__num">09</span><span class="toc__name">Editor's note (signed)</span><span class="toc__tag">Mine</span></a>
+      <a href="#c10"><span class="toc__num">10</span><span class="toc__name">Audit stamp / wax seal</span><span class="toc__tag">Mine</span></a>
+    </nav>
+  </header>
+
+  <!-- =====================================================================
+       01 — Margin marginalia                                  CREATIVE
+       ===================================================================== -->
+  <section class="concept" id="c1">
+    <div class="concept__head">
+      <span class="concept__num">01</span>
+      <h2 class="concept__title">Margin marginalia — <em>a different note per focal stat</em></h2>
+      <span class="concept__tag tag-creative">Creative</span>
+    </div>
+    <div class="concept__body">
+      <p>A short handwritten gloss in the companion column. As you scroll, the note rewrites itself to address whatever the focal card is. The companion stays put; the words swap.</p>
+    </div>
+    <div class="state-pair">
+      <!-- STATE A — focal = 14+ -->
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Marginalia · 14</div>
+              <div class="c1-marg">Charter held continuously since 2012 — the bit nobody else can replay.<small>— note in the margin</small></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk — CFA-trained.</p><div class="rule"></div><p class="body">In private practice since 2018.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files — citizenship, residency, tax.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- STATE B — focal = 32 -->
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Marginalia · 32</div>
+              <div class="c1-marg">Counsel on the ground, not on a list. Briefed in your timezone.<small>— note in the margin</small></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners operational.</p><div class="rule"></div><p class="body">From Caribbean shelf to Gulf tax routes.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Dedicated team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the marginalia genuinely <em>annotates the page</em>, not a fixed slot. <strong>Risk:</strong> needs 5 carefully-written notes; bad ones read as forced.</div>
+  </section>
+
+  <!-- =====================================================================
+       02 — Vertical year ladder                              CREATIVE
+       ===================================================================== -->
+  <section class="concept" id="c2">
+    <div class="concept__head">
+      <span class="concept__num">02</span>
+      <h2 class="concept__title">Year ladder — <em>the active year tracks the focal stat</em></h2>
+      <span class="concept__tag tag-creative">Creative</span>
+    </div>
+    <div class="concept__body">
+      <p>A vertical hairline timeline with five milestone years. The ring brightens around whichever year the focal stat implicates — 2012 charter for the "14+ years" card; 2024 Gulf desk for the "32 jurisdictions" card; and so on.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Practice timeline</div>
+              <div class="c2-ladder"><ol>
+                <li class="is-active"><em>2012</em><small>CFA charter</small></li>
+                <li><em>2018</em><small>private practice opens</small></li>
+                <li><em>2020</em><small>first CBI mandate</small></li>
+                <li><em>2024</em><small>Gulf desk operational</small></li>
+                <li><em>2026</em><small>today</small></li>
+              </ol></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk — CFA-trained.</p><div class="rule"></div><p class="body">Charter held since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Practice timeline</div>
+              <div class="c2-ladder"><ol>
+                <li><em>2012</em><small>CFA charter</small></li>
+                <li><em>2018</em><small>private practice opens</small></li>
+                <li><em>2020</em><small>first CBI mandate</small></li>
+                <li class="is-active"><em>2024</em><small>Gulf desk · +6 jurisdictions</small></li>
+                <li><em>2026</em><small>32 jurisdictions live</small></li>
+              </ol></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners operational.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the ladder is itself the navigation — clicking a year scrolls the slider to the stat that year unlocks. <strong>Risk:</strong> needs accurate, verifiable milestones.</div>
+  </section>
+
+  <!-- =====================================================================
+       03 — Practice wall (live data)                    SUPER CREATIVE
+       ===================================================================== -->
+  <section class="concept" id="c3">
+    <div class="concept__head">
+      <span class="concept__num">03</span>
+      <h2 class="concept__title">Practice wall — <em>focal stat re-orders the live rows</em></h2>
+      <span class="concept__tag tag-super">Super creative</span>
+    </div>
+    <div class="concept__body">
+      <p>A serif data-terminal panel in the companion column. The full register lists ~12 programme datapoints; the panel pins the rows most relevant to the focal stat to the top, dims the rest. Live pulse-dot in the header.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Practice wall</div>
+              <div class="c3-wall">
+                <header><span>Credentials</span><span class="live">live</span></header>
+                <table><tbody>
+                  <tr><td>CFA charter, held</td><td>14 yrs <span class="delta-up">▲</span></td></tr>
+                  <tr><td>NYSE S7 / S63</td><td>12 yrs</td></tr>
+                  <tr><td>Private practice</td><td>8 yrs</td></tr>
+                  <tr><td>STEP, full member</td><td>7 yrs</td></tr>
+                  <tr><td>IBA Tax Committee</td><td>5 yrs</td></tr>
+                </tbody></table>
+                <footer>NDA-only sources</footer>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk — CFA-trained.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Practice wall</div>
+              <div class="c3-wall">
+                <header><span>Jurisdictions</span><span class="live">live · 11:42</span></header>
+                <table><tbody>
+                  <tr><td>Malta MEIN, EUR floor</td><td>€600,000 <span class="delta-up">▲</span></td></tr>
+                  <tr><td>St Kitts CBI, contribution</td><td>$250,000</td></tr>
+                  <tr><td>UAE corporate income tax</td><td>9.0% <span class="delta-dn">▼</span></td></tr>
+                  <tr><td>Portugal NHR, days</td><td>183 d</td></tr>
+                  <tr><td>Cyprus PR, RE floor</td><td>€300,000</td></tr>
+                </tbody></table>
+                <footer>NDA-only sources</footer>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners operational.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the wall becomes <em>diagnostic</em>, not decorative — the table reads as a live answer to the focal claim. <strong>Risk:</strong> never imply investment advice; numbers must be sourceable on request.</div>
+  </section>
+
+  <!-- =====================================================================
+       04 — Single dictum                                   MINIMALISTIC
+       ===================================================================== -->
+  <section class="concept" id="c4">
+    <div class="concept__head">
+      <span class="concept__num">04</span>
+      <h2 class="concept__title">A single dictum — <em>one line per focal stat</em></h2>
+      <span class="concept__tag tag-minimal">Minimalistic</span>
+    </div>
+    <div class="concept__body">
+      <p>Just one italic line in the companion. Per focal stat. Numbered. No icon, no card, no flourish. The empty space stays mostly empty; the change is the only motion in the section.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Dictum 01</div>
+              <div class="c4-dictum">The desk you brief is the desk that writes the file.<span class="sig">No. 01 · seniority</span></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk — CFA-trained.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Dictum 03</div>
+              <div class="c4-dictum">A jurisdiction we don't have counsel in is a jurisdiction we don't quote.<span class="sig">No. 03 · scope</span></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners operational.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> minimum ink, maximum air. The line changes; the discipline of the page doesn't. <strong>Risk:</strong> five great lines is harder than ten OK paragraphs. Lives or dies on the copy.</div>
+  </section>
+
+  <!-- =====================================================================
+       05 — Source-of-funds index                           PROFESSIONAL
+       ===================================================================== -->
+  <section class="concept" id="c5">
+    <div class="concept__head">
+      <span class="concept__num">05</span>
+      <h2 class="concept__title">Source-of-funds index — <em>the relevant credentials per stat</em></h2>
+      <span class="concept__tag tag-pro">Professional</span>
+    </div>
+    <div class="concept__body">
+      <p>A monospace credentials register. The "claim → receipt" mapping shifts with the focal stat: for "14+ years" it shows the charters and dates; for "32 jurisdictions" it shows counsel registrations and bar memberships.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Register · R-014</div>
+              <div class="c5-index">
+                <header><span>Credentials</span><span>R-014</span></header>
+                <div class="row"><span>i</span><span>CFA charter</span><span>2012</span></div>
+                <div class="row"><span>ii</span><span>NYSE S7/S63</span><span>2014</span></div>
+                <div class="row"><span>iii</span><span>STEP, full</span><span>2019</span></div>
+                <div class="row"><span>iv</span><span>IBA Tax</span><span>2021</span></div>
+                <footer>Audit trail on request.</footer>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Register · R-032</div>
+              <div class="c5-index">
+                <header><span>Counsel</span><span>R-032</span></header>
+                <div class="row"><span>i</span><span>Caribbean shelf</span><span>9 jur.</span></div>
+                <div class="row"><span>ii</span><span>EU programmes</span><span>11 jur.</span></div>
+                <div class="row"><span>iii</span><span>Gulf · MENA</span><span>6 jur.</span></div>
+                <div class="row"><span>iv</span><span>SE Asia · Oceania</span><span>6 jur.</span></div>
+                <footer>Audit trail on request.</footer>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> turns the masthead's "audit trail on request" into a live audit trail. The register reframes itself with each card. <strong>Risk:</strong> every row must be verifiable — no aspirational entries.</div>
+  </section>
+
+  <!-- =====================================================================
+       06 — Constellation of offices                       FUTURISTIC
+       ===================================================================== -->
+  <section class="concept" id="c6">
+    <div class="concept__head">
+      <span class="concept__num">06</span>
+      <h2 class="concept__title">Constellation — <em>the city implicated by the focal stat brightens</em></h2>
+      <span class="concept__tag tag-future">Futuristic</span>
+    </div>
+    <div class="concept__body">
+      <p>A dark inset of five office cities as a star chart. Whichever city sits behind the focal claim glows; the others recede to 30%. On "14+ years" Valletta brightens (the founding desk); on "32 jurisdictions" all five cities pulse one after another in a soft rotation.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Constellation</div>
+              <div class="c6-const">
+                <header>5 offices</header>
+                <svg viewBox="0 0 200 160" aria-hidden="true">
+                  <defs><radialGradient id="g1a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#C9A86A" stop-opacity="0.9"/><stop offset="100%" stop-color="#C9A86A" stop-opacity="0"/></radialGradient></defs>
+                  <g stroke="rgba(201,168,106,0.3)" stroke-width="0.5"><line x1="40" y1="70" x2="90" y2="50"/><line x1="90" y1="50" x2="140" y2="80"/><line x1="140" y1="80" x2="170" y2="110"/><line x1="40" y1="70" x2="80" y2="120"/><line x1="80" y1="120" x2="140" y2="80"/></g>
+                  <g><circle cx="40" cy="70" r="20" fill="url(#g1a)"/><circle cx="40" cy="70" r="4" fill="#C9A86A"/><circle cx="90" cy="50" r="8" fill="url(#g1a)"/><circle cx="90" cy="50" r="2" fill="#C9A86A" opacity="0.4"/><circle cx="140" cy="80" r="8" fill="url(#g1a)"/><circle cx="140" cy="80" r="2" fill="#C9A86A" opacity="0.4"/><circle cx="80" cy="120" r="6" fill="url(#g1a)"/><circle cx="80" cy="120" r="2" fill="#C9A86A" opacity="0.4"/><circle cx="170" cy="110" r="6" fill="url(#g1a)"/><circle cx="170" cy="110" r="2" fill="#C9A86A" opacity="0.4"/></g>
+                  <g font-family="Cormorant Garamond" font-style="italic" font-size="9" fill="#F4EFE6"><text x="24" y="60">Valletta</text></g>
+                </svg>
+                <div class="legend">Founding desk · <em>Valletta</em></div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Constellation</div>
+              <div class="c6-const">
+                <header>5 offices · 32 jur.</header>
+                <svg viewBox="0 0 200 160" aria-hidden="true">
+                  <defs><radialGradient id="g1b" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#C9A86A" stop-opacity="0.9"/><stop offset="100%" stop-color="#C9A86A" stop-opacity="0"/></radialGradient></defs>
+                  <g stroke="rgba(201,168,106,0.55)" stroke-width="0.5"><line x1="40" y1="70" x2="90" y2="50"/><line x1="90" y1="50" x2="140" y2="80"/><line x1="140" y1="80" x2="170" y2="110"/><line x1="40" y1="70" x2="80" y2="120"/><line x1="80" y1="120" x2="140" y2="80"/></g>
+                  <g><circle cx="40" cy="70" r="14" fill="url(#g1b)"/><circle cx="40" cy="70" r="3" fill="#C9A86A"/><circle cx="90" cy="50" r="16" fill="url(#g1b)"/><circle cx="90" cy="50" r="3" fill="#C9A86A"/><circle cx="140" cy="80" r="20" fill="url(#g1b)"/><circle cx="140" cy="80" r="4" fill="#F4EFE6"/><circle cx="80" cy="120" r="14" fill="url(#g1b)"/><circle cx="80" cy="120" r="3" fill="#C9A86A"/><circle cx="170" cy="110" r="14" fill="url(#g1b)"/><circle cx="170" cy="110" r="3" fill="#C9A86A"/></g>
+                  <g font-family="Cormorant Garamond" font-style="italic" font-size="9" fill="#F4EFE6"><text x="124" y="68">Dubai</text></g>
+                </svg>
+                <div class="legend">Live on the <em>Dubai desk</em></div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the chart is doing real work — the focal-aware brightening is the only animation in the section. <strong>Risk:</strong> a glowing chart can read as marketing — keep hairlines at 0.5 px, halos faint.</div>
+  </section>
+
+  <!-- =====================================================================
+       07 — Dotted jurisdictions map                            MINE
+       ===================================================================== -->
+  <section class="concept" id="c7">
+    <div class="concept__head">
+      <span class="concept__num">07</span>
+      <h2 class="concept__title">Dotted jurisdictions — <em>region highlights track the focal claim</em></h2>
+      <span class="concept__tag tag-mine">Mine</span>
+    </div>
+    <div class="concept__body">
+      <p>32 dots, no country outlines. On "14+ years" only the founding region (EU/Med) is bright. On "32 jurisdictions" all 32 dots are at full opacity; the regional clusters labelled. The same map; different revelation.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Coverage</div>
+              <div class="c7-map">
+                <svg viewBox="0 0 220 110" aria-hidden="true">
+                  <g fill="#6B6257" opacity="0.18">
+                    <circle cx="20" cy="40" r="1.4"/><circle cx="28" cy="46" r="1.4"/><circle cx="34" cy="52" r="1.4"/><circle cx="40" cy="58" r="1.4"/><circle cx="38" cy="64" r="1.4"/><circle cx="50" cy="74" r="1.4"/><circle cx="60" cy="78" r="1.4"/>
+                    <circle cx="120" cy="50" r="1.4"/><circle cx="130" cy="54" r="1.4"/><circle cx="118" cy="58" r="1.4"/><circle cx="136" cy="62" r="1.4"/><circle cx="142" cy="56" r="1.4"/><circle cx="148" cy="60" r="1.4"/><circle cx="154" cy="64" r="1.4"/><circle cx="160" cy="58" r="1.4"/>
+                    <circle cx="170" cy="74" r="1.4"/><circle cx="178" cy="80" r="1.4"/><circle cx="184" cy="90" r="1.4"/><circle cx="190" cy="84" r="1.4"/><circle cx="198" cy="92" r="1.4"/>
+                  </g>
+                  <!-- Med cluster bright -->
+                  <g fill="#C9A86A">
+                    <circle cx="100" cy="60" r="2.2"/><circle cx="108" cy="62" r="1.8"/><circle cx="94" cy="66" r="1.8"/>
+                  </g>
+                  <text x="76" y="78" font-family="Cormorant Garamond" font-style="italic" font-size="8" fill="#A07F44">Valletta · founding</text>
+                </svg>
+                <div class="cap">Established on the <em>Med shelf</em></div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Coverage · 32</div>
+              <div class="c7-map">
+                <svg viewBox="0 0 220 110" aria-hidden="true">
+                  <g fill="#6B6257" opacity="0.6">
+                    <circle cx="20" cy="40" r="1.4"/><circle cx="28" cy="46" r="1.4"/><circle cx="34" cy="52" r="1.4"/><circle cx="40" cy="58" r="1.4"/><circle cx="38" cy="64" r="1.4"/><circle cx="50" cy="74" r="1.4"/><circle cx="60" cy="78" r="1.4"/>
+                    <circle cx="120" cy="50" r="1.4"/><circle cx="130" cy="54" r="1.4"/><circle cx="118" cy="58" r="1.4"/><circle cx="136" cy="62" r="1.4"/><circle cx="142" cy="56" r="1.4"/><circle cx="148" cy="60" r="1.4"/><circle cx="154" cy="64" r="1.4"/><circle cx="160" cy="58" r="1.4"/>
+                    <circle cx="170" cy="74" r="1.4"/><circle cx="178" cy="80" r="1.4"/><circle cx="184" cy="90" r="1.4"/><circle cx="190" cy="84" r="1.4"/><circle cx="198" cy="92" r="1.4"/>
+                    <circle cx="100" cy="60" r="1.4"/><circle cx="108" cy="62" r="1.4"/><circle cx="94" cy="66" r="1.4"/>
+                  </g>
+                  <g fill="#C9A86A"><circle cx="65" cy="60" r="2.6"/><circle cx="130" cy="56" r="2.6"/></g>
+                  <text x="48" y="50" font-family="Cormorant Garamond" font-style="italic" font-size="8" fill="#A07F44">Caribbean</text>
+                  <text x="116" y="44" font-family="Cormorant Garamond" font-style="italic" font-size="8" fill="#A07F44">Gulf</text>
+                </svg>
+                <div class="cap"><em>32 dots</em> · operational</div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the map is a slow reveal — restraint in state A, payoff in state B. Same SVG, two opacities. <strong>Risk:</strong> dot maps without outlines can read abstract; the regional labels rescue legibility.</div>
+  </section>
+
+  <!-- =====================================================================
+       08 — Sticky figure index (the scrubber)                MINE
+       ===================================================================== -->
+  <section class="concept" id="c8">
+    <div class="concept__head">
+      <span class="concept__num">08</span>
+      <h2 class="concept__title">Sticky figure index — <em>the focal row tracks the focal card</em></h2>
+      <span class="concept__tag tag-mine">Mine</span>
+    </div>
+    <div class="concept__body">
+      <p>The companion column is a vertical chapter list of all five figures. The active row matches whichever card is focal — so it ALSO doubles as the slider's navigation/scrub. Clicks scroll the slider, scrolls highlight the row.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Figures · I of V</div>
+              <div class="c8-scrub"><ol>
+                <li class="is-active"><span class="n">14<span style="color:var(--gold);font-size:0.5em;vertical-align:super">+</span></span><span class="lbl">Years on the desk</span></li>
+                <li><span class="n">100<span style="color:var(--gold);font-size:0.5em;vertical-align:super">+</span></span><span class="lbl">Private files</span></li>
+                <li><span class="n">32</span><span class="lbl">Jurisdictions</span></li>
+                <li><span class="n">5</span><span class="lbl">Offices</span></li>
+                <li><span class="n">1</span><span class="lbl">Dedicated team</span></li>
+              </ol></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Figures · III of V</div>
+              <div class="c8-scrub"><ol>
+                <li><span class="n">14<span style="color:var(--gold);font-size:0.5em;vertical-align:super">+</span></span><span class="lbl">Years on the desk</span></li>
+                <li><span class="n">100<span style="color:var(--gold);font-size:0.5em;vertical-align:super">+</span></span><span class="lbl">Private files</span></li>
+                <li class="is-active"><span class="n">32</span><span class="lbl">Jurisdictions</span></li>
+                <li><span class="n">5</span><span class="lbl">Offices</span></li>
+                <li><span class="n">1</span><span class="lbl">Dedicated team</span></li>
+              </ol></div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the index is the most natural fit for the new architecture — it WANTS to be a stable sidebar. Doubles as navigation. <strong>Risk:</strong> can feel like duplication if labels echo card tags verbatim — keep terse.</div>
+  </section>
+
+  <!-- =====================================================================
+       09 — Editor's note (signed)                              MINE
+       ===================================================================== -->
+  <section class="concept" id="c9">
+    <div class="concept__head">
+      <span class="concept__num">09</span>
+      <h2 class="concept__title">Editor's note — <em>a different sentence per stat, one signature</em></h2>
+      <span class="concept__tag tag-mine">Mine</span>
+    </div>
+    <div class="concept__body">
+      <p>The Managing Partner's running commentary on the figures. One short paragraph per focal stat, same monogram + signature beneath. Reads like a column foot in a private newsletter.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">From the desk · I</div>
+              <div class="c9-note">
+                <div class="label">On 14+</div>
+                <p>Time is the easy one. The charter is the only piece of evidence I'd trust about anyone in this trade — including myself.</p>
+                <div class="sign"><span class="monogram">R</span><span class="by">Rafał A.</span></div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">From the desk · III</div>
+              <div class="c9-note">
+                <div class="label">On 32</div>
+                <p>32 isn't a list. It's 32 lawyers I'd brief in person. The day a name on it stops returning the call, the count drops.</p>
+                <div class="sign"><span class="monogram">R</span><span class="by">Rafał A.</span></div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the partner's voice runs across all five figures — humanises numbers; gives the section a through-line. <strong>Risk:</strong> ghostwritten editorial is the failure mode; needs real words.</div>
+  </section>
+
+  <!-- =====================================================================
+       10 — Audit stamp / wax seal                              MINE
+       ===================================================================== -->
+  <section class="concept" id="c10">
+    <div class="concept__head">
+      <span class="concept__num">10</span>
+      <h2 class="concept__title">Audit stamp — <em>the inscription rotates with the focal stat</em></h2>
+      <span class="concept__tag tag-mine">Mine</span>
+    </div>
+    <div class="concept__body">
+      <p>A round editorial stamp on cream. Concentric rings; italic latin around the rim; the centre carries the figure the focal card claims. State A: CHARTER · MMXII. State B: 32 JURISDICTIONS · 2026.Q1. The stamp's surface stays put; only the inscription rotates.</p>
+    </div>
+    <div class="state-pair">
+      <div class="state-mock state-a">
+        <div class="state-label"><span>State A · scrollLeft 0</span><span class="focal-of">focal = <em>14+ years</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Stamp · I</div>
+              <div class="c10-seal">
+                <svg viewBox="0 0 160 160" aria-hidden="true">
+                  <defs><path id="ca" d="M 80 80 m -62, 0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"/></defs>
+                  <circle cx="80" cy="80" r="74" fill="none" stroke="#C9A86A" stroke-width="0.7"/>
+                  <circle cx="80" cy="80" r="68" fill="none" stroke="#C9A86A" stroke-width="0.3"/>
+                  <circle cx="80" cy="80" r="48" fill="none" stroke="#A07F44" stroke-width="0.5"/>
+                  <text font-family="Cormorant Garamond" font-style="italic" font-size="7" fill="#A07F44" letter-spacing="1.6"><textPath href="#ca" startOffset="2%">MOBIUS · CHARTER · MMXII · HELD · </textPath></text>
+                  <g font-family="Cormorant Garamond" fill="#1C232B" text-anchor="middle">
+                    <text x="80" y="74" font-style="italic" font-size="9" letter-spacing="2.5" fill="#6B6257">CHARTER</text>
+                    <text x="80" y="96" font-style="italic" font-size="22">2012</text>
+                  </g>
+                </svg>
+                <div class="caption">Charter <em>MMXII</em></div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years on the desk.</p><div class="rule"></div><p class="body">Charter since 2012.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Private files.</p></div>
+                <div class="section-mock__card far"><h2 class="num">32</h2><p class="tag">Jurisdictions.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="state-mock state-b">
+        <div class="state-label"><span>State B · mid-scroll</span><span class="focal-of">focal = <em>32 jurisdictions</em></span></div>
+        <div class="section-mock">
+          <div class="section-mock__head">
+            <div class="section-mock__eyebrow">The practice in three figures.</div>
+            <div class="section-mock__audit">Audit trail on request</div>
+          </div>
+          <div class="section-mock__body">
+            <div class="section-mock__companion">
+              <div class="companion-stamp">Stamp · III</div>
+              <div class="c10-seal">
+                <svg viewBox="0 0 160 160" aria-hidden="true">
+                  <defs><path id="cb" d="M 80 80 m -62, 0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"/></defs>
+                  <circle cx="80" cy="80" r="74" fill="none" stroke="#C9A86A" stroke-width="0.7"/>
+                  <circle cx="80" cy="80" r="68" fill="none" stroke="#C9A86A" stroke-width="0.3"/>
+                  <circle cx="80" cy="80" r="48" fill="none" stroke="#A07F44" stroke-width="0.5"/>
+                  <text font-family="Cormorant Garamond" font-style="italic" font-size="7" fill="#A07F44" letter-spacing="1.4"><textPath href="#cb" startOffset="2%">MOBIUS · 32 JURISDICTIONS · 2026.Q1 · NDA · </textPath></text>
+                  <g font-family="Cormorant Garamond" fill="#1C232B" text-anchor="middle">
+                    <text x="80" y="74" font-style="italic" font-size="9" letter-spacing="2.5" fill="#6B6257">COVERAGE</text>
+                    <text x="80" y="96" font-style="italic" font-size="22">32</text>
+                  </g>
+                </svg>
+                <div class="caption"><em>32</em> · 2026.Q1</div>
+              </div>
+            </div>
+            <div class="section-mock__scroller">
+              <div class="section-mock__cards">
+                <div class="section-mock__card far"><h2 class="num">14<span class="plus">+</span></h2><p class="tag">Years.</p></div>
+                <div class="section-mock__card near"><h2 class="num">100<span class="plus">+</span></h2><p class="tag">Files.</p></div>
+                <div class="section-mock__card focal"><span class="dot"></span><h2 class="num">32</h2><p class="tag">Jurisdictions — firms and partners.</p><div class="rule"></div><p class="body">Caribbean to Gulf.</p></div>
+                <div class="section-mock__card near"><h2 class="num">5</h2><p class="tag">Offices.</p></div>
+                <div class="section-mock__card far"><h2 class="num">1</h2><p class="tag">Team.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept__why"><strong>Why it works in v2:</strong> the seal is the visual receipt for whatever the focal card claims — direct payoff for the masthead's “Audit trail on request”. <strong>Risk:</strong> drifts into kitsch heraldry fast; keep strokes hairline, kerning generous.</div>
+  </section>
+
+  <footer class="foot">
+    Sketch only — not part of the deployed bundle. Lives in <code class="mono">tests/sketches/</code>. v1 of this file (committed earlier in the branch history) assumed a stable left zone; v2 is the corrected architecture. The companion file <code class="mono">stats-slider-left-companion.html</code> received the same scroll-proof rework in this branch.
+  </footer>
+
+</div>
+</body>
+</html>

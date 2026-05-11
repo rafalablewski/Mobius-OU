@@ -13379,11 +13379,66 @@ span {
 .ht-stats-masthead {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 24px;
   padding-bottom: 18px;
   margin-bottom: 32px;
   border-bottom: 1px solid var(--ht-border-color);
+}
+.ht-stats-masthead__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.ht-stats-nav {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 2px;
+  border: 1px solid var(--ht-border-color-2);
+  background: transparent;
+  color: var(--ht-heading-color);
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.25s ease, color 0.25s ease,
+              border-color 0.25s ease, opacity 0.25s ease,
+              transform 0.25s ease;
+}
+.ht-stats-nav__chev {
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+.ht-stats-nav__label {
+  font-style: italic;
+}
+.ht-stats-nav:hover:not(:disabled) {
+  background: var(--ht-theme-color);
+  color: var(--ht-white);
+  border-color: var(--ht-theme-color);
+  transform: translateY(-1px);
+}
+.ht-stats-nav:focus-visible {
+  outline: 2px solid var(--ht-theme-color-2);
+  outline-offset: 2px;
+}
+.ht-stats-nav:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+.ht-stats-masthead__controls .ht-stats-audit {
+  margin-left: 6px;
+  padding-left: 18px;
+  border-left: 1px solid var(--ht-border-color);
 }
 .ht-stats-eyebrow {
   font-family: var(--ht-font-display);
@@ -13422,12 +13477,100 @@ span {
 .ht-stats-audit:hover::after {
   transform: translateX(3px);
 }
+/* Two-column frame — stable dictum companion on the left + horizontal
+   focal-grow scroller on the right. The companion holds its position
+   while cards 1–5 scroll past, and the dictum line crossfades to match
+   whichever card is focal (driven by setActiveStat() in Home.jsx). */
+.ht-stats-frame {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  gap: 56px;
+  align-items: stretch;
+}
+.ht-stats-companion {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+  padding: 8px 32px 8px 0;
+  border-right: 1px solid var(--ht-border-color);
+  min-height: 260px;
+}
+.ht-stats-dictum {
+  position: absolute;
+  inset: 8px 32px 8px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+.ht-stats-dictum.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.ht-stats-dictum__line {
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.1vw, 28px);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--ht-heading-color-2, #1C232B);
+  margin: 0;
+  max-width: 22ch;
+  position: relative;
+}
+.ht-stats-dictum__line::before {
+  content: "\201C";
+  display: block;
+  font-family: var(--ht-font-display);
+  font-style: italic;
+  font-size: 64px;
+  line-height: 0.4;
+  color: var(--ht-theme-color-2);
+  margin-bottom: 20px;
+}
+.ht-stats-dictum__sig {
+  display: block;
+  margin-top: 22px;
+  font-family: var(--ht-font-ui, "Manrope", sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ht-theme-color-6);
+  font-weight: 600;
+}
+.ht-stats-dictum__sig::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--ht-theme-color-6);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+@media (max-width: 991px) {
+  .ht-stats-frame {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ht-stats-companion {
+    position: relative;
+    top: auto;
+    padding: 0 0 28px;
+    border-right: none;
+    border-bottom: 1px solid var(--ht-border-color);
+    min-height: 140px;
+  }
+  .ht-stats-dictum { inset: 0 0 28px 0; }
+  .ht-stats-dictum__line { max-width: none; font-size: clamp(20px, 4.5vw, 24px); }
+  .ht-stats-dictum__line::before { font-size: 48px; margin-bottom: 14px; }
+}
 /* Wrapper for the horizontal scroller — focal-grow effect: the card
    nearest the centre of the viewport sits at scale 1 / opacity 1;
    siblings drop to scale 0.86 / opacity 0.4. The JS in Home.jsx adds
    .is-focal to whichever card the wrap is currently centred on. */
 .ht-stats-scroller {
   position: relative;
+  min-width: 0;
 }
 .ht-stats-area .ht-stats-wrapper {
   background: transparent;
@@ -13451,7 +13594,8 @@ span {
   --ht-stats-card-w: clamp(260px, 24vw, 300px);
   gap: 40px;
   padding-block: 12px 16px;
-  padding-inline: max(16px, calc(50% - var(--ht-stats-card-w) / 2));
+  padding-inline-start: 0;
+  padding-inline-end: max(16px, calc(100% - var(--ht-stats-card-w)));
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
 }
@@ -13463,15 +13607,20 @@ span {
 }
 .ht-stats-scroller .ht-stats-items {
   flex-basis: var(--ht-stats-card-w);
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   transform: scale(0.86);
   opacity: 0.4;
-  transform-origin: center center;
+  transform-origin: left center;
+  cursor: pointer;
   transition: transform 420ms cubic-bezier(.4, 0, .2, 1), opacity 420ms ease;
+}
+.ht-stats-scroller .ht-stats-items:not(.is-focal):hover {
+  opacity: 0.7;
 }
 .ht-stats-scroller .ht-stats-items.is-focal {
   transform: scale(1);
   opacity: 1;
+  cursor: default;
 }
 .ht-stats-area .ht-stats-items::after,
 .ht-stats-area .ht-stats-items::before {

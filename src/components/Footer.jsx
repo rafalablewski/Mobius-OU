@@ -63,7 +63,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <RatingProof tone="footer" />
+        <div className="wow fadeInUp" data-wow-delay="1.4s">
+          <RatingProof tone="footer" />
+        </div>
 
         <div className="ht-footer-copyright wow fadeInUp" data-wow-delay=".2s">
           <p>
