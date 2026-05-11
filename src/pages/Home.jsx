@@ -166,17 +166,14 @@ export default function Home() {
                           </div>
                       </div>
                       <div className="ht-stats-area__foot">
-                          <p className="ht-stats-area__colophon">
-                              <span className="ht-stats-area__m">†</span> Charter since 2012, NYSE-licensed advisory through to today.
-                              {'   '}
-                              <span className="ht-stats-area__m">‡</span> Counted between 2014 and 2026.Q1 — engagement letters on request.
-                              {'   '}
-                              <span className="ht-stats-area__m">§</span> Firms or partners reachable on a 24-hour call.
-                              {'   '}
-                              <span className="ht-stats-area__bullet">·</span>
-                              {'   '}
-                              As at 2026.Q1, on the Mobius private bench. <a href="#" className="ht-stats-area__audit-link">Audit trail on request&nbsp;→</a>
-                          </p>
+                          <div className="ht-stats-area__colophon">
+                              <p><span className="ht-stats-area__m">†</span> Charter since 2012, NYSE-licensed advisory through to today.</p>
+                              <p><span className="ht-stats-area__m">‡</span> Counted between 2014 and 2026.Q1 — engagement letters on request.</p>
+                              <p><span className="ht-stats-area__m">§</span> Firms or partners reachable on a 24-hour call.</p>
+                          </div>
+                          <div className="ht-stats-area__audit-wrap">
+                              <a href="#" className="ht-stats-area__audit-link">Audit trail on request&nbsp;→</a>
+                          </div>
                       </div>
                   </div>
               </div>

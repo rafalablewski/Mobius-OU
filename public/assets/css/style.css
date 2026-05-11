@@ -13471,7 +13471,6 @@ span {
 }
 .ht-stats-area--letterhead .ht-stats-area__paper {
   border-top: 1px solid var(--ht-border-color);
-  border-bottom: 1px solid var(--ht-border-color);
 }
 
 .ht-stats-area--letterhead .ht-stats-area__grid {
@@ -13554,50 +13553,60 @@ span {
 }
 
 .ht-stats-area--letterhead .ht-stats-area__foot {
-  padding: 40px 40px 48px;
+  padding: 48px 40px 56px;
 }
 .ht-stats-area--letterhead .ht-stats-area__colophon {
-  max-width: 76ch;
+  max-width: 64ch;
   margin: 0 auto;
   font-family: var(--ht-font-serif-body);
   font-style: italic;
   font-weight: 300;
   font-size: 16px;
-  line-height: 1.85;
-  letter-spacing: 0.005em;
+  line-height: 1.7;
   color: var(--ht-theme-color-6);
-  text-align: center;
+}
+.ht-stats-area--letterhead .ht-stats-area__colophon p {
+  position: relative;
+  margin: 0 0 14px;
+  padding-left: 40px;
+}
+.ht-stats-area--letterhead .ht-stats-area__colophon p:last-child {
+  margin-bottom: 0;
 }
 .ht-stats-area--letterhead .ht-stats-area__m {
-  display: inline-block;
-  margin: 0 2px 0 6px;
+  position: absolute;
+  left: 0;
+  top: 0;
   font-family: var(--ht-font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: 1.25em;
-  line-height: 1;
+  font-size: 1.6em;
+  line-height: 1.1;
   color: var(--ht-theme-color-2);
-  vertical-align: -0.04em;
 }
-.ht-stats-area--letterhead .ht-stats-area__m:first-child {
-  margin-left: 0;
-}
-.ht-stats-area--letterhead .ht-stats-area__bullet {
-  display: inline-block;
-  margin: 0 4px;
-  color: var(--ht-theme-color-2);
-  font-style: normal;
+.ht-stats-area--letterhead .ht-stats-area__audit-wrap {
+  max-width: 64ch;
+  margin: 36px auto 0;
+  padding-left: 40px;
 }
 .ht-stats-area--letterhead .ht-stats-area__audit-link {
+  display: inline-block;
+  padding: 12px 22px;
+  font-family: var(--ht-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--ht-theme-color-2);
+  background: transparent;
+  border: 1px solid var(--ht-theme-color-2);
   text-decoration: none;
-  border-bottom: 0.5px solid currentColor;
-  padding-bottom: 1px;
-  transition: opacity 0.15s;
-  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
 }
-.ht-stats-area--letterhead .ht-stats-area__audit-link:hover {
-  opacity: 0.7;
+.ht-stats-area--letterhead .ht-stats-area__audit-link:hover,
+.ht-stats-area--letterhead .ht-stats-area__audit-link:focus-visible {
+  background: var(--ht-theme-color-2);
+  color: var(--ht-body);
 }
 
 @media (max-width: 880px) {
@@ -13616,12 +13625,22 @@ span {
     display: none;
   }
   .ht-stats-area--letterhead .ht-stats-area__foot {
-    padding: 28px 20px 32px;
+    padding: 32px 20px 40px;
   }
   .ht-stats-area--letterhead .ht-stats-area__colophon {
     font-size: 15px;
-    line-height: 1.75;
-    text-align: left;
+    line-height: 1.65;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__colophon p {
+    padding-left: 32px;
+    margin-bottom: 12px;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__m {
+    font-size: 1.4em;
+  }
+  .ht-stats-area--letterhead .ht-stats-area__audit-wrap {
+    padding-left: 32px;
+    margin-top: 28px;
   }
 }
 
