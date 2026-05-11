@@ -30,13 +30,11 @@ export default function Home() {
     const cards = Array.from(wrapper.querySelectorAll('.ht-stats-items'));
     if (!cards.length) return;
     const update = () => {
-      const center = wrapper.scrollLeft + wrapper.clientWidth / 2;
+      const left = wrapper.scrollLeft;
       let bestIdx = 0;
       let bestDist = Infinity;
       for (let i = 0; i < cards.length; i++) {
-        const c = cards[i];
-        const cardCenter = c.offsetLeft + c.offsetWidth / 2;
-        const d = Math.abs(cardCenter - center);
+        const d = Math.abs(cards[i].offsetLeft - left);
         if (d < bestDist) { bestDist = d; bestIdx = i; }
       }
       const stat = cards[bestIdx].dataset.stat;
@@ -46,7 +44,7 @@ export default function Home() {
     const onClick = (e) => {
       const card = e.currentTarget;
       if (card.classList.contains('is-focal')) return;
-      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      card.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     };
     cards.forEach((c) => c.addEventListener('click', onClick));
     wrapper.addEventListener('scroll', update, { passive: true });
