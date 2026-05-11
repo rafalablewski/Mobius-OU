@@ -13486,30 +13486,12 @@ span {
   max-width: 240px;
 }
 .ht-stats-area .ht-stats-items p {
-  margin: 0 0 18px;
+  margin: 0;
   font-family: var(--ht-font-serif-body);
   font-size: 14px;
   line-height: 1.7;
   color: var(--ht-theme-color-6);
   max-width: 32ch;
-}
-.ht-stats-by {
-  font-family: var(--ht-font-display);
-  font-style: italic;
-  font-size: 12px;
-  line-height: 1.3;
-  color: var(--ht-theme-color-6);
-  letter-spacing: 0.04em;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-}
-.ht-stats-by::before {
-  content: "";
-  width: 24px;
-  height: 1px;
-  background: var(--ht-border-color);
-  transform: translateY(-3px);
 }
 @media (max-width: 991px) {
   .ht-stats-area .ht-stats-wrapper {

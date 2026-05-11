@@ -147,21 +147,18 @@ export default function Home() {
                           <h4>Years on the desk &mdash; CFA-trained, NYSE-seasoned advisory.</h4>
                           <div className="ht-stats-rule" aria-hidden="true"></div>
                           <p>In private practice since 2018. Charter held continuously since 2012.</p>
-                          <div className="ht-stats-by">&mdash; R.A.</div>
                       </div>
                       <div className="ht-stats-items">
                           <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
                           <h4>Private files &mdash; citizenship, residency and tax.</h4>
                           <div className="ht-stats-rule" aria-hidden="true"></div>
                           <p>Every brief pre-screened on source of funds before engagement.</p>
-                          <div className="ht-stats-by">&mdash; R.A.</div>
                       </div>
                       <div className="ht-stats-items">
                           <h2 className="number"><span className="count">32</span></h2>
                           <h4>Jurisdictions &mdash; firms and partners operational.</h4>
                           <div className="ht-stats-rule" aria-hidden="true"></div>
                           <p>From the Caribbean shelf programmes to the Gulf&rsquo;s new tax routes.</p>
-                          <div className="ht-stats-by">&mdash; R.A.</div>
                       </div>
                   </div>
               </div>
