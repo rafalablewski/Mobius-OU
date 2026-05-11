@@ -856,12 +856,12 @@
 
           <!-- Google — real brand widget from /public/google.svg -->
           <div class="b1__cell">
-            <img class="b1__svg" src="/public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
+            <img class="b1__svg" src="../../public/google.svg" alt="Google Rating — 4.8 out of 5 stars" />
           </div>
 
           <!-- Trustpilot — real brand widget from /public/trustpilot.svg -->
           <div class="b1__cell">
-            <img class="b1__svg" src="/public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
+            <img class="b1__svg" src="../../public/trustpilot.svg" alt="Trustpilot — rated 3.9 out of 5.0" />
           </div>
 
         </div>
@@ -879,7 +879,7 @@
         <div class="register__cell"><span class="register__label">Surface</span><div class="register__body">Three cards in a 3-column grid. Two are real brand SVGs (<code class="mono">/public/google.svg</code> — white card, green top stripe, 4-colour Google G, 4.8★ baked in; <code class="mono">/public/trustpilot.svg</code> — green header band, light-blue body, four green Trustpilot stars, rated 3.9 baked in). The third is built in HTML with matching ingredients: white card, 8 px red top stripe, soft drop shadow, red double-ring winner seal.</div></div>
         <div class="register__cell"><span class="register__label">Mobile</span><div class="register__body">Grid collapses to single column. SVGs scale by width so their native aspect ratios are preserved; the CIA card flexes to match.</div></div>
       </div>
-      <div class="contrast"><strong>vs the reference image:</strong> 1:1 mirror, only turned horizontal — Awards / Google / Trustpilot in their native registers, gold/green top rules retained. <strong>Honesty tax:</strong> cards must link out (<code class="mono">target="_blank"</code>) to the live source where the rating is verifiable, otherwise the widget reads dishonest. <strong>Production path:</strong> the SVGs use <code class="mono">/public/google.svg</code> here so the static-served sketch resolves them; when ported into the React app, Vite strips <code class="mono">public/</code> at build, so the production paths become <code class="mono">/google.svg</code> and <code class="mono">/trustpilot.svg</code>.</div>
+      <div class="contrast"><strong>vs the reference image:</strong> 1:1 mirror, only turned horizontal — Awards / Google / Trustpilot in their native registers, gold/green top rules retained. <strong>Honesty tax:</strong> cards must link out (<code class="mono">target="_blank"</code>) to the live source where the rating is verifiable, otherwise the widget reads dishonest. <strong>Asset paths:</strong> the sketch uses relative paths (<code class="mono">../../public/google.svg</code>) so it works whether the file is opened via <code class="mono">file://</code>, <code class="mono">npx serve .</code> or any other static host. When ported into the React app, Vite strips <code class="mono">public/</code> at build, so the production paths become <code class="mono">/google.svg</code> and <code class="mono">/trustpilot.svg</code>.</div>
     </article>
 
     <!-- =========================================================
