@@ -1,7 +1,11 @@
 /**
  * RatingProof — Google + Trustpilot rating widgets, side by side at locked
- * equal height. Used once, late in the funnel, at the conversion point
- * (Contact page above the form).
+ * equal height. Two uses:
+ *
+ *   default       Contact page, above the form — full-height (200 px),
+ *                 conversion-point treatment.
+ *   tone="footer" Site footer credibility row — half-height (96 px),
+ *                 inverts to the dark footer ground.
  *
  * The two widgets keep their native brand colours so they're instantly
  * recognisable as Google / Trustpilot — that's the whole point of social
@@ -24,9 +28,13 @@ const SOURCES = [
   },
 ];
 
-export default function RatingProof() {
+export default function RatingProof({ tone }) {
+  const className = tone
+    ? `ht-rating-proof ht-rating-proof--${tone}`
+    : 'ht-rating-proof';
+
   return (
-    <div className="ht-rating-proof" role="group" aria-label="Independent ratings">
+    <div className={className} role="group" aria-label="Independent ratings">
       {SOURCES.map(({ key, src, alt, href }) => (
         <a
           key={key}
