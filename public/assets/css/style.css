@@ -13467,11 +13467,16 @@ span {
   transform: scale(0.86);
   opacity: 0.4;
   transform-origin: center center;
+  cursor: pointer;
   transition: transform 420ms cubic-bezier(.4, 0, .2, 1), opacity 420ms ease;
+}
+.ht-stats-scroller .ht-stats-items:not(.is-focal):hover {
+  opacity: 0.7;
 }
 .ht-stats-scroller .ht-stats-items.is-focal {
   transform: scale(1);
   opacity: 1;
+  cursor: default;
 }
 .ht-stats-area .ht-stats-items::after,
 .ht-stats-area .ht-stats-items::before {

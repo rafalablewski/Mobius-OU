@@ -33,9 +33,16 @@ export default function Home() {
       cards.forEach((c, i) => c.classList.toggle('is-focal', i === bestIdx));
     };
     update();
+    const onClick = (e) => {
+      const card = e.currentTarget;
+      if (card.classList.contains('is-focal')) return;
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    };
+    cards.forEach((c) => c.addEventListener('click', onClick));
     wrapper.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     return () => {
+      cards.forEach((c) => c.removeEventListener('click', onClick));
       wrapper.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
