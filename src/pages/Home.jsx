@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import TopPrograms from '../components/TopPrograms.jsx';
 import Principles from '../components/Principles.jsx';
@@ -10,6 +11,26 @@ const RBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'RBI');
 const CBI_PROGRAMS = PROGRAMS.filter((p) => p.category === 'CBI');
 
 export default function Home() {
+  const statsScrollerRef = useRef(null);
+
+  useEffect(() => {
+    const scroller = statsScrollerRef.current;
+    if (!scroller) return;
+    const wrapper = scroller.querySelector('.ht-stats-wrapper');
+    if (!wrapper) return;
+    const update = () => {
+      const atEnd = wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 4;
+      scroller.classList.toggle('is-end', atEnd);
+    };
+    update();
+    wrapper.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      wrapper.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
   return (
     <>
       <section className="ht-hero-area" style={{ "backgroundImage": "url(/assets/img/hero/hero-bg.jpg)", "backgroundSize": "cover", "backgroundPosition": "center", "backgroundRepeat": "no-repeat" }}>
@@ -141,24 +162,38 @@ export default function Home() {
                           <em>Audit trail on request</em>
                       </Link>
                   </div>
-                  <div className="ht-stats-wrapper wow fadeInUp" data-wow-delay=".3s">
-                      <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
-                          <h4>Years on the desk &mdash; CFA-trained, NYSE-seasoned advisory.</h4>
-                          <div className="ht-stats-rule" aria-hidden="true"></div>
-                          <p>In private practice since 2018. Charter held continuously since 2012.</p>
-                      </div>
-                      <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
-                          <h4>Private files &mdash; citizenship, residency and tax.</h4>
-                          <div className="ht-stats-rule" aria-hidden="true"></div>
-                          <p>Every brief pre-screened on source of funds before engagement.</p>
-                      </div>
-                      <div className="ht-stats-items">
-                          <h2 className="number"><span className="count">32</span></h2>
-                          <h4>Jurisdictions &mdash; firms and partners operational.</h4>
-                          <div className="ht-stats-rule" aria-hidden="true"></div>
-                          <p>From the Caribbean shelf programmes to the Gulf&rsquo;s new tax routes.</p>
+                  <div className="ht-stats-scroller wow fadeInUp" data-wow-delay=".3s" ref={statsScrollerRef}>
+                      <div className="ht-stats-wrapper" role="list">
+                          <div className="ht-stats-items" role="listitem">
+                              <h2 className="number"><span className="count">14</span><span className="plus">+</span></h2>
+                              <h4>Years on the desk &mdash; CFA-trained, NYSE-seasoned advisory.</h4>
+                              <div className="ht-stats-rule" aria-hidden="true"></div>
+                              <p>In private practice since 2018. Charter held continuously since 2012.</p>
+                          </div>
+                          <div className="ht-stats-items" role="listitem">
+                              <h2 className="number"><span className="count">100</span><span className="plus">+</span></h2>
+                              <h4>Private files &mdash; citizenship, residency and tax.</h4>
+                              <div className="ht-stats-rule" aria-hidden="true"></div>
+                              <p>Every brief pre-screened on source of funds before engagement.</p>
+                          </div>
+                          <div className="ht-stats-items" role="listitem">
+                              <h2 className="number"><span className="count">32</span></h2>
+                              <h4>Jurisdictions &mdash; firms and partners operational.</h4>
+                              <div className="ht-stats-rule" aria-hidden="true"></div>
+                              <p>From the Caribbean shelf programmes to the Gulf&rsquo;s new tax routes.</p>
+                          </div>
+                          <div className="ht-stats-items" role="listitem">
+                              <h2 className="number"><span className="count">5</span></h2>
+                              <h4>Offices &mdash; local presence where the programmes are written.</h4>
+                              <div className="ht-stats-rule" aria-hidden="true"></div>
+                              <p>Counsel on the ground from Europe to the Gulf, briefed in your timezone.</p>
+                          </div>
+                          <div className="ht-stats-items" role="listitem">
+                              <h2 className="number"><span className="count">1</span></h2>
+                              <h4>Dedicated team &mdash; senior bench, no junior handoffs.</h4>
+                              <div className="ht-stats-rule" aria-hidden="true"></div>
+                              <p>The partner you brief is the partner who writes the file.</p>
+                          </div>
                       </div>
                   </div>
               </div>

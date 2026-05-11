@@ -13422,18 +13422,50 @@ span {
 .ht-stats-audit:hover::after {
   transform: translateX(3px);
 }
+/* Wrapper for the horizontal scroller — carries the right-edge fade hint
+   so the scroll affordance is visual rather than a native scrollbar. */
+.ht-stats-scroller {
+  position: relative;
+}
+.ht-stats-scroller::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 64px;
+  background: linear-gradient(90deg, rgba(244, 239, 230, 0), var(--ht-body));
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.ht-stats-scroller.is-end::after { opacity: 0; }
 .ht-stats-area .ht-stats-wrapper {
   background: transparent;
   border-radius: 0;
   border: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 56px;
-  padding: 0;
+  padding: 0 0 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline-start: 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+}
+.ht-stats-area .ht-stats-wrapper::-webkit-scrollbar { display: none; }
+/* When the wrapper sits inside a .ht-stats-scroller (Home), give the last
+   card breathing room before the right-edge fade. */
+.ht-stats-scroller .ht-stats-wrapper {
+  padding-right: 64px;
 }
 .ht-stats-area .ht-stats-items {
+  flex: 0 0 clamp(280px, 26vw, 340px);
   padding: 8px 0 0;
   text-align: left;
+  scroll-snap-align: start;
 }
 .ht-stats-area .ht-stats-items::after,
 .ht-stats-area .ht-stats-items::before {
@@ -13494,9 +13526,7 @@ span {
   max-width: 32ch;
 }
 @media (max-width: 991px) {
-  .ht-stats-area .ht-stats-wrapper {
-    gap: 40px;
-  }
+  .ht-stats-area .ht-stats-wrapper { gap: 40px; }
 }
 @media (max-width: 767px) {
   .ht-stats-area {
@@ -13507,9 +13537,8 @@ span {
     align-items: flex-start;
     gap: 6px;
   }
-  .ht-stats-area .ht-stats-wrapper {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .ht-stats-area .ht-stats-items {
+    flex: 0 0 78vw;
   }
   .ht-stats-area .ht-stats-items p,
   .ht-stats-area .ht-stats-items h4 {
@@ -15240,12 +15269,6 @@ a.ht-spine__contents-cell-face:focus-visible {
     padding: 120px 0 56px !important;
   }
   /* Stats section kept readable */
-  .ht-stats-area {
-    padding: 24px 0 0;
-  }
-  .ht-stats-area .ht-stats-items {
-    padding: 28px 20px;
-  }
   /* Service card padding trim */
   .ht-services-area .ht-services-items {
     padding: 28px 22px;
