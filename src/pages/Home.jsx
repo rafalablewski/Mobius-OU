@@ -172,7 +172,11 @@ export default function Home() {
                               <p><span className="ht-stats-area__m">§</span> Firms or partners reachable on a 24-hour call.</p>
                           </div>
                           <div className="ht-stats-area__audit-wrap">
-                              <a href="#" className="ht-stats-area__audit-link">Audit trail on request&nbsp;→</a>
+                              <a href="#" className="ht-stats-area__audit-link">
+                                  <span className="ht-stats-area__bracket" aria-hidden="true">[</span>
+                                  Audit trail on request&nbsp;→
+                                  <span className="ht-stats-area__bracket" aria-hidden="true">]</span>
+                              </a>
                           </div>
                       </div>
                   </div>
