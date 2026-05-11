@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Press line — "AS SEEN IN" / stats slab — six line-cleanup drafts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" />
+<style>
+  :root {
+    /* mirrors public/assets/css/style.css :root */
+    --ink:        #0B0F14;
+    --ink-2:      #1C232B;
+    --ivory:      #F4EFE6;
+    --cream:      #FAF6EE;
+    --paper:      #EFE9DC;
+    --gold:       #C9A86A;
+    --gold-deep:  #A07F44;
+    --stone:      #6B6257;
+    --border:     #E2DBCE;
+    /* the two competing hairline tokens — the source of today's "different lines" complaint */
+    --hairline-warm: #E2DBCE;             /* used by .ht-stats-area override */
+    --hairline-ink:  rgba(11,15,20,0.20); /* used by .ht-press-line top + bottom */
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page chrome ----------------------------------------------------------- */
+  .page { max-width: 1120px; margin: 0 auto; padding: 72px 32px 120px; }
+  header.intro { border-bottom: 1px solid var(--border); padding-bottom: 36px; margin-bottom: 48px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--stone); font-weight: 600;
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 48px; line-height: 1.1; margin: 14px 0 18px; letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+  .lede { color: var(--stone); font-size: 16px; line-height: 1.65; max-width: 70ch; }
+  .lede strong { color: var(--ink); }
+  .lede code, code.mono {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+    background: rgba(11,15,20,0.05); padding: 1px 6px; border-radius: 2px;
+  }
+
+  /* Baseline diagnosis ---------------------------------------------------- */
+  .diag {
+    margin-top: 36px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  .diag-card {
+    border: 1px solid var(--border); border-radius: 3px; padding: 18px 20px;
+    background: var(--cream);
+  }
+  .diag-card h3 {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 22px; margin: 0 0 8px;
+  }
+  .diag-card p { margin: 0; font-size: 13px; line-height: 1.65; color: var(--ink-2); }
+  .swatch {
+    display: inline-block; width: 18px; height: 2px; vertical-align: middle;
+    margin: 0 4px;
+  }
+  .swatch--warm { background: var(--hairline-warm); }
+  .swatch--ink  { background: rgba(11,15,20,0.20); }
+
+  /* TOC -------------------------------------------------------------------- */
+  .toc-title {
+    font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+    font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone); margin: 56px 0 12px;
+  }
+  .toc {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  }
+  .toc a {
+    display: block; padding: 14px 12px;
+    border: 1px solid var(--border); border-radius: 3px;
+    background: var(--cream);
+    text-decoration: none; color: var(--ink); transition: all .2s;
+  }
+  .toc a:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .toc__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold-deep); font-size: 22px; letter-spacing: 0.04em;
+  }
+  .toc__title {
+    display: block; font-size: 12px; line-height: 1.4;
+    margin-top: 4px; color: var(--ink);
+  }
+  .toc__register {
+    display: block; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone); margin-top: 6px;
+  }
+  @media (max-width: 720px) { .toc { grid-template-columns: 1fr; } }
+
+  /* Idea card ------------------------------------------------------------- */
+  .idea {
+    margin: 88px 0 0;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px;
+    align-items: stretch;
+  }
+  @media (max-width: 980px) { .idea { grid-template-columns: 1fr; } }
+  .idea__meta { min-width: 0; }
+  .idea__num {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 56px; color: var(--gold-deep); line-height: 1;
+  }
+  .idea__title {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 28px; line-height: 1.15; margin: 8px 0 14px;
+  }
+  .idea__title em { font-style: italic; color: var(--gold-deep); }
+  .idea__body { font-size: 14px; line-height: 1.65; color: var(--ink-2); margin: 0 0 16px; }
+  .reg {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 14px 0; padding: 12px 0;
+    display: grid; grid-template-columns: auto 1fr; column-gap: 16px; row-gap: 6px;
+    font-size: 12px; line-height: 1.5;
+  }
+  .reg dt {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .reg dd { margin: 0; color: var(--ink-2); }
+  .contrast {
+    font-size: 13px; line-height: 1.65; color: var(--ink-2);
+    background: var(--paper); border-left: 2px solid var(--gold);
+    padding: 12px 14px; margin: 0;
+  }
+  .contrast strong { color: var(--ink); }
+
+  /* Mock host ------------------------------------------------------------- */
+  .mock {
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .mock__label {
+    position: absolute; top: 12px; right: 14px; z-index: 2;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .mock__body { padding: 8px 0 24px; }
+
+  /* ---------------------------------------------------------------------- */
+  /* Shared "real" tokens that mirror Home.jsx / PressLine.jsx              */
+  /* ---------------------------------------------------------------------- */
+  .pl__label {
+    font-family: "Manrope", sans-serif;
+    font-weight: 600; font-size: 10px;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--stone); white-space: nowrap;
+  }
+  .pl__set {
+    display: inline-flex; align-items: center; gap: 56px;
+  }
+  .pl__logo {
+    display: block; background-color: currentColor; opacity: 0.72;
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+    flex-shrink: 0;
+  }
+  .pl__logo--ft  { width: 90px;  height: 46px;
+    -webkit-mask-image: url(../../public/financialtimes.svg);
+            mask-image: url(../../public/financialtimes.svg); }
+  .pl__logo--bb  { width: 62px;  height: 32px;
+    -webkit-mask-image: url(../../public/bloomberg.svg);
+            mask-image: url(../../public/bloomberg.svg); }
+  .pl__logo--nyt { width: 142px; height: 28px;
+    -webkit-mask-image: url(../../public/nytimes-wordmark.svg);
+            mask-image: url(../../public/nytimes-wordmark.svg); }
+  .pl__logo--hp  { width: 100px; height: 26px;
+    -webkit-mask-image: url(../../public/huffingtonpost.svg);
+            mask-image: url(../../public/huffingtonpost.svg); }
+  @media (max-width: 720px) {
+    .pl__set { gap: 28px; flex-wrap: wrap; }
+    .pl__logo--ft  { width: 72px;  height: 36px; }
+    .pl__logo--bb  { width: 50px;  height: 26px; }
+    .pl__logo--nyt { width: 116px; height: 22px; }
+    .pl__logo--hp  { width: 80px;  height: 22px; }
+  }
+
+  /* Stats — same DNA as .ht-stats-area override */
+  .st-wrap {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    position: relative;
+  }
+  .st-item { padding: 56px 32px; text-align: left; position: relative; }
+  .st-item + .st-item::before {
+    content: ""; position: absolute; left: 0; top: 20%; bottom: 20%; width: 1px;
+    background: var(--border);
+  }
+  .st-num {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(40px, 5vw, 68px); font-weight: 500;
+    line-height: 1; letter-spacing: -0.03em; color: var(--ink);
+    display: inline-flex; align-items: baseline; gap: 2px;
+  }
+  .st-plus {
+    color: var(--gold); font-size: 0.55em; font-weight: 400;
+    align-self: flex-start; line-height: 1.2; margin-left: 4px;
+  }
+  .st-label {
+    font-family: "Manrope", sans-serif; font-weight: 500;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink); margin: 20px 0 8px;
+  }
+  .st-body {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 14px; line-height: 1.55; color: var(--stone); margin: 0; max-width: 28ch;
+  }
+  @media (max-width: 720px) {
+    .st-wrap { grid-template-columns: 1fr; }
+    .st-item + .st-item::before {
+      left: 24px; right: 24px; top: auto; bottom: 0; width: auto; height: 1px;
+    }
+  }
+
+  /* ====================================================================== */
+  /* BASELINE — today's render, both sections back-to-back                   */
+  /* ====================================================================== */
+  .base .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 22px 24px;
+    border-top: 1px solid var(--hairline-ink);
+    border-bottom: 1px solid var(--hairline-ink);
+    color: var(--ink);
+  }
+  .base .pl-area { padding: 56px 0; background: var(--ivory); }
+  .base .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .base .st-area { padding: 40px 0 0; }
+  .base .st-wrapper-line {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ====================================================================== */
+  /* I. NO PRESS-LINE BORDER                                                 */
+  /* ====================================================================== */
+  .i1 .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 22px 24px;
+    color: var(--ink);
+    /* no top, no bottom — pure white-space breathing */
+  }
+  .i1 .pl-area { padding: 56px 0; }
+  .i1 .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .i1 .st-area { padding: 16px 0 0; }
+  .i1 .st-wrapper-line {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ====================================================================== */
+  /* II. SINGLE SHARED RAIL — one slab, top + mid + bottom hairlines         */
+  /* ====================================================================== */
+  .i2 .slab {
+    max-width: 1320px; margin: 0 auto; padding: 0 24px;
+  }
+  .i2 .slab-inner {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .i2 .slab__press {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 28px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .i2 .slab__stats { /* reuses .st-wrap */ }
+
+  /* ====================================================================== */
+  /* III. UNIFIED HAIRLINE COLOR                                            */
+  /* ====================================================================== */
+  .i3 .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 22px 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .i3 .pl-area { padding: 56px 0; background: var(--ivory); }
+  .i3 .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .i3 .st-area { padding: 40px 0 0; }
+  .i3 .st-wrapper-line {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ====================================================================== */
+  /* IV. LABEL-LED RUNNING HEAD — only the press-line bottom is a hairline   */
+  /* ====================================================================== */
+  .i4 .pl-area { padding: 56px 0 28px; }
+  .i4 .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .i4 .pl-wrap {
+    display: grid; grid-template-columns: auto 1fr; column-gap: 20px;
+    align-items: center; padding: 0 24px 22px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .i4 .st-area { padding: 16px 0 0; }
+  .i4 .st-wrapper-line {
+    /* no top — borrowed from the press-line bottom rule */
+    border-bottom: 1px solid var(--border);
+  }
+  .i4 .pl__label::after {
+    content: ""; display: inline-block; height: 1px; width: 28px;
+    background: var(--border); vertical-align: middle; margin-left: 14px;
+  }
+
+  /* ====================================================================== */
+  /* V. SINGLE SLAB — press + stats fused, only one outer top + one bottom   */
+  /* ====================================================================== */
+  .i5 .slab {
+    max-width: 1320px; margin: 0 auto; padding: 0 24px;
+  }
+  .i5 .slab-inner {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 0;
+  }
+  .i5 .slab__press {
+    display: grid; grid-template-columns: auto 1fr; gap: 28px;
+    align-items: center; padding: 6px 32px 28px;
+  }
+  .i5 .slab__pip {
+    text-align: center; padding: 0 0 18px;
+  }
+  .i5 .slab__pip::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--gold); opacity: 0.85;
+  }
+  .i5 .slab__stats { padding-top: 0; }
+  .i5 .st-item { padding: 24px 32px 8px; }
+
+  /* ====================================================================== */
+  /* VI. CENTRED MASTHEAD — no rules on press-line at all                    */
+  /* ====================================================================== */
+  .i6 .pl-area { padding: 64px 0 36px; text-align: center; }
+  .i6 .pl-wrap {
+    display: inline-flex; align-items: center; gap: 44px;
+    color: var(--ink); padding: 0;
+  }
+  .i6 .pl-wrap .pl__label::after {
+    content: "·"; margin-left: 28px; color: var(--gold-deep); font-size: 16px;
+  }
+  .i6 .pl__set { gap: 44px; }
+  .i6 .st-area { padding: 8px 0 0; }
+  .i6 .st-wrapper-line {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Pencil sketch ASCII boxes -------------------------------------------- */
+  .sketch {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; line-height: 1.5; color: var(--stone);
+    white-space: pre; background: var(--paper);
+    padding: 16px 18px; border: 1px solid var(--border);
+    border-radius: 3px; overflow-x: auto;
+  }
+
+  /* Code blocks ----------------------------------------------------------- */
+  pre.code {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px; line-height: 1.6; color: var(--ink-2);
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 3px; padding: 12px 14px; overflow-x: auto; margin: 12px 0 0;
+  }
+  pre.code .k { color: var(--gold-deep); }
+  pre.code .c { color: var(--stone); font-style: italic; }
+  pre.code .s { color: #2C5F35; }
+
+  /* Implementation appendix at foot */
+  .ship {
+    margin-top: 88px; padding: 28px 32px;
+    background: var(--ink); color: var(--cream);
+    border-radius: 4px;
+  }
+  .ship h2 {
+    font-family: "Cormorant Garamond", serif; font-weight: 400;
+    font-size: 30px; margin: 0 0 12px;
+  }
+  .ship h2 em { font-style: italic; color: var(--gold); }
+  .ship p { font-size: 14px; line-height: 1.65; margin: 0 0 12px; color: rgba(250,246,238,0.78); }
+  .ship pre.code { background: rgba(0,0,0,0.35); border-color: rgba(250,246,238,0.15); color: rgba(250,246,238,0.92); }
+  .ship pre.code .c { color: rgba(250,246,238,0.55); }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="intro">
+    <p class="eyebrow">Sketch · home press-line</p>
+    <h1>Press-line / stats slab — <em>fix the doubled hairlines</em></h1>
+    <p class="lede">
+      The "AS SEEN IN" strip on <code class="mono">Home.jsx</code> sits flush against the
+      <code class="mono">.ht-stats-area</code> "14 / 100 / 32" tile. Today the two sections each carry their
+      <strong>own top + bottom hairlines</strong> in two different border tokens, so the eye reads
+      <strong>four parallel rules</strong> stacked over 80 px of cream — the doubling the user flagged.
+      Six redesigns that all keep the same content and behaviour, ranked from most conservative
+      (just colour-match the rules) to most decisive (remove the box entirely).
+    </p>
+
+    <div class="diag">
+      <div class="diag-card">
+        <h3>The two hairlines today</h3>
+        <p>
+          <span class="swatch swatch--ink"></span>
+          <code class="mono">rgba(11,15,20,0.20)</code> — cooler, ink-tinted. Used on
+          <code class="mono">.ht-press-line</code> top + bottom in <code class="mono">style.css:16084</code>.
+        </p>
+        <p style="margin-top:6px;">
+          <span class="swatch swatch--warm"></span>
+          <code class="mono">var(--ht-border-color)</code> = <code class="mono">#E2DBCE</code> — warmer,
+          paper-tinted. Used on <code class="mono">.ht-stats-area .ht-stats-wrapper</code> top + bottom
+          in <code class="mono">style.css:13378</code>.
+        </p>
+        <p style="margin-top:6px;">
+          Same weight (1 px), different colour temperature. On cream they read as <em>two systems</em>,
+          not one.
+        </p>
+      </div>
+      <div class="diag-card">
+        <h3>The stack</h3>
+        <p>
+          From top: press-line top rule (ink) → 22 px → logos → 22 px → press-line bottom rule (ink) →
+          56 px of <code class="mono">.ht-press-line-area</code> padding → 40 px of <code class="mono">.ht-stats-area</code> padding →
+          stats top rule (warm) → numbers → stats bottom rule (warm). <strong>Four rules in ~250 px</strong>.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <p class="toc-title">In this file</p>
+  <nav class="toc">
+    <a href="#baseline"><span class="toc__num">0</span><span class="toc__title">Today's render (baseline)</span><span class="toc__register">For comparison</span></a>
+    <a href="#i1"><span class="toc__num">I</span><span class="toc__title">No press-line border</span><span class="toc__register">Strip · cleanest</span></a>
+    <a href="#i2"><span class="toc__num">II</span><span class="toc__title">Single shared rail</span><span class="toc__register">Two-row slab</span></a>
+    <a href="#i3"><span class="toc__num">III</span><span class="toc__title">Unified hairline colour</span><span class="toc__register">Conservative</span></a>
+    <a href="#i4"><span class="toc__num">IV</span><span class="toc__title">Label-led running head</span><span class="toc__register">Editorial</span></a>
+    <a href="#i5"><span class="toc__num">V</span><span class="toc__title">Press + stats fused</span><span class="toc__register">One slab</span></a>
+    <a href="#i6"><span class="toc__num">VI</span><span class="toc__title">Centred masthead, no rules</span><span class="toc__register">Boldest swap</span></a>
+  </nav>
+
+  <!-- =================================================================== -->
+  <!-- BASELINE                                                            -->
+  <!-- =================================================================== -->
+  <section class="idea base" id="baseline">
+    <div class="idea__meta">
+      <div class="idea__num">0</div>
+      <h2 class="idea__title">Today — <em>baseline</em></h2>
+      <p class="idea__body">
+        Exact render of the section as shipped. The two ink-tinted rules at the top
+        and bottom of the press-line are clearly visible against the two warm-tinted
+        rules that bracket the stats tile.
+      </p>
+      <dl class="reg">
+        <dt>Rules</dt><dd>4 (2 ink + 2 warm)</dd>
+        <dt>Tokens</dt><dd><code class="mono">rgba(11,15,20,0.20)</code> + <code class="mono">--ht-border-color</code></dd>
+        <dt>Gap</dt><dd>56 + 40 = 96 px between sections</dd>
+      </dl>
+      <p class="contrast"><strong>The problem:</strong> two visually distinct line systems
+      stacked too close. Reads as if two unrelated components were glued together
+      (which is technically true — <code class="mono">PressLine.jsx</code> and the stats markup
+      in <code class="mono">Home.jsx</code> were styled in different passes).</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">Today</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- I. NO PRESS-LINE BORDER                                             -->
+  <!-- =================================================================== -->
+  <section class="idea i1" id="i1">
+    <div class="idea__meta">
+      <div class="idea__num">I</div>
+      <h2 class="idea__title">No press-line border — <em>let the stats slab do the framing</em></h2>
+      <p class="idea__body">
+        Strip both rules off <code class="mono">.ht-press-line</code>. The press strip becomes
+        a quiet eyebrow row sitting on cream; the stats slab below keeps its own rules
+        and now visibly <em>opens</em> the credibility section. Cleanest minimum-change fix —
+        four rules drop to two.
+      </p>
+      <div class="sketch">┌──────────────────────────────────────────────────────────┐
+│                                                          │
+│  AS SEEN IN    FT   Bloomberg   NYT   HuffPost           │
+│                                                          │
+├──────────────────────────────────────────────────────────┤  ← stats top
+│   14+          │     100+      │     32                  │
+│   YEARS IN…    │   MANDATES…   │   JURISDICTIONS…        │
+├──────────────────────────────────────────────────────────┤  ← stats bottom
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Press strip: cream, no rules. Stats: unchanged.</dd>
+        <dt>Rules</dt><dd>2 (both warm <code class="mono">--ht-border-color</code>).</dd>
+        <dt>Change</dt><dd><code class="mono">PressLine.jsx</code> CSS only — drop two <code class="mono">border-*</code> rules.</dd>
+        <dt>Mobile</dt><dd>Press logos wrap; no change to stats.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules. Lowest risk. The press strip loses
+      a touch of "card" weight, but the wordmarks were already the focal point.</p>
+      <pre class="code"><span class="c">/* style.css ~16079 — strip the two rules on .ht-press-line */</span>
+.ht-press-line {
+  <span class="c">/* remove: border-top + border-bottom */</span>
+  padding: 22px 24px;
+}</pre>
+    </div>
+    <div class="mock">
+      <span class="mock__label">I · No press-line border</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- II. SINGLE SHARED RAIL                                              -->
+  <!-- =================================================================== -->
+  <section class="idea i2" id="i2">
+    <div class="idea__meta">
+      <div class="idea__num">II</div>
+      <h2 class="idea__title">Single shared rail — <em>one slab, three rules</em></h2>
+      <p class="idea__body">
+        Both press-line and stats sit inside one bordered slab. Top hairline, mid
+        hairline between logos and numbers, bottom hairline. The mid rule reads as
+        a deliberate row divider rather than a closed-then-reopened box. Editorial
+        register — like a press kit's masthead block.
+      </p>
+      <div class="sketch">┌──────────────────────────────────────────────────────────┐  ← top
+│  AS SEEN IN    FT   Bloomberg   NYT   HuffPost           │
+├──────────────────────────────────────────────────────────┤  ← mid
+│   14+      │     100+      │     32                      │
+│   YEARS…   │   MANDATES…   │   JURISDICTIONS…            │
+└──────────────────────────────────────────────────────────┘  ← bottom
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>One bordered slab on cream, container-width.</dd>
+        <dt>Rules</dt><dd>3 (all warm, same token, evenly spaced).</dd>
+        <dt>Change</dt><dd>Wrap both sections in a shared container in <code class="mono">Home.jsx</code>; restyle rules in CSS.</dd>
+        <dt>Mobile</dt><dd>Slab collapses to stacked rows; rules retained.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -1 rule, and the three remaining rules are
+      <em>visually intentional</em>. Trades a tiny bit of structural separation for
+      a much tighter read.</p>
+      <pre class="code"><span class="c">// Home.jsx — wrap PressLine + stats in one slab</span>
+&lt;<span class="k">section</span> className=<span class="s">"ht-trust-slab"</span>&gt;
+  &lt;<span class="k">div</span> className=<span class="s">"container"</span>&gt;
+    &lt;<span class="k">div</span> className=<span class="s">"ht-trust-slab__inner"</span>&gt;
+      &lt;<span class="k">PressLine</span> variant=<span class="s">"slab"</span> /&gt;
+      &lt;<span class="k">div</span> className=<span class="s">"ht-stats-wrapper"</span>&gt; … &lt;/<span class="k">div</span>&gt;
+    &lt;/<span class="k">div</span>&gt;
+  &lt;/<span class="k">div</span>&gt;
+&lt;/<span class="k">section</span>&gt;</pre>
+    </div>
+    <div class="mock">
+      <span class="mock__label">II · Single shared rail</span>
+      <div class="mock__body" style="padding-top: 24px;">
+        <div class="slab">
+          <div class="slab-inner">
+            <div class="slab__press">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+            <div class="slab__stats st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- III. UNIFIED HAIRLINE COLOR                                         -->
+  <!-- =================================================================== -->
+  <section class="idea i3" id="i3">
+    <div class="idea__meta">
+      <div class="idea__num">III</div>
+      <h2 class="idea__title">Unified hairline colour — <em>most conservative</em></h2>
+      <p class="idea__body">
+        Keep the structure identical to today. Only change: swap the press-line's
+        ink-tinted <code class="mono">rgba(11,15,20,0.20)</code> for the same
+        <code class="mono">--ht-border-color</code> the stats area already uses. Four rules
+        remain but they now read as one consistent system. No JSX change at all.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Unchanged.</dd>
+        <dt>Rules</dt><dd>4 — all warm <code class="mono">#E2DBCE</code>.</dd>
+        <dt>Change</dt><dd>Two-line CSS swap.</dd>
+        <dt>Risk</dt><dd>Zero. Strictly cosmetic.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> still four rules, still doubled-up over 80 px,
+      but they're the same colour. Solves the "different lines" half of the user's
+      complaint; doesn't address the "too many" half. <strong>Lowest-effort fallback</strong> if
+      we want to ship a fix in one PR without touching markup.</p>
+      <pre class="code"><span class="c">/* style.css:16084 */</span>
+.ht-press-line {
+  border-top:    1px solid <span class="k">var(--ht-border-color)</span>;
+  border-bottom: 1px solid <span class="k">var(--ht-border-color)</span>;
+  <span class="c">/* was: rgba(11,15,20,0.20) */</span>
+}</pre>
+    </div>
+    <div class="mock">
+      <span class="mock__label">III · Unified colour</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- IV. LABEL-LED RUNNING HEAD                                          -->
+  <!-- =================================================================== -->
+  <section class="idea i4" id="i4">
+    <div class="idea__meta">
+      <div class="idea__num">IV</div>
+      <h2 class="idea__title">Label-led running head — <em>borrowed from the program-page register</em></h2>
+      <p class="idea__body">
+        The "AS SEEN IN" label gets a short hairline trailing off after it (the same
+        running-head treatment used on the program-page chapter band). The press
+        strip's <em>bottom</em> rule then doubles as the <em>top</em> rule of the stats slab —
+        one shared edge, no gap.
+      </p>
+      <div class="sketch">
+  AS SEEN IN ──     FT    Bloomberg    NYT    HuffPost
+  ────────────────────────────────────────────────────────  ← shared edge
+   14+      │     100+      │     32
+   YEARS…   │   MANDATES…   │   JURISDICTIONS…
+  ────────────────────────────────────────────────────────
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Cream. Label hairline as ornament + one shared edge.</dd>
+        <dt>Rules</dt><dd>2 (shared rule + stats bottom).</dd>
+        <dt>Change</dt><dd>Remove press-line top rule; align stats top to press-line bottom.</dd>
+        <dt>Mobile</dt><dd>Label hairline drops to 16 px; same shared edge.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules. Reuses the dossier's editorial running-head
+      pattern (program-page chapter bands), so it lands inside an existing visual
+      grammar instead of inventing a new one.</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">IV · Label-led</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- V. PRESS + STATS FUSED                                              -->
+  <!-- =================================================================== -->
+  <section class="idea i5" id="i5">
+    <div class="idea__meta">
+      <div class="idea__num">V</div>
+      <h2 class="idea__title">Press + stats fused — <em>one credibility slab</em></h2>
+      <p class="idea__body">
+        The boldest structural fix. Press logos and stat numbers live in one
+        ruled cream tile, separated only by a centred gold pip (the same ornament
+        the hero count cards use). Two outer rules. The 14/100/32 row reads as the
+        substantive evidence beneath the four wordmarks above — credibility paid for
+        with numbers, not borrowed lines.
+      </p>
+      <div class="sketch">┌──────────────────────────────────────────────────────────┐  ← top
+│   AS SEEN IN    FT    Bloomberg    NYT    HuffPost       │
+│                                                          │
+│                         ·                                │  ← gold pip
+│                                                          │
+│   14+         100+         32                            │
+│   YEARS…      MANDATES…    JURISDICTIONS…                │
+└──────────────────────────────────────────────────────────┘  ← bottom
+</div>
+      <dl class="reg">
+        <dt>Surface</dt><dd>One ruled slab, gold pip as the only internal divider.</dd>
+        <dt>Rules</dt><dd>2 (outer top + outer bottom only).</dd>
+        <dt>Change</dt><dd>Wrap both in one section; replace stats top+mid borders with pip.</dd>
+        <dt>Mobile</dt><dd>Pip stays; press logos wrap; stat rows stack.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules. The strongest "single credibility slab" read.
+      Closest in spirit to a press kit's institutional plate. Risk: loses the per-stat
+      vertical dividers (currently <code class="mono">.ht-stats-items::after</code>) — would need a
+      decision on whether to keep them.</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">V · One slab</span>
+      <div class="mock__body" style="padding-top: 24px;">
+        <div class="slab">
+          <div class="slab-inner">
+            <div class="slab__press">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+            <div class="slab__pip"></div>
+            <div class="slab__stats st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- VI. CENTRED MASTHEAD                                                -->
+  <!-- =================================================================== -->
+  <section class="idea i6" id="i6">
+    <div class="idea__meta">
+      <div class="idea__num">VI</div>
+      <h2 class="idea__title">Centred masthead, no rules — <em>boldest swap</em></h2>
+      <p class="idea__body">
+        Drop every line from the press strip. "AS SEEN IN · FT · Bloomberg · NYT · HuffPost"
+        sets as a single horizontal masthead line, centred on cream with generous vertical
+        breathing room. The four rules collapse to just the two that bracket the stats slab.
+        Quietest possible press credit — the typography does the work.
+      </p>
+      <dl class="reg">
+        <dt>Surface</dt><dd>Cream, centred, no chrome at all on press row.</dd>
+        <dt>Rules</dt><dd>2 (only the stats slab keeps its rules).</dd>
+        <dt>Change</dt><dd>New <code class="mono">.ht-press-line--masthead</code> variant; centred + no borders.</dd>
+        <dt>Mobile</dt><dd>Logos wrap to two rows, label tops them.</dd>
+      </dl>
+      <p class="contrast"><strong>vs today:</strong> -2 rules, and the press strip stops shouting. Best
+      register match for the editorial tone, but loses some visual weight at desktop —
+      press credit needs to be obvious for the social-proof job to work, so worth A/B-ing
+      against I and II.</p>
+    </div>
+    <div class="mock">
+      <span class="mock__label">VI · Masthead</span>
+      <div class="mock__body">
+        <section class="pl-area">
+          <div class="container">
+            <div class="pl-wrap">
+              <span class="pl__label">As seen in</span>
+              <div class="pl__set">
+                <span class="pl__logo pl__logo--ft"></span>
+                <span class="pl__logo pl__logo--bb"></span>
+                <span class="pl__logo pl__logo--nyt"></span>
+                <span class="pl__logo pl__logo--hp"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="st-area">
+          <div class="container">
+            <div class="st-wrapper-line st-wrap">
+              <div class="st-item"><h2 class="st-num">14<span class="st-plus">+</span></h2><h4 class="st-label">Years in capital markets</h4><p class="st-body">CFA-trained, NYSE-seasoned advisory</p></div>
+              <div class="st-item"><h2 class="st-num">100<span class="st-plus">+</span></h2><h4 class="st-label">Mandates delivered</h4><p class="st-body">Across CBI, RBI and tax residency</p></div>
+              <div class="st-item"><h2 class="st-num">32</h2><h4 class="st-label">Jurisdictions covered</h4><p class="st-body">From the Caribbean to the Gulf</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="ship">
+    <h2>Recommendation — <em>ship I, fall back to III</em></h2>
+    <p>
+      <strong>I (no press-line border)</strong> is the cleanest fix for the doubled-rules
+      problem and keeps every other component untouched. <strong>III (unify the colour)</strong>
+      is the one-line CSS change if we'd rather not lose the press-line frame at all.
+      <strong>II</strong> and <strong>V</strong> are larger structural moves worth keeping in mind for
+      the next press-section pass.
+    </p>
+    <p>Both <code class="mono">Home.jsx</code> and <code class="mono">About.jsx</code> render the marquee
+    variant of <code class="mono">PressLine.jsx</code>, so any CSS change automatically applies to both.</p>
+  </section>
+
+</main>
+</body>
+</html>
